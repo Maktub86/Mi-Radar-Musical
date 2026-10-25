@@ -22,6 +22,26 @@ app = Flask(__name__, static_folder=str(BASE), static_url_path="")
 
 BOTON_HTML = ''
 
+LIMPIAR_CONTROLES_HTML = r"""
+<style>
+#boton-actualizar,#panel-actualizacion,[aria-label="Actualizar manualmente"],[title="Actualizar manualmente"]{display:none!important;visibility:hidden!important;pointer-events:none!important}
+</style>
+<script>
+(function(){
+ function quitar(){
+  document.querySelectorAll('#boton-actualizar,#panel-actualizacion,[aria-label="Actualizar manualmente"],[title="Actualizar manualmente"]').forEach(function(n){n.remove();});
+  document.querySelectorAll('button,a,[role="button"]').forEach(function(n){
+   var t=(n.innerText||n.textContent||'').trim();
+   if(t==='↻' || t==='⟳' || t==='⟲' || t==='↻ Actualizar') n.remove();
+  });
+ }
+ quitar();
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',quitar);
+ new MutationObserver(quitar).observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>
+"""
+
 
 def _pagina_portada(tipo="inicio"):
     html = (BASE / "portada.html").read_text(encoding="utf-8")
@@ -96,7 +116,7 @@ body[data-pagina^="lista-"] #listas-musicales>.sub{display:none}
 })();
 </script>
 """
-    return html.replace("</body>", script_vista + BOTON_HTML + "\n</body>")
+    return html.replace("</body>", script_vista + BOTON_HTML + LIMPIAR_CONTROLES_HTML + "\n</body>")
 
 @app.get("/")
 def inicio():
@@ -506,7 +526,7 @@ def api_lo_mejor():
 @app.get("/artistas")
 def pagina_artistas():
     html = (BASE / "index.html").read_text(encoding="utf-8")
-    return html.replace("</body>", BOTON_HTML + "\n</body>")
+    return html.replace("</body>", BOTON_HTML + LIMPIAR_CONTROLES_HTML + "\n</body>")
 
 @app.get("/api/artistas")
 def artistas():
