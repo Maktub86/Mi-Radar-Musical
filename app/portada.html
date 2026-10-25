@@ -435,6 +435,16 @@ async function cargarLista(tipo){
   const r=await fetch("/api/listas/"+tipo);
   const datos=await r.json();
   mostrarLista(tipo,datos);
+  // Si Canal Fiesta aún no tiene caché, intentar cargarla automáticamente la primera vez.
+  if(tipo==="canal-fiesta" && !datos.canciones?.length && !datos.actualizado){
+   estado.textContent="Cargando por primera vez el Top 50 de Canal Fiesta…";
+   const actualizacion=await fetch("/api/listas/canal-fiesta/actualizar",{method:"POST"});
+   const resultado=await actualizacion.json();
+   mostrarLista("canal-fiesta",resultado);
+   if(!actualizacion.ok && !resultado.canciones?.length){
+    estado.textContent=resultado.mensaje||resultado.error||"No se ha podido cargar el Top 50 de Canal Fiesta.";
+   }
+  }
  }catch(e){estado.textContent="No se pudo cargar esta lista.";}
 }
 async function actualizarLista(tipo,boton){
