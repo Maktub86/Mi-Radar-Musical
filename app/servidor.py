@@ -120,8 +120,56 @@ body[data-pagina^="lista-"] #listas-musicales>h2{margin-bottom:8px}
 body[data-pagina^="lista-"] #listas-musicales>.sub{display:none}
 </style>
 """
-    html = html.replace("</head>", estilos + "\n</head>", 1)
-    return html.replace("</body>", BOTON_HTML + "\n</body>")
+    estilos += """
+<style>
+/* Vistas de listas: identidad visual propia, manteniendo los datos y funciones existentes */
+body[data-pagina="lista-youtube"]{--panel:#211a2b;--suave:#d0c2df;--verde:#ff6565;--rosa:#ff3333;--azul:#d72b2b;background:linear-gradient(140deg,#210d13,#111018 58%,#32151b)}
+body[data-pagina="lista-youtube"] header{background:linear-gradient(110deg,#8f1019,#e62129 65%,#ff6262)}
+body[data-pagina="lista-los40"]{--panel:#17283a;--suave:#c3d9ed;--verde:#5fe2d0;--rosa:#ff7b42;--azul:#168fe5;background:linear-gradient(140deg,#0c1c2c,#10101c 58%,#142e42)}
+body[data-pagina="lista-los40"] header{background:linear-gradient(110deg,#075ca8,#1285c7 65%,#31c5dc)}
+body[data-pagina="lista-canal-fiesta"]{--panel:#172a2b;--suave:#c0e3d7;--verde:#a7ed79;--rosa:#f0b943;--azul:#20a77c;background:linear-gradient(140deg,#102522,#10101c 58%,#183a2f)}
+body[data-pagina="lista-canal-fiesta"] header{background:linear-gradient(110deg,#075a43,#078b66 65%,#8ccf53)}
+body[data-pagina="lista-youtube"] nav a[href="/listas/youtube"],
+body[data-pagina="lista-los40"] nav a[href="/listas/los40"],
+body[data-pagina="lista-canal-fiesta"] nav a[href="/listas/canal-fiesta"]{background:var(--rosa);color:#fff;font-weight:bold}
+body[data-pagina="lista-youtube"] .actualizar-lista{background:linear-gradient(100deg,#b71924,#ff4444)}
+body[data-pagina="lista-los40"] .actualizar-lista{background:linear-gradient(100deg,#0874bd,#27b6d4)}
+body[data-pagina="lista-canal-fiesta"] .actualizar-lista{background:linear-gradient(100deg,#08734f,#9acb42)}
+body[data-pagina^="lista-"] main>.cabecera,
+body[data-pagina^="lista-"] main>.botones,
+body[data-pagina^="lista-"] #estado,
+body[data-pagina^="lista-"] #ultima-actualizacion,
+body[data-pagina^="lista-"] #lista{display:none!important}
+body[data-pagina^="lista-"] #listas-musicales{margin-top:0;padding-top:0;border-top:0}
+body[data-pagina^="lista-"] #listas-musicales>h2{font-size:30px;margin-bottom:8px}
+body[data-pagina^="lista-"] #listas-musicales>.sub{display:none}
+</style>
+"""
+    html = html.replace("</head>", estilos + "\\n</head>", 1)
+    script_vista = """
+<script>
+(()=> {
+ const pagina=document.body.dataset.pagina||"inicio";
+ const config={
+  "lista-youtube":{titulo:"Tendencias YouTube",subtitulo:"Lo que está marcando tendencia en YouTube",nav:"/listas/youtube"},
+  "lista-los40":{titulo:"Los 40",subtitulo:"La lista musical de Los 40",nav:"/listas/los40"},
+  "lista-canal-fiesta":{titulo:"Canal Fiesta",subtitulo:"Los éxitos de Canal Fiesta",nav:"/listas/canal-fiesta"}
+ };
+ const vista=config[pagina];
+ if(!vista)return;
+ const h1=document.querySelector("header h1");
+ if(h1)h1.textContent=(pagina==="lista-youtube"?"▶ ":pagina==="lista-los40"?"🎵 ":"📻 ")+vista.titulo;
+ const lema=document.querySelector("header p");
+ if(lema)lema.textContent=vista.subtitulo;
+ const h2=document.querySelector("#listas-musicales>h2");
+ if(h2)h2.textContent=vista.titulo;
+ document.querySelectorAll("nav a").forEach(a=>{
+  a.classList.toggle("activo",a.getAttribute("href")===vista.nav);
+ });
+})();
+</script>
+"""
+    return html.replace("</body>", script_vista + BOTON_HTML + "\\n</body>")
 
 @app.get("/")
 def inicio():
