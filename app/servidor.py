@@ -213,7 +213,7 @@ footer{text-align:center;color:var(--suave);font-size:12px;padding:30px}
   const b=document.createElement("button");b.type="button";b.className="estilo-copiable";b.textContent=estilo;b.title="Copiar "+estilo;
   b.addEventListener("click",()=>copiar(estilo));lista.appendChild(b);
  }
- document.getElementById("copiar-todos-estilos").addEventListener("click",()=>copiar(estilos.join("\n")+"\n\nLatina: Salsa, Bachata, Merengue, Cumbia y Bolero."));
+ document.getElementById("copiar-todos-estilos").addEventListener("click",()=>copiar(estilos.join("\\n")+"\\n\\nLatina: Salsa, Bachata, Merengue, Cumbia y Bolero."));
  document.getElementById("abrir-estilos").addEventListener("click",()=>{modal.hidden=false;document.getElementById("cerrar-estilos").focus();});
  function cerrar(){modal.hidden=true;}
  document.getElementById("cerrar-estilos").addEventListener("click",cerrar);
