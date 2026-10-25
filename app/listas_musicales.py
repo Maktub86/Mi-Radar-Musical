@@ -177,33 +177,60 @@ def obtener_canal_fiesta():
     parser = _texto_html(_leer(FUENTES["canal-fiesta"]["url"]))
     lineas = parser.lineas
     items = []
+
+    def numero_suelto(texto):
+        return re.fullmatch(r"\s*(\d{1,2})\s*\.?\s*", texto)
+
+    def marcador_puesto(indice):
+        if indice >= len(lineas):
+            return None
+        linea = lineas[indice].strip()
+        doble = re.fullmatch(r"(\d{1,2})\s*\.?\s+(\d{1,2})", linea)
+        if doble:
+            return int(doble.group(1)), indice + 1
+        simple = numero_suelto(linea)
+        if not simple:
+            return None
+        puesto = int(simple.group(1))
+        siguiente = indice + 1
+        # Canal Sur puede separar la posición actual y la anterior en dos nodos HTML.
+        if siguiente < len(lineas) and numero_suelto(lineas[siguiente].strip()):
+            siguiente += 1
+        return puesto, siguiente
+
+    ignorar = {"top 50", "escuchar", "play", "votar", "¡vota!", "imagen"}
+
     i = 0
     while i < len(lineas):
-        linea = lineas[i].strip()
-        # La página muestra cada entrada como un número doble (posición / número).
-        m = re.fullmatch(r"(\d{1,2})\s*\.?\s+(\d{1,2})", linea)
-        inicio_datos = i + 1
-        if not m and re.fullmatch(r"\d{1,2}", linea) and i + 1 < len(lineas):
-            siguiente_numero = lineas[i + 1].strip()
-            if siguiente_numero == linea and int(linea) in range(1, 51):
-                m = re.match(r"(\d+)", linea)
-                inicio_datos = i + 2
-        if not m:
+        marcador = marcador_puesto(i)
+        if not marcador:
             i += 1
             continue
-        puesto = int(m.group(1))
+
+        puesto, inicio_datos = marcador
         if not 1 <= puesto <= 50:
             i += 1
             continue
+
         siguientes = []
         j = inicio_datos
-        while j < len(lineas) and len(siguientes) < 6:
-            valor = lineas[j].strip()
-            if re.fullmatch(r"\d{1,2}\s*\.?\s+\d{1,2}", valor):
+        while j < len(lineas):
+            # Detecta la siguiente canción aunque Canal Sur entregue los números
+            # en dos nodos separados, y no solo cuando aparecen "1. 1" juntos.
+            if marcador_puesto(j) and len(siguientes) >= 2:
                 break
-            if valor and valor.casefold() not in {"top 50", "escuchar", "play"}:
+
+            valor = lineas[j].strip()
+            if valor and valor.casefold() not in ignorar:
                 siguientes.append(valor)
+
+            # No dejar que un número suelto se convierta en el artista o título.
+            if len(siguientes) >= 2 and j + 1 < len(lineas):
+                if numero_suelto(lineas[j + 1].strip()):
+                    j += 1
+                    break
             j += 1
+
         if len(siguientes) >= 2:
             items.append({
                 "puesto": puesto,
@@ -211,7 +238,9 @@ def obtener_canal_fiesta():
                 "titulo": siguientes[1],
                 "url": FUENTES["canal-fiesta"]["url"],
             })
+
         i = max(i + 1, j)
+
     canciones = _limpiar_canciones(items, 50)
     for item in canciones:
         item["puesto"] = int(item.get("puesto", 0) or 0)
@@ -221,7 +250,6 @@ def obtener_canal_fiesta():
         "fuente": FUENTES["canal-fiesta"]["url"],
         "nombre": FUENTES["canal-fiesta"]["nombre"],
     }
-
 
 def _buscar_clave(obj, claves):
     if isinstance(obj, dict):
