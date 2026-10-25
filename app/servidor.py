@@ -22,7 +22,7 @@ app = Flask(__name__, static_folder=str(BASE), static_url_path="")
 
 BOTON_HTML = r'''
 <style>
-#boton-actualizar{position:fixed!important;top:14px!important;right:16px!important;left:auto!important;bottom:auto!important;z-index:10000;width:44px;height:44px;border:1px solid #ffffff45;border-radius:50%;background:#e8bd62;color:#171717;font-size:24px;font-weight:bold;box-shadow:0 3px 14px #0008;cursor:pointer};display:flex;align-items:center;justify-content:center;line-height:1;
+#boton-actualizar{position:fixed!important;top:14px!important;right:16px!important;left:auto!important;bottom:auto!important;z-index:10000;width:44px;height:44px;border:1px solid #ffffff45;border-radius:50%;background:#e8bd62;color:#171717;font-size:24px;font-weight:bold;box-shadow:0 3px 14px #0008;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;}
 #boton-actualizar:hover{transform:scale(1.05)}
 #boton-actualizar:disabled{opacity:.6;cursor:wait}
 #panel-actualizacion{position:fixed!important;top:66px!important;right:16px!important;left:auto!important;bottom:auto!important;z-index:9999;background:#202633;color:#fff;padding:12px;border-radius:12px;box-shadow:0 3px 18px #0008;width:280px;max-width:calc(100vw - 32px);font:13px Arial}
