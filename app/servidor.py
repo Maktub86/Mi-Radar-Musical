@@ -22,16 +22,16 @@ app = Flask(__name__, static_folder=str(BASE), static_url_path="")
 
 BOTON_HTML = r'''
 <style>
-#boton-actualizar{position:fixed;top:14px;right:16px;z-index:10000;width:44px;height:44px;border:1px solid #ffffff45;border-radius:50%;background:#e8bd62;color:#171717;font-size:24px;font-weight:bold;box-shadow:0 3px 14px #0008;cursor:pointer}
+#boton-actualizar{position:fixed!important;top:14px!important;right:16px!important;left:auto!important;bottom:auto!important;z-index:10000;width:44px;height:44px;border:1px solid #ffffff45;border-radius:50%;background:#e8bd62;color:#171717;font-size:24px;font-weight:bold;box-shadow:0 3px 14px #0008;cursor:pointer}
 #boton-actualizar:hover{transform:scale(1.05)}
 #boton-actualizar:disabled{opacity:.6;cursor:wait}
-#panel-actualizacion{position:fixed;top:66px;right:16px;z-index:9999;background:#202633;color:#fff;padding:12px;border-radius:12px;box-shadow:0 3px 18px #0008;width:280px;max-width:calc(100vw - 32px);font:13px Arial}
+#panel-actualizacion{position:fixed!important;top:66px!important;right:16px!important;left:auto!important;bottom:auto!important;z-index:9999;background:#202633;color:#fff;padding:12px;border-radius:12px;box-shadow:0 3px 18px #0008;width:280px;max-width:calc(100vw - 32px);font:13px Arial}
 #panel-actualizacion[hidden]{display:none}
 #panel-actualizacion button{padding:7px 11px;border:0;border-radius:8px;background:#e8bd62;color:#171717;font-weight:bold;cursor:pointer}
 #progreso-actualizacion{height:7px;background:#414858;border-radius:8px;margin-top:9px;overflow:hidden}
 #barra-actualizacion{height:100%;width:0;background:#76e0c2;transition:width .2s}
 #estado-actualizacion{display:block;margin-top:7px;line-height:1.4}
-@media(max-width:600px){#boton-actualizar{top:8px;right:8px}#panel-actualizacion{top:58px;right:8px}}
+@media(max-width:600px){#boton-actualizar{top:8px!important;right:8px!important}#panel-actualizacion{top:58px!important;right:8px!important}}
 </style>
 <button id="boton-actualizar" type="button" title="Actualizar manualmente" aria-label="Actualizar manualmente">↻</button>
 <div id="panel-actualizacion" hidden>
