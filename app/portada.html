@@ -51,6 +51,9 @@ button.activo{background:var(--azul);border-color:var(--azul)}
 .acciones-radar .boton-mediahuman,.acciones-radar .boton-youtube,.acciones-radar .boton-completa{flex:none;width:42px;min-width:42px;height:42px;padding:8px 3px;border-radius:10px;font-size:16px}
 .acciones-radar .boton-muestra{flex:none;width:82px;min-width:82px;height:42px;padding:9px 8px;border-radius:11px;font-size:15px}
 .acciones-radar .boton-mediahuman,.acciones-cancion .boton-mediahuman,.acciones-publicacion .boton-mediahuman{background:#238b55!important;color:#fff!important;border:1px solid #55c783!important}
+/* Centra la flecha como icono, sin depender de la línea base del carácter */
+.boton-mediahuman{font-size:0!important;position:relative;}
+.boton-mediahuman::before{content:'⬇';display:block;font-family:Arial,sans-serif;font-size:21px;line-height:1;position:relative;top:-2px;}
 .acciones-radar .boton-youtube,.acciones-cancion .boton-youtube,.acciones-publicacion .boton-youtube{background:#e62129!important;color:#fff!important;border:1px solid #e62129!important}
 .acciones-radar .boton-completa,.acciones-cancion .boton-completa,.acciones-publicacion .boton-completa{background:#292d3b!important;color:#fff!important;border:1px solid #ffffff35!important}
 .acciones-cancion{display:grid;grid-template-columns:82px 42px 42px 42px;grid-template-rows:42px;grid-auto-flow:column;gap:7px;justify-content:start;align-content:start;align-items:stretch;width:max-content;min-width:229px;flex-wrap:nowrap}
