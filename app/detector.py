@@ -212,21 +212,22 @@ def main():
                 continue
 
             actuales = publicaciones(artista)
-            # Si MusicBrainz aún no refleja lanzamientos de este año, completar
-            # con el catálogo de Apple Music, manteniendo los datos principales.
-            if not any(str(pub.get("fecha", "")).startswith(time.strftime("%Y")) for pub in actuales.values()):
-                complementarias = publicaciones_apple(artista)
-                for ident, pub in complementarias.items():
-                    clave_titulo = " ".join(pub["titulo"].casefold().split())
-                    duplicada = any(
-                        " ".join(str(existente.get("titulo", "")).casefold().split()) == clave_titulo
-                        and str(existente.get("fecha", ""))[:4] == str(pub.get("fecha", ""))[:4]
-                        for existente in actuales.values()
-                    )
-                    if not duplicada:
-                        actuales[ident] = pub
-                if complementarias:
-                    print(f"  Apple Music añadió {len(complementarias)} publicaciones recientes.", flush=True)
+            # Completar siempre con los lanzamientos del año en Apple Music,
+            # porque MusicBrainz puede tardar en registrar algunos singles.
+            complementarias = publicaciones_apple(artista)
+            anadidas = 0
+            for ident, pub in complementarias.items():
+                clave_titulo = " ".join(pub["titulo"].casefold().split())
+                duplicada = any(
+                    " ".join(str(existente.get("titulo", "")).casefold().split()) == clave_titulo
+                    and str(existente.get("fecha", ""))[:4] == str(pub.get("fecha", ""))[:4]
+                    for existente in actuales.values()
+                )
+                if not duplicada:
+                    actuales[ident] = pub
+                    anadidas += 1
+            if anadidas:
+                print(f"  Apple Music añadió {anadidas} publicaciones recientes.", flush=True)
             clave = artista["id"]
             anteriores = datos.get(clave)
 
