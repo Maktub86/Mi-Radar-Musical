@@ -20,13 +20,118 @@ TAREA = "MiRadarMusical_Actualizacion"
 
 app = Flask(__name__, static_folder=str(BASE), static_url_path="")
 
-BOTON_HTML = '\n<style>\n#panel-actualizacion{position:fixed;top:12px;right:16px;z-index:9999;background:#202633;color:#fff;padding:12px;border-radius:12px;box-shadow:0 3px 18px #0008;width:275px;max-width:calc(100vw - 32px);font:13px Arial}\n#panel-actualizacion button{width:100%;padding:10px;border:0;border-radius:8px;background:#e8bd62;color:#171717;font-weight:bold;cursor:pointer}\n#panel-actualizacion button:disabled{opacity:.65;cursor:wait}\n#progreso-actualizacion{height:8px;background:#414858;border-radius:8px;margin-top:9px;overflow:hidden}\n#barra-actualizacion{height:100%;width:0;background:#76e0c2;transition:width .2s}\n#estado-actualizacion{display:block;margin-top:7px;line-height:1.4}\n@media(max-width:600px){#panel-actualizacion{top:8px;right:8px;width:220px}body{padding-top:90px}}\n</style>\n<div id="panel-actualizacion">\n<button id="boton-actualizar" type="button">↻ Actualizar artistas y radar</button>\n<div id="progreso-actualizacion"><div id="barra-actualizacion"></div></div>\n<span id="estado-actualizacion" role="status">Actualización manual</span>\n</div>\n<script>\n(()=>{\nconst b=document.getElementById(\'boton-actualizar\');\nconst e=document.getElementById(\'estado-actualizacion\');\nconst barra=document.getElementById(\'barra-actualizacion\');\nlet vigilando=false;\nasync function consultar(){\n const r=await fetch(\'/api/estado-actualizacion\');\n const d=await r.json();\n barra.style.width=(d.progreso||0)+\'%\';\n e.textContent=(d.progreso||0)+\'% · \'+d.mensaje;\n b.disabled=!!d.en_curso;\n return d;\n}\nasync function vigilar(){\n if(vigilando)return;\n vigilando=true;\n try{\n  let d;\n  do{\n   await new Promise(r=>setTimeout(r,1500));\n   d=await consultar();\n  }while(d.en_curso);\n }catch(err){\n  e.textContent=\'No se pudo consultar el progreso.\';\n  b.disabled=false;\n }finally{vigilando=false;}\n}\nb.addEventListener(\'click\',async()=>{\n if(!confirm(\'¿Actualizar todos los artistas activos y regenerar el radar?\'))return;\n b.disabled=true;barra.style.width=\'0%\';e.textContent=\'Iniciando actualización...\';\n try{\n  const r=await fetch(\'/api/actualizar\',{method:\'POST\'});\n  const d=await r.json();\n  if(!r.ok){e.textContent=d.error||\'No se pudo iniciar.\';b.disabled=false;return;}\n  e.textContent=d.mensaje||\'Actualización iniciada.\';\n  vigilar();\n }catch(err){\n  e.textContent=\'No se pudo contactar con el servidor.\';\n  b.disabled=false;\n }\n});\nconsultar().catch(()=>{});\n})();\n</script>\n'
+BOTON_HTML = r'''
+<style>
+#boton-actualizar{position:fixed;top:14px;right:16px;z-index:10000;width:44px;height:44px;border:1px solid #ffffff45;border-radius:50%;background:#e8bd62;color:#171717;font-size:24px;font-weight:bold;box-shadow:0 3px 14px #0008;cursor:pointer}
+#boton-actualizar:hover{transform:scale(1.05)}
+#boton-actualizar:disabled{opacity:.6;cursor:wait}
+#panel-actualizacion{position:fixed;top:66px;right:16px;z-index:9999;background:#202633;color:#fff;padding:12px;border-radius:12px;box-shadow:0 3px 18px #0008;width:280px;max-width:calc(100vw - 32px);font:13px Arial}
+#panel-actualizacion[hidden]{display:none}
+#panel-actualizacion button{padding:7px 11px;border:0;border-radius:8px;background:#e8bd62;color:#171717;font-weight:bold;cursor:pointer}
+#progreso-actualizacion{height:7px;background:#414858;border-radius:8px;margin-top:9px;overflow:hidden}
+#barra-actualizacion{height:100%;width:0;background:#76e0c2;transition:width .2s}
+#estado-actualizacion{display:block;margin-top:7px;line-height:1.4}
+@media(max-width:600px){#boton-actualizar{top:8px;right:8px}#panel-actualizacion{top:58px;right:8px}}
+</style>
+<button id="boton-actualizar" type="button" title="Actualizar manualmente" aria-label="Actualizar manualmente">↻</button>
+<div id="panel-actualizacion" hidden>
+ <button id="cerrar-panel-actualizacion" type="button" aria-label="Cerrar">Cerrar</button>
+ <div id="progreso-actualizacion"><div id="barra-actualizacion"></div></div>
+ <span id="estado-actualizacion" role="status">Preparado para actualizar artistas, radar y listas.</span>
+</div>
+<script>
+(()=>{
+const b=document.getElementById('boton-actualizar');
+const panel=document.getElementById('panel-actualizacion');
+const cerrar=document.getElementById('cerrar-panel-actualizacion');
+const e=document.getElementById('estado-actualizacion');
+const barra=document.getElementById('barra-actualizacion');
+let vigilando=false;
+async function consultar(){
+ const r=await fetch('/api/estado-actualizacion',{cache:'no-store'});
+ const d=await r.json();
+ barra.style.width=(d.progreso||0)+'%';
+ e.textContent=(d.progreso||0)+'% · '+d.mensaje;
+ b.disabled=!!d.en_curso;
+ if(d.en_curso) panel.hidden=false;
+ return d;
+}
+async function vigilar(){
+ if(vigilando)return;
+ vigilando=true;
+ try{
+  let d;
+  do{
+   await new Promise(r=>setTimeout(r,1500));
+   d=await consultar();
+  }while(d.en_curso);
+ }catch(err){
+  e.textContent='No se pudo consultar el progreso.';
+  b.disabled=false;
+ }finally{vigilando=false;}
+}
+b.addEventListener('click',async()=>{
+ panel.hidden=false;
+ try{
+  const estado=await consultar();
+  if(estado.en_curso){vigilar();return;}
+ }catch(err){}
+ if(!confirm('¿Actualizar todos los artistas, el radar y las tres listas musicales?'))return;
+ b.disabled=true;barra.style.width='0%';e.textContent='Iniciando actualización completa…';
+ try{
+  const r=await fetch('/api/actualizar',{method:'POST'});
+  const d=await r.json();
+  if(!r.ok){e.textContent=d.error||'No se pudo iniciar.';b.disabled=false;return;}
+  e.textContent=d.mensaje||'Actualización iniciada.';
+  vigilar();
+ }catch(err){
+  e.textContent='No se pudo contactar con el servidor.';
+  b.disabled=false;
+ }
+});
+cerrar.addEventListener('click',()=>{if(!vigilando)panel.hidden=true;});
+consultar().then(d=>{if(d.en_curso)vigilar();}).catch(()=>{});
+})();
+</script>
+'''
 
+
+def _pagina_portada(tipo="inicio"):
+    html = (BASE / "portada.html").read_text(encoding="utf-8")
+    html = html.replace("<body>", f'<body data-pagina="{tipo}">', 1)
+    html = html.replace('href="#lista-youtube"', 'href="/listas/youtube"')
+    html = html.replace('href="#lista-los40"', 'href="/listas/los40"')
+    html = html.replace('href="#lista-canal-fiesta"', 'href="/listas/canal-fiesta"')
+    estilos = """
+<style>
+body[data-pagina="inicio"] #listas-musicales{display:none}
+body[data-pagina^="lista-"] main>.cabecera,
+body[data-pagina^="lista-"] #estado,
+body[data-pagina^="lista-"] #ultima-actualizacion,
+body[data-pagina^="lista-"] #lista{display:none}
+body[data-pagina="lista-youtube"] #lista-los40,
+body[data-pagina="lista-youtube"] #lista-canal-fiesta{display:none}
+body[data-pagina="lista-los40"] #lista-youtube,
+body[data-pagina="lista-los40"] #lista-canal-fiesta{display:none}
+body[data-pagina="lista-canal-fiesta"] #lista-youtube,
+body[data-pagina="lista-canal-fiesta"] #lista-los40{display:none}
+body[data-pagina^="lista-"] #listas-musicales{margin-top:0}
+body[data-pagina^="lista-"] #listas-musicales>h2{margin-bottom:8px}
+body[data-pagina^="lista-"] #listas-musicales>.sub{display:none}
+</style>
+"""
+    html = html.replace("</head>", estilos + "\n</head>", 1)
+    return html.replace("</body>", BOTON_HTML + "\n</body>")
 
 @app.get("/")
 def inicio():
-    html = (BASE / "portada.html").read_text(encoding="utf-8")
-    return html.replace("</body>", BOTON_HTML + "\n</body>")
+    return _pagina_portada("inicio")
+
+@app.get("/listas/<tipo>")
+def pagina_lista(tipo):
+    if tipo not in ("youtube", "los40", "canal-fiesta"):
+        return "Lista no encontrada", 404
+    return _pagina_portada("lista-" + tipo)
 
 @app.get("/artistas")
 def pagina_artistas():
@@ -265,7 +370,7 @@ def _ejecutar_actualizacion():
         destino = BASE / "portada.json"
 
         with log_path.open("a", encoding="utf-8", errors="replace") as log:
-            log.write("\n==== Actualización conjunta manual ====\n")
+            log.write("\n==== Actualización completa manual ====\n")
             proceso = subprocess.Popen(
                 [sys.executable, str(detector), "--all"],
                 cwd=str(raiz), stdout=subprocess.PIPE,
@@ -280,7 +385,7 @@ def _ejecutar_actualizacion():
                 m = re.search(r"\[(\d+)/(\d+)\]\s+Consultando", linea)
                 if m:
                     hecho, total = int(m.group(1)), int(m.group(2))
-                    porcentaje = min(90, int(90 * hecho / max(total, 1)))
+                    porcentaje = min(85, int(85 * hecho / max(total, 1)))
                     with _candado_estado:
                         _estado_actualizacion["progreso"] = porcentaje
                         _estado_actualizacion["mensaje"] = f"Consultando artistas: {hecho} de {total}"
@@ -290,7 +395,7 @@ def _ejecutar_actualizacion():
                 raise RuntimeError("El detector falló. Consulta actualizacion_diaria.log.")
 
             with _candado_estado:
-                _estado_actualizacion["progreso"] = 92
+                _estado_actualizacion["progreso"] = 87
                 _estado_actualizacion["mensaje"] = "Preparando el radar..."
 
             resultado = subprocess.run(
@@ -300,13 +405,29 @@ def _ejecutar_actualizacion():
             )
             if resultado.returncode:
                 raise RuntimeError("No se pudo preparar el radar. Consulta el registro.")
-
             shutil.copy2(origen, destino)
+
+            for numero, tipo in enumerate(("los40", "canal-fiesta", "youtube"), 1):
+                with _candado_estado:
+                    _estado_actualizacion["progreso"] = 87 + numero * 4
+                    _estado_actualizacion["mensaje"] = f"Actualizando lista {numero} de 3: {tipo}"
+                try:
+                    lista = actualizar_lista(tipo)
+                    log.write(f"Lista {tipo}: {lista.get('mensaje', '')}\n")
+                    log.flush()
+                    if lista.get("error"):
+                        with _candado_estado:
+                            _estado_actualizacion["mensaje"] = f"Advertencia en {tipo}: {lista.get('mensaje', 'error')}"
+                except Exception as error_lista:
+                    log.write(f"Error actualizando {tipo}: {error_lista}\n")
+                    log.flush()
+                    with _candado_estado:
+                        _estado_actualizacion["mensaje"] = f"Advertencia en {tipo}: {error_lista}"
 
         with _candado_estado:
             _estado_actualizacion.update(
                 en_curso=False, progreso=100,
-                mensaje="Actualización conjunta completada."
+                mensaje="Actualización completa finalizada."
             )
     except Exception as error:
         with _candado_estado:
