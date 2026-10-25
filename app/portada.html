@@ -239,7 +239,7 @@ function mostrar(cantidad) {
         <div class="titulo">${escapar(p.titulo || "Sin título")}</div>
         <div class="artista">${escapar(p.artista || "Artista desconocido")}</div>
         <div class="fecha">${escapar(p.fecha || "Fecha desconocida")}</div>
-        ${tipoSeleccionado === "Single" ? `<div class="acciones-radar"><button class="boton-muestra boton-30" type="button" title="Escuchar muestra de 30 segundos"><span aria-hidden="true">▶</span><span>30 s</span></button><button class="boton-mediahuman" type="button" title="Buscar enlace para MediaHuman" aria-label="Descargar con MediaHuman">⬇</button><button class="boton-youtube" type="button" title="Abrir YouTube" aria-label="YouTube">Y</button></div><div class="reproductor-muestra" hidden></div>` : ""}
+        ${tipoSeleccionado === "Single" ? `<div class="acciones-radar"><button class="boton-muestra boton-30" type="button" title="Escuchar muestra de 30 segundos"><svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg><span>30 s</span></button><button class="boton-mediahuman" type="button" title="Buscar enlace para MediaHuman" aria-label="Descargar con MediaHuman">⬇</button><button class="boton-youtube" type="button" title="Abrir YouTube" aria-label="YouTube">Y</button></div><div class="reproductor-muestra" hidden></div>` : ""}
       </div>`;
     const zonaImagen = tarjeta.querySelector(".portada-disco");
     if (imagen) {
@@ -372,7 +372,7 @@ function mostrarLista(tipo,datos){
   acciones.className="acciones-cancion";
   const boton=document.createElement("button");
   boton.type="button";boton.className="boton-muestra boton-30";
-  boton.innerHTML='<span class="icono-play-muestra" aria-hidden="true">▶</span><span>30 s</span>';boton.title="Escuchar muestra de 30 segundos";
+  boton.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg><span>30 s</span>';boton.title="Escuchar muestra de 30 segundos";
   boton.setAttribute("aria-label","Muestra de 30 segundos");
   const botonMedia=document.createElement("button");
   botonMedia.type="button";botonMedia.className="boton-mediahuman";botonMedia.textContent="⬇";
