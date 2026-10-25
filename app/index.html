@@ -5,27 +5,58 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mi Radar Musical</title>
 <style>
-body{font-family:Arial,sans-serif;max-width:1000px;margin:35px auto;padding:0 18px;background:#10131b;color:#f2f4f8}
-h1{color:#76e0c2}
-input,select{padding:12px;margin:5px;border-radius:8px;border:1px solid #444;background:#202633;color:white}
-#total{color:#aaa;margin:15px 5px}
-.artista,.publicacion{padding:12px;margin:7px 0;background:#202633;border-radius:8px}.grupo-musicales{margin:16px 0;padding:12px;background:#171e2a;border:1px solid #46516a;border-radius:12px}.grupo-musicales>summary{cursor:pointer;font-weight:800;color:#bcb7ff;padding:8px}.grupo-musicales>.mensaje{margin:8px}.contenido-musicales{padding-top:5px}
-.estado{color:#76e0c2;font-size:13px}
-button{padding:10px;border-radius:8px;cursor:pointer;margin-top:8px}
-.publicaciones{margin-top:12px;border-top:1px solid #444;padding-top:8px}
-.fecha{color:#76e0c2;font-size:13px}
-.mensaje{color:#bbb}
-.foto-artista{display:block;width:220px;height:220px;max-width:100%;object-fit:cover;object-position:center;border-radius:10px;margin-top:12px;background:#202633}.credito-foto{font-size:11px;color:#aaa;margin-top:5px} .credito-foto a{color:#76e0c2}
-#volver-portada{display:inline-block;margin:0 0 16px;padding:9px 13px;border-radius:8px;background:#202633;color:#76e0c2;text-decoration:none;border:1px solid #444}#volver-portada:hover{background:#2a3445}</style>
+:root{color-scheme:dark;--panel:#251c38;--texto:#f8f4ff;--suave:#c8bddb;--acento:#b47aff;--verde:#dbb7ff}
+*{box-sizing:border-box}
+body{margin:0;padding:0;max-width:none;font-family:Segoe UI,Arial,sans-serif;background:linear-gradient(145deg,#17102a,#10101c 58%,#281638);color:var(--texto);min-height:100vh}
+header{padding:30px 6%;background:linear-gradient(110deg,#4c2181,#8b45b5 65%,#c16be0)}
+.marca{font-size:13px;font-weight:800;letter-spacing:3px;text-transform:uppercase}
+h1{color:#fff;font-size:clamp(30px,5vw,48px);margin:10px 0}
+header p{margin:0;color:#f3e6ff}
+nav{display:flex;gap:10px;flex-wrap:wrap;padding:18px 6%;border-bottom:1px solid #ffffff18}
+nav a{color:#e8e0f8;text-decoration:none;background:#ffffff12;padding:10px 15px;border-radius:22px;font-size:14px}
+nav a:hover{background:#ffffff25}
+nav a.activo{background:var(--acento);color:#1b1028;font-weight:bold}
+main{max-width:1100px;margin:auto;padding:28px 6%}
+input,select{padding:12px;margin:5px;border-radius:10px;border:1px solid #ffffff25;background:#202033;color:white;max-width:100%}
+#total{color:var(--suave);margin:15px 5px}
+.artista,.publicacion{padding:16px;margin:10px 0;background:var(--panel);border:1px solid #ffffff14;border-radius:14px}
+.grupo-musicales{margin:18px 0;padding:14px;background:#1b152a;border:1px solid #72559c;border-radius:14px}
+.grupo-musicales>summary{cursor:pointer;font-weight:800;color:#d3b2ff;padding:8px}
+.grupo-musicales>.mensaje{margin:8px}
+.contenido-musicales{padding-top:5px}
+.estado{color:#d6b7ff;font-size:13px}
+button{padding:10px 14px;border:1px solid #ffffff25;border-radius:10px;background:#7445a3;color:#fff;cursor:pointer;margin-top:8px;font-weight:700}
+button:hover{background:#8d5abd}
+.publicaciones{margin-top:12px;border-top:1px solid #ffffff20;padding-top:12px}
+.fecha{color:#d6b7ff;font-size:13px}
+.mensaje{color:#c8bddb}
+.foto-artista{display:block;width:220px;height:220px;max-width:100%;object-fit:cover;object-position:center;border-radius:12px;margin-top:12px;background:#202033}
+.credito-foto{font-size:11px;color:#b8a8cf;margin-top:5px}
+.credito-foto a{color:#d6b7ff}
+#volver-portada{display:inline-block;margin:0 0 16px;padding:9px 13px;border-radius:22px;background:#ffffff12;color:#f2e4ff;text-decoration:none;border:1px solid #ffffff25}
+#volver-portada:hover{background:#ffffff25}
+@media(max-width:600px){main{padding:22px 5%}header{padding:24px 5%}}
+</style>
 </head>
-<body>
-<a id="volver-portada" href="/">🏠 Volver a la portada principal</a>
-<h1>Mi Radar Musical</h1>
+<body data-vista="artistas">
+<header><div class="marca">Tu universo musical</div><h1>🎤 Mis artistas</h1><p>Tu colección de artistas, sus novedades y publicaciones recientes.</p></header>
+<nav>
+<a href="/">🏠 Portada</a>
+<a href="/listas/youtube">▶ YouTube</a>
+<a href="/listas/los40">🎵 Los 40</a>
+<a href="/listas/canal-fiesta">📻 Canal Fiesta</a>
+<a href="/lo-mejor">⭐ Lo mejor</a>
+<a href="/programas">🧰 Programas</a>
+<a class="activo" href="/artistas">🎤 Mis artistas</a>
+</nav>
+<main>
+<p><a id="volver-portada" href="/">← Volver a Mi Radar Musical</a></p>
 <p>Busca tus artistas y consulta sus últimas publicaciones.</p>
-<input id="buscar" placeholder="Buscar artista..." style="width:60%">
+<input id="buscar" placeholder="Buscar artista..." style="width:min(60%,520px)">
 <select id="estado"><option value="">Todos los estados</option></select>
 <div id="total">Cargando artistas...</div>
 <div id="lista"></div>
+</main>
 <script>
 let artistas=[];
 const buscar=document.getElementById('buscar');
