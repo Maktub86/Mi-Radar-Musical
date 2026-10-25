@@ -46,6 +46,22 @@ const panel=document.getElementById('panel-actualizacion');
 // Saca los controles del contenedor donde se insertó la plantilla para evitar que
 // un ancestro con transform haga que position:fixed se comporte como position:absolute.
 if(document.body){document.body.append(b,panel);}
+// Refuerza la posición respecto a la ventana, también al desplazarse.
+function fijarControles(){
+ b.style.setProperty('position','fixed','important');
+ b.style.setProperty('top',window.innerWidth<=600?'8px':'14px','important');
+ b.style.setProperty('right',window.innerWidth<=600?'8px':'16px','important');
+ b.style.setProperty('left','auto','important');
+ b.style.setProperty('bottom','auto','important');
+ panel.style.setProperty('position','fixed','important');
+ panel.style.setProperty('top',window.innerWidth<=600?'58px':'66px','important');
+ panel.style.setProperty('right',window.innerWidth<=600?'8px':'16px','important');
+ panel.style.setProperty('left','auto','important');
+ panel.style.setProperty('bottom','auto','important');
+}
+fijarControles();
+window.addEventListener('scroll',fijarControles,{passive:true});
+window.addEventListener('resize',fijarControles);
 const cerrar=document.getElementById('cerrar-panel-actualizacion');
 const e=document.getElementById('estado-actualizacion');
 const barra=document.getElementById('barra-actualizacion');
