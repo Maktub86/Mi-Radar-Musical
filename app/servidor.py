@@ -467,6 +467,17 @@ function reproducir(pista,boton){
  audio.addEventListener('ended',()=>{if(temporizador)clearTimeout(temporizador);boton.disabled=false;if(audioActivo===audio)audioActivo=null;},{once:true});
 }
 async function buscarYouTube(pista,modo='mediahuman'){
+ if(modo==='full'){
+  const ventana=window.open('about:blank','_blank');
+  const consulta=[pista.artista,pista.titulo,'official audio'].filter(Boolean).join(' ');
+  try{
+   const r=await fetch('/api/youtube/buscar?'+new URLSearchParams({titulo:pista.titulo,artista:pista.artista}));
+   const d=await r.json(),video=(d.resultados||[])[0];
+   if(video&&video.url&&ventana){ventana.location.href=video.url;return;}
+   if(ventana)ventana.location.href='https://www.youtube.com/results?search_query='+encodeURIComponent(consulta);
+  }catch(e){if(ventana)ventana.location.href='https://www.youtube.com/results?search_query='+encodeURIComponent(consulta);}
+  return;
+ }
  modal.hidden=false;resultadosYoutube.replaceChildren();reproductorCompleto.replaceChildren();
  estadoYoutube.textContent='Buscando versiones disponibles…';
  try{
