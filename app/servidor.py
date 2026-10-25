@@ -20,6 +20,16 @@ TAREA = "MiRadarMusical_Actualizacion"
 
 app = Flask(__name__, static_folder=str(BASE), static_url_path="")
 
+@app.after_request
+def agregar_enlace_mi_musica(response):
+    if response.mimetype == "text/html":
+        html = response.get_data(as_text=True)
+        if "</nav>" in html and 'href="/mi-musica"' not in html:
+            html = html.replace("</nav>", '<a href="/mi-musica">🎧 Mi música</a></nav>', 1)
+            response.set_data(html)
+    return response
+
+
 BOTON_HTML = ''
 
 LIMPIAR_CONTROLES_HTML = r"""
@@ -527,6 +537,18 @@ def api_lo_mejor():
         return jsonify({
             "error": "No se ha podido consultar Deezer ahora mismo. Inténtalo de nuevo más tarde."
         }), 502
+
+
+@app.get("/mi-musica")
+def pagina_mi_musica():
+    return (BASE / "mimusica.html").read_text(encoding="utf-8")
+
+
+@app.get("/api/mi-musica")
+def api_mi_musica():
+    ruta = BASE / "mi_musica.json"
+    with ruta.open("r", encoding="utf-8") as archivo:
+        return jsonify(json.load(archivo))
 
 
 @app.get("/artistas")
