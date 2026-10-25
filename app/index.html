@@ -9,7 +9,7 @@ body{font-family:Arial,sans-serif;max-width:1000px;margin:35px auto;padding:0 18
 h1{color:#76e0c2}
 input,select{padding:12px;margin:5px;border-radius:8px;border:1px solid #444;background:#202633;color:white}
 #total{color:#aaa;margin:15px 5px}
-.artista,.publicacion{padding:12px;margin:7px 0;background:#202633;border-radius:8px}
+.artista,.publicacion{padding:12px;margin:7px 0;background:#202633;border-radius:8px}.grupo-musicales{margin:16px 0;padding:12px;background:#171e2a;border:1px solid #46516a;border-radius:12px}.grupo-musicales>summary{cursor:pointer;font-weight:800;color:#bcb7ff;padding:8px}.grupo-musicales>.mensaje{margin:8px}.contenido-musicales{padding-top:5px}
 .estado{color:#76e0c2;font-size:13px}
 button{padding:10px;border-radius:8px;cursor:pointer;margin-top:8px}
 .publicaciones{margin-top:12px;border-top:1px solid #444;padding-top:8px}
@@ -109,17 +109,7 @@ async function cargarImagenArtista(nombre, foto, credito) {
  credito.style.display = 'block';
 }
 
-function mostrar(){
- if (observadorFotos) observadorFotos.disconnect();
- const q=buscar.value.toLocaleLowerCase('es').trim();
- const e=estado.value;
- const filtrados=artistas.filter(a=>
-  (a.NombreOriginal||'').toLocaleLowerCase('es').includes(q) &&
-  (!e || a.Estado===e)
- );
- total.textContent=filtrados.length+' artistas';
- lista.innerHTML='';
- filtrados.forEach(a=>{
+function crearTarjetaArtista(a, destino){
   const nombreArtista=a.NombreOriginal||a.NombreNormalizado||'Sin nombre';
   const div=document.createElement('div');
   div.className='artista';
@@ -143,7 +133,6 @@ function mostrar(){
    foto.loading = 'lazy';
    foto.style.display = 'none';
    div.appendChild(foto);
-
    const credito = document.createElement('div');
    credito.className = 'credito-foto';
    credito.style.display = 'none';
@@ -160,21 +149,51 @@ function mostrar(){
    obs.textContent=a.Observaciones;
    div.appendChild(obs);
   }
-
   const boton=document.createElement('button');
   boton.textContent='Ver últimas publicaciones';
   boton.addEventListener('click',()=>cargarPublicaciones(nombreArtista,div));
   div.appendChild(boton);
-  lista.appendChild(div);
+  destino.appendChild(div);
   if (observadorFotos && nombreArtista.trim().toUpperCase() !== 'ABBA') observadorFotos.observe(div);
   else if (!observadorFotos && nombreArtista.trim().toUpperCase() !== 'ABBA') {
    const foto = div.querySelector('.foto-artista');
    const credito = div.querySelector('.credito-foto');
    if (foto && credito) cargarImagenArtista(nombreArtista, foto, credito);
   }
- });
 }
 
+function mostrar(){
+ if (observadorFotos) observadorFotos.disconnect();
+ const q=buscar.value.toLocaleLowerCase('es').trim();
+ const e=estado.value;
+ const filtrados=artistas.filter(a=>
+  (a.NombreOriginal||'').toLocaleLowerCase('es').includes(q) &&
+  (!e || a.Estado===e)
+ );
+ const esReparto=a=>a.Estado==='Reparto o grupo pendiente' ||
+  (a.NombreOriginal||'').trim().toLocaleLowerCase('es').startsWith('cast ');
+ const musicales=filtrados.filter(esReparto);
+ const artistasNormales=filtrados.filter(a=>!esReparto(a));
+ total.textContent=artistasNormales.length+' artistas · '+musicales.length+' en «Musicales y repartos»';
+ lista.replaceChildren();
+ artistasNormales.forEach(a=>crearTarjetaArtista(a,lista));
+ if(musicales.length){
+  const grupo=document.createElement('details');
+  grupo.className='grupo-musicales';
+  const resumen=document.createElement('summary');
+  resumen.textContent='🎭 Musicales y repartos ('+musicales.length+')';
+  grupo.appendChild(resumen);
+  const descripcion=document.createElement('p');
+  descripcion.className='mensaje';
+  descripcion.textContent='Repartos de películas, musicales y grupos de reparto agrupados para no mezclarlo todo con los artistas individuales.';
+  grupo.appendChild(descripcion);
+  const contenido=document.createElement('div');
+  contenido.className='contenido-musicales';
+  musicales.forEach(a=>crearTarjetaArtista(a,contenido));
+  grupo.appendChild(contenido);
+  lista.appendChild(grupo);
+ }
+}
 async function cargarPublicaciones(nombre,contenedor){
  let zona=contenedor.querySelector('.publicaciones');
  if(zona){zona.remove();return;}
