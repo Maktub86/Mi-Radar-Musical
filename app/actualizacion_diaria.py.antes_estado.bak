@@ -1,0 +1,63 @@
+﻿import csv
+import shutil
+import subprocess
+import sys
+from datetime import datetime
+from pathlib import Path
+
+APP = Path(__file__).resolve().parent
+BASE = APP.parent
+CSV_PATH = BASE / "mi_radar_musical.csv"
+DETECTOR = APP / "detector.py"
+PREPARAR = APP / "preparar_portada.py"
+PORTADA_ORIGEN = BASE / "portada.json"
+PORTADA_WEB = APP / "portada.json"
+ESTADO = APP / "siguiente_lote.txt"
+FECHA = APP / "ultima_actualizacion.txt"
+
+TAMANO_LOTE = 10
+
+with CSV_PATH.open("r", encoding="utf-8-sig", newline="") as archivo:
+    artistas = [
+        fila["NombreOriginal"]
+        for fila in csv.DictReader(archivo)
+        if fila["Estado"].strip() == "Vigilancia activa"
+    ]
+
+total = len(artistas)
+if total == 0:
+    raise SystemExit("No hay artistas en vigilancia activa.")
+
+try:
+    inicio = int(ESTADO.read_text(encoding="utf-8").strip())
+except (FileNotFoundError, ValueError):
+    inicio = 0
+
+if inicio < 0 or inicio >= total:
+    inicio = 0
+
+print(f"Actualizando artistas {inicio + 1} a {min(inicio + TAMANO_LOTE, total)} de {total}.")
+
+subprocess.run(
+    [sys.executable, str(DETECTOR), "--batch", str(inicio), str(TAMANO_LOTE)],
+    cwd=BASE,
+    check=True
+)
+
+subprocess.run(
+    [sys.executable, str(PREPARAR)],
+    cwd=BASE,
+    check=True
+)
+
+shutil.copy2(PORTADA_ORIGEN, PORTADA_WEB)
+
+siguiente = (inicio + TAMANO_LOTE) % total
+ESTADO.write_text(str(siguiente), encoding="utf-8")
+FECHA.write_text(
+    datetime.now().astimezone().strftime("%d/%m/%Y, %H:%M"),
+    encoding="utf-8"
+)
+
+print(f"Proceso terminado. Próximo lote: {siguiente + 1} de {total}.")
+print(f"Última actualización: {FECHA.read_text(encoding='utf-8')}")

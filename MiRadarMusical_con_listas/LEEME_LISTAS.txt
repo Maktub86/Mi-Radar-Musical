@@ -1,0 +1,24 @@
+MI RADAR MUSICAL — AMPLIACIÓN DE LISTAS
+
+Incluye:
+- LOS40: lista semanal oficial.
+- Canal Fiesta: Top 50 oficial.
+- YouTube: tendencias musicales publicadas en YouTube Charts para España.
+- Botón de actualización independiente para cada fuente.
+- Botón de muestra de hasta 30 segundos por canción, usando el buscador de muestras que ya tiene la web.
+- Caché independiente en app/listas_cache para conservar la última lista descargada.
+
+INSTALACIÓN
+1. Haz una copia de seguridad de app/servidor.py y app/portada.html.
+2. Extrae este ZIP dentro de la carpeta "Pagina radar musica", manteniendo la estructura de carpetas.
+3. Acepta reemplazar app/servidor.py y app/portada.html. Añade app/listas_musicales.py.
+4. Reinicia el servidor de Mi Radar Musical.
+5. Abre http://127.0.0.1:5000 y baja hasta "Listas musicales".
+6. Pulsa el botón de actualizar de cada lista por separado.
+
+NOTAS
+- La primera carga de cada lista requiere pulsar su botón de actualizar.
+- Las listas se obtienen de sus páginas oficiales y se guardan en caché local.
+- YouTube Charts utiliza un endpoint interno no documentado; si YouTube lo cambia, su extractor podría necesitar un ajuste.
+- Las muestras dependen de que el catálogo de iTunes encuentre una coincidencia fiable. Por eso no se puede garantizar que todas las canciones tengan muestra disponible.
+- El resto de la aplicación y sus datos se conservan.
