@@ -145,7 +145,7 @@ body[data-pagina^="lista-"] #listas-musicales>h2{font-size:30px;margin-bottom:8p
 body[data-pagina^="lista-"] #listas-musicales>.sub{display:none}
 </style>
 """
-    html = html.replace("</head>", estilos + "\\n</head>", 1)
+    html = html.replace("</head>", estilos + "\n</head>", 1)
     script_vista = """
 <script>
 (()=> {
@@ -169,7 +169,7 @@ body[data-pagina^="lista-"] #listas-musicales>.sub{display:none}
 })();
 </script>
 """
-    return html.replace("</body>", script_vista + BOTON_HTML + "\\n</body>")
+    return html.replace("</body>", script_vista + BOTON_HTML + "\n</body>")
 
 @app.get("/")
 def inicio():
