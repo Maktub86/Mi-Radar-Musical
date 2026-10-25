@@ -98,6 +98,60 @@ def publicaciones(artista):
     }
 
 
+def publicaciones_apple(artista):
+    """Completa con singles/álbumes recientes de Apple cuando MusicBrainz va retrasado."""
+    nombre = artista.get("name", "").strip()
+    if not nombre:
+        return {}
+
+    url = "https://itunes.apple.com/search?" + urllib.parse.urlencode({
+        "term": nombre,
+        "country": "ES",
+        "entity": "album",
+        "limit": 200,
+    })
+    try:
+        peticion = urllib.request.Request(
+            url, headers={"User-Agent": "MiRadarMusical/1.0"}
+        )
+        with urllib.request.urlopen(peticion, timeout=12) as respuesta:
+            resultados = json.loads(respuesta.read().decode("utf-8")).get("results", [])
+    except Exception as error:
+        print("  Aviso: no se pudo consultar el catálogo complementario:", error, flush=True)
+        return {}
+
+    def normalizar(texto):
+        return " ".join(str(texto or "").casefold().split())
+
+    encontrados = {}
+    for resultado in resultados:
+        artista_resultado = normalizar(resultado.get("artistName"))
+        if artista_resultado != normalizar(nombre):
+            continue
+
+        titulo = str(resultado.get("collectionName") or "").strip()
+        fecha = str(resultado.get("releaseDate") or "")[:10]
+        identificador = resultado.get("collectionId")
+        if not titulo or not identificador:
+            continue
+
+        # Solo añadimos resultados de este año: la fuente principal sigue siendo MusicBrainz.
+        if not fecha.startswith(time.strftime("%Y")):
+            continue
+
+        tipo = "Single" if "single" in titulo.casefold() or resultado.get("trackCount") == 1 else "Album"
+        clave = "apple-" + str(identificador)
+        encontrados[clave] = {
+            "titulo": titulo,
+            "fecha": fecha,
+            "tipo": tipo,
+            "artista": nombre,
+            "imagen": resultado.get("artworkUrl100", ""),
+            "fuente": "Apple Music",
+        }
+    return encontrados
+
+
 def main():
     if len(sys.argv) < 2:
         print('Uso: detector.py --artist "ABBA"')
@@ -158,6 +212,21 @@ def main():
                 continue
 
             actuales = publicaciones(artista)
+            # Si MusicBrainz aún no refleja lanzamientos de este año, completar
+            # con el catálogo de Apple Music, manteniendo los datos principales.
+            if not any(str(pub.get("fecha", "")).startswith(time.strftime("%Y")) for pub in actuales.values()):
+                complementarias = publicaciones_apple(artista)
+                for ident, pub in complementarias.items():
+                    clave_titulo = " ".join(pub["titulo"].casefold().split())
+                    duplicada = any(
+                        " ".join(str(existente.get("titulo", "")).casefold().split()) == clave_titulo
+                        and str(existente.get("fecha", ""))[:4] == str(pub.get("fecha", ""))[:4]
+                        for existente in actuales.values()
+                    )
+                    if not duplicada:
+                        actuales[ident] = pub
+                if complementarias:
+                    print(f"  Apple Music añadió {len(complementarias)} publicaciones recientes.", flush=True)
             clave = artista["id"]
             anteriores = datos.get(clave)
 
