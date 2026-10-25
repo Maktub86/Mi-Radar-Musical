@@ -49,9 +49,12 @@ button:hover{background:#8d5abd}
 .resultado-musica{display:block;width:100%;text-align:left;background:#22283a;color:#fff;border:1px solid #ffffff20;padding:12px;border-radius:10px}
 .resultado-musica span{display:block;color:#b8bfd2;font-size:12px;margin-top:4px}
 .reproductor-completo{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin:12px 0;background:#000}
-.acciones-publicacion{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px;align-items:center}
-.acciones-publicacion button{padding:8px 3px;border-radius:10px;font-size:16px;width:42px;min-width:42px;flex:0 0 42px}
-.acciones-publicacion .boton-30{width:82px;min-width:82px;flex-basis:82px;background:linear-gradient(135deg,#6e65ff,#b52f9b)!important;color:#fff!important;border:1px solid #ffffff50!important;box-shadow:0 3px 12px #8e42e833}
+.acciones-publicacion{display:grid;grid-template-columns:82px 42px;grid-template-rows:42px 42px;gap:7px;margin-top:9px;align-items:stretch;justify-content:start}
+.acciones-publicacion button{padding:8px 3px;border-radius:10px;font-size:16px;width:42px;height:42px;min-width:42px}
+.acciones-publicacion .boton-30{grid-column:1;grid-row:1;width:82px;height:42px;min-width:82px;background:linear-gradient(135deg,#6e65ff,#b52f9b)!important;color:#fff!important;border:1px solid #ffffff50!important;box-shadow:0 3px 12px #8e42e833}
+.acciones-publicacion .boton-mediahuman{grid-column:2;grid-row:1}
+.acciones-publicacion .boton-youtube{grid-column:1;grid-row:2}
+.acciones-publicacion .boton-completa{grid-column:2;grid-row:2}
 .acciones-publicacion .boton-mediahuman{background:#238b55!important;color:#fff!important;border:1px solid #55c783!important}
 .acciones-publicacion .boton-youtube{background:#e62129!important;color:#fff!important;border:1px solid #e62129!important}
 .acciones-publicacion .boton-completa{background:#292d3b!important;color:#fff!important;border:1px solid #ffffff35!important}
