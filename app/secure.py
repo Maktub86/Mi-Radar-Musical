@@ -5,9 +5,25 @@ Configurar en Render: RADAR_USER, RADAR_PASSWORD y FLASK_SECRET_KEY.
 """
 import hmac
 import os
-from flask import abort, redirect, render_template_string, request, session, url_for
+import sys
+from pathlib import Path
+
+from flask import redirect, render_template_string, request, session, url_for
+
+# Permite cargar los módulos que están junto a servidor.py.
+APP_DIR = str(Path(__file__).resolve().parent)
+if APP_DIR not in sys.path:
+    sys.path.insert(0, APP_DIR)
 
 from servidor import app
+
+# La clave debe estar disponible antes de que Flask abra la sesión.
+app.secret_key = os.environ.get("FLASK_SECRET_KEY")
+app.config.update(
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SECURE=True,
+    SESSION_COOKIE_SAMESITE="Lax",
+)
 
 LOGIN_HTML = """<!doctype html>
 <html lang="es">
@@ -44,8 +60,7 @@ def exigir_acceso():
             503,
             {"Content-Type": "text/plain; charset=utf-8"},
         )
-    app.secret_key = os.environ["FLASK_SECRET_KEY"]
-    if request.endpoint in {"login"}:
+    if request.endpoint == "login":
         return None
     if session.get("radar_autenticado") is True:
         return None
