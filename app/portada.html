@@ -33,7 +33,7 @@ button.activo{background:var(--azul);border-color:var(--azul)}
 .info{padding:15px}
 .tipo{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--verde);font-weight:800}
 .titulo{font-size:17px;line-height:1.35;margin:8px 0;font-weight:750;overflow-wrap:anywhere}
-.artista{color:#dedaf8;font-size:14px;overflow-wrap:anywhere}
+.artista{color:#dedaf8;font-size:14px;overflow-wrap:anywhere}.wiki-icon{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;margin-left:6px;border-radius:5px;background:#777d88;color:#fff;font-size:13px;font-weight:900;line-height:1;text-decoration:none;vertical-align:middle;border:1px solid #a8adb6}.wiki-icon:hover{background:#555d6b}.artista-cancion .wiki-icon{width:20px;height:20px;font-size:12px}
 .fecha{font-size:12px;color:var(--suave);margin-top:12px}
 .boton-muestra{margin-top:13px;width:100%;border:0;background:linear-gradient(100deg,#706bff,#b72d83);}
 .boton-muestra:disabled{opacity:.65;cursor:wait}
@@ -237,7 +237,7 @@ function mostrar(cantidad) {
       <div class="info">
         <div class="tipo">${tipoSeleccionado === "Single" ? "Single" : "Álbum"}</div>
         <div class="titulo">${escapar(p.titulo || "Sin título")}</div>
-        <div class="artista">${escapar(p.artista || "Artista desconocido")}</div>
+        <div class="artista">${escapar(p.artista || "Artista desconocido")} <a class="wiki-icon" href="${escapar(urlWikipedia(p.artista || ""))}" target="_blank" rel="noopener noreferrer" title="Buscar artista en Wikipedia" aria-label="Buscar artista en Wikipedia">W</a></div>
         <div class="fecha">${escapar(p.fecha || "Fecha desconocida")}</div>
         ${tipoSeleccionado === "Single" ? `<div class="acciones-radar"><button class="boton-muestra boton-30" type="button" title="Escuchar muestra de 30 segundos"><svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg><span>30 s</span></button><button class="boton-mediahuman" type="button" title="Buscar enlace para MediaHuman" aria-label="Descargar con MediaHuman">⬇</button><button class="boton-youtube" type="button" title="Abrir YouTube" aria-label="YouTube">Y</button></div><div class="reproductor-muestra" hidden></div>` : ""}
       </div>`;
@@ -349,6 +349,9 @@ const nombresListas={
 function escaparLista(v){
  return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
+function urlWikipedia(nombre){
+ return "https://es.wikipedia.org/w/index.php?search="+encodeURIComponent(String(nombre||""));
+}
 function mostrarLista(tipo,datos){
  const estado=document.getElementById("estado-"+tipo);
  const contenedor=document.getElementById("canciones-"+tipo);
@@ -367,7 +370,7 @@ function mostrarLista(tipo,datos){
   puesto.textContent=String(cancion.puesto||"–");
   const detalle=document.createElement("div");
   detalle.className="detalle-cancion";
-  detalle.innerHTML='<div class="titulo-cancion">'+escaparLista(cancion.titulo)+'</div><div class="artista-cancion">'+escaparLista(cancion.artista)+'</div>';
+  detalle.innerHTML='<div class="titulo-cancion">'+escaparLista(cancion.titulo)+'</div><div class="artista-cancion">'+escaparLista(cancion.artista)+' <a class="wiki-icon" href="'+escaparLista(urlWikipedia(cancion.artista))+'" target="_blank" rel="noopener noreferrer" title="Buscar artista en Wikipedia" aria-label="Buscar artista en Wikipedia">W</a></div>';
   const acciones=document.createElement("div");
   acciones.className="acciones-cancion";
   const boton=document.createElement("button");
