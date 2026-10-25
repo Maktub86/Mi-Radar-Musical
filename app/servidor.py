@@ -43,6 +43,9 @@ BOTON_HTML = r'''
 (()=>{
 const b=document.getElementById('boton-actualizar');
 const panel=document.getElementById('panel-actualizacion');
+// Saca los controles del contenedor donde se insertó la plantilla para evitar que
+// un ancestro con transform haga que position:fixed se comporte como position:absolute.
+if(document.body){document.body.append(b,panel);}
 const cerrar=document.getElementById('cerrar-panel-actualizacion');
 const e=document.getElementById('estado-actualizacion');
 const barra=document.getElementById('barra-actualizacion');
@@ -300,9 +303,12 @@ button:disabled{opacity:.55;cursor:wait}
 .canciones-artista{padding:0 16px 14px}
 .pista{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 0;border-top:1px solid #ffffff12}
 .pista-titulo{font-weight:700}.pista-meta{font-size:12px;color:var(--suave);margin-top:4px}
-.acciones-pista{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
-.acciones-pista button{width:42px;height:40px;padding:7px 3px;flex:0 0 42px}
-.acciones-pista .boton-30{width:82px;flex-basis:82px;padding:8px 7px;font-weight:800;font-size:15px}
+.acciones-pista{display:grid;grid-template-columns:82px 42px;grid-template-rows:40px 40px;gap:7px;justify-content:start;align-content:start}
+.acciones-pista button{width:42px;height:40px;padding:7px 3px;min-width:42px}
+.acciones-pista .boton-30{grid-column:1;grid-row:1;width:82px;height:40px;padding:8px 7px;font-weight:800;font-size:15px;min-width:82px}
+.acciones-pista .boton-mediahuman{grid-column:2;grid-row:1}
+.acciones-pista .boton-youtube{grid-column:1;grid-row:2}
+.acciones-pista .boton-completa{grid-column:2;grid-row:2}
 .boton-30,.boton-completa{background:#292d3b;border:1px solid #ffffff30;color:#fff;min-width:42px}
 .boton-30{flex:0 0 82px;width:82px;background:linear-gradient(135deg,#6e65ff,#b52f9b);border:1px solid #ffffff50;box-shadow:0 3px 12px #8e42e833}
 .boton-mediahuman{background:#238b55;color:#fff;border:1px solid #55c783;min-width:42px}
