@@ -356,21 +356,36 @@ function mostrarLista(tipo,datos){
   reproductor.hidden=true;
   acciones.appendChild(boton);
 
-  // YouTube Trending contiene enlaces directos; en las listas de radio
-  // solo tenemos título y artista, así que abrimos una búsqueda para elegir
-  // la versión correcta antes de descargarla.
-  const botonMedia=document.createElement("button");
-  botonMedia.type="button";
-  botonMedia.className="boton-mediahuman";
-  if(tipo==="youtube" && /^https?:\/\/www\.youtube\.com\/watch\?v=/.test(cancion.url||"")){
-   botonMedia.textContent="⬇ Copiar enlace para MediaHuman";
-   botonMedia.addEventListener("click",()=>copiarEnlaceMediaHuman(cancion.url,botonMedia));
-  }else{
-   botonMedia.className="boton-youtube-buscar";
-   botonMedia.textContent="⌕ Buscar en YouTube";
+  if(tipo==="los40" || tipo==="canal-fiesta"){
+   const botonBuscarYT=document.createElement("button");
+   botonBuscarYT.type="button";
+   botonBuscarYT.className="boton-youtube-buscar";
+   botonBuscarYT.textContent="⌕ Buscar en YouTube";
+   botonBuscarYT.addEventListener("click",()=>{
+    const consulta=[cancion.artista||"",cancion.titulo||""].filter(Boolean).join(" ");
+    window.open("https://www.youtube.com/results?search_query="+encodeURIComponent(consulta),"_blank");
+   });
+   acciones.appendChild(botonBuscarYT);
+   const botonMedia=document.createElement("button");
+   botonMedia.type="button";
+   botonMedia.className="boton-mediahuman";
+   botonMedia.textContent="📋 Copiar enlace para MediaHuman";
    botonMedia.addEventListener("click",()=>buscarCancionYouTube(cancion));
+   acciones.appendChild(botonMedia);
+  }else{
+   const botonMedia=document.createElement("button");
+   botonMedia.type="button";
+   botonMedia.className="boton-mediahuman";
+   if(tipo==="youtube" && cancion.url && cancion.url.includes("youtube.com/watch?v=")){
+    botonMedia.textContent="⬇ Copiar enlace para MediaHuman";
+    botonMedia.addEventListener("click",()=>copiarEnlaceMediaHuman(cancion.url,botonMedia));
+   }else{
+    botonMedia.className="boton-youtube-buscar";
+    botonMedia.textContent="⌕ Buscar en YouTube";
+    botonMedia.addEventListener("click",()=>buscarCancionYouTube(cancion));
+   }
+   acciones.appendChild(botonMedia);
   }
-  acciones.appendChild(botonMedia);
   fila.append(puesto,detalle,acciones,reproductor);
   boton.addEventListener("click",()=>reproducirMuestra({
    titulo:cancion.titulo||"",
