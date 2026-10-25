@@ -15,7 +15,7 @@ button{padding:10px;border-radius:8px;cursor:pointer;margin-top:8px}
 .publicaciones{margin-top:12px;border-top:1px solid #444;padding-top:8px}
 .fecha{color:#76e0c2;font-size:13px}
 .mensaje{color:#bbb}
-.foto-artista{display:block;width:220px;max-width:100%;height:auto;border-radius:10px;margin-top:12px}.credito-foto{font-size:11px;color:#aaa;margin-top:5px} .credito-foto a{color:#76e0c2}
+.foto-artista{display:block;width:220px;height:220px;max-width:100%;object-fit:cover;object-position:center;border-radius:10px;margin-top:12px;background:#202633}.credito-foto{font-size:11px;color:#aaa;margin-top:5px} .credito-foto a{color:#76e0c2}
 #volver-portada{display:inline-block;margin:0 0 16px;padding:9px 13px;border-radius:8px;background:#202633;color:#76e0c2;text-decoration:none;border:1px solid #444}#volver-portada:hover{background:#2a3445}</style>
 </head>
 <body>
@@ -51,15 +51,26 @@ const observadorFotos = ('IntersectionObserver' in window)
 
 async function buscarImagenEnWikipedia(nombre, idioma) {
  const parametros = new URLSearchParams({
-  action:'query', generator:'search', gsrsearch:nombre, gsrnamespace:'0',
-  gsrlimit:'6', prop:'pageimages|info', piprop:'thumbnail',
+  action:'query', generator:'search',
+  gsrsearch:'"' + nombre + '" (cantante OR músico OR music OR singer)',
+  gsrnamespace:'0', gsrlimit:'10',
+  prop:'pageimages|info', piprop:'thumbnail',
   pithumbsize:'500', inprop:'url', format:'json', origin:'*'
  });
  const respuesta = await fetch('https://' + idioma + '.wikipedia.org/w/api.php?' + parametros.toString());
  if (!respuesta.ok) return null;
  const datos = await respuesta.json();
- const paginas = Object.values(datos.query?.pages || {}).sort((a,b)=>(a.index||99)-(b.index||99));
- const pagina = paginas.find(p => p.thumbnail?.source);
+ const normalizar = texto => String(texto || '').normalize('NFD')
+   .replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('es').trim();
+ const objetivo = normalizar(nombre);
+ const paginas = Object.values(datos.query?.pages || {});
+ // Solo aceptar la página del propio artista. Si no hay coincidencia clara,
+ // dejar la foto vacía antes que mostrar una imagen de un lugar u otra persona.
+ const pagina = paginas.find(p => {
+  const titulo = normalizar(p.title);
+  return p.thumbnail?.source &&
+   (titulo === objetivo || titulo.startsWith(objetivo + ' ('));
+ });
  if (!pagina) return null;
  return {
   imagen: pagina.thumbnail.source,
