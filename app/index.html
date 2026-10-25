@@ -220,6 +220,15 @@ function crearTarjetaArtista(a, destino){
   const nombre=document.createElement('strong');
   nombre.textContent=nombreArtista;
   div.appendChild(nombre);
+  const wikiArtista=document.createElement('a');
+  wikiArtista.className='boton-wikipedia';
+  wikiArtista.textContent='W';
+  wikiArtista.href='https://es.wikipedia.org/w/index.php?search='+encodeURIComponent(nombreArtista);
+  wikiArtista.target='_blank';
+  wikiArtista.rel='noopener noreferrer';
+  wikiArtista.title='Buscar artista en Wikipedia';
+  wikiArtista.setAttribute('aria-label','Buscar '+nombreArtista+' en Wikipedia');
+  div.insertBefore(wikiArtista,div.firstChild.nextSibling);
   if (nombreArtista.trim().toUpperCase() === 'ABBA') {
    const foto = document.createElement('img');
    foto.src = '/abba.jpg';
@@ -325,9 +334,7 @@ async function cargarPublicaciones(nombre,contenedor){
    const t=document.createElement('strong');
    t.textContent=p.titulo||'Sin título';
    item.appendChild(t);
-   const wiki=document.createElement('button');wiki.type='button';wiki.className='boton-wikipedia';wiki.textContent='W';wiki.title='Consultar historia de la canción en Wikipedia';wiki.setAttribute('aria-label','Historia en Wikipedia');
-   wiki.addEventListener('click',()=>cargarHistoriaCancion(p.titulo||'',datos.artista||nombre,item,wiki));
-   t.appendChild(wiki);
+
    const detalle=document.createElement('div');
    detalle.className='fecha';
    detalle.textContent=[p.fecha||'Fecha desconocida',p.tipo||'Tipo desconocido'].join(' · ');
