@@ -49,8 +49,8 @@ button:hover{background:#8d5abd}
 .resultado-musica{display:block;width:100%;text-align:left;background:#22283a;color:#fff;border:1px solid #ffffff20;padding:12px;border-radius:10px}
 .resultado-musica span{display:block;color:#b8bfd2;font-size:12px;margin-top:4px}
 .reproductor-completo{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin:12px 0;background:#000}
-.acciones-publicacion{display:grid;grid-template-columns:82px 42px 42px 42px;grid-template-rows:42px;gap:7px;margin-top:9px;align-items:stretch;justify-content:start}
-.acciones-publicacion button{margin:0;padding:8px 3px;border-radius:10px;font-size:16px;width:42px;height:42px;min-width:42px}
+.acciones-publicacion{display:grid;grid-template-columns:82px 42px 42px 42px;grid-template-rows:42px;grid-auto-flow:column;gap:7px;margin-top:9px;align-items:stretch;align-content:start;justify-content:start;width:max-content;min-width:229px;flex-wrap:nowrap}
+.acciones-publicacion button{box-sizing:border-box;margin:0;padding:8px 3px;border-radius:10px;font-size:16px;width:42px;height:42px;min-height:42px;min-width:42px;white-space:nowrap}
 .acciones-publicacion .boton-30{grid-column:1;grid-row:1;width:82px;height:42px;min-width:82px;background:linear-gradient(135deg,#6e65ff,#b52f9b)!important;color:#fff!important;border:1px solid #ffffff50!important;box-shadow:0 3px 12px #8e42e833}
 .acciones-publicacion .boton-mediahuman{grid-column:2;grid-row:1}
 .acciones-publicacion .boton-youtube{grid-column:3;grid-row:1}
