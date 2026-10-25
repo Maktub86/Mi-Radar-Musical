@@ -295,11 +295,15 @@ async function reproducirMuestra(publicacion, tarjeta, boton) {
       enlace.href = datos.trackViewUrl;
       enlace.target = "_blank";
       enlace.rel = "noopener noreferrer";
-      enlace.textContent = "Ver esta canción en iTunes";
-      const insignia = document.createElement("img");
-      insignia.src = "https://tools.applemediaservices.com/api/badges/download-on-itunes/black/en-us?size=250x83";
-      insignia.alt = "Download on iTunes";
-      enlace.appendChild(insignia);
+      enlace.textContent = datos.fuente === "Deezer"
+        ? "Ver esta canción en Deezer"
+        : "Ver esta canción en Apple Music/iTunes";
+      if (datos.fuente !== "Deezer") {
+        const insignia = document.createElement("img");
+        insignia.src = "https://tools.applemediaservices.com/api/badges/download-on-itunes/black/en-us?size=250x83";
+        insignia.alt = "Download on iTunes";
+        enlace.appendChild(insignia);
+      }
       zona.appendChild(document.createElement("br"));
       zona.appendChild(enlace);
     }
