@@ -322,9 +322,9 @@ button:disabled{opacity:.55;cursor:wait}
 .pista{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 0;border-top:1px solid #ffffff12}
 .pista-titulo{font-weight:700}.pista-meta{font-size:12px;color:var(--suave);margin-top:4px}
 .acciones-pista{display:grid;grid-template-columns:82px 42px 42px 42px;grid-template-rows:40px;grid-auto-flow:column;gap:7px;justify-content:start;align-content:start;align-items:stretch;width:max-content;min-width:229px;flex-wrap:nowrap}
-.acciones-pista button{box-sizing:border-box;width:42px;height:40px;min-height:40px;padding:7px 3px;margin:0;min-width:42px;white-space:nowrap}
+.acciones-pista button{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;line-height:1;vertical-align:middle;width:42px;height:40px;min-height:40px;padding:7px 3px;margin:0;min-width:42px;white-space:nowrap}
 .acciones-pista .boton-30{grid-column:1;grid-row:1;width:82px;height:40px;min-height:40px;padding:8px 7px;font-weight:800;font-size:15px;min-width:82px}
-.acciones-pista .boton-mediahuman{grid-column:2;grid-row:1}
+.acciones-pista .boton-mediahuman{grid-column:2;grid-row:1;align-self:center}
 .acciones-pista .boton-youtube{grid-column:3;grid-row:1}
 .acciones-pista .boton-completa{grid-column:4;grid-row:1}
 .boton-30,.boton-completa{background:#292d3b;border:1px solid #ffffff30;color:#fff;min-width:42px}
