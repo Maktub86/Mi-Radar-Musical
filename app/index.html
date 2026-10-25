@@ -340,9 +340,7 @@ async function cargarPublicaciones(nombre,contenedor){
     bm.addEventListener('click',()=>buscarMusicaArtista(p.titulo||'',datos.artista||nombre,'mediahuman'));
     const by=document.createElement('button');by.className='boton-youtube';by.textContent='Y';by.title='Abrir versión en YouTube';
     by.addEventListener('click',()=>buscarMusicaArtista(p.titulo||'',datos.artista||nombre,'youtube'));
-    const bf=document.createElement('button');bf.className='boton-completa';bf.textContent='▶';bf.title='Reproducir canción completa dentro de Mi Radar Musical';
-    bf.addEventListener('click',()=>buscarMusicaArtista(p.titulo||'',datos.artista||nombre,'full'));
-    acciones.append(b30,bm,by,bf);item.appendChild(acciones);
+    acciones.append(b30,bm,by);item.appendChild(acciones);
     const reproductorMuestra=document.createElement('div');reproductorMuestra.className='reproductor-muestra';item.appendChild(reproductorMuestra);
    }
    zona.appendChild(item);
