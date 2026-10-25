@@ -139,7 +139,202 @@ def pagina_programas():
 
 @app.get("/lo-mejor")
 def pagina_lo_mejor():
-    return "<!DOCTYPE html><html lang=\"es\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Lo mejor · Mi Radar Musical</title>\n<style>:root{color-scheme:dark;--suave:#b8b6cf}*{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#17152d,#10101c 55%,#26152e);color:#f7f5ff;font-family:Segoe UI,Arial,sans-serif;min-height:100vh}header{padding:30px 6%;background:linear-gradient(110deg,#5727a5,#b72d83 65%,#f06a76)}h1{font-size:clamp(32px,6vw,52px);margin:12px 0 8px}nav{display:flex;gap:10px;flex-wrap:wrap;padding:18px 6%;border-bottom:1px solid #ffffff18}nav a{color:#e8e5ff;text-decoration:none;background:#ffffff12;padding:10px 15px;border-radius:22px;font-size:14px}nav a.activo{background:#ff4fa3;color:#fff;font-weight:bold}main{max-width:900px;margin:auto;padding:30px 6%}.panel{padding:22px;background:#1b1b2d;border:1px solid #ffffff18;border-radius:15px;line-height:1.6}.suave{color:var(--suave)}</style></head><body><header><div>Tu universo musical</div><h1>⭐ Lo mejor</h1><p>Las cinco canciones más escuchadas de cada artista que sigues.</p></header><nav><a href=\"/\">🏠 Portada</a><a href=\"/listas/youtube\">▶ YouTube</a><a href=\"/listas/los40\">🎵 LOS40</a><a href=\"/listas/canal-fiesta\">📻 Canal Fiesta</a><a class=\"activo\" href=\"/lo-mejor\">⭐ Lo mejor</a><a href=\"/artistas\">🎤 Mis artistas</a><a href=\"/programas\">🧰 Programas</a></nav><main><section class=\"panel\"><h2>Falta elegir la fuente de popularidad</h2><p>Para mostrar las cinco canciones realmente más escuchadas, necesito basar el orden en una plataforma con datos de reproducciones. No quiero inventar un ranking a partir de búsquedas o resultados que no indican cuántas escuchas tiene cada canción.</p><p class=\"suave\">Esta sección se completará cuando elijas la fuente: por ejemplo, reproducciones de YouTube o popularidad de Spotify.</p></section></main></body></html>"
+    return """<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lo mejor · Mi Radar Musical</title>
+<style>
+:root{color-scheme:dark;--suave:#b8b6cf;--panel:#1b1b2d;--verde:#55e6bd}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(140deg,#17152d,#10101c 55%,#26152e);color:#f7f5ff;font-family:Segoe UI,Arial,sans-serif;min-height:100vh}
+header{padding:30px 6%;background:linear-gradient(110deg,#5727a5,#b72d83 65%,#f06a76)}
+h1{font-size:clamp(32px,6vw,52px);margin:12px 0 8px}
+nav{display:flex;gap:10px;flex-wrap:wrap;padding:18px 6%;border-bottom:1px solid #ffffff18}
+nav a{color:#e8e5ff;text-decoration:none;background:#ffffff12;padding:10px 15px;border-radius:22px;font-size:14px}
+nav a.activo{background:#ff4fa3;color:#fff;font-weight:bold}
+main{max-width:1100px;margin:auto;padding:28px 5%}
+#buscar-artista{width:100%;padding:13px 15px;border-radius:12px;border:1px solid #ffffff25;background:#171827;color:#fff;font-size:16px;margin:0 0 16px}
+#estado-lo-mejor{color:var(--suave);font-size:14px;margin:8px 0 18px}
+.artista-mejor{background:var(--panel);border:1px solid #ffffff18;border-radius:14px;margin:10px 0;overflow:hidden}
+.cabecera-artista{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 17px}
+.cabecera-artista h2{font-size:18px;margin:0}
+button{cursor:pointer;border:0;border-radius:9px;padding:10px 13px;background:linear-gradient(100deg,#706bff,#b72d83);color:#fff;font-weight:700}
+button:disabled{opacity:.55;cursor:wait}
+.canciones-artista{padding:0 16px 14px}
+.pista{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 0;border-top:1px solid #ffffff12}
+.pista-titulo{font-weight:700}.pista-meta{font-size:12px;color:var(--suave);margin-top:4px}
+.acciones-pista{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.boton-secundario{background:#ffffff12;border:1px solid #ffffff20}
+.mensaje-pista{grid-column:1/-1;color:var(--suave);font-size:13px}
+#modal-youtube[hidden]{display:none}
+#modal-youtube{position:fixed;inset:0;z-index:20000;background:#000b;display:flex;align-items:center;justify-content:center;padding:18px}
+.modal-caja{background:#1b1b2d;border:1px solid #ffffff25;border-radius:16px;width:min(700px,100%);max-height:85vh;overflow:auto;padding:18px}
+.modal-top{display:flex;justify-content:space-between;gap:12px;align-items:center}.modal-top h2{font-size:20px;margin:0}
+.resultado-youtube{display:block;width:100%;text-align:left;margin-top:8px;background:#ffffff0b;border:1px solid #ffffff18}
+.resultado-youtube span{display:block;color:var(--suave);font-size:12px;margin-top:5px}
+@media(max-width:600px){.cabecera-artista{align-items:flex-start;flex-direction:column}.pista{grid-template-columns:1fr}.acciones-pista{justify-content:flex-start}}
+</style></head>
+<body>
+<header><div>Tu universo musical</div><h1>⭐ Lo mejor</h1><p>Las cinco canciones más populares de cada artista de tu lista, según Deezer.</p></header>
+<nav><a href="/">🏠 Portada</a><a href="/listas/youtube">▶ YouTube</a><a href="/listas/los40">🎵 LOS40</a><a href="/listas/canal-fiesta">📻 Canal Fiesta</a><a class="activo" href="/lo-mejor">⭐ Lo mejor</a><a href="/artistas">🎤 Mis artistas</a><a href="/programas">🧰 Programas</a></nav>
+<main><input id="buscar-artista" type="search" placeholder="Buscar artista de tu lista…"><div id="estado-lo-mejor" role="status">Cargando tus artistas…</div><div id="artistas-lo-mejor"></div></main>
+<div id="modal-youtube" hidden role="dialog" aria-modal="true" aria-labelledby="titulo-modal-youtube"><div class="modal-caja"><div class="modal-top"><h2 id="titulo-modal-youtube">Elegir versión para MediaHuman</h2><button id="cerrar-modal" class="boton-secundario">Cerrar ✕</button></div><p id="estado-youtube">Buscando en YouTube…</p><div id="resultados-youtube"></div></div></div>
+<script>
+const estado=document.getElementById('estado-lo-mejor');
+const contenedor=document.getElementById('artistas-lo-mejor');
+const buscar=document.getElementById('buscar-artista');
+const modal=document.getElementById('modal-youtube');
+const estadoYoutube=document.getElementById('estado-youtube');
+const resultadosYoutube=document.getElementById('resultados-youtube');
+let artistas=[];
+let audioActivo=null;
+let temporizador=null;
+function nodo(tag,clase,texto){const n=document.createElement(tag);if(clase)n.className=clase;if(texto!==undefined)n.textContent=texto;return n;}
+function mostrarArtistas(){
+ const q=buscar.value.trim().toLocaleLowerCase('es');
+ const filtrados=artistas.filter(a=>(a.NombreOriginal||a.NombreNormalizado||'').toLocaleLowerCase('es').includes(q));
+ contenedor.replaceChildren();
+ for(const artista of filtrados){
+  const nombre=artista.NombreOriginal||artista.NombreNormalizado;
+  const caja=nodo('section','artista-mejor');
+  const cabecera=nodo('div','cabecera-artista');
+  cabecera.appendChild(nodo('h2','',nombre));
+  const boton=nodo('button','','Ver sus 5 canciones');
+  boton.addEventListener('click',()=>cargarTop(nombre,caja,boton));
+  cabecera.appendChild(boton);
+  caja.appendChild(cabecera);
+  const canciones=nodo('div','canciones-artista');
+  canciones.hidden=true;
+  caja.appendChild(canciones);
+  contenedor.appendChild(caja);
+ }
+ estado.textContent=filtrados.length+' artistas. Pulsa «Ver sus 5 canciones» para consultar su ranking.';
+}
+async function cargarTop(nombre,caja,boton){
+ const zona=caja.querySelector('.canciones-artista');
+ if(!zona.hidden){zona.hidden=true;boton.textContent='Ver sus 5 canciones';return;}
+ zona.hidden=false;zona.replaceChildren();boton.disabled=true;boton.textContent='Consultando Deezer…';
+ try{
+  const r=await fetch('/api/lo-mejor?artista='+encodeURIComponent(nombre),{cache:'no-store'});
+  const d=await r.json();
+  if(!r.ok)throw new Error(d.error||'No se ha podido cargar el ranking.');
+  if(!d.canciones.length)throw new Error('Deezer no ha devuelto canciones para este artista.');
+  for(const pista of d.canciones){
+   const fila=nodo('div','pista');
+   const detalle=nodo('div','');
+   detalle.appendChild(nodo('div','pista-titulo',pista.titulo));
+   detalle.appendChild(nodo('div','pista-meta',pista.artista+' · Popularidad en Deezer'+(pista.album?' · '+pista.album:'')));
+   const acciones=nodo('div','acciones-pista');
+   const muestra=nodo('button','boton-secundario',pista.preview?'▶ Escuchar 30 s':'Muestra no disponible');
+   muestra.disabled=!pista.preview;
+   muestra.addEventListener('click',()=>reproducir(pista,muestra));
+   const youtube=nodo('button','boton-secundario','⬇ MediaHuman');
+   youtube.addEventListener('click',()=>buscarYouTube(pista));
+   acciones.append(muestra,youtube);fila.append(detalle,acciones);zona.appendChild(fila);
+  }
+ }catch(e){zona.appendChild(nodo('div','mensaje-pista',e.message||'Error al consultar Deezer.'));}
+ finally{boton.disabled=false;boton.textContent='Ocultar canciones';}
+}
+function reproducir(pista,boton){
+ if(audioActivo){audioActivo.pause();audioActivo.currentTime=0;audioActivo=null;}
+ if(temporizador)clearTimeout(temporizador);
+ const audio=new Audio(pista.preview);audio.preload='none';audioActivo=audio;
+ boton.disabled=true;audio.play().then(()=>{
+  temporizador=setTimeout(()=>{if(audioActivo===audio){audio.pause();audio.currentTime=0;audioActivo=null;}boton.disabled=false;},30000);
+ }).catch(()=>{boton.disabled=false;estado.textContent='No se ha podido reproducir la muestra de esta canción.';});
+ audio.addEventListener('ended',()=>{if(temporizador)clearTimeout(temporizador);boton.disabled=false;if(audioActivo===audio)audioActivo=null;},{once:true});
+}
+async function buscarYouTube(pista){
+ modal.hidden=false;resultadosYoutube.replaceChildren();estadoYoutube.textContent='Buscando versiones disponibles…';
+ try{
+  const r=await fetch('/api/youtube/buscar?'+new URLSearchParams({titulo:pista.titulo,artista:pista.artista}));
+  const d=await r.json();if(!r.ok)throw new Error(d.error||'No se encontraron vídeos.');
+  estadoYoutube.textContent='Elige la versión correcta; se copiará el enlace para MediaHuman.';
+  for(const video of d.resultados||[]){
+   const b=nodo('button','resultado-youtube');
+   b.appendChild(nodo('strong','',video.titulo));b.appendChild(nodo('span','',video.canal));
+   b.addEventListener('click',async()=>{
+    try{await navigator.clipboard.writeText(video.url);estadoYoutube.textContent='Enlace copiado. Pégalo en MediaHuman.';b.textContent='✓ Enlace copiado: '+video.titulo;}
+    catch(e){window.prompt('Copia el enlace para MediaHuman:',video.url);}
+   });
+   resultadosYoutube.appendChild(b);
+  }
+ }catch(e){estadoYoutube.textContent=e.message||'No se pudo buscar en YouTube.';}
+}
+document.getElementById('cerrar-modal').addEventListener('click',()=>modal.hidden=true);
+modal.addEventListener('click',e=>{if(e.target===modal)modal.hidden=true;});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.hidden=true;});
+buscar.addEventListener('input',mostrarArtistas);
+fetch('/api/artistas',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error();return r.json();}).then(datos=>{artistas=datos;mostrarArtistas();}).catch(()=>{estado.textContent='No se ha podido cargar la lista de artistas.';});
+</script></body></html>"""
+
+
+@app.get("/api/lo-mejor")
+def api_lo_mejor():
+    nombre_solicitado = (request.args.get("artista") or "").strip()
+    if not nombre_solicitado:
+        return jsonify({"error": "Falta el nombre del artista."}), 400
+
+    try:
+        parametros = urlencode({"q": nombre_solicitado, "limit": 10})
+        peticion = Request(
+            "https://api.deezer.com/search/artist?" + parametros,
+            headers={"User-Agent": "MiRadarMusical/1.0"}
+        )
+        with urlopen(peticion, timeout=8) as respuesta:
+            datos = json.loads(respuesta.read().decode("utf-8"))
+        if datos.get("error"):
+            raise ValueError("Deezer no ha permitido consultar su catálogo.")
+
+        candidatos = datos.get("data", [])
+        objetivo = normalizar_texto(nombre_solicitado)
+        mejor = None
+        puntuacion_mejor = 0.0
+        for candidato in candidatos:
+            nombre = candidato.get("name") or ""
+            puntuacion = difflib.SequenceMatcher(
+                None, objetivo, normalizar_texto(nombre)
+            ).ratio()
+            if puntuacion > puntuacion_mejor:
+                puntuacion_mejor = puntuacion
+                mejor = candidato
+
+        if not mejor or puntuacion_mejor < 0.86:
+            return jsonify({
+                "error": "No he encontrado una coincidencia suficientemente segura para este artista en Deezer."
+            }), 404
+
+        url_top = "https://api.deezer.com/artist/" + str(int(mejor["id"])) + "/top?" + urlencode({"limit": 5})
+        peticion_top = Request(url_top, headers={"User-Agent": "MiRadarMusical/1.0"})
+        with urlopen(peticion_top, timeout=8) as respuesta:
+            datos_top = json.loads(respuesta.read().decode("utf-8"))
+        if datos_top.get("error"):
+            raise ValueError("Deezer no ha permitido consultar las canciones de este artista.")
+
+        canciones = []
+        for pista in datos_top.get("data", [])[:5]:
+            artista_pista = (pista.get("artist") or {}).get("name") or mejor.get("name", nombre_solicitado)
+            album = pista.get("album") or {}
+            canciones.append({
+                "titulo": pista.get("title") or "Sin título",
+                "artista": artista_pista,
+                "album": album.get("title") or "",
+                "preview": pista.get("preview") or "",
+                "url": pista.get("link") or "",
+                "rank": pista.get("rank")
+            })
+
+        return jsonify({
+            "artista": mejor.get("name", nombre_solicitado),
+            "fuente": "Deezer",
+            "canciones": canciones
+        })
+    except Exception:
+        return jsonify({
+            "error": "No se ha podido consultar Deezer ahora mismo. Inténtalo de nuevo más tarde."
+        }), 502
+
 
 @app.get("/artistas")
 def pagina_artistas():
