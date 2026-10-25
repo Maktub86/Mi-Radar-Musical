@@ -424,15 +424,20 @@ async function copiarEnlaceMediaHuman(url,boton){
 }
 async function buscarCancionYouTube(cancion,modo="mediahuman"){
  if(modo==="full"){
-  const ventana=window.open("about:blank","_blank");
-  const consulta=[cancion.artista,cancion.titulo,"official audio"].filter(Boolean).join(" ");
+  const modal=document.getElementById("modal-mediahuman"),lista=document.getElementById("resultados-mediahuman"),estado=document.getElementById("estado-mediahuman"),reproductor=document.getElementById("reproductor-completo"),tituloModal=document.getElementById("titulo-modal-mediahuman");
+  modal.hidden=false;lista.replaceChildren();reproductor.replaceChildren();tituloModal.textContent="Audio completo";estado.textContent="Buscando una versión de audio en Audius…";
   try{
    const params=new URLSearchParams({titulo:cancion.titulo||"",artista:cancion.artista||""});
-   const respuesta=await fetch("/api/youtube/buscar?"+params.toString()),datos=await respuesta.json();
-   const video=(datos.resultados||[])[0];
-   if(video&&video.url&&ventana){ventana.location.href=video.url;return;}
-   if(ventana)ventana.location.href="https://www.youtube.com/results?search_query="+encodeURIComponent(consulta);
-  }catch(e){if(ventana)ventana.location.href="https://www.youtube.com/results?search_query="+encodeURIComponent(consulta);}
+   const respuesta=await fetch("/api/audius/buscar?"+params.toString()),datos=await respuesta.json();
+   if(!respuesta.ok)throw new Error(datos.error||"No se ha podido buscar en Audius.");
+   const pista=(datos.resultados||[])[0];
+   if(!pista)throw new Error("Audius no ha encontrado una coincidencia para esta canción.");
+   const encabezado=document.createElement("p");encabezado.textContent="Audio de Audius: "+pista.titulo+" · "+pista.artista;reproductor.appendChild(encabezado);
+   const audio=document.createElement("audio");audio.controls=true;audio.preload="none";audio.src=pista.streamUrl;audio.style.width="100%";reproductor.appendChild(audio);
+   if(pista.url){const enlace=document.createElement("a");enlace.href=pista.url;enlace.target="_blank";enlace.rel="noopener noreferrer";enlace.textContent="Abrir pista en Audius";reproductor.appendChild(enlace);}
+   estado.textContent="Encontrada una pista en Audius. Pulsa reproducir si el audio no empieza automáticamente.";
+   try{await audio.play();}catch(e){}
+  }catch(e){estado.textContent=e.message||"No se ha podido encontrar audio en Audius.";const enlace=document.createElement("a");enlace.href="https://audius.co/search/"+encodeURIComponent((cancion.artista||"")+" "+(cancion.titulo||""));enlace.target="_blank";enlace.rel="noopener noreferrer";enlace.textContent="Buscar esta canción en Audius";lista.appendChild(enlace);}
   return;
  }
  const modal=document.getElementById("modal-mediahuman"),lista=document.getElementById("resultados-mediahuman"),estado=document.getElementById("estado-mediahuman"),reproductor=document.getElementById("reproductor-completo"),tituloModal=document.getElementById("titulo-modal-mediahuman");
