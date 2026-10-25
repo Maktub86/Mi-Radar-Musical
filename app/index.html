@@ -397,6 +397,17 @@ async function reproducirMuestraArtista(cancion,item,boton){
  }catch(e){zona.textContent=e.message||'No se pudo reproducir la muestra.';}finally{boton.disabled=false;}
 }
 async function buscarMusicaArtista(titulo,artista,modo){
+ if(modo==='full'){
+  const ventana=window.open('about:blank','_blank');
+  const consulta=[artista,titulo,'official audio'].filter(Boolean).join(' ');
+  try{
+   const q=new URLSearchParams({titulo,artista}),r=await fetch('/api/youtube/buscar?'+q.toString()),d=await r.json();
+   const v=(d.resultados||[])[0];
+   if(v&&v.url&&ventana){ventana.location.href=v.url;return;}
+   if(ventana)ventana.location.href='https://www.youtube.com/results?search_query='+encodeURIComponent(consulta);
+  }catch(e){if(ventana)ventana.location.href='https://www.youtube.com/results?search_query='+encodeURIComponent(consulta);}
+  return;
+ }
  const modal=document.getElementById('modal-musica-artista'),estado=document.getElementById('estado-modal-musica-artista'),lista=document.getElementById('resultados-musica-artista'),reproductor=document.getElementById('reproductor-musica-artista');
  document.getElementById('titulo-modal-musica-artista').textContent=modo==='full'?'Reproducir canción completa':modo==='youtube'?'Elegir versión de YouTube':'Elegir versión para MediaHuman';
  lista.replaceChildren();reproductor.replaceChildren();estado.textContent='Buscando versiones en YouTube…';modal.hidden=false;
