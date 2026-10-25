@@ -261,7 +261,7 @@ button:disabled{opacity:.55;cursor:wait}
 .acciones-pista .boton-mediahuman::before{content:'⬇';display:block;font-family:Arial,sans-serif;font-size:21px;line-height:1;position:relative;top:-2px;}
 .boton-youtube{background:#e62129;color:#fff;min-width:42px}
 .boton-youtube:hover{background:#ff333b}
-.boton-wikipedia{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;margin-left:8px;border-radius:5px;background:#777d88;color:#fff;font-weight:900;border:1px solid #a8adb6;cursor:pointer}
+.boton-wikipedia{display:inline-flex;align-items:center;justify-content:center;flex:0 0 30px;width:30px;height:30px;margin-left:8px;border-radius:5px;background:#777d88;color:#fff;font-weight:900;border:1px solid #a8adb6;cursor:pointer;text-decoration:none}
 .historia-wikipedia{grid-column:1/-1;margin:9px 0;padding:12px;border-left:3px solid #aeb4c0;background:#ffffff0b;border-radius:7px;color:#e4e4ec;font-size:14px;line-height:1.5}
 .historia-wikipedia a{color:#c9b0ff}
 .barra-alfabetica{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0 16px;position:sticky;top:6px;z-index:100;background:#17152deb;backdrop-filter:blur(12px);padding:10px;border:1px solid #ffffff20;border-radius:13px}
@@ -333,6 +333,12 @@ function mostrarArtistas(){
   const caja=nodo('section','artista-mejor');
   const cabecera=nodo('div','cabecera-artista');
   cabecera.appendChild(nodo('h2','',nombre));
+  const wikiArtista=nodo('a','boton-wikipedia','W');
+  wikiArtista.href='https://es.wikipedia.org/w/index.php?search='+encodeURIComponent(nombre);
+  wikiArtista.target='_blank';wikiArtista.rel='noopener noreferrer';
+  wikiArtista.title='Buscar artista en Wikipedia';
+  wikiArtista.setAttribute('aria-label','Buscar '+nombre+' en Wikipedia');
+  cabecera.appendChild(wikiArtista);
   const boton=nodo('button','','Ver sus 5 canciones');
   boton.addEventListener('click',()=>cargarTop(nombre,caja,boton));
   cabecera.appendChild(boton);
