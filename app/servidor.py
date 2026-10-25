@@ -468,14 +468,17 @@ function reproducir(pista,boton){
 }
 async function buscarYouTube(pista,modo='mediahuman'){
  if(modo==='full'){
-  const ventana=window.open('about:blank','_blank');
-  const consulta=[pista.artista,pista.titulo,'official audio'].filter(Boolean).join(' ');
+  modal.hidden=false;resultadosYoutube.replaceChildren();reproductorCompleto.replaceChildren();document.getElementById('titulo-modal-youtube').textContent='Audio completo';estadoYoutube.textContent='Buscando una versión de audio en Audius…';
   try{
-   const r=await fetch('/api/youtube/buscar?'+new URLSearchParams({titulo:pista.titulo,artista:pista.artista}));
-   const d=await r.json(),video=(d.resultados||[])[0];
-   if(video&&video.url&&ventana){ventana.location.href=video.url;return;}
-   if(ventana)ventana.location.href='https://www.youtube.com/results?search_query='+encodeURIComponent(consulta);
-  }catch(e){if(ventana)ventana.location.href='https://www.youtube.com/results?search_query='+encodeURIComponent(consulta);}
+   const r=await fetch('/api/audius/buscar?'+new URLSearchParams({titulo:pista.titulo,artista:pista.artista})),d=await r.json();
+   if(!r.ok)throw new Error(d.error||'No se ha podido buscar en Audius.');
+   const p=(d.resultados||[])[0];if(!p)throw new Error('Audius no ha encontrado una coincidencia para esta canción.');
+   const texto=nodo('p','','Audio de Audius: '+p.titulo+' · '+p.artista);reproductorCompleto.appendChild(texto);
+   const audio=document.createElement('audio');audio.controls=true;audio.preload='none';audio.src=p.streamUrl;audio.style.width='100%';reproductorCompleto.appendChild(audio);
+   if(p.url){const a=nodo('a','','Abrir pista en Audius');a.href=p.url;a.target='_blank';a.rel='noopener noreferrer';reproductorCompleto.appendChild(a);}
+   estadoYoutube.textContent='Encontrada una pista en Audius. Pulsa reproducir si el audio no empieza automáticamente.';
+   try{await audio.play();}catch(e){}
+  }catch(e){estadoYoutube.textContent=e.message||'No se ha podido encontrar audio en Audius.';const a=nodo('a','','Buscar esta canción en Audius');a.href='https://audius.co/search/'+encodeURIComponent(pista.artista+' '+pista.titulo);a.target='_blank';a.rel='noopener noreferrer';resultadosYoutube.appendChild(a);}
   return;
  }
  modal.hidden=false;resultadosYoutube.replaceChildren();reproductorCompleto.replaceChildren();
