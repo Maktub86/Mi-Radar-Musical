@@ -41,6 +41,17 @@ button.activo{background:var(--azul);border-color:var(--azul)}
 .acciones-radar .boton-muestra{margin-top:0;flex:1;width:auto;min-width:0}
 .boton-descarga-radar{flex:0 0 46px;border:0;background:#2b765f;padding:8px;font-size:21px;border-radius:12px}
 .boton-descarga-radar:hover{background:#368f73}
+.boton-30,.boton-completa{background:#292d3b!important;border:1px solid #ffffff35!important;color:#fff!important}
+.boton-mediahuman{background:#fff!important;color:#222!important;border:1px solid #ddd!important}
+.boton-youtube{background:#e62129!important;color:#fff!important;border:1px solid #e62129!important}
+.acciones-radar .boton-30,.acciones-radar .boton-mediahuman,.acciones-radar .boton-youtube,.acciones-radar .boton-completa{flex:0 0 42px;width:42px;padding:8px 3px;border-radius:10px;font-size:16px}
+.acciones-radar .boton-muestra{flex:0 0 42px;width:42px;padding:8px 3px;border-radius:10px;font-size:13px}
+.acciones-cancion{display:flex;flex-wrap:wrap;gap:5px;justify-content:flex-end}
+.acciones-cancion button{width:auto!important;min-width:38px;flex:0 0 auto;margin:0!important;padding:8px 9px!important;font-size:14px!important;border-radius:9px}
+.acciones-cancion .boton-30,.acciones-cancion .boton-completa{background:#292d3b!important;color:#fff!important;border:1px solid #ffffff35!important}
+.acciones-cancion .boton-mediahuman{background:#fff!important;color:#222!important;border:1px solid #ddd!important}
+.acciones-cancion .boton-youtube{background:#e62129!important;color:#fff!important;border:1px solid #e62129!important}
+.reproductor-completo{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin:12px 0;background:#000}
 .modal-mediahuman{position:fixed;inset:0;z-index:10000;background:#000b;display:flex;align-items:center;justify-content:center;padding:16px}
 .modal-mediahuman[hidden]{display:none}
 .caja-mediahuman{width:min(680px,100%);max-height:85vh;overflow:auto;background:#171b29;color:#fff;border:1px solid #ffffff24;border-radius:16px;padding:18px;box-shadow:0 10px 45px #0009}
@@ -217,7 +228,7 @@ function mostrar(cantidad) {
         <div class="titulo">${escapar(p.titulo || "Sin título")}</div>
         <div class="artista">${escapar(p.artista || "Artista desconocido")}</div>
         <div class="fecha">${escapar(p.fecha || "Fecha desconocida")}</div>
-        ${tipoSeleccionado === "Single" ? `<div class="acciones-radar"><button class="boton-muestra" type="button">▶ Escuchar muestra (30 s)</button><button class="boton-descarga-radar" type="button" title="Buscar versiones y enviar el enlace a MediaHuman" aria-label="Buscar versión para MediaHuman">⬇</button></div><div class="reproductor-muestra" hidden></div>` : ""}
+        ${tipoSeleccionado === "Single" ? `<div class="acciones-radar"><button class="boton-muestra boton-30" type="button" title="Escuchar muestra de 30 segundos">▶ 30</button><button class="boton-mediahuman" type="button" title="Buscar enlace para MediaHuman" aria-label="MediaHuman">⬇</button><button class="boton-youtube" type="button" title="Abrir YouTube" aria-label="YouTube">Y</button><button class="boton-completa" type="button" title="Reproducir canción completa aquí" aria-label="Canción completa">▶</button></div><div class="reproductor-muestra" hidden></div>` : ""}
       </div>`;
     const zonaImagen = tarjeta.querySelector(".portada-disco");
     if (imagen) {
@@ -232,8 +243,9 @@ function mostrar(cantidad) {
     if (tipoSeleccionado === "Single") {
       const boton = tarjeta.querySelector(".boton-muestra");
       boton.addEventListener("click", () => reproducirMuestra(p, tarjeta, boton));
-      const botonDescarga = tarjeta.querySelector(".boton-descarga-radar");
-      botonDescarga.addEventListener("click", () => buscarCancionYouTube(p));
+      tarjeta.querySelector(".boton-mediahuman").addEventListener("click", () => buscarCancionYouTube(p,"mediahuman"));
+      tarjeta.querySelector(".boton-youtube").addEventListener("click", () => buscarCancionYouTube(p,"youtube"));
+      tarjeta.querySelector(".boton-completa").addEventListener("click", () => buscarCancionYouTube(p,"full"));
     }
     lista.appendChild(tarjeta);
   }
@@ -349,44 +361,25 @@ function mostrarLista(tipo,datos){
   const acciones=document.createElement("div");
   acciones.className="acciones-cancion";
   const boton=document.createElement("button");
-  boton.type="button";
-  boton.className="boton-muestra";
-  boton.textContent="▶ Escuchar 30 s";
+  boton.type="button";boton.className="boton-muestra boton-30";
+  boton.textContent="▶ 30";boton.title="Escuchar muestra de 30 segundos";
+  boton.setAttribute("aria-label","Muestra de 30 segundos");
+  const botonMedia=document.createElement("button");
+  botonMedia.type="button";botonMedia.className="boton-mediahuman";botonMedia.textContent="⬇";
+  botonMedia.title="Buscar enlace para MediaHuman";botonMedia.setAttribute("aria-label","MediaHuman");
+  botonMedia.addEventListener("click",()=>buscarCancionYouTube(cancion,"mediahuman"));
+  const botonYoutube=document.createElement("button");
+  botonYoutube.type="button";botonYoutube.className="boton-youtube";botonYoutube.textContent="Y";
+  botonYoutube.title="Abrir versión en YouTube";botonYoutube.setAttribute("aria-label","YouTube");
+  botonYoutube.addEventListener("click",()=>buscarCancionYouTube(cancion,"youtube"));
+  const botonCompleta=document.createElement("button");
+  botonCompleta.type="button";botonCompleta.className="boton-completa";botonCompleta.textContent="▶";
+  botonCompleta.title="Reproducir canción completa dentro de Mi Radar Musical";
+  botonCompleta.setAttribute("aria-label","Canción completa");
+  botonCompleta.addEventListener("click",()=>buscarCancionYouTube(cancion,"full"));
   const reproductor=document.createElement("div");
-  reproductor.className="reproductor-muestra";
-  reproductor.hidden=true;
-  acciones.appendChild(boton);
-
-  if(tipo==="los40" || tipo==="canal-fiesta"){
-   const botonBuscarYT=document.createElement("button");
-   botonBuscarYT.type="button";
-   botonBuscarYT.className="boton-youtube-buscar";
-   botonBuscarYT.textContent="⌕ Buscar en YouTube";
-   botonBuscarYT.addEventListener("click",()=>{
-    const consulta=[cancion.artista||"",cancion.titulo||""].filter(Boolean).join(" ");
-    window.open("https://www.youtube.com/results?search_query="+encodeURIComponent(consulta),"_blank");
-   });
-   acciones.appendChild(botonBuscarYT);
-   const botonMedia=document.createElement("button");
-   botonMedia.type="button";
-   botonMedia.className="boton-mediahuman";
-   botonMedia.textContent="📋 Copiar enlace para MediaHuman";
-   botonMedia.addEventListener("click",()=>buscarCancionYouTube(cancion));
-   acciones.appendChild(botonMedia);
-  }else{
-   const botonMedia=document.createElement("button");
-   botonMedia.type="button";
-   botonMedia.className="boton-mediahuman";
-   if(tipo==="youtube" && cancion.url && cancion.url.includes("youtube.com/watch?v=")){
-    botonMedia.textContent="⬇ Copiar enlace para MediaHuman";
-    botonMedia.addEventListener("click",()=>copiarEnlaceMediaHuman(cancion.url,botonMedia));
-   }else{
-    botonMedia.className="boton-youtube-buscar";
-    botonMedia.textContent="⌕ Buscar en YouTube";
-    botonMedia.addEventListener("click",()=>buscarCancionYouTube(cancion));
-   }
-   acciones.appendChild(botonMedia);
-  }
+  reproductor.className="reproductor-muestra";reproductor.hidden=true;
+  acciones.append(boton,botonMedia,botonYoutube,botonCompleta);
   fila.append(puesto,detalle,acciones,reproductor);
   boton.addEventListener("click",()=>reproducirMuestra({
    titulo:cancion.titulo||"",
@@ -418,39 +411,38 @@ async function copiarEnlaceMediaHuman(url,boton){
  }
  setTimeout(()=>{boton.textContent=original;},4500);
 }
-async function buscarCancionYouTube(cancion){
- const modal=document.getElementById("modal-mediahuman");
- const lista=document.getElementById("resultados-mediahuman");
- const estado=document.getElementById("estado-mediahuman");
- lista.innerHTML="";
- estado.textContent="Buscando versiones disponibles…";
- modal.hidden=false;
+async function buscarCancionYouTube(cancion,modo="mediahuman"){
+ const modal=document.getElementById("modal-mediahuman"),lista=document.getElementById("resultados-mediahuman"),estado=document.getElementById("estado-mediahuman"),reproductor=document.getElementById("reproductor-completo"),tituloModal=document.getElementById("titulo-modal-mediahuman");
+ lista.innerHTML="";reproductor.replaceChildren();
+ tituloModal.textContent=modo==="full"?"Reproducir canción completa":modo==="youtube"?"Elegir versión de YouTube":"Elige la versión para MediaHuman";
+ estado.textContent="Buscando versiones disponibles…";modal.hidden=false;
  try{
   const params=new URLSearchParams({titulo:cancion.titulo||"",artista:cancion.artista||""});
-  const respuesta=await fetch("/api/youtube/buscar?"+params.toString());
-  const datos=await respuesta.json();
-  if(!respuesta.ok) throw new Error(datos.error||"No se encontraron resultados.");
-  estado.textContent="Elige la versión correcta. Al pulsarla, se copiará su enlace para MediaHuman.";
+  const respuesta=await fetch("/api/youtube/buscar?"+params.toString()),datos=await respuesta.json();
+  if(!respuesta.ok)throw new Error(datos.error||"No se encontraron resultados.");
+  estado.textContent=modo==="full"?"Elige la versión que quieras escuchar aquí. La reproducción depende de que YouTube permita la inserción.":modo==="youtube"?"Elige una versión para abrirla en YouTube.":"Elige la versión correcta. Al pulsarla, se copiará su enlace para MediaHuman.";
   for(const video of datos.resultados||[]){
-   const b=document.createElement("button");
-   b.type="button";b.className="resultado-mediahuman";
+   const b=document.createElement("button");b.type="button";b.className="resultado-mediahuman";
    const t=document.createElement("strong");t.textContent=video.titulo||"Vídeo sin título";
-   const c=document.createElement("span");c.textContent=video.canal||"Canal desconocido";
-   b.append(t,c);
+   const ch=document.createElement("span");ch.textContent=video.canal||"Canal desconocido";b.append(t,ch);
    b.addEventListener("click",async()=>{
-    b.disabled=true;
-    try{
-     await copiarEnlaceMediaHuman(video.url,b);
-     estado.textContent="Enlace copiado. Si MediaHuman está configurado para vigilar el portapapeles, debería añadirlo a su cola.";
-    }finally{b.disabled=false;}
+    if(modo==="youtube"){window.open(video.url,"_blank","noopener,noreferrer");return;}
+    if(modo==="full"){
+     const match=String(video.url||"").match(/[?&]v=([^&]+)/);
+     if(!match){estado.textContent="No se ha podido identificar el vídeo.";return;}
+     reproductor.replaceChildren();
+     const iframe=document.createElement("iframe");iframe.className="reproductor-completo";iframe.title="Reproductor de canción completa";
+     iframe.src="https://www.youtube-nocookie.com/embed/"+encodeURIComponent(match[1])+"?autoplay=1&rel=0";
+     iframe.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";iframe.allowFullscreen=true;
+     reproductor.appendChild(iframe);estado.textContent="Si el vídeo permite reproducción integrada, empezará a sonar aquí.";return;
+    }
+    b.disabled=true;try{await copiarEnlaceMediaHuman(video.url,b);estado.textContent="Enlace copiado. Si MediaHuman vigila el portapapeles, debería añadirlo a su cola.";}finally{b.disabled=false;}
    });
    lista.appendChild(b);
   }
- }catch(error){
-  estado.textContent=error.message||"No se pudo buscar. Comprueba la conexión e inténtalo de nuevo.";
- }
+ }catch(error){estado.textContent=error.message||"No se pudo buscar. Comprueba la conexión e inténtalo de nuevo.";}
 }
-function cerrarModalMediaHuman(){document.getElementById("modal-mediahuman").hidden=true;}
+function cerrarModalMediaHuman(){document.getElementById("modal-mediahuman").hidden=true;document.getElementById("reproductor-completo").replaceChildren();}
 document.addEventListener("keydown",e=>{if(e.key==="Escape")cerrarModalMediaHuman();});
 async function cargarLista(tipo){
  const estado=document.getElementById("estado-"+tipo);
@@ -498,6 +490,7 @@ if (tipoListaPagina) cargarLista(tipoListaPagina);
  <div class="caja-mediahuman">
   <div class="cabecera-mediahuman"><h2 id="titulo-modal-mediahuman">Elige la versión para MediaHuman</h2><button class="cerrar-mediahuman" type="button" onclick="cerrarModalMediaHuman()">Cerrar ✕</button></div>
   <p id="estado-mediahuman" class="estado-mediahuman" role="status">Preparando búsqueda…</p>
+  <div id="reproductor-completo"></div>
   <div id="resultados-mediahuman"></div>
  </div>
 </div>
