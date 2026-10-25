@@ -301,10 +301,21 @@ button:disabled{opacity:.55;cursor:wait}
 .pista{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 0;border-top:1px solid #ffffff12}
 .pista-titulo{font-weight:700}.pista-meta{font-size:12px;color:var(--suave);margin-top:4px}
 .acciones-pista{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
-.boton-30,.boton-completa{background:#292d3b;border:1px solid #ffffff30;color:#fff;min-width:48px}
-.boton-mediahuman{background:#fff;color:#222;border:1px solid #d7d7d7;min-width:48px}
-.boton-youtube{background:#e62129;color:#fff;min-width:48px}
+.acciones-pista button{width:42px;height:40px;padding:7px 3px;flex:0 0 42px}
+.acciones-pista .boton-30{width:82px;flex-basis:82px;padding:8px 7px;font-weight:800;font-size:15px}
+.boton-30,.boton-completa{background:#292d3b;border:1px solid #ffffff30;color:#fff;min-width:42px}
+.boton-30{flex:0 0 82px;width:82px;background:linear-gradient(135deg,#6e65ff,#b52f9b);border:1px solid #ffffff50;box-shadow:0 3px 12px #8e42e833}
+.boton-mediahuman{background:#238b55;color:#fff;border:1px solid #55c783;min-width:42px}
+.boton-youtube{background:#e62129;color:#fff;min-width:42px}
 .boton-youtube:hover{background:#ff333b}
+.boton-wikipedia{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;margin-left:8px;border-radius:5px;background:#777d88;color:#fff;font-weight:900;border:1px solid #a8adb6;cursor:pointer}
+.historia-wikipedia{grid-column:1/-1;margin:9px 0;padding:12px;border-left:3px solid #aeb4c0;background:#ffffff0b;border-radius:7px;color:#e4e4ec;font-size:14px;line-height:1.5}
+.historia-wikipedia a{color:#c9b0ff}
+.barra-alfabetica{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0 16px;position:sticky;top:6px;z-index:100;background:#17152deb;backdrop-filter:blur(12px);padding:10px;border:1px solid #ffffff20;border-radius:13px}
+.barra-alfabetica button{min-width:30px;padding:7px 8px;background:#ffffff12;border:1px solid #ffffff20;color:#eee;border-radius:8px}
+.barra-alfabetica button.activa{background:#ff4fa3;color:#fff;font-weight:900}
+#letra-actual{position:fixed;right:16px;bottom:22px;z-index:15000;background:#ff4fa3;color:#fff;font-size:24px;font-weight:900;width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 24px #0008;pointer-events:none}
+#letra-actual[hidden]{display:none}
 .reproductor-completo{width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin:12px 0;background:#000}
 
 .boton-secundario{background:#ffffff12;border:1px solid #ffffff20}
@@ -320,7 +331,7 @@ button:disabled{opacity:.55;cursor:wait}
 <body>
 <header><div>Tu universo musical</div><h1>⭐ Lo mejor</h1><p>Las cinco canciones más populares de cada artista de tu lista, según Deezer.</p></header>
 <nav><a href="/">🏠 Portada</a><a href="/listas/youtube">▶ YouTube</a><a href="/listas/los40">🎵 LOS40</a><a href="/listas/canal-fiesta">📻 Canal Fiesta</a><a class="activo" href="/lo-mejor">⭐ Lo mejor</a><a href="/programas">🧰 Programas</a><a href="/artistas">🎤 Mis artistas</a></nav>
-<main><input id="buscar-artista" type="search" placeholder="Buscar artista de tu lista…"><div id="estado-lo-mejor" role="status">Cargando tus artistas…</div><div id="artistas-lo-mejor"></div></main>
+<main><input id="buscar-artista" type="search" placeholder="Buscar artista de tu lista…"><div id="alfabeto-lo-mejor" class="barra-alfabetica" aria-label="Buscar por inicial"></div><div id="letra-actual" hidden aria-live="polite"></div><div id="estado-lo-mejor" role="status">Cargando tus artistas…</div><div id="artistas-lo-mejor"></div></main>
 <div id="modal-youtube" hidden role="dialog" aria-modal="true" aria-labelledby="titulo-modal-youtube"><div class="modal-caja"><div class="modal-top"><h2 id="titulo-modal-youtube">Elegir versión para MediaHuman</h2><button id="cerrar-modal" class="boton-secundario">Cerrar ✕</button></div><p id="estado-youtube">Buscando en YouTube…</p><div id="reproductor-completo"></div><div id="resultados-youtube"></div></div></div>
 <script>
 const estado=document.getElementById('estado-lo-mejor');
@@ -331,12 +342,38 @@ const estadoYoutube=document.getElementById('estado-youtube');
 const resultadosYoutube=document.getElementById('resultados-youtube');
 const reproductorCompleto=document.getElementById('reproductor-completo');
 let artistas=[];
+let inicialSeleccionada='';
+const alfabetoLoMejor=document.getElementById('alfabeto-lo-mejor');
+const letraActual=document.getElementById('letra-actual');
+const letrasAlfabeto=['#',...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')];
+function normalizarNombre(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleUpperCase('es');}
+for(const letra of letrasAlfabeto){const b=nodo('button','',letra);b.type='button';b.dataset.letra=letra;b.addEventListener('click',()=>{inicialSeleccionada=inicialSeleccionada===letra?'':letra;mostrarArtistas();if(inicialSeleccionada&&inicialSeleccionada!=='#'){const caja=[...contenedor.querySelectorAll('.artista-mejor')].find(x=>normalizarNombre(x.querySelector('h2')?.textContent).startsWith(inicialSeleccionada));if(caja)caja.scrollIntoView({behavior:'smooth',block:'start'});}});alfabetoLoMejor.appendChild(b);}
+window.addEventListener('scroll',()=>{const cajas=[...contenedor.querySelectorAll('.artista-mejor')];let actual='';for(const caja of cajas){if(caja.getBoundingClientRect().top<=180)actual=normalizarNombre(caja.querySelector('h2')?.textContent).charAt(0)||'';else break;}if(!actual&&cajas.length)actual=normalizarNombre(cajas[0].querySelector('h2')?.textContent).charAt(0)||'';letraActual.hidden=!actual;if(actual){letraActual.textContent=actual;for(const b of alfabetoLoMejor.querySelectorAll('button'))b.classList.toggle('activa',b.dataset.letra===actual);}});
+const cacheHistoriasCancion=new Map();
+async function cargarHistoriaCancion(titulo,artista,fila,boton){
+ const existente=fila.parentElement?.querySelector('.historia-wikipedia[data-cancion="'+CSS.escape(titulo+'|'+artista)+'"]');
+ if(existente){existente.remove();return;}
+ const caja=nodo('div','historia-wikipedia','Buscando una breve historia en Wikipedia…');caja.dataset.cancion=titulo+'|'+artista;fila.insertAdjacentElement('afterend',caja);
+ const clave=normalizarNombre(titulo+' '+artista);
+ try{
+  let promesa=cacheHistoriasCancion.get(clave);
+  if(!promesa){promesa=(async()=>{for(const idioma of ['es','en']){
+   const q=new URLSearchParams({action:'query',generator:'search',gsrsearch:titulo+' '+artista,gsrnamespace:'0',gsrlimit:'8',prop:'extracts|info',exintro:'1',explaintext:'1',exsentences:'4',inprop:'url',format:'json',origin:'*'});
+   const r=await fetch('https://'+idioma+'.wikipedia.org/w/api.php?'+q.toString());if(!r.ok)continue;const d=await r.json();const paginas=Object.values(d.query?.pages||[]);
+   const normal=v=>normalizarNombre(v).replace(/[^A-Z0-9 ]/g,' ').replace(/\s+/g,' ').trim(),t=normal(titulo),a=normal(artista);
+   const buena=paginas.find(p=>{const n=normal(p.title);return n===t||n===t+' ('+a+')'||(n.includes(t)&&(!a||n.includes(a)));});
+   if(buena?.extract)return {texto:buena.extract,url:buena.fullurl||('https://'+idioma+'.wikipedia.org/wiki/'+encodeURIComponent(buena.title.replace(/ /g,'_'))),titulo:buena.title};
+  }return null;})();cacheHistoriasCancion.set(clave,promesa);}
+  const h=await promesa;caja.replaceChildren();if(!h){caja.textContent='No he encontrado una historia de esta canción en Wikipedia.';return;}
+  const span=nodo('span','',h.texto+' '),a=nodo('a','','Leer en Wikipedia ('+h.titulo+')');a.href=h.url;a.target='_blank';a.rel='noopener noreferrer';caja.append(span,a);
+ }catch(e){caja.textContent='No se ha podido consultar Wikipedia ahora mismo.';}
+}
 let audioActivo=null;
 let temporizador=null;
 function nodo(tag,clase,texto){const n=document.createElement(tag);if(clase)n.className=clase;if(texto!==undefined)n.textContent=texto;return n;}
 function mostrarArtistas(){
  const q=buscar.value.trim().toLocaleLowerCase('es');
- const filtrados=artistas.filter(a=>(a.NombreOriginal||a.NombreNormalizado||'').toLocaleLowerCase('es').includes(q));
+ const filtrados=artistas.filter(a=>{const nombre=a.NombreOriginal||a.NombreNormalizado||'',ini=normalizarNombre(nombre).charAt(0)||'#';const coincide=!inicialSeleccionada||(inicialSeleccionada==='#'?!/^[A-Z]/.test(normalizarNombre(nombre)):ini===inicialSeleccionada);return nombre.toLocaleLowerCase('es').includes(q)&&coincide;}).sort((a,b)=>(a.NombreOriginal||a.NombreNormalizado||'').localeCompare(b.NombreOriginal||b.NombreNormalizado||'','es',{sensitivity:'base'}));
  contenedor.replaceChildren();
  for(const artista of filtrados){
   const nombre=artista.NombreOriginal||artista.NombreNormalizado;
@@ -352,7 +389,7 @@ function mostrarArtistas(){
   caja.appendChild(canciones);
   contenedor.appendChild(caja);
  }
- estado.textContent=filtrados.length+' artistas. Pulsa «Ver sus 5 canciones» para consultar su ranking.';
+ estado.textContent=filtrados.length+' artistas. Pulsa «Ver sus 5 canciones» para consultar su ranking.';for(const b of alfabetoLoMejor.querySelectorAll('button'))b.classList.toggle('activa',b.dataset.letra===inicialSeleccionada);
 }
 async function cargarTop(nombre,caja,boton){
  const zona=caja.querySelector('.canciones-artista');
@@ -366,7 +403,10 @@ async function cargarTop(nombre,caja,boton){
   for(const pista of d.canciones){
    const fila=nodo('div','pista');
    const detalle=nodo('div','');
-   detalle.appendChild(nodo('div','pista-titulo',pista.titulo));
+   const tituloPista=nodo('span','pista-titulo',pista.titulo);
+   const wiki=nodo('button','boton-wikipedia','W');wiki.title='Consultar historia de la canción en Wikipedia';wiki.setAttribute('aria-label','Historia en Wikipedia');
+   wiki.addEventListener('click',()=>cargarHistoriaCancion(pista.titulo,pista.artista,fila,wiki));
+   const tituloLinea=nodo('div','');tituloLinea.append(tituloPista,wiki);detalle.appendChild(tituloLinea);
    detalle.appendChild(nodo('div','pista-meta',pista.artista+' · Popularidad en Deezer'+(pista.album?' · '+pista.album:'')));
    const acciones=nodo('div','acciones-pista');
    const muestra=nodo('button','boton-30',pista.preview?'▶ 30':'▶ 30');
