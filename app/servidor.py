@@ -472,9 +472,21 @@ async function buscarYouTube(pista,modo='mediahuman'){
  try{
   const r=await fetch('/api/youtube/buscar?'+new URLSearchParams({titulo:pista.titulo,artista:pista.artista}));
   const d=await r.json();if(!r.ok)throw new Error(d.error||'No se encontraron vídeos.');
+  if(modo==='full'){
+   const video=(d.resultados||[])[0];
+   if(!video){estadoYoutube.textContent='No se encontró una versión para reproducir.';return;}
+   const match=String(video.url||'').match(/[?&]v=([^&]+)/);
+   if(!match){estadoYoutube.textContent='No se pudo identificar el vídeo.';return;}
+   document.getElementById('titulo-modal-youtube').textContent='Reproduciendo canción completa';
+   const iframe=document.createElement('iframe');iframe.className='reproductor-completo';iframe.title='Reproductor de canción completa';
+   iframe.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(match[1])+'?autoplay=1&rel=0';
+   iframe.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';iframe.allowFullscreen=true;
+   reproductorCompleto.replaceChildren(iframe);
+   estadoYoutube.textContent='Reproduciendo automáticamente: '+(video.titulo||pista.titulo)+' · '+(video.canal||pista.artista)+'.';
+   return;
+  }
   if(modo==='mediahuman')estadoYoutube.textContent='Elige una versión para copiar su enlace y pegarlo en MediaHuman.';
-  else if(modo==='youtube')estadoYoutube.textContent='Elige una versión para abrirla en YouTube.';
-  else estadoYoutube.textContent='Elige una versión para reproducirla aquí. La reproducción completa depende de que el vídeo permita insertarse.';
+  else estadoYoutube.textContent='Elige una versión para abrirla en YouTube.';
   for(const video of d.resultados||[]){
    const b=nodo('button','resultado-youtube');
    b.appendChild(nodo('strong','',video.titulo));b.appendChild(nodo('span','',video.canal));
