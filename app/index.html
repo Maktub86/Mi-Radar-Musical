@@ -56,6 +56,9 @@ button:hover{background:#8d5abd}
 .acciones-publicacion .boton-youtube{grid-column:3;grid-row:1}
 .acciones-publicacion .boton-completa{grid-column:4;grid-row:1}
 .acciones-publicacion .boton-mediahuman{background:#238b55!important;color:#fff!important;border:1px solid #55c783!important}
+/* Centra la flecha como icono, sin depender de la línea base del carácter */
+.boton-mediahuman{font-size:0!important;position:relative;}
+.boton-mediahuman::before{content:'⬇';display:block;font-family:Arial,sans-serif;font-size:21px;line-height:1;position:relative;top:-2px;}
 .acciones-publicacion .boton-youtube{background:#e62129!important;color:#fff!important;border:1px solid #e62129!important}
 .acciones-publicacion .boton-completa{background:#292d3b!important;color:#fff!important;border:1px solid #ffffff35!important}
 .barra-alfabetica{display:flex;flex-wrap:wrap;gap:5px;margin:14px 0;position:sticky;top:6px;z-index:100;background:#17102aeb;backdrop-filter:blur(12px);padding:10px;border:1px solid #ffffff20;border-radius:13px}
