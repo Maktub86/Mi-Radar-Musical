@@ -20,101 +20,7 @@ TAREA = "MiRadarMusical_Actualizacion"
 
 app = Flask(__name__, static_folder=str(BASE), static_url_path="")
 
-BOTON_HTML = r'''
-<style>
-#boton-actualizar{position:fixed!important;top:14px!important;right:16px!important;left:auto!important;bottom:auto!important;z-index:10000;width:44px;height:44px;border:1px solid #ffffff45;border-radius:50%;background:#e8bd62;color:#171717;font-size:24px;font-weight:bold;box-shadow:0 3px 14px #0008;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;}
-#boton-actualizar:hover{transform:scale(1.05)}
-#boton-actualizar:disabled{opacity:.6;cursor:wait}
-#panel-actualizacion{position:fixed!important;top:66px!important;right:16px!important;left:auto!important;bottom:auto!important;z-index:9999;background:#202633;color:#fff;padding:12px;border-radius:12px;box-shadow:0 3px 18px #0008;width:280px;max-width:calc(100vw - 32px);font:13px Arial}
-#panel-actualizacion[hidden]{display:none}
-#panel-actualizacion button{padding:7px 11px;border:0;border-radius:8px;background:#e8bd62;color:#171717;font-weight:bold;cursor:pointer}
-#progreso-actualizacion{height:7px;background:#414858;border-radius:8px;margin-top:9px;overflow:hidden}
-#barra-actualizacion{height:100%;width:0;background:#76e0c2;transition:width .2s}
-#estado-actualizacion{display:block;margin-top:7px;line-height:1.4}
-@media(max-width:600px){#boton-actualizar{top:8px!important;right:8px!important}#panel-actualizacion{top:58px!important;right:8px!important}}
-</style>
-<button id="boton-actualizar" type="button" title="Actualizar manualmente" aria-label="Actualizar manualmente">↻</button>
-<div id="panel-actualizacion" hidden>
- <button id="cerrar-panel-actualizacion" type="button" aria-label="Cerrar">Cerrar</button>
- <div id="progreso-actualizacion"><div id="barra-actualizacion"></div></div>
- <span id="estado-actualizacion" role="status">Preparado para actualizar artistas, radar y listas.</span>
-</div>
-<script>
-(()=>{
-const b=document.getElementById('boton-actualizar');
-const panel=document.getElementById('panel-actualizacion');
-// Saca los controles del contenedor donde se insertó la plantilla para evitar que
-// un ancestro con transform haga que position:fixed se comporte como position:absolute.
-if(document.documentElement){document.documentElement.append(b,panel);}
-// Los controles quedan fuera de body para que ningún transform de la página los convierta en absolutos.
-function fijarControles(){
- b.style.setProperty('position','fixed','important');
- b.style.setProperty('transform','none','important');
- b.style.setProperty('top',window.innerWidth<=600?'8px':'14px','important');
- b.style.setProperty('right',window.innerWidth<=600?'8px':'16px','important');
- b.style.setProperty('left','auto','important');
- b.style.setProperty('bottom','auto','important');
- panel.style.setProperty('position','fixed','important');
- panel.style.setProperty('transform','none','important');
- panel.style.setProperty('top',window.innerWidth<=600?'58px':'66px','important');
- panel.style.setProperty('right',window.innerWidth<=600?'8px':'16px','important');
- panel.style.setProperty('left','auto','important');
- panel.style.setProperty('bottom','auto','important');
-}
-fijarControles();
-window.addEventListener('scroll',fijarControles,{passive:true});
-window.addEventListener('resize',fijarControles);
-const cerrar=document.getElementById('cerrar-panel-actualizacion');
-const e=document.getElementById('estado-actualizacion');
-const barra=document.getElementById('barra-actualizacion');
-let vigilando=false;
-async function consultar(){
- const r=await fetch('/api/estado-actualizacion',{cache:'no-store'});
- const d=await r.json();
- barra.style.width=(d.progreso||0)+'%';
- e.textContent=(d.progreso||0)+'% · '+d.mensaje;
- b.disabled=!!d.en_curso;
- if(d.en_curso) panel.hidden=false;
- return d;
-}
-async function vigilar(){
- if(vigilando)return;
- vigilando=true;
- try{
-  let d;
-  do{
-   await new Promise(r=>setTimeout(r,1500));
-   d=await consultar();
-  }while(d.en_curso);
- }catch(err){
-  e.textContent='No se pudo consultar el progreso.';
-  b.disabled=false;
- }finally{vigilando=false;}
-}
-b.addEventListener('click',async()=>{
- panel.hidden=false;
- try{
-  const estado=await consultar();
-  if(estado.en_curso){vigilar();return;}
- }catch(err){}
- if(!confirm('¿Actualizar todos los artistas, el radar y las tres listas musicales?'))return;
- b.disabled=true;barra.style.width='0%';e.textContent='Iniciando actualización completa…';
- try{
-  const r=await fetch('/api/actualizar',{method:'POST'});
-  const d=await r.json();
-  if(!r.ok){e.textContent=d.error||'No se pudo iniciar.';b.disabled=false;return;}
-  e.textContent=d.mensaje||'Actualización iniciada.';
-  vigilar();
- }catch(err){
-  e.textContent='No se pudo contactar con el servidor.';
-  b.disabled=false;
- }
-});
-cerrar.addEventListener('click',()=>{if(!vigilando)panel.hidden=true;});
-consultar().then(d=>{if(d.en_curso)vigilar();}).catch(()=>{});
-})();
-</script>
-'''
+BOTON_HTML = ''
 
 
 def _pagina_portada(tipo="inicio"):
@@ -448,11 +354,7 @@ async function cargarTop(nombre,caja,boton){
    youtube.title='Abrir opciones de YouTube';
    youtube.setAttribute('aria-label','YouTube');
    youtube.addEventListener('click',()=>buscarYouTube(pista,'youtube'));
-   const completa=nodo('button','boton-completa','▶');
-   completa.title='Reproducir canción completa dentro de Mi Radar Musical';
-   completa.setAttribute('aria-label','Reproducir canción completa');
-   completa.addEventListener('click',()=>buscarYouTube(pista,'full'));
-   acciones.append(muestra,mediahuman,youtube,completa);fila.append(detalle,acciones);zona.appendChild(fila);
+   acciones.append(muestra,mediahuman,youtube);fila.append(detalle,acciones);zona.appendChild(fila);
   }
  }catch(e){zona.appendChild(nodo('div','mensaje-pista',e.message||'Error al consultar Deezer.'));}
  finally{boton.disabled=false;boton.textContent='Ocultar canciones';}
