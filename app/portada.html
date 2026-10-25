@@ -437,14 +437,12 @@ async function buscarCancionYouTube(cancion,modo="mediahuman"){
    const match=String(video.url||"").match(/[?&]v=([^&]+)/);
    if(!match){estado.textContent="No se ha podido identificar el vídeo.";return;}
    tituloModal.textContent="Reproduciendo canción completa";
-   estado.textContent="He elegido automáticamente el primer resultado de YouTube: "+(video.titulo||cancion.titulo||"la canción")+" · "+(video.canal||"Canal desconocido")+". Si no se reproduce aquí, abre YouTube con el botón de abajo.";
+   estado.textContent="He elegido automáticamente el primer resultado de YouTube: "+(video.titulo||cancion.titulo||"la canción")+" · "+(video.canal||"Canal desconocido")+". Reproducción automática de la versión seleccionada.";
    const iframe=document.createElement("iframe");iframe.className="reproductor-completo";iframe.title="Reproductor de canción completa";
    iframe.src="https://www.youtube-nocookie.com/embed/"+encodeURIComponent(match[1])+"?autoplay=1&rel=0";
    iframe.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";iframe.allowFullscreen=true;
    reproductor.appendChild(iframe);
-   const abrir=document.createElement("button");abrir.type="button";abrir.className="cerrar-mediahuman";abrir.textContent="Abrir esta canción en YouTube";
    abrir.addEventListener("click",()=>window.open(video.url,"_blank","noopener,noreferrer"));
-   reproductor.appendChild(abrir);
    lista.replaceChildren();
    return;
   }
