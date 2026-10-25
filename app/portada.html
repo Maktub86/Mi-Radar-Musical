@@ -37,16 +37,19 @@ button.activo{background:var(--azul);border-color:var(--azul)}
 .fecha{font-size:12px;color:var(--suave);margin-top:12px}
 .boton-muestra{margin-top:13px;width:100%;border:0;background:linear-gradient(100deg,#706bff,#b72d83);}
 .boton-muestra:disabled{opacity:.65;cursor:wait}
-.acciones-radar{display:flex;gap:7px;margin-top:13px;align-items:stretch}
-.acciones-radar .boton-muestra{margin-top:0;flex:1;width:auto;min-width:0}
+.acciones-radar{display:grid;grid-template-columns:82px 42px;grid-template-rows:42px 42px;gap:7px;margin-top:13px;align-items:stretch;justify-content:start}
+.acciones-radar .boton-muestra{margin-top:0;grid-column:1;grid-row:1;flex:none;width:82px;min-width:82px;height:42px}
+.acciones-radar .boton-mediahuman{grid-column:2;grid-row:1}
+.acciones-radar .boton-youtube{grid-column:1;grid-row:2}
+.acciones-radar .boton-completa{grid-column:2;grid-row:2}
 .boton-descarga-radar{flex:0 0 46px;border:0;background:#2b765f;padding:8px;font-size:21px;border-radius:12px}
 .boton-descarga-radar:hover{background:#368f73}
 .boton-30,.boton-completa{background:#292d3b!important;border:1px solid #ffffff35!important;color:#fff!important}
 .boton-mediahuman{background:#fff!important;color:#222!important;border:1px solid #ddd!important}
 .boton-youtube{background:#e62129!important;color:#fff!important;border:1px solid #e62129!important}
 .acciones-radar .boton-30,.acciones-cancion .boton-30,.acciones-publicacion .boton-30{flex:0 0 82px;width:82px;min-width:82px;padding:9px 8px!important;border-radius:11px;font-size:15px!important;font-weight:800;letter-spacing:.2px;background:linear-gradient(135deg,#6e65ff,#b52f9b)!important;color:#fff!important;border:1px solid #ffffff50!important;box-shadow:0 3px 12px #8e42e833}
-.acciones-radar .boton-mediahuman,.acciones-radar .boton-youtube,.acciones-radar .boton-completa{flex:0 0 42px;width:42px;min-width:42px;padding:8px 3px;border-radius:10px;font-size:16px}
-.acciones-radar .boton-muestra{flex:0 0 82px;width:82px;min-width:82px;padding:9px 8px;border-radius:11px;font-size:15px}
+.acciones-radar .boton-mediahuman,.acciones-radar .boton-youtube,.acciones-radar .boton-completa{flex:none;width:42px;min-width:42px;height:42px;padding:8px 3px;border-radius:10px;font-size:16px}
+.acciones-radar .boton-muestra{flex:none;width:82px;min-width:82px;height:42px;padding:9px 8px;border-radius:11px;font-size:15px}
 .acciones-radar .boton-mediahuman,.acciones-cancion .boton-mediahuman,.acciones-publicacion .boton-mediahuman{background:#238b55!important;color:#fff!important;border:1px solid #55c783!important}
 .acciones-radar .boton-youtube,.acciones-cancion .boton-youtube,.acciones-publicacion .boton-youtube{background:#e62129!important;color:#fff!important;border:1px solid #e62129!important}
 .acciones-radar .boton-completa,.acciones-cancion .boton-completa,.acciones-publicacion .boton-completa{background:#292d3b!important;color:#fff!important;border:1px solid #ffffff35!important}
