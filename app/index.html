@@ -49,6 +49,28 @@ button:hover{background:#8d5abd}
 .resultado-musica{display:block;width:100%;text-align:left;background:#22283a;color:#fff;border:1px solid #ffffff20;padding:12px;border-radius:10px}
 .resultado-musica span{display:block;color:#b8bfd2;font-size:12px;margin-top:4px}
 .reproductor-completo{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin:12px 0;background:#000}
+.acciones-publicacion{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px;align-items:center}
+.acciones-publicacion button{padding:8px 3px;border-radius:10px;font-size:16px;width:42px;min-width:42px;flex:0 0 42px}
+.acciones-publicacion .boton-30{width:82px;min-width:82px;flex-basis:82px;background:linear-gradient(135deg,#6e65ff,#b52f9b)!important;color:#fff!important;border:1px solid #ffffff50!important;box-shadow:0 3px 12px #8e42e833}
+.acciones-publicacion .boton-mediahuman{background:#238b55!important;color:#fff!important;border:1px solid #55c783!important}
+.acciones-publicacion .boton-youtube{background:#e62129!important;color:#fff!important;border:1px solid #e62129!important}
+.acciones-publicacion .boton-completa{background:#292d3b!important;color:#fff!important;border:1px solid #ffffff35!important}
+.barra-alfabetica{display:flex;flex-wrap:wrap;gap:5px;margin:14px 0;position:sticky;top:6px;z-index:100;background:#17102aeb;backdrop-filter:blur(12px);padding:10px;border:1px solid #ffffff20;border-radius:13px}
+.barra-alfabetica button{min-width:30px;padding:7px 8px;background:#ffffff12;border:1px solid #ffffff20;color:#eee;border-radius:8px}
+.barra-alfabetica button.activa{background:#b47aff;color:#1b1028;font-weight:900}
+#letra-actual{position:fixed;right:16px;bottom:22px;z-index:30000;background:#b47aff;color:#1b1028;font-size:24px;font-weight:900;width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 24px #0008;pointer-events:none}
+#letra-actual[hidden]{display:none}
+#buscador-artistas{width:min(100%,560px);font-size:16px}
+.modal-musica[hidden]{display:none}
+.modal-musica{position:fixed;inset:0;z-index:40000;background:#000b;display:flex;align-items:center;justify-content:center;padding:16px}
+.caja-musica{width:min(680px,100%);max-height:85vh;overflow:auto;background:#171b29;color:#fff;border:1px solid #ffffff24;border-radius:16px;padding:18px}
+.caja-musica button{margin:6px 0}
+.resultado-musica{display:block;width:100%;text-align:left;background:#22283a;color:#fff;border:1px solid #ffffff20;padding:12px;border-radius:10px}
+.resultado-musica span{display:block;color:#b8bfd2;font-size:12px;margin-top:4px}
+.reproductor-completo{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin:12px 0;background:#000}
+.boton-wikipedia{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;margin-left:8px;border-radius:5px;background:#777d88;color:#fff;font-weight:900;border:1px solid #a8adb6;cursor:pointer}
+.historia-wikipedia{margin:9px 0;padding:12px;border-left:3px solid #aeb4c0;background:#ffffff0b;border-radius:7px;color:#e4e4ec;font-size:14px;line-height:1.5}
+.historia-wikipedia a{color:#c9b0ff}
 </style>
 </head>
 <body data-vista="artistas">
@@ -64,9 +86,11 @@ button:hover{background:#8d5abd}
 </nav>
 <main>
 <p><a id="volver-portada" href="/">← Volver a Mi Radar Musical</a></p>
-<p>Busca tus artistas y consulta sus últimas publicaciones.</p>
+<p>Busca tus artistas y consulta sus últimas publicaciones. Puedes escribir un nombre o saltar por su inicial.</p>
 <input id="buscar" placeholder="Buscar artista..." style="width:min(60%,520px)">
 <select id="estado"><option value="">Todos los estados</option></select>
+<div id="alfabeto" class="barra-alfabetica" aria-label="Buscar artistas por inicial"></div>
+<div id="letra-actual" hidden aria-live="polite"></div>
 <div id="total">Cargando artistas...</div>
 <div id="lista"></div>
 </main>
@@ -84,6 +108,28 @@ const buscar=document.getElementById('buscar');
 const estado=document.getElementById('estado');
 const lista=document.getElementById('lista');
 const total=document.getElementById('total');
+const alfabeto=document.getElementById('alfabeto');
+const letraActual=document.getElementById('letra-actual');
+let inicialSeleccionada='';
+const letras=['#',...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')];
+function normalizarNombre(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleUpperCase('es');}
+function crearAlfabeto(){
+ alfabeto.replaceChildren();
+ for(const letra of letras){
+  const b=document.createElement('button');b.type='button';b.textContent=letra;b.dataset.letra=letra;
+  b.addEventListener('click',()=>{inicialSeleccionada=inicialSeleccionada===letra?'':letra;mostrar();if(inicialSeleccionada){const primero=[...lista.querySelectorAll('.artista')].find(x=>normalizarNombre(x.querySelector('strong')?.textContent).startsWith(inicialSeleccionada==='#'?'':inicialSeleccionada));if(primero&&inicialSeleccionada!=='#')primero.scrollIntoView({behavior:'smooth',block:'start'});}});
+  alfabeto.appendChild(b);
+ }
+}
+function actualizarLetraScroll(){
+ const tarjetas=[...lista.querySelectorAll('.artista')];let actual='';
+ for(const tarjeta of tarjetas){if(tarjeta.getBoundingClientRect().top<=180)actual=normalizarNombre(tarjeta.querySelector('strong')?.textContent).charAt(0)||'';else break;}
+ if(!actual&&tarjetas.length)actual=normalizarNombre(tarjetas[0].querySelector('strong')?.textContent).charAt(0)||'';
+ if(actual){letraActual.textContent=actual;letraActual.hidden=false;for(const b of alfabeto.querySelectorAll('button'))b.classList.toggle('activa',b.dataset.letra===actual);}
+ else letraActual.hidden=true;
+}
+let scrollTick=false;
+window.addEventListener('scroll',()=>{if(!scrollTick){scrollTick=true;requestAnimationFrame(()=>{actualizarLetraScroll();scrollTick=false;});}},{passive:true});
 
 const cacheImagenesArtista = new Map();
 const observadorFotos = ('IntersectionObserver' in window)
@@ -218,10 +264,12 @@ function mostrar(){
  if (observadorFotos) observadorFotos.disconnect();
  const q=buscar.value.toLocaleLowerCase('es').trim();
  const e=estado.value;
- const filtrados=artistas.filter(a=>
-  (a.NombreOriginal||'').toLocaleLowerCase('es').includes(q) &&
-  (!e || a.Estado===e)
- );
+ const filtrados=artistas.filter(a=>{
+  const nombre=a.NombreOriginal||'';
+  const inicial=normalizarNombre(nombre).charAt(0)||'#';
+  const coincideInicial=!inicialSeleccionada|| (inicialSeleccionada==='#'?!/^[A-Z]/.test(normalizarNombre(nombre)):inicial===inicialSeleccionada);
+  return nombre.toLocaleLowerCase('es').includes(q)&&(!e||a.Estado===e)&&coincideInicial;
+ }).sort((a,b)=>(a.NombreOriginal||'').localeCompare(b.NombreOriginal||'','es',{sensitivity:'base'}));
  const esReparto=a=>a.Estado==='Reparto o grupo pendiente' ||
   (a.NombreOriginal||'').trim().toLocaleLowerCase('es').startsWith('cast ');
  const musicales=filtrados.filter(esReparto);
@@ -271,6 +319,9 @@ async function cargarPublicaciones(nombre,contenedor){
    const t=document.createElement('strong');
    t.textContent=p.titulo||'Sin título';
    item.appendChild(t);
+   const wiki=document.createElement('button');wiki.type='button';wiki.className='boton-wikipedia';wiki.textContent='W';wiki.title='Consultar historia de la canción en Wikipedia';wiki.setAttribute('aria-label','Historia en Wikipedia');
+   wiki.addEventListener('click',()=>cargarHistoriaCancion(p.titulo||'',datos.artista||nombre,item,wiki));
+   t.appendChild(wiki);
    const detalle=document.createElement('div');
    detalle.className='fecha';
    detalle.textContent=[p.fecha||'Fecha desconocida',p.tipo||'Tipo desconocido'].join(' · ');
@@ -295,6 +346,35 @@ async function cargarPublicaciones(nombre,contenedor){
  }
 }
 
+const cacheHistoriasCancion=new Map();
+async function cargarHistoriaCancion(titulo,artista,item,boton){
+ const existente=item.querySelector('.historia-wikipedia');
+ if(existente){existente.remove();return;}
+ const caja=document.createElement('div');caja.className='historia-wikipedia';caja.textContent='Buscando una breve historia en Wikipedia…';item.appendChild(caja);
+ const clave=normalizarNombre(titulo+' '+artista);
+ try{
+  let promesa=cacheHistoriasCancion.get(clave);
+  if(!promesa){
+   promesa=(async()=>{
+    for(const idioma of ['es','en']){
+     const q=new URLSearchParams({action:'query',generator:'search',gsrsearch:titulo+' '+artista,gsrnamespace:'0',gsrlimit:'8',prop:'extracts|info',exintro:'1',explaintext:'1',exsentences:'4',inprop:'url',format:'json',origin:'*'});
+     const r=await fetch('https://'+idioma+'.wikipedia.org/w/api.php?'+q.toString());if(!r.ok)continue;
+     const d=await r.json();const paginas=Object.values(d.query?.pages||[]);
+     const normal=v=>normalizarNombre(v).replace(/[^A-Z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
+     const t=normal(titulo),a=normal(artista);
+     const buena=paginas.find(p=>{const n=normal(p.title);return n===t||n===t+' ('+a+')'||(n.includes(t)&&(!a||n.includes(a)))});
+     if(buena?.extract)return {texto:buena.extract,url:buena.fullurl||('https://'+idioma+'.wikipedia.org/wiki/'+encodeURIComponent(buena.title.replace(/ /g,'_'))),titulo:buena.title};
+    }
+    return null;
+   })();cacheHistoriasCancion.set(clave,promesa);
+  }
+  const h=await promesa;caja.replaceChildren();
+  if(!h){caja.textContent='No he encontrado una historia de esta canción en Wikipedia.';return;}
+  const texto=document.createElement('span');texto.textContent=h.texto+' ';
+  const enlace=document.createElement('a');enlace.href=h.url;enlace.target='_blank';enlace.rel='noopener noreferrer';enlace.textContent='Leer en Wikipedia ('+h.titulo+')';
+  caja.append(texto,enlace);
+ }catch(e){caja.textContent='No se ha podido consultar Wikipedia ahora mismo.';}
+}
 let audioMuestraArtista=null,temporizadorMuestraArtista=null;
 async function reproducirMuestraArtista(cancion,item,boton){
  const zona=item.querySelector('.reproductor-muestra');
@@ -349,6 +429,7 @@ fetch('/api/artistas').then(r=>{
  total.textContent='No se ha podido cargar la lista. Comprueba que el servidor sigue abierto.';
 });
 buscar.addEventListener('input',mostrar);
+crearAlfabeto();
 estado.addEventListener('change',mostrar);
 </script>
 </body>
