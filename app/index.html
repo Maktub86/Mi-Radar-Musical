@@ -36,6 +36,19 @@ button:hover{background:#8d5abd}
 #volver-portada{display:inline-block;margin:0 0 16px;padding:9px 13px;border-radius:22px;background:#ffffff12;color:#f2e4ff;text-decoration:none;border:1px solid #ffffff25}
 #volver-portada:hover{background:#ffffff25}
 @media(max-width:600px){main{padding:22px 5%}header{padding:24px 5%}}
+
+.acciones-publicacion{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.acciones-publicacion button{padding:7px 10px;border-radius:9px;font-size:13px}
+.boton-30,.boton-completa{background:#292d3b!important;color:#fff!important;border:1px solid #ffffff35!important}
+.boton-mediahuman{background:#fff!important;color:#222!important;border:1px solid #ddd!important}
+.boton-youtube{background:#e62129!important;color:#fff!important;border:1px solid #e62129!important}
+.modal-musica[hidden]{display:none}
+.modal-musica{position:fixed;inset:0;z-index:40000;background:#000b;display:flex;align-items:center;justify-content:center;padding:16px}
+.caja-musica{width:min(680px,100%);max-height:85vh;overflow:auto;background:#171b29;color:#fff;border:1px solid #ffffff24;border-radius:16px;padding:18px}
+.caja-musica button{margin:6px 0}
+.resultado-musica{display:block;width:100%;text-align:left;background:#22283a;color:#fff;border:1px solid #ffffff20;padding:12px;border-radius:10px}
+.resultado-musica span{display:block;color:#b8bfd2;font-size:12px;margin-top:4px}
+.reproductor-completo{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin:12px 0;background:#000}
 </style>
 </head>
 <body data-vista="artistas">
@@ -57,6 +70,14 @@ button:hover{background:#8d5abd}
 <div id="total">Cargando artistas...</div>
 <div id="lista"></div>
 </main>
+<div id="modal-musica-artista" class="modal-musica" hidden role="dialog" aria-modal="true" aria-labelledby="titulo-modal-musica-artista">
+ <div class="caja-musica">
+  <div style="display:flex;justify-content:space-between;gap:12px;align-items:center"><h2 id="titulo-modal-musica-artista">Opciones de canción</h2><button type="button" id="cerrar-modal-musica-artista">Cerrar ✕</button></div>
+  <p id="estado-modal-musica-artista" role="status"></p>
+  <div id="reproductor-musica-artista"></div>
+  <div id="resultados-musica-artista"></div>
+ </div>
+</div>
 <script>
 let artistas=[];
 const buscar=document.getElementById('buscar');
@@ -254,12 +275,65 @@ async function cargarPublicaciones(nombre,contenedor){
    detalle.className='fecha';
    detalle.textContent=[p.fecha||'Fecha desconocida',p.tipo||'Tipo desconocido'].join(' · ');
    item.appendChild(detalle);
+   if(String(p.tipo||'').toLowerCase().includes('single')){
+    const acciones=document.createElement('div');acciones.className='acciones-publicacion';
+    const b30=document.createElement('button');b30.className='boton-30';b30.textContent='▶ 30';b30.title='Escuchar muestra de 30 segundos';
+    b30.addEventListener('click',()=>reproducirMuestraArtista({titulo:p.titulo||'',artista:datos.artista||nombre},item,b30));
+    const bm=document.createElement('button');bm.className='boton-mediahuman';bm.textContent='⬇';bm.title='Buscar enlace para MediaHuman';
+    bm.addEventListener('click',()=>buscarMusicaArtista(p.titulo||'',datos.artista||nombre,'mediahuman'));
+    const by=document.createElement('button');by.className='boton-youtube';by.textContent='Y';by.title='Abrir versión en YouTube';
+    by.addEventListener('click',()=>buscarMusicaArtista(p.titulo||'',datos.artista||nombre,'youtube'));
+    const bf=document.createElement('button');bf.className='boton-completa';bf.textContent='▶';bf.title='Reproducir canción completa dentro de Mi Radar Musical';
+    bf.addEventListener('click',()=>buscarMusicaArtista(p.titulo||'',datos.artista||nombre,'full'));
+    acciones.append(b30,bm,by,bf);item.appendChild(acciones);
+    const reproductorMuestra=document.createElement('div');reproductorMuestra.className='reproductor-muestra';item.appendChild(reproductorMuestra);
+   }
    zona.appendChild(item);
   });
  }catch(error){
   zona.textContent=error.message;
  }
 }
+
+let audioMuestraArtista=null,temporizadorMuestraArtista=null;
+async function reproducirMuestraArtista(cancion,item,boton){
+ const zona=item.querySelector('.reproductor-muestra');
+ if(audioMuestraArtista){audioMuestraArtista.pause();audioMuestraArtista=null;}
+ if(temporizadorMuestraArtista)clearTimeout(temporizadorMuestraArtista);
+ boton.disabled=true;zona.textContent='Buscando muestra de 30 segundos…';
+ try{
+  const q=new URLSearchParams({titulo:cancion.titulo,artista:cancion.artista});
+  const r=await fetch('/api/muestra?'+q.toString());const d=await r.json();
+  if(!r.ok)throw new Error(d.error||'No se encontró una muestra.');
+  zona.replaceChildren();const audio=document.createElement('audio');audio.controls=true;audio.src=d.previewUrl;audio.preload='none';audioMuestraArtista=audio;zona.appendChild(audio);
+  await audio.play();temporizadorMuestraArtista=setTimeout(()=>{if(audioMuestraArtista===audio){audio.pause();audio.currentTime=0;}},30000);
+  audio.addEventListener('ended',()=>{if(temporizadorMuestraArtista)clearTimeout(temporizadorMuestraArtista);},{once:true});
+ }catch(e){zona.textContent=e.message||'No se pudo reproducir la muestra.';}finally{boton.disabled=false;}
+}
+async function buscarMusicaArtista(titulo,artista,modo){
+ const modal=document.getElementById('modal-musica-artista'),estado=document.getElementById('estado-modal-musica-artista'),lista=document.getElementById('resultados-musica-artista'),reproductor=document.getElementById('reproductor-musica-artista');
+ document.getElementById('titulo-modal-musica-artista').textContent=modo==='full'?'Reproducir canción completa':modo==='youtube'?'Elegir versión de YouTube':'Elegir versión para MediaHuman';
+ lista.replaceChildren();reproductor.replaceChildren();estado.textContent='Buscando versiones en YouTube…';modal.hidden=false;
+ try{
+  const q=new URLSearchParams({titulo,artista}),r=await fetch('/api/youtube/buscar?'+q.toString()),d=await r.json();
+  if(!r.ok)throw new Error(d.error||'No se encontraron versiones.');
+  estado.textContent=modo==='full'?'Elige una versión. La reproducción integrada depende de que YouTube la permita.':modo==='youtube'?'Elige una versión para abrirla en YouTube.':'Elige una versión para copiar el enlace a MediaHuman.';
+  for(const v of d.resultados||[]){
+   const b=document.createElement('button');b.className='resultado-musica';const strong=document.createElement('strong');strong.textContent=v.titulo||'Vídeo sin título';const span=document.createElement('span');span.textContent=v.canal||'Canal desconocido';b.append(strong,span);
+   b.addEventListener('click',async()=>{
+    if(modo==='youtube'){window.open(v.url,'_blank','noopener,noreferrer');return;}
+    if(modo==='full'){
+     const m=String(v.url||'').match(/[?&]v=([^&]+)/);if(!m){estado.textContent='No se pudo identificar el vídeo.';return;}
+     const iframe=document.createElement('iframe');iframe.className='reproductor-completo';iframe.title='Canción completa';iframe.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(m[1])+'?autoplay=1&rel=0';iframe.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';iframe.allowFullscreen=true;reproductor.replaceChildren(iframe);estado.textContent='Si el vídeo permite reproducción integrada, sonará aquí.';return;
+    }
+    try{await navigator.clipboard.writeText(v.url);estado.textContent='Enlace copiado para MediaHuman.';}catch(e){window.prompt('Copia el enlace para MediaHuman:',v.url);}
+   });lista.appendChild(b);
+  }
+ }catch(e){estado.textContent=e.message||'No se pudo buscar en YouTube.';}
+}
+document.getElementById('cerrar-modal-musica-artista').addEventListener('click',()=>{document.getElementById('modal-musica-artista').hidden=true;document.getElementById('reproductor-musica-artista').replaceChildren();});
+document.getElementById('modal-musica-artista').addEventListener('click',e=>{if(e.target.id==='modal-musica-artista')document.getElementById('cerrar-modal-musica-artista').click();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.getElementById('modal-musica-artista').hidden)document.getElementById('cerrar-modal-musica-artista').click();});
 
 fetch('/api/artistas').then(r=>{
  if(!r.ok) throw new Error();
