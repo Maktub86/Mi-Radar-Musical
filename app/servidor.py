@@ -45,15 +45,17 @@ const b=document.getElementById('boton-actualizar');
 const panel=document.getElementById('panel-actualizacion');
 // Saca los controles del contenedor donde se insertó la plantilla para evitar que
 // un ancestro con transform haga que position:fixed se comporte como position:absolute.
-if(document.body){document.body.append(b,panel);}
-// Refuerza la posición respecto a la ventana, también al desplazarse.
+if(document.documentElement){document.documentElement.append(b,panel);}
+// Los controles quedan fuera de body para que ningún transform de la página los convierta en absolutos.
 function fijarControles(){
  b.style.setProperty('position','fixed','important');
+ b.style.setProperty('transform','none','important');
  b.style.setProperty('top',window.innerWidth<=600?'8px':'14px','important');
  b.style.setProperty('right',window.innerWidth<=600?'8px':'16px','important');
  b.style.setProperty('left','auto','important');
  b.style.setProperty('bottom','auto','important');
  panel.style.setProperty('position','fixed','important');
+ panel.style.setProperty('transform','none','important');
  panel.style.setProperty('top',window.innerWidth<=600?'58px':'66px','important');
  panel.style.setProperty('right',window.innerWidth<=600?'8px':'16px','important');
  panel.style.setProperty('left','auto','important');
@@ -319,9 +321,9 @@ button:disabled{opacity:.55;cursor:wait}
 .canciones-artista{padding:0 16px 14px}
 .pista{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 0;border-top:1px solid #ffffff12}
 .pista-titulo{font-weight:700}.pista-meta{font-size:12px;color:var(--suave);margin-top:4px}
-.acciones-pista{display:grid;grid-template-columns:82px 42px 42px 42px;grid-template-rows:40px;gap:7px;justify-content:start;align-content:start}
-.acciones-pista button{width:42px;height:40px;padding:7px 3px;min-width:42px}
-.acciones-pista .boton-30{grid-column:1;grid-row:1;width:82px;height:40px;padding:8px 7px;font-weight:800;font-size:15px;min-width:82px}
+.acciones-pista{display:grid;grid-template-columns:82px 42px 42px 42px;grid-template-rows:40px;grid-auto-flow:column;gap:7px;justify-content:start;align-content:start;align-items:stretch;width:max-content;min-width:229px;flex-wrap:nowrap}
+.acciones-pista button{box-sizing:border-box;width:42px;height:40px;min-height:40px;padding:7px 3px;margin:0;min-width:42px;white-space:nowrap}
+.acciones-pista .boton-30{grid-column:1;grid-row:1;width:82px;height:40px;min-height:40px;padding:8px 7px;font-weight:800;font-size:15px;min-width:82px}
 .acciones-pista .boton-mediahuman{grid-column:2;grid-row:1}
 .acciones-pista .boton-youtube{grid-column:3;grid-row:1}
 .acciones-pista .boton-completa{grid-column:4;grid-row:1}
