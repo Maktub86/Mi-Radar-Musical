@@ -301,6 +301,12 @@ button:disabled{opacity:.55;cursor:wait}
 .pista{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 0;border-top:1px solid #ffffff12}
 .pista-titulo{font-weight:700}.pista-meta{font-size:12px;color:var(--suave);margin-top:4px}
 .acciones-pista{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.boton-30,.boton-completa{background:#292d3b;border:1px solid #ffffff30;color:#fff;min-width:48px}
+.boton-mediahuman{background:#fff;color:#222;border:1px solid #d7d7d7;min-width:48px}
+.boton-youtube{background:#e62129;color:#fff;min-width:48px}
+.boton-youtube:hover{background:#ff333b}
+.reproductor-completo{width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin:12px 0;background:#000}
+
 .boton-secundario{background:#ffffff12;border:1px solid #ffffff20}
 .mensaje-pista{grid-column:1/-1;color:var(--suave);font-size:13px}
 #modal-youtube[hidden]{display:none}
@@ -315,7 +321,7 @@ button:disabled{opacity:.55;cursor:wait}
 <header><div>Tu universo musical</div><h1>⭐ Lo mejor</h1><p>Las cinco canciones más populares de cada artista de tu lista, según Deezer.</p></header>
 <nav><a href="/">🏠 Portada</a><a href="/listas/youtube">▶ YouTube</a><a href="/listas/los40">🎵 LOS40</a><a href="/listas/canal-fiesta">📻 Canal Fiesta</a><a class="activo" href="/lo-mejor">⭐ Lo mejor</a><a href="/programas">🧰 Programas</a><a href="/artistas">🎤 Mis artistas</a></nav>
 <main><input id="buscar-artista" type="search" placeholder="Buscar artista de tu lista…"><div id="estado-lo-mejor" role="status">Cargando tus artistas…</div><div id="artistas-lo-mejor"></div></main>
-<div id="modal-youtube" hidden role="dialog" aria-modal="true" aria-labelledby="titulo-modal-youtube"><div class="modal-caja"><div class="modal-top"><h2 id="titulo-modal-youtube">Elegir versión para MediaHuman</h2><button id="cerrar-modal" class="boton-secundario">Cerrar ✕</button></div><p id="estado-youtube">Buscando en YouTube…</p><div id="resultados-youtube"></div></div></div>
+<div id="modal-youtube" hidden role="dialog" aria-modal="true" aria-labelledby="titulo-modal-youtube"><div class="modal-caja"><div class="modal-top"><h2 id="titulo-modal-youtube">Elegir versión para MediaHuman</h2><button id="cerrar-modal" class="boton-secundario">Cerrar ✕</button></div><p id="estado-youtube">Buscando en YouTube…</p><div id="reproductor-completo"></div><div id="resultados-youtube"></div></div></div>
 <script>
 const estado=document.getElementById('estado-lo-mejor');
 const contenedor=document.getElementById('artistas-lo-mejor');
@@ -323,6 +329,7 @@ const buscar=document.getElementById('buscar-artista');
 const modal=document.getElementById('modal-youtube');
 const estadoYoutube=document.getElementById('estado-youtube');
 const resultadosYoutube=document.getElementById('resultados-youtube');
+const reproductorCompleto=document.getElementById('reproductor-completo');
 let artistas=[];
 let audioActivo=null;
 let temporizador=null;
@@ -362,12 +369,23 @@ async function cargarTop(nombre,caja,boton){
    detalle.appendChild(nodo('div','pista-titulo',pista.titulo));
    detalle.appendChild(nodo('div','pista-meta',pista.artista+' · Popularidad en Deezer'+(pista.album?' · '+pista.album:'')));
    const acciones=nodo('div','acciones-pista');
-   const muestra=nodo('button','boton-secundario',pista.preview?'▶ Escuchar 30 s':'Muestra no disponible');
+   const muestra=nodo('button','boton-30',pista.preview?'▶ 30':'▶ 30');
+   muestra.title=pista.preview?'Reproducir muestra de 30 segundos':'Muestra de 30 segundos no disponible';
    muestra.disabled=!pista.preview;
    muestra.addEventListener('click',()=>reproducir(pista,muestra));
-   const youtube=nodo('button','boton-secundario','⬇ MediaHuman');
-   youtube.addEventListener('click',()=>buscarYouTube(pista));
-   acciones.append(muestra,youtube);fila.append(detalle,acciones);zona.appendChild(fila);
+   const mediahuman=nodo('button','boton-mediahuman','⬇');
+   mediahuman.title='Buscar enlace para MediaHuman';
+   mediahuman.setAttribute('aria-label','MediaHuman');
+   mediahuman.addEventListener('click',()=>buscarYouTube(pista,'mediahuman'));
+   const youtube=nodo('button','boton-youtube','Y');
+   youtube.title='Abrir opciones de YouTube';
+   youtube.setAttribute('aria-label','YouTube');
+   youtube.addEventListener('click',()=>buscarYouTube(pista,'youtube'));
+   const completa=nodo('button','boton-completa','▶');
+   completa.title='Reproducir canción completa dentro de Mi Radar Musical';
+   completa.setAttribute('aria-label','Reproducir canción completa');
+   completa.addEventListener('click',()=>buscarYouTube(pista,'full'));
+   acciones.append(muestra,mediahuman,youtube,completa);fila.append(detalle,acciones);zona.appendChild(fila);
   }
  }catch(e){zona.appendChild(nodo('div','mensaje-pista',e.message||'Error al consultar Deezer.'));}
  finally{boton.disabled=false;boton.textContent='Ocultar canciones';}
@@ -381,18 +399,36 @@ function reproducir(pista,boton){
  }).catch(()=>{boton.disabled=false;estado.textContent='No se ha podido reproducir la muestra de esta canción.';});
  audio.addEventListener('ended',()=>{if(temporizador)clearTimeout(temporizador);boton.disabled=false;if(audioActivo===audio)audioActivo=null;},{once:true});
 }
-async function buscarYouTube(pista){
- modal.hidden=false;resultadosYoutube.replaceChildren();estadoYoutube.textContent='Buscando versiones disponibles…';
+async function buscarYouTube(pista,modo='mediahuman'){
+ modal.hidden=false;resultadosYoutube.replaceChildren();reproductorCompleto.replaceChildren();
+ estadoYoutube.textContent='Buscando versiones disponibles…';
  try{
   const r=await fetch('/api/youtube/buscar?'+new URLSearchParams({titulo:pista.titulo,artista:pista.artista}));
   const d=await r.json();if(!r.ok)throw new Error(d.error||'No se encontraron vídeos.');
-  estadoYoutube.textContent='Elige la versión correcta; se copiará el enlace para MediaHuman.';
+  if(modo==='mediahuman')estadoYoutube.textContent='Elige una versión para copiar su enlace y pegarlo en MediaHuman.';
+  else if(modo==='youtube')estadoYoutube.textContent='Elige una versión para abrirla en YouTube.';
+  else estadoYoutube.textContent='Elige una versión para reproducirla aquí. La reproducción completa depende de que el vídeo permita insertarse.';
   for(const video of d.resultados||[]){
    const b=nodo('button','resultado-youtube');
    b.appendChild(nodo('strong','',video.titulo));b.appendChild(nodo('span','',video.canal));
    b.addEventListener('click',async()=>{
-    try{await navigator.clipboard.writeText(video.url);estadoYoutube.textContent='Enlace copiado. Pégalo en MediaHuman.';b.textContent='✓ Enlace copiado: '+video.titulo;}
-    catch(e){window.prompt('Copia el enlace para MediaHuman:',video.url);}
+    if(modo==='youtube'){
+     window.open(video.url,'_blank','noopener,noreferrer');
+    }else if(modo==='full'){
+     const match=video.url.match(/[?&]v=([^&]+)/);
+     if(!match){estadoYoutube.textContent='No se pudo obtener el identificador del vídeo.';return;}
+     reproductorCompleto.replaceChildren();
+     const iframe=document.createElement('iframe');
+     iframe.className='reproductor-completo';iframe.title='Reproductor de canción completa';
+     iframe.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(match[1])+'?autoplay=1&rel=0';
+     iframe.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
+     iframe.allowFullscreen=true;
+     reproductorCompleto.appendChild(iframe);
+     estadoYoutube.textContent='Reproduciendo dentro de Mi Radar Musical si el vídeo permite reproducción integrada.';
+    }else{
+     try{await navigator.clipboard.writeText(video.url);estadoYoutube.textContent='Enlace copiado. Pégalo en MediaHuman.';b.appendChild(nodo('span','','✓ Enlace copiado'));}
+     catch(e){window.prompt('Copia el enlace para MediaHuman:',video.url);}
+    }
    });
    resultadosYoutube.appendChild(b);
   }
