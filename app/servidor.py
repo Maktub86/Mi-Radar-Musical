@@ -335,7 +335,7 @@ function mostrarArtistas(){
   cabecera.appendChild(nodo('h2','',nombre));
   const wikiArtista=nodo('a','boton-wikipedia','W');
   wikiArtista.href='https://es.wikipedia.org/w/index.php?search='+encodeURIComponent(nombre);
-  wikiArtista.target='_blank';wikiArtista.rel='noopener noreferrer';
+  wikiArtista.target='_blank';wikiArtista.rel='noopener noreferrer';wikiArtista.style.marginRight='auto';
   wikiArtista.title='Buscar artista en Wikipedia';
   wikiArtista.setAttribute('aria-label','Buscar '+nombre+' en Wikipedia');
   cabecera.appendChild(wikiArtista);
