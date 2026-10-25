@@ -24,9 +24,12 @@ app = Flask(__name__, static_folder=str(BASE), static_url_path="")
 def agregar_enlace_mi_musica(response):
     if response.mimetype == "text/html":
         html = response.get_data(as_text=True)
+        # Mantiene la pestaña Mi música al extremo derecho de la navegación.
+        if "</head>" in html and 'nav a[href="/mi-musica"]' not in html:
+            html = html.replace("</head>", '<style>nav a[href="/mi-musica"]{margin-left:auto}</style></head>', 1)
         if "</nav>" in html and 'href="/mi-musica"' not in html:
             html = html.replace("</nav>", '<a href="/mi-musica">🎧 Mi música</a></nav>', 1)
-            response.set_data(html)
+        response.set_data(html)
     return response
 
 
