@@ -1,0 +1,44 @@
+name: Actualización diaria de Mi Radar Musical
+
+on:
+  schedule:
+    # 02:00 UTC equivale a las 04:00 en verano; 03:00 UTC, a las 04:00 en invierno.
+    - cron: "0 2,3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualizacion-diaria-radar
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Comprobar la hora de Sevilla
+        id: hora
+        run: echo "hora=$(TZ=Europe/Madrid date +%H)" >> "$GITHUB_OUTPUT"
+
+      - name: Actualizar artistas, radar y listas
+        if: github.event_name == 'workflow_dispatch' || steps.hora.outputs.hora == '04'
+        run: python app/actualizacion_programada.py
+
+      - name: Guardar los datos actualizados
+        if: github.event_name == 'workflow_dispatch' || steps.hora.outputs.hora == '04'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- mi_radar_musical.csv lanzamientos.json portada.json app/portada.json app/listas_cache
+          if git diff --cached --quiet; then
+            echo "No hay cambios que guardar."
+          else
+            git commit -m "Actualizar Mi Radar Musical automáticamente"
+            git push
+          fi
