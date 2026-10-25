@@ -37,19 +37,19 @@ button.activo{background:var(--azul);border-color:var(--azul)}
 .fecha{font-size:12px;color:var(--suave);margin-top:12px}
 .boton-muestra{margin-top:13px;width:100%;border:0;background:linear-gradient(100deg,#706bff,#b72d83);}
 .boton-muestra:disabled{opacity:.65;cursor:wait}
-.acciones-radar{display:grid;grid-template-columns:82px 42px 42px 42px;grid-template-rows:42px;grid-auto-flow:column;gap:7px;margin-top:13px;align-items:stretch;align-content:start;justify-content:start;width:max-content;min-width:229px;flex-wrap:nowrap}
-.acciones-radar .boton-muestra{margin-top:0;grid-column:1;grid-row:1;flex:none;width:82px;min-width:82px;height:42px}
-.acciones-radar .boton-mediahuman{grid-column:2;grid-row:1;align-self:center}
-.acciones-radar .boton-youtube{grid-column:3;grid-row:1}
-.acciones-radar .boton-completa{grid-column:4;grid-row:1}
+.acciones-radar{display:grid;display:grid;grid-template-columns:42px 42px;grid-template-rows:42px 42px;gap:7px;margin-top:13px;align-items:stretch;align-content:start;justify-content:start;width:max-content;min-width:91px;flex-wrap:nowrap}
+.acciones-radar .boton-muestra{margin-top:0;grid-column:1 / 3;grid-row:1;flex:none;width:91px;min-width:91px;height:42px}
+.acciones-radar .boton-mediahuman{grid-column:1;grid-row:2;align-self:center}
+.acciones-radar .boton-youtube{grid-column:2;grid-row:2}
+
 .boton-descarga-radar{flex:0 0 46px;border:0;background:#2b765f;padding:8px;font-size:21px;border-radius:12px}
 .boton-descarga-radar:hover{background:#368f73}
 .boton-30,.boton-completa{background:#292d3b!important;border:1px solid #ffffff35!important;color:#fff!important}
 .boton-mediahuman{background:#fff!important;color:#222!important;border:1px solid #ddd!important}
 .boton-youtube{background:#e62129!important;color:#fff!important;border:1px solid #e62129!important}
-.acciones-radar .boton-30,.acciones-cancion .boton-30,.acciones-publicacion .boton-30{flex:0 0 82px;width:82px;min-width:82px;padding:9px 8px!important;border-radius:11px;font-size:15px!important;font-weight:800;letter-spacing:.2px;background:linear-gradient(135deg,#6e65ff,#b52f9b)!important;color:#fff!important;border:1px solid #ffffff50!important;box-shadow:0 3px 12px #8e42e833}
-.acciones-radar .boton-mediahuman,.acciones-radar .boton-youtube,.acciones-radar .boton-completa{flex:none;width:42px;min-width:42px;height:42px;padding:8px 3px;border-radius:10px;font-size:16px}
-.acciones-radar .boton-muestra{flex:none;width:82px;min-width:82px;height:42px;padding:9px 8px;border-radius:11px;font-size:15px}
+.acciones-radar .boton-30{flex:0 0 91px;width:91px;min-width:91px;grid-column:1 / 3;grid-row:1}.acciones-cancion .boton-30,.acciones-publicacion .boton-30{flex:0 0 82px;width:82px;min-width:82px;padding:9px 8px!important;border-radius:11px;font-size:15px!important;font-weight:800;letter-spacing:.2px;background:linear-gradient(135deg,#6e65ff,#b52f9b)!important;color:#fff!important;border:1px solid #ffffff50!important;box-shadow:0 3px 12px #8e42e833}
+.acciones-radar .boton-mediahuman,.acciones-radar .boton-youtube{flex:none;width:42px;min-width:42px;height:42px;padding:8px 3px;border-radius:10px;font-size:16px}
+.acciones-radar .boton-muestra{flex:none;width:91px;min-width:91px;height:42px;padding:9px 8px;border-radius:11px;font-size:15px}
 .acciones-radar .boton-mediahuman,.acciones-cancion .boton-mediahuman,.acciones-publicacion .boton-mediahuman{background:#238b55!important;color:#fff!important;border:1px solid #55c783!important}
 /* Centra la flecha como icono, sin depender de la línea base del carácter */
 .boton-mediahuman{font-size:0!important;position:relative;}
@@ -239,7 +239,7 @@ function mostrar(cantidad) {
         <div class="titulo">${escapar(p.titulo || "Sin título")}</div>
         <div class="artista">${escapar(p.artista || "Artista desconocido")}</div>
         <div class="fecha">${escapar(p.fecha || "Fecha desconocida")}</div>
-        ${tipoSeleccionado === "Single" ? `<div class="acciones-radar"><button class="boton-muestra boton-30" type="button" title="Escuchar muestra de 30 segundos">▶ 30</button><button class="boton-mediahuman" type="button" title="Buscar enlace para MediaHuman" aria-label="MediaHuman">⬇</button><button class="boton-youtube" type="button" title="Abrir YouTube" aria-label="YouTube">Y</button><button class="boton-completa" type="button" title="Reproducir canción completa aquí" aria-label="Canción completa">▶</button></div><div class="reproductor-muestra" hidden></div>` : ""}
+        ${tipoSeleccionado === "Single" ? `<div class="acciones-radar"><button class="boton-muestra boton-30" type="button" title="Escuchar muestra de 30 segundos">▶ 30 segundos</button><button class="boton-mediahuman" type="button" title="Buscar enlace para MediaHuman" aria-label="Descargar con MediaHuman">⬇</button><button class="boton-youtube" type="button" title="Abrir YouTube" aria-label="YouTube">Y</button></div><div class="reproductor-muestra" hidden></div>` : ""}
       </div>`;
     const zonaImagen = tarjeta.querySelector(".portada-disco");
     if (imagen) {
@@ -256,7 +256,6 @@ function mostrar(cantidad) {
       boton.addEventListener("click", () => reproducirMuestra(p, tarjeta, boton));
       tarjeta.querySelector(".boton-mediahuman").addEventListener("click", () => buscarCancionYouTube(p,"mediahuman"));
       tarjeta.querySelector(".boton-youtube").addEventListener("click", () => buscarCancionYouTube(p,"youtube"));
-      tarjeta.querySelector(".boton-completa").addEventListener("click", () => buscarCancionYouTube(p,"full"));
     }
     lista.appendChild(tarjeta);
   }
