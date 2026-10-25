@@ -59,14 +59,6 @@ button.activo{background:var(--azul);border-color:var(--azul)}
 
 .vacio{padding:25px;background:var(--panel);border-radius:15px;color:var(--suave)}
 footer{text-align:center;color:var(--suave);font-size:12px;padding:35px}
-.estilos-musicales{margin:0 0 28px;padding:0;background:#ffffff0a;border:1px solid #ffffff20;border-radius:14px;overflow:hidden}
-.estilos-musicales summary{cursor:pointer;list-style:none;padding:15px 18px;font-weight:800}
-.estilos-musicales summary::-webkit-details-marker{display:none}
-.estilos-musicales summary:after{content:"＋";float:right;color:var(--verde)}
-.estilos-musicales[open] summary:after{content:"−"}
-.contenido-estilos{padding:0 18px 18px;color:var(--suave);line-height:1.8}
-.etiquetas-estilos{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.etiquetas-estilos span{display:inline-block;padding:5px 10px;border-radius:16px;background:#706bff26;border:1px solid #706bff66;color:#f7f5ff;font-size:13px}
 @media(max-width:500px){main{padding:24px 5%}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.portada-disco{height:auto;aspect-ratio:1}.info{padding:11px}.titulo{font-size:15px}}
 
 /* Listas musicales externas */
@@ -109,19 +101,11 @@ footer{text-align:center;color:var(--suave);font-size:12px;padding:35px}
   <a href="/listas/los40">🎵 LOS40</a>
   <a href="/listas/canal-fiesta">📻 Canal Fiesta</a>
   <a href="/lo-mejor">⭐ Lo mejor</a>
-  <a href="/programas">🧰 Programas</a>
   <a href="/artistas">🎤 Mis artistas</a>
+  <a href="/programas">🧰 Programas</a>
 </nav>
 <main>
-  <details class="estilos-musicales" id="estilos-musicales">
-    <summary>🎼 Estilos musicales</summary>
-    <div class="contenido-estilos">
-      <div class="etiquetas-estilos">
-        <span>Pop</span><span>Rock</span><span>Pop Rock</span><span>R&amp;B</span><span>Rumba / Flamenco</span><span>Fusión / Mestizaje</span><span>Urbana</span><span>Dance</span><span>Musical / BSO</span><span>Chill / Acústico</span><span>Autor / Raíz</span><span>Flamenco Pop</span><span>Latina</span><span>Disco</span><span>Flamenco de Autor</span><span>Dance Pop</span><span>Tropical</span>
-      </div>
-      <p><strong>Latina:</strong> Salsa, Bachata, Merengue, Cumbia y Bolero.</p>
-    </div>
-  </details>
+
   <div class="cabecera"><div>
     <h2>Tu radar de lanzamientos</h2>
     <p class="sub">Explora los singles y álbumes de los artistas que sigues.</p>
