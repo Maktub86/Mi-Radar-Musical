@@ -25,7 +25,7 @@ for artista in datos.values():
 
         publicaciones.append({
             "id": id_publicacion,
-            "imagen": f"https://coverartarchive.org/release-group/{id_publicacion}/front-250",
+            "imagen": pub.get("imagen") or (f"https://coverartarchive.org/release-group/{id_publicacion}/front-250" if not str(id_publicacion).startswith("apple-") else ""),
             "titulo": pub.get("titulo") or "Sin título",
             "fecha": fecha,
             "artista": pub.get("artista") or nombre,
