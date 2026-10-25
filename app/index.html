@@ -32,7 +32,73 @@ const estado=document.getElementById('estado');
 const lista=document.getElementById('lista');
 const total=document.getElementById('total');
 
+const cacheImagenesArtista = new Map();
+const observadorFotos = ('IntersectionObserver' in window)
+ ? new IntersectionObserver(entradas => {
+    for (const entrada of entradas) {
+     if (!entrada.isIntersecting) continue;
+     observadorFotos.unobserve(entrada.target);
+     const foto = entrada.target.querySelector('.foto-artista');
+     const credito = entrada.target.querySelector('.credito-foto');
+     const nombre = entrada.target.querySelector('strong')?.textContent || '';
+     if (foto && credito && nombre && nombre.trim().toUpperCase() !== 'ABBA') {
+      cargarImagenArtista(nombre, foto, credito);
+     }
+    }
+   }, {rootMargin:'250px'})
+ : null;
+
+async function buscarImagenEnWikipedia(nombre, idioma) {
+ const parametros = new URLSearchParams({
+  action:'query', generator:'search', gsrsearch:nombre, gsrnamespace:'0',
+  gsrlimit:'6', prop:'pageimages|info', piprop:'thumbnail',
+  pithumbsize:'500', inprop:'url', format:'json', origin:'*'
+ });
+ const respuesta = await fetch('https://' + idioma + '.wikipedia.org/w/api.php?' + parametros.toString());
+ if (!respuesta.ok) return null;
+ const datos = await respuesta.json();
+ const paginas = Object.values(datos.query?.pages || {}).sort((a,b)=>(a.index||99)-(b.index||99));
+ const pagina = paginas.find(p => p.thumbnail?.source);
+ if (!pagina) return null;
+ return {
+  imagen: pagina.thumbnail.source,
+  titulo: pagina.title,
+  url: pagina.fullurl || ('https://' + idioma + '.wikipedia.org/wiki/' + encodeURIComponent(pagina.title.replace(/ /g,'_')))
+ };
+}
+
+async function cargarImagenArtista(nombre, foto, credito) {
+ const clave = nombre.trim().toLocaleLowerCase('es');
+ if (!cacheImagenesArtista.has(clave)) {
+  cacheImagenesArtista.set(clave, (async()=>{
+   for (const idioma of ['es','en']) {
+    try {
+     const resultado = await buscarImagenEnWikipedia(nombre, idioma);
+     if (resultado) return resultado;
+    } catch (error) {
+     // Si una Wikipedia no responde, se prueba la otra.
+    }
+   }
+   return null;
+  })());
+ }
+ const resultado = await cacheImagenesArtista.get(clave);
+ if (!resultado || !foto.isConnected) return;
+ foto.src = resultado.imagen;
+ foto.alt = 'Imagen de ' + nombre;
+ foto.style.display = 'block';
+ const enlace = document.createElement('a');
+ enlace.href = resultado.url;
+ enlace.target = '_blank';
+ enlace.rel = 'noopener noreferrer';
+ enlace.textContent = 'Fuente de la imagen: ' + resultado.titulo + ' (Wikipedia)';
+ credito.textContent = '';
+ credito.appendChild(enlace);
+ credito.style.display = 'block';
+}
+
 function mostrar(){
+ if (observadorFotos) observadorFotos.disconnect();
  const q=buscar.value.toLocaleLowerCase('es').trim();
  const e=estado.value;
  const filtrados=artistas.filter(a=>
@@ -58,6 +124,18 @@ function mostrar(){
    credito.className = 'credito-foto';
    credito.innerHTML = 'Foto: Bert Verhoeff / Anefo · <a href="https://commons.wikimedia.org/wiki/File:ABBA_Schiphol_1976.jpg" target="_blank" rel="noopener">Wikimedia Commons</a> · Licencia CC BY-SA 3.0 NL';
    div.appendChild(credito);
+  } else {
+   const foto = document.createElement('img');
+   foto.className = 'foto-artista';
+   foto.alt = 'Imagen de ' + nombreArtista;
+   foto.loading = 'lazy';
+   foto.style.display = 'none';
+   div.appendChild(foto);
+
+   const credito = document.createElement('div');
+   credito.className = 'credito-foto';
+   credito.style.display = 'none';
+   div.appendChild(credito);
   }
   if(a.Estado){
    const est=document.createElement('div');
@@ -76,6 +154,12 @@ function mostrar(){
   boton.addEventListener('click',()=>cargarPublicaciones(nombreArtista,div));
   div.appendChild(boton);
   lista.appendChild(div);
+  if (observadorFotos && nombreArtista.trim().toUpperCase() !== 'ABBA') observadorFotos.observe(div);
+  else if (!observadorFotos && nombreArtista.trim().toUpperCase() !== 'ABBA') {
+   const foto = div.querySelector('.foto-artista');
+   const credito = div.querySelector('.credito-foto');
+   if (foto && credito) cargarImagenArtista(nombreArtista, foto, credito);
+  }
  });
 }
 
