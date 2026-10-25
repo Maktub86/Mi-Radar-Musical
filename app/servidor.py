@@ -617,6 +617,66 @@ def normalizar_texto(valor):
     ).split())
 
 
+@app.get("/api/audius/buscar")
+def buscar_audio_audius():
+    titulo = (request.args.get("titulo") or "").strip()
+    artista = (request.args.get("artista") or "").strip()
+    if not titulo or not artista:
+        return jsonify({"error": "Falta el título o el artista."}), 400
+
+    consulta = f"{titulo} {artista}"
+    url = "https://api.audius.co/v1/tracks/search?" + urlencode({
+        "query": consulta,
+        "limit": 15,
+        "app_name": "MiRadarMusical"
+    })
+    try:
+        peticion = Request(
+            url,
+            headers={"User-Agent": "MiRadarMusical/1.0", "Accept": "application/json"}
+        )
+        with urlopen(peticion, timeout=12) as respuesta:
+            datos = json.loads(respuesta.read().decode("utf-8"))
+        pistas = datos.get("data", [])
+        objetivo_titulo = normalizar_texto(titulo)
+        objetivo_artista = normalizar_texto(artista)
+        clasificadas = []
+        for pista in pistas:
+            id_pista = pista.get("id")
+            titulo_pista = pista.get("title") or ""
+            artista_pista = (pista.get("user") or {}).get("name") or pista.get("artist_name") or ""
+            if not id_pista or not titulo_pista or not artista_pista:
+                continue
+            t = normalizar_texto(titulo_pista)
+            a = normalizar_texto(artista_pista)
+            sim_titulo = difflib.SequenceMatcher(None, objetivo_titulo, t).ratio()
+            sim_artista = difflib.SequenceMatcher(None, objetivo_artista, a).ratio()
+            if objetivo_titulo == t:
+                sim_titulo = 1.0
+            if objetivo_artista == a:
+                sim_artista = 1.0
+            puntuacion = sim_titulo * 0.65 + sim_artista * 0.35
+            if objetivo_titulo and (objetivo_titulo in t or t in objetivo_titulo):
+                puntuacion += 0.12
+            if objetivo_artista and (objetivo_artista in a or a in objetivo_artista):
+                puntuacion += 0.12
+            if pista.get("duration", 0) >= 120:
+                puntuacion += 0.02
+            clasificadas.append({
+                "id": str(id_pista),
+                "titulo": titulo_pista,
+                "artista": artista_pista,
+                "duracion": pista.get("duration"),
+                "url": pista.get("permalink") and ("https://audius.co" + pista.get("permalink")),
+                "streamUrl": "https://api.audius.co/v1/tracks/" + str(id_pista) + "/stream?" + urlencode({"app_name": "MiRadarMusical"}),
+                "puntuacion": puntuacion
+            })
+        clasificadas.sort(key=lambda x: x["puntuacion"], reverse=True)
+        return jsonify({"resultados": clasificadas[:8], "fuente": "Audius"})
+    except Exception:
+        return jsonify({"error": "Audius no está disponible ahora o no tiene coincidencias para esta canción."}), 502
+
+
 @app.get("/api/muestra")
 def muestra_musical():
     titulo = (request.args.get("titulo") or "").strip()
