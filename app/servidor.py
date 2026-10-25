@@ -135,7 +135,95 @@ def pagina_lista(tipo):
 
 @app.get("/programas")
 def pagina_programas():
-    return "<!DOCTYPE html>\n<html lang=\"es\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Programas · Mi Radar Musical</title>\n<style>\n:root{color-scheme:dark;--panel:#1b1b2d;--texto:#f7f5ff;--suave:#b8b6cf;--verde:#55e6bd}\n*{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#17152d,#10101c 55%,#26152e);color:var(--texto);font-family:Segoe UI,Arial,sans-serif;min-height:100vh}\nheader{padding:30px 6%;background:linear-gradient(110deg,#5727a5,#b72d83 65%,#f06a76)}h1{font-size:clamp(32px,6vw,52px);margin:12px 0 8px}header p{margin:0}\nnav{display:flex;gap:10px;flex-wrap:wrap;padding:18px 6%;border-bottom:1px solid #ffffff18}nav a{color:#e8e5ff;text-decoration:none;background:#ffffff12;padding:10px 15px;border-radius:22px;font-size:14px}nav a.activo{background:#ff4fa3;color:#fff;font-weight:bold}\n.estilos-musicales{margin:0 0 24px;padding:0;background:#ffffff0a;border:1px solid #ffffff20;border-radius:14px;overflow:hidden}.estilos-musicales summary{cursor:pointer;list-style:none;padding:14px 18px;font-weight:800;background:#ffffff08}.estilos-musicales summary::-webkit-details-marker{display:none}.estilos-musicales summary:after{content:"＋";float:right;color:var(--verde)}.estilos-musicales[open] summary:after{content:"−"}.contenido-estilos{padding:0 18px 18px;color:var(--suave);line-height:1.8}.etiquetas-estilos{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.etiquetas-estilos span{display:inline-block;padding:5px 10px;border-radius:16px;background:#706bff26;border:1px solid #706bff66;color:#f7f5ff;font-size:13px}\nmain{max-width:1000px;margin:auto;padding:30px 6%}.programa{padding:20px;margin:12px 0;background:var(--panel);border:1px solid #ffffff18;border-radius:15px}.programa h2{margin:0 0 8px;font-size:21px}.programa p{color:var(--suave);line-height:1.5}.descargar{display:inline-block;padding:10px 15px;background:#2b765f;color:white;text-decoration:none;border-radius:20px;font-weight:bold}.aviso{font-size:13px;color:var(--suave);line-height:1.5}footer{text-align:center;color:var(--suave);font-size:12px;padding:30px}\n</style></head><body>\n<header><div>Tu universo musical</div><h1>🧰 Programas</h1><p>Enlaces para descargar las herramientas de tu colección musical.</p></header>\n<nav><a href=\"/\">🏠 Portada</a><a href=\"/listas/youtube\">▶ YouTube</a><a href=\"/listas/los40\">🎵 LOS40</a><a href=\"/listas/canal-fiesta\">📻 Canal Fiesta</a><a href=\"/lo-mejor\">⭐ Lo mejor</a><a href=\"/artistas\">🎤 Mis artistas</a><a class=\"activo\" href=\"/programas\">🧰 Programas</a></nav>\n<main>\n<details class=\"estilos-musicales\" id=\"estilos-musicales\"><summary>🎼 Estilos musicales</summary><div class=\"contenido-estilos\"><div class=\"etiquetas-estilos\"><span>Pop</span><span>Rock</span><span>Pop Rock</span><span>R&amp;B</span><span>Rumba / Flamenco</span><span>Fusión / Mestizaje</span><span>Urbana</span><span>Dance</span><span>Musical / BSO</span><span>Chill / Acústico</span><span>Autor / Raíz</span><span>Flamenco Pop</span><span>Latina</span><span>Disco</span><span>Flamenco de Autor</span><span>Dance Pop</span><span>Tropical</span></div><p><strong>Latina:</strong> Salsa, Bachata, Merengue, Cumbia y Bolero.</p></div></details>\n<section class=\"programa\"><h2>MediaHuman YouTube to MP3 Converter</h2><p>Descarga audio de vídeos y listas de reproducción. El enlace lleva a la web del desarrollador.</p><a class=\"descargar\" href=\"https://www.mediahuman.com/es/7/?mh_product=youtubetomp3\" target=\"_blank\" rel=\"noopener noreferrer\">Ir a la descarga oficial ↗</a></section>\n<section class=\"programa\"><h2>Mp3tag</h2><p>Editar etiquetas de canciones, artista, álbum y otros metadatos.</p><a class=\"descargar\" href=\"https://www.mp3tag.de/en/download.html\" target=\"_blank\" rel=\"noopener noreferrer\">Descargar desde Mp3tag ↗</a></section>\n<section class=\"programa\"><h2>ID3Remover</h2><p>Herramienta para eliminar etiquetas ID3 de archivos MP3. Es un programa antiguo; revisa la página y el archivo antes de instalarlo.</p><a class=\"descargar\" href=\"https://sourceforge.net/projects/id3remover/files/\" target=\"_blank\" rel=\"noopener noreferrer\">Ver archivos en SourceForge ↗</a></section>\n<section class=\"programa\"><h2>MP3Gain GUI</h2><p>Normaliza el volumen de archivos MP3. Enlace al proyecto original de MP3Gain.</p><a class=\"descargar\" href=\"https://mp3gain.sourceforge.net/download.php\" target=\"_blank\" rel=\"noopener noreferrer\">Descargar MP3Gain ↗</a></section>\n<p class=\"aviso\">Nota: los enlaces abren páginas externas. ID3Remover y MP3Gain son herramientas antiguas; crea una copia de seguridad antes de modificar archivos y comprueba que la versión sea compatible con tu Windows.</p>\n</main><footer>Mi Radar Musical</footer></body></html>"
+    return """<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Programas · Mi Radar Musical</title>
+<style>
+:root{color-scheme:dark;--panel:#1b1b2d;--texto:#f7f5ff;--suave:#b8b6cf;--verde:#55e6bd}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(140deg,#17152d,#10101c 55%,#26152e);color:var(--texto);font-family:Segoe UI,Arial,sans-serif;min-height:100vh}
+header{padding:30px 6%;background:linear-gradient(110deg,#5727a5,#b72d83 65%,#f06a76)}
+h1{font-size:clamp(32px,6vw,52px);margin:12px 0 8px}header p{margin:0}
+nav{display:flex;gap:10px;flex-wrap:wrap;padding:18px 6%;border-bottom:1px solid #ffffff18}
+nav a{color:#e8e5ff;text-decoration:none;background:#ffffff12;padding:10px 15px;border-radius:22px;font-size:14px}
+nav a.activo{background:#ff4fa3;color:#fff;font-weight:bold}
+main{max-width:1000px;margin:auto;padding:30px 6%}
+.programa{padding:20px;margin:12px 0;background:var(--panel);border:1px solid #ffffff18;border-radius:15px}
+.programa h2{margin:0 0 8px;font-size:clamp(22px,3vw,28px)}
+.programa p{color:var(--suave);line-height:1.5}
+.descargar{display:inline-block;padding:10px 15px;background:#2b765f;color:white;text-decoration:none;border-radius:20px;font-weight:bold}
+.boton-estilos{display:inline-block;padding:12px 18px;background:#326de6;color:white;border:0;border-radius:20px;font-size:15px;font-weight:800;cursor:pointer}
+.boton-estilos:hover{background:#4782ff}
+.aviso{font-size:13px;color:var(--suave);line-height:1.5}
+.modal-estilos[hidden]{display:none}
+.modal-estilos{position:fixed;inset:0;z-index:30000;background:#000c;display:flex;align-items:center;justify-content:center;padding:16px}
+.caja-estilos{width:min(720px,100%);max-height:86vh;overflow:auto;background:#171b29;color:#fff;border:1px solid #ffffff25;border-radius:16px;padding:20px;box-shadow:0 12px 45px #0009}
+.cabecera-estilos{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.cabecera-estilos h2{margin:0;font-size:24px}
+.cerrar-estilos{background:#34394a;border:0;border-radius:9px;padding:9px 12px;color:#fff;cursor:pointer}
+.texto-estilos{color:var(--suave);line-height:1.5}
+.copiar-todos-estilos{background:#326de6;border:0;border-radius:10px;padding:11px 15px;color:#fff;font-weight:800;cursor:pointer;margin:0 0 12px}
+.lista-estilos-copiables{display:flex;flex-wrap:wrap;gap:8px}
+.estilo-copiable{background:#242b40;border:1px solid #536fae;border-radius:18px;padding:9px 13px;color:#fff;cursor:pointer}
+.estilo-copiable:hover{background:#344b78}
+.estado-copiar-estilos{color:var(--verde);min-height:20px;font-size:13px}
+footer{text-align:center;color:var(--suave);font-size:12px;padding:30px}
+</style>
+</head>
+<body>
+<header><div>Tu universo musical</div><h1>🧰 Programas</h1><p>Enlaces para descargar las herramientas de tu colección musical.</p></header>
+<nav>
+<a href="/">🏠 Portada</a>
+<a href="/listas/youtube">▶ YouTube</a>
+<a href="/listas/los40">🎵 LOS40</a>
+<a href="/listas/canal-fiesta">📻 Canal Fiesta</a>
+<a href="/lo-mejor">⭐ Lo mejor</a>
+<a class="activo" href="/programas">🧰 Programas</a>
+<a href="/artistas">🎤 Mis artistas</a>
+</nav>
+<main>
+<section class="programa"><h2>MediaHuman YouTube to MP3 Converter</h2><p>Descarga audio de vídeos y listas de reproducción. El enlace lleva a la web del desarrollador.</p><a class="descargar" href="https://www.mediahuman.com/es/7/?mh_product=youtubetomp3" target="_blank" rel="noopener noreferrer">Ir a la descarga oficial ↗</a></section>
+<section class="programa"><h2>Mp3tag</h2><p>Editar etiquetas de canciones, artista, álbum y otros metadatos.</p><a class="descargar" href="https://www.mp3tag.de/en/download.html" target="_blank" rel="noopener noreferrer">Descargar desde Mp3tag ↗</a></section>
+<section class="programa"><h2>ID3Remover</h2><p>Herramienta para eliminar etiquetas ID3 de archivos MP3. Es un programa antiguo; revisa la página y el archivo antes de instalarlo.</p><a class="descargar" href="https://sourceforge.net/projects/id3remover/files/" target="_blank" rel="noopener noreferrer">Ver archivos en SourceForge ↗</a></section>
+<section class="programa"><h2>MP3Gain GUI</h2><p>Normaliza el volumen de archivos MP3. Enlace al proyecto original de MP3Gain.</p><a class="descargar" href="https://mp3gain.sourceforge.net/download.php" target="_blank" rel="noopener noreferrer">Descargar MP3Gain ↗</a></section>
+<p class="aviso">Nota: los enlaces abren páginas externas. ID3Remover y MP3Gain son herramientas antiguas; crea una copia de seguridad antes de modificar archivos y comprueba que la versión sea compatible con tu Windows.</p>
+<section class="programa"><h2>Estilos musicales</h2><p>Consulta la lista en una ventana independiente y copia un estilo concreto o todos los estilos de una vez.</p><button type="button" id="abrir-estilos" class="boton-estilos">🎼 Desplegar estilos musicales</button></section>
+</main>
+<div id="modal-estilos" class="modal-estilos" hidden role="dialog" aria-modal="true" aria-labelledby="titulo-estilos">
+<div class="caja-estilos">
+<div class="cabecera-estilos"><h2 id="titulo-estilos">🎼 Estilos musicales</h2><button type="button" id="cerrar-estilos" class="cerrar-estilos">Cerrar ✕</button></div>
+<p class="texto-estilos">Pulsa un estilo para copiarlo. También puedes copiar la lista completa.</p>
+<button type="button" id="copiar-todos-estilos" class="copiar-todos-estilos">📋 Copiar todos los estilos</button>
+<div id="lista-estilos-copiables" class="lista-estilos-copiables"></div>
+<p id="estado-copiar-estilos" class="estado-copiar-estilos" role="status"></p>
+</div></div>
+<script>
+(function(){
+ const estilos=["Pop","Rock","Pop Rock","R&B","Rumba / Flamenco","Fusión / Mestizaje","Urbana","Dance","Musical / BSO","Chill / Acústico","Autor / Raíz","Flamenco Pop","Latina","Disco","Flamenco de Autor","Dance Pop","Tropical"];
+ const modal=document.getElementById("modal-estilos");
+ const lista=document.getElementById("lista-estilos-copiables");
+ const estado=document.getElementById("estado-copiar-estilos");
+ async function copiar(texto){
+  try{await navigator.clipboard.writeText(texto);estado.textContent="✓ Copiado al portapapeles.";}
+  catch(e){window.prompt("Copia el texto:",texto);estado.textContent="Si no se copió automáticamente, copia el texto de la ventana.";}
+ }
+ for(const estilo of estilos){
+  const b=document.createElement("button");b.type="button";b.className="estilo-copiable";b.textContent=estilo;b.title="Copiar "+estilo;
+  b.addEventListener("click",()=>copiar(estilo));lista.appendChild(b);
+ }
+ document.getElementById("copiar-todos-estilos").addEventListener("click",()=>copiar(estilos.join("\n")+"\n\nLatina: Salsa, Bachata, Merengue, Cumbia y Bolero."));
+ document.getElementById("abrir-estilos").addEventListener("click",()=>{modal.hidden=false;document.getElementById("cerrar-estilos").focus();});
+ function cerrar(){modal.hidden=true;}
+ document.getElementById("cerrar-estilos").addEventListener("click",cerrar);
+ modal.addEventListener("click",e=>{if(e.target===modal)cerrar();});
+ document.addEventListener("keydown",e=>{if(e.key==="Escape")cerrar();});
+})();
+</script>
+<footer>Mi Radar Musical</footer>
+</body></html>"""
+
 
 @app.get("/lo-mejor")
 def pagina_lo_mejor():
@@ -177,7 +265,7 @@ button:disabled{opacity:.55;cursor:wait}
 </style></head>
 <body>
 <header><div>Tu universo musical</div><h1>⭐ Lo mejor</h1><p>Las cinco canciones más populares de cada artista de tu lista, según Deezer.</p></header>
-<nav><a href="/">🏠 Portada</a><a href="/listas/youtube">▶ YouTube</a><a href="/listas/los40">🎵 LOS40</a><a href="/listas/canal-fiesta">📻 Canal Fiesta</a><a class="activo" href="/lo-mejor">⭐ Lo mejor</a><a href="/artistas">🎤 Mis artistas</a><a href="/programas">🧰 Programas</a></nav>
+<nav><a href="/">🏠 Portada</a><a href="/listas/youtube">▶ YouTube</a><a href="/listas/los40">🎵 LOS40</a><a href="/listas/canal-fiesta">📻 Canal Fiesta</a><a class="activo" href="/lo-mejor">⭐ Lo mejor</a><a href="/programas">🧰 Programas</a><a href="/artistas">🎤 Mis artistas</a></nav>
 <main><input id="buscar-artista" type="search" placeholder="Buscar artista de tu lista…"><div id="estado-lo-mejor" role="status">Cargando tus artistas…</div><div id="artistas-lo-mejor"></div></main>
 <div id="modal-youtube" hidden role="dialog" aria-modal="true" aria-labelledby="titulo-modal-youtube"><div class="modal-caja"><div class="modal-top"><h2 id="titulo-modal-youtube">Elegir versión para MediaHuman</h2><button id="cerrar-modal" class="boton-secundario">Cerrar ✕</button></div><p id="estado-youtube">Buscando en YouTube…</p><div id="resultados-youtube"></div></div></div>
 <script>
