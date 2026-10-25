@@ -465,7 +465,9 @@ async function actualizarLista(tipo,boton){
 document.querySelectorAll(".actualizar-lista").forEach(b=>{
  b.addEventListener("click",()=>actualizarLista(b.dataset.lista,b));
 });
-["los40","canal-fiesta","youtube"].forEach(cargarLista);
+const paginaLista = document.body.dataset.pagina || "inicio";
+const tipoListaPagina = paginaLista.startsWith("lista-") ? paginaLista.slice(6) : null;
+if (tipoListaPagina) cargarLista(tipoListaPagina);
 </script>
 
 
