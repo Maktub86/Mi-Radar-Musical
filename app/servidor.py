@@ -168,76 +168,115 @@ def muestra_musical():
     if not titulo or not artista:
         return jsonify({"error": "Falta el título o el artista."}), 400
 
-    parametros = urlencode({
+    titulo_objetivo = normalizar_texto(titulo)
+    artista_objetivo = normalizar_texto(artista)
+
+    def buscar_en_catalogo(url, fuente, campos):
+        peticion = Request(
+            url,
+            headers={"User-Agent": "MiRadarMusical/1.0", "Accept": "application/json"}
+        )
+        with urlopen(peticion, timeout=8) as respuesta:
+            datos = json.loads(respuesta.read().decode("utf-8"))
+
+        if fuente == "Deezer":
+            resultados = datos.get("data", [])
+        else:
+            resultados = datos.get("results", [])
+
+        mejor = None
+        mejor_puntuacion = 0.0
+        mejor_titulo = 0.0
+        mejor_artista = 0.0
+
+        for resultado in resultados:
+            if fuente == "Deezer":
+                preview = resultado.get("preview")
+                titulo_original = resultado.get("title")
+                artista_original = (resultado.get("artist") or {}).get("name")
+                enlace = resultado.get("link")
+            else:
+                preview = resultado.get("previewUrl")
+                titulo_original = resultado.get("trackName")
+                artista_original = resultado.get("artistName")
+                enlace = resultado.get("trackViewUrl")
+
+            titulo_resultado = normalizar_texto(titulo_original)
+            artista_resultado = normalizar_texto(artista_original)
+            if not preview or not titulo_resultado or not artista_resultado:
+                continue
+
+            similitud_titulo = difflib.SequenceMatcher(
+                None, titulo_objetivo, titulo_resultado
+            ).ratio()
+            similitud_artista = difflib.SequenceMatcher(
+                None, artista_objetivo, artista_resultado
+            ).ratio()
+            puntuacion = similitud_titulo * 0.65 + similitud_artista * 0.35
+
+            if titulo_objetivo in titulo_resultado or titulo_resultado in titulo_objetivo:
+                puntuacion += 0.08
+
+            if puntuacion > mejor_puntuacion:
+                mejor_puntuacion = puntuacion
+                mejor = {
+                    "previewUrl": preview,
+                    "trackViewUrl": enlace,
+                    "titulo": titulo_original,
+                    "artista": artista_original,
+                    "fuente": fuente
+                }
+                mejor_titulo = similitud_titulo
+                mejor_artista = similitud_artista
+
+        if (
+            not mejor or mejor_puntuacion < 0.76
+            or mejor_titulo < 0.72 or mejor_artista < 0.60
+        ):
+            return None
+        return mejor
+
+    errores = []
+    consulta_deezer = urlencode({"q": f"{artista} {titulo}", "limit": 15})
+    try:
+        resultado = buscar_en_catalogo(
+            "https://api.deezer.com/search?" + consulta_deezer,
+            "Deezer",
+            None
+        )
+        if resultado:
+            return jsonify({**resultado, "duracion": 30})
+    except Exception:
+        errores.append("Deezer")
+
+    # Si Deezer no responde o no ofrece una coincidencia fiable con muestra,
+    # se intenta Apple/iTunes como alternativa.
+    parametros_itunes = urlencode({
         "term": f"{artista} {titulo}",
         "country": "es",
         "media": "music",
         "entity": "song",
         "limit": 15
     })
-
     try:
-        peticion = Request(
-            "https://itunes.apple.com/search?" + parametros,
-            headers={"User-Agent": "MiRadarMusical/1.0"}
+        resultado = buscar_en_catalogo(
+            "https://itunes.apple.com/search?" + parametros_itunes,
+            "Apple Music/iTunes",
+            None
         )
-        with urlopen(peticion, timeout=8) as respuesta:
-            resultados = json.loads(
-                respuesta.read().decode("utf-8")
-            ).get("results", [])
+        if resultado:
+            return jsonify({**resultado, "duracion": 30})
     except Exception:
+        errores.append("Apple Music/iTunes")
+
+    if len(errores) == 2:
         return jsonify({
-            "error": "No se ha podido consultar el catálogo musical ahora mismo."
+            "error": "No se ha podido consultar Deezer ni Apple Music/iTunes ahora mismo."
         }), 502
 
-    titulo_objetivo = normalizar_texto(titulo)
-    artista_objetivo = normalizar_texto(artista)
-    mejor = None
-    mejor_puntuacion = 0.0
-    mejor_titulo = 0.0
-    mejor_artista = 0.0
-
-    for resultado in resultados:
-        preview = resultado.get("previewUrl")
-        titulo_resultado = normalizar_texto(resultado.get("trackName"))
-        artista_resultado = normalizar_texto(resultado.get("artistName"))
-
-        if not preview or not titulo_resultado or not artista_resultado:
-            continue
-
-        similitud_titulo = difflib.SequenceMatcher(
-            None, titulo_objetivo, titulo_resultado
-        ).ratio()
-        similitud_artista = difflib.SequenceMatcher(
-            None, artista_objetivo, artista_resultado
-        ).ratio()
-        puntuacion = similitud_titulo * 0.65 + similitud_artista * 0.35
-
-        if titulo_objetivo in titulo_resultado or titulo_resultado in titulo_objetivo:
-            puntuacion += 0.08
-
-        if puntuacion > mejor_puntuacion:
-            mejor_puntuacion = puntuacion
-            mejor = resultado
-            mejor_titulo = similitud_titulo
-            mejor_artista = similitud_artista
-
-    if (
-        not mejor or mejor_puntuacion < 0.76
-        or mejor_titulo < 0.72 or mejor_artista < 0.60
-    ):
-        return jsonify({
-            "error": "No he encontrado una muestra que coincida con suficiente seguridad."
-        }), 404
-
     return jsonify({
-        "previewUrl": mejor.get("previewUrl"),
-        "trackViewUrl": mejor.get("trackViewUrl"),
-        "titulo": mejor.get("trackName"),
-        "artista": mejor.get("artistName"),
-        "duracion": 30
-    })
-
+        "error": "No he encontrado una muestra que coincida con suficiente seguridad en Deezer ni en Apple Music/iTunes."
+    }), 404
 
 @app.get("/api/youtube/buscar")
 def buscar_videos_youtube():
