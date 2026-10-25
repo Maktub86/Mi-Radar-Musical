@@ -59,7 +59,8 @@ button.activo{background:var(--azul);border-color:var(--azul)}
 
 .vacio{padding:25px;background:var(--panel);border-radius:15px;color:var(--suave)}
 footer{text-align:center;color:var(--suave);font-size:12px;padding:35px}
-@media(max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}\n@media(max-width:500px){main{padding:24px 5%}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.portada-disco{height:auto;aspect-ratio:1}.info{padding:11px}.titulo{font-size:15px}}
+@media(max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:500px){main{padding:24px 5%}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.portada-disco{height:auto;aspect-ratio:1}.info{padding:11px}.titulo{font-size:15px}}
 
 /* Listas musicales externas */
 .bloque-listas{margin:34px 0 10px;padding-top:28px;border-top:1px solid #ffffff20}
@@ -309,7 +310,7 @@ async function reproducirMuestra(publicacion, tarjeta, boton) {
 }
 fetch("/portada.json")
   .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-  .then(datos => { publicaciones = datos; mostrar(10); })
+  .then(datos => { publicaciones = datos; mostrar(cantidadSeleccionada); })
   .catch(() => { document.getElementById("estado").textContent = "No se han podido cargar las publicaciones."; });
 fetch("/ultima_actualizacion.txt")
   .then(r => { if (!r.ok) throw new Error(); return r.text(); })
