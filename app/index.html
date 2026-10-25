@@ -403,7 +403,15 @@ async function buscarMusicaArtista(titulo,artista,modo){
  try{
   const q=new URLSearchParams({titulo,artista}),r=await fetch('/api/youtube/buscar?'+q.toString()),d=await r.json();
   if(!r.ok)throw new Error(d.error||'No se encontraron versiones.');
-  estado.textContent=modo==='full'?'Elige una versión. La reproducción integrada depende de que YouTube la permita.':modo==='youtube'?'Elige una versión para abrirla en YouTube.':'Elige una versión para copiar el enlace a MediaHuman.';
+  if(modo==='full'){
+   const v=(d.resultados||[])[0];
+   if(!v){estado.textContent='No se encontró una versión para reproducir.';return;}
+   const m=String(v.url||'').match(/[?&]v=([^&]+)/);if(!m){estado.textContent='No se pudo identificar el vídeo.';return;}
+   document.getElementById('titulo-modal-musica-artista').textContent='Reproduciendo canción completa';
+   const iframe=document.createElement('iframe');iframe.className='reproductor-completo';iframe.title='Canción completa';iframe.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(m[1])+'?autoplay=1&rel=0';iframe.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';iframe.allowFullscreen=true;reproductor.replaceChildren(iframe);
+   estado.textContent='Reproduciendo automáticamente: '+(v.titulo||titulo)+' · '+(v.canal||artista)+'.';return;
+  }
+  estado.textContent=modo==='youtube'?'Elige una versión para abrirla en YouTube.':'Elige una versión para copiar el enlace a MediaHuman.';
   for(const v of d.resultados||[]){
    const b=document.createElement('button');b.className='resultado-musica';const strong=document.createElement('strong');strong.textContent=v.titulo||'Vídeo sin título';const span=document.createElement('span');span.textContent=v.canal||'Canal desconocido';b.append(strong,span);
    b.addEventListener('click',async()=>{
