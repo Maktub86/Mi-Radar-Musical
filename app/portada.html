@@ -423,6 +423,18 @@ async function copiarEnlaceMediaHuman(url,boton){
  setTimeout(()=>{boton.textContent=original;},4500);
 }
 async function buscarCancionYouTube(cancion,modo="mediahuman"){
+ if(modo==="full"){
+  const ventana=window.open("about:blank","_blank");
+  const consulta=[cancion.artista,cancion.titulo,"official audio"].filter(Boolean).join(" ");
+  try{
+   const params=new URLSearchParams({titulo:cancion.titulo||"",artista:cancion.artista||""});
+   const respuesta=await fetch("/api/youtube/buscar?"+params.toString()),datos=await respuesta.json();
+   const video=(datos.resultados||[])[0];
+   if(video&&video.url&&ventana){ventana.location.href=video.url;return;}
+   if(ventana)ventana.location.href="https://www.youtube.com/results?search_query="+encodeURIComponent(consulta);
+  }catch(e){if(ventana)ventana.location.href="https://www.youtube.com/results?search_query="+encodeURIComponent(consulta);}
+  return;
+ }
  const modal=document.getElementById("modal-mediahuman"),lista=document.getElementById("resultados-mediahuman"),estado=document.getElementById("estado-mediahuman"),reproductor=document.getElementById("reproductor-completo"),tituloModal=document.getElementById("titulo-modal-mediahuman");
  lista.innerHTML="";reproductor.replaceChildren();
  tituloModal.textContent=modo==="full"?"Reproducir canción completa":modo==="youtube"?"Elegir versión de YouTube":"Elige la versión para MediaHuman";
