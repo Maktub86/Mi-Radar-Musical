@@ -288,7 +288,7 @@ async function reproducirMuestra(publicacion, tarjeta, boton) {
     audio.src = datos.previewUrl;
     audioActual = audio;
     const atribucion = document.createElement("div");
-    atribucion.textContent = `Muestra proporcionada por iTunes: ${datos.artista} — ${datos.titulo}`;
+    atribucion.textContent = `Muestra proporcionada por ${datos.fuente || "el catálogo musical"}: ${datos.artista} — ${datos.titulo}`;
     zona.append(atribucion, audio);
     if (datos.trackViewUrl) {
       const enlace = document.createElement("a");
