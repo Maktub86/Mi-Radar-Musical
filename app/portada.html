@@ -39,7 +39,7 @@ button.activo{background:var(--azul);border-color:var(--azul)}
 .boton-muestra:disabled{opacity:.65;cursor:wait}
 .acciones-radar{display:grid;grid-template-columns:82px 42px 42px 42px;grid-template-rows:42px;grid-auto-flow:column;gap:7px;margin-top:13px;align-items:stretch;align-content:start;justify-content:start;width:max-content;min-width:229px;flex-wrap:nowrap}
 .acciones-radar .boton-muestra{margin-top:0;grid-column:1;grid-row:1;flex:none;width:82px;min-width:82px;height:42px}
-.acciones-radar .boton-mediahuman{grid-column:2;grid-row:1}
+.acciones-radar .boton-mediahuman{grid-column:2;grid-row:1;align-self:center}
 .acciones-radar .boton-youtube{grid-column:3;grid-row:1}
 .acciones-radar .boton-completa{grid-column:4;grid-row:1}
 .boton-descarga-radar{flex:0 0 46px;border:0;background:#2b765f;padding:8px;font-size:21px;border-radius:12px}
@@ -54,7 +54,7 @@ button.activo{background:var(--azul);border-color:var(--azul)}
 .acciones-radar .boton-youtube,.acciones-cancion .boton-youtube,.acciones-publicacion .boton-youtube{background:#e62129!important;color:#fff!important;border:1px solid #e62129!important}
 .acciones-radar .boton-completa,.acciones-cancion .boton-completa,.acciones-publicacion .boton-completa{background:#292d3b!important;color:#fff!important;border:1px solid #ffffff35!important}
 .acciones-cancion{display:grid;grid-template-columns:82px 42px 42px 42px;grid-template-rows:42px;grid-auto-flow:column;gap:7px;justify-content:start;align-content:start;align-items:stretch;width:max-content;min-width:229px;flex-wrap:nowrap}
-.acciones-cancion button{box-sizing:border-box;width:42px!important;height:42px;min-height:42px;min-width:42px;flex:none;margin:0!important;padding:8px 3px!important;font-size:16px!important;border-radius:10px;white-space:nowrap}
+.acciones-cancion button,.acciones-radar button{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;line-height:1;vertical-align:middle;width:42px!important;height:42px;min-height:42px;min-width:42px;flex:none;margin:0!important;padding:8px 3px!important;font-size:16px!important;border-radius:10px;white-space:nowrap}
 .acciones-cancion .boton-30{grid-column:1;grid-row:1;width:82px!important;height:42px;min-width:82px;flex:none!important}
 .acciones-cancion .boton-mediahuman{grid-column:2;grid-row:1}
 .acciones-cancion .boton-youtube{grid-column:3;grid-row:1}
