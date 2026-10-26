@@ -1147,7 +1147,28 @@ def api_wikipedia():
             url = pagina.get("fullurl") or (
                 "https://es.wikipedia.org/wiki/" + quote(titulo.replace(" ", "_"), safe="()_,-")
             )
-            curiosidad = extracto[:420].rsplit(" ", 1)[0].rstrip(" .,;:") + "…"
+            # Mostrar una sola curiosidad breve, no el inicio entero del artículo.
+            frases = [f.strip() for f in re.split(r"(?<=[.!?])\s+", extracto) if f.strip()]
+            pistas = (
+                "originalmente", "inicialmente", "inspir", "origen", "grabacion",
+                "durante la grabacion", "se grabo", "fue grabada", "fue grabado",
+                "premio", "record", "numero uno", "numero 1", "version", "debido a",
+                "sin embargo", "curiosamente", "nombre proviene", "se publico",
+                "se lanzo", "compuesta", "escrita", "producida", "producido"
+            )
+            candidatas = [f for f in frases if 45 <= len(f) <= 280]
+            curiosidad = next(
+                (f for f in candidatas if any(p in normalizar(f) for p in pistas)),
+                None
+            )
+            if curiosidad is None:
+                # Si el extracto no ofrece un dato llamativo claro, no inventamos uno.
+                curiosidad = next((f for f in candidatas if f != frases[0]), None)
+            if curiosidad is None:
+                base = frases[0] if frases else extracto
+                curiosidad = base[:240].rsplit(" ", 1)[0].rstrip(" .,;:")
+                if len(curiosidad) < len(base):
+                    curiosidad += "…"
             return jsonify({"encontrado": True, "url": url, "titulo": titulo, "curiosidad": curiosidad})
     except Exception:
         app.logger.exception("No se pudo verificar el artículo de Wikipedia")
