@@ -224,12 +224,18 @@ function crearTarjetaArtista(a, destino){
   const wikiArtista=document.createElement('a');
   wikiArtista.className='boton-wikipedia';
   wikiArtista.textContent='W';
-  wikiArtista.href='https://es.wikipedia.org/w/index.php?search='+encodeURIComponent(nombreArtista);
+  wikiArtista.style.display='none';
   wikiArtista.target='_blank';
   wikiArtista.rel='noopener noreferrer';
-  wikiArtista.title='Buscar artista en Wikipedia';
-  wikiArtista.setAttribute('aria-label','Buscar '+nombreArtista+' en Wikipedia');
+  wikiArtista.title='Artículo del artista en Wikipedia';
+  wikiArtista.setAttribute('aria-label','Artículo de '+nombreArtista+' en Wikipedia');
   div.insertBefore(wikiArtista,div.firstChild.nextSibling);
+  const comprobarWikiArtista=async()=>{
+    if(wikiArtista.dataset.consultado)return;
+    wikiArtista.dataset.consultado='1';
+    try{const q=new URLSearchParams({tipo:'artista',nombre:nombreArtista});const r=await fetch('/api/wikipedia?'+q);const d=await r.json();if(d.encontrado&&wikiArtista.isConnected){wikiArtista.href=d.url;wikiArtista.title=d.titulo+' · Wikipedia';wikiArtista.style.display='inline-flex'}}catch(e){}
+  };
+  if('IntersectionObserver' in window){const ow=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){ow.disconnect();comprobarWikiArtista()}}),{rootMargin:'180px'});ow.observe(wikiArtista)}else comprobarWikiArtista();
   if (nombreArtista.trim().toUpperCase() === 'ABBA') {
    const foto = document.createElement('img');
    foto.src = '/abba.jpg';
