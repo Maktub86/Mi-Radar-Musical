@@ -1558,7 +1558,7 @@ def api_wikipedia():
             paginas_en = list((datos_en.get("query", {}).get("pages") or {}).values())
             for pagina_en in paginas_en:
                 titulo_en = str(pagina_en.get("title") or "").strip()
-                extracto_en = re.sub(r"\\s+", " ", str(pagina_en.get("extract") or "")).strip()
+                extracto_en = re.sub(r"\s+", " ", str(pagina_en.get("extract") or "")).strip()
                 nt_en, ne_en = normalizar(titulo_en), normalizar(extracto_en)
                 if not extracto_en or not (nt_en == n_nombre or nt_en.startswith(n_nombre + " ")):
                     continue
@@ -1570,7 +1570,7 @@ def api_wikipedia():
                 if n_artista not in intro_en and n_artista not in nt_en:
                     continue
                 frases_en = [
-                    f.strip() for f in re.split(r"(?<=[.!?])\\s+", extracto_en[:2200])
+                    f.strip() for f in re.split(r"(?<=[.!?])\s+", extracto_en[:2200])
                     if 65 <= len(f.strip()) <= 330
                 ]
                 if not frases_en:
