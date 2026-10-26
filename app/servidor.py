@@ -419,7 +419,7 @@ function mostrarArtistas(){
 }
 async function cargarTop(nombre,caja,boton){
  const zona=caja.querySelector('.canciones-artista');
- if(!zona.hidden){zona.hidden=true;boton.textContent='Ver sus 5 canciones';return;}
+ if(!zona.hidden&&boton.textContent!=='Reintentar las 5 canciones'){zona.hidden=true;boton.textContent='Ver sus 5 canciones';return;}
  zona.hidden=false;zona.replaceChildren();boton.disabled=true;boton.textContent='Consultando Deezer…';
  const controlador=new AbortController();
  const limite=setTimeout(()=>controlador.abort(),20000);
