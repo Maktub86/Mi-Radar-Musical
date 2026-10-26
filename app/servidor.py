@@ -342,6 +342,30 @@ const letrasAlfabeto=['#',...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')];
 function normalizarNombre(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleUpperCase('es');}
 for(const letra of letrasAlfabeto){const b=nodo('button','',letra);b.type='button';b.dataset.letra=letra;b.addEventListener('click',()=>{inicialSeleccionada=inicialSeleccionada===letra?'':letra;mostrarArtistas();if(inicialSeleccionada&&inicialSeleccionada!=='#'){const caja=[...contenedor.querySelectorAll('.artista-mejor')].find(x=>normalizarNombre(x.querySelector('h2')?.textContent).startsWith(inicialSeleccionada));if(caja)caja.scrollIntoView({behavior:'smooth',block:'start'});}});alfabetoLoMejor.appendChild(b);}
 window.addEventListener('scroll',()=>{const cajas=[...contenedor.querySelectorAll('.artista-mejor')];let actual='';for(const caja of cajas){if(caja.getBoundingClientRect().top<=180)actual=normalizarNombre(caja.querySelector('h2')?.textContent).charAt(0)||'';else break;}if(!actual&&cajas.length)actual=normalizarNombre(cajas[0].querySelector('h2')?.textContent).charAt(0)||'';letraActual.hidden=!actual;if(actual){letraActual.textContent=actual;for(const b of alfabetoLoMejor.querySelectorAll('button'))b.classList.toggle('activa',b.dataset.letra===actual);}});
+const cacheWikipediaVerificada=new Map();
+async function verificarWikipedia(tipo,nombre,artista){
+ const clave=[tipo,normalizarNombre(nombre),normalizarNombre(artista||'')].join('|');
+ if(!cacheWikipediaVerificada.has(clave)){
+  cacheWikipediaVerificada.set(clave,(async()=>{
+   try{
+    const q=new URLSearchParams({tipo,nombre,artista:artista||''});
+    const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store'});
+    if(!r.ok)return null;const d=await r.json();
+    return d.encontrado&&d.url&&d.curiosidad?d:null;
+   }catch(e){return null;}
+  })());
+ }
+ return cacheWikipediaVerificada.get(clave);
+}
+function mostrarCuriosidadWiki(contenedor,info){
+ const anterior=contenedor.querySelector('.curiosidad-wikipedia');
+ if(anterior){anterior.remove();return;}
+ const caja=nodo('div','curiosidad-wikipedia');
+ caja.style.cssText='margin:8px 0 12px;padding:12px 14px;border-radius:10px;background:#ffffff0d;border:1px solid #ffffff20;color:#d9e8f4;line-height:1.5;font-size:13px';
+ caja.appendChild(nodo('p','',info.curiosidad));
+ const enlace=nodo('a','','Leer artículo en Wikipedia ↗');enlace.href=info.url;enlace.target='_blank';enlace.rel='noopener noreferrer';enlace.style.cssText='display:inline-block;margin-top:6px;color:#9ecbff;font-weight:700';
+ caja.appendChild(enlace);contenedor.appendChild(caja);
+}
 const cacheHistoriasCancion=new Map();
 async function cargarHistoriaCancion(titulo,artista,fila,boton){
  const existente=fila.parentElement?.querySelector('.historia-wikipedia[data-cancion="'+CSS.escape(titulo+'|'+artista)+'"]');
@@ -373,12 +397,15 @@ function mostrarArtistas(){
   const caja=nodo('section','artista-mejor');
   const cabecera=nodo('div','cabecera-artista');
   cabecera.appendChild(nodo('h2','',nombre));
-  const wikiArtista=nodo('a','boton-wikipedia','W');
-  wikiArtista.href='https://es.wikipedia.org/w/index.php?search='+encodeURIComponent(nombre);
-  wikiArtista.target='_blank';wikiArtista.rel='noopener noreferrer';wikiArtista.style.marginRight='auto';
-  wikiArtista.title='Buscar artista en Wikipedia';
-  wikiArtista.setAttribute('aria-label','Buscar '+nombre+' en Wikipedia');
-  cabecera.appendChild(wikiArtista);
+  const huecoWiki=nodo('span','');huecoWiki.style.marginRight='auto';cabecera.appendChild(huecoWiki);
+  verificarWikipedia('artista',nombre,'').then(info=>{
+   if(!info)return;
+   const wikiArtista=nodo('button','boton-wikipedia','W');
+   wikiArtista.type='button';wikiArtista.title='Ver dato biográfico verificado de '+nombre;
+   wikiArtista.setAttribute('aria-label','Curiosidad verificada sobre '+nombre);
+   wikiArtista.addEventListener('click',()=>mostrarCuriosidadWiki(caja,info));
+   huecoWiki.appendChild(wikiArtista);
+  });
   const boton=nodo('button','','Ver sus 5 canciones');
   boton.addEventListener('click',()=>cargarTop(nombre,caja,boton));
   cabecera.appendChild(boton);
@@ -403,9 +430,15 @@ async function cargarTop(nombre,caja,boton){
    const fila=nodo('div','pista');
    const detalle=nodo('div','');
    const tituloPista=nodo('span','pista-titulo',pista.titulo);
-   const wiki=nodo('button','boton-wikipedia','W');wiki.title='Consultar historia de la canción en Wikipedia';wiki.setAttribute('aria-label','Historia en Wikipedia');
-   wiki.addEventListener('click',()=>cargarHistoriaCancion(pista.titulo,pista.artista,fila,wiki));
-   const tituloLinea=nodo('div','');tituloLinea.append(tituloPista,wiki);detalle.appendChild(tituloLinea);
+   const tituloLinea=nodo('div','');tituloLinea.appendChild(tituloPista);detalle.appendChild(tituloLinea);
+   verificarWikipedia('cancion',pista.titulo,pista.artista).then(info=>{
+    if(!info||!fila.isConnected)return;
+    const wiki=nodo('button','boton-wikipedia','W');wiki.type='button';
+    wiki.title='Ver dato verificado de la canción interpretada por '+pista.artista;
+    wiki.setAttribute('aria-label','Curiosidad verificada sobre '+pista.titulo);
+    wiki.addEventListener('click',()=>mostrarCuriosidadWiki(fila,info));
+    tituloLinea.appendChild(wiki);
+   });
    detalle.appendChild(nodo('div','pista-meta',pista.artista+' · Popularidad en Deezer'+(pista.album?' · '+pista.album:'')));
    const acciones=nodo('div','acciones-pista');
    const muestra=nodo('button','boton-30',pista.preview?'▶ 30':'▶ 30');
@@ -990,7 +1023,7 @@ def _ejecutar_actualizacion():
 
 @app.get("/api/wikipedia")
 def api_wikipedia():
-    """Devuelve un artículo de Wikipedia solo si encaja con el artista o la canción."""
+    """Solo devuelve artículos verificados y una curiosidad concreta y pertinente."""
     tipo = (request.args.get("tipo") or "").strip().lower()
     nombre = re.sub(r"\s+", " ", (request.args.get("nombre") or "").strip())
     artista = re.sub(r"\s+", " ", (request.args.get("artista") or "").strip())
@@ -998,32 +1031,62 @@ def api_wikipedia():
         return jsonify({"encontrado": False}), 400
     def normalizar(texto):
         texto = unicodedata.normalize("NFKD", str(texto or ""))
-        return "".join(c for c in texto if not unicodedata.combining(c)).casefold().strip()
-    consulta = nombre if tipo == "artista" else nombre + " " + artista
-    params = urlencode({"action":"query","generator":"search","gsrsearch":consulta,"gsrnamespace":"0","gsrlimit":"8","prop":"extracts","exintro":"1","explaintext":"1","exsentences":"5","format":"json","redirects":"1"})
+        return re.sub(r"\s+", " ", "".join(c for c in texto if not unicodedata.combining(c))).casefold().strip()
+    consulta = nombre if tipo == "artista" else '"' + nombre + '" "' + artista + '"'
+    params = urlencode({
+        "action": "query", "generator": "search", "gsrsearch": consulta,
+        "gsrnamespace": "0", "gsrlimit": "10", "prop": "extracts|info",
+        "exintro": "1", "explaintext": "1", "exsentences": "8",
+        "inprop": "url", "format": "json", "redirects": "1"
+    })
     try:
-        req = Request("https://es.wikipedia.org/w/api.php?" + params, headers={"User-Agent":"MiRadarMusical/1.0 (Wikipedia relevance check)"})
-        with urlopen(req, timeout=5) as respuesta:
+        req = Request("https://es.wikipedia.org/w/api.php?" + params, headers={
+            "User-Agent": "MiRadarMusical/1.0 (relevance verification)"
+        })
+        with urlopen(req, timeout=6) as respuesta:
             datos = json.loads(respuesta.read().decode("utf-8"))
         paginas = list((datos.get("query", {}).get("pages") or {}).values())
         n_nombre, n_artista = normalizar(nombre), normalizar(artista)
         for pagina in paginas:
-            titulo, extracto = str(pagina.get("title") or ""), str(pagina.get("extract") or "")
-            n_titulo, n_extracto = normalizar(titulo), normalizar(extracto)
-            if not extracto:
+            titulo = str(pagina.get("title") or "")
+            extracto = re.sub(r"\s+", " ", str(pagina.get("extract") or "")).strip()
+            nt, ne = normalizar(titulo), normalizar(extracto)
+            if not extracto or not (nt == n_nombre or nt.startswith(n_nombre + " (")):
                 continue
-            titulo_valido = n_titulo == n_nombre or n_titulo.startswith(n_nombre + " (")
             if tipo == "artista":
-                contexto = any(p in n_extracto for p in ("cantante","grupo musical","banda musical","musico","musica","vocalista","compositor","interprete","artista musical"))
-                if not (titulo_valido and contexto):
+                terminos_artista = (
+                    "cantante", "grupo musical", "banda musical", "musico", "musica",
+                    "vocalista", "compositor", "interprete", "artista", "productor musical",
+                    "rapero", "cantautora", "cantautor"
+                )
+                if not any(t in ne for t in terminos_artista):
                     continue
-            elif not titulo_valido or n_artista not in n_extracto:
-                continue
+                datos_relevantes = (
+                    "nacio", "nacimiento", "nacida", "nacido", "su nombre real",
+                    "nombre de nacimiento", "debut", "premio", "premios", "ganador",
+                    "ganadora", "fundador", "fundadora", "formo parte", "fundo",
+                    "origen", "album", "disco", "carrera", "conocido por",
+                    "conocida por", "vendio", "ventas", "grammy", "eurovision"
+                )
+                if not any(t in ne for t in datos_relevantes):
+                    continue
+            else:
+                terminos_cancion = (
+                    "cancion", "sencillo", "single", "tema musical", "interpretada por",
+                    "interpretado por", "grabada por", "grabado por", "compuesta por",
+                    "compuesto por", "publicada por", "lanzada por", "lanzado por"
+                )
+                if n_artista not in ne or not any(t in ne for t in terminos_cancion):
+                    continue
             from urllib.parse import quote
-            return jsonify({"encontrado":True,"url":"https://es.wikipedia.org/wiki/"+quote(titulo.replace(" ","_"),safe="()_,-"),"titulo":titulo})
+            url = pagina.get("fullurl") or (
+                "https://es.wikipedia.org/wiki/" + quote(titulo.replace(" ", "_"), safe="()_,-")
+            )
+            curiosidad = extracto[:420].rsplit(" ", 1)[0].rstrip(" .,;:") + "…"
+            return jsonify({"encontrado": True, "url": url, "titulo": titulo, "curiosidad": curiosidad})
     except Exception:
         app.logger.exception("No se pudo verificar el artículo de Wikipedia")
-    return jsonify({"encontrado":False})
+    return jsonify({"encontrado": False})
 
 
 @app.get("/api/estado-actualizacion")
