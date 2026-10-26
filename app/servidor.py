@@ -1214,7 +1214,7 @@ def api_wikipedia():
             # Penaliza frases que solo enumeran géneros o describen la carrera sin un dato concreto.
             if tipo == "artista" and any(x in nf for x in ("su estilo musical", "su música combina", "su musica combina", "es conocido por su", "es conocida por su")):
                 puntos -= 3
-            frases_bio = [f.strip() for f in re.split(r"(?<=[.!?])\\s+", extracto) if f.strip()]
+            frases_bio = [f.strip() for f in re.split(r"(?<=[.!?])\s+", extracto) if f.strip()]
             biografia = " ".join(frases_bio[:2])[:520] if tipo == "artista" else ""
             candidata = {
                 "score": puntos + (1 if coincide_artista else 0),
