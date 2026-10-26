@@ -1177,6 +1177,9 @@ def api_wikipedia():
                               headers={"User-Agent": "MiRadarMusical/2.0 (music information; contact: app)"})
                 with urlopen(req, timeout=2) as respuesta:
                     datos = json.loads(respuesta.read().decode("utf-8"))
+                if datos.get("errors"):
+                    app.logger.warning("Error de API Wikipedia %s para %s: %s", idioma, consulta, datos["errors"])
+                    continue
                 salida.extend((datos.get("query", {}).get("pages") or {}).values())
             except Exception:
                 app.logger.warning("No se pudo consultar Wikipedia %s para %s", idioma, consulta)
