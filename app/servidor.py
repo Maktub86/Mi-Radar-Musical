@@ -401,15 +401,15 @@ function mostrarArtistas(){
   const caja=nodo('section','artista-mejor');
   const cabecera=nodo('div','cabecera-artista');
   cabecera.appendChild(nodo('h2','',nombre));
-  const huecoWiki=nodo('span','');huecoWiki.style.marginRight='auto';cabecera.appendChild(huecoWiki);
-  verificarWikipedia('artista',nombre,'').then(info=>{
-   if(!info)return;
-   const wikiArtista=nodo('button','boton-wikipedia','W');
-   wikiArtista.type='button';wikiArtista.title='Ver dato biográfico verificado de '+nombre;
-   wikiArtista.setAttribute('aria-label','Curiosidad verificada sobre '+nombre);
-   wikiArtista.addEventListener('click',()=>mostrarCuriosidadWiki(caja,info));
-   huecoWiki.appendChild(wikiArtista);
+  const huecoWiki=nodo('span','');huecoWiki.style.marginRight='auto';
+  const wikiArtista=nodo('button','boton-wikipedia','W');wikiArtista.type='button';
+  wikiArtista.title='Consultar curiosidad de '+nombre;wikiArtista.setAttribute('aria-label','Consultar curiosidad de '+nombre);
+  wikiArtista.addEventListener('click',async()=>{
+   if(wikiArtista.disabled)return;wikiArtista.disabled=true;
+   try{const info=await verificarWikipedia('artista',nombre,'');if(info)mostrarCuriosidadWiki(caja,info);else{let msg=caja.querySelector('.aviso-wiki');if(!msg){msg=nodo('div','aviso-wiki','No hay una curiosidad verificada disponible ahora.');caja.appendChild(msg);}}}
+   finally{wikiArtista.disabled=false;}
   });
+  huecoWiki.appendChild(wikiArtista);cabecera.appendChild(huecoWiki);
   const boton=nodo('button','','Ver sus 5 canciones');
   boton.addEventListener('click',()=>cargarTop(nombre,caja,boton));
   cabecera.appendChild(boton);
@@ -426,7 +426,7 @@ async function cargarTop(nombre,caja,boton){
  if(!zona.hidden&&boton.textContent!=='Reintentar las 5 canciones'){zona.hidden=true;boton.textContent='Ver sus 5 canciones';return;}
  zona.hidden=false;zona.replaceChildren();boton.disabled=true;boton.textContent='Consultando Deezer…';
  const controlador=new AbortController();
- const limite=setTimeout(()=>controlador.abort(),20000);
+ const limite=setTimeout(()=>controlador.abort(),12000);
  try{
   const r=await fetch('/api/lo-mejor?artista='+encodeURIComponent(nombre),{cache:'no-store',signal:controlador.signal});
   let d;
@@ -438,14 +438,15 @@ async function cargarTop(nombre,caja,boton){
    const detalle=nodo('div','');
    const tituloPista=nodo('span','pista-titulo',pista.titulo);
    const tituloLinea=nodo('div','');tituloLinea.appendChild(tituloPista);detalle.appendChild(tituloLinea);
-   verificarWikipedia('cancion',pista.titulo,pista.artista).then(info=>{
-    if(!info||!fila.isConnected)return;
-    const wiki=nodo('button','boton-wikipedia','W');wiki.type='button';
-    wiki.title='Ver dato verificado de la canción interpretada por '+pista.artista;
-    wiki.setAttribute('aria-label','Curiosidad verificada sobre '+pista.titulo);
-    wiki.addEventListener('click',()=>mostrarCuriosidadWiki(fila,info));
-    tituloLinea.appendChild(wiki);
+   const wiki=nodo('button','boton-wikipedia','W');wiki.type='button';
+   wiki.title='Consultar curiosidad verificada de '+pista.titulo;
+   wiki.setAttribute('aria-label','Consultar curiosidad sobre '+pista.titulo);
+   wiki.addEventListener('click',async()=>{
+    if(wiki.disabled)return;wiki.disabled=true;
+    try{const info=await verificarWikipedia('cancion',pista.titulo,pista.artista);if(info)mostrarCuriosidadWiki(fila,info);else{let msg=fila.querySelector('.aviso-wiki');if(!msg){msg=nodo('div','aviso-wiki','No hay una curiosidad verificada disponible ahora.');fila.appendChild(msg);}}}
+    finally{wiki.disabled=false;}
    });
+   tituloLinea.appendChild(wiki);
    detalle.appendChild(nodo('div','pista-meta',pista.artista+' · Popularidad en Deezer'+(pista.album?' · '+pista.album:'')));
    const acciones=nodo('div','acciones-pista');
    const muestra=nodo('button','boton-30',pista.preview?'▶ 30':'▶ 30');
@@ -559,7 +560,7 @@ def api_lo_mejor():
             "https://api.deezer.com/search/artist?" + parametros,
             headers={"User-Agent": "MiRadarMusical/1.0"}
         )
-        with urlopen(peticion, timeout=8) as respuesta:
+        with urlopen(peticion, timeout=4) as respuesta:
             datos = json.loads(respuesta.read().decode("utf-8"))
         if datos.get("error"):
             raise ValueError("Deezer no ha permitido consultar su catálogo.")
@@ -584,7 +585,7 @@ def api_lo_mejor():
 
         url_top = "https://api.deezer.com/artist/" + str(int(mejor["id"])) + "/top?" + urlencode({"limit": 5})
         peticion_top = Request(url_top, headers={"User-Agent": "MiRadarMusical/1.0"})
-        with urlopen(peticion_top, timeout=8) as respuesta:
+        with urlopen(peticion_top, timeout=4) as respuesta:
             datos_top = json.loads(respuesta.read().decode("utf-8"))
         if datos_top.get("error"):
             raise ValueError("Deezer no ha permitido consultar las canciones de este artista.")
