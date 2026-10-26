@@ -1225,8 +1225,8 @@ def api_wikipedia():
             # Segundo nivel: hechos concretos que no contienen las palabras clave
             # principales, pero sí fechas, cifras, títulos de obras o hitos verificables.
             es_concreta = bool(
-                re.search(r"\\b(?:19|20)\\d{2}\\b", frase)
-                or re.search(r"\\b\\d{1,3}(?:[.,]\\d{3})*\\b", frase)
+                re.search(r"\b(?:19|20)\d{2}\b", frase)
+                or re.search(r"\b\d{1,3}(?:[.,]\d{3})*\b", frase)
                 or any(m in nf for m in (
                     "album", "sencillo", "puesto", "lista", "clasifico",
                     "clasificada", "numero uno", "premio", "festival",
