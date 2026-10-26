@@ -1322,6 +1322,49 @@ def api_wikipedia():
             "fuente": "Wikipedia en español"
         })
 
+    if not candidatas and tipo == "artista":
+        # Respaldo general para TODO el alfabeto: si la página de Wikipedia coincide
+        # exactamente con el nombre del artista, mostrar su biografía aunque no se
+        # pueda verificar una curiosidad independiente. Nunca inventar el dato.
+        paginas_ordenadas = sorted(
+            paginas_por_titulo.values(),
+            key=lambda p: 0 if normalizar(p.get("title", "")) == n_nombre else 1
+        )
+        for pagina in paginas_ordenadas:
+            titulo = str(pagina.get("title") or "").strip()
+            extracto = re.sub(r"\s+", " ", str(pagina.get("extract") or "")).strip()
+            nt = normalizar(titulo)
+            ne = normalizar(extracto)
+            if not extracto or not (nt == n_nombre or nt.startswith(n_nombre + " ")):
+                continue
+            inicio = ne[:500]
+            if any(x in inicio for x in ("puede referirse a", "pagina de desambiguacion", "el termino puede")):
+                continue
+            if nt != n_nombre and not any(normalizar(m) in ne for m in (
+                "cantante", "grupo musical", "banda musical", "musico", "vocalista",
+                "rapero", "cantautor", "artista", "productor musical", "rock", "pop"
+            )):
+                continue
+            frases_bio = [f.strip() for f in re.split(r"(?<=[.!?])\s+", extracto) if f.strip()]
+            biografia = " ".join(frases_bio[:3])[:700]
+            dato = next((
+                frase for frase in frases_bio[3:]
+                if 55 <= len(frase) <= 300
+                and any(p in normalizar(frase) for p in (
+                    "premio", "grammy", "eurovision", "album", "sencillo", "fundado",
+                    "formado", "formada", "miembro", "integrante", "numero uno",
+                    "platino", "oro", "debut", "vendio", "conocido como", "nombre proviene"
+                ))
+            ), "")
+            url = pagina.get("fullurl") or (
+                "https://es.wikipedia.org/wiki/" + titulo.replace(" ", "_")
+            )
+            return jsonify({
+                "encontrado": True, "url": url, "titulo": titulo,
+                "curiosidad": dato, "biografia": biografia,
+                "idioma": "es", "fuente": "Wikipedia en español"
+            })
+
     if not candidatas or max(c.get("score", 0) for c in candidatas) < 4:
         # Segunda fuente general: buscador web, para no depender de Wikipedia.
         # Se priorizan resultados con pistas narrativas y se conserva la URL de origen.
