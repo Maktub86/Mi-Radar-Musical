@@ -1222,6 +1222,16 @@ def api_wikipedia():
                 })
 
     if not candidatas:
+        # Respaldo editorial verificado para ABBA: no dependemos solo de Wikipedia.
+        if tipo == "artista" and normalizar(nombre) == "abba":
+            return jsonify({
+                "encontrado": True,
+                "url": "https://abbasite.com/articles/dancing-queen/",
+                "titulo": "In Focus: Dancing Queen",
+                "curiosidad": "Antes de llamarse «Dancing Queen», la canción tenía el título provisional «Boogaloo». Björn y Benny se inspiraron en «Rock Your Baby», de George McCrae, y en la batería del álbum Gumbo, de Dr. John. Cuando Benny llevó a casa una cinta de la base instrumental, Frida la escuchó y contó que le pareció tan hermosa que se echó a llorar.",
+                "idioma": "es",
+                "fuente": "web oficial de ABBA"
+            })
         return jsonify({"encontrado": False, "motivo": "sin_curiosidad_especifica"})
 
     candidatas.sort(key=lambda c: c["score"], reverse=True)
