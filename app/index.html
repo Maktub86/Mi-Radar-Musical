@@ -217,7 +217,7 @@ async function cargarImagenArtista(nombre, foto, credito) {
 }
 
 const cacheWikipediaInfo=new Map();
-async function mostrarCuriosidadWiki(tipo,nombre,artista,contenedor,boton){
+async function mostrarInfoWikipedia(tipo,nombre,artista,contenedor,boton){
  let caja=contenedor.querySelector(':scope > .info-wikipedia');
  if(caja){caja.remove();if(boton.dataset.abierto==='1'){boton.dataset.abierto='0';return;}}
  caja=document.createElement('div');caja.className='info-wikipedia';
@@ -246,7 +246,7 @@ function crearTarjetaArtista(a, destino){
   const wikiArtista=document.createElement('button');
   wikiArtista.type='button';wikiArtista.className='boton-wikipedia';wikiArtista.textContent='W';
   wikiArtista.title='Consultar biografía del artista';wikiArtista.setAttribute('aria-label','Consultar biografía de '+nombreArtista);
-  wikiArtista.addEventListener('click',()=>mostrarCuriosidadWiki('artista',nombreArtista,'',div,wikiArtista));
+  wikiArtista.addEventListener('click',()=>mostrarInfoWikipedia('artista',nombreArtista,'',div,wikiArtista));
   div.insertBefore(wikiArtista,div.firstChild.nextSibling);
   if (nombreArtista.trim().toUpperCase() === 'ABBA') {
    const foto = document.createElement('img');
@@ -350,7 +350,7 @@ async function cargarPublicaciones(nombre,contenedor){
    t.textContent=p.titulo||'Sin título';
    item.appendChild(t);
    const botonWikiCancion=document.createElement('button');botonWikiCancion.type='button';botonWikiCancion.className='boton-wikipedia';botonWikiCancion.textContent='W';botonWikiCancion.title='Consultar información de la canción';
-   botonWikiCancion.addEventListener('click',()=>mostrarCuriosidadWiki('cancion',p.titulo||'',datos.artista||nombre,item,botonWikiCancion));
+   botonWikiCancion.addEventListener('click',()=>mostrarInfoWikipedia('cancion',p.titulo||'',datos.artista||nombre,item,botonWikiCancion));
    item.appendChild(botonWikiCancion);
 
    const detalle=document.createElement('div');
