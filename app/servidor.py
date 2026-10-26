@@ -388,7 +388,7 @@ async function cargarHistoriaCancion(titulo,artista,fila,boton){
   if(!promesa){
    promesa=(async()=>{
     const q=new URLSearchParams({tipo:'cancion',nombre:titulo,artista:artista});
-    const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(8000)});
+    const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(15000)});
     if(!r.ok)return null;
     const d=await r.json();
     return d.encontrado&&d.url&&d.curiosidad?d:null;
@@ -1242,9 +1242,13 @@ def api_wikipedia():
             )
             if not any(normalizar(m) in ne for m in marcadores):
                 continue
-            # La coincidencia de artista ayuda a evitar homónimos, pero no es obligatoria
-            # porque los extractos breves a veces no incluyen al intérprete.
-            coincide_artista = bool(n_artista and n_artista in ne)
+            # Para canciones, el intérprete también debe coincidir. No basta con
+            # encontrar una canción homónima de otro artista en Wikipedia.
+            coincide_artista = bool(n_artista and (
+                n_artista in ne[:1800] or n_artista in nt
+            ))
+            if not coincide_artista:
+                continue
         else:
             marcadores_artista = (
                 "cantante", "grupo musical", "banda musical", "musico", "musica",
