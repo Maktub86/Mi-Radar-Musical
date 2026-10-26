@@ -1166,6 +1166,7 @@ def api_wikipedia():
             app.logger.warning("No se pudo consultar Wikipedia en español")
 
     candidatas = []
+    candidatas_respaldo = []
     for pagina in paginas_por_titulo.values():
         titulo = str(pagina.get("title") or "")
         extracto = re.sub(r"\s+", " ", str(pagina.get("extract") or "")).strip()
@@ -1213,13 +1214,49 @@ def api_wikipedia():
             # Penaliza frases que solo enumeran géneros o describen la carrera sin un dato concreto.
             if tipo == "artista" and any(x in nf for x in ("su estilo musical", "su música combina", "su musica combina", "es conocido por su", "es conocida por su")):
                 puntos -= 3
+            candidata = {
+                "score": puntos + (1 if coincide_artista else 0),
+                "titulo": titulo,
+                "url": pagina.get("fullurl"),
+                "curiosidad": frase
+            }
             if puntos >= 2:
-                candidatas.append({
-                    "score": puntos + (1 if coincide_artista else 0),
-                    "titulo": titulo,
-                    "url": pagina.get("fullurl"),
-                    "curiosidad": frase
-                })
+                candidatas.append(candidata)
+            # Segundo nivel: hechos concretos que no contienen las palabras clave
+            # principales, pero sí fechas, cifras, títulos de obras o hitos verificables.
+            es_concreta = bool(
+                re.search(r"\\b(?:19|20)\\d{2}\\b", frase)
+                or re.search(r"\\b\\d{1,3}(?:[.,]\\d{3})*\\b", frase)
+                or any(m in nf for m in (
+                    "album", "sencillo", "puesto", "lista", "clasifico",
+                    "clasificada", "numero uno", "premio", "festival",
+                    "eurovision", "grammy", "platino", "oro", "grabada",
+                    "grabado", "compuso", "compuesta", "escribio", "escrita",
+                    "publico", "publicada", "lanzada", "lanzado", "ventas",
+                    "disco de", "banda sonora", "concierto", "gira"
+                ))
+            )
+            es_generica = any(normalizar(g) in nf for g in genericas) or (
+                indice == 0 and tipo == "artista"
+            )
+            if es_concreta and not es_generica and puntos >= -1:
+                candidata["score"] += 1
+                candidatas_respaldo.append(candidata)
+
+    if not candidatas and candidatas_respaldo:
+        candidatas_respaldo.sort(key=lambda c: c["score"], reverse=True)
+        mejor_respaldo = candidatas_respaldo[0]
+        if not mejor_respaldo.get("url"):
+            from urllib.parse import quote
+            mejor_respaldo["url"] = "https://es.wikipedia.org/wiki/" + quote(mejor_respaldo["titulo"].replace(" ", "_"), safe="()_,-")
+        return jsonify({
+            "encontrado": True,
+            "url": mejor_respaldo["url"],
+            "titulo": mejor_respaldo["titulo"],
+            "curiosidad": mejor_respaldo["curiosidad"],
+            "idioma": "es",
+            "fuente": "Wikipedia en español"
+        })
 
     if not candidatas:
         # Respaldo editorial verificado para ABBA: no dependemos solo de Wikipedia.
