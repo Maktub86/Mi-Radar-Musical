@@ -76,7 +76,7 @@ button:hover{background:#8d5abd}
 .reproductor-completo{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin:12px 0;background:#000}
 .boton-30{background:linear-gradient(120deg,#ff4fa3,#8a4dff 52%,#20bde8)!important;border:1px solid #ffffff85!important;box-shadow:0 4px 15px #9d46ff4d,inset 0 1px 0 #ffffff45!important}.boton-wikipedia{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;margin-left:8px;border-radius:5px;background:#777d88;color:#fff;font-weight:900;border:1px solid #a8adb6;cursor:pointer}
 .historia-wikipedia{margin:9px 0;padding:12px;border-left:3px solid #aeb4c0;background:#ffffff0b;border-radius:7px;color:#e4e4ec;font-size:14px;line-height:1.5}
-.historia-wikipedia a{color:#c9b0ff}
+.historia-wikipedia a{color:#c9b0ff}.boton-wikipedia{cursor:pointer;padding:0}.curiosidad-wiki{margin:9px 0;padding:12px;border-left:3px solid #aeb4c0;background:#ffffff0b;border-radius:7px;color:#e4e4ec;font-size:14px;line-height:1.5}.curiosidad-wiki a{color:#c9b0ff}
 body[data-wikipedia-off="1"] .boton-wikipedia{display:none!important}
 </style>
 </head>
@@ -216,6 +216,20 @@ async function cargarImagenArtista(nombre, foto, credito) {
  credito.style.display = 'block';
 }
 
+const cacheCuriosidadesWiki=new Map();
+async function mostrarCuriosidadWiki(tipo,nombre,artista,contenedor,boton){
+ let caja=contenedor.querySelector(':scope > .curiosidad-wiki');
+ if(caja){caja.remove();if(boton.dataset.abierto==='1'){boton.dataset.abierto='0';return;}}
+ caja=document.createElement('div');caja.className='curiosidad-wiki';caja.textContent='Consultando Wikipedia…';contenedor.appendChild(caja);boton.dataset.abierto='1';boton.disabled=true;
+ const clave=[tipo,nombre,artista||''].join('|');
+ try{
+  let promesa=cacheCuriosidadesWiki.get(clave);
+  if(!promesa){const q=new URLSearchParams({tipo,nombre,artista:artista||''});promesa=fetch('/api/wikipedia?'+q,{signal:AbortSignal.timeout(7000)}).then(r=>r.ok?r.json():{encontrado:false}).catch(()=>({encontrado:false}));cacheCuriosidadesWiki.set(clave,promesa);}
+  const d=await promesa;caja.replaceChildren();
+  if(d.encontrado&&d.curiosidad){const texto=document.createElement('span');texto.textContent=d.curiosidad+' ';caja.appendChild(texto);if(d.url){const link=document.createElement('a');link.href=d.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Fuente: Wikipedia';caja.appendChild(link);}}
+  else caja.textContent='No hay una curiosidad suficientemente verificada disponible ahora.';
+ }catch(e){caja.textContent='Wikipedia no está disponible ahora mismo.'}finally{boton.disabled=false;}
+}
 function crearTarjetaArtista(a, destino){
   const nombreArtista=a.NombreOriginal||a.NombreNormalizado||'Sin nombre';
   const div=document.createElement('div');
@@ -223,22 +237,11 @@ function crearTarjetaArtista(a, destino){
   const nombre=document.createElement('strong');
   nombre.textContent=nombreArtista;
   div.appendChild(nombre);
-  const wikiArtista=document.createElement('a');
-  wikiArtista.className='boton-wikipedia';
-  wikiArtista.textContent='W';
-  wikiArtista.style.display='none';
-  wikiArtista.target='_blank';
-  wikiArtista.rel='noopener noreferrer';
-  wikiArtista.title='Artículo del artista en Wikipedia';
-  wikiArtista.setAttribute('aria-label','Artículo de '+nombreArtista+' en Wikipedia');
+  const wikiArtista=document.createElement('button');
+  wikiArtista.type='button';wikiArtista.className='boton-wikipedia';wikiArtista.textContent='W';
+  wikiArtista.title='Consultar curiosidad del artista';wikiArtista.setAttribute('aria-label','Consultar curiosidad de '+nombreArtista);
+  wikiArtista.addEventListener('click',()=>mostrarCuriosidadWiki('artista',nombreArtista,'',div,wikiArtista));
   div.insertBefore(wikiArtista,div.firstChild.nextSibling);
-  const comprobarWikiArtista=async()=>{
-    try{if(localStorage.getItem('mrWikipediaEnabled')==='0')return}catch(e){}
-    if(wikiArtista.dataset.consultado)return;
-    wikiArtista.dataset.consultado='1';
-    try{const q=new URLSearchParams({tipo:'artista',nombre:nombreArtista});const r=await fetch('/api/wikipedia?'+q);const d=await r.json();if(d.encontrado&&wikiArtista.isConnected){wikiArtista.href=d.url;wikiArtista.title=d.titulo+' · Wikipedia';wikiArtista.style.display='inline-flex'}}catch(e){}
-  };
-  if('IntersectionObserver' in window){const ow=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){ow.disconnect();comprobarWikiArtista()}}),{rootMargin:'180px'});ow.observe(wikiArtista)}else comprobarWikiArtista();
   if (nombreArtista.trim().toUpperCase() === 'ABBA') {
    const foto = document.createElement('img');
    foto.src = '/abba.jpg';
@@ -277,12 +280,8 @@ function crearTarjetaArtista(a, destino){
   boton.addEventListener('click',()=>cargarPublicaciones(nombreArtista,div));
   div.appendChild(boton);
   destino.appendChild(div);
-  if (observadorFotos && nombreArtista.trim().toUpperCase() !== 'ABBA') observadorFotos.observe(div);
-  else if (!observadorFotos && nombreArtista.trim().toUpperCase() !== 'ABBA') {
-   const foto = div.querySelector('.foto-artista');
-   const credito = div.querySelector('.credito-foto');
-   if (foto && credito) cargarImagenArtista(nombreArtista, foto, credito);
-  }
+  // Las consultas a Wikipedia no se hacen automáticamente al mostrar artistas.
+  // Solo se consulta cuando el usuario pulsa el icono W.
 }
 
 function mostrar(){
@@ -344,6 +343,9 @@ async function cargarPublicaciones(nombre,contenedor){
    const t=document.createElement('strong');
    t.textContent=p.titulo||'Sin título';
    item.appendChild(t);
+   const botonWikiCancion=document.createElement('button');botonWikiCancion.type='button';botonWikiCancion.className='boton-wikipedia';botonWikiCancion.textContent='W';botonWikiCancion.title='Consultar curiosidad verificada de la canción';
+   botonWikiCancion.addEventListener('click',()=>mostrarCuriosidadWiki('cancion',p.titulo||'',datos.artista||nombre,item,botonWikiCancion));
+   item.appendChild(botonWikiCancion);
 
    const detalle=document.createElement('div');
    detalle.className='fecha';
