@@ -1220,9 +1220,57 @@ def api_wikipedia():
                 continue
             if not paginas:
                 continue
-            pagina = paginas[0]
-            extracto = re.sub(r"\s+", " ", str(pagina.get("extract") or "")).strip()
-            frases = [f.strip() for f in re.split(r"(?<=[.!?])\s+", extracto) if f.strip()]
+
+            def normalizar_busqueda(texto):
+                texto = unicodedata.normalize("NFKD", str(texto or ""))
+                texto = "".join(ch for ch in texto if not unicodedata.combining(ch)).casefold()
+                return re.sub(r"[^a-z0-9]+", " ", texto).strip()
+
+            objetivo = normalizar_busqueda(nombre)
+            artista_objetivo = normalizar_busqueda(artista)
+            marcadores_musica = (
+                "grupo musical", "banda", "grupo", "cantante", "musico", "musica",
+                "vocalista", "cantautor", "cantautora", "rock band", "pop group",
+                "musical group", "singer", "songwriter", "music group"
+            )
+            candidatos = []
+            for p in paginas:
+                titulo_p = re.sub(r"\\s+", " ", str(p.get("title") or "")).strip()
+                extracto_p = re.sub(r"\\s+", " ", str(p.get("extract") or "")).strip()
+                titulo_norm = normalizar_busqueda(titulo_p)
+                texto_norm = normalizar_busqueda(titulo_p + " " + extracto_p)
+                if tipo == "artista":
+                    # Nunca aceptar una persona que solo sea miembro de un grupo: el título
+                    # debe corresponder al artista/grupo solicitado.
+                    coincide_titulo = (titulo_norm == objetivo or titulo_norm.startswith(objetivo + " "))
+                    if not coincide_titulo:
+                        continue
+                    inicio = normalizar_busqueda(extracto_p[:350])
+                    if any(x in inicio for x in ("es un nombre", "nombre de pila", "given name", "is a given name", "disambiguation page", "pagina de desambiguacion")):
+                        continue
+                    puntuacion = 100 if titulo_norm == objetivo else 70
+                    if any(m in texto_norm for m in marcadores_musica):
+                        puntuacion += 25
+                    # Desambiguaciones no deben ganar frente a la página del grupo.
+                    if "puede referirse a" in texto_norm or "may refer to" in texto_norm:
+                        puntuacion -= 100
+                else:
+                    titulo_coincide = (titulo_norm == objetivo or titulo_norm.startswith(objetivo + " ") or objetivo in titulo_norm)
+                    artista_coincide = bool(artista_objetivo and artista_objetivo in texto_norm)
+                    # Si Wikipedia no relaciona el título con el artista indicado, no mostrar
+                    # la biografía de un miembro ni otra canción homónima.
+                    if not titulo_coincide or not artista_coincide:
+                        continue
+                    puntuacion = 100 if titulo_norm == objetivo else 70
+                    puntuacion += 40
+                candidatos.append((puntuacion, p))
+            if not candidatos:
+                # Probar la siguiente consulta con más contexto antes de rendirse.
+                continue
+            candidatos.sort(key=lambda item: item[0], reverse=True)
+            pagina = candidatos[0][1]
+            extracto = re.sub(r"\\s+", " ", str(pagina.get("extract") or "")).strip()
+            frases = [f.strip() for f in re.split(r"(?<=[.!?])\\s+", extracto) if f.strip()]
             resumen = " ".join(frases[:3])[:650].strip() or extracto[:650]
             if idioma == "en":
                 resumen = traducir_es(resumen)
