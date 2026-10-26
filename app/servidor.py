@@ -1417,6 +1417,40 @@ def api_wikipedia():
         except Exception:
             app.logger.info("La búsqueda web complementaria no devolvió resultados utilizables")
 
+    if not candidatas and tipo == "artista":
+        # Último respaldo: mostrar la biografía de la página musical correcta aunque
+        # no haya una frase que supere el detector de curiosidades.
+        for pagina in paginas_por_titulo.values():
+            titulo = str(pagina.get("title") or "")
+            extracto = re.sub(r"\\s+", " ", str(pagina.get("extract") or "")).strip()
+            nt = normalizar(titulo)
+            ne = normalizar(extracto)
+            if not extracto or not (nt == n_nombre or nt.startswith(n_nombre + " ")):
+                continue
+            inicio = ne[:420]
+            if "puede referirse a" in inicio or "pagina de desambiguacion" in inicio:
+                continue
+            if any(normalizar(x) in ne for x in (
+                "producto de pasteleria", "pasta dulce", "recubrimiento de pasteles"
+            )) and not any(normalizar(x) in ne for x in (
+                "grupo musical", "banda musical", "cantante", "rock latino"
+            )):
+                continue
+            if not any(normalizar(m) in ne for m in (
+                "cantante", "grupo musical", "banda musical", "musico", "vocalista",
+                "rapero", "cantautor", "artista", "discografia", "rock latino", "pop latino"
+            )):
+                continue
+            frases = [f.strip() for f in re.split(r"(?<=[.!?])\\s+", extracto) if f.strip()]
+            biografia = " ".join(frases[:2])[:520]
+            dato = next((f for f in frases[2:] if 45 <= len(f) <= 330), "")
+            url = pagina.get("fullurl") or ("https://es.wikipedia.org/wiki/" + titulo.replace(" ", "_"))
+            return jsonify({
+                "encontrado": True, "url": url, "titulo": titulo,
+                "curiosidad": dato, "biografia": biografia,
+                "idioma": "es", "fuente": "Wikipedia en español"
+            })
+
     if not candidatas:
         # En modo artista no se sustituye la información del grupo por una historia de canción.
         return jsonify({"encontrado": False, "motivo": "sin_curiosidad_especifica"})
