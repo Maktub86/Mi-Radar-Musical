@@ -76,7 +76,7 @@ button:hover{background:#8d5abd}
 .reproductor-completo{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin:12px 0;background:#000}
 .boton-30{background:linear-gradient(120deg,#ff4fa3,#8a4dff 52%,#20bde8)!important;border:1px solid #ffffff85!important;box-shadow:0 4px 15px #9d46ff4d,inset 0 1px 0 #ffffff45!important}.boton-wikipedia{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;margin-left:8px;border-radius:5px;background:#777d88;color:#fff;font-weight:900;border:1px solid #a8adb6;cursor:pointer}
 .historia-wikipedia{margin:9px 0;padding:12px;border-left:3px solid #aeb4c0;background:#ffffff0b;border-radius:7px;color:#e4e4ec;font-size:14px;line-height:1.5}
-.historia-wikipedia a{color:#c9b0ff}.boton-wikipedia{cursor:pointer;padding:0}.curiosidad-wiki{margin:9px 0;padding:12px;border-left:3px solid #aeb4c0;background:#ffffff0b;border-radius:7px;color:#e4e4ec;font-size:14px;line-height:1.5}.curiosidad-wiki a{color:#c9b0ff}
+.historia-wikipedia a{color:#c9b0ff}.boton-wikipedia{cursor:pointer;padding:0}.info-wikipedia{margin:9px 0;padding:12px;border-left:3px solid #aeb4c0;background:#ffffff0b;border-radius:7px;color:#e4e4ec;font-size:14px;line-height:1.5}.info-wikipedia a{color:#c9b0ff}
 body[data-wikipedia-off="1"] .boton-wikipedia{display:none!important}
 </style>
 </head>
@@ -216,17 +216,17 @@ async function cargarImagenArtista(nombre, foto, credito) {
  credito.style.display = 'block';
 }
 
-const cacheCuriosidadesWiki=new Map();
+const cacheWikipediaInfo=new Map();
 async function mostrarCuriosidadWiki(tipo,nombre,artista,contenedor,boton){
- let caja=contenedor.querySelector(':scope > .curiosidad-wiki');
+ let caja=contenedor.querySelector(':scope > .info-wikipedia');
  if(caja){caja.remove();if(boton.dataset.abierto==='1'){boton.dataset.abierto='0';return;}}
- caja=document.createElement('div');caja.className='curiosidad-wiki';
+ caja=document.createElement('div');caja.className='info-wikipedia';
  caja.textContent=tipo==='artista'?'Consultando biografía…':'Buscando información de la canción en Wikipedia…';
  contenedor.appendChild(caja);boton.dataset.abierto='1';boton.disabled=true;
  const clave=[tipo,nombre,artista||''].join('|');
  try{
-  let promesa=cacheCuriosidadesWiki.get(clave);
-  if(!promesa){const q=new URLSearchParams({tipo,nombre,artista:artista||''});promesa=fetch('/api/wikipedia?'+q,{signal:AbortSignal.timeout(9000)}).then(r=>r.ok?r.json():{encontrado:false}).catch(()=>({encontrado:false}));cacheCuriosidadesWiki.set(clave,promesa);}
+  let promesa=cacheWikipediaInfo.get(clave);
+  if(!promesa){const q=new URLSearchParams({tipo,nombre,artista:artista||''});promesa=fetch('/api/wikipedia?'+q,{signal:AbortSignal.timeout(9000)}).then(r=>r.ok?r.json():{encontrado:false}).catch(()=>({encontrado:false}));cacheWikipediaInfo.set(clave,promesa);}
   const d=await promesa;caja.replaceChildren();
   const contenido=tipo==='artista'?d.biografia:d.informacion;
   if(d.encontrado&&contenido){
