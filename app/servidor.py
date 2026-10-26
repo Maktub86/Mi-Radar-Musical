@@ -1091,8 +1091,8 @@ def _ejecutar_actualizacion():
 def api_resumen_musical():
     """Genera bajo demanda un resumen musical breve con Gemini y búsqueda web."""
     tipo = (request.args.get("tipo") or "").strip().lower()
-    nombre = re.sub(r"\\s+", " ", (request.args.get("nombre") or "").strip())[:180]
-    artista = re.sub(r"\\s+", " ", (request.args.get("artista") or "").strip())[:180]
+    nombre = re.sub(r"\s+", " ", (request.args.get("nombre") or "").strip())[:180]
+    artista = re.sub(r"\s+", " ", (request.args.get("artista") or "").strip())[:180]
     api_key = (os.environ.get("GEMINI_API_KEY") or "").strip()
     if tipo not in ("artista", "cancion") or not nombre or (tipo == "cancion" and not artista):
         return jsonify({"encontrado": False, "error": "Falta el artista o la canción."}), 400
