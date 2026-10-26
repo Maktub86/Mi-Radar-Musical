@@ -92,7 +92,7 @@ function mostrar(){
   fila.append(info,acciones);frag.appendChild(fila);
  }
  lista.appendChild(frag);
- for(const b of lista.querySelectorAll('.wiki')){if(observadorWikiMusica)observadorWikiMusica.observe(b);else preverificarWikiMusica(b);}
+ for(const b of lista.querySelectorAll('.wiki')){// La información se consulta solo al pulsar, no al cargar la pestaña.}
 }
 function cargarFiltros(){
  const opciones={
