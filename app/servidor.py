@@ -590,18 +590,57 @@ def api_lo_mejor():
         if datos_top.get("error"):
             raise ValueError("Deezer no ha permitido consultar las canciones de este artista.")
 
+        pistas_top = datos_top.get("data", [])[:5]
+
+        # Si el endpoint de popularidad devuelve una lista vacía, intentar
+        # recuperar canciones del artista mediante la búsqueda de pistas.
+        if not pistas_top:
+            nombre_deezer = mejor.get("name", nombre_solicitado)
+            consulta_pistas = urlencode({
+                "q": 'artist:"' + nombre_deezer.replace('"', "") + '"',
+                "limit": 25
+            })
+            peticion_pistas = Request(
+                "https://api.deezer.com/search/track?" + consulta_pistas,
+                headers={"User-Agent": "MiRadarMusical/1.0"}
+            )
+            with urlopen(peticion_pistas, timeout=4) as respuesta:
+                datos_pistas = json.loads(respuesta.read().decode("utf-8"))
+            if datos_pistas.get("error"):
+                raise ValueError("Deezer no ha permitido buscar canciones de este artista.")
+
+            pistas_busqueda = datos_pistas.get("data", [])
+            objetivo_artista = normalizar_texto(nombre_deezer)
+            pistas_top = [
+                pista for pista in pistas_busqueda
+                if normalizar_texto((pista.get("artist") or {}).get("name", "")) == objetivo_artista
+            ]
+            pistas_top.sort(key=lambda pista: int(pista.get("rank") or 0), reverse=True)
+            pistas_top = pistas_top[:5]
+
         canciones = []
-        for pista in datos_top.get("data", [])[:5]:
+        vistos = set()
+        for pista in pistas_top:
+            titulo = pista.get("title") or "Sin título"
+            clave_titulo = normalizar_texto(titulo)
+            if clave_titulo in vistos:
+                continue
+            vistos.add(clave_titulo)
             artista_pista = (pista.get("artist") or {}).get("name") or mejor.get("name", nombre_solicitado)
             album = pista.get("album") or {}
             canciones.append({
-                "titulo": pista.get("title") or "Sin título",
+                "titulo": titulo,
                 "artista": artista_pista,
                 "album": album.get("title") or "",
                 "preview": pista.get("preview") or "",
                 "url": pista.get("link") or "",
                 "rank": pista.get("rank")
             })
+
+        if not canciones:
+            return jsonify({
+                "error": "Deezer no ha encontrado canciones para este artista en este momento. Prueba de nuevo más tarde."
+            }), 502
 
         return jsonify({
             "artista": mejor.get("name", nombre_solicitado),
