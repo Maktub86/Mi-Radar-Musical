@@ -1199,7 +1199,7 @@ def api_wikipedia():
         paginas_unicas = {}
         for p in paginas:
             titulo = str(p.get("title") or "").strip()
-            extracto = re.sub(r"\\s+", " ", str(p.get("extract") or "")).strip()
+            extracto = re.sub(r"\s+", " ", str(p.get("extract") or "")).strip()
             ntitulo = normalizar(titulo)
             ne = normalizar(extracto[:1200])
             if not titulo or not extracto:
@@ -1241,8 +1241,8 @@ def api_wikipedia():
             paginas_busqueda = consultar_wikipedia(idioma, consulta)
             ordenadas = filtrar_paginas(paginas_busqueda, idioma)
         for pagina in ordenadas:
-            extracto = re.sub(r"\\s+", " ", str(pagina.get("extract") or "")).strip()
-            frases = [f.strip() for f in re.split(r"(?<=[.!?])\\s+", extracto) if f.strip()]
+            extracto = re.sub(r"\s+", " ", str(pagina.get("extract") or "")).strip()
+            frases = [f.strip() for f in re.split(r"(?<=[.!?])\s+", extracto) if f.strip()]
             resumen = " ".join(frases[:5])[:1200].strip() or extracto[:1200]
             url_pagina = pagina.get("fullurl") or ("https://" + idioma + ".wikipedia.org/wiki/" +
                 quote(str(pagina.get("title", nombre)).replace(" ", "_"), safe="()_,-"))
