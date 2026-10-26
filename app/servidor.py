@@ -5,6 +5,7 @@ import json
 import subprocess
 import shutil
 import threading
+import time
 import sys
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -353,7 +354,7 @@ async function consultarGemini(tipo,nombre,artista){
   cacheGemini.set(clave,(async()=>{
    try{
     const q=new URLSearchParams({tipo,nombre,artista:artista||''});
-    const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(15000)});
+    const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(45000)});
     const d=await r.json();
     if(!r.ok||!d.encontrado||!d.resumen)return {encontrado:false,mensaje:d.error||'No se ha encontrado información en español para este resultado.'};
     return d;
@@ -1183,7 +1184,48 @@ def api_resumen_musical():
         return jsonify({"encontrado": False, "error": "Fallo de conexión al consultar Gemini. Consulta los registros de Render para ver el detalle."}), 502
 
 
+# Caché breve de Wikipedia: evita repetir consultas externas para las mismas canciones/artistas.
+_cache_wikipedia = {}
+_candado_cache_wikipedia = threading.Lock()
+
+def cache_respuesta_wikipedia(vista):
+    def envoltura(*args, **kwargs):
+        tipo = (request.args.get("tipo") or "").strip().lower()
+        nombre = re.sub(r"\s+", " ", (request.args.get("nombre") or "").strip())[:180]
+        artista = re.sub(r"\s+", " ", (request.args.get("artista") or "").strip())[:180]
+        clave = (tipo, unicodedata.normalize("NFKD", nombre).casefold(), unicodedata.normalize("NFKD", artista).casefold())
+        ahora = time.time()
+        with _candado_cache_wikipedia:
+            entrada = _cache_wikipedia.get(clave)
+            if entrada and entrada[0] > ahora:
+                return jsonify(entrada[1]), entrada[2]
+            if entrada:
+                _cache_wikipedia.pop(clave, None)
+        salida = vista(*args, **kwargs)
+        try:
+            respuesta, estado = salida if isinstance(salida, tuple) else (salida, 200)
+            datos = respuesta.get_json()
+            if isinstance(datos, dict):
+                # Las biografías verificadas duran 30 min; los fallos/no coincidencias, 1 min.
+                ttl = 1800 if datos.get("fuente_tipo") == "wikipedia" and datos.get("encontrado") else 60
+                with _candado_cache_wikipedia:
+                    _cache_wikipedia[clave] = (time.time() + ttl, datos, estado)
+                    if len(_cache_wikipedia) > 500:
+                        vencidas = [k for k, v in _cache_wikipedia.items() if v[0] <= time.time()]
+                        for k in vencidas:
+                            _cache_wikipedia.pop(k, None)
+                        while len(_cache_wikipedia) > 500:
+                            _cache_wikipedia.pop(next(iter(_cache_wikipedia)))
+        except Exception:
+            # La caché nunca debe impedir que se entregue una respuesta válida.
+            pass
+        return salida
+    envoltura.__name__ = vista.__name__
+    return envoltura
+
+
 @app.get("/api/wikipedia")
+@cache_respuesta_wikipedia
 def api_wikipedia():
     """Busca datos musicales y descarta páginas que no correspondan al artista o canción consultados."""
     tipo = (request.args.get("tipo") or "").strip().lower()
