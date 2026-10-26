@@ -1235,8 +1235,8 @@ def api_wikipedia():
             )
             candidatos = []
             for p in paginas:
-                titulo_p = re.sub(r"\\s+", " ", str(p.get("title") or "")).strip()
-                extracto_p = re.sub(r"\\s+", " ", str(p.get("extract") or "")).strip()
+                titulo_p = re.sub(r"\s+", " ", str(p.get("title") or "")).strip()
+                extracto_p = re.sub(r"\s+", " ", str(p.get("extract") or "")).strip()
                 titulo_norm = normalizar_busqueda(titulo_p)
                 texto_norm = normalizar_busqueda(titulo_p + " " + extracto_p)
                 if tipo == "artista":
@@ -1269,7 +1269,7 @@ def api_wikipedia():
                 continue
             candidatos.sort(key=lambda item: item[0], reverse=True)
             pagina = candidatos[0][1]
-            extracto = re.sub(r"\\s+", " ", str(pagina.get("extract") or "")).strip()
+            extracto = re.sub(r"\s+", " ", str(pagina.get("extract") or "")).strip()
             frases = [f.strip() for f in re.split(r"(?<=[.!?])\\s+", extracto) if f.strip()]
             resumen = " ".join(frases[:3])[:650].strip() or extracto[:650]
             if idioma == "en":
