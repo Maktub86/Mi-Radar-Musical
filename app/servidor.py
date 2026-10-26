@@ -1325,9 +1325,11 @@ def api_wikipedia():
                 return True
             if es_claramente_otro_ambito(extracto):
                 return False
-            # Si el resumen no confirma que sea una persona del ámbito musical,
-            # no aceptar el homónimo solo porque tenga el mismo nombre.
-            return False
+            # Si el nombre de la página coincide exactamente y no hay señales claras
+            # de otra profesión, permitir la página aunque el resumen sea demasiado breve.
+            # Así no se pierden artistas legítimos con extractos escuetos; los homónimos
+            # claramente deportivos/políticos siguen bloqueados arriba.
+            return True
         # Para canciones exigimos el título de la canción y alguna referencia al artista o a música.
         cancion_coincide = (titulo_n == nombre_n or titulo_n.startswith(nombre_n + " ") or nombre_n.startswith(titulo_n + " "))
         artista_mencionado = contiene_frase(titulo + " " + extracto, artista)
