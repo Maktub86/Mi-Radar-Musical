@@ -1142,14 +1142,16 @@ def api_wikipedia():
 
     # Para artistas se consulta primero la página exacta: evita confundir el grupo
     # con una canción o un álbum suyo y reduce el tiempo de carga.
+    # Busca también títulos desambiguados como "Maná (grupo musical)".
     consultas = (
-        [None] if tipo == "artista"
+        [None, f'"{nombre}" cantante OR grupo musical OR banda musical OR artista']
+        if tipo == "artista"
         else [f'"{nombre}" "{artista}"', f'"{nombre}" canción "{artista}"']
     )
     paginas_por_titulo = {}
     for consulta in consultas:
         try:
-            if tipo == "artista":
+            if tipo == "artista" and consulta is None:
                 params = urlencode({
                     "action": "query", "titles": nombre,
                     "prop": "extracts|info", "explaintext": "1", "exchars": "9000",
@@ -1166,7 +1168,7 @@ def api_wikipedia():
                 "https://es.wikipedia.org/w/api.php?" + params,
                 headers={"User-Agent": "MiRadarMusical/1.3 (music trivia; contact: support@example.com)"}
             )
-            with urlopen(req, timeout=4) as respuesta:
+            with urlopen(req, timeout=3) as respuesta:
                 datos = json.loads(respuesta.read().decode("utf-8"))
             for pagina in (datos.get("query", {}).get("pages") or {}).values():
                 paginas_por_titulo[pagina.get("title", "")] = pagina
@@ -1184,7 +1186,8 @@ def api_wikipedia():
         # Artistas: solo la página propia, nunca una canción/álbum con nombre parecido.
         # Canciones: se admite título ampliado para desambiguar, sujeto a marcadores musicales.
         if tipo == "artista":
-            if nt != n_nombre:
+            # Acepta el nombre exacto o su página desambiguada, no páginas que solo lo mencionan.
+            if not (nt == n_nombre or nt.startswith(n_nombre + " ")):
                 continue
         elif not (nt == n_nombre or nt.startswith(n_nombre + " ")):
             continue
@@ -1204,7 +1207,8 @@ def api_wikipedia():
             marcadores_artista = (
                 "cantante", "grupo musical", "banda musical", "musico", "musica",
                 "vocalista", "compositor", "interprete", "artista", "productor musical",
-                "rapero", "cantautora", "cantautor"
+                "rapero", "cantautora", "cantautor", "discografia", "banda de rock",
+                "duo musical", "trio musical"
             )
             if not any(normalizar(m) in ne for m in marcadores_artista):
                 continue
@@ -1289,7 +1293,7 @@ def api_wikipedia():
                 "https://html.duckduckgo.com/html/?" + params_web,
                 headers={"User-Agent": "Mozilla/5.0 (compatible; MiRadarMusical/1.3)"}
             )
-            with urlopen(req_web, timeout=5) as respuesta_web:
+            with urlopen(req_web, timeout=2.5) as respuesta_web:
                 html_web = respuesta_web.read().decode("utf-8", errors="replace")
             bloques = re.findall(
                 r'<div class="result[^"]*"[^>]*>(.*?)</div>\s*</div>',
@@ -1324,8 +1328,16 @@ def api_wikipedia():
                     continue
                 # En modo artista, el resultado debe tratar realmente del artista,
                 # no de una canción concreta de su catálogo.
-                if tipo == "artista" and n_nombre not in normalizar(titulo_fuente + " " + texto_fuente):
-                    continue
+                if tipo == "artista":
+                    texto_resultado = normalizar(titulo_fuente + " " + texto_fuente)
+                    titulo_norm = normalizar(titulo_fuente)
+                    # No usar páginas de canciones/álbumes como si fueran la biografía.
+                    if not (titulo_norm == n_nombre or titulo_norm.startswith(n_nombre + " ")):
+                        continue
+                    if any(p in titulo_norm for p in ("cancion", "album", "single", "sencillo", "discografia")):
+                        continue
+                    if n_nombre not in texto_resultado:
+                        continue
                 if tipo == "cancion" and n_artista not in normalizar(titulo_fuente + " " + texto_fuente):
                     # El buscador ya recibió el artista; no se descarta si el snippet omite el nombre.
                     pass
