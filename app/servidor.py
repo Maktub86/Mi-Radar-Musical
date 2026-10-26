@@ -1140,25 +1140,33 @@ def api_wikipedia():
         "es un compositor", "es una compositora"
     )
 
-    # Solo se usa Wikipedia en español: no mostramos frases en inglés al usuario.
-    consultas = [
-        f'"{nombre}" "{artista}"' if tipo == "cancion" else f'"{nombre}"',
-        f'intitle:"{nombre}" música' if tipo == "artista" else f'"{nombre}" canción "{artista}"'
-    ]
+    # Para artistas se consulta primero la página exacta: evita confundir el grupo
+    # con una canción o un álbum suyo y reduce el tiempo de carga.
+    consultas = (
+        [None] if tipo == "artista"
+        else [f'"{nombre}" "{artista}"', f'"{nombre}" canción "{artista}"']
+    )
     paginas_por_titulo = {}
     for consulta in consultas:
         try:
-            params = urlencode({
-                "action": "query", "generator": "search", "gsrsearch": consulta,
-                "gsrnamespace": "0", "gsrlimit": "15",
-                "prop": "extracts|info", "explaintext": "1", "exchars": "18000",
-                "inprop": "url", "format": "json", "redirects": "1"
-            })
+            if tipo == "artista":
+                params = urlencode({
+                    "action": "query", "titles": nombre,
+                    "prop": "extracts|info", "explaintext": "1", "exchars": "9000",
+                    "inprop": "url", "format": "json", "redirects": "1"
+                })
+            else:
+                params = urlencode({
+                    "action": "query", "generator": "search", "gsrsearch": consulta,
+                    "gsrnamespace": "0", "gsrlimit": "8",
+                    "prop": "extracts|info", "explaintext": "1", "exchars": "9000",
+                    "inprop": "url", "format": "json", "redirects": "1"
+                })
             req = Request(
                 "https://es.wikipedia.org/w/api.php?" + params,
-                headers={"User-Agent": "MiRadarMusical/1.2 (music trivia)"}
+                headers={"User-Agent": "MiRadarMusical/1.3 (music trivia; contact: support@example.com)"}
             )
-            with urlopen(req, timeout=6) as respuesta:
+            with urlopen(req, timeout=4) as respuesta:
                 datos = json.loads(respuesta.read().decode("utf-8"))
             for pagina in (datos.get("query", {}).get("pages") or {}).values():
                 paginas_por_titulo[pagina.get("title", "")] = pagina
@@ -1173,8 +1181,12 @@ def api_wikipedia():
         if not extracto:
             continue
         nt, ne = normalizar(titulo), normalizar(extracto)
-        # No confundir una canción con el álbum, película u otra obra homónima.
-        if not (nt == n_nombre or nt.startswith(n_nombre + " ")):
+        # Artistas: solo la página propia, nunca una canción/álbum con nombre parecido.
+        # Canciones: se admite título ampliado para desambiguar, sujeto a marcadores musicales.
+        if tipo == "artista":
+            if nt != n_nombre:
+                continue
+        elif not (nt == n_nombre or nt.startswith(n_nombre + " ")):
             continue
 
         if tipo == "cancion":
@@ -1335,16 +1347,7 @@ def api_wikipedia():
             app.logger.info("La búsqueda web complementaria no devolvió resultados utilizables")
 
     if not candidatas:
-        # Respaldo editorial verificado para ABBA: no dependemos solo de Wikipedia.
-        if tipo == "artista" and normalizar(nombre) == "abba":
-            return jsonify({
-                "encontrado": True,
-                "url": "https://abbasite.com/articles/dancing-queen/",
-                "titulo": "In Focus: Dancing Queen",
-                "curiosidad": "Antes de llamarse «Dancing Queen», la canción tenía el título provisional «Boogaloo». Björn y Benny se inspiraron en «Rock Your Baby», de George McCrae, y en la batería del álbum Gumbo, de Dr. John. Cuando Benny llevó a casa una cinta de la base instrumental, Frida la escuchó y contó que le pareció tan hermosa que se echó a llorar.",
-                "idioma": "es",
-                "fuente": "web oficial de ABBA"
-            })
+        # En modo artista no se sustituye la información del grupo por una historia de canción.
         return jsonify({"encontrado": False, "motivo": "sin_curiosidad_especifica"})
 
     candidatas.sort(key=lambda c: c["score"], reverse=True)
