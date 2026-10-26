@@ -1222,6 +1222,9 @@ def api_wikipedia():
         frases = [f.strip() for f in re.split(r"(?<=[.!?])\s+", extracto) if f.strip()]
         frases = [f for f in frases if 65 <= len(f) <= 330]
         for indice, frase in enumerate(frases):
+            # La curiosidad debe aportar algo distinto de la biografía mostrada arriba.
+            if tipo == "artista" and indice < 2:
+                continue
             nf = normalizar(frase)
             puntos = sum(2 for pista in pistas if normalizar(pista) in nf)
             if any(normalizar(g) in nf for g in genericas):
