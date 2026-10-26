@@ -358,16 +358,20 @@ async function verificarWikipedia(tipo,nombre,artista){
    }catch(e){return null;}
   })());
  }
- return cacheWikipediaVerificada.get(clave);
+ const resultado=await cacheWikipediaVerificada.get(clave);
+  if(!resultado)cacheWikipediaVerificada.delete(clave);
+  return resultado;
 }
-function mostrarCuriosidadWiki(contenedor,info){
- const anterior=contenedor.querySelector('.curiosidad-wikipedia');
- if(anterior){anterior.remove();return;}
- const caja=nodo('div','curiosidad-wikipedia');
- caja.style.cssText='margin:8px 0 12px;padding:12px 14px;border-radius:10px;background:#ffffff0d;border:1px solid #ffffff20;color:#d9e8f4;line-height:1.5;font-size:13px';
- caja.appendChild(nodo('p','',info.curiosidad));
- const enlace=nodo('a','','Leer artículo en Wikipedia ↗');enlace.href=info.url;enlace.target='_blank';enlace.rel='noopener noreferrer';enlace.style.cssText='display:inline-block;margin-top:6px;color:#9ecbff;font-weight:700';
- caja.appendChild(enlace);contenedor.appendChild(caja);
+function mostrarCuriosidadWiki(contenedor,info,tipo){
+  const anterior=contenedor.querySelector('.curiosidad-wikipedia');
+  if(anterior){anterior.remove();return;}
+  const caja=nodo('div','curiosidad-wikipedia');
+  caja.style.cssText='margin:8px 0 12px;padding:12px 14px;border-radius:10px;background:#ffffff0d;border:1px solid #ffffff20;color:#d9e8f4;line-height:1.5;font-size:13px';
+  if(tipo==='artista'&&info.biografia)caja.appendChild(nodo('p','',info.biografia));
+  caja.appendChild(nodo('p','',tipo==='artista'?'Curiosidad: '+info.curiosidad:'Sobre la canción: '+info.curiosidad));
+  const fuente=info.fuente||'Wikipedia';
+  const enlace=nodo('a','','Leer fuente: '+fuente+' ↗');enlace.href=info.url;enlace.target='_blank';enlace.rel='noopener noreferrer';enlace.style.cssText='display:inline-block;margin-top:6px;color:#9ecbff;font-weight:700';
+  caja.appendChild(enlace);contenedor.appendChild(caja);
 }
 const cacheHistoriasCancion=new Map();
 async function cargarHistoriaCancion(titulo,artista,fila,boton){
