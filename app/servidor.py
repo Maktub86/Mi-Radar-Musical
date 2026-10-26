@@ -1213,6 +1213,82 @@ def api_wikipedia():
             "encontrado": False,
             "error": "No se ha encontrado una página biográfica en Wikipedia en español para este nombre."
         }), 200
+    # Para canciones, buscar información descriptiva de la obra en Wikipedia.
+    # No se generan ni se puntúan "curiosidades": se devuelve el extracto de la página.
+    if tipo == "cancion":
+        for idioma in ("es", "en"):
+            consultas_cancion = [
+                {"action": "query", "titles": nombre, "redirects": "1",
+                 "prop": "extracts|info", "explaintext": "1", "exchars": "6000",
+                 "inprop": "url", "format": "json"},
+                {"action": "query", "generator": "search",
+                 "gsrsearch": f'"{nombre}" "{artista}"', "gsrnamespace": "0", "gsrlimit": "8",
+                 "prop": "extracts|info", "explaintext": "1", "exchars": "6000",
+                 "inprop": "url", "format": "json", "redirects": "1"}
+            ]
+            paginas_cancion = []
+            for parametros in consultas_cancion:
+                try:
+                    req = Request(
+                        f"https://{idioma}.wikipedia.org/w/api.php?" + urlencode(parametros),
+                        headers={"User-Agent": "MiRadarMusical/1.6 (song information summary)"}
+                    )
+                    with urlopen(req, timeout=4) as respuesta:
+                        datos = json.loads(respuesta.read().decode("utf-8"))
+                    paginas_cancion.extend(
+                        (datos.get("query", {}).get("pages") or {}).values()
+                    )
+                    if any(p.get("extract") for p in paginas_cancion):
+                        break
+                except Exception:
+                    app.logger.warning("No se pudo consultar la información de la canción %s", nombre)
+
+            paginas_unicas = {}
+            for pagina in paginas_cancion:
+                titulo_pagina = str(pagina.get("title") or "").strip()
+                extracto_pagina = re.sub(r"\\s+", " ", str(pagina.get("extract") or "")).strip()
+                titulo_norm = normalizar(titulo_pagina)
+                # Evitar resultados de álbumes/artistas no relacionados: el título debe
+                # corresponder a la canción o contener el nombre de la canción.
+                coincide_titulo = (
+                    titulo_norm == n_nombre
+                    or titulo_norm.startswith(n_nombre + " ")
+                    or n_nombre in titulo_norm
+                )
+                coincide_artista = not n_artista or n_artista in normalizar(titulo_pagina + " " + extracto_pagina[:1200])
+                if titulo_pagina and extracto_pagina and coincide_titulo and coincide_artista:
+                    paginas_unicas[titulo_pagina] = pagina
+
+            ordenadas = sorted(
+                paginas_unicas.values(),
+                key=lambda p: 0 if normalizar(p.get("title", "")) == n_nombre else 1
+            )
+            for pagina in ordenadas:
+                extracto = re.sub(r"\\s+", " ", str(pagina.get("extract") or "")).strip()
+                if not extracto:
+                    continue
+                frases = [f.strip() for f in re.split(r"(?<=[.!?])\\s+", extracto) if f.strip()]
+                resumen = " ".join(frases[:4])[:1400].strip() or extracto[:1400]
+                titulo_pagina = pagina.get("title") or nombre
+                url_pagina = pagina.get("fullurl") or (
+                    f"https://{idioma}.wikipedia.org/wiki/" +
+                    quote(str(titulo_pagina).replace(" ", "_"), safe="()_,-")
+                )
+                return jsonify({
+                    "encontrado": True,
+                    "url": url_pagina,
+                    "titulo": titulo_pagina,
+                    "informacion": resumen,
+                    "idioma": idioma,
+                    "fuente": f"Wikipedia ({'español' if idioma == 'es' else 'inglés'})",
+                    "tipo_contenido": "informacion_cancion"
+                })
+
+        return jsonify({
+            "encontrado": False,
+            "error": "No se ha encontrado una página de Wikipedia que corresponda a esta canción."
+        }), 200
+
     pistas = (
         "dedicad", "inspir", "originalmente", "inicialmente", "origen",
         "grabacion", "durante la grabacion", "se grabo", "fue grabada",
