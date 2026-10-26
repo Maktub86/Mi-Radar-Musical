@@ -44,8 +44,8 @@ def agregar_enlace_mi_musica(response):
             clase = ' class="activo"' if activa else ""
             enlaces.append(f'<a{clase} href="{href}">{etiqueta}</a>')
         nav_comun = '<nav class="navegacion-comun">' + "\n".join(enlaces) + "</nav>"
-        if re.search(r"<nav\\b[^>]*>.*?</nav>", html, flags=re.IGNORECASE | re.DOTALL):
-            html = re.sub(r"<nav\\b[^>]*>.*?</nav>", lambda _: nav_comun, html, count=1, flags=re.IGNORECASE | re.DOTALL)
+        if re.search(r"<nav\b[^>]*>.*?</nav>", html, flags=re.IGNORECASE | re.DOTALL):
+            html = re.sub(r"<nav\b[^>]*>.*?</nav>", lambda _: nav_comun, html, count=1, flags=re.IGNORECASE | re.DOTALL)
         css_nav = """
 <style id="navegacion-comun-estilos">
 nav.navegacion-comun{display:flex;flex-flow:row wrap;align-items:center;gap:8px;padding:10px 14px;box-sizing:border-box;width:100%}
