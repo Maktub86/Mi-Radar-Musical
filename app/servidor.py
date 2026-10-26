@@ -1150,7 +1150,7 @@ def api_wikipedia():
             parametros = urlencode({"client": "gtx", "sl": "en", "tl": "es", "dt": "t", "q": texto[:4500]})
             req = Request("https://translate.googleapis.com/translate_a/single?" + parametros,
                           headers={"User-Agent": "Mozilla/5.0 MiRadarMusical/1.0"})
-            with urlopen(req, timeout=5) as respuesta:
+            with urlopen(req, timeout=3) as respuesta:
                 datos = json.loads(respuesta.read().decode("utf-8"))
             traduccion = "".join(str(parte[0]) for parte in (datos[0] or []) if parte and parte[0])
             return traduccion.strip() or texto
@@ -1166,7 +1166,7 @@ def api_wikipedia():
                            "inprop": "url", "format": "json"})
         if not exacta:
             params.append({"action": "query", "generator": "search",
-                           "gsrsearch": consulta, "gsrnamespace": "0", "gsrlimit": "8",
+                           "gsrsearch": consulta, "gsrnamespace": "0", "gsrlimit": "5",
                            "prop": "extracts|info", "explaintext": "1", "exchars": "6500",
                            "inprop": "url", "format": "json", "redirects": "1"})
         salida = []
@@ -1207,9 +1207,22 @@ def api_wikipedia():
                 continue
             if tipo == "artista":
                 marcadores = marcadores_es if idioma == "es" else marcadores_en
-                if not any(normalizar(m) in ne for m in marcadores):
+                # El título también debe corresponder al nombre buscado; no basta con que
+                # el extracto mencione de pasada a un cantante con ese nombre.
+                nn = normalizar(nombre)
+                titulo_relevante = ntitulo == nn or ntitulo.startswith(nn + " ")
+                if not titulo_relevante:
                     continue
-                if any(x in ne[:450] for x in ("pagina de desambiguacion", "puede referirse a", "disambiguation page")):
+                if not any(normalizar(m) in ne[:650] for m in marcadores):
+                    continue
+                inicio_extracto = normalizar(extracto[:300])
+                falsos_nombres = (
+                    "es un diminutivo", "es un nombre", "nombre catalan",
+                    "nombre de pila", "given name", "is a given name",
+                    "is a diminutive", "may refer to", "pagina de desambiguacion",
+                    "puede referirse a", "disambiguation page"
+                )
+                if any(x in inicio_extracto for x in falsos_nombres):
                     continue
             else:
                 nn = normalizar(nombre)
@@ -1246,7 +1259,7 @@ def api_wikipedia():
     try:
         req = Request("https://html.duckduckgo.com/html/?" + urlencode({"q": consulta_web}),
                       headers={"User-Agent": "Mozilla/5.0 (compatible; MiRadarMusical/2.0)", "Accept-Language": "es-ES,es;q=0.9"})
-        with urlopen(req, timeout=7) as respuesta:
+        with urlopen(req, timeout=4) as respuesta:
             html = respuesta.read().decode("utf-8", "replace")
         bloques = re.findall(r'<div[^>]*class="[^"]*\bresult\b[^"]*"[^>]*>(.*?)(?=<div[^>]*class="[^"]*\bresult\b[^"]*"|$)', html, re.S)
         for bloque in bloques[:8]:
@@ -1268,7 +1281,17 @@ def api_wikipedia():
             if not url_resultado.startswith("http") or not titulo_resultado or not texto_fragmento:
                 continue
             conjunto = normalizar(titulo_resultado + " " + texto_fragmento)
-            if normalizar(nombre) not in conjunto:
+            nombre_normalizado = normalizar(nombre)
+            if tipo == "artista":
+                titulo_normalizado = normalizar(titulo_resultado)
+                if nombre_normalizado not in titulo_normalizado:
+                    continue
+                if any(x in normalizar(texto_fragmento[:300]) for x in (
+                    "es un diminutivo", "es un nombre", "nombre catalan",
+                    "nombre de pila", "given name", "is a given name", "is a diminutive"
+                )):
+                    continue
+            elif nombre_normalizado not in conjunto:
                 continue
             if tipo == "cancion" and normalizar(artista) not in conjunto:
                 continue
