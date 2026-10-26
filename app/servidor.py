@@ -1185,14 +1185,33 @@ def api_resumen_musical():
 
 @app.get("/api/wikipedia")
 def api_wikipedia():
-    """Busca información musical en español usando primero el resumen oficial de Wikipedia y luego búsqueda flexible."""
+    """Busca datos musicales y descarta páginas que no correspondan al artista o canción consultados."""
     tipo = (request.args.get("tipo") or "").strip().lower()
     nombre = re.sub(r"\s+", " ", (request.args.get("nombre") or "").strip())[:180]
     artista = re.sub(r"\s+", " ", (request.args.get("artista") or "").strip())[:180]
     if tipo not in ("artista", "cancion") or not nombre or (tipo == "cancion" and not artista):
         return jsonify({"encontrado": False, "fuente_tipo": "ninguna", "error": "Faltan el nombre o el artista de la canción."}), 400
 
-    cabeceras = {"User-Agent": "MiRadarMusical/4.1 (resúmenes musicales; contacto: aplicación personal)"}
+    cabeceras = {"User-Agent": "MiRadarMusical/4.2 (comprobación de identidad musical)"}
+
+    def normalizar(texto):
+        texto = unicodedata.normalize("NFKD", str(texto or "")).encode("ascii", "ignore").decode("ascii").casefold()
+        return re.sub(r"[^a-z0-9]+", " ", texto).strip()
+
+    def contiene_frase(texto, frase):
+        t, f = " " + normalizar(texto) + " ", " " + normalizar(frase) + " "
+        return bool(f.strip()) and f in t
+
+    terminos_musicales = (
+        "cantante", "cantautor", "cantautora", "musico", "musica", "grupo musical",
+        "banda", "vocalista", "compositor", "compositora", "interprete", "rapero",
+        "rapera", "artista musical", "discografia", "album", "sencillo", "cancion",
+        "pop", "flamenco", "regueton", "rock", "orquesta", "duo musical"
+    )
+
+    def es_musical(texto):
+        n = normalizar(texto)
+        return any(normalizar(p) in n for p in terminos_musicales)
 
     def respuesta_ok(titulo, extracto, url, idioma="es"):
         resumen = re.sub(r"\s+", " ", str(extracto or "")).strip()
@@ -1221,7 +1240,25 @@ def api_wikipedia():
             "tipo_contenido": "biografia" if tipo == "artista" else "informacion_cancion"
         })
 
-    # Primera opción: endpoint REST de resúmenes. Evita la búsqueda y el filtrado frágil anteriores.
+    nombre_n = normalizar(nombre)
+    artista_n = normalizar(artista)
+
+    def resultado_valido(titulo, extracto):
+        titulo_n = normalizar(titulo)
+        texto_n = normalizar(titulo + " " + extracto)
+        if tipo == "artista":
+            # El título debe identificar a la persona/grupo buscado y el texto debe ser musical.
+            titulo_coincide = (titulo_n == nombre_n or titulo_n.startswith(nombre_n + " ") or nombre_n.startswith(titulo_n + " "))
+            if not titulo_coincide:
+                return False
+            # Evita homónimos de deportes, política, etc. aunque el nombre coincida exactamente.
+            return es_musical(extracto)
+        # Para canciones exigimos el título de la canción y alguna referencia al artista o a música.
+        cancion_coincide = (titulo_n == nombre_n or titulo_n.startswith(nombre_n + " ") or nombre_n.startswith(titulo_n + " "))
+        artista_mencionado = contiene_frase(titulo + " " + extracto, artista)
+        return cancion_coincide and (artista_mencionado or es_musical(extracto))
+
+    # Intentar páginas exactas, pero no aceptar una coincidencia solo por compartir nombre.
     titulos_directos = [nombre]
     if tipo == "cancion":
         titulos_directos = [nombre + " (canción)", nombre + " (" + artista + " canción)", nombre]
@@ -1235,27 +1272,24 @@ def api_wikipedia():
                 titulo_real = str(dato.get("title") or titulo_busqueda)
                 extracto = str(dato.get("extract") or "")
                 pagina = ((dato.get("content_urls") or {}).get("desktop") or {}).get("page") or ("https://" + idioma + ".wikipedia.org/wiki/" + quote(titulo_real.replace(" ", "_"), safe="()_,.-"))
-                if tipo == "cancion":
-                    titulo_n = re.sub(r"[^a-z0-9]+", " ", unicodedata.normalize("NFKD", titulo_real).encode("ascii", "ignore").decode("ascii").lower()).strip()
-                    artista_n = re.sub(r"[^a-z0-9]+", " ", unicodedata.normalize("NFKD", artista).encode("ascii", "ignore").decode("ascii").lower()).strip()
-                    # Aceptar una página de canción por título; el artista se usa para desambiguar la consulta.
-                    if not titulo_n.startswith(re.sub(r"[^a-z0-9]+", " ", unicodedata.normalize("NFKD", nombre).encode("ascii", "ignore").decode("ascii").lower()).strip()):
-                        continue
-                if extracto and not dato.get("type") == "disambiguation":
-                    salida = respuesta_ok(titulo_real, extracto, pagina, idioma)
-                    if salida:
-                        return salida
+                if dato.get("type") == "disambiguation" or not resultado_valido(titulo_real, extracto):
+                    continue
+                salida = respuesta_ok(titulo_real, extracto, pagina, idioma)
+                if salida:
+                    return salida
             except Exception as error:
-                app.logger.info("Resumen directo Wikipedia no disponible (%s): %s", titulo_busqueda, error)
+                app.logger.info("Resumen directo Wikipedia descartado/no disponible (%s): %s", titulo_busqueda, error)
 
-    # Segunda opción: búsqueda de Wikipedia, usando sus propios resultados y sin exigir coincidencia literal perfecta.
+    # Búsqueda flexible: solo se aceptan resultados que superen la misma comprobación de identidad.
     for idioma in ("es", "en"):
-        consultas = ([nombre, nombre + " cantante", nombre + " grupo musical"] if tipo == "artista"
-                     else [nombre + " " + artista, nombre + " " + artista + " canción"])
+        if tipo == "artista":
+            consultas = [nombre + " cantante", nombre + " músico", nombre + " grupo musical"]
+        else:
+            consultas = ['"' + nombre + '" "' + artista + '"', nombre + " " + artista + " canción"]
         for consulta in consultas:
             try:
                 params = urlencode({"action": "query", "list": "search", "srsearch": consulta,
-                                    "srnamespace": "0", "srlimit": "5", "format": "json", "utf8": "1"})
+                                    "srnamespace": "0", "srlimit": "8", "format": "json", "utf8": "1"})
                 req = Request("https://" + idioma + ".wikipedia.org/w/api.php?" + params, headers=cabeceras)
                 with urlopen(req, timeout=6) as resp:
                     resultados = json.loads(resp.read().decode("utf-8")).get("query", {}).get("search", [])
@@ -1272,30 +1306,24 @@ def api_wikipedia():
                     for page in pages.values():
                         extracto = str(page.get("extract") or "").strip()
                         titulo_pagina = str(page.get("title") or titulo_real)
-                        if not extracto:
+                        if not extracto or not resultado_valido(titulo_pagina, extracto):
                             continue
-                        if tipo == "cancion":
-                            texto = (titulo_pagina + " " + extracto).casefold()
-                            if nombre.casefold() not in texto and nombre.casefold().split()[0] not in texto:
-                                continue
                         url_pagina = page.get("fullurl") or ("https://" + idioma + ".wikipedia.org/wiki/" + quote(titulo_pagina.replace(" ", "_"), safe="()_,.-"))
                         salida = respuesta_ok(titulo_pagina, extracto, url_pagina, idioma)
                         if salida:
                             return salida
             except Exception as error:
-                app.logger.info("Búsqueda Wikipedia no disponible (%s): %s", consulta, error)
+                app.logger.info("Búsqueda Wikipedia descartada/no disponible (%s): %s", consulta, error)
 
-    # Siempre damos una salida útil en español en lugar de mostrar un error técnico.
-    consulta_web = (nombre + " " + artista + " canción historia" if tipo == "cancion" else nombre + " cantante biografía")
+    # Sin coincidencia fiable: ofrecer una búsqueda específica, nunca una biografía de un homónimo.
+    consulta_web = (nombre + " " + artista + " canción historia" if tipo == "cancion" else nombre + " cantante OR grupo musical biografía")
     url_busqueda = "https://www.google.com/search?" + urlencode({"q": consulta_web, "hl": "es"})
     return jsonify({
         "encontrado": True,
-        "resumen": "No he podido recuperar automáticamente un resumen de este resultado. Pulsa «Buscar información en español» para ver resultados relacionados.",
+        "resumen": "No he encontrado una biografía musical que pueda confirmar como perteneciente a este artista. Pulsa «Buscar información en español» para consultar resultados más específicos.",
         "fuentes": [{"titulo": "Buscar información en español", "url": url_busqueda}],
-        "fuente_tipo": "busqueda_web", "mensaje": "Se ofrece una búsqueda alternativa en español."
+        "fuente_tipo": "busqueda_web", "mensaje": "No se mostró una coincidencia dudosa."
     }), 200
-
-
 @app.get("/api/estado-actualizacion")
 def estado_actualizacion():
     with _candado_estado:
