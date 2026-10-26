@@ -1460,7 +1460,7 @@ def api_wikipedia():
         except Exception:
             app.logger.info("La búsqueda web complementaria no devolvió resultados utilizables")
 
-    if not candidatas and tipo == "artista":
+    if tipo == "artista" and not any(c.get("score", 0) >= 4 for c in candidatas):
         # Datos editoriales de respaldo para artistas conocidos: evitan un resultado
         # vacío si Wikipedia no entrega una frase que supere el detector automático.
         datos_artista_conocidos = {
