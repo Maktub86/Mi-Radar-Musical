@@ -1175,8 +1175,23 @@ def api_wikipedia():
             )
             with urlopen(req, timeout=3) as respuesta:
                 datos = json.loads(respuesta.read().decode("utf-8"))
-            for pagina in (datos.get("query", {}).get("pages") or {}).values():
+            paginas_actuales = list((datos.get("query", {}).get("pages") or {}).values())
+            for pagina in paginas_actuales:
                 paginas_por_titulo[pagina.get("title", "")] = pagina
+            # La página exacta del artista basta; evita consultas lentas innecesarias.
+            if tipo == "artista" and consulta is None:
+                exacta_valida = any(
+                    normalizar(p.get("title", "")) == n_nombre
+                    and any(normalizar(m) in normalizar(p.get("extract", "")) for m in (
+                        "cantante", "grupo musical", "banda musical", "musico",
+                        "vocalista", "rapero", "cantautor", "artista"
+                    ))
+                    and "puede referirse a" not in normalizar(p.get("extract", ""))[:420]
+                    and "pagina de desambiguacion" not in normalizar(p.get("extract", ""))[:420]
+                    for p in paginas_actuales
+                )
+                if exacta_valida:
+                    break
         except Exception:
             app.logger.warning("No se pudo consultar Wikipedia en español")
 
