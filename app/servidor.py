@@ -354,32 +354,32 @@ async function verificarWikipedia(tipo,nombre,artista){
     const q=new URLSearchParams({tipo,nombre,artista:artista||''});
     const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(15000)});
     if(!r.ok)return null;const d=await r.json();
-    return d.encontrado&&d.url&&(d.curiosidad||d.biografia)?d:null;
+    return d.encontrado&&d.url&&(d.informacion||d.biografia)?d:null;
    }catch(e){return null;}
   })());
  }
  const resultado=await cacheWikipediaVerificada.get(clave);
-  if(!resultado)cacheWikipediaVerificada.delete(clave);
-  return resultado;
+ if(!resultado)cacheWikipediaVerificada.delete(clave);
+ return resultado;
 }
 function mostrarCuriosidadWiki(contenedor,info,tipo){
-  const anterior=contenedor.querySelector('.curiosidad-wikipedia');
-  if(anterior){anterior.remove();return;}
-  const caja=nodo('div','curiosidad-wikipedia');
-  caja.style.cssText='margin:8px 0 12px;padding:12px 14px;border-radius:10px;background:#ffffff0d;border:1px solid #ffffff20;color:#d9e8f4;line-height:1.5;font-size:13px';
-  if(tipo==='artista'&&info.biografia)caja.appendChild(nodo('p','',info.biografia));
-  if(info.curiosidad)caja.appendChild(nodo('p','',tipo==='artista'?'Curiosidad: '+info.curiosidad:'Sobre la canción: '+info.curiosidad));
-  const fuente=info.fuente||'Wikipedia';
-  const enlace=nodo('a','','Leer fuente: '+fuente+' ↗');enlace.href=info.url;enlace.target='_blank';enlace.rel='noopener noreferrer';enlace.style.cssText='display:inline-block;margin-top:6px;color:#9ecbff;font-weight:700';
-  caja.appendChild(enlace);contenedor.appendChild(caja);
+ const anterior=contenedor.querySelector('.info-wikipedia');
+ if(anterior){anterior.remove();return;}
+ const caja=nodo('div','info-wikipedia');
+ caja.style.cssText='margin:8px 0 12px;padding:12px 14px;border-radius:10px;background:#ffffff0d;border:1px solid #ffffff20;color:#d9e8f4;line-height:1.5;font-size:13px';
+ const contenido=tipo==='artista'?info.biografia:info.informacion;
+ if(contenido)caja.appendChild(nodo('p','',(tipo==='artista'?'Biografía: ':'Sobre la canción: ')+contenido));
+ const fuente=info.fuente||'Wikipedia';
+ const enlace=nodo('a','','Leer fuente: '+fuente+' ↗');enlace.href=info.url;enlace.target='_blank';enlace.rel='noopener noreferrer';enlace.style.cssText='display:inline-block;margin-top:6px;color:#9ecbff;font-weight:700';
+ caja.appendChild(enlace);contenedor.appendChild(caja);
 }
 const cacheHistoriasCancion=new Map();
 async function cargarHistoriaCancion(titulo,artista,fila,boton){
  try{if(localStorage.getItem('mrWikipediaEnabled')==='0')return}catch(e){}
  const claveDOM=titulo+'|'+artista;
- const existente=fila.parentElement?.querySelector('.historia-wikipedia[data-cancion="'+CSS.escape(claveDOM)+'"]');
+ const existente=fila.parentElement?.querySelector('.info-wikipedia[data-cancion="'+CSS.escape(claveDOM)+'"]');
  if(existente){existente.remove();return;}
- const caja=nodo('div','historia-wikipedia','Buscando una curiosidad sobre esta canción…');
+ const caja=nodo('div','info-wikipedia','Buscando información de la canción en Wikipedia…');
  caja.dataset.cancion=claveDOM;
  fila.insertAdjacentElement('afterend',caja);
  const clave=normalizarNombre(titulo+' '+artista);
@@ -391,7 +391,7 @@ async function cargarHistoriaCancion(titulo,artista,fila,boton){
     const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(15000)});
     if(!r.ok)return null;
     const d=await r.json();
-    return d.encontrado&&d.url&&d.curiosidad?d:null;
+    return d.encontrado&&d.url&&d.informacion?d:null;
    })();
    cacheHistoriasCancion.set(clave,promesa);
   }
@@ -399,10 +399,10 @@ async function cargarHistoriaCancion(titulo,artista,fila,boton){
   if(!h)cacheHistoriasCancion.delete(clave);
   caja.replaceChildren();
   if(!h){
-   caja.textContent='No he encontrado una curiosidad fiable sobre esta canción en Wikipedia (español o inglés).';
+   caja.textContent='No se ha encontrado información de esta canción en Wikipedia.';
    return;
   }
-  caja.appendChild(nodo('p','',h.curiosidad));
+  caja.appendChild(nodo('p','',h.informacion));
   const a=nodo('a','','Leer artículo en Wikipedia ↗');
   a.href=h.url;a.target='_blank';a.rel='noopener noreferrer';
   a.style.cssText='display:inline-block;margin-top:6px;color:#c9b0ff;font-weight:700';
@@ -425,10 +425,10 @@ function mostrarArtistas(){
   cabecera.appendChild(nodo('h2','',nombre));
   const huecoWiki=nodo('span','');huecoWiki.style.marginRight='auto';
   const wikiArtista=nodo('button','boton-wikipedia','W');wikiArtista.type='button';
-  wikiArtista.title='Consultar curiosidad de '+nombre;wikiArtista.setAttribute('aria-label','Consultar curiosidad de '+nombre);
+  wikiArtista.title='Consultar biografía de '+nombre;wikiArtista.setAttribute('aria-label','Consultar biografía de '+nombre);
   wikiArtista.addEventListener('click',async()=>{
    if(wikiArtista.disabled)return;wikiArtista.disabled=true;
-   try{const info=await verificarWikipedia('artista',nombre,'');if(info)mostrarCuriosidadWiki(caja,info,'artista');else{let msg=caja.querySelector('.aviso-wiki');if(!msg){msg=nodo('div','aviso-wiki','No hay una curiosidad verificada disponible ahora.');caja.appendChild(msg);}}}
+   try{const info=await verificarWikipedia('artista',nombre,'');if(info)mostrarCuriosidadWiki(caja,info,'artista');else{let msg=caja.querySelector('.aviso-wiki');if(!msg){msg=nodo('div','aviso-wiki','No se encontró una biografía o información de Wikipedia.');caja.appendChild(msg);}}}
    finally{wikiArtista.disabled=false;}
   });
   huecoWiki.appendChild(wikiArtista);cabecera.appendChild(huecoWiki);
@@ -461,11 +461,11 @@ async function cargarTop(nombre,caja,boton){
    const tituloPista=nodo('span','pista-titulo',pista.titulo);
    const tituloLinea=nodo('div','');tituloLinea.appendChild(tituloPista);detalle.appendChild(tituloLinea);
    const wiki=nodo('button','boton-wikipedia','W');wiki.type='button';
-   wiki.title='Consultar curiosidad verificada de '+pista.titulo;
-   wiki.setAttribute('aria-label','Consultar curiosidad sobre '+pista.titulo);
+   wiki.title='Consultar información de '+pista.titulo;
+   wiki.setAttribute('aria-label','Consultar información sobre '+pista.titulo);
    wiki.addEventListener('click',async()=>{
     if(wiki.disabled)return;wiki.disabled=true;
-    try{const info=await verificarWikipedia('cancion',pista.titulo,pista.artista);if(info)mostrarCuriosidadWiki(fila,info,'cancion');else{let msg=fila.querySelector('.aviso-wiki');if(!msg){msg=nodo('div','aviso-wiki','No hay una curiosidad verificada disponible ahora.');fila.appendChild(msg);}}}
+    try{const info=await verificarWikipedia('cancion',pista.titulo,pista.artista);if(info)mostrarCuriosidadWiki(fila,info,'cancion');else{let msg=fila.querySelector('.aviso-wiki');if(!msg){msg=nodo('div','aviso-wiki','No se encontró una biografía o información de Wikipedia.');fila.appendChild(msg);}}}
     finally{wiki.disabled=false;}
    });
    tituloLinea.appendChild(wiki);
@@ -1150,7 +1150,7 @@ def api_wikipedia():
         )
 
         def pagina_es_musical(pagina):
-            extracto = re.sub(r"\\s+", " ", str(pagina.get("extract") or "")).strip()
+            extracto = re.sub(r"\s+", " ", str(pagina.get("extract") or "")).strip()
             inicio = normalizar(extracto[:900])
             if not extracto or any(x in inicio[:500] for x in (
                 "puede referirse a", "pagina de desambiguacion", "el termino puede"
@@ -1186,7 +1186,7 @@ def api_wikipedia():
             key=lambda p: 0 if normalizar(p.get("title", "")) == n_nombre else 1
         )
         for pagina in paginas_ordenadas:
-            extracto = re.sub(r"\\s+", " ", str(pagina.get("extract") or "")).strip()
+            extracto = re.sub(r"\s+", " ", str(pagina.get("extract") or "")).strip()
             inicio = normalizar(extracto[:500])
             if not extracto or "puede referirse a" in inicio or "pagina de desambiguacion" in inicio:
                 continue
