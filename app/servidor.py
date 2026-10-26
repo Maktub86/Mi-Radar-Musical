@@ -1102,7 +1102,7 @@ def api_wikipedia():
     params = urlencode({
         "action": "query", "generator": "search", "gsrsearch": consulta,
         "gsrnamespace": "0", "gsrlimit": "20", "prop": "extracts|info",
-        "exintro": "1", "explaintext": "1", "exsentences": "8",
+        "explaintext": "1", "exchars": "12000",
         "inprop": "url", "format": "json", "redirects": "1"
     })
     try:
@@ -1150,19 +1150,22 @@ def api_wikipedia():
             # Mostrar una sola curiosidad breve, no el inicio entero del artículo.
             frases = [f.strip() for f in re.split(r"(?<=[.!?])\s+", extracto) if f.strip()]
             pistas = (
-                "originalmente", "inicialmente", "inspir", "origen", "grabacion",
-                "durante la grabacion", "se grabo", "fue grabada", "fue grabado",
-                "premio", "record", "numero uno", "numero 1", "version", "debido a",
-                "sin embargo", "curiosamente", "nombre proviene", "se publico",
-                "se lanzo", "compuesta", "escrita", "producida", "producido"
+                "dedicad", "inspir", "originalmente", "inicialmente", "origen",
+                "grabacion", "durante la grabacion", "se grabo", "fue grabada",
+                "fue grabado", "premio", "record", "numero uno", "numero 1",
+                "version", "debido a", "sin embargo", "curiosamente", "nombre proviene",
+                "se publico", "se lanzo", "compuesta", "escrita", "producida",
+                "producido", "boda", "reina", "rey", "conocida por", "influencia",
+                "basada en", "basado en", "tras la muerte"
             )
-            candidatas = [f for f in frases if 45 <= len(f) <= 280]
-            curiosidad = next(
-                (f for f in candidatas if any(p in normalizar(f) for p in pistas)),
-                None
-            )
+            candidatas = [f for f in frases if 55 <= len(f) <= 300]
+            def puntuacion(frase):
+                nf = normalizar(frase)
+                return sum(3 if p in nf else 0 for p in pistas) - (1 if nf.startswith(("es una", "fue una", "se trata de")) else 0)
+            candidatas.sort(key=puntuacion, reverse=True)
+            curiosidad = candidatas[0] if candidatas and puntuacion(candidatas[0]) > 0 else None
             if curiosidad is None:
-                # Si el extracto no ofrece un dato llamativo claro, no inventamos uno.
+                # Elegir una frase informativa breve, sin inventar datos.
                 curiosidad = next((f for f in candidatas if f != frases[0]), None)
             if curiosidad is None:
                 base = frases[0] if frases else extracto
