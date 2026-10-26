@@ -1149,7 +1149,7 @@ def api_wikipedia():
     # con una canción o un álbum suyo y reduce el tiempo de carga.
     # Busca también títulos desambiguados como "Maná (grupo musical)".
     consultas = (
-        [None, f'"{nombre}" cantante OR grupo musical OR banda musical OR artista']
+        [None, f'"{nombre}" grupo musical', f'"{nombre}" cantante', f'"{nombre}" banda musical']
         if tipo == "artista"
         else [f'"{nombre}" "{artista}"', f'"{nombre}" canción "{artista}"']
     )
@@ -1195,10 +1195,17 @@ def api_wikipedia():
                     or "pagina de desambiguacion" in inicio_extracto
                     or inicio_extracto.startswith("el termino ")):
                 continue
-            if any(normalizar(x) in ne for x in (
+            marcadores_musicales_pagina = (
+                "grupo musical", "banda musical", "banda mexicana", "grupo mexicano",
+                "cantante", "compositor", "compositora", "musico", "musica",
+                "vocalista", "discografia", "album de estudio", "rock latino", "pop latino"
+            )
+            es_pagina_musical = any(normalizar(x) in ne for x in marcadores_musicales_pagina)
+            es_pagina_de_comida = any(normalizar(x) in ne for x in (
                 "producto de pasteleria", "pasta dulce", "recubrimiento de pasteles",
-                "gastronomia", "alimento enviado por dios"
-            )):
+                "alimento enviado por dios"
+            ))
+            if es_pagina_de_comida and not es_pagina_musical:
                 continue
         # Artistas: solo la página propia o una página musical desambiguada.
         if tipo == "artista":
@@ -1223,7 +1230,8 @@ def api_wikipedia():
                 "cantante", "grupo musical", "banda musical", "musico", "musica",
                 "vocalista", "compositor", "interprete", "artista", "productor musical",
                 "rapero", "cantautora", "cantautor", "discografia", "banda de rock",
-                "duo musical", "trio musical"
+                "duo musical", "trio musical", "rock latino", "pop latino",
+                "grupo mexicano", "grupo sueco", "formado en", "formada en"
             )
             if not any(normalizar(m) in ne for m in marcadores_artista):
                 continue
@@ -1233,7 +1241,7 @@ def api_wikipedia():
         frases = [f for f in frases if 65 <= len(f) <= 330]
         for indice, frase in enumerate(frases):
             # La curiosidad debe aportar algo distinto de la biografía mostrada arriba.
-            if tipo == "artista" and indice < 2:
+            if tipo == "artista" and indice < 2 and len(frases) > 2:
                 continue
             nf = normalizar(frase)
             puntos = sum(2 for pista in pistas if normalizar(pista) in nf)
@@ -1277,7 +1285,7 @@ def api_wikipedia():
                 ))
             )
             es_generica = any(normalizar(g) in nf for g in genericas) or (
-                indice == 0 and tipo == "artista"
+                indice == 0 and tipo == "artista" and len(frases) > 2
             )
             if es_concreta and not es_generica and puntos >= -1:
                 candidata["score"] += 1
