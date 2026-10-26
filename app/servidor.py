@@ -1214,11 +1214,14 @@ def api_wikipedia():
             # Penaliza frases que solo enumeran géneros o describen la carrera sin un dato concreto.
             if tipo == "artista" and any(x in nf for x in ("su estilo musical", "su música combina", "su musica combina", "es conocido por su", "es conocida por su")):
                 puntos -= 3
+            frases_bio = [f.strip() for f in re.split(r"(?<=[.!?])\\s+", extracto) if f.strip()]
+            biografia = " ".join(frases_bio[:2])[:520] if tipo == "artista" else ""
             candidata = {
                 "score": puntos + (1 if coincide_artista else 0),
                 "titulo": titulo,
                 "url": pagina.get("fullurl"),
-                "curiosidad": frase
+                "curiosidad": frase,
+                "biografia": biografia
             }
             if puntos >= 2:
                 candidatas.append(candidata)
@@ -1254,6 +1257,7 @@ def api_wikipedia():
             "url": mejor_respaldo["url"],
             "titulo": mejor_respaldo["titulo"],
             "curiosidad": mejor_respaldo["curiosidad"],
+            "biografia": mejor_respaldo.get("biografia", ""),
             "idioma": "es",
             "fuente": "Wikipedia en español"
         })
@@ -1323,6 +1327,7 @@ def api_wikipedia():
                     "url": mejor_web["url"],
                     "titulo": mejor_web["titulo"],
                     "curiosidad": mejor_web["curiosidad"],
+                    "biografia": "",
                     "idioma": "es",
                     "fuente": "búsqueda web"
                 })
@@ -1352,7 +1357,9 @@ def api_wikipedia():
         "url": mejor["url"],
         "titulo": mejor["titulo"],
         "curiosidad": mejor["curiosidad"],
-        "idioma": "es"
+        "biografia": mejor.get("biografia", ""),
+        "idioma": "es",
+        "fuente": "Wikipedia en español"
     })
 
 
