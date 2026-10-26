@@ -11,6 +11,7 @@ from zoneinfo import ZoneInfo
 from pathlib import Path
 from urllib.parse import quote, urlencode
 from urllib.request import Request, urlopen
+from urllib.error import HTTPError
 import unicodedata
 import difflib
 import os
@@ -1158,9 +1159,28 @@ def api_resumen_musical():
         if not fuentes:
             return jsonify({"encontrado": False, "error": "Gemini no ha encontrado fuentes web que permitan verificar la información."})
         return jsonify({"encontrado": True, "resumen": resumen, "fuentes": fuentes[:4]})
+    except HTTPError as error:
+        # Mostrar el código real de Gemini para distinguir errores de modelo, clave y cuota.
+        cuerpo = error.read().decode("utf-8", errors="replace")
+        try:
+            detalle = json.loads(cuerpo).get("error", {}).get("message", "")
+        except (ValueError, AttributeError):
+            detalle = ""
+        app.logger.warning("Gemini HTTP %s para %s: %s", error.code, nombre, detalle or cuerpo[:500])
+        mensajes = {
+            400: "Gemini rechazó la petición (HTTP 400).",
+            401: "Gemini no ha aceptado la autenticación (HTTP 401). Revisa que la clave configurada sea válida.",
+            403: "Gemini ha denegado el acceso (HTTP 403). Revisa los permisos o el acceso a la API.",
+            404: "Gemini no encuentra el modelo o recurso solicitado (HTTP 404).",
+            429: "Gemini ha aplicado un límite de uso o cuota (HTTP 429).",
+        }
+        mensaje = mensajes.get(error.code, f"Gemini ha respondido con HTTP {error.code}.")
+        if detalle:
+            mensaje += " Detalle: " + detalle[:500]
+        return jsonify({"encontrado": False, "error": mensaje, "codigo": error.code}), 502
     except Exception:
         app.logger.exception("Error consultando Gemini para %s", nombre)
-        return jsonify({"encontrado": False, "error": "No se ha podido consultar Gemini. Comprueba la conexión, la clave y la cuota de la API."}), 502
+        return jsonify({"encontrado": False, "error": "Fallo de conexión al consultar Gemini. Consulta los registros de Render para ver el detalle."}), 502
 
 
 @app.get("/api/wikipedia")
