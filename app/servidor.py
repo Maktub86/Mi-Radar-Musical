@@ -1164,10 +1164,11 @@ def api_wikipedia():
             params.append({"action": "query", "titles": consulta, "redirects": "1",
                            "prop": "extracts|info", "explaintext": "1", "exchars": "6500",
                            "inprop": "url", "format": "json"})
-        params.append({"action": "query", "generator": "search",
-                       "gsrsearch": consulta, "gsrnamespace": "0", "gsrlimit": "8",
-                       "prop": "extracts|info", "explaintext": "1", "exchars": "6500",
-                       "inprop": "url", "format": "json", "redirects": "1"})
+        if not exacta:
+            params.append({"action": "query", "generator": "search",
+                           "gsrsearch": consulta, "gsrnamespace": "0", "gsrlimit": "8",
+                           "prop": "extracts|info", "explaintext": "1", "exchars": "6500",
+                           "inprop": "url", "format": "json", "redirects": "1"})
         salida = []
         for p in params:
             try:
