@@ -1441,7 +1441,7 @@ def api_wikipedia():
                 "rapero", "cantautor", "artista", "discografia", "rock latino", "pop latino"
             )):
                 continue
-            frases = [f.strip() for f in re.split(r"(?<=[.!?])\\s+", extracto) if f.strip()]
+            frases = [f.strip() for f in re.split(r"(?<=[.!?])\s+", extracto) if f.strip()]
             biografia = " ".join(frases[:2])[:520]
             dato = next((f for f in frases[2:] if 45 <= len(f) <= 330), "")
             url = pagina.get("fullurl") or ("https://es.wikipedia.org/wiki/" + titulo.replace(" ", "_"))
