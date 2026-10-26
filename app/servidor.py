@@ -354,7 +354,7 @@ async function verificarWikipedia(tipo,nombre,artista){
     const q=new URLSearchParams({tipo,nombre,artista:artista||''});
     const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(8000)});
     if(!r.ok)return null;const d=await r.json();
-    return d.encontrado&&d.url&&d.curiosidad?d:null;
+    return d.encontrado&&d.url&&(d.curiosidad||d.biografia)?d:null;
    }catch(e){return null;}
   })());
  }
@@ -368,7 +368,7 @@ function mostrarCuriosidadWiki(contenedor,info,tipo){
   const caja=nodo('div','curiosidad-wikipedia');
   caja.style.cssText='margin:8px 0 12px;padding:12px 14px;border-radius:10px;background:#ffffff0d;border:1px solid #ffffff20;color:#d9e8f4;line-height:1.5;font-size:13px';
   if(tipo==='artista'&&info.biografia)caja.appendChild(nodo('p','',info.biografia));
-  caja.appendChild(nodo('p','',tipo==='artista'?'Curiosidad: '+info.curiosidad:'Sobre la canción: '+info.curiosidad));
+  if(info.curiosidad)caja.appendChild(nodo('p','',tipo==='artista'?'Curiosidad: '+info.curiosidad:'Sobre la canción: '+info.curiosidad));
   const fuente=info.fuente||'Wikipedia';
   const enlace=nodo('a','','Leer fuente: '+fuente+' ↗');enlace.href=info.url;enlace.target='_blank';enlace.rel='noopener noreferrer';enlace.style.cssText='display:inline-block;margin-top:6px;color:#9ecbff;font-weight:700';
   caja.appendChild(enlace);contenedor.appendChild(caja);
