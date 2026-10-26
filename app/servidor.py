@@ -583,39 +583,52 @@ def api_lo_mejor():
                 "error": "No he encontrado una coincidencia suficientemente segura para este artista en Deezer."
             }), 404
 
+        # Preferir coincidencia exacta del artista al resolver el nombre solicitado.
+        coincidencia_exacta = next(
+            (c for c in candidatos
+             if normalizar_texto(c.get("name", "")) == objetivo),
+            None
+        )
+        if coincidencia_exacta:
+            mejor = coincidencia_exacta
+
+        nombre_deezer = mejor.get("name", nombre_solicitado)
+        pistas_top = []
+        # El endpoint /top puede devolver error o lista vacía según artista/región.
+        # En ambos casos, pasar a búsqueda de pistas en vez de abortar toda la ficha.
         url_top = "https://api.deezer.com/artist/" + str(int(mejor["id"])) + "/top?" + urlencode({"limit": 5})
-        peticion_top = Request(url_top, headers={"User-Agent": "MiRadarMusical/1.0"})
-        with urlopen(peticion_top, timeout=4) as respuesta:
-            datos_top = json.loads(respuesta.read().decode("utf-8"))
-        if datos_top.get("error"):
-            raise ValueError("Deezer no ha permitido consultar las canciones de este artista.")
+        try:
+            peticion_top = Request(url_top, headers={"User-Agent": "MiRadarMusical/1.0"})
+            with urlopen(peticion_top, timeout=3) as respuesta:
+                datos_top = json.loads(respuesta.read().decode("utf-8"))
+            if not datos_top.get("error"):
+                pistas_top = (datos_top.get("data") or [])[:5]
+        except Exception:
+            # El fallback de búsqueda libre puede seguir funcionando aunque falle /top.
+            pistas_top = []
 
-        pistas_top = datos_top.get("data", [])[:5]
-
-        # Si el endpoint de popularidad devuelve una lista vacía, intentar
-        # recuperar canciones del artista mediante la búsqueda de pistas.
         if not pistas_top:
-            nombre_deezer = mejor.get("name", nombre_solicitado)
-            # Deezer puede devolver cero resultados con el filtro avanzado artist:"...".
-            # Buscar por texto libre y filtrar después por el artista principal exacto.
-            consulta_pistas = urlencode({
-                "q": nombre_deezer,
-                "limit": 100
-            })
+            # No usar el filtro avanzado artist:"...": puede devolver falsos vacíos.
+            consulta_pistas = urlencode({"q": nombre_deezer, "limit": 100})
             peticion_pistas = Request(
                 "https://api.deezer.com/search/track?" + consulta_pistas,
                 headers={"User-Agent": "MiRadarMusical/1.0"}
             )
-            with urlopen(peticion_pistas, timeout=4) as respuesta:
+            with urlopen(peticion_pistas, timeout=3) as respuesta:
                 datos_pistas = json.loads(respuesta.read().decode("utf-8"))
             if datos_pistas.get("error"):
                 raise ValueError("Deezer no ha permitido buscar canciones de este artista.")
 
-            pistas_busqueda = datos_pistas.get("data", [])
+            pistas_busqueda = datos_pistas.get("data") or []
             objetivo_artista = normalizar_texto(nombre_deezer)
+            id_artista = str(mejor.get("id", ""))
             pistas_top = [
                 pista for pista in pistas_busqueda
-                if normalizar_texto((pista.get("artist") or {}).get("name", "")) == objetivo_artista
+                if (
+                    id_artista and str((pista.get("artist") or {}).get("id", "")) == id_artista
+                ) or (
+                    normalizar_texto((pista.get("artist") or {}).get("name", "")) == objetivo_artista
+                )
             ]
             pistas_top.sort(key=lambda pista: int(pista.get("rank") or 0), reverse=True)
             pistas_top = pistas_top[:5]
