@@ -362,7 +362,7 @@ async function verificarWikipedia(tipo,nombre,artista){
  if(!resultado)cacheWikipediaVerificada.delete(clave);
  return resultado;
 }
-function mostrarCuriosidadWiki(contenedor,info,tipo){
+function mostrarInfoWikipedia(contenedor,info,tipo){
  const anterior=contenedor.querySelector('.info-wikipedia');
  if(anterior){anterior.remove();return;}
  const caja=nodo('div','info-wikipedia');
@@ -428,7 +428,7 @@ function mostrarArtistas(){
   wikiArtista.title='Consultar biografía de '+nombre;wikiArtista.setAttribute('aria-label','Consultar biografía de '+nombre);
   wikiArtista.addEventListener('click',async()=>{
    if(wikiArtista.disabled)return;wikiArtista.disabled=true;
-   try{const info=await verificarWikipedia('artista',nombre,'');if(info)mostrarCuriosidadWiki(caja,info,'artista');else{let msg=caja.querySelector('.aviso-wiki');if(!msg){msg=nodo('div','aviso-wiki','No se encontró una biografía o información de Wikipedia.');caja.appendChild(msg);}}}
+   try{const info=await verificarWikipedia('artista',nombre,'');if(info)mostrarInfoWikipedia(caja,info,'artista');else{let msg=caja.querySelector('.aviso-wiki');if(!msg){msg=nodo('div','aviso-wiki','No se encontró información de Wikipedia para este resultado.');caja.appendChild(msg);}}}
    finally{wikiArtista.disabled=false;}
   });
   huecoWiki.appendChild(wikiArtista);cabecera.appendChild(huecoWiki);
@@ -465,7 +465,7 @@ async function cargarTop(nombre,caja,boton){
    wiki.setAttribute('aria-label','Consultar información sobre '+pista.titulo);
    wiki.addEventListener('click',async()=>{
     if(wiki.disabled)return;wiki.disabled=true;
-    try{const info=await verificarWikipedia('cancion',pista.titulo,pista.artista);if(info)mostrarCuriosidadWiki(fila,info,'cancion');else{let msg=fila.querySelector('.aviso-wiki');if(!msg){msg=nodo('div','aviso-wiki','No se encontró una biografía o información de Wikipedia.');fila.appendChild(msg);}}}
+    try{const info=await verificarWikipedia('cancion',pista.titulo,pista.artista);if(info)mostrarInfoWikipedia(fila,info,'cancion');else{let msg=fila.querySelector('.aviso-wiki');if(!msg){msg=nodo('div','aviso-wiki','No se encontró información de Wikipedia para este resultado.');fila.appendChild(msg);}}}
     finally{wiki.disabled=false;}
    });
    tituloLinea.appendChild(wiki);
@@ -1111,7 +1111,7 @@ def _ejecutar_actualizacion():
 
 @app.get("/api/wikipedia")
 def api_wikipedia():
-    """Devuelve curiosidades musicales en español; evita biografías genéricas."""
+    """Devuelve biografía musical o información de una canción desde Wikipedia."""
     tipo = (request.args.get("tipo") or "").strip().lower()
     nombre = re.sub(r"\s+", " ", (request.args.get("nombre") or "").strip())
     artista = re.sub(r"\s+", " ", (request.args.get("artista") or "").strip())
