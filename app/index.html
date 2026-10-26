@@ -220,15 +220,19 @@ const cacheCuriosidadesWiki=new Map();
 async function mostrarCuriosidadWiki(tipo,nombre,artista,contenedor,boton){
  let caja=contenedor.querySelector(':scope > .curiosidad-wiki');
  if(caja){caja.remove();if(boton.dataset.abierto==='1'){boton.dataset.abierto='0';return;}}
- caja=document.createElement('div');caja.className='curiosidad-wiki';caja.textContent='Consultando Wikipedia…';contenedor.appendChild(caja);boton.dataset.abierto='1';boton.disabled=true;
+ caja=document.createElement('div');caja.className='curiosidad-wiki';caja.textContent=tipo==='artista'?'Consultando biografía y curiosidad…':'Buscando la historia de la canción…';contenedor.appendChild(caja);boton.dataset.abierto='1';boton.disabled=true;
  const clave=[tipo,nombre,artista||''].join('|');
  try{
   let promesa=cacheCuriosidadesWiki.get(clave);
   if(!promesa){const q=new URLSearchParams({tipo,nombre,artista:artista||''});promesa=fetch('/api/wikipedia?'+q,{signal:AbortSignal.timeout(7000)}).then(r=>r.ok?r.json():{encontrado:false}).catch(()=>({encontrado:false}));cacheCuriosidadesWiki.set(clave,promesa);}
   const d=await promesa;caja.replaceChildren();
-  if(d.encontrado&&d.curiosidad){const texto=document.createElement('span');texto.textContent=d.curiosidad+' ';caja.appendChild(texto);if(d.url){const link=document.createElement('a');link.href=d.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Fuente: Wikipedia';caja.appendChild(link);}}
-  else caja.textContent='No hay una curiosidad suficientemente verificada disponible ahora.';
- }catch(e){caja.textContent='Wikipedia no está disponible ahora mismo.'}finally{boton.disabled=false;}
+  if(d.encontrado&&(d.curiosidad||d.biografia)){
+   if(tipo==='artista'&&d.biografia){const tituloBio=document.createElement('strong');tituloBio.textContent='Sobre el artista: ';caja.appendChild(tituloBio);const bio=document.createElement('span');bio.textContent=d.biografia+' ';caja.appendChild(bio);}
+   if(d.curiosidad){const tituloCurio=document.createElement('strong');tituloCurio.textContent=tipo==='artista'?'Curiosidad: ':'Sobre la canción: ';caja.appendChild(tituloCurio);const texto=document.createElement('span');texto.textContent=d.curiosidad+' ';caja.appendChild(texto);}
+   if(d.url){const link=document.createElement('a');link.href=d.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Fuente: '+(d.fuente||'consulta original');caja.appendChild(link);}
+  }
+  else caja.textContent='No se encontró información concreta suficiente en las fuentes consultadas.';
+ }catch(e){caja.textContent='No se pudo consultar la información ahora mismo.'}finally{boton.disabled=false;}
 }
 function crearTarjetaArtista(a, destino){
   const nombreArtista=a.NombreOriginal||a.NombreNormalizado||'Sin nombre';
