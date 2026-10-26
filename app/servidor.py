@@ -1195,31 +1195,20 @@ def api_wikipedia():
         "musical group", "rock band", "pop band", "music group", "girl group", "pop group",
         "rock group", "band", "group", "composer", "solo artist")
 
-    for idioma in ("es", "en"):
-        # Sin comillas estrictas: Wikipedia puede indexar la canción y el artista por separado.
-        consulta = nombre if tipo == "artista" else nombre + " " + artista
-        # Priorizar la consulta directa: evita una segunda petición lenta cuando existe
-        # una página exacta y válida. Buscar por términos solo si la consulta directa no devuelve extractos.
-        paginas = consultar_wikipedia(idioma, nombre, exacta=True)
-        if not paginas:
-            paginas = consultar_wikipedia(idioma, consulta)
+    def filtrar_paginas(paginas, idioma):
         paginas_unicas = {}
         for p in paginas:
             titulo = str(p.get("title") or "").strip()
-            extracto = re.sub(r"\s+", " ", str(p.get("extract") or "")).strip()
+            extracto = re.sub(r"\\s+", " ", str(p.get("extract") or "")).strip()
             ntitulo = normalizar(titulo)
             ne = normalizar(extracto[:1200])
             if not titulo or not extracto:
                 continue
             if tipo == "artista":
                 marcadores = marcadores_es if idioma == "es" else marcadores_en
-                # El título también debe corresponder al nombre buscado; no basta con que
-                # el extracto mencione de pasada a un cantante con ese nombre.
                 nn = normalizar(nombre)
                 titulo_relevante = ntitulo == nn or ntitulo.startswith(nn + " ")
-                if not titulo_relevante:
-                    continue
-                if not any(normalizar(m) in ne[:650] for m in marcadores):
+                if not titulo_relevante or not any(normalizar(m) in ne[:650] for m in marcadores):
                     continue
                 inicio_extracto = normalizar(extracto[:300])
                 falsos_nombres = (
@@ -1235,17 +1224,26 @@ def api_wikipedia():
                 na = normalizar(artista)
                 titulo_coincide = ntitulo == nn or ntitulo.startswith(nn + " ") or nn in ntitulo
                 artista_coincide = na in normalizar(titulo + " " + extracto)
-                # Exigimos que el título corresponda y que el artículo mencione al intérprete
-                # en cualquier parte del extracto, no solo en las primeras 1.800 letras.
                 if not (titulo_coincide and artista_coincide):
                     continue
             paginas_unicas[titulo] = p
-        ordenadas = sorted(paginas_unicas.values(),
+        return sorted(paginas_unicas.values(),
             key=lambda p: 0 if normalizar(p.get("title", "")) == normalizar(nombre) else 1)
+
+    for idioma in ("es", "en"):
+        consulta = nombre if tipo == "artista" else nombre + " " + artista
+        # Primero probar el título exacto. Si hay página pero no pasa la validación
+        # (p. ej. desambiguación o extracto que no menciona al artista), buscar resultados
+        # por términos antes de dar por inexistente la canción/grupo.
+        paginas = consultar_wikipedia(idioma, nombre, exacta=True)
+        ordenadas = filtrar_paginas(paginas, idioma)
+        if not ordenadas:
+            paginas_busqueda = consultar_wikipedia(idioma, consulta)
+            ordenadas = filtrar_paginas(paginas_busqueda, idioma)
         for pagina in ordenadas:
-            extracto = re.sub(r"\s+", " ", str(pagina.get("extract") or "")).strip()
-            frases = [f.strip() for f in re.split(r"(?<=[.!?])\s+", extracto) if f.strip()]
-            resumen = " ".join(frases[:5])[:1800].strip() or extracto[:1800]
+            extracto = re.sub(r"\\s+", " ", str(pagina.get("extract") or "")).strip()
+            frases = [f.strip() for f in re.split(r"(?<=[.!?])\\s+", extracto) if f.strip()]
+            resumen = " ".join(frases[:5])[:1200].strip() or extracto[:1200]
             url_pagina = pagina.get("fullurl") or ("https://" + idioma + ".wikipedia.org/wiki/" +
                 quote(str(pagina.get("title", nombre)).replace(" ", "_"), safe="()_,-"))
             resumen_original = resumen
