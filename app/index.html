@@ -246,6 +246,7 @@ function crearTarjetaArtista(a, destino){
   div.appendChild(nombre);
   const wikiArtista=document.createElement('button');
   wikiArtista.type='button';wikiArtista.className='boton-wikipedia';wikiArtista.textContent='W';
+  wikiArtista.dataset.wikiTipo='artista';wikiArtista.dataset.wikiNombre=nombreArtista;wikiArtista.dataset.wikiArtista='';
   wikiArtista.title='Consultar biografía del artista';wikiArtista.setAttribute('aria-label','Consultar biografía de '+nombreArtista);
   wikiArtista.addEventListener('click',()=>mostrarInfoWikipedia('artista',nombreArtista,'',div,wikiArtista));
   div.insertBefore(wikiArtista,div.firstChild.nextSibling);
