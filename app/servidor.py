@@ -312,6 +312,8 @@ button:disabled{opacity:.55;cursor:wait}
 .barra-alfabetica{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0 16px;position:sticky;top:6px;z-index:100;background:#17152deb;backdrop-filter:blur(12px);padding:10px;border:1px solid #ffffff20;border-radius:13px}
 .barra-alfabetica button{min-width:30px;padding:7px 8px;background:#ffffff12;border:1px solid #ffffff20;color:#eee;border-radius:8px}
 .barra-alfabetica button.activa{background:#ff4fa3;color:#fff;font-weight:900}
+.barra-alfabetica .boton-estrella{font-size:17px;min-width:40px;background:#6c4b18;border:1px solid #f7c948;color:#ffe27a}
+.barra-alfabetica .boton-estrella.activa{background:#f7c948;color:#26152e;box-shadow:0 0 12px #f7c94866}
 #letra-actual{position:fixed;right:16px;bottom:22px;z-index:15000;background:#ff4fa3;color:#fff;font-size:24px;font-weight:900;width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 24px #0008;pointer-events:none}
 #letra-actual[hidden]{display:none}
 .reproductor-completo{width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin:12px 0;background:#000}
@@ -565,7 +567,7 @@ document.getElementById('cerrar-modal').addEventListener('click',()=>modal.hidde
 modal.addEventListener('click',e=>{if(e.target===modal)modal.hidden=true;});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.hidden=true;});
 buscar.addEventListener('input',mostrarArtistas);
-fetch('/api/artistas',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error();return r.json();}).then(datos=>{artistas=datos;mostrarArtistas();}).catch(()=>{estado.textContent='No se ha podido cargar la lista de artistas.';});
+fetch('/api/artistas',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error();return r.json();}).then(datos=>{artistas=datos;artistasBase=artistas;mostrarArtistas();}).catch(()=>{estado.textContent='No se ha podido cargar la lista de artistas.';});
 </script></body></html>"""
 
 
