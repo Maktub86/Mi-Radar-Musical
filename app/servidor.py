@@ -1094,6 +1094,13 @@ def api_resumen_musical():
     nombre = re.sub(r"\s+", " ", (request.args.get("nombre") or "").strip())[:180]
     artista = re.sub(r"\s+", " ", (request.args.get("artista") or "").strip())[:180]
     api_key = (os.environ.get("GEMINI_API_KEY") or "").strip()
+    if not api_key:
+        archivo_clave = BASE / "gemini_api_key.txt"
+        try:
+            if archivo_clave.is_file():
+                api_key = archivo_clave.read_text(encoding="utf-8").strip()
+        except OSError:
+            app.logger.warning("No se pudo leer el archivo local de la clave de Gemini.")
     if tipo not in ("artista", "cancion") or not nombre or (tipo == "cancion" and not artista):
         return jsonify({"encontrado": False, "error": "Falta el artista o la canción."}), 400
     if not api_key:
