@@ -353,11 +353,11 @@ async function consultarGemini(tipo,nombre,artista){
   cacheGemini.set(clave,(async()=>{
    try{
     const q=new URLSearchParams({tipo,nombre,artista:artista||''});
-    const r=await fetch('/api/resumen-musical?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(30000)});
+    const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(15000)});
     const d=await r.json();
-    if(!r.ok||!d.encontrado||!d.resumen)return {encontrado:false,mensaje:d.error||'No se ha encontrado información fiable.'};
+    if(!r.ok||!d.encontrado||!d.resumen)return {encontrado:false,mensaje:d.error||'No se ha encontrado información en español para este resultado.'};
     return d;
-   }catch(e){return {encontrado:false,mensaje:'No se ha podido consultar Gemini ahora mismo. Comprueba la conexión y la configuración.'};}
+   }catch(e){return {encontrado:false,mensaje:'No se ha podido cargar la información ahora mismo. Inténtalo de nuevo.'};}
   })());
  }
  const resultado=await cacheGemini.get(clave);
@@ -396,7 +396,7 @@ function mostrarArtistas(){
   wikiArtista.addEventListener('click',async()=>{
    if(wikiArtista.disabled)return;wikiArtista.disabled=true;wikiArtista.textContent='…';
    let infoBox=caja.querySelector('.info-wikipedia');if(infoBox)infoBox.remove();
-   const cargando=nodo('div','info-wikipedia','Buscando información con Gemini…');caja.appendChild(cargando);
+   const cargando=nodo('div','info-wikipedia','Buscando información en español…');caja.appendChild(cargando);
    try{
     const info=await consultarGemini('artista',nombre,'');
     cargando.remove();
@@ -439,7 +439,7 @@ async function cargarTop(nombre,caja,boton){
    wiki.addEventListener('click',async()=>{
     if(wiki.disabled)return;wiki.disabled=true;wiki.textContent='…';
     let infoBox=fila.querySelector('.info-wikipedia');if(infoBox)infoBox.remove();
-    const cargando=nodo('div','info-wikipedia','Buscando información de la canción con Gemini…');fila.insertAdjacentElement('afterend',cargando);
+    const cargando=nodo('div','info-wikipedia','Buscando información de la canción…');fila.insertAdjacentElement('afterend',cargando);
     try{
      const info=await consultarGemini('cancion',pista.titulo,pista.artista);
      cargando.remove();
@@ -1185,133 +1185,128 @@ def api_resumen_musical():
 
 @app.get("/api/wikipedia")
 def api_wikipedia():
-    """Devuelve un resumen breve de Wikipedia para un artista/grupo o una canción, sin Gemini."""
+    """Busca información musical en Wikipedia con búsqueda flexible y devuelve un resumen en español."""
     tipo = (request.args.get("tipo") or "").strip().lower()
     nombre = re.sub(r"\s+", " ", (request.args.get("nombre") or "").strip())[:180]
     artista = re.sub(r"\s+", " ", (request.args.get("artista") or "").strip())[:180]
     if tipo not in ("artista", "cancion") or not nombre or (tipo == "cancion" and not artista):
-        return jsonify({"encontrado": False, "fuente_tipo": "ninguna"}), 400
+        return jsonify({"encontrado": False, "fuente_tipo": "ninguna", "error": "Faltan el nombre o el artista de la canción."}), 400
 
-    def traducir_es(texto):
-        if not texto:
-            return texto
-        try:
-            parametros = urlencode({"client": "gtx", "sl": "en", "tl": "es", "dt": "t", "q": texto[:2500]})
-            req = Request("https://translate.googleapis.com/translate_a/single?" + parametros,
-                          headers={"User-Agent": "Mozilla/5.0 MiRadarMusical/1.0"})
-            with urlopen(req, timeout=4) as respuesta:
-                datos = json.loads(respuesta.read().decode("utf-8"))
-            traduccion = "".join(str(parte[0]) for parte in (datos[0] or []) if parte and parte[0])
-            return traduccion.strip() or texto
-        except Exception:
-            return texto
+    def normalizar(texto):
+        texto = unicodedata.normalize("NFKD", str(texto or ""))
+        texto = "".join(ch for ch in texto if not unicodedata.combining(ch)).casefold()
+        return re.sub(r"[^a-z0-9]+", " ", texto).strip()
 
     def buscar(idioma, consulta):
-        parametros = {
-            "action": "query", "generator": "search", "gsrsearch": consulta,
-            "gsrnamespace": "0", "gsrlimit": "6", "prop": "extracts|info",
-            "explaintext": "1", "exchars": "1800", "inprop": "url",
-            "format": "json", "redirects": "1"
+        base = "https://" + idioma + ".wikipedia.org/w/api.php?"
+        cabeceras = {"User-Agent": "MiRadarMusical/4.0 (consulta de resúmenes musicales)"}
+        params = {
+            "action": "query", "list": "search", "srsearch": consulta,
+            "srnamespace": "0", "srlimit": "8", "format": "json", "utf8": "1"
         }
-        req = Request("https://" + idioma + ".wikipedia.org/w/api.php?" + urlencode(parametros),
-                      headers={"User-Agent": "MiRadarMusical/3.0 (Wikipedia summaries)"})
-        with urlopen(req, timeout=6) as respuesta:
+        req = Request(base + urlencode(params), headers=cabeceras)
+        with urlopen(req, timeout=8) as respuesta:
+            resultados = json.loads(respuesta.read().decode("utf-8")).get("query", {}).get("search", [])
+        titulos = [str(x.get("title") or "").strip() for x in resultados if x.get("title")]
+        if not titulos:
+            return []
+        params = {
+            "action": "query", "prop": "extracts|info", "explaintext": "1",
+            "exchars": "2200", "inprop": "url", "redirects": "1",
+            "titles": "|".join(titulos[:8]), "format": "json", "utf8": "1"
+        }
+        req = Request(base + urlencode(params), headers=cabeceras)
+        with urlopen(req, timeout=8) as respuesta:
             datos = json.loads(respuesta.read().decode("utf-8"))
-        paginas = list((datos.get("query", {}).get("pages") or {}).values())
-        paginas = [p for p in paginas if str(p.get("extract") or "").strip()]
-        # Priorizar el título que coincida con el nombre buscado; el resto respeta la relevancia de Wikipedia.
-        objetivo = nombre.casefold().strip()
-        paginas.sort(key=lambda p: 0 if str(p.get("title") or "").casefold().strip() == objetivo else 1)
-        return paginas
+        return [p for p in (datos.get("query", {}).get("pages") or {}).values()
+                if str(p.get("extract") or "").strip()]
 
     if tipo == "artista":
-        # Añadir contexto musical para nombres ambiguos (p. ej. Maná debe ser el grupo).
-        consultas = [nombre + " banda grupo musical", nombre + " grupo musical", nombre]
+        consultas = [nombre, nombre + " cantante", nombre + " grupo musical", nombre + " artista musical"]
     else:
-        # Incluir el artista en la búsqueda para distinguir canciones con el mismo título.
-        consultas = [nombre + " " + artista + " canción", nombre + " " + artista]
+        consultas = [nombre + " " + artista, nombre + " " + artista + " canción", nombre + " canción"]
 
     for idioma in ("es", "en"):
         for consulta in consultas:
             try:
                 paginas = buscar(idioma, consulta)
             except Exception as error:
-                app.logger.warning("No se pudo consultar Wikipedia %s para %s: %s", idioma, consulta, error)
+                app.logger.warning("Wikipedia %s no disponible para la búsqueda %s: %s", idioma, consulta, error)
                 continue
             if not paginas:
                 continue
 
-            def normalizar_busqueda(texto):
-                texto = unicodedata.normalize("NFKD", str(texto or ""))
-                texto = "".join(ch for ch in texto if not unicodedata.combining(ch)).casefold()
-                return re.sub(r"[^a-z0-9]+", " ", texto).strip()
-
-            objetivo = normalizar_busqueda(nombre)
-            artista_objetivo = normalizar_busqueda(artista)
-            marcadores_musica = (
-                "grupo musical", "banda", "grupo", "cantante", "musico", "musica",
-                "vocalista", "cantautor", "cantautora", "rock band", "pop group",
-                "musical group", "singer", "songwriter", "music group"
-            )
+            objetivo = normalizar(nombre)
+            artista_objetivo = normalizar(artista)
             candidatos = []
-            for p in paginas:
-                titulo_p = re.sub(r"\s+", " ", str(p.get("title") or "")).strip()
-                extracto_p = re.sub(r"\s+", " ", str(p.get("extract") or "")).strip()
-                titulo_norm = normalizar_busqueda(titulo_p)
-                texto_norm = normalizar_busqueda(titulo_p + " " + extracto_p)
+            for pagina in paginas:
+                titulo = re.sub(r"\s+", " ", str(pagina.get("title") or "")).strip()
+                extracto = re.sub(r"\s+", " ", str(pagina.get("extract") or "")).strip()
+                titulo_n = normalizar(titulo)
+                texto_n = normalizar(titulo + " " + extracto)
                 if tipo == "artista":
-                    # Nunca aceptar una persona que solo sea miembro de un grupo: el título
-                    # debe corresponder al artista/grupo solicitado.
-                    coincide_titulo = (titulo_norm == objetivo or titulo_norm.startswith(objetivo + " "))
-                    if not coincide_titulo:
+                    coincide = titulo_n == objetivo or titulo_n.startswith(objetivo + " ")
+                    if not coincide:
                         continue
-                    inicio = normalizar_busqueda(extracto_p[:350])
-                    if any(x in inicio for x in ("es un nombre", "nombre de pila", "given name", "is a given name", "disambiguation page", "pagina de desambiguacion")):
+                    if any(x in normalizar(extracto[:400]) for x in ("pagina de desambiguacion", "puede referirse a", "may refer to", "disambiguation page")):
                         continue
-                    puntuacion = 100 if titulo_norm == objetivo else 70
-                    if any(m in texto_norm for m in marcadores_musica):
-                        puntuacion += 25
-                    # Desambiguaciones no deben ganar frente a la página del grupo.
-                    if "puede referirse a" in texto_norm or "may refer to" in texto_norm:
-                        puntuacion -= 100
+                    puntuacion = 100 if titulo_n == objetivo else 65
+                    if any(x in texto_n for x in ("cantante", "cantautor", "grupo musical", "banda", "musico", "musica", "singer", "songwriter", "musical group", "band")):
+                        puntuacion += 20
                 else:
-                    titulo_coincide = (titulo_norm == objetivo or titulo_norm.startswith(objetivo + " ") or objetivo in titulo_norm)
-                    artista_coincide = bool(artista_objetivo and artista_objetivo in texto_norm)
-                    # Si Wikipedia no relaciona el título con el artista indicado, no mostrar
-                    # la biografía de un miembro ni otra canción homónima.
-                    if not titulo_coincide or not artista_coincide:
+                    coincide = titulo_n == objetivo or titulo_n.startswith(objetivo + " ") or objetivo in titulo_n
+                    if not coincide:
                         continue
-                    puntuacion = 100 if titulo_norm == objetivo else 70
-                    puntuacion += 40
-                candidatos.append((puntuacion, p))
+                    puntuacion = 100 if titulo_n == objetivo else 60
+                    if artista_objetivo and artista_objetivo in texto_n:
+                        puntuacion += 50
+                    # Preferimos páginas que realmente hablen de música/canciones.
+                    if any(x in texto_n for x in ("cancion", "sencillo", "album", "single", "song", "recording")):
+                        puntuacion += 10
+                candidatos.append((puntuacion, pagina))
             if not candidatos:
-                # Probar la siguiente consulta con más contexto antes de rendirse.
                 continue
-            candidatos.sort(key=lambda item: item[0], reverse=True)
+            candidatos.sort(key=lambda x: x[0], reverse=True)
             pagina = candidatos[0][1]
             extracto = re.sub(r"\s+", " ", str(pagina.get("extract") or "")).strip()
-            frases = [f.strip() for f in re.split(r"(?<=[.!?])\\s+", extracto) if f.strip()]
-            resumen = " ".join(frases[:3])[:650].strip() or extracto[:650]
+            frases = [x.strip() for x in re.split(r"(?<=[.!?])\s+", extracto) if x.strip()]
+            resumen = " ".join(frases[:4])[:900].strip() or extracto[:900]
             if idioma == "en":
-                resumen = traducir_es(resumen)
-            url_pagina = pagina.get("fullurl") or (
-                "https://" + idioma + ".wikipedia.org/wiki/" +
-                quote(str(pagina.get("title") or nombre).replace(" ", "_"), safe="()_,-")
-            )
+                try:
+                    params = urlencode({"client": "gtx", "sl": "en", "tl": "es", "dt": "t", "q": resumen[:2500]})
+                    req = Request("https://translate.googleapis.com/translate_a/single?" + params,
+                                  headers={"User-Agent": "Mozilla/5.0 MiRadarMusical/4.0"})
+                    with urlopen(req, timeout=5) as respuesta:
+                        datos = json.loads(respuesta.read().decode("utf-8"))
+                    traducido = "".join(str(parte[0]) for parte in (datos[0] or []) if parte and parte[0]).strip()
+                    if traducido:
+                        resumen = traducido
+                except Exception:
+                    pass
+            url_pagina = pagina.get("fullurl") or ("https://" + idioma + ".wikipedia.org/wiki/" + quote(str(pagina.get("title") or nombre).replace(" ", "_"), safe="()_,-"))
+            fuente_titulo = "Wikipedia en español" if idioma == "es" else "Wikipedia en inglés"
+            if idioma == "en":
+                fuente_titulo += " (resumen traducido si está disponible)"
             return jsonify({
-                "encontrado": bool(resumen), "url": url_pagina,
-                "titulo": pagina.get("title") or nombre,
+                "encontrado": bool(resumen), "resumen": resumen,
+                "url": url_pagina, "titulo": pagina.get("title") or nombre,
                 "biografia": resumen if tipo == "artista" else "",
                 "informacion": resumen if tipo == "cancion" else "",
-                "idioma": idioma,
-                "fuente": "Wikipedia en español" if idioma == "es" else "Wikipedia en inglés (traducida si es posible)",
+                "idioma": idioma, "fuente": fuente_titulo,
+                "fuentes": [{"titulo": fuente_titulo, "url": url_pagina}],
                 "fuente_tipo": "wikipedia", "traducido": idioma == "en",
                 "tipo_contenido": "biografia" if tipo == "artista" else "informacion_cancion"
             })
 
+    # Aunque no haya artículo, ofrecemos una búsqueda preparada para que el usuario
+    # pueda encontrar resultados relacionados sin recibir un error técnico.
+    consulta_web = (nombre + " " + artista + " canción" if tipo == "cancion" else nombre + " cantante músico")
+    url_busqueda = "https://www.google.com/search?" + urlencode({"q": consulta_web, "hl": "es"})
     return jsonify({
-        "encontrado": False, "fuente_tipo": "ninguna",
-        "error": "Wikipedia no tiene un resumen disponible para este resultado."
+        "encontrado": True,
+        "resumen": "No he encontrado un artículo enciclopédico adecuado para este resultado. Puedes consultar esta búsqueda en español para encontrar información relacionada.",
+        "fuentes": [{"titulo": "Buscar información en español", "url": url_busqueda}],
+        "fuente_tipo": "busqueda_web", "mensaje": "No había un artículo exacto; se ofrece una búsqueda alternativa."
     }), 200
 
 
