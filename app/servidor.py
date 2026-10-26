@@ -1258,7 +1258,7 @@ def api_wikipedia():
             "fuente": "Wikipedia en español"
         })
 
-    if not candidatas:
+    if not candidatas or max(c.get("score", 0) for c in candidatas) < 4:
         # Segunda fuente general: buscador web, para no depender de Wikipedia.
         # Se priorizan resultados con pistas narrativas y se conserva la URL de origen.
         try:
