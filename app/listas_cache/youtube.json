@@ -13,15 +13,15 @@
       "puesto": 2
     },
     {
-      "titulo": "Dame Hombro",
-      "artista": "Kevin Wai, Breyco En Producidera, Bulin 47",
-      "url": "https://www.youtube.com/watch?v=VUIgT-E4IS0",
-      "puesto": 3
-    },
-    {
       "titulo": "Ozuna x Jory Boy x Ñengo Flow - Vulnerable (Video Oficial)",
       "artista": "Ozuna",
       "url": "https://www.youtube.com/watch?v=OWbhwq9fecg",
+      "puesto": 3
+    },
+    {
+      "titulo": "Dame Hombro",
+      "artista": "Kevin Wai, Breyco En Producidera, Bulin 47",
+      "url": "https://www.youtube.com/watch?v=VUIgT-E4IS0",
       "puesto": 4
     },
     {
@@ -31,63 +31,63 @@
       "puesto": 5
     },
     {
-      "titulo": "El Pastor De Mareas",
+      "titulo": "Relicario",
       "artista": "El Barrio",
-      "url": "https://www.youtube.com/watch?v=mv2RzJYyeYI",
+      "url": "https://www.youtube.com/watch?v=o0pX-KObmvs",
       "puesto": 6
     },
     {
-      "titulo": "Relicario",
-      "artista": "El Barrio",
-      "url": "https://www.youtube.com/watch?v=oOmymQX7L8g",
+      "titulo": "Galvan Real - Mi Rompecabezas (Videoclip Oficial)",
+      "artista": "Galvan Real",
+      "url": "https://www.youtube.com/watch?v=mZm0CZlc9so",
       "puesto": 7
+    },
+    {
+      "titulo": "Querencia",
+      "artista": "El Barrio",
+      "url": "https://www.youtube.com/watch?v=PG7S8mt5isk",
+      "puesto": 8
+    },
+    {
+      "titulo": "El Pastor De Mareas",
+      "artista": "El Barrio",
+      "url": "https://www.youtube.com/watch?v=mv2RzJYyeYI",
+      "puesto": 9
+    },
+    {
+      "titulo": "El Problema Fue La Solución",
+      "artista": "Antonio Orozco",
+      "url": "https://www.youtube.com/watch?v=jevtWW_3Jwk",
+      "puesto": 10
     },
     {
       "titulo": "YOUR NUMBER - Spanish Version",
       "artista": "Yapi",
       "url": "https://www.youtube.com/watch?v=xxToWcYEGJw",
-      "puesto": 8
-    },
-    {
-      "titulo": "Bicho raro",
-      "artista": "Estopa",
-      "url": "https://www.youtube.com/watch?v=8IMveAh7nhA",
-      "puesto": 9
+      "puesto": 11
     },
     {
       "titulo": "La Falda",
       "artista": "Judeline",
       "url": "https://www.youtube.com/watch?v=7L6oiqd91qE",
-      "puesto": 10
+      "puesto": 12
+    },
+    {
+      "titulo": "Bicho raro",
+      "artista": "Estopa",
+      "url": "https://www.youtube.com/watch?v=8IMveAh7nhA",
+      "puesto": 13
     },
     {
       "titulo": "Housewife (Official Video)",
       "artista": "Tate McRae",
       "url": "https://www.youtube.com/watch?v=DPEodkHzH-s",
-      "puesto": 11
-    },
-    {
-      "titulo": "KARINA - Entre tú y yo (VIDEO OFICIAL)",
-      "artista": "Karina y Marina, Anthony & Yeigo, Karina",
-      "url": "https://www.youtube.com/watch?v=mc9c1eDkvb0",
-      "puesto": 12
+      "puesto": 14
     },
     {
       "titulo": "BbY WOW (Live From New York)",
       "artista": "KAROL G, Judeline, rusowsky",
       "url": "https://www.youtube.com/watch?v=ckPbVDXw9Gc",
-      "puesto": 13
-    },
-    {
-      "titulo": "Querencia",
-      "artista": "El Barrio",
-      "url": "https://www.youtube.com/watch?v=2AS7uFA4q-4",
-      "puesto": 14
-    },
-    {
-      "titulo": "Vuelve",
-      "artista": "Anuel AA",
-      "url": "https://www.youtube.com/watch?v=3juuih0WdH8",
       "puesto": 15
     },
     {
@@ -97,94 +97,94 @@
       "puesto": 16
     },
     {
-      "titulo": "Fua kabrón",
-      "artista": "GRECAS",
-      "url": "https://www.youtube.com/watch?v=orwiyr_FUgE",
+      "titulo": "KARINA - Entre tú y yo (VIDEO OFICIAL)",
+      "artista": "Karina y Marina, Anthony & Yeigo, Karina",
+      "url": "https://www.youtube.com/watch?v=mc9c1eDkvb0",
       "puesto": 17
+    },
+    {
+      "titulo": "Vuelve",
+      "artista": "Anuel AA",
+      "url": "https://www.youtube.com/watch?v=3juuih0WdH8",
+      "puesto": 18
     },
     {
       "titulo": "Chiribi",
       "artista": "Angeliyo El Blanco",
       "url": "https://www.youtube.com/watch?v=8SLaold8IO8",
-      "puesto": 18
-    },
-    {
-      "titulo": "Galvan Real - Mi Rompecabezas (Videoclip Oficial)",
-      "artista": "Galvan Real",
-      "url": "https://www.youtube.com/watch?v=mZm0CZlc9so",
       "puesto": 19
     },
     {
-      "titulo": "0 AMIGOS cap. 5 - YOLAMASCARA",
-      "artista": "YOLAMASCARA",
-      "url": "https://www.youtube.com/watch?v=aqS1yAEEASw",
+      "titulo": "Fua kabrón",
+      "artista": "GRECAS",
+      "url": "https://www.youtube.com/watch?v=orwiyr_FUgE",
       "puesto": 20
-    },
-    {
-      "titulo": "Raquel Sans",
-      "artista": "The Tyets, Miki Núñez",
-      "url": "https://www.youtube.com/watch?v=RQnM1yL3fn8",
-      "puesto": 21
-    },
-    {
-      "titulo": "PARADIXE",
-      "artista": "Pirlo, El Americano 4KT, Feid",
-      "url": "https://www.youtube.com/watch?v=La4g9CSXvus",
-      "puesto": 22
-    },
-    {
-      "titulo": "Es un Secreto",
-      "artista": "Plan B",
-      "url": "https://www.youtube.com/watch?v=XrxQJT2vGX0",
-      "puesto": 23
-    },
-    {
-      "titulo": "+ DELOMISMO",
-      "artista": "Juseph",
-      "url": "https://www.youtube.com/watch?v=vkAO4KXFFgo",
-      "puesto": 24
-    },
-    {
-      "titulo": "Tarantino (Official Music Video)",
-      "artista": "LISA",
-      "url": "https://www.youtube.com/watch?v=-5ZXrO_lYSA",
-      "puesto": 25
-    },
-    {
-      "titulo": "RETRICA",
-      "artista": "Lucho RK",
-      "url": "https://www.youtube.com/watch?v=B1-YKd0_BH4",
-      "puesto": 26
-    },
-    {
-      "titulo": "expectations (feat. Chappell Roan) (Official Music Video)",
-      "artista": "Olivia Rodrigo",
-      "url": "https://www.youtube.com/watch?v=gsZauX8gwxo",
-      "puesto": 27
-    },
-    {
-      "titulo": "El Problema Fue La Solución",
-      "artista": "Antonio Orozco",
-      "url": "https://www.youtube.com/watch?v=jevtWW_3Jwk",
-      "puesto": 28
     },
     {
       "titulo": "El Tándem con Cráneo",
       "artista": "SFDK",
       "url": "https://www.youtube.com/watch?v=G2yPTomFA9A",
+      "puesto": 21
+    },
+    {
+      "titulo": "Tarantino (Official Music Video)",
+      "artista": "LISA",
+      "url": "https://www.youtube.com/watch?v=-5ZXrO_lYSA",
+      "puesto": 22
+    },
+    {
+      "titulo": "FAMA cap. 7 - YOLAMASCARA",
+      "artista": "YOLAMASCARA",
+      "url": "https://www.youtube.com/watch?v=NUzyKrRvwRk",
+      "puesto": 23
+    },
+    {
+      "titulo": "Vete Pa Tu Casa (Official Visualizer)",
+      "artista": "Conep",
+      "url": "https://www.youtube.com/watch?v=HBoW8-q-sSs",
+      "puesto": 24
+    },
+    {
+      "titulo": "Raquel Sans",
+      "artista": "The Tyets, Miki Núñez",
+      "url": "https://www.youtube.com/watch?v=RQnM1yL3fn8",
+      "puesto": 25
+    },
+    {
+      "titulo": "0 AMIGOS cap. 5 - YOLAMASCARA",
+      "artista": "YOLAMASCARA",
+      "url": "https://www.youtube.com/watch?v=aqS1yAEEASw",
+      "puesto": 26
+    },
+    {
+      "titulo": "Es un Secreto",
+      "artista": "Plan B",
+      "url": "https://www.youtube.com/watch?v=XrxQJT2vGX0",
+      "puesto": 27
+    },
+    {
+      "titulo": "PARADIXE",
+      "artista": "Pirlo, El Americano 4KT, Feid",
+      "url": "https://www.youtube.com/watch?v=La4g9CSXvus",
+      "puesto": 28
+    },
+    {
+      "titulo": "+ DELOMISMO",
+      "artista": "Juseph",
+      "url": "https://www.youtube.com/watch?v=vkAO4KXFFgo",
       "puesto": 29
     },
     {
-      "titulo": "Tímala",
-      "artista": "GRECAS",
-      "url": "https://www.youtube.com/watch?v=6Vol_WMpxss",
+      "titulo": "RETRICA",
+      "artista": "Lucho RK",
+      "url": "https://www.youtube.com/watch?v=B1-YKd0_BH4",
       "puesto": 30
     }
   ],
   "fuente": "https://charts.youtube.com/charts/TrendingVideos/es",
   "nombre": "Tendencias musicales de YouTube",
   "tipo": "youtube",
-  "actualizado": "2026-10-25T10:11+01:00",
+  "actualizado": "2026-10-26T05:14+00:00",
   "en_curso": false,
   "mensaje": "Lista actualizada: 30 canciones."
 }
