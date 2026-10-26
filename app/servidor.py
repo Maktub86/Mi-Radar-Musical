@@ -1259,6 +1259,77 @@ def api_wikipedia():
         })
 
     if not candidatas:
+        # Segunda fuente general: buscador web, para no depender de Wikipedia.
+        # Se priorizan resultados con pistas narrativas y se conserva la URL de origen.
+        try:
+            from html import unescape
+            consultas_web = (
+                f'"{nombre}" "{artista}" historia inspiración grabación canción'
+                if tipo == "cancion"
+                else f'"{nombre}" artista canción inspiración grabación entrevista curiosidad'
+            )
+            params_web = urlencode({"q": consultas_web, "kl": "es-es"})
+            req_web = Request(
+                "https://html.duckduckgo.com/html/?" + params_web,
+                headers={"User-Agent": "Mozilla/5.0 (compatible; MiRadarMusical/1.3)"}
+            )
+            with urlopen(req_web, timeout=5) as respuesta_web:
+                html_web = respuesta_web.read().decode("utf-8", errors="replace")
+            bloques = re.findall(
+                r'<div class="result[^"]*"[^>]*>(.*?)</div>\s*</div>',
+                html_web, flags=re.DOTALL
+            )
+            candidatas_web = []
+            pistas_web = (
+                "inspir", "dedic", "grab", "compus", "escrib", "historia",
+                "origen", "entrevista", "boda", "madre", "padre", "muerte",
+                "premio", "record", "numero uno", "número uno", "originalmente",
+                "basada", "basado", "significado", "behind the song", "song story"
+            )
+            for bloque in bloques:
+                enlace = re.search(
+                    r'<a[^>]*class="result__a"[^>]*href="([^"]+)"[^>]*>(.*?)</a>',
+                    bloque, flags=re.DOTALL
+                )
+                resumen = re.search(
+                    r'<(?:a|div)[^>]*class="result__snippet"[^>]*>(.*?)</(?:a|div)>',
+                    bloque, flags=re.DOTALL
+                )
+                if not enlace or not resumen:
+                    continue
+                url_fuente = unescape(re.sub(r"<[^>]+>", "", enlace.group(1))).strip()
+                titulo_fuente = unescape(re.sub(r"<[^>]+>", "", enlace.group(2))).strip()
+                texto_fuente = unescape(re.sub(r"<[^>]+>", "", resumen.group(1)))
+                texto_fuente = re.sub(r"\s+", " ", texto_fuente).strip()
+                texto_norm = normalizar(texto_fuente)
+                if not (65 <= len(texto_fuente) <= 420):
+                    continue
+                if not any(normalizar(p) in texto_norm for p in pistas_web):
+                    continue
+                if tipo == "cancion" and n_artista not in normalizar(titulo_fuente + " " + texto_fuente):
+                    # El buscador ya recibió el artista; no se descarta si el snippet omite el nombre.
+                    pass
+                candidatas_web.append({
+                    "score": sum(2 for p in pistas_web if normalizar(p) in texto_norm),
+                    "titulo": titulo_fuente or nombre,
+                    "url": url_fuente,
+                    "curiosidad": texto_fuente
+                })
+            if candidatas_web:
+                candidatas_web.sort(key=lambda item: item["score"], reverse=True)
+                mejor_web = candidatas_web[0]
+                return jsonify({
+                    "encontrado": True,
+                    "url": mejor_web["url"],
+                    "titulo": mejor_web["titulo"],
+                    "curiosidad": mejor_web["curiosidad"],
+                    "idioma": "es",
+                    "fuente": "búsqueda web"
+                })
+        except Exception:
+            app.logger.info("La búsqueda web complementaria no devolvió resultados utilizables")
+
+    if not candidatas:
         # Respaldo editorial verificado para ABBA: no dependemos solo de Wikipedia.
         if tipo == "artista" and normalizar(nombre) == "abba":
             return jsonify({
