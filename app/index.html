@@ -74,12 +74,14 @@ button:hover{background:#8d5abd}
 .resultado-musica{display:block;width:100%;text-align:left;background:#22283a;color:#fff;border:1px solid #ffffff20;padding:12px;border-radius:10px}
 .resultado-musica span{display:block;color:#b8bfd2;font-size:12px;margin-top:4px}
 .reproductor-completo{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin:12px 0;background:#000}
-.boton-wikipedia{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;margin-left:8px;border-radius:5px;background:#777d88;color:#fff;font-weight:900;border:1px solid #a8adb6;cursor:pointer}
+.boton-30{background:linear-gradient(120deg,#ff4fa3,#8a4dff 52%,#20bde8)!important;border:1px solid #ffffff85!important;box-shadow:0 4px 15px #9d46ff4d,inset 0 1px 0 #ffffff45!important}.boton-wikipedia{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;margin-left:8px;border-radius:5px;background:#777d88;color:#fff;font-weight:900;border:1px solid #a8adb6;cursor:pointer}
 .historia-wikipedia{margin:9px 0;padding:12px;border-left:3px solid #aeb4c0;background:#ffffff0b;border-radius:7px;color:#e4e4ec;font-size:14px;line-height:1.5}
 .historia-wikipedia a{color:#c9b0ff}
+body[data-wikipedia-off="1"] .boton-wikipedia{display:none!important}
 </style>
 </head>
 <body data-vista="artistas">
+<script>try{if(localStorage.getItem('mrWikipediaEnabled')==='0')document.body.dataset.wikipediaOff='1'}catch(e){}</script>
 <header><div class="marca">Tu universo musical</div><h1>🎤 Mis artistas</h1><p>Tu colección de artistas, sus novedades y publicaciones recientes.</p></header>
 <nav>
 <a href="/">🏠 Portada</a>
@@ -231,6 +233,7 @@ function crearTarjetaArtista(a, destino){
   wikiArtista.setAttribute('aria-label','Artículo de '+nombreArtista+' en Wikipedia');
   div.insertBefore(wikiArtista,div.firstChild.nextSibling);
   const comprobarWikiArtista=async()=>{
+    try{if(localStorage.getItem('mrWikipediaEnabled')==='0')return}catch(e){}
     if(wikiArtista.dataset.consultado)return;
     wikiArtista.dataset.consultado='1';
     try{const q=new URLSearchParams({tipo:'artista',nombre:nombreArtista});const r=await fetch('/api/wikipedia?'+q);const d=await r.json();if(d.encontrado&&wikiArtista.isConnected){wikiArtista.href=d.url;wikiArtista.title=d.titulo+' · Wikipedia';wikiArtista.style.display='inline-flex'}}catch(e){}
