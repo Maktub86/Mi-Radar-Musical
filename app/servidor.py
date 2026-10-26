@@ -13,6 +13,7 @@ from urllib.parse import quote, urlencode
 from urllib.request import Request, urlopen
 import unicodedata
 import difflib
+import os
 from listas_musicales import cargar as cargar_lista, actualizar as actualizar_lista
 
 BASE = Path(__file__).resolve().parent
@@ -272,7 +273,7 @@ def pagina_lo_mejor():
 :root{color-scheme:dark;--suave:#b8b6cf;--panel:#1b1b2d;--verde:#55e6bd}
 *{box-sizing:border-box}
 body{margin:0;background:linear-gradient(140deg,#17152d,#10101c 55%,#26152e);color:#f7f5ff;font-family:Segoe UI,Arial,sans-serif;min-height:100vh}
-body[data-wikipedia-off="1"] .boton-wikipedia,body[data-wikipedia-off="1"] .historia-wikipedia{display:none!important}
+
 header{padding:30px 6%;background:linear-gradient(110deg,#5727a5,#b72d83 65%,#f06a76)}
 h1{font-size:clamp(32px,6vw,52px);margin:12px 0 8px}
 nav{display:flex;gap:10px;flex-wrap:wrap;padding:18px 6%;border-bottom:1px solid #ffffff18}
@@ -344,89 +345,37 @@ const letrasAlfabeto=['#',...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')];
 function normalizarNombre(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleUpperCase('es');}
 for(const letra of letrasAlfabeto){const b=nodo('button','',letra);b.type='button';b.dataset.letra=letra;b.addEventListener('click',()=>{inicialSeleccionada=inicialSeleccionada===letra?'':letra;mostrarArtistas();if(inicialSeleccionada&&inicialSeleccionada!=='#'){const caja=[...contenedor.querySelectorAll('.artista-mejor')].find(x=>normalizarNombre(x.querySelector('h2')?.textContent).startsWith(inicialSeleccionada));if(caja)caja.scrollIntoView({behavior:'smooth',block:'start'});}});alfabetoLoMejor.appendChild(b);}
 window.addEventListener('scroll',()=>{const cajas=[...contenedor.querySelectorAll('.artista-mejor')];let actual='';for(const caja of cajas){if(caja.getBoundingClientRect().top<=180)actual=normalizarNombre(caja.querySelector('h2')?.textContent).charAt(0)||'';else break;}if(!actual&&cajas.length)actual=normalizarNombre(cajas[0].querySelector('h2')?.textContent).charAt(0)||'';letraActual.hidden=!actual;if(actual){letraActual.textContent=actual;for(const b of alfabetoLoMejor.querySelectorAll('button'))b.classList.toggle('activa',b.dataset.letra===actual);}});
-const cacheWikipediaVerificada=new Map();
-async function verificarWikipedia(tipo,nombre,artista){
- try{if(localStorage.getItem('mrWikipediaEnabled')==='0')return null}catch(e){}
+const cacheGemini=new Map();
+async function consultarGemini(tipo,nombre,artista){
  const clave=[tipo,normalizarNombre(nombre),normalizarNombre(artista||'')].join('|');
- if(!cacheWikipediaVerificada.has(clave)){
-  cacheWikipediaVerificada.set(clave,(async()=>{
+ if(!cacheGemini.has(clave)){
+  cacheGemini.set(clave,(async()=>{
    try{
     const q=new URLSearchParams({tipo,nombre,artista:artista||''});
-    const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(15000)});
-    if(!r.ok)return null;const d=await r.json();
-    return d.encontrado&&d.url&&(d.informacion||d.biografia)?d:null;
-   }catch(e){return null;}
+    const r=await fetch('/api/resumen-musical?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(30000)});
+    const d=await r.json();
+    if(!r.ok||!d.encontrado||!d.resumen)return {encontrado:false,mensaje:d.error||'No se ha encontrado información fiable.'};
+    return d;
+   }catch(e){return {encontrado:false,mensaje:'No se ha podido consultar Gemini ahora mismo. Comprueba la conexión y la configuración.'};}
   })());
  }
- const resultado=await cacheWikipediaVerificada.get(clave);
- if(!resultado)cacheWikipediaVerificada.delete(clave);
+ const resultado=await cacheGemini.get(clave);
+ if(!resultado.encontrado)cacheGemini.delete(clave);
  return resultado;
-}
-const observadorWiki=(typeof IntersectionObserver!=='undefined')?new IntersectionObserver(entradas=>{
- for(const entrada of entradas){if(entrada.isIntersecting){const b=entrada.target;observadorWiki.unobserve(b);preverificarBotonWiki(b,b.dataset.wikiTipo,b.dataset.wikiNombre,b.dataset.wikiArtista||'',true);}}
-},{rootMargin:'180px'}):null;
-function preverificarBotonWiki(b,tipo,nombre,artista,forzar=false){
- if(!b||b.dataset.verificandoWiki==='1')return;
- b.dataset.wikiTipo=tipo;b.dataset.wikiNombre=nombre;b.dataset.wikiArtista=artista||'';
- const ejecutar=async()=>{
-  if(b.dataset.verificadoWiki==='1')return;b.dataset.verificandoWiki='1';
-  const info=await verificarWikipedia(tipo,nombre,artista||'');
-  b.dataset.verificandoWiki='0';b.dataset.verificadoWiki='1';
-  if(!info){b.hidden=true;return;}
-  b.textContent=info.fuente_tipo==='web'?'🌐':'W';
-  b.title=info.fuente_tipo==='web'?'Información encontrada en la web: '+(info.titulo||nombre):'Información encontrada en Wikipedia';
-  b.setAttribute('aria-label',b.title);
- };
- if(observadorWiki&&!forzar)observadorWiki.observe(b);else ejecutar();
 }
 function mostrarInfoWikipedia(contenedor,info,tipo){
  const anterior=contenedor.querySelector('.info-wikipedia');
  if(anterior){anterior.remove();return;}
  const caja=nodo('div','info-wikipedia');
  caja.style.cssText='margin:8px 0 12px;padding:12px 14px;border-radius:10px;background:#ffffff0d;border:1px solid #ffffff20;color:#d9e8f4;line-height:1.5;font-size:13px';
- const contenido=tipo==='artista'?info.biografia:info.informacion;
- if(contenido)caja.appendChild(nodo('p','',(tipo==='artista'?'Biografía: ':'Sobre la canción: ')+contenido));
- const fuente=info.fuente||'Wikipedia';
- const enlace=nodo('a','','Leer fuente: '+fuente+' ↗');enlace.href=info.url;enlace.target='_blank';enlace.rel='noopener noreferrer';enlace.style.cssText='display:inline-block;margin-top:6px;color:#9ecbff;font-weight:700';
- caja.appendChild(enlace);contenedor.appendChild(caja);
-}
-const cacheHistoriasCancion=new Map();
-async function cargarHistoriaCancion(titulo,artista,fila,boton){
- try{if(localStorage.getItem('mrWikipediaEnabled')==='0')return}catch(e){}
- const claveDOM=titulo+'|'+artista;
- const existente=fila.parentElement?.querySelector('.info-wikipedia[data-cancion="'+CSS.escape(claveDOM)+'"]');
- if(existente){existente.remove();return;}
- const caja=nodo('div','info-wikipedia','Buscando información de la canción en Wikipedia…');
- caja.dataset.cancion=claveDOM;
- fila.insertAdjacentElement('afterend',caja);
- const clave=normalizarNombre(titulo+' '+artista);
- try{
-  let promesa=cacheHistoriasCancion.get(clave);
-  if(!promesa){
-   promesa=(async()=>{
-    const q=new URLSearchParams({tipo:'cancion',nombre:titulo,artista:artista});
-    const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(15000)});
-    if(!r.ok)return null;
-    const d=await r.json();
-    return d.encontrado&&d.url&&d.informacion?d:null;
-   })();
-   cacheHistoriasCancion.set(clave,promesa);
-  }
-  const h=await promesa;
-  if(!h)cacheHistoriasCancion.delete(clave);
-  caja.replaceChildren();
-  if(!h){
-   caja.textContent='No se ha encontrado información de esta canción en Wikipedia.';
-   return;
-  }
-  caja.appendChild(nodo('p','',h.informacion));
-  const a=nodo('a','','Leer artículo en Wikipedia ↗');
-  a.href=h.url;a.target='_blank';a.rel='noopener noreferrer';
-  a.style.cssText='display:inline-block;margin-top:6px;color:#c9b0ff;font-weight:700';
-  caja.appendChild(a);
- }catch(e){
-  caja.textContent='No se ha podido consultar Wikipedia ahora mismo. Prueba de nuevo en unos segundos.';
- }
+ const contenido=info.resumen||'';
+ const p=nodo('p','',contenido);p.style.whiteSpace='pre-line';caja.appendChild(p);
+ (info.fuentes||[]).forEach(f=>{
+  if(!f.url||!/^https?:\\/\\//i.test(f.url))return;
+  const a=nodo('a','','Fuente: '+(f.titulo||f.url)+' ↗');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';
+  a.style.cssText='display:block;margin-top:6px;color:#9ecbff;font-weight:700';caja.appendChild(a);
+ });
+ contenedor.appendChild(caja);
 }
 let audioActivo=null;
 let temporizador=null;
@@ -441,12 +390,18 @@ function mostrarArtistas(){
   const cabecera=nodo('div','cabecera-artista');
   cabecera.appendChild(nodo('h2','',nombre));
   const huecoWiki=nodo('span','');huecoWiki.style.marginRight='auto';
-  const wikiArtista=nodo('button','boton-wikipedia','W');wikiArtista.type='button';
-  wikiArtista.title='Consultar biografía de '+nombre;wikiArtista.setAttribute('aria-label','Consultar biografía de '+nombre);
+  const wikiArtista=nodo('button','boton-wikipedia','G');wikiArtista.type='button';
+  wikiArtista.title='Consultar biografía y curiosidad de '+nombre;wikiArtista.setAttribute('aria-label','Consultar biografía de '+nombre);
   wikiArtista.addEventListener('click',async()=>{
-   if(wikiArtista.disabled)return;wikiArtista.disabled=true;
-   try{const info=await verificarWikipedia('artista',nombre,'');if(info)mostrarInfoWikipedia(caja,info,'artista');else{let msg=caja.querySelector('.aviso-wiki');if(!msg){msg=nodo('div','aviso-wiki','No se encontró información de Wikipedia para este resultado.');caja.appendChild(msg);}}}
-   finally{wikiArtista.disabled=false;}
+   if(wikiArtista.disabled)return;wikiArtista.disabled=true;wikiArtista.textContent='…';
+   let infoBox=caja.querySelector('.info-wikipedia');if(infoBox)infoBox.remove();
+   const cargando=nodo('div','info-wikipedia','Buscando información con Gemini…');caja.appendChild(cargando);
+   try{
+    const info=await consultarGemini('artista',nombre,'');
+    cargando.remove();
+    if(info.encontrado)mostrarInfoWikipedia(caja,info,'artista');
+    else caja.appendChild(nodo('div','info-wikipedia',info.mensaje||'No se ha encontrado información sobre este artista.'));
+   }finally{wikiArtista.disabled=false;wikiArtista.textContent='G';}
   });
   huecoWiki.appendChild(wikiArtista);cabecera.appendChild(huecoWiki);
   const boton=nodo('button','','Ver sus 5 canciones');
@@ -457,7 +412,6 @@ function mostrarArtistas(){
   canciones.hidden=true;
   caja.appendChild(canciones);
   contenedor.appendChild(caja);
-  preverificarBotonWiki(wikiArtista,'artista',nombre,'');
  }
  estado.textContent=filtrados.length+' artistas. Pulsa «Ver sus 5 canciones» para consultar su ranking.';for(const b of alfabetoLoMejor.querySelectorAll('button'))b.classList.toggle('activa',b.dataset.letra===inicialSeleccionada);
 }
@@ -479,12 +433,18 @@ async function cargarTop(nombre,caja,boton){
    const tituloPista=nodo('span','pista-titulo',pista.titulo);
    const tituloLinea=nodo('div','');tituloLinea.appendChild(tituloPista);detalle.appendChild(tituloLinea);
    const wiki=nodo('button','boton-wikipedia','W');wiki.type='button';
-   wiki.title='Consultar información de '+pista.titulo;
-   wiki.setAttribute('aria-label','Consultar información sobre '+pista.titulo);
+   wiki.title='Consultar información de '+pista.titulo+' de '+pista.artista;
+   wiki.setAttribute('aria-label','Consultar información sobre '+pista.titulo+' de '+pista.artista);
    wiki.addEventListener('click',async()=>{
-    if(wiki.disabled)return;wiki.disabled=true;
-    try{const info=await verificarWikipedia('cancion',pista.titulo,pista.artista);if(info)mostrarInfoWikipedia(fila,info,'cancion');else{let msg=fila.querySelector('.aviso-wiki');if(!msg){msg=nodo('div','aviso-wiki','No se encontró información de Wikipedia para este resultado.');fila.appendChild(msg);}}}
-    finally{wiki.disabled=false;}
+    if(wiki.disabled)return;wiki.disabled=true;wiki.textContent='…';
+    let infoBox=fila.querySelector('.info-wikipedia');if(infoBox)infoBox.remove();
+    const cargando=nodo('div','info-wikipedia','Buscando información de la canción con Gemini…');fila.insertAdjacentElement('afterend',cargando);
+    try{
+     const info=await consultarGemini('cancion',pista.titulo,pista.artista);
+     cargando.remove();
+     if(info.encontrado)mostrarInfoWikipedia(fila,info,'cancion');
+     else fila.insertAdjacentElement('afterend',nodo('div','info-wikipedia',info.mensaje||'No se ha encontrado información sobre esta canción.'));
+    }finally{wiki.disabled=false;wiki.textContent='G';}
    });
    tituloLinea.appendChild(wiki);
    detalle.appendChild(nodo('div','pista-meta',pista.artista+' · Popularidad en Deezer'+(pista.album?' · '+pista.album:'')));
@@ -502,7 +462,6 @@ async function cargarTop(nombre,caja,boton){
    youtube.setAttribute('aria-label','YouTube');
    youtube.addEventListener('click',()=>buscarYouTube(pista,'youtube'));
    acciones.append(muestra,mediahuman,youtube);fila.append(detalle,acciones);zona.appendChild(fila);
-   preverificarBotonWiki(wiki,'cancion',pista.titulo,pista.artista);
   }
  }catch(e){
   const mensaje=e.name==='AbortError'?'Deezer está tardando demasiado en responder. Pulsa «Ver sus 5 canciones» para intentarlo otra vez.':(e.message||'Error al consultar Deezer.');
@@ -1126,6 +1085,75 @@ def _ejecutar_actualizacion():
                 mensaje="Actualización fallida: " + str(error)
             )
 
+
+
+@app.get("/api/resumen-musical")
+def api_resumen_musical():
+    """Genera bajo demanda un resumen musical breve con Gemini y búsqueda web."""
+    tipo = (request.args.get("tipo") or "").strip().lower()
+    nombre = re.sub(r"\\s+", " ", (request.args.get("nombre") or "").strip())[:180]
+    artista = re.sub(r"\\s+", " ", (request.args.get("artista") or "").strip())[:180]
+    api_key = (os.environ.get("GEMINI_API_KEY") or "").strip()
+    if tipo not in ("artista", "cancion") or not nombre or (tipo == "cancion" and not artista):
+        return jsonify({"encontrado": False, "error": "Falta el artista o la canción."}), 400
+    if not api_key:
+        return jsonify({"encontrado": False, "error": "Falta configurar la clave de Gemini (GEMINI_API_KEY) en Windows."}), 503
+
+    if tipo == "artista":
+        instruccion = (
+            "Escribe en español un resumen biográfico breve y una curiosidad interesante y verificable "
+            "sobre el artista o grupo indicado. Separa en dos apartados: «Resumen de su vida» y «Curiosidad». "
+            "En grupos, resume la historia del grupo en vez de inventar una vida individual. "
+        )
+        objetivo = "Artista o grupo: " + nombre
+    else:
+        instruccion = (
+            "Explica en español algo interesante y concreto sobre la canción indicada y su relación con el artista: "
+            "contexto de creación o publicación, significado conocido, historia o impacto cultural. "
+            "No inventes interpretaciones como si fueran declaraciones confirmadas. "
+        )
+        objetivo = "Canción: " + nombre + "\\nArtista: " + artista
+    prompt = (
+        instruccion + "\\nUsa búsqueda web para comprobar los datos. Si no encuentras fuentes fiables que "
+        "confirmen que la persona/grupo o canción corresponde exactamente a la consulta, responde únicamente "
+        "con el texto exacto NO_ENCONTRADO. No rellenes huecos inventando hechos. Máximo 130 palabras.\\n\\n"
+        + objetivo
+    )
+    try:
+        payload = {
+            "contents": [{"parts": [{"text": prompt}]}],
+            "tools": [{"google_search": {}}],
+            "generationConfig": {"temperature": 0.2, "maxOutputTokens": 450}
+        }
+        req = Request(
+            "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+            data=json.dumps(payload).encode("utf-8"),
+            headers={"Content-Type": "application/json", "x-goog-api-key": api_key,
+                     "User-Agent": "MiRadarMusical/1.0"},
+            method="POST"
+        )
+        with urlopen(req, timeout=25) as respuesta:
+            datos = json.loads(respuesta.read().decode("utf-8"))
+        candidatos = datos.get("candidates") or []
+        partes = ((candidatos[0].get("content") or {}).get("parts") or []) if candidatos else []
+        resumen = " ".join(str(p.get("text") or "").strip() for p in partes if p.get("text")).strip()
+        if not resumen or "NO_ENCONTRADO" in resumen.upper():
+            return jsonify({"encontrado": False, "error": "No se ha encontrado información fiable sobre este resultado."})
+        # Solo se presentan enlaces que Gemini devuelve como fuentes de búsqueda.
+        fuentes = []
+        meta = candidatos[0].get("groundingMetadata") or {}
+        for chunk in meta.get("groundingChunks") or []:
+            web_info = chunk.get("web") or {}
+            url_fuente = web_info.get("uri") or ""
+            titulo_fuente = web_info.get("title") or "Fuente consultada"
+            if url_fuente.startswith("https://") and all(x.get("url") != url_fuente for x in fuentes):
+                fuentes.append({"titulo": titulo_fuente, "url": url_fuente})
+        if not fuentes:
+            return jsonify({"encontrado": False, "error": "Gemini no ha encontrado fuentes web que permitan verificar la información."})
+        return jsonify({"encontrado": True, "resumen": resumen, "fuentes": fuentes[:4]})
+    except Exception:
+        app.logger.exception("Error consultando Gemini para %s", nombre)
+        return jsonify({"encontrado": False, "error": "No se ha podido consultar Gemini. Comprueba la conexión, la clave y la cuota de la API."}), 502
 
 
 @app.get("/api/wikipedia")
