@@ -1227,6 +1227,19 @@ def api_wikipedia():
         n = normalizar(texto)
         return any(normalizar(p) in n for p in indicadores_no_musicales)
 
+    # Frases típicas de páginas de desambiguación o artículos sobre nombres,
+    # que no deben confundirse con la biografía de un cantante (p. ej. Camilo).
+    indicadores_desambiguacion = (
+        "es un nombre de pila", "es tanto un nombre", "nombre de pila y un apellido",
+        "personas notables con el nombre", "puede referirse a", "puede hacer referencia a",
+        "este nombre puede referirse", "is a given name", "given name and surname",
+        "notable people with the name", "may refer to", "may also refer to"
+    )
+
+    def es_desambiguacion(texto):
+        n = normalizar(texto)
+        return any(normalizar(p) in n for p in indicadores_desambiguacion)
+
     def respuesta_ok(titulo, extracto, url, idioma="es"):
         texto = re.sub(r"\\s+", " ", str(extracto or "")).strip()
         if not texto:
@@ -1319,17 +1332,17 @@ def api_wikipedia():
             titulo_coincide = (titulo_n == nombre_n or titulo_n.startswith(nombre_n + " ") or nombre_n.startswith(titulo_n + " "))
             if not titulo_coincide:
                 return False
-            # No rechazar artistas conocidos solo porque el extracto sea breve o use otras palabras.
-            # Sí descartar homónimos claramente identificados con otra profesión (p. ej. balonmano).
+            # No aceptar páginas de desambiguación/nombres propios como si fueran artistas.
+            if es_desambiguacion(titulo + " " + extracto):
+                return False
+            # Aceptar una referencia musical y rechazar homónimos de otra profesión.
             if es_musical(extracto):
                 return True
             if es_claramente_otro_ambito(extracto):
                 return False
-            # Si el nombre de la página coincide exactamente y no hay señales claras
-            # de otra profesión, permitir la página aunque el resumen sea demasiado breve.
-            # Así no se pierden artistas legítimos con extractos escuetos; los homónimos
-            # claramente deportivos/políticos siguen bloqueados arriba.
-            return True
+            # Si el extracto no confirma que sea un artista, no dar por válida la página
+            # solo porque el título coincida; la búsqueda alternativa probará otros resultados.
+            return False
         # Para canciones exigimos el título de la canción y alguna referencia al artista o a música.
         cancion_coincide = (titulo_n == nombre_n or titulo_n.startswith(nombre_n + " ") or nombre_n.startswith(titulo_n + " "))
         artista_mencionado = contiene_frase(titulo + " " + extracto, artista)
