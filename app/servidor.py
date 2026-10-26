@@ -352,7 +352,7 @@ async function verificarWikipedia(tipo,nombre,artista){
   cacheWikipediaVerificada.set(clave,(async()=>{
    try{
     const q=new URLSearchParams({tipo,nombre,artista:artista||''});
-    const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(8000)});
+    const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(15000)});
     if(!r.ok)return null;const d=await r.json();
     return d.encontrado&&d.url&&(d.curiosidad||d.biografia)?d:null;
    }catch(e){return null;}
@@ -1171,7 +1171,7 @@ def api_wikipedia():
                 })
             req = Request(
                 "https://es.wikipedia.org/w/api.php?" + params,
-                headers={"User-Agent": "MiRadarMusical/1.3 (music trivia; contact: support@example.com)"}
+                headers={"User-Agent": "MiRadarMusical/1.4 (music trivia; contact: support@example.com)"}
             )
             with urlopen(req, timeout=3) as respuesta:
                 datos = json.loads(respuesta.read().decode("utf-8"))
@@ -1182,9 +1182,10 @@ def api_wikipedia():
             if tipo == "artista" and consulta is None:
                 exacta_valida = any(
                     normalizar(p.get("title", "")) == n_nombre
-                    and any(normalizar(m) in normalizar(p.get("extract", "")) for m in (
+                    and any(normalizar(m) in normalizar(p.get("extract", "")[:900]) for m in (
                         "cantante", "grupo musical", "banda musical", "musico",
-                        "vocalista", "rapero", "cantautor", "artista"
+                        "vocalista", "rapero", "cantautor", "artista", "interprete",
+                        "productor musical", "banda de rock", "grupo de pop"
                     ))
                     and "puede referirse a" not in normalizar(p.get("extract", ""))[:420]
                     and "pagina de desambiguacion" not in normalizar(p.get("extract", ""))[:420]
@@ -1213,9 +1214,13 @@ def api_wikipedia():
             marcadores_musicales_pagina = (
                 "grupo musical", "banda musical", "banda mexicana", "grupo mexicano",
                 "cantante", "compositor", "compositora", "musico", "musica",
-                "vocalista", "discografia", "album de estudio", "rock latino", "pop latino"
+                "vocalista", "discografia", "album de estudio", "rock latino", "pop latino",
+                "interprete", "productor musical", "rapero", "cantautor", "cantautora"
             )
-            es_pagina_musical = any(normalizar(x) in ne for x in marcadores_musicales_pagina)
+            # Los marcadores deben aparecer en la introducción, no en cualquier lugar
+            # de un extracto largo que quizá trate de otra cosa.
+            inicio_musical = ne[:900]
+            es_pagina_musical = any(normalizar(x) in inicio_musical for x in marcadores_musicales_pagina)
             es_pagina_de_comida = any(normalizar(x) in ne for x in (
                 "producto de pasteleria", "pasta dulce", "recubrimiento de pasteles",
                 "alimento enviado por dios"
@@ -1323,9 +1328,8 @@ def api_wikipedia():
         })
 
     if not candidatas and tipo == "artista":
-        # Respaldo general para TODO el alfabeto: si la página de Wikipedia coincide
-        # exactamente con el nombre del artista, mostrar su biografía aunque no se
-        # pueda verificar una curiosidad independiente. Nunca inventar el dato.
+        # Respaldo general: solo aceptar una página cuya introducción identifique
+        # realmente a la persona/grupo como artista musical. El título exacto no basta.
         paginas_ordenadas = sorted(
             paginas_por_titulo.values(),
             key=lambda p: 0 if normalizar(p.get("title", "")) == n_nombre else 1
@@ -1340,9 +1344,10 @@ def api_wikipedia():
             inicio = ne[:500]
             if any(x in inicio for x in ("puede referirse a", "pagina de desambiguacion", "el termino puede")):
                 continue
-            if nt != n_nombre and not any(normalizar(m) in ne for m in (
+            if not any(normalizar(m) in inicio for m in (
                 "cantante", "grupo musical", "banda musical", "musico", "vocalista",
-                "rapero", "cantautor", "artista", "productor musical", "rock", "pop"
+                "rapero", "cantautor", "artista", "productor musical", "rock", "pop",
+                "interprete", "compositor", "compositora", "banda", "grupo de musica"
             )):
                 continue
             frases_bio = [f.strip() for f in re.split(r"(?<=[.!?])\s+", extracto) if f.strip()]
@@ -1512,9 +1517,10 @@ def api_wikipedia():
                 "grupo musical", "banda musical", "cantante", "rock latino"
             )):
                 continue
-            if not any(normalizar(m) in ne for m in (
+            if not any(normalizar(m) in ne[:900] for m in (
                 "cantante", "grupo musical", "banda musical", "musico", "vocalista",
-                "rapero", "cantautor", "artista", "discografia", "rock latino", "pop latino"
+                "rapero", "cantautor", "artista", "discografia", "rock latino", "pop latino",
+                "interprete", "productor musical", "compositor", "compositora"
             )):
                 continue
             frases = [f.strip() for f in re.split(r"(?<=[.!?])\s+", extracto) if f.strip()]
