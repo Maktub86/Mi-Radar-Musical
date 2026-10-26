@@ -1227,6 +1227,33 @@ def api_wikipedia():
         resumen = re.sub(r"\s+", " ", str(extracto or "")).strip()
         if not resumen:
             return None
+
+        # Las biografías de artista no deben quedarse en una sola frase si Wikipedia
+        # tiene más contenido. Si el resumen inicial es corto, pedir el extracto ampliado
+        # de la misma página e idioma; no usar otra persona ni otra fuente para rellenar.
+        if tipo == "artista" and len(resumen) < 300:
+            try:
+                params_ampliado = urlencode({
+                    "action": "query", "prop": "extracts", "explaintext": "1",
+                    "exchars": "3000", "titles": titulo, "redirects": "1",
+                    "format": "json", "utf8": "1"
+                })
+                req_ampliado = Request(
+                    "https://" + idioma + ".wikipedia.org/w/api.php?" + params_ampliado,
+                    headers=cabeceras
+                )
+                with urlopen(req_ampliado, timeout=6) as resp:
+                    paginas = json.loads(resp.read().decode("utf-8")).get("query", {}).get("pages", {})
+                for pagina_ampliada in paginas.values():
+                    texto_ampliado = re.sub(
+                        r"\s+", " ", str(pagina_ampliada.get("extract") or "")
+                    ).strip()
+                    if texto_ampliado and len(texto_ampliado) > len(resumen):
+                        resumen = texto_ampliado
+                        break
+            except Exception as error:
+                app.logger.info("No se pudo ampliar la biografía de %s: %s", titulo, error)
+
         if idioma == "en":
             try:
                 params = urlencode({"client": "gtx", "sl": "en", "tl": "es", "dt": "t", "q": resumen[:2500]})
