@@ -371,7 +371,7 @@ function mostrarInfoWikipedia(contenedor,info,tipo){
  const contenido=info.resumen||'';
  const p=nodo('p','',contenido);p.style.whiteSpace='pre-line';caja.appendChild(p);
  (info.fuentes||[]).forEach(f=>{
-  if(!f.url||!/^https?:\\/\\//i.test(f.url))return;
+  if(!f.url||!(f.url.startsWith('https://')||f.url.startsWith('http://')))return;
   const a=nodo('a','','Fuente: '+(f.titulo||f.url)+' ↗');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';
   a.style.cssText='display:block;margin-top:6px;color:#9ecbff;font-weight:700';caja.appendChild(a);
  });
@@ -432,7 +432,7 @@ async function cargarTop(nombre,caja,boton){
    const detalle=nodo('div','');
    const tituloPista=nodo('span','pista-titulo',pista.titulo);
    const tituloLinea=nodo('div','');tituloLinea.appendChild(tituloPista);detalle.appendChild(tituloLinea);
-   const wiki=nodo('button','boton-wikipedia','W');wiki.type='button';
+   const wiki=nodo('button','boton-wikipedia','G');wiki.type='button';
    wiki.title='Consultar información de '+pista.titulo+' de '+pista.artista;
    wiki.setAttribute('aria-label','Consultar información sobre '+pista.titulo+' de '+pista.artista);
    wiki.addEventListener('click',async()=>{
@@ -1112,11 +1112,11 @@ def api_resumen_musical():
             "contexto de creación o publicación, significado conocido, historia o impacto cultural. "
             "No inventes interpretaciones como si fueran declaraciones confirmadas. "
         )
-        objetivo = "Canción: " + nombre + "\\nArtista: " + artista
+        objetivo = "Canción: " + nombre + "\nArtista: " + artista
     prompt = (
-        instruccion + "\\nUsa búsqueda web para comprobar los datos. Si no encuentras fuentes fiables que "
+        instruccion + "\nUsa búsqueda web para comprobar los datos. Si no encuentras fuentes fiables que "
         "confirmen que la persona/grupo o canción corresponde exactamente a la consulta, responde únicamente "
-        "con el texto exacto NO_ENCONTRADO. No rellenes huecos inventando hechos. Máximo 130 palabras.\\n\\n"
+        "con el texto exacto NO_ENCONTRADO. No rellenes huecos inventando hechos. Máximo 130 palabras.\n\n"
         + objetivo
     )
     try:
