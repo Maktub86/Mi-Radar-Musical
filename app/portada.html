@@ -365,8 +365,8 @@ function escaparLista(v){
 function urlWikipedia(nombre){
  return "https://es.wikipedia.org/w/index.php?search="+encodeURIComponent(String(nombre||""));
 }
-const cacheCuriosidadesWiki=new Map();
-async function obtenerInfoPortada(tipo,nombre,artista){const clave=[tipo,nombre,artista||''].join('|');let p=cacheCuriosidadesWiki.get(clave);if(!p){const q=new URLSearchParams({tipo,nombre,artista:artista||''});p=fetch('/api/wikipedia?'+q,{signal:AbortSignal.timeout(18000)}).then(r=>r.ok?r.json():{encontrado:false}).catch(()=>({encontrado:false}));cacheCuriosidadesWiki.set(clave,p);}return p;}
+const cacheinformacionWikiWiki=new Map();
+async function obtenerInfoPortada(tipo,nombre,artista){const clave=[tipo,nombre,artista||''].join('|');let p=cacheinformacionWikiWiki.get(clave);if(!p){const q=new URLSearchParams({tipo,nombre,artista:artista||''});p=fetch('/api/wikipedia?'+q,{signal:AbortSignal.timeout(18000)}).then(r=>r.ok?r.json():{encontrado:false}).catch(()=>({encontrado:false}));cacheinformacionWikiWiki.set(clave,p);}return p;}
 const observadorWikiPortada=typeof IntersectionObserver!=='undefined'?new IntersectionObserver(es=>{for(const e of es){if(e.isIntersecting){observadorWikiPortada.unobserve(e.target);preverificarWikiPortada(e.target);}}},{rootMargin:'180px'}):null;
 async function preverificarWikiPortada(b){const d=await obtenerInfoPortada(b.dataset.wikiTipo,b.dataset.wikiNombre,b.dataset.wikiArtista||'');const contenido=b.dataset.wikiTipo==='artista'?d.biografia:d.informacion;if(d.encontrado&&contenido){b.textContent=d.fuente_tipo==='web'?'🌐':'W';b.title=d.fuente_tipo==='web'?'Información encontrada en la web':'Información encontrada en Wikipedia';}else b.hidden=true;}
 function configurarIconosWiki(contenedor){
@@ -406,7 +406,7 @@ function mostrarLista(tipo,datos){
   puesto.textContent=String(cancion.puesto||"–");
   const detalle=document.createElement("div");
   detalle.className="detalle-cancion";
-  detalle.innerHTML='<div class="titulo-cancion">'+escaparLista(cancion.titulo)+' <button class="wiki-icon" data-wiki-tipo="cancion" data-wiki-nombre="'+escaparLista(cancion.titulo||'')+'" data-wiki-artista="'+escaparLista(cancion.artista||'')+'" title="Consultar curiosidad de la canción" aria-label="Consultar curiosidad de la canción">W</button></div><div class="artista-cancion">'+escaparLista(cancion.artista)+' <button class="wiki-icon" data-wiki-tipo="artista" data-wiki-nombre="'+escaparLista(cancion.artista||'')+'" title="Consultar curiosidad del artista" aria-label="Consultar curiosidad del artista">W</button></div>';
+  detalle.innerHTML='<div class="titulo-cancion">'+escaparLista(cancion.titulo)+' <button class="wiki-icon" data-wiki-tipo="cancion" data-wiki-nombre="'+escaparLista(cancion.titulo||'')+'" data-wiki-artista="'+escaparLista(cancion.artista||'')+'" title="Consultar información de la canción" aria-label="Consultar información de la canción">W</button></div><div class="artista-cancion">'+escaparLista(cancion.artista)+' <button class="wiki-icon" data-wiki-tipo="artista" data-wiki-nombre="'+escaparLista(cancion.artista||'')+'" title="Consultar información del artista" aria-label="Consultar información del artista">W</button></div>';
   configurarIconosWiki(detalle);
   const acciones=document.createElement("div");
   acciones.className="acciones-cancion";
