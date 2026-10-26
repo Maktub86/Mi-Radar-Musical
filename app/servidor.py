@@ -1076,7 +1076,20 @@ def api_wikipedia():
                     "interpretado por", "grabada por", "grabado por", "compuesta por",
                     "compuesto por", "publicada por", "lanzada por", "lanzado por"
                 )
-                if n_artista not in ne or not any(t in ne for t in terminos_cancion):
+                if not any(t in ne for t in terminos_cancion):
+                    continue
+                # Exigir una relación explícita entre la canción y el intérprete/autor indicado.
+                relaciones_artista = (
+                    "cancion de " + n_artista, "sencillo de " + n_artista,
+                    "single de " + n_artista, "interpretada por " + n_artista,
+                    "interpretado por " + n_artista, "grabada por " + n_artista,
+                    "grabado por " + n_artista, "compuesta por " + n_artista,
+                    "compuesto por " + n_artista, "lanzada por " + n_artista,
+                    "lanzado por " + n_artista, "tema de " + n_artista,
+                    "del cantante " + n_artista, "de la cantante " + n_artista,
+                    "del grupo " + n_artista, "de la banda " + n_artista
+                )
+                if not any(relacion in ne for relacion in relaciones_artista):
                     continue
             from urllib.parse import quote
             url = pagina.get("fullurl") or (
