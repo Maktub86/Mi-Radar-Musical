@@ -327,7 +327,7 @@ button:disabled{opacity:.55;cursor:wait}
 @media(max-width:600px){.cabecera-artista{align-items:flex-start;flex-direction:column}.pista{grid-template-columns:1fr}.acciones-pista{justify-content:flex-start}}
 </style></head>
 <body>
-<header><div>Tu universo musical</div><h1>⭐ Lo mejor</h1><p>Tus 20 artistas con más canciones y las 20 canciones más populares de cada uno, ordenadas por año.</p></header>
+<header><div>Tu universo musical</div><h1>⭐ Lo mejor</h1><p>⭐ Pulsa la estrella para ver tus 20 artistas con más canciones en tu colección y descubrir sus 20 temas más populares, ordenados por año.</p></header>
 <nav><a href="/">🏠 Portada</a><a href="/listas/youtube">▶ YouTube</a><a href="/listas/los40">🎵 LOS40</a><a href="/listas/canal-fiesta">📻 Canal Fiesta</a><a class="activo" href="/lo-mejor">⭐ Lo mejor</a><a href="/programas">🧰 Programas</a><a href="/artistas">🎤 Mis artistas</a></nav>
 <main><input id="buscar-artista" type="search" placeholder="Buscar artista de tu lista…"><div id="alfabeto-lo-mejor" class="barra-alfabetica" aria-label="Buscar por inicial"></div><div id="letra-actual" hidden aria-live="polite"></div><div id="estado-lo-mejor" role="status">Cargando tus artistas…</div><div id="artistas-lo-mejor"></div></main>
 <div id="modal-youtube" hidden role="dialog" aria-modal="true" aria-labelledby="titulo-modal-youtube"><div class="modal-caja"><div class="modal-top"><h2 id="titulo-modal-youtube">Elegir versión para MediaHuman</h2><button id="cerrar-modal" class="boton-secundario">Cerrar ✕</button></div><p id="estado-youtube">Buscando en YouTube…</p><div id="reproductor-completo"></div><div id="resultados-youtube"></div></div></div>
@@ -344,6 +344,25 @@ let inicialSeleccionada='';
 const alfabetoLoMejor=document.getElementById('alfabeto-lo-mejor');
 const letraActual=document.getElementById('letra-actual');
 const letrasAlfabeto=['#',...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')];
+let mostrandoFavoritos=false;
+let topArtistasColeccion=[];
+let artistasBase=artistas;
+const botonEstrella=nodo('button','boton-estrella','⭐');
+botonEstrella.type='button';botonEstrella.title='Mostrar tus 20 artistas con más canciones';botonEstrella.setAttribute('aria-label','Mostrar tus 20 artistas con más canciones');
+botonEstrella.addEventListener('click',async()=>{
+ mostrandoFavoritos=!mostrandoFavoritos;
+ if(mostrandoFavoritos&&!topArtistasColeccion.length){
+  estado.textContent='Calculando tus 20 artistas con más canciones…';
+  try{const r=await fetch('/api/lo-mejor/artistas',{cache:'no-store'});if(!r.ok)throw new Error();topArtistasColeccion=await r.json();}
+  catch(e){mostrandoFavoritos=false;estado.textContent='No se ha podido cargar el top 20 de tu colección.';return;}
+ }
+ artistasBase=mostrandoFavoritos?topArtistasColeccion:artistas;
+ inicialSeleccionada='';
+ botonEstrella.classList.toggle('activa',mostrandoFavoritos);
+ botonEstrella.title=mostrandoFavoritos?'Volver a todos los artistas':'Mostrar tus 20 artistas con más canciones';
+ mostrarArtistas();
+});
+alfabetoLoMejor.appendChild(botonEstrella);
 function normalizarNombre(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleUpperCase('es');}
 for(const letra of letrasAlfabeto){const b=nodo('button','',letra);b.type='button';b.dataset.letra=letra;b.addEventListener('click',()=>{inicialSeleccionada=inicialSeleccionada===letra?'':letra;mostrarArtistas();if(inicialSeleccionada&&inicialSeleccionada!=='#'){const caja=[...contenedor.querySelectorAll('.artista-mejor')].find(x=>normalizarNombre(x.querySelector('h2')?.textContent).startsWith(inicialSeleccionada));if(caja)caja.scrollIntoView({behavior:'smooth',block:'start'});}});alfabetoLoMejor.appendChild(b);}
 window.addEventListener('scroll',()=>{const cajas=[...contenedor.querySelectorAll('.artista-mejor')];let actual='';for(const caja of cajas){if(caja.getBoundingClientRect().top<=180)actual=normalizarNombre(caja.querySelector('h2')?.textContent).charAt(0)||'';else break;}if(!actual&&cajas.length)actual=normalizarNombre(cajas[0].querySelector('h2')?.textContent).charAt(0)||'';letraActual.hidden=!actual;if(actual){letraActual.textContent=actual;for(const b of alfabetoLoMejor.querySelectorAll('button'))b.classList.toggle('activa',b.dataset.letra===actual);}});
@@ -384,13 +403,13 @@ let temporizador=null;
 function nodo(tag,clase,texto){const n=document.createElement(tag);if(clase)n.className=clase;if(texto!==undefined)n.textContent=texto;return n;}
 function mostrarArtistas(){
  const q=buscar.value.trim().toLocaleLowerCase('es');
- const filtrados=artistas.filter(a=>{const nombre=a.NombreOriginal||a.NombreNormalizado||'',ini=normalizarNombre(nombre).charAt(0)||'#';const coincide=!inicialSeleccionada||(inicialSeleccionada==='#'?!/^[A-Z]/.test(normalizarNombre(nombre)):ini===inicialSeleccionada);return nombre.toLocaleLowerCase('es').includes(q)&&coincide;}).sort((a,b)=>(a.NombreOriginal||a.NombreNormalizado||'').localeCompare(b.NombreOriginal||b.NombreNormalizado||'','es',{sensitivity:'base'}));
+ const filtrados=artistasBase.filter(a=>{const nombre=a.NombreOriginal||a.NombreNormalizado||'',ini=normalizarNombre(nombre).charAt(0)||'#';const coincide=!inicialSeleccionada||(inicialSeleccionada==='#'?!/^[A-Z]/.test(normalizarNombre(nombre)):ini===inicialSeleccionada);return nombre.toLocaleLowerCase('es').includes(q)&&coincide;}).sort((a,b)=>(a.NombreOriginal||a.NombreNormalizado||'').localeCompare(b.NombreOriginal||b.NombreNormalizado||'','es',{sensitivity:'base'}));
  contenedor.replaceChildren();
  for(const artista of filtrados){
   const nombre=artista.NombreOriginal||artista.NombreNormalizado;
   const caja=nodo('section','artista-mejor');
   const cabecera=nodo('div','cabecera-artista');
-  cabecera.appendChild(nodo('h2','',nombre));
+  cabecera.appendChild(nodo('h2','',nombre+(artista.cancionesEnColeccion?' · '+artista.cancionesEnColeccion+' canciones en tu colección':'')));
   const huecoWiki=nodo('span','');huecoWiki.style.marginRight='auto';
   const wikiArtista=nodo('button','boton-wikipedia','G');wikiArtista.type='button';
   wikiArtista.title='Consultar biografía y curiosidad de '+nombre;wikiArtista.setAttribute('aria-label','Consultar biografía de '+nombre);
@@ -406,7 +425,7 @@ function mostrarArtistas(){
    }finally{wikiArtista.disabled=false;wikiArtista.textContent='G';}
   });
   huecoWiki.appendChild(wikiArtista);cabecera.appendChild(huecoWiki);
-  const boton=nodo('button','','Ver sus 5 canciones');
+  const boton=nodo('button','','Ver sus 20 canciones');
   boton.addEventListener('click',()=>cargarTop(nombre,caja,boton));
   cabecera.appendChild(boton);
   caja.appendChild(cabecera);
@@ -415,14 +434,14 @@ function mostrarArtistas(){
   caja.appendChild(canciones);
   contenedor.appendChild(caja);
  }
- estado.textContent=filtrados.length+' artistas. Pulsa «Ver sus 5 canciones» para consultar su ranking.';for(const b of alfabetoLoMejor.querySelectorAll('button'))b.classList.toggle('activa',b.dataset.letra===inicialSeleccionada);
+ estado.textContent=filtrados.length+' artistas. Pulsa «Ver sus 20 canciones» para consultar su ranking.';for(const b of alfabetoLoMejor.querySelectorAll('button'))b.classList.toggle('activa',b.dataset.letra===inicialSeleccionada);
 }
 async function cargarTop(nombre,caja,boton){
  const zona=caja.querySelector('.canciones-artista');
- if(!zona.hidden&&boton.textContent!=='Reintentar las 5 canciones'){zona.hidden=true;boton.textContent='Ver sus 5 canciones';return;}
+ if(!zona.hidden&&boton.textContent!=='Reintentar las 20 canciones'){zona.hidden=true;boton.textContent='Ver sus 20 canciones';return;}
  zona.hidden=false;zona.replaceChildren();boton.disabled=true;boton.textContent='Consultando Deezer…';
  const controlador=new AbortController();
- const limite=setTimeout(()=>controlador.abort(),12000);
+ const limite=setTimeout(()=>controlador.abort(),30000);
  try{
   const r=await fetch('/api/lo-mejor?artista='+encodeURIComponent(nombre),{cache:'no-store',signal:controlador.signal});
   let d;
@@ -449,7 +468,7 @@ async function cargarTop(nombre,caja,boton){
     }finally{wiki.disabled=false;wiki.textContent='G';}
    });
    tituloLinea.appendChild(wiki);
-   detalle.appendChild(nodo('div','pista-meta',pista.artista+' · Popularidad en Deezer'+(pista.album?' · '+pista.album:'')));
+   detalle.appendChild(nodo('div','pista-meta',(pista.anio||'Año no disponible')+' · '+pista.artista+' · Popularidad en Deezer'+(pista.album?' · '+pista.album:'')));
    const acciones=nodo('div','acciones-pista');
    const muestra=nodo('button','boton-30',pista.preview?'▶ 30':'▶ 30');
    muestra.title=pista.preview?'Reproducir muestra de 30 segundos':'Muestra de 30 segundos no disponible';
@@ -550,6 +569,34 @@ fetch('/api/artistas',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error();re
 </script></body></html>"""
 
 
+@app.get("/api/lo-mejor/artistas")
+def api_lo_mejor_artistas():
+    """Devuelve los 20 artistas con más canciones distintas en la colección local."""
+    ruta = BASE / "mi_musica.json"
+    try:
+        with ruta.open("r", encoding="utf-8") as archivo:
+            biblioteca = json.load(archivo)
+    except (OSError, json.JSONDecodeError):
+        return jsonify({"error": "No se ha podido leer tu colección musical."}), 500
+    grupos = {}
+    vistos = set()
+    for pista in biblioteca if isinstance(biblioteca, list) else []:
+        artista = str(pista.get("artista") or "").strip()
+        titulo = str(pista.get("titulo") or "").strip()
+        if not artista or not titulo:
+            continue
+        clave_artista = normalizar_texto(artista)
+        clave_pista = (clave_artista, normalizar_texto(titulo))
+        if clave_pista in vistos:
+            continue
+        vistos.add(clave_pista)
+        if clave_artista not in grupos:
+            grupos[clave_artista] = {"NombreOriginal": artista, "NombreNormalizado": artista, "cancionesEnColeccion": 0}
+        grupos[clave_artista]["cancionesEnColeccion"] += 1
+    top = sorted(grupos.values(), key=lambda a: (-a["cancionesEnColeccion"], a["NombreOriginal"].casefold()))[:20]
+    return jsonify(top)
+
+
 @app.get("/api/lo-mejor")
 def api_lo_mejor():
     nombre_solicitado = (request.args.get("artista") or "").strip()
@@ -598,13 +645,13 @@ def api_lo_mejor():
         pistas_top = []
         # El endpoint /top puede devolver error o lista vacía según artista/región.
         # En ambos casos, pasar a búsqueda de pistas en vez de abortar toda la ficha.
-        url_top = "https://api.deezer.com/artist/" + str(int(mejor["id"])) + "/top?" + urlencode({"limit": 5})
+        url_top = "https://api.deezer.com/artist/" + str(int(mejor["id"])) + "/top?" + urlencode({"limit": 50})
         try:
             peticion_top = Request(url_top, headers={"User-Agent": "MiRadarMusical/1.0"})
             with urlopen(peticion_top, timeout=3) as respuesta:
                 datos_top = json.loads(respuesta.read().decode("utf-8"))
             if not datos_top.get("error"):
-                pistas_top = (datos_top.get("data") or [])[:5]
+                pistas_top = (datos_top.get("data") or [])
         except Exception:
             # El fallback de búsqueda libre puede seguir funcionando aunque falle /top.
             pistas_top = []
@@ -633,7 +680,20 @@ def api_lo_mejor():
                 )
             ]
             pistas_top.sort(key=lambda pista: int(pista.get("rank") or 0), reverse=True)
-            pistas_top = pistas_top[:5]
+            pistas_top = pistas_top[:50]
+
+        biblioteca = []
+        try:
+            with (BASE / "mi_musica.json").open("r", encoding="utf-8") as archivo:
+                biblioteca = json.load(archivo)
+        except (OSError, json.JSONDecodeError):
+            biblioteca = []
+        anios_locales = {}
+        for local in biblioteca if isinstance(biblioteca, list) else []:
+            if normalizar_texto(local.get("artista")) == normalizar_texto(nombre_deezer):
+                anio_local = local.get("anio")
+                if anio_local:
+                    anios_locales[normalizar_texto(local.get("titulo"))] = anio_local
 
         canciones = []
         vistos = set()
@@ -645,14 +705,19 @@ def api_lo_mejor():
             vistos.add(clave_titulo)
             artista_pista = (pista.get("artist") or {}).get("name") or mejor.get("name", nombre_solicitado)
             album = pista.get("album") or {}
+            fecha = str(pista.get("release_date") or album.get("release_date") or "")
+            anio = fecha[:4] if len(fecha) >= 4 and fecha[:4].isdigit() else anios_locales.get(clave_titulo)
             canciones.append({
                 "titulo": titulo,
                 "artista": artista_pista,
                 "album": album.get("title") or "",
                 "preview": pista.get("preview") or "",
                 "url": pista.get("link") or "",
-                "rank": pista.get("rank")
+                "rank": pista.get("rank"),
+                "anio": anio
             })
+        canciones.sort(key=lambda c: (int(c["anio"]) if str(c.get("anio") or "").isdigit() else 9999, -(int(c.get("rank") or 0))))
+        canciones = canciones[:20]
 
         if not canciones:
             return jsonify({
