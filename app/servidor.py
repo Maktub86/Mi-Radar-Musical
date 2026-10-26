@@ -1210,9 +1210,13 @@ def api_wikipedia():
         "guitarrista", "baterista", "productor musical", "productora musical"
     )
     indicadores_no_musicales = (
-        "jugador de balonmano", "jugadora de balonmano", "futbolista", "baloncestista",
-        "tenista", "atleta olimpico", "atleta olimpica", "politico", "politica",
-        "ministro", "ministra", "presidente de", "militar", "actor pornografico"
+        # Profesiones y ámbitos que suelen producir homónimos en las búsquedas.
+        "jugador de balonmano", "jugadora de balonmano", "handball player",
+        "futbolista", "footballer", "soccer player", "baloncestista",
+        "basketball player", "tenista", "tennis player", "atleta olimpico",
+        "atleta olimpica", "olympic athlete", "politico", "politica",
+        "politician", "ministro", "ministra", "presidente de", "militar",
+        "actor pornografico", "handball", "balonmano"
     )
 
     def es_musical(texto):
@@ -1321,7 +1325,9 @@ def api_wikipedia():
                 return True
             if es_claramente_otro_ambito(extracto):
                 return False
-            return titulo_n == nombre_n
+            # Si el resumen no confirma que sea una persona del ámbito musical,
+            # no aceptar el homónimo solo porque tenga el mismo nombre.
+            return False
         # Para canciones exigimos el título de la canción y alguna referencia al artista o a música.
         cancion_coincide = (titulo_n == nombre_n or titulo_n.startswith(nombre_n + " ") or nombre_n.startswith(titulo_n + " "))
         artista_mencionado = contiene_frase(titulo + " " + extracto, artista)
