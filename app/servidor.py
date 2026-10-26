@@ -1245,7 +1245,7 @@ def api_wikipedia():
                       headers={"User-Agent": "Mozilla/5.0 (compatible; MiRadarMusical/2.0)", "Accept-Language": "es-ES,es;q=0.9"})
         with urlopen(req, timeout=7) as respuesta:
             html = respuesta.read().decode("utf-8", "replace")
-        bloques = re.findall(r'<div[^>]*class="[^"]*\\bresult\\b[^"]*"[^>]*>(.*?)(?=<div[^>]*class="[^"]*\\bresult\\b[^"]*"|$)', html, re.S)
+        bloques = re.findall(r'<div[^>]*class="[^"]*\bresult\b[^"]*"[^>]*>(.*?)(?=<div[^>]*class="[^"]*\bresult\b[^"]*"|$)', html, re.S)
         for bloque in bloques[:8]:
             enlace = re.search(r'<a[^>]*class="result__a"[^>]*href="([^"]+)"[^>]*>(.*?)</a>', bloque, re.S)
             fragmento = re.search(r'<a[^>]*class="result__snippet"[^>]*>(.*?)</a>|<div[^>]*class="result__snippet"[^>]*>(.*?)</div>', bloque, re.S)
