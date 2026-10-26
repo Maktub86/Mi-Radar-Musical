@@ -1246,7 +1246,7 @@ def api_wikipedia():
             paginas_unicas = {}
             for pagina in paginas_cancion:
                 titulo_pagina = str(pagina.get("title") or "").strip()
-                extracto_pagina = re.sub(r"\\s+", " ", str(pagina.get("extract") or "")).strip()
+                extracto_pagina = re.sub(r"\s+", " ", str(pagina.get("extract") or "")).strip()
                 titulo_norm = normalizar(titulo_pagina)
                 # Evitar resultados de álbumes/artistas no relacionados: el título debe
                 # corresponder a la canción o contener el nombre de la canción.
@@ -1264,10 +1264,10 @@ def api_wikipedia():
                 key=lambda p: 0 if normalizar(p.get("title", "")) == n_nombre else 1
             )
             for pagina in ordenadas:
-                extracto = re.sub(r"\\s+", " ", str(pagina.get("extract") or "")).strip()
+                extracto = re.sub(r"\s+", " ", str(pagina.get("extract") or "")).strip()
                 if not extracto:
                     continue
-                frases = [f.strip() for f in re.split(r"(?<=[.!?])\\s+", extracto) if f.strip()]
+                frases = [f.strip() for f in re.split(r"(?<=[.!?])\s+", extracto) if f.strip()]
                 resumen = " ".join(frases[:4])[:1400].strip() or extracto[:1400]
                 titulo_pagina = pagina.get("title") or nombre
                 url_pagina = pagina.get("fullurl") or (
