@@ -1163,19 +1163,19 @@ def api_wikipedia():
         params = []
         if exacta:
             params.append({"action": "query", "titles": consulta, "redirects": "1",
-                           "prop": "extracts|info", "explaintext": "1", "exchars": "6500",
+                           "prop": "extracts|info", "explaintext": "1", "exchars": "1200",
                            "inprop": "url", "format": "json"})
         if not exacta:
             params.append({"action": "query", "generator": "search",
                            "gsrsearch": consulta, "gsrnamespace": "0", "gsrlimit": "5",
-                           "prop": "extracts|info", "explaintext": "1", "exchars": "6500",
+                           "prop": "extracts|info", "explaintext": "1", "exchars": "1200",
                            "inprop": "url", "format": "json", "redirects": "1"})
         salida = []
         for p in params:
             try:
                 req = Request("https://" + idioma + ".wikipedia.org/w/api.php?" + urlencode(p),
                               headers={"User-Agent": "MiRadarMusical/2.0 (music information; contact: app)"})
-                with urlopen(req, timeout=3) as respuesta:
+                with urlopen(req, timeout=2) as respuesta:
                     datos = json.loads(respuesta.read().decode("utf-8"))
                 salida.extend((datos.get("query", {}).get("pages") or {}).values())
             except Exception:
@@ -1198,8 +1198,11 @@ def api_wikipedia():
     for idioma in ("es", "en"):
         # Sin comillas estrictas: Wikipedia puede indexar la canción y el artista por separado.
         consulta = nombre if tipo == "artista" else nombre + " " + artista
+        # Priorizar la consulta directa: evita una segunda petición lenta cuando existe
+        # una página exacta y válida. Buscar por términos solo si la consulta directa no devuelve extractos.
         paginas = consultar_wikipedia(idioma, nombre, exacta=True)
-        paginas.extend(consultar_wikipedia(idioma, consulta))
+        if not paginas:
+            paginas = consultar_wikipedia(idioma, consulta)
         paginas_unicas = {}
         for p in paginas:
             titulo = str(p.get("title") or "").strip()
