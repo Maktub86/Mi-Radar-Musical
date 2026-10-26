@@ -1156,7 +1156,7 @@ def api_wikipedia():
             return traduccion.strip() or texto
         except Exception:
             app.logger.warning("No se pudo traducir al español el resultado de %s", nombre)
-            return texto
+            return None
 
     def consultar_wikipedia(idioma, consulta, exacta=False):
         params = []
@@ -1229,6 +1229,8 @@ def api_wikipedia():
             traducido = idioma == "en"
             if traducido:
                 resumen = traducir_es(resumen)
+                if not resumen:
+                    continue
             return jsonify({
                 "encontrado": bool(resumen), "url": url_pagina, "titulo": pagina.get("title") or nombre,
                 "biografia": resumen if tipo == "artista" else "",
@@ -1271,6 +1273,8 @@ def api_wikipedia():
                 continue
             if re.search(r"[a-z]", texto_fragmento) and not re.search(r"[áéíóúñ]", texto_fragmento):
                 texto_fragmento = traducir_es(texto_fragmento)
+                if not texto_fragmento:
+                    continue
             return jsonify({
                 "encontrado": True, "url": url_resultado, "titulo": titulo_resultado,
                 "biografia": texto_fragmento if tipo == "artista" else "",
