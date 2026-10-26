@@ -1185,7 +1185,11 @@ def api_wikipedia():
                     and any(normalizar(m) in normalizar(p.get("extract", "")[:900]) for m in (
                         "cantante", "grupo musical", "banda musical", "musico",
                         "vocalista", "rapero", "cantautor", "artista", "interprete",
-                        "productor musical", "banda de rock", "grupo de pop"
+                        "productor musical", "banda de rock", "grupo de pop",
+                        "banda de punk", "banda de pop", "banda de heavy metal",
+                        "grupo de rock", "grupo de pop", "grupo de punk", "cantante espanol",
+                        "cantante espanola", "cantante mexicano", "cantante mexicana",
+                        "cantante estadounidense", "cantante britanico", "cantante britanica"
                     ))
                     and "puede referirse a" not in normalizar(p.get("extract", ""))[:420]
                     and "pagina de desambiguacion" not in normalizar(p.get("extract", ""))[:420]
@@ -1213,7 +1217,7 @@ def api_wikipedia():
                 continue
             marcadores_musicales_pagina = (
                 "grupo musical", "banda musical", "banda mexicana", "grupo mexicano",
-                "cantante", "compositor", "compositora", "musico", "musica",
+                "banda de", "grupo de", "cantante", "compositor", "compositora", "musico", "musica",
                 "vocalista", "discografia", "album de estudio", "rock latino", "pop latino",
                 "interprete", "productor musical", "rapero", "cantautor", "cantautora"
             )
@@ -1251,7 +1255,7 @@ def api_wikipedia():
                 continue
         else:
             marcadores_artista = (
-                "cantante", "grupo musical", "banda musical", "musico", "musica",
+                "cantante", "grupo musical", "banda musical", "banda de", "grupo de", "musico", "musica",
                 "vocalista", "compositor", "interprete", "artista", "productor musical",
                 "rapero", "cantautora", "cantautor", "discografia", "banda de rock",
                 "duo musical", "trio musical", "rock latino", "pop latino",
@@ -1349,7 +1353,7 @@ def api_wikipedia():
             if any(x in inicio for x in ("puede referirse a", "pagina de desambiguacion", "el termino puede")):
                 continue
             if not any(normalizar(m) in inicio for m in (
-                "cantante", "grupo musical", "banda musical", "musico", "vocalista",
+                "cantante", "grupo musical", "banda musical", "banda de", "grupo de", "musico", "vocalista",
                 "rapero", "cantautor", "artista musical", "productor musical",
                 "interprete", "grupo de musica", "grupo musical", "banda musical"
             )):
@@ -1597,7 +1601,7 @@ def api_wikipedia():
             )):
                 continue
             if not any(normalizar(m) in ne[:900] for m in (
-                "cantante", "grupo musical", "banda musical", "musico", "vocalista",
+                "cantante", "grupo musical", "banda musical", "banda de", "grupo de", "musico", "vocalista",
                 "rapero", "cantautor", "discografia", "rock latino", "pop latino",
                 "interprete", "productor musical", "compositor musical", "compositora musical",
                 "artista musical"
