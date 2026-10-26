@@ -1142,6 +1142,22 @@ def api_wikipedia():
                 "inprop": "url", "format": "json", "redirects": "1"
             }
         ]
+        marcadores_cantante = (
+            "cantante", "vocalista", "cantautor", "cantautora", "rapero", "rapera",
+            "interprete", "artista musical", "musico", "musica", "grupo musical",
+            "banda musical", "banda de", "grupo de", "duo musical", "solista",
+            "tenor", "soprano", "compositor musical", "compositora musical"
+        )
+
+        def pagina_es_musical(pagina):
+            extracto = re.sub(r"\\s+", " ", str(pagina.get("extract") or "")).strip()
+            inicio = normalizar(extracto[:900])
+            if not extracto or any(x in inicio[:500] for x in (
+                "puede referirse a", "pagina de desambiguacion", "el termino puede"
+            )):
+                return False
+            return any(normalizar(m) in inicio for m in marcadores_cantante)
+
         for parametros in consultas_artista:
             try:
                 req = Request(
@@ -1152,28 +1168,25 @@ def api_wikipedia():
                     datos = json.loads(respuesta.read().decode("utf-8"))
                 encontradas = list((datos.get("query", {}).get("pages") or {}).values())
                 paginas.extend(encontradas)
-                if any(
-                    p.get("extract") and "puede referirse a" not in normalizar(p.get("extract", "")[:500])
-                    and "página de desambiguación" not in str(p.get("extract", "")[:500]).lower()
-                    for p in encontradas
-                ):
+                # Solo aceptar resultados cuya introducción los identifique como
+                # cantante, músico o grupo musical; evita homónimos de otras profesiones.
+                if any(pagina_es_musical(p) for p in encontradas):
                     break
             except Exception:
                 app.logger.warning("No se pudo consultar la biografía de %s en Wikipedia", nombre)
 
-        # Priorizar el título que coincide con el nombre solicitado; después, la primera
-        # página con texto real. Solo se evita devolver una página de desambiguación.
+        # Priorizar el título exacto, pero nunca mostrar una biografía que no sea musical.
         paginas_unicas = {}
         for pagina in paginas:
             titulo_pagina = str(pagina.get("title") or "").strip()
-            if titulo_pagina:
+            if titulo_pagina and pagina_es_musical(pagina):
                 paginas_unicas[titulo_pagina] = pagina
         paginas_ordenadas = sorted(
             paginas_unicas.values(),
             key=lambda p: 0 if normalizar(p.get("title", "")) == n_nombre else 1
         )
         for pagina in paginas_ordenadas:
-            extracto = re.sub(r"\s+", " ", str(pagina.get("extract") or "")).strip()
+            extracto = re.sub(r"\\s+", " ", str(pagina.get("extract") or "")).strip()
             inicio = normalizar(extracto[:500])
             if not extracto or "puede referirse a" in inicio or "pagina de desambiguacion" in inicio:
                 continue
