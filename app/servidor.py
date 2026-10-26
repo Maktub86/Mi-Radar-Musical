@@ -352,7 +352,7 @@ async function verificarWikipedia(tipo,nombre,artista){
   cacheWikipediaVerificada.set(clave,(async()=>{
    try{
     const q=new URLSearchParams({tipo,nombre,artista:artista||''});
-    const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store'});
+    const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(8000)});
     if(!r.ok)return null;const d=await r.json();
     return d.encontrado&&d.url&&d.curiosidad?d:null;
    }catch(e){return null;}
@@ -388,7 +388,7 @@ async function cargarHistoriaCancion(titulo,artista,fila,boton){
   if(!promesa){
    promesa=(async()=>{
     const q=new URLSearchParams({tipo:'cancion',nombre:titulo,artista:artista});
-    const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store'});
+    const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(8000)});
     if(!r.ok)return null;
     const d=await r.json();
     return d.encontrado&&d.url&&d.curiosidad?d:null;
@@ -396,6 +396,7 @@ async function cargarHistoriaCancion(titulo,artista,fila,boton){
    cacheHistoriasCancion.set(clave,promesa);
   }
   const h=await promesa;
+  if(!h)cacheHistoriasCancion.delete(clave);
   caja.replaceChildren();
   if(!h){
    caja.textContent='No he encontrado una curiosidad fiable sobre esta canción en Wikipedia (español o inglés).';
@@ -427,7 +428,7 @@ function mostrarArtistas(){
   wikiArtista.title='Consultar curiosidad de '+nombre;wikiArtista.setAttribute('aria-label','Consultar curiosidad de '+nombre);
   wikiArtista.addEventListener('click',async()=>{
    if(wikiArtista.disabled)return;wikiArtista.disabled=true;
-   try{const info=await verificarWikipedia('artista',nombre,'');if(info)mostrarCuriosidadWiki(caja,info);else{let msg=caja.querySelector('.aviso-wiki');if(!msg){msg=nodo('div','aviso-wiki','No hay una curiosidad verificada disponible ahora.');caja.appendChild(msg);}}}
+   try{const info=await verificarWikipedia('artista',nombre,'');if(info)mostrarCuriosidadWiki(caja,info,'artista');else{let msg=caja.querySelector('.aviso-wiki');if(!msg){msg=nodo('div','aviso-wiki','No hay una curiosidad verificada disponible ahora.');caja.appendChild(msg);}}}
    finally{wikiArtista.disabled=false;}
   });
   huecoWiki.appendChild(wikiArtista);cabecera.appendChild(huecoWiki);
@@ -464,7 +465,7 @@ async function cargarTop(nombre,caja,boton){
    wiki.setAttribute('aria-label','Consultar curiosidad sobre '+pista.titulo);
    wiki.addEventListener('click',async()=>{
     if(wiki.disabled)return;wiki.disabled=true;
-    try{const info=await verificarWikipedia('cancion',pista.titulo,pista.artista);if(info)mostrarCuriosidadWiki(fila,info);else{let msg=fila.querySelector('.aviso-wiki');if(!msg){msg=nodo('div','aviso-wiki','No hay una curiosidad verificada disponible ahora.');fila.appendChild(msg);}}}
+    try{const info=await verificarWikipedia('cancion',pista.titulo,pista.artista);if(info)mostrarCuriosidadWiki(fila,info,'cancion');else{let msg=fila.querySelector('.aviso-wiki');if(!msg){msg=nodo('div','aviso-wiki','No hay una curiosidad verificada disponible ahora.');fila.appendChild(msg);}}}
     finally{wiki.disabled=false;}
    });
    tituloLinea.appendChild(wiki);
@@ -1341,6 +1342,17 @@ def api_wikipedia():
                     if any(p in titulo_norm for p in ("cancion", "album", "single", "sencillo", "discografia")):
                         continue
                     if n_nombre not in texto_resultado:
+                        continue
+                    marcadores_musica_web = (
+                        "cantante", "grupo musical", "banda", "album", "disco", "musica",
+                        "musical", "artista", "vocalista", "integrantes", "miembros",
+                        "concierto", "gira", "canciones", "discografia", "rapero", "cantautor"
+                    )
+                    if not any(normalizar(m) in texto_norm for m in marcadores_musica_web):
+                        continue
+                    if any(normalizar(m) in texto_norm for m in (
+                        "producto de pasteleria", "gastronomia", "pasta dulce", "recubrimiento de pasteles"
+                    )):
                         continue
                 if tipo == "cancion" and n_artista not in normalizar(titulo_fuente + " " + texto_fuente):
                     # El buscador ya recibió el artista; no se descarta si el snippet omite el nombre.
