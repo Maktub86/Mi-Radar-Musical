@@ -208,6 +208,7 @@ footer{text-align:center;color:var(--suave);font-size:12px;padding:30px}
 </style>
 </head>
 <body>
+<script>try{if(localStorage.getItem('mrWikipediaEnabled')==='0')document.body.dataset.wikipediaOff='1'}catch(e){}</script>
 <header><div>Tu universo musical</div><h1>🧰 Programas</h1><p>Enlaces para descargar las herramientas de tu colección musical.</p></header>
 <nav>
 <a href="/">🏠 Portada</a>
@@ -271,6 +272,7 @@ def pagina_lo_mejor():
 :root{color-scheme:dark;--suave:#b8b6cf;--panel:#1b1b2d;--verde:#55e6bd}
 *{box-sizing:border-box}
 body{margin:0;background:linear-gradient(140deg,#17152d,#10101c 55%,#26152e);color:#f7f5ff;font-family:Segoe UI,Arial,sans-serif;min-height:100vh}
+body[data-wikipedia-off="1"] .boton-wikipedia,body[data-wikipedia-off="1"] .historia-wikipedia{display:none!important}
 header{padding:30px 6%;background:linear-gradient(110deg,#5727a5,#b72d83 65%,#f06a76)}
 h1{font-size:clamp(32px,6vw,52px);margin:12px 0 8px}
 nav{display:flex;gap:10px;flex-wrap:wrap;padding:18px 6%;border-bottom:1px solid #ffffff18}
@@ -294,7 +296,7 @@ button:disabled{opacity:.55;cursor:wait}
 .acciones-pista .boton-youtube{grid-column:3;grid-row:1}
 .acciones-pista .boton-completa{grid-column:4;grid-row:1}
 .boton-30,.boton-completa{background:#292d3b;border:1px solid #ffffff30;color:#fff;min-width:42px}
-.boton-30{flex:0 0 82px;width:82px;background:linear-gradient(135deg,#6e65ff,#b52f9b);border:1px solid #ffffff50;box-shadow:0 3px 12px #8e42e833}
+.boton-30{flex:0 0 82px;width:82px;background:linear-gradient(120deg,#ff4fa3,#8a4dff 52%,#20bde8);border:1px solid #ffffff50;box-shadow:0 3px 12px #8e42e833}
 .boton-mediahuman{background:#238b55;color:#fff;border:1px solid #55c783;min-width:42px}
 /* Centra la flecha como icono, sin depender de la línea base del carácter */
 .acciones-pista .boton-mediahuman{font-size:0!important;position:relative;}
@@ -344,6 +346,7 @@ for(const letra of letrasAlfabeto){const b=nodo('button','',letra);b.type='butto
 window.addEventListener('scroll',()=>{const cajas=[...contenedor.querySelectorAll('.artista-mejor')];let actual='';for(const caja of cajas){if(caja.getBoundingClientRect().top<=180)actual=normalizarNombre(caja.querySelector('h2')?.textContent).charAt(0)||'';else break;}if(!actual&&cajas.length)actual=normalizarNombre(cajas[0].querySelector('h2')?.textContent).charAt(0)||'';letraActual.hidden=!actual;if(actual){letraActual.textContent=actual;for(const b of alfabetoLoMejor.querySelectorAll('button'))b.classList.toggle('activa',b.dataset.letra===actual);}});
 const cacheWikipediaVerificada=new Map();
 async function verificarWikipedia(tipo,nombre,artista){
+ try{if(localStorage.getItem('mrWikipediaEnabled')==='0')return null}catch(e){}
  const clave=[tipo,normalizarNombre(nombre),normalizarNombre(artista||'')].join('|');
  if(!cacheWikipediaVerificada.has(clave)){
   cacheWikipediaVerificada.set(clave,(async()=>{
@@ -368,6 +371,7 @@ function mostrarCuriosidadWiki(contenedor,info){
 }
 const cacheHistoriasCancion=new Map();
 async function cargarHistoriaCancion(titulo,artista,fila,boton){
+ try{if(localStorage.getItem('mrWikipediaEnabled')==='0')return}catch(e){}
  const existente=fila.parentElement?.querySelector('.historia-wikipedia[data-cancion="'+CSS.escape(titulo+'|'+artista)+'"]');
  if(existente){existente.remove();return;}
  const caja=nodo('div','historia-wikipedia','Buscando una breve historia en Wikipedia…');caja.dataset.cancion=titulo+'|'+artista;fila.insertAdjacentElement('afterend',caja);
@@ -1039,10 +1043,10 @@ def api_wikipedia():
     def normalizar(texto):
         texto = unicodedata.normalize("NFKD", str(texto or ""))
         return re.sub(r"\s+", " ", "".join(c for c in texto if not unicodedata.combining(c))).casefold().strip()
-    consulta = nombre if tipo == "artista" else '"' + nombre + '" "' + artista + '"'
+    consulta = '"' + nombre + '"' if tipo == "artista" else '"' + nombre + '" "' + artista + '"'
     params = urlencode({
         "action": "query", "generator": "search", "gsrsearch": consulta,
-        "gsrnamespace": "0", "gsrlimit": "10", "prop": "extracts|info",
+        "gsrnamespace": "0", "gsrlimit": "20", "prop": "extracts|info",
         "exintro": "1", "explaintext": "1", "exsentences": "8",
         "inprop": "url", "format": "json", "redirects": "1"
     })
@@ -1068,33 +1072,25 @@ def api_wikipedia():
                 )
                 if not any(t in ne for t in terminos_artista):
                     continue
-                datos_relevantes = (
-                    "nacio", "nacimiento", "nacida", "nacido", "su nombre real",
-                    "nombre de nacimiento", "debut", "premio", "premios", "ganador",
-                    "ganadora", "fundador", "fundadora", "formo parte", "fundo",
-                    "origen", "album", "disco", "carrera", "conocido por",
-                    "conocida por", "vendio", "ventas", "grammy", "eurovision"
-                )
-                if not any(t in ne for t in datos_relevantes):
-                    continue
+                # El extracto puede no mencionar hitos biográficos; el título exacto y
+                # el contexto musical ya validado son suficientes para enlazar al artista.
             else:
                 terminos_cancion = (
                     "cancion", "sencillo", "single", "tema musical", "interpretada por",
                     "interpretado por", "grabada por", "grabado por", "compuesta por",
-                    "compuesto por", "publicada por", "lanzada por", "lanzado por"
+                    "compuesto por", "escrita por", "escrito por", "autor de la letra",
+                    "autoria", "composicion musical", "publicada por", "lanzada por", "lanzado por"
                 )
                 if not any(t in ne for t in terminos_cancion):
                     continue
-                # Exigir una relación explícita entre la canción y el intérprete/autor indicado.
+                # No confundir intérprete con autor: exigir una relación de composición/escritura.
                 relaciones_artista = (
-                    "cancion de " + n_artista, "sencillo de " + n_artista,
-                    "single de " + n_artista, "interpretada por " + n_artista,
-                    "interpretado por " + n_artista, "grabada por " + n_artista,
-                    "grabado por " + n_artista, "compuesta por " + n_artista,
-                    "compuesto por " + n_artista, "lanzada por " + n_artista,
-                    "lanzado por " + n_artista, "tema de " + n_artista,
-                    "del cantante " + n_artista, "de la cantante " + n_artista,
-                    "del grupo " + n_artista, "de la banda " + n_artista
+                    "compuesta por " + n_artista, "compuesto por " + n_artista,
+                    "escrita por " + n_artista, "escrito por " + n_artista,
+                    "autor de la letra " + n_artista, "letra de " + n_artista,
+                    "compuesta e interpretada por " + n_artista,
+                    "escrita e interpretada por " + n_artista,
+                    "musica de " + n_artista, "autoria de " + n_artista
                 )
                 if not any(relacion in ne for relacion in relaciones_artista):
                     continue
