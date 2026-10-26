@@ -253,7 +253,7 @@ function crearTarjetaArtista(a, destino){
   wikiArtista.title='Consultar biografía del artista';wikiArtista.setAttribute('aria-label','Consultar biografía de '+nombreArtista);
   wikiArtista.addEventListener('click',()=>mostrarInfoWikipedia('artista',nombreArtista,'',div,wikiArtista));
   div.insertBefore(wikiArtista,div.firstChild.nextSibling);
-  if(/* La consulta se hará al solicitar información, no automáticamente al cargar la pestaña. */else preverificarInfoWiki(wikiArtista);
+  // La consulta a Wikipedia se hace solo al pulsar W.
   if (nombreArtista.trim().toUpperCase() === 'ABBA') {
    const foto = document.createElement('img');
    foto.src = '/abba.jpg';
