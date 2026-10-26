@@ -1150,7 +1150,7 @@ def api_wikipedia():
             parametros = urlencode({"client": "gtx", "sl": "en", "tl": "es", "dt": "t", "q": texto[:4500]})
             req = Request("https://translate.googleapis.com/translate_a/single?" + parametros,
                           headers={"User-Agent": "Mozilla/5.0 MiRadarMusical/1.0"})
-            with urlopen(req, timeout=3) as respuesta:
+            with urlopen(req, timeout=2) as respuesta:
                 datos = json.loads(respuesta.read().decode("utf-8"))
             traduccion = "".join(str(parte[0]) for parte in (datos[0] or []) if parte and parte[0])
             return traduccion.strip() or texto
@@ -1174,7 +1174,7 @@ def api_wikipedia():
             try:
                 req = Request("https://" + idioma + ".wikipedia.org/w/api.php?" + urlencode(p),
                               headers={"User-Agent": "MiRadarMusical/2.0 (music information; contact: app)"})
-                with urlopen(req, timeout=5) as respuesta:
+                with urlopen(req, timeout=3) as respuesta:
                     datos = json.loads(respuesta.read().decode("utf-8"))
                 salida.extend((datos.get("query", {}).get("pages") or {}).values())
             except Exception:
