@@ -1173,12 +1173,12 @@ def api_wikipedia():
             key=lambda p: 0 if normalizar(p.get("title", "")) == n_nombre else 1
         )
         for pagina in paginas_ordenadas:
-            extracto = re.sub(r"\\s+", " ", str(pagina.get("extract") or "")).strip()
+            extracto = re.sub(r"\s+", " ", str(pagina.get("extract") or "")).strip()
             inicio = normalizar(extracto[:500])
             if not extracto or "puede referirse a" in inicio or "pagina de desambiguacion" in inicio:
                 continue
             # Resumen de varios párrafos iniciales, sin puntuar frases ni exigir palabras clave.
-            frases_bio = [f.strip() for f in re.split(r"(?<=[.!?])\\s+", extracto) if f.strip()]
+            frases_bio = [f.strip() for f in re.split(r"(?<=[.!?])\s+", extracto) if f.strip()]
             resumen = " ".join(frases_bio[:5])[:1800].strip()
             if not resumen:
                 resumen = extracto[:1800]
