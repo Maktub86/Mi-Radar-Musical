@@ -1133,7 +1133,7 @@ def api_resumen_musical():
             "generationConfig": {"temperature": 0.2, "maxOutputTokens": 450}
         }
         req = Request(
-            "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+            "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent",
             data=json.dumps(payload).encode("utf-8"),
             headers={"Content-Type": "application/json", "x-goog-api-key": api_key,
                      "User-Agent": "MiRadarMusical/1.0"},
