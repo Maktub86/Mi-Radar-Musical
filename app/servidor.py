@@ -1224,53 +1224,80 @@ def api_wikipedia():
         return any(normalizar(p) in n for p in indicadores_no_musicales)
 
     def respuesta_ok(titulo, extracto, url, idioma="es"):
-        resumen = re.sub(r"\s+", " ", str(extracto or "")).strip()
-        if not resumen:
+        texto = re.sub(r"\\s+", " ", str(extracto or "")).strip()
+        if not texto:
             return None
 
-        # Las biografías de artista no deben quedarse en una sola frase si Wikipedia
-        # tiene más contenido. Si el resumen inicial es corto, pedir el extracto ampliado
-        # de la misma página e idioma; no usar otra persona ni otra fuente para rellenar.
-        if tipo == "artista" and len(resumen) < 300:
-            try:
-                params_ampliado = urlencode({
-                    "action": "query", "prop": "extracts", "explaintext": "1",
-                    "exchars": "3000", "titles": titulo, "redirects": "1",
-                    "format": "json", "utf8": "1"
-                })
-                req_ampliado = Request(
-                    "https://" + idioma + ".wikipedia.org/w/api.php?" + params_ampliado,
-                    headers=cabeceras
-                )
-                with urlopen(req_ampliado, timeout=6) as resp:
-                    paginas = json.loads(resp.read().decode("utf-8")).get("query", {}).get("pages", {})
-                for pagina_ampliada in paginas.values():
-                    texto_ampliado = re.sub(
-                        r"\s+", " ", str(pagina_ampliada.get("extract") or "")
-                    ).strip()
-                    if texto_ampliado and len(texto_ampliado) > len(resumen):
-                        resumen = texto_ampliado
-                        break
-            except Exception as error:
-                app.logger.info("No se pudo ampliar la biografía de %s: %s", titulo, error)
+        # En vez del resumen de una frase de la API REST, recuperar el artículo
+        # de Wikipedia y mostrar sus primeras 300 palabras. Se consulta la misma
+        # página validada para evitar rellenar con información de un homónimo.
+        try:
+            params_articulo = urlencode({
+                "action": "query", "prop": "extracts", "explaintext": "1",
+                "exchars": "15000", "titles": titulo, "redirects": "1",
+                "format": "json", "utf8": "1"
+            })
+            req_articulo = Request(
+                "https://" + idioma + ".wikipedia.org/w/api.php?" + params_articulo,
+                headers=cabeceras
+            )
+            with urlopen(req_articulo, timeout=8) as resp:
+                paginas = json.loads(resp.read().decode("utf-8")).get("query", {}).get("pages", {})
+            for pagina in paginas.values():
+                articulo = re.sub(r"\\s+", " ", str(pagina.get("extract") or "")).strip()
+                if articulo and len(articulo) > len(texto):
+                    texto = articulo
+                    break
+        except Exception as error:
+            app.logger.info("No se pudo recuperar el artículo completo de %s: %s", titulo, error)
+
+        # Limitar por palabras, no por caracteres: unas 300 palabras de contenido real.
+        palabras = texto.split()
+        texto = " ".join(palabras[:300])
 
         if idioma == "en":
             try:
-                params = urlencode({"client": "gtx", "sl": "en", "tl": "es", "dt": "t", "q": resumen[:2500]})
-                req = Request("https://translate.googleapis.com/translate_a/single?" + params, headers=cabeceras)
-                with urlopen(req, timeout=4) as resp:
-                    traduccion = json.loads(resp.read().decode("utf-8"))
-                texto = "".join(str(p[0]) for p in (traduccion[0] or []) if p and p[0]).strip()
-                if texto:
-                    resumen = texto
-            except Exception:
-                pass
-        resumen = resumen[:1200]
-        fuente = "Wikipedia en español" if idioma == "es" else "Wikipedia en inglés (traducida si es posible)"
+                # Traducir en fragmentos para no cortar la biografía a mitad del texto.
+                fragmentos = []
+                restante = texto
+                while restante:
+                    trozo = restante[:1800]
+                    corte = trozo.rfind(" ")
+                    if corte > 900 and len(restante) > 1800:
+                        trozo = trozo[:corte]
+                    params = urlencode({
+                        "client": "gtx", "sl": "en", "tl": "es", "dt": "t", "q": trozo
+                    })
+                    req = Request(
+                        "https://translate.googleapis.com/translate_a/single?" + params,
+                        headers=cabeceras
+                    )
+                    with urlopen(req, timeout=6) as resp:
+                        traduccion = json.loads(resp.read().decode("utf-8"))
+                    traducido = "".join(
+                        str(p[0]) for p in (traduccion[0] or []) if p and p[0]
+                    ).strip()
+                    if not traducido:
+                        raise ValueError("La traducción devolvió un texto vacío")
+                    fragmentos.append(traducido)
+                    restante = restante[len(trozo):].lstrip()
+                texto = " ".join(fragmentos)
+            except Exception as error:
+                app.logger.info("No se pudo traducir completamente %s: %s", titulo, error)
+                # No presentar una traducción parcial como si estuviera completa.
+                return jsonify({
+                    "encontrado": True,
+                    "resumen": "He encontrado la página de Wikipedia, pero no he podido traducir el artículo completo al español.",
+                    "titulo": titulo, "url": url,
+                    "fuentes": [{"titulo": "Abrir artículo de Wikipedia", "url": url}],
+                    "fuente_tipo": "wikipedia", "mensaje": "Traducción no disponible."
+                }), 200
+
+        fuente = "Wikipedia en español" if idioma == "es" else "Wikipedia en inglés (traducida al español)"
         return jsonify({
-            "encontrado": True, "resumen": resumen, "titulo": titulo, "url": url,
-            "biografia": resumen if tipo == "artista" else "",
-            "informacion": resumen if tipo == "cancion" else "",
+            "encontrado": True, "resumen": texto, "titulo": titulo, "url": url,
+            "biografia": texto if tipo == "artista" else "",
+            "informacion": texto if tipo == "cancion" else "",
             "idioma": idioma, "fuente": fuente,
             "fuentes": [{"titulo": fuente, "url": url}],
             "fuente_tipo": "wikipedia", "traducido": idioma == "en",
