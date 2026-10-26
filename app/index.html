@@ -243,7 +243,7 @@ function crearTarjetaArtista(a, destino){
   div.appendChild(nombre);
   const wikiArtista=document.createElement('button');
   wikiArtista.type='button';wikiArtista.className='boton-wikipedia';wikiArtista.textContent='W';
-  wikiArtista.title='Consultar curiosidad del artista';wikiArtista.setAttribute('aria-label','Consultar curiosidad de '+nombreArtista);
+  wikiArtista.title='Consultar biografía y curiosidad del artista';wikiArtista.setAttribute('aria-label','Consultar curiosidad de '+nombreArtista);
   wikiArtista.addEventListener('click',()=>mostrarCuriosidadWiki('artista',nombreArtista,'',div,wikiArtista));
   div.insertBefore(wikiArtista,div.firstChild.nextSibling);
   if (nombreArtista.trim().toUpperCase() === 'ABBA') {
