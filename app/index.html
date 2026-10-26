@@ -224,7 +224,7 @@ async function mostrarCuriosidadWiki(tipo,nombre,artista,contenedor,boton){
  const clave=[tipo,nombre,artista||''].join('|');
  try{
   let promesa=cacheCuriosidadesWiki.get(clave);
-  if(!promesa){const q=new URLSearchParams({tipo,nombre,artista:artista||''});promesa=fetch('/api/wikipedia?'+q,{signal:AbortSignal.timeout(7000)}).then(r=>r.ok?r.json():{encontrado:false}).catch(()=>({encontrado:false}));cacheCuriosidadesWiki.set(clave,promesa);}
+  if(!promesa){const q=new URLSearchParams({tipo,nombre,artista:artista||''});promesa=fetch('/api/wikipedia?'+q,{signal:AbortSignal.timeout(9000)}).then(r=>r.ok?r.json():{encontrado:false}).catch(()=>({encontrado:false}));cacheCuriosidadesWiki.set(clave,promesa);}
   const d=await promesa;caja.replaceChildren();
   if(d.encontrado&&(d.curiosidad||d.biografia)){
    if(tipo==='artista'&&d.biografia){const tituloBio=document.createElement('strong');tituloBio.textContent='Sobre el artista: ';caja.appendChild(tituloBio);const bio=document.createElement('span');bio.textContent=d.biografia+' ';caja.appendChild(bio);}
