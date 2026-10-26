@@ -1256,7 +1256,7 @@ def api_wikipedia():
         # Para canciones exigimos el título de la canción y alguna referencia al artista o a música.
         cancion_coincide = (titulo_n == nombre_n or titulo_n.startswith(nombre_n + " ") or nombre_n.startswith(titulo_n + " "))
         artista_mencionado = contiene_frase(titulo + " " + extracto, artista)
-        return cancion_coincide and (artista_mencionado or es_musical(extracto))
+        return cancion_coincide and artista_mencionado and es_musical(extracto)
 
     # Intentar páginas exactas, pero no aceptar una coincidencia solo por compartir nombre.
     titulos_directos = [nombre]
