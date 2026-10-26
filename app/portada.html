@@ -98,7 +98,7 @@ footer{text-align:center;color:var(--suave);font-size:12px;padding:35px}
 .puesto-cancion{font-size:18px;font-weight:800;color:var(--verde);text-align:center}
 .detalle-cancion{min-width:0}
 .titulo-cancion{font-weight:750;overflow-wrap:anywhere}
-.artista-cancion{font-size:13px;color:var(--suave);margin-top:3px;overflow-wrap:anywhere}
+.artista-cancion{font-size:13px;color:var(--suave);margin-top:3px;overflow-wrap:anywhere}.curiosidad-wiki{margin:9px 0;padding:11px;border-left:3px solid #aeb4c0;background:#ffffff0b;border-radius:7px;color:#e4e4ec;font-size:13px;line-height:1.5}.curiosidad-wiki a{color:#c9b0ff}.wiki-icon{cursor:pointer;padding:0}
 .acciones-cancion button{margin:0;width:100%;padding:8px 10px;font-size:12px}
 .boton-mediahuman{margin-top:6px;background:#2b765f;border-color:#2b765f}
 .boton-youtube-buscar{margin-top:6px;background:#45415f}
@@ -248,11 +248,12 @@ function mostrar(cantidad) {
       <div class="portada-disco"><span>${icono}</span></div>
       <div class="info">
         <div class="tipo">${tipoSeleccionado === "Single" ? "Single" : "Álbum"}</div>
-        <div class="titulo">${escapar(p.titulo || "Sin título")}</div>
-        <div class="artista">${escapar(p.artista || "Artista desconocido")} <a class="wiki-icon" href="${escapar(urlWikipedia(p.artista || ""))}" target="_blank" rel="noopener noreferrer" title="Buscar artista en Wikipedia" aria-label="Buscar artista en Wikipedia">W</a></div>
+        <div class="titulo">${escapar(p.titulo || "Sin título")} <button class="wiki-icon" data-wiki-tipo="cancion" data-wiki-nombre="${escapar(p.titulo || "")}" data-wiki-artista="${escapar(p.artista || "")}" title="Consultar curiosidad de la canción" aria-label="Consultar curiosidad de la canción">W</button></div>
+        <div class="artista">${escapar(p.artista || "Artista desconocido")} <button class="wiki-icon" data-wiki-tipo="artista" data-wiki-nombre="${escapar(p.artista || "")}" title="Consultar curiosidad del artista" aria-label="Consultar curiosidad del artista">W</button></div>
         <div class="fecha">${escapar(p.fecha || "Fecha desconocida")}</div>
         ${tipoSeleccionado === "Single" ? `<div class="acciones-radar"><button class="boton-muestra boton-30" type="button" title="Escuchar muestra de 30 segundos"><svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg><span>30 s</span></button><button class="boton-mediahuman" type="button" title="Buscar enlace para MediaHuman" aria-label="Descargar con MediaHuman">⬇</button><button class="boton-youtube" type="button" title="Abrir YouTube" aria-label="YouTube">Y</button></div><div class="reproductor-muestra" hidden></div>` : ""}
       </div>`;
+    configurarIconosWiki(tarjeta);
     const zonaImagen = tarjeta.querySelector(".portada-disco");
     if (imagen) {
       const img = document.createElement("img");
@@ -364,6 +365,25 @@ function escaparLista(v){
 function urlWikipedia(nombre){
  return "https://es.wikipedia.org/w/index.php?search="+encodeURIComponent(String(nombre||""));
 }
+const cacheCuriosidadesWiki=new Map();
+function configurarIconosWiki(contenedor){
+ for(const b of contenedor.querySelectorAll('.wiki-icon')){
+  b.type='button';b.addEventListener('click',async()=>{
+   const tipo=b.dataset.wikiTipo||'artista',nombre=b.dataset.wikiNombre||'',artista=b.dataset.wikiArtista||'';
+   let caja=contenedor.querySelector('.curiosidad-wiki');
+   if(caja){caja.remove();if(b.dataset.abierto==='1'){b.dataset.abierto='0';return;}}
+   caja=document.createElement('div');caja.className='curiosidad-wiki';caja.textContent='Consultando Wikipedia…';contenedor.appendChild(caja);b.dataset.abierto='1';b.disabled=true;
+   const clave=[tipo,nombre,artista].join('|');
+   try{
+    let promesa=cacheCuriosidadesWiki.get(clave);
+    if(!promesa){const q=new URLSearchParams({tipo,nombre,artista});promesa=fetch('/api/wikipedia?'+q,{signal:AbortSignal.timeout(7000)}).then(r=>r.ok?r.json():{encontrado:false}).catch(()=>({encontrado:false}));cacheCuriosidadesWiki.set(clave,promesa);}
+    const d=await promesa;caja.replaceChildren();
+    if(d.encontrado&&d.curiosidad){const texto=document.createElement('span');texto.textContent=d.curiosidad+' ';caja.appendChild(texto);if(d.url){const a=document.createElement('a');a.href=d.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Fuente: Wikipedia';caja.appendChild(a);}}
+    else caja.textContent='No hay una curiosidad suficientemente verificada disponible ahora.';
+   }catch(e){caja.textContent='Wikipedia no está disponible ahora mismo.'}finally{b.disabled=false;}
+  });
+ }
+}
 function mostrarLista(tipo,datos){
  const estado=document.getElementById("estado-"+tipo);
  const contenedor=document.getElementById("canciones-"+tipo);
@@ -382,7 +402,8 @@ function mostrarLista(tipo,datos){
   puesto.textContent=String(cancion.puesto||"–");
   const detalle=document.createElement("div");
   detalle.className="detalle-cancion";
-  detalle.innerHTML='<div class="titulo-cancion">'+escaparLista(cancion.titulo)+'</div><div class="artista-cancion">'+escaparLista(cancion.artista)+' <a class="wiki-icon" href="'+escaparLista(urlWikipedia(cancion.artista))+'" target="_blank" rel="noopener noreferrer" title="Buscar artista en Wikipedia" aria-label="Buscar artista en Wikipedia">W</a></div>';
+  detalle.innerHTML='<div class="titulo-cancion">'+escaparLista(cancion.titulo)+' <button class="wiki-icon" data-wiki-tipo="cancion" data-wiki-nombre="'+escaparLista(cancion.titulo||'')+'" data-wiki-artista="'+escaparLista(cancion.artista||'')+'" title="Consultar curiosidad de la canción" aria-label="Consultar curiosidad de la canción">W</button></div><div class="artista-cancion">'+escaparLista(cancion.artista)+' <button class="wiki-icon" data-wiki-tipo="artista" data-wiki-nombre="'+escaparLista(cancion.artista||'')+'" title="Consultar curiosidad del artista" aria-label="Consultar curiosidad del artista">W</button></div>';
+  configurarIconosWiki(detalle);
   const acciones=document.createElement("div");
   acciones.className="acciones-cancion";
   const boton=document.createElement("button");
