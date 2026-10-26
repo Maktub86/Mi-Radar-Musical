@@ -26,13 +26,47 @@ app = Flask(__name__, static_folder=str(BASE), static_url_path="")
 def agregar_enlace_mi_musica(response):
     if response.mimetype == "text/html":
         html = response.get_data(as_text=True)
-        # Mantiene la pestaña Mi música al extremo derecho de la navegación.
-        if "</head>" in html and 'nav a[href="/mi-musica"]' not in html:
-            html = html.replace("</head>", '<style>nav a[href="/mi-musica"]{margin-left:auto}</style></head>', 1)
-        if "</nav>" in html and 'href="/mi-musica"' not in html:
-            html = html.replace("</nav>", '<a href="/mi-musica">🎧 Mi música</a></nav>', 1)
+        # Una única navegación, con los mismos enlaces y en el mismo orden en todas las páginas.
+        pestañas = [
+            ("/", "🏠 Portada"),
+            ("/listas/youtube", "▶ YouTube"),
+            ("/listas/los40", "🎵 LOS40"),
+            ("/listas/canal-fiesta", "📻 Canal Fiesta"),
+            ("/lo-mejor", "⭐ Lo mejor"),
+            ("/mi-musica", "🎧 Mi música"),
+            ("/artistas", "🎤 Mis artistas"),
+            ("/programas", "🧰 Programas"),
+        ]
+        ruta = request.path.rstrip("/") or "/"
+        enlaces = []
+        for href, etiqueta in pestañas:
+            activa = (ruta == href) or (href != "/" and ruta.startswith(href + "/"))
+            clase = ' class="activo"' if activa else ""
+            enlaces.append(f'<a{clase} href="{href}">{etiqueta}</a>')
+        nav_comun = '<nav class="navegacion-comun">' + "\n".join(enlaces) + "</nav>"
+        if re.search(r"<nav\\b[^>]*>.*?</nav>", html, flags=re.IGNORECASE | re.DOTALL):
+            html = re.sub(r"<nav\\b[^>]*>.*?</nav>", lambda _: nav_comun, html, count=1, flags=re.IGNORECASE | re.DOTALL)
+        css_nav = """
+<style id="navegacion-comun-estilos">
+nav.navegacion-comun{display:flex;flex-flow:row wrap;align-items:center;gap:8px;padding:10px 14px;box-sizing:border-box;width:100%}
+nav.navegacion-comun a{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;margin:0!important;white-space:nowrap;text-decoration:none}
+nav.navegacion-comun a.activo{font-weight:700}
+@media(max-width:760px){nav.navegacion-comun{gap:6px;padding:8px}nav.navegacion-comun a{font-size:14px;padding:8px 10px}}
+</style>
+"""
+        if "</head>" in html:
+            html = html.replace("</head>", css_nav + "</head>", 1)
         if "</body>" in html and 'id="rw-modal"' not in html:
-            html = html.replace("</body>", "<div id=\"rw-modal\" hidden style=\"position:fixed;inset:0;z-index:50000;background:#000b;align-items:center;justify-content:center;padding:16px\"><div style=\"width:min(650px,100%);max-height:80vh;overflow:auto;background:#171d2a;color:#fff;border:1px solid #ffffff35;border-radius:16px;padding:20px\"><div style=\"display:flex;justify-content:space-between;gap:12px;align-items:center\"><h2 id=\"rw-title\">Resumen</h2><button id=\"rw-close\" type=\"button\">Cerrar ✕</button></div><p id=\"rw-text\" style=\"line-height:1.65\">Buscando resumen…</p><p id=\"rw-curiosity\" hidden style=\"margin-top:18px;padding-top:14px;border-top:1px solid #ffffff25;line-height:1.65\"></p><small>Resumen breve basado en Wikipedia.</small></div></div>\n<script>\n(function(){const m=document.getElementById('rw-modal'),t=document.getElementById('rw-title'),x=document.getElementById('rw-text'),cur=document.getElementById('rw-curiosity'),cache={};\nfunction clean(s){return String(s||'').replace(/\\s*W\\s*$/,'').replace(/\\s+/g,' ').trim()}\nfunction details(b){const song=/canci|historia de la canción/i.test((b.title||'')+' '+(b.getAttribute('aria-label')||'')),row=b.closest('.cancion,.fila-cancion,.pista,.tarjeta,.artista-mejor'),name=clean(row?.querySelector(song?'.titulo,.titulo-cancion,.pista-titulo':'h2,strong,.artista')?.textContent)||clean(b.parentElement?.textContent),artist=song?clean(row?.querySelector('.artista,.artista-cancion,.pista-meta')?.textContent).split(' · ')[0]:'';return {song,name,artist,q:[name,artist].filter(Boolean).join(' ')}}\nasync function lookup(d){if(cache[d.q])return cache[d.q];for(const lang of ['es','en']){const q=new URLSearchParams({action:'query',generator:'search',gsrsearch:d.q,gsrnamespace:'0',gsrlimit:'5',prop:'extracts',exintro:'1',explaintext:'1',exsentences:'8',format:'json',origin:'*'}),r=await fetch('https://'+lang+'.wikipedia.org/w/api.php?'+q);if(!r.ok)continue;const pages=Object.values((await r.json()).query?.pages||{}),n=d.name.toLowerCase(),p=pages.find(v=>v.title.toLowerCase()===n)||pages.find(v=>v.title.toLowerCase().includes(n))||pages[0];if(p?.extract){cache[d.q]=p.extract;return p.extract}}return 'No he encontrado un resumen para '+d.name+'.'}\nfunction close(){m.hidden=true;m.style.display='none'}document.getElementById('rw-close').onclick=close;m.onclick=e=>{if(e.target===m)close()};document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});\ndocument.addEventListener('click',async e=>{const b=e.target.closest('a.wiki-icon,a.wiki,.boton-wikipedia');if(!b)return;const href=b.getAttribute('href')||'';if(href&&/https:\\/\\/es\\.wikipedia\\.org\\/wiki\\//i.test(href))return;if(href&&!/wikipedia\\.org/i.test(href)&&!b.classList.contains('boton-wikipedia'))return;e.preventDefault();e.stopImmediatePropagation();const d=details(b);t.textContent=(d.song?'🎵 ':'🎤 ')+(d.name||'Resumen');x.textContent='Buscando un breve resumen…';cur.hidden=true;cur.textContent='';m.hidden=false;m.style.display='flex';try{const full=await lookup(d),parts=full.match(/[^.!?]+[.!?]+|[^.!?]+$/g)||[full];x.textContent=parts.slice(0,4).join('').trim();if(parts.length>4){cur.textContent='💡 Curiosidad: '+parts.slice(4).join('').trim();cur.hidden=false}}catch(err){x.textContent='No se ha podido consultar el resumen ahora mismo.'}},true);\n})();\n</script>" + "</body>", 1)
+            html = html.replace("</body>", "<div id=\"rw-modal\" hidden style=\"position:fixed;inset:0;z-index:50000;background:#000b;align-items:center;justify-content:center;padding:16px\"><div style=\"width:min(650px,100%);max-height:80vh;overflow:auto;background:#171d2a;color:#fff;border:1px solid #ffffff35;border-radius:16px;padding:20px\"><div style=\"display:flex;justify-content:space-between;gap:12px;align-items:center\"><h2 id=\"rw-title\">Resumen</h2><button id=\"rw-close\" type=\"button\">Cerrar ✕</button></div><p id=\"rw-text\" style=\"line-height:1.65\">Buscando resumen…</p><p id=\"rw-curiosity\" hidden style=\"margin-top:18px;padding-top:14px;border-top:1px solid #ffffff25;line-height:1.65\"></p><small>Resumen breve basado en Wikipedia.</small></div></div>
+<script>
+(function(){const m=document.getElementById('rw-modal'),t=document.getElementById('rw-title'),x=document.getElementById('rw-text'),cur=document.getElementById('rw-curiosity'),cache={};
+function clean(s){return String(s||'').replace(/\\s*W\\s*$/,'').replace(/\\s+/g,' ').trim()}
+function details(b){const song=/canci|historia de la canción/i.test((b.title||'')+' '+(b.getAttribute('aria-label')||'')),row=b.closest('.cancion,.fila-cancion,.pista,.tarjeta,.artista-mejor'),name=clean(row?.querySelector(song?'.titulo,.titulo-cancion,.pista-titulo':'h2,strong,.artista')?.textContent)||clean(b.parentElement?.textContent),artist=song?clean(row?.querySelector('.artista,.artista-cancion,.pista-meta')?.textContent).split(' · ')[0]:'';return {song,name,artist,q:[name,artist].filter(Boolean).join(' ')}}
+async function lookup(d){if(cache[d.q])return cache[d.q];for(const lang of ['es','en']){const q=new URLSearchParams({action:'query',generator:'search',gsrsearch:d.q,gsrnamespace:'0',gsrlimit:'5',prop:'extracts',exintro:'1',explaintext:'1',exsentences:'8',format:'json',origin:'*'}),r=await fetch('https://'+lang+'.wikipedia.org/w/api.php?'+q);if(!r.ok)continue;const pages=Object.values((await r.json()).query?.pages||{}),n=d.name.toLowerCase(),p=pages.find(v=>v.title.toLowerCase()===n)||pages.find(v=>v.title.toLowerCase().includes(n))||pages[0];if(p?.extract){cache[d.q]=p.extract;return p.extract}}return 'No he encontrado un resumen para '+d.name+'.'}
+function close(){m.hidden=true;m.style.display='none'}document.getElementById('rw-close').onclick=close;m.onclick=e=>{if(e.target===m)close()};document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+document.addEventListener('click',async e=>{const b=e.target.closest('a.wiki-icon,a.wiki,.boton-wikipedia');if(!b)return;const href=b.getAttribute('href')||'';if(href&&/https:\\/\\/es\\.wikipedia\\.org\\/wiki\\//i.test(href))return;if(href&&!/wikipedia\\.org/i.test(href)&&!b.classList.contains('boton-wikipedia'))return;e.preventDefault();e.stopImmediatePropagation();const d=details(b);t.textContent=(d.song?'🎵 ':'🎤 ')+(d.name||'Resumen');x.textContent='Buscando un breve resumen…';cur.hidden=true;cur.textContent='';m.hidden=false;m.style.display='flex';try{const full=await lookup(d),parts=full.match(/[^.!?]+[.!?]+|[^.!?]+$/g)||[full];x.textContent=parts.slice(0,4).join('').trim();if(parts.length>4){cur.textContent='💡 Curiosidad: '+parts.slice(4).join('').trim();cur.hidden=false}}catch(err){x.textContent='No se ha podido consultar el resumen ahora mismo.'}},true);
+})();
+</script>" + "</body>", 1)
         response.set_data(html)
     return response
 
