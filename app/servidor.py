@@ -421,11 +421,14 @@ async function cargarTop(nombre,caja,boton){
  const zona=caja.querySelector('.canciones-artista');
  if(!zona.hidden){zona.hidden=true;boton.textContent='Ver sus 5 canciones';return;}
  zona.hidden=false;zona.replaceChildren();boton.disabled=true;boton.textContent='Consultando Deezer…';
+ const controlador=new AbortController();
+ const limite=setTimeout(()=>controlador.abort(),20000);
  try{
-  const r=await fetch('/api/lo-mejor?artista='+encodeURIComponent(nombre),{cache:'no-store'});
-  const d=await r.json();
+  const r=await fetch('/api/lo-mejor?artista='+encodeURIComponent(nombre),{cache:'no-store',signal:controlador.signal});
+  let d;
+  try{d=await r.json();}catch(_){throw new Error('La consulta musical ha devuelto una respuesta no válida. Inténtalo de nuevo.');}
   if(!r.ok)throw new Error(d.error||'No se ha podido cargar el ranking.');
-  if(!d.canciones.length)throw new Error('Deezer no ha devuelto canciones para este artista.');
+  if(!Array.isArray(d.canciones)||!d.canciones.length)throw new Error('Deezer no ha devuelto canciones para este artista.');
   for(const pista of d.canciones){
    const fila=nodo('div','pista');
    const detalle=nodo('div','');
@@ -455,8 +458,12 @@ async function cargarTop(nombre,caja,boton){
    youtube.addEventListener('click',()=>buscarYouTube(pista,'youtube'));
    acciones.append(muestra,mediahuman,youtube);fila.append(detalle,acciones);zona.appendChild(fila);
   }
- }catch(e){zona.appendChild(nodo('div','mensaje-pista',e.message||'Error al consultar Deezer.'));}
- finally{boton.disabled=false;boton.textContent='Ocultar canciones';}
+ }catch(e){
+  const mensaje=e.name==='AbortError'?'Deezer está tardando demasiado en responder. Pulsa «Ver sus 5 canciones» para intentarlo otra vez.':(e.message||'Error al consultar Deezer.');
+  zona.appendChild(nodo('div','mensaje-pista',mensaje));
+  if(e.name==='AbortError'||!zona.querySelector('.pista')){zona.hidden=false;boton.textContent='Reintentar las 5 canciones';}
+ }
+ finally{clearTimeout(limite);boton.disabled=false;if(boton.textContent!=='Reintentar las 5 canciones')boton.textContent='Ocultar canciones';}
 }
 function reproducir(pista,boton){
  if(audioActivo){audioActivo.pause();audioActivo.currentTime=0;audioActivo=null;}
