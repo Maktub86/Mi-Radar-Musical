@@ -1126,7 +1126,7 @@ def api_wikipedia():
     n_nombre, n_artista = normalizar(nombre), normalizar(artista)
 
     # Para artistas, devolver directamente un resumen de la biografía de Wikipedia.
-    # No aplicar filtros de "curiosidad": esos filtros descartaban páginas válidas.
+    # La biografía se muestra directamente, sin duplicarla como un dato separado.
     if tipo == "artista":
         paginas = []
         consultas_artista = [
