@@ -1124,6 +1124,82 @@ def api_wikipedia():
         return re.sub(r"[^a-z0-9]+", " ", texto).strip()
 
     n_nombre, n_artista = normalizar(nombre), normalizar(artista)
+
+    # Para artistas, devolver directamente un resumen de la biografía de Wikipedia.
+    # No aplicar filtros de "curiosidad": esos filtros descartaban páginas válidas.
+    if tipo == "artista":
+        paginas = []
+        consultas_artista = [
+            {
+                "action": "query", "titles": nombre, "redirects": "1",
+                "prop": "extracts|info", "explaintext": "1", "exchars": "7000",
+                "inprop": "url", "format": "json"
+            },
+            {
+                "action": "query", "generator": "search",
+                "gsrsearch": nombre, "gsrnamespace": "0", "gsrlimit": "8",
+                "prop": "extracts|info", "explaintext": "1", "exchars": "7000",
+                "inprop": "url", "format": "json", "redirects": "1"
+            }
+        ]
+        for parametros in consultas_artista:
+            try:
+                req = Request(
+                    "https://es.wikipedia.org/w/api.php?" + urlencode(parametros),
+                    headers={"User-Agent": "MiRadarMusical/1.5 (Wikipedia biography summary)"}
+                )
+                with urlopen(req, timeout=4) as respuesta:
+                    datos = json.loads(respuesta.read().decode("utf-8"))
+                encontradas = list((datos.get("query", {}).get("pages") or {}).values())
+                paginas.extend(encontradas)
+                if any(
+                    p.get("extract") and "puede referirse a" not in normalizar(p.get("extract", "")[:500])
+                    and "página de desambiguación" not in str(p.get("extract", "")[:500]).lower()
+                    for p in encontradas
+                ):
+                    break
+            except Exception:
+                app.logger.warning("No se pudo consultar la biografía de %s en Wikipedia", nombre)
+
+        # Priorizar el título que coincide con el nombre solicitado; después, la primera
+        # página con texto real. Solo se evita devolver una página de desambiguación.
+        paginas_unicas = {}
+        for pagina in paginas:
+            titulo_pagina = str(pagina.get("title") or "").strip()
+            if titulo_pagina:
+                paginas_unicas[titulo_pagina] = pagina
+        paginas_ordenadas = sorted(
+            paginas_unicas.values(),
+            key=lambda p: 0 if normalizar(p.get("title", "")) == n_nombre else 1
+        )
+        for pagina in paginas_ordenadas:
+            extracto = re.sub(r"\\s+", " ", str(pagina.get("extract") or "")).strip()
+            inicio = normalizar(extracto[:500])
+            if not extracto or "puede referirse a" in inicio or "pagina de desambiguacion" in inicio:
+                continue
+            # Resumen de varios párrafos iniciales, sin puntuar frases ni exigir palabras clave.
+            frases_bio = [f.strip() for f in re.split(r"(?<=[.!?])\\s+", extracto) if f.strip()]
+            resumen = " ".join(frases_bio[:5])[:1800].strip()
+            if not resumen:
+                resumen = extracto[:1800]
+            url_pagina = pagina.get("fullurl") or (
+                "https://es.wikipedia.org/wiki/" + quote(str(pagina.get("title", nombre)).replace(" ", "_"), safe="()_,-")
+            )
+            return jsonify({
+                "encontrado": True,
+                "url": url_pagina,
+                "titulo": pagina.get("title") or nombre,
+                "curiosidad": resumen,
+                "biografia": resumen,
+                "idioma": "es",
+                "fuente": "Wikipedia en español",
+                "tipo_contenido": "biografia"
+            })
+
+        return jsonify({
+            "encontrado": False,
+            "error": "No se ha encontrado una página biográfica en Wikipedia en español para este nombre."
+        }), 200
     pistas = (
         "dedicad", "inspir", "originalmente", "inicialmente", "origen",
         "grabacion", "durante la grabacion", "se grabo", "fue grabada",
