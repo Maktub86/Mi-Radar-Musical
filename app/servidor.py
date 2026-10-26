@@ -1149,7 +1149,7 @@ def api_wikipedia():
     # con una canción o un álbum suyo y reduce el tiempo de carga.
     # Busca también títulos desambiguados como "Maná (grupo musical)".
     consultas = (
-        [None, f'"{nombre}" grupo musical', f'"{nombre}" cantante', f'"{nombre}" banda musical']
+        [None, f'"{nombre}" grupo musical OR cantante OR banda musical']
         if tipo == "artista"
         else [f'"{nombre}" "{artista}"', f'"{nombre}" canción "{artista}"']
     )
