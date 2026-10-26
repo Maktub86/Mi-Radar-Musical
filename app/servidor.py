@@ -1188,10 +1188,20 @@ def api_wikipedia():
         if not extracto:
             continue
         nt, ne = normalizar(titulo), normalizar(extracto)
-        # Artistas: solo la página propia, nunca una canción/álbum con nombre parecido.
-        # Canciones: se admite título ampliado para desambiguar, sujeto a marcadores musicales.
+        # Rechaza páginas de desambiguación y resultados gastronómicos con el mismo nombre.
         if tipo == "artista":
-            # Acepta el nombre exacto o su página desambiguada, no páginas que solo lo mencionan.
+            inicio_extracto = ne[:420]
+            if ("puede referirse a" in inicio_extracto
+                    or "pagina de desambiguacion" in inicio_extracto
+                    or inicio_extracto.startswith("el termino ")):
+                continue
+            if any(normalizar(x) in ne for x in (
+                "producto de pasteleria", "pasta dulce", "recubrimiento de pasteles",
+                "gastronomia", "alimento enviado por dios"
+            )):
+                continue
+        # Artistas: solo la página propia o una página musical desambiguada.
+        if tipo == "artista":
             if not (nt == n_nombre or nt.startswith(n_nombre + " ")):
                 continue
         elif not (nt == n_nombre or nt.startswith(n_nombre + " ")):
