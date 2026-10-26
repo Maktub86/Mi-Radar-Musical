@@ -1155,8 +1155,9 @@ def api_wikipedia():
             traduccion = "".join(str(parte[0]) for parte in (datos[0] or []) if parte and parte[0])
             return traduccion.strip() or texto
         except Exception:
-            app.logger.warning("No se pudo traducir al español el resultado de %s", nombre)
-            return None
+            app.logger.warning("No se pudo traducir al español el resultado de %s; se mostrará el original", nombre)
+            # No descartamos una página válida solo porque falle el servicio de traducción.
+            return texto
 
     def consultar_wikipedia(idioma, consulta, exacta=False):
         params = []
@@ -1189,12 +1190,14 @@ def api_wikipedia():
 
     marcadores_es = ("cantante", "vocalista", "cantautor", "cantautora", "rapero", "rapera",
         "interprete", "artista musical", "musico", "musica", "grupo musical", "banda musical",
-        "banda de", "grupo de", "duo musical", "solista", "compositor musical", "compositora musical")
+        "banda de", "banda", "grupo de", "grupo", "duo musical", "solista", "compositor musical", "compositora musical")
     marcadores_en = ("singer", "songwriter", "musician", "rapper", "vocalist", "recording artist",
-        "musical group", "rock band", "pop band", "music group", "composer", "solo artist", "rapper")
+        "musical group", "rock band", "pop band", "music group", "girl group", "pop group",
+        "rock group", "band", "group", "composer", "solo artist")
 
     for idioma in ("es", "en"):
-        consulta = nombre if tipo == "artista" else '"' + nombre + '" "' + artista + '"'
+        # Sin comillas estrictas: Wikipedia puede indexar la canción y el artista por separado.
+        consulta = nombre if tipo == "artista" else nombre + " " + artista
         paginas = consultar_wikipedia(idioma, nombre, exacta=True)
         paginas.extend(consultar_wikipedia(idioma, consulta))
         paginas_unicas = {}
@@ -1228,7 +1231,9 @@ def api_wikipedia():
                 nn = normalizar(nombre)
                 na = normalizar(artista)
                 titulo_coincide = ntitulo == nn or ntitulo.startswith(nn + " ") or nn in ntitulo
-                artista_coincide = na in normalizar(titulo + " " + extracto[:1800])
+                artista_coincide = na in normalizar(titulo + " " + extracto)
+                # Exigimos que el título corresponda y que el artículo mencione al intérprete
+                # en cualquier parte del extracto, no solo en las primeras 1.800 letras.
                 if not (titulo_coincide and artista_coincide):
                     continue
             paginas_unicas[titulo] = p
@@ -1240,16 +1245,16 @@ def api_wikipedia():
             resumen = " ".join(frases[:5])[:1800].strip() or extracto[:1800]
             url_pagina = pagina.get("fullurl") or ("https://" + idioma + ".wikipedia.org/wiki/" +
                 quote(str(pagina.get("title", nombre)).replace(" ", "_"), safe="()_,-"))
-            traducido = idioma == "en"
-            if traducido:
+            resumen_original = resumen
+            if idioma == "en":
                 resumen = traducir_es(resumen)
-                if not resumen:
-                    continue
+            traducido = idioma == "en" and resumen != resumen_original
             return jsonify({
                 "encontrado": bool(resumen), "url": url_pagina, "titulo": pagina.get("title") or nombre,
                 "biografia": resumen if tipo == "artista" else "",
                 "informacion": resumen if tipo == "cancion" else "",
-                "idioma": idioma, "fuente": "Wikipedia en español" if idioma == "es" else "Wikipedia en inglés (traducida al español)",
+                "idioma": idioma, "fuente": ("Wikipedia en español" if idioma == "es" else
+                    ("Wikipedia en inglés (traducida al español)" if traducido else "Wikipedia en inglés (traducción no disponible; texto original)")),
                 "fuente_tipo": "wikipedia", "traducido": traducido,
                 "tipo_contenido": "biografia" if tipo == "artista" else "informacion_cancion"
             })
