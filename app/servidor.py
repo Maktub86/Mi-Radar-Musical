@@ -1422,7 +1422,7 @@ def api_wikipedia():
         # no haya una frase que supere el detector de curiosidades.
         for pagina in paginas_por_titulo.values():
             titulo = str(pagina.get("title") or "")
-            extracto = re.sub(r"\\s+", " ", str(pagina.get("extract") or "")).strip()
+            extracto = re.sub(r"\s+", " ", str(pagina.get("extract") or "")).strip()
             nt = normalizar(titulo)
             ne = normalizar(extracto)
             if not extracto or not (nt == n_nombre or nt.startswith(n_nombre + " ")):
