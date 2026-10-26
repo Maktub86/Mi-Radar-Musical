@@ -1350,8 +1350,8 @@ def api_wikipedia():
                 continue
             if not any(normalizar(m) in inicio for m in (
                 "cantante", "grupo musical", "banda musical", "musico", "vocalista",
-                "rapero", "cantautor", "artista", "productor musical", "rock", "pop",
-                "interprete", "compositor", "compositora", "banda", "grupo de musica"
+                "rapero", "cantautor", "artista musical", "productor musical",
+                "interprete", "grupo de musica", "grupo musical", "banda musical"
             )):
                 continue
             frases_bio = [f.strip() for f in re.split(r"(?<=[.!?])\s+", extracto) if f.strip()]
@@ -1523,8 +1523,9 @@ def api_wikipedia():
                 continue
             if not any(normalizar(m) in ne[:900] for m in (
                 "cantante", "grupo musical", "banda musical", "musico", "vocalista",
-                "rapero", "cantautor", "artista", "discografia", "rock latino", "pop latino",
-                "interprete", "productor musical", "compositor", "compositora"
+                "rapero", "cantautor", "discografia", "rock latino", "pop latino",
+                "interprete", "productor musical", "compositor musical", "compositora musical",
+                "artista musical"
             )):
                 continue
             frases = [f.strip() for f in re.split(r"(?<=[.!?])\s+", extracto) if f.strip()]
