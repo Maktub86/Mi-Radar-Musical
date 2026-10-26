@@ -1538,6 +1538,63 @@ def api_wikipedia():
                 "idioma": "es", "fuente": "Wikipedia en español"
             })
 
+    if tipo == "cancion" and not candidatas:
+        # Segunda oportunidad en Wikipedia en inglés. Muchas canciones internacionales
+        # tienen una página más completa allí que en Wikipedia en español.
+        try:
+            params_en = urlencode({
+                "action": "query", "generator": "search",
+                "gsrsearch": f'"{nombre}" "{artista}" song',
+                "gsrnamespace": "0", "gsrlimit": "8",
+                "prop": "extracts|info", "explaintext": "1", "exchars": "5000",
+                "inprop": "url", "format": "json", "redirects": "1"
+            })
+            req_en = Request(
+                "https://en.wikipedia.org/w/api.php?" + params_en,
+                headers={"User-Agent": "MiRadarMusical/1.4 (music trivia)"}
+            )
+            with urlopen(req_en, timeout=3) as respuesta_en:
+                datos_en = json.loads(respuesta_en.read().decode("utf-8"))
+            paginas_en = list((datos_en.get("query", {}).get("pages") or {}).values())
+            for pagina_en in paginas_en:
+                titulo_en = str(pagina_en.get("title") or "").strip()
+                extracto_en = re.sub(r"\\s+", " ", str(pagina_en.get("extract") or "")).strip()
+                nt_en, ne_en = normalizar(titulo_en), normalizar(extracto_en)
+                if not extracto_en or not (nt_en == n_nombre or nt_en.startswith(n_nombre + " ")):
+                    continue
+                intro_en = ne_en[:1800]
+                if not any(normalizar(m) in intro_en for m in (
+                    "song", "single", "musical composition", "recorded by", "released by"
+                )):
+                    continue
+                if n_artista not in intro_en and n_artista not in nt_en:
+                    continue
+                frases_en = [
+                    f.strip() for f in re.split(r"(?<=[.!?])\\s+", extracto_en[:2200])
+                    if 65 <= len(f.strip()) <= 330
+                ]
+                if not frases_en:
+                    continue
+                # Se muestra un dato descriptivo de la fuente, sin inventar una curiosidad.
+                dato_en = next((
+                    f for f in frases_en
+                    if any(normalizar(m) in normalizar(f) for m in (
+                        "released", "written by", "recorded by", "album", "single",
+                        "number one", "chart", "produced by", "composed by"
+                    ))
+                ), frases_en[0])
+                return jsonify({
+                    "encontrado": True,
+                    "url": pagina_en.get("fullurl") or ("https://en.wikipedia.org/wiki/" + titulo_en.replace(" ", "_")),
+                    "titulo": titulo_en,
+                    "curiosidad": dato_en,
+                    "biografia": "",
+                    "idioma": "en",
+                    "fuente": "Wikipedia en inglés"
+                })
+        except Exception:
+            app.logger.info("Wikipedia en inglés no devolvió un resultado utilizable")
+
     if not candidatas:
         # En modo artista no se sustituye la información del grupo por una historia de canción.
         return jsonify({"encontrado": False, "motivo": "sin_curiosidad_especifica"})
