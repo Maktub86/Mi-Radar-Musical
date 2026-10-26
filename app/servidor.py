@@ -1270,7 +1270,10 @@ def api_wikipedia():
                     "eurovision", "grammy", "platino", "oro", "grabada",
                     "grabado", "compuso", "compuesta", "escribio", "escrita",
                     "publico", "publicada", "lanzada", "lanzado", "ventas",
-                    "disco de", "banda sonora", "concierto", "gira"
+                    "disco de", "banda sonora", "concierto", "gira", "miembro",
+                    "integrante", "fundo", "fundada", "fundado", "debut", "nominado",
+                    "nominada", "participo", "formo", "actuo", "gano", "alcanzo",
+                    "represento", "voz principal"
                 ))
             )
             es_generica = any(normalizar(g) in nf for g in genericas) or (
