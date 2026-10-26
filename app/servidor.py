@@ -718,8 +718,10 @@ def api_lo_mejor():
                 "rank": pista.get("rank"),
                 "anio": anio
             })
-        canciones.sort(key=lambda c: (int(c["anio"]) if str(c.get("anio") or "").isdigit() else 9999, -(int(c.get("rank") or 0))))
+        # Primero elegir las 20 más populares; después ordenarlas cronológicamente.
+        canciones.sort(key=lambda c: int(c.get("rank") or 0), reverse=True)
         canciones = canciones[:20]
+        canciones.sort(key=lambda c: (int(c["anio"]) if str(c.get("anio") or "").isdigit() else 9999, -(int(c.get("rank") or 0))))
 
         if not canciones:
             return jsonify({
