@@ -375,7 +375,7 @@ async function preverificarWikiPortada(b){const d=await obtenerInfoPortada(b.dat
 function configurarIconosWiki(contenedor){
  for(const b of contenedor.querySelectorAll('.wiki-icon')){
   b.type='button';
-  if(observadorWikiPortada)observadorWikiPortada.observe(b);else preverificarWikiPortada(b);
+  // No consultar Wikipedia automáticamente al entrar o al desplazarse: buscar solo al pulsar W.
   b.addEventListener('click',async()=>{
    const tipo=b.dataset.wikiTipo||'artista',nombre=b.dataset.wikiNombre||'',artista=b.dataset.wikiArtista||'';
    let caja=contenedor.querySelector('.info-wikipedia');
