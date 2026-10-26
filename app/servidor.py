@@ -363,9 +363,9 @@ async function verificarWikipedia(tipo,nombre,artista){
  return resultado;
 }
 const observadorWiki=(typeof IntersectionObserver!=='undefined')?new IntersectionObserver(entradas=>{
- for(const entrada of entradas){if(entrada.isIntersecting){const b=entrada.target;observadorWiki.unobserve(b);preverificarBotonWiki(b,b.dataset.wikiTipo,b.dataset.wikiNombre,b.dataset.wikiArtista||'');}}
+ for(const entrada of entradas){if(entrada.isIntersecting){const b=entrada.target;observadorWiki.unobserve(b);preverificarBotonWiki(b,b.dataset.wikiTipo,b.dataset.wikiNombre,b.dataset.wikiArtista||'',true);}}
 },{rootMargin:'180px'}):null;
-function preverificarBotonWiki(b,tipo,nombre,artista){
+function preverificarBotonWiki(b,tipo,nombre,artista,forzar=false){
  if(!b||b.dataset.verificandoWiki==='1')return;
  b.dataset.wikiTipo=tipo;b.dataset.wikiNombre=nombre;b.dataset.wikiArtista=artista||'';
  const ejecutar=async()=>{
@@ -377,7 +377,7 @@ function preverificarBotonWiki(b,tipo,nombre,artista){
   b.title=info.fuente_tipo==='web'?'Información encontrada en la web: '+(info.titulo||nombre):'Información encontrada en Wikipedia';
   b.setAttribute('aria-label',b.title);
  };
- if(observadorWiki)observadorWiki.observe(b);else ejecutar();
+ if(observadorWiki&&!forzar)observadorWiki.observe(b);else ejecutar();
 }
 function mostrarInfoWikipedia(contenedor,info,tipo){
  const anterior=contenedor.querySelector('.info-wikipedia');
