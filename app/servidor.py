@@ -1206,12 +1206,22 @@ def api_wikipedia():
         "cantante", "cantautor", "cantautora", "musico", "musica", "grupo musical",
         "banda", "vocalista", "compositor", "compositora", "interprete", "rapero",
         "rapera", "artista musical", "discografia", "album", "sencillo", "cancion",
-        "pop", "flamenco", "regueton", "rock", "orquesta", "duo musical"
+        "pop", "flamenco", "regueton", "rock", "orquesta", "duo musical", "solista",
+        "guitarrista", "baterista", "productor musical", "productora musical"
+    )
+    indicadores_no_musicales = (
+        "jugador de balonmano", "jugadora de balonmano", "futbolista", "baloncestista",
+        "tenista", "atleta olimpico", "atleta olimpica", "politico", "politica",
+        "ministro", "ministra", "presidente de", "militar", "actor pornografico"
     )
 
     def es_musical(texto):
         n = normalizar(texto)
         return any(normalizar(p) in n for p in terminos_musicales)
+
+    def es_claramente_otro_ambito(texto):
+        n = normalizar(texto)
+        return any(normalizar(p) in n for p in indicadores_no_musicales)
 
     def respuesta_ok(titulo, extracto, url, idioma="es"):
         resumen = re.sub(r"\s+", " ", str(extracto or "")).strip()
@@ -1247,12 +1257,17 @@ def api_wikipedia():
         titulo_n = normalizar(titulo)
         texto_n = normalizar(titulo + " " + extracto)
         if tipo == "artista":
-            # El título debe identificar a la persona/grupo buscado y el texto debe ser musical.
+            # El título debe identificar a la persona/grupo buscado.
             titulo_coincide = (titulo_n == nombre_n or titulo_n.startswith(nombre_n + " ") or nombre_n.startswith(titulo_n + " "))
             if not titulo_coincide:
                 return False
-            # Evita homónimos de deportes, política, etc. aunque el nombre coincida exactamente.
-            return es_musical(extracto)
+            # No rechazar artistas conocidos solo porque el extracto sea breve o use otras palabras.
+            # Sí descartar homónimos claramente identificados con otra profesión (p. ej. balonmano).
+            if es_musical(extracto):
+                return True
+            if es_claramente_otro_ambito(extracto):
+                return False
+            return titulo_n == nombre_n
         # Para canciones exigimos el título de la canción y alguna referencia al artista o a música.
         cancion_coincide = (titulo_n == nombre_n or titulo_n.startswith(nombre_n + " ") or nombre_n.startswith(titulo_n + " "))
         artista_mencionado = contiene_frase(titulo + " " + extracto, artista)
