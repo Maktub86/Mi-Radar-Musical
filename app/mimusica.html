@@ -36,7 +36,8 @@ body[data-wikipedia-off="1"] .wiki{display:none!important}
 <section class="controles" aria-label="Buscar y filtrar música">
 <input id="buscar" type="search" placeholder="Buscar canción o artista…" aria-label="Buscar canción o artista">
 <select id="modo" aria-label="Filtrar por categoría"><option value="">Elige una opción…</option><option value="anio">Año</option><option value="autor">Autor</option><option value="genero">Género</option><option value="decada">Décadas</option><option value="todos">Todos</option></select>
-<select id="valor-filtro" aria-label="Seleccionar valor del filtro" disabled><option value="">Selecciona primero una categoría</option></select>
+<select id="valor-filtro" aria-label="Opciones de filtro" disabled><option value="">Primero elige una categoría</option></select>
+<button id="mostrar-filtro" type="button" class="descarga">Mostrar</button>
 </section>
 <div id="resumen" role="status">Cargando tu música…</div><section id="lista" aria-live="polite"></section>
 </main>
@@ -89,15 +90,35 @@ function mostrar(){
  lista.appendChild(frag);
 }
 function cargarFiltros(){
- const opciones={anio:[...new Set(canciones.map(c=>String(c.anio)).filter(v=>v&&v!=='0'))].sort((a,b)=>Number(a)-Number(b)),autor:[...new Set(canciones.map(c=>c.artista).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es')),genero:[...new Set(canciones.map(c=>c.genero).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es')),decada:[...new Set(canciones.map(c=>String(Math.floor(c.anio/10)*10)).filter(v=>v&&v!=='0'))].sort((a,b)=>Number(a)-Number(b))};
+ const opciones={
+  anio:[...new Set(canciones.map(c=>String(c.anio)).filter(v=>v&&v!=='0'&&v!=='NaN'))].sort((a,b)=>Number(a)-Number(b)),
+  autor:[...new Set(canciones.map(c=>c.artista).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es')),
+  genero:[...new Set(canciones.map(c=>c.genero).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es')),
+  decada:[...new Set(canciones.map(c=>String(Math.floor(Number(c.anio)/10)*10)).filter(v=>v&&v!=='0'&&v!=='NaN'))].sort((a,b)=>Number(a)-Number(b))
+ };
  modo.addEventListener('change',()=>{
-  valorFiltro.replaceChildren();const tipo=modo.value;
-  if(!tipo||tipo==='todos'){valorFiltro.disabled=true;const op=document.createElement('option');op.value='';op.textContent=tipo==='todos'?'Toda la colección':'Selecciona primero una categoría';valorFiltro.appendChild(op);}
-  else{valorFiltro.disabled=false;const op=document.createElement('option');op.value='';op.textContent='Todos los valores';valorFiltro.appendChild(op);for(const v of opciones[tipo]||[]){const o=document.createElement('option');o.value=v;o.textContent=tipo==='decada'?v+'s':v;valorFiltro.appendChild(o);}}
-  mostrar();
+  valorFiltro.replaceChildren();
+  const tipo=modo.value;
+  if(tipo==='todos'){
+   valorFiltro.disabled=true;
+   const op=document.createElement('option');op.value='';op.textContent='Toda la colección';valorFiltro.appendChild(op);
+  }else if(!tipo){
+   valorFiltro.disabled=true;
+   const op=document.createElement('option');op.value='';op.textContent='Primero elige una categoría';valorFiltro.appendChild(op);
+  }else{
+   valorFiltro.disabled=false;
+   const op=document.createElement('option');op.value='';op.textContent='Todos los valores';valorFiltro.appendChild(op);
+   for(const v of (opciones[tipo]||[])){
+    const o=document.createElement('option');o.value=v;o.textContent=tipo==='decada'?v+'s':v;valorFiltro.appendChild(o);
+   }
+  }
  });
-}function cargarFiltros(){const decadas=[...new Set(canciones.map(c=>Math.floor(c.anio/10)*10))].sort((a,b)=>a-b);for(const d of decadas){const op=document.createElement('option');op.value=String(d);op.textContent=d+'s';decada.appendChild(op)}const generos=[...new Set(canciones.map(c=>c.genero))].sort((a,b)=>a.localeCompare(b,'es'));for(const g of generos){const op=document.createElement('option');op.value=g;op.textContent=g;genero.appendChild(op)}}
-buscar.addEventListener('input',mostrar);valorFiltro.addEventListener('change',mostrar);
+}
+document.getElementById('mostrar-filtro').addEventListener('click',()=>{
+ if(!modo.value){resumen.textContent='Elige Año, Autor, Género, Décadas o Todos.';return;}
+ mostrar();
+});
+buscar.addEventListener('input',mostrar);
 fetch('/api/mi-musica',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error();return r.json()}).then(d=>{canciones=d;cargarFiltros();mostrar()}).catch(()=>{resumen.textContent='No se ha podido cargar la colección. Comprueba que el archivo de música está publicado.'});
 </script>
 </body></html>
