@@ -372,22 +372,39 @@ function mostrarCuriosidadWiki(contenedor,info){
 const cacheHistoriasCancion=new Map();
 async function cargarHistoriaCancion(titulo,artista,fila,boton){
  try{if(localStorage.getItem('mrWikipediaEnabled')==='0')return}catch(e){}
- const existente=fila.parentElement?.querySelector('.historia-wikipedia[data-cancion="'+CSS.escape(titulo+'|'+artista)+'"]');
+ const claveDOM=titulo+'|'+artista;
+ const existente=fila.parentElement?.querySelector('.historia-wikipedia[data-cancion="'+CSS.escape(claveDOM)+'"]');
  if(existente){existente.remove();return;}
- const caja=nodo('div','historia-wikipedia','Buscando una breve historia en Wikipedia…');caja.dataset.cancion=titulo+'|'+artista;fila.insertAdjacentElement('afterend',caja);
+ const caja=nodo('div','historia-wikipedia','Buscando una curiosidad sobre esta canción…');
+ caja.dataset.cancion=claveDOM;
+ fila.insertAdjacentElement('afterend',caja);
  const clave=normalizarNombre(titulo+' '+artista);
  try{
   let promesa=cacheHistoriasCancion.get(clave);
-  if(!promesa){promesa=(async()=>{for(const idioma of ['es','en']){
-   const q=new URLSearchParams({action:'query',generator:'search',gsrsearch:titulo+' '+artista,gsrnamespace:'0',gsrlimit:'8',prop:'extracts|info',exintro:'1',explaintext:'1',exsentences:'4',inprop:'url',format:'json',origin:'*'});
-   const r=await fetch('https://'+idioma+'.wikipedia.org/w/api.php?'+q.toString());if(!r.ok)continue;const d=await r.json();const paginas=Object.values(d.query?.pages||[]);
-   const normal=v=>normalizarNombre(v).replace(/[^A-Z0-9 ]/g,' ').replace(/\s+/g,' ').trim(),t=normal(titulo),a=normal(artista);
-   const buena=paginas.find(p=>{const n=normal(p.title);return n===t||n===t+' ('+a+')'||(n.includes(t)&&(!a||n.includes(a)));});
-   if(buena?.extract)return {texto:buena.extract,url:buena.fullurl||('https://'+idioma+'.wikipedia.org/wiki/'+encodeURIComponent(buena.title.replace(/ /g,'_'))),titulo:buena.title};
-  }return null;})();cacheHistoriasCancion.set(clave,promesa);}
-  const h=await promesa;caja.replaceChildren();if(!h){caja.textContent='No he encontrado una historia de esta canción en Wikipedia.';return;}
-  const span=nodo('span','',h.texto+' '),a=nodo('a','','Leer en Wikipedia ('+h.titulo+')');a.href=h.url;a.target='_blank';a.rel='noopener noreferrer';caja.append(span,a);
- }catch(e){caja.textContent='No se ha podido consultar Wikipedia ahora mismo.';}
+  if(!promesa){
+   promesa=(async()=>{
+    const q=new URLSearchParams({tipo:'cancion',nombre:titulo,artista:artista});
+    const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store'});
+    if(!r.ok)return null;
+    const d=await r.json();
+    return d.encontrado&&d.url&&d.curiosidad?d:null;
+   })();
+   cacheHistoriasCancion.set(clave,promesa);
+  }
+  const h=await promesa;
+  caja.replaceChildren();
+  if(!h){
+   caja.textContent='No he encontrado una curiosidad fiable sobre esta canción en Wikipedia (español o inglés).';
+   return;
+  }
+  caja.appendChild(nodo('p','',h.curiosidad));
+  const a=nodo('a','','Leer artículo en Wikipedia ↗');
+  a.href=h.url;a.target='_blank';a.rel='noopener noreferrer';
+  a.style.cssText='display:inline-block;margin-top:6px;color:#c9b0ff;font-weight:700';
+  caja.appendChild(a);
+ }catch(e){
+  caja.textContent='No se ha podido consultar Wikipedia ahora mismo. Prueba de nuevo en unos segundos.';
+ }
 }
 let audioActivo=null;
 let temporizador=null;
@@ -1089,93 +1106,141 @@ def _ejecutar_actualizacion():
 
 @app.get("/api/wikipedia")
 def api_wikipedia():
-    """Solo devuelve artículos verificados y una curiosidad concreta y pertinente."""
+    """Busca en Wikipedia en español e inglés y selecciona una frase informativa pertinente."""
     tipo = (request.args.get("tipo") or "").strip().lower()
     nombre = re.sub(r"\s+", " ", (request.args.get("nombre") or "").strip())
     artista = re.sub(r"\s+", " ", (request.args.get("artista") or "").strip())
     if tipo not in ("artista", "cancion") or not nombre or (tipo == "cancion" and not artista):
         return jsonify({"encontrado": False}), 400
+
     def normalizar(texto):
         texto = unicodedata.normalize("NFKD", str(texto or ""))
-        return re.sub(r"\s+", " ", "".join(c for c in texto if not unicodedata.combining(c))).casefold().strip()
-    consulta = '"' + nombre + '"' if tipo == "artista" else '"' + nombre + '" "' + artista + '"'
-    params = urlencode({
-        "action": "query", "generator": "search", "gsrsearch": consulta,
-        "gsrnamespace": "0", "gsrlimit": "20", "prop": "extracts|info",
-        "explaintext": "1", "exchars": "12000",
-        "inprop": "url", "format": "json", "redirects": "1"
-    })
-    try:
-        req = Request("https://es.wikipedia.org/w/api.php?" + params, headers={
-            "User-Agent": "MiRadarMusical/1.0 (relevance verification)"
-        })
-        with urlopen(req, timeout=6) as respuesta:
-            datos = json.loads(respuesta.read().decode("utf-8"))
-        paginas = list((datos.get("query", {}).get("pages") or {}).values())
-        n_nombre, n_artista = normalizar(nombre), normalizar(artista)
+        texto = "".join(c for c in texto if not unicodedata.combining(c)).casefold()
+        return re.sub(r"[^a-z0-9]+", " ", texto).strip()
+
+    n_nombre, n_artista = normalizar(nombre), normalizar(artista)
+    terminos_cancion = (
+        "cancion", "sencillo", "single", "tema musical", "interpretada por",
+        "interpretado por", "grabada por", "grabado por", "compuesta por",
+        "compuesto por", "escrita por", "escrito por", "song", "recorded by",
+        "performed by", "written by", "released by", "track", "music video"
+    )
+    pistas_curiosidad = (
+        "dedicad", "inspir", "originalmente", "inicialmente", "origen",
+        "grabacion", "durante la grabacion", "se grabo", "fue grabada",
+        "fue grabado", "premio", "record", "numero uno", "numero 1",
+        "version", "debido a", "sin embargo", "curiosamente", "nombre proviene",
+        "boda", "reina", "rey", "influencia", "basada en", "basado en",
+        "tras la muerte", "known for", "inspired", "dedicated", "recorded",
+        "originally", "written by", "music video", "chart", "number one",
+        "award", "grammy", "influenced", "cover version", "tribute",
+        "sold", "million copies", "concert", "formed in", "founded",
+        "lead singer", "lineup", "eurovision", "first released", "debut"
+    )
+    terminos_genericos = (
+        "es una cancion", "es un sencillo", "fue una cancion", "is a song",
+        "is a single", "was a song", "was released", "es un grupo", "is a band"
+    )
+
+    consultas = [
+        ("es", f'"{nombre}" "{artista}"' if tipo == "cancion" else f'"{nombre}"'),
+        ("en", f'"{nombre}" "{artista}"' if tipo == "cancion" else f'"{nombre}"')
+    ]
+    candidatas = []
+    for idioma, consulta in consultas:
+        try:
+            params = urlencode({
+                "action": "query", "generator": "search", "gsrsearch": consulta,
+                "gsrnamespace": "0", "gsrlimit": "12",
+                "prop": "extracts|info", "explaintext": "1", "exchars": "14000",
+                "inprop": "url", "format": "json", "redirects": "1"
+            })
+            req = Request(
+                f"https://{idioma}.wikipedia.org/w/api.php?{params}",
+                headers={"User-Agent": "MiRadarMusical/1.1 (music trivia)"}
+            )
+            with urlopen(req, timeout=5) as respuesta:
+                datos = json.loads(respuesta.read().decode("utf-8"))
+            paginas = list((datos.get("query", {}).get("pages") or {}).values())
+        except Exception:
+            app.logger.warning("No se pudo consultar Wikipedia en %s", idioma)
+            continue
+
         for pagina in paginas:
             titulo = str(pagina.get("title") or "")
             extracto = re.sub(r"\s+", " ", str(pagina.get("extract") or "")).strip()
-            nt, ne = normalizar(titulo), normalizar(extracto)
-            if not extracto or not (nt == n_nombre or nt.startswith(n_nombre + " (")):
+            if not extracto:
                 continue
-            if tipo == "artista":
-                terminos_artista = (
-                    "cantante", "grupo musical", "banda musical", "musico", "musica",
-                    "vocalista", "compositor", "interprete", "artista", "productor musical",
-                    "rapero", "cantautora", "cantautor"
-                )
-                if not any(t in ne for t in terminos_artista):
+            nt, ne = normalizar(titulo), normalizar(extracto)
+            if not (nt == n_nombre or nt.startswith(n_nombre + " ")):
+                continue
+
+            if tipo == "cancion":
+                if not any(normalizar(t) in ne for t in terminos_cancion):
                     continue
-                # El extracto puede no mencionar hitos biográficos; el título exacto y
-                # el contexto musical ya validado son suficientes para enlazar al artista.
+                coincidencia_artista = bool(n_artista and n_artista in ne)
             else:
-                terminos_cancion = (
-                    "cancion", "sencillo", "single", "tema musical", "interpretada por",
-                    "interpretado por", "grabada por", "grabado por", "compuesta por",
-                    "compuesto por", "escrita por", "escrito por", "autor de la letra",
-                    "autoria", "composicion musical", "publicada por", "lanzada por", "lanzado por"
+                contexto_musical = (
+                    "singer", "band", "musician", "vocalist", "cantante",
+                    "grupo musical", "banda musical", "musico", "vocalista",
+                    "musica", "composer", "artist", "cantautor", "cantautora"
                 )
-                if not any(t in ne for t in terminos_cancion):
+                if not any(normalizar(t) in ne for t in contexto_musical):
                     continue
-                # El título debe coincidir exactamente y el extracto debe describir
-                # una canción. La búsqueda ya incluye título y artista; no exigimos que
-                # el artista aparezca literalmente en las primeras frases del extracto,
-                # porque eso descarta artículos válidos. La curiosidad se limita al
-                # texto de Wikipedia y no se usa para afirmar quién compuso la canción.
-            from urllib.parse import quote
-            url = pagina.get("fullurl") or (
-                "https://es.wikipedia.org/wiki/" + quote(titulo.replace(" ", "_"), safe="()_,-")
-            )
-            # Mostrar una sola curiosidad breve, no el inicio entero del artículo.
+                coincidencia_artista = True
+
             frases = [f.strip() for f in re.split(r"(?<=[.!?])\s+", extracto) if f.strip()]
-            pistas = (
-                "dedicad", "inspir", "originalmente", "inicialmente", "origen",
-                "grabacion", "durante la grabacion", "se grabo", "fue grabada",
-                "fue grabado", "premio", "record", "numero uno", "numero 1",
-                "version", "debido a", "sin embargo", "curiosamente", "nombre proviene",
-                "se publico", "se lanzo", "compuesta", "escrita", "producida",
-                "producido", "boda", "reina", "rey", "conocida por", "influencia",
-                "basada en", "basado en", "tras la muerte"
-            )
-            candidatas = [f for f in frases if 55 <= len(f) <= 300]
-            def puntuacion(frase):
+            frases = [f for f in frases if 55 <= len(f) <= 360]
+            if not frases:
+                continue
+
+            def puntuacion(frase, indice):
                 nf = normalizar(frase)
-                return sum(3 if p in nf else 0 for p in pistas) - (1 if nf.startswith(("es una", "fue una", "se trata de")) else 0)
-            candidatas.sort(key=puntuacion, reverse=True)
-            curiosidad = candidatas[0] if candidatas and puntuacion(candidatas[0]) > 0 else None
-            if curiosidad is None:
-                # Elegir una frase informativa breve, sin inventar datos.
-                curiosidad = next((f for f in candidatas if f != frases[0]), None)
-            if curiosidad is None:
-                base = frases[0] if frases else extracto
-                curiosidad = base[:240].rsplit(" ", 1)[0].rstrip(" .,;:")
-                if len(curiosidad) < len(base):
-                    curiosidad += "…"
-            return jsonify({"encontrado": True, "url": url, "titulo": titulo, "curiosidad": curiosidad})
-    except Exception:
-        app.logger.exception("No se pudo verificar el artículo de Wikipedia")
-    return jsonify({"encontrado": False})
+                score = sum(3 for pista in pistas_curiosidad if normalizar(pista) in nf)
+                if any(normalizar(g) in nf for g in terminos_genericos):
+                    score -= 3
+                if indice == 0:
+                    score -= 2
+                if tipo == "cancion" and n_artista and n_artista in nf:
+                    score += 2
+                if any(x in nf for x in (
+                    "number", "million", "premio", "award", "dedicated", "dedicada",
+                    "inspired", "inspirada", "recorded", "grabada", "version", "chart", "lista"
+                )):
+                    score += 2
+                return score
+
+            ordenadas = sorted(
+                enumerate(frases),
+                key=lambda par: puntuacion(par[1], par[0]),
+                reverse=True
+            )
+            indice, frase = ordenadas[0]
+            score = puntuacion(frase, indice)
+            candidatas.append({
+                "score": score + (2 if idioma == "es" else 0) + (2 if coincidencia_artista else 0),
+                "idioma": idioma, "titulo": titulo, "url": pagina.get("fullurl"),
+                "curiosidad": frase
+            })
+
+    if not candidatas:
+        app.logger.info("Sin artículo Wikipedia válido para %s: %s / %s", tipo, nombre, artista)
+        return jsonify({"encontrado": False, "motivo": "sin_resultados"})
+
+    candidatas.sort(key=lambda c: c["score"], reverse=True)
+    mejor = candidatas[0]
+    if not mejor.get("url"):
+        from urllib.parse import quote
+        mejor["url"] = f"https://{mejor['idioma']}.wikipedia.org/wiki/" + quote(
+            mejor["titulo"].replace(" ", "_"), safe="()_,-"
+        )
+    return jsonify({
+        "encontrado": True,
+        "url": mejor["url"],
+        "titulo": mejor["titulo"],
+        "curiosidad": mejor["curiosidad"],
+        "idioma": mejor["idioma"]
+    })
 
 
 @app.get("/api/estado-actualizacion")
