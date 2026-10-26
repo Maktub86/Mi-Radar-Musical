@@ -362,6 +362,23 @@ async function verificarWikipedia(tipo,nombre,artista){
  if(!resultado)cacheWikipediaVerificada.delete(clave);
  return resultado;
 }
+const observadorWiki=(typeof IntersectionObserver!=='undefined')?new IntersectionObserver(entradas=>{
+ for(const entrada of entradas){if(entrada.isIntersecting){const b=entrada.target;observadorWiki.unobserve(b);preverificarBotonWiki(b,b.dataset.wikiTipo,b.dataset.wikiNombre,b.dataset.wikiArtista||'');}}
+},{rootMargin:'180px'}):null;
+function preverificarBotonWiki(b,tipo,nombre,artista){
+ if(!b||b.dataset.verificandoWiki==='1')return;
+ b.dataset.wikiTipo=tipo;b.dataset.wikiNombre=nombre;b.dataset.wikiArtista=artista||'';
+ const ejecutar=async()=>{
+  if(b.dataset.verificadoWiki==='1')return;b.dataset.verificandoWiki='1';
+  const info=await verificarWikipedia(tipo,nombre,artista||'');
+  b.dataset.verificandoWiki='0';b.dataset.verificadoWiki='1';
+  if(!info){b.hidden=true;return;}
+  b.textContent=info.fuente_tipo==='web'?'🌐':'W';
+  b.title=info.fuente_tipo==='web'?'Información encontrada en la web: '+(info.titulo||nombre):'Información encontrada en Wikipedia';
+  b.setAttribute('aria-label',b.title);
+ };
+ if(observadorWiki)observadorWiki.observe(b);else ejecutar();
+}
 function mostrarInfoWikipedia(contenedor,info,tipo){
  const anterior=contenedor.querySelector('.info-wikipedia');
  if(anterior){anterior.remove();return;}
@@ -440,6 +457,7 @@ function mostrarArtistas(){
   canciones.hidden=true;
   caja.appendChild(canciones);
   contenedor.appendChild(caja);
+  preverificarBotonWiki(wikiArtista,'artista',nombre,'');
  }
  estado.textContent=filtrados.length+' artistas. Pulsa «Ver sus 5 canciones» para consultar su ranking.';for(const b of alfabetoLoMejor.querySelectorAll('button'))b.classList.toggle('activa',b.dataset.letra===inicialSeleccionada);
 }
@@ -484,6 +502,7 @@ async function cargarTop(nombre,caja,boton){
    youtube.setAttribute('aria-label','YouTube');
    youtube.addEventListener('click',()=>buscarYouTube(pista,'youtube'));
    acciones.append(muestra,mediahuman,youtube);fila.append(detalle,acciones);zona.appendChild(fila);
+   preverificarBotonWiki(wiki,'cancion',pista.titulo,pista.artista);
   }
  }catch(e){
   const mensaje=e.name==='AbortError'?'Deezer está tardando demasiado en responder. Pulsa «Ver sus 5 canciones» para intentarlo otra vez.':(e.message||'Error al consultar Deezer.');
