@@ -1123,16 +1123,11 @@ def api_wikipedia():
                 )
                 if not any(t in ne for t in terminos_cancion):
                     continue
-                # No confundir intérprete con autor: exigir una relación de composición/escritura.
-                relaciones_artista = (
-                    "compuesta por " + n_artista, "compuesto por " + n_artista,
-                    "escrita por " + n_artista, "escrito por " + n_artista,
-                    "autor de la letra " + n_artista, "letra de " + n_artista,
-                    "compuesta e interpretada por " + n_artista,
-                    "escrita e interpretada por " + n_artista,
-                    "musica de " + n_artista, "autoria de " + n_artista
-                )
-                if not any(relacion in ne for relacion in relaciones_artista):
+                # La curiosidad puede tratar sobre la canción sin atribuir su autoría.
+                # Exigimos que el extracto mencione al artista asociado, pero no que
+                # lo presente como compositor: los créditos pueden nombrar integrantes
+                # concretos del grupo. No se harán afirmaciones de autoría sin prueba.
+                if n_artista not in ne:
                     continue
             from urllib.parse import quote
             url = pagina.get("fullurl") or (
