@@ -596,9 +596,11 @@ def api_lo_mejor():
         # recuperar canciones del artista mediante la búsqueda de pistas.
         if not pistas_top:
             nombre_deezer = mejor.get("name", nombre_solicitado)
+            # Deezer puede devolver cero resultados con el filtro avanzado artist:"...".
+            # Buscar por texto libre y filtrar después por el artista principal exacto.
             consulta_pistas = urlencode({
-                "q": 'artist:"' + nombre_deezer.replace('"', "") + '"',
-                "limit": 25
+                "q": nombre_deezer,
+                "limit": 100
             })
             peticion_pistas = Request(
                 "https://api.deezer.com/search/track?" + consulta_pistas,
@@ -1123,12 +1125,11 @@ def api_wikipedia():
                 )
                 if not any(t in ne for t in terminos_cancion):
                     continue
-                # La curiosidad puede tratar sobre la canción sin atribuir su autoría.
-                # Exigimos que el extracto mencione al artista asociado, pero no que
-                # lo presente como compositor: los créditos pueden nombrar integrantes
-                # concretos del grupo. No se harán afirmaciones de autoría sin prueba.
-                if n_artista not in ne:
-                    continue
+                # El título debe coincidir exactamente y el extracto debe describir
+                # una canción. La búsqueda ya incluye título y artista; no exigimos que
+                # el artista aparezca literalmente en las primeras frases del extracto,
+                # porque eso descarta artículos válidos. La curiosidad se limita al
+                # texto de Wikipedia y no se usa para afirmar quién compuso la canción.
             from urllib.parse import quote
             url = pagina.get("fullurl") or (
                 "https://es.wikipedia.org/wiki/" + quote(titulo.replace(" ", "_"), safe="()_,-")
