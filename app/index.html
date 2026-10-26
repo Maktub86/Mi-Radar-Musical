@@ -217,6 +217,9 @@ async function cargarImagenArtista(nombre, foto, credito) {
 }
 
 const cacheWikipediaInfo=new Map();
+const observadorInfoWiki=typeof IntersectionObserver!=='undefined'?new IntersectionObserver(entradas=>{for(const e of entradas){if(e.isIntersecting){const b=e.target;observadorInfoWiki.unobserve(b);preverificarInfoWiki(b);}}},{rootMargin:'180px'}):null;
+async function obtenerInfoWiki(tipo,nombre,artista){const clave=[tipo,nombre,artista||''].join('|');let promesa=cacheWikipediaInfo.get(clave);if(!promesa){const q=new URLSearchParams({tipo,nombre,artista:artista||''});promesa=fetch('/api/wikipedia?'+q,{signal:AbortSignal.timeout(18000)}).then(r=>r.ok?r.json():{encontrado:false}).catch(()=>({encontrado:false}));cacheWikipediaInfo.set(clave,promesa);}return promesa;}
+async function preverificarInfoWiki(b){if(b.dataset.verificado==='1')return;b.dataset.verificando='1';const d=await obtenerInfoWiki(b.dataset.wikiTipo,b.dataset.wikiNombre,b.dataset.wikiArtista||'');b.dataset.verificando='0';b.dataset.verificado='1';const contenido=b.dataset.wikiTipo==='artista'?d.biografia:d.informacion;if(d.encontrado&&contenido){b.textContent=d.fuente_tipo==='web'?'🌐':'W';b.title=d.fuente_tipo==='web'?'Información encontrada en la web':'Información encontrada en Wikipedia';}else b.hidden=true;}
 async function mostrarInfoWikipedia(tipo,nombre,artista,contenedor,boton){
  let caja=contenedor.querySelector(':scope > .info-wikipedia');
  if(caja){caja.remove();if(boton.dataset.abierto==='1'){boton.dataset.abierto='0';return;}}
@@ -225,15 +228,13 @@ async function mostrarInfoWikipedia(tipo,nombre,artista,contenedor,boton){
  contenedor.appendChild(caja);boton.dataset.abierto='1';boton.disabled=true;
  const clave=[tipo,nombre,artista||''].join('|');
  try{
-  let promesa=cacheWikipediaInfo.get(clave);
-  if(!promesa){const q=new URLSearchParams({tipo,nombre,artista:artista||''});promesa=fetch('/api/wikipedia?'+q,{signal:AbortSignal.timeout(9000)}).then(r=>r.ok?r.json():{encontrado:false}).catch(()=>({encontrado:false}));cacheWikipediaInfo.set(clave,promesa);}
-  const d=await promesa;caja.replaceChildren();
+  const d=await obtenerInfoWiki(tipo,nombre,artista);caja.replaceChildren();
   const contenido=tipo==='artista'?d.biografia:d.informacion;
   if(d.encontrado&&contenido){
    const tituloInfo=document.createElement('strong');tituloInfo.textContent=tipo==='artista'?'Biografía: ':'Sobre la canción: ';caja.appendChild(tituloInfo);
    const texto=document.createElement('span');texto.textContent=contenido+' ';caja.appendChild(texto);
    if(d.url){const link=document.createElement('a');link.href=d.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Fuente: '+(d.fuente||'Wikipedia');caja.appendChild(link);}
-  }else caja.textContent=tipo==='artista'?'No se encontró una biografía musical en Wikipedia.':'No se encontró información de esta canción en Wikipedia.';
+  }else{caja.remove();boton.hidden=true;}
  }catch(e){caja.textContent='Wikipedia no está disponible ahora mismo.'}finally{boton.disabled=false;}
 }
 function crearTarjetaArtista(a, destino){
@@ -248,6 +249,7 @@ function crearTarjetaArtista(a, destino){
   wikiArtista.title='Consultar biografía del artista';wikiArtista.setAttribute('aria-label','Consultar biografía de '+nombreArtista);
   wikiArtista.addEventListener('click',()=>mostrarInfoWikipedia('artista',nombreArtista,'',div,wikiArtista));
   div.insertBefore(wikiArtista,div.firstChild.nextSibling);
+  if(observadorInfoWiki)observadorInfoWiki.observe(wikiArtista);else preverificarInfoWiki(wikiArtista);
   if (nombreArtista.trim().toUpperCase() === 'ABBA') {
    const foto = document.createElement('img');
    foto.src = '/abba.jpg';
