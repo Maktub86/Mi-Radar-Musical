@@ -1282,7 +1282,7 @@ def api_wikipedia():
             consultas_web = (
                 f'"{nombre}" "{artista}" historia inspiración grabación canción'
                 if tipo == "cancion"
-                else f'"{nombre}" artista canción inspiración grabación entrevista curiosidad'
+                else f'"{nombre}" biografía miembros fundación trayectoria premios entrevista grupo musical'
             )
             params_web = urlencode({"q": consultas_web, "kl": "es-es"})
             req_web = Request(
@@ -1321,6 +1321,10 @@ def api_wikipedia():
                 if not (65 <= len(texto_fuente) <= 420):
                     continue
                 if not any(normalizar(p) in texto_norm for p in pistas_web):
+                    continue
+                # En modo artista, el resultado debe tratar realmente del artista,
+                # no de una canción concreta de su catálogo.
+                if tipo == "artista" and n_nombre not in normalizar(titulo_fuente + " " + texto_fuente):
                     continue
                 if tipo == "cancion" and n_artista not in normalizar(titulo_fuente + " " + texto_fuente):
                     # El buscador ya recibió el artista; no se descarta si el snippet omite el nombre.
