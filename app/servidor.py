@@ -6,6 +6,8 @@ import subprocess
 import shutil
 import threading
 import sys
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
@@ -946,6 +948,9 @@ def _ejecutar_actualizacion():
                     with _candado_estado:
                         _estado_actualizacion["mensaje"] = f"Advertencia en {tipo}: {error_lista}"
 
+        # La fecha solo cambia cuando detector y preparación del radar terminan bien.
+        fecha_actualizacion = datetime.now(ZoneInfo("Europe/Madrid")).strftime("%d/%m/%Y, %H:%M")
+        (BASE / "ultima_actualizacion.txt").write_text(fecha_actualizacion, encoding="utf-8")
         with _candado_estado:
             _estado_actualizacion.update(
                 en_curso=False, progreso=100,
@@ -957,6 +962,45 @@ def _ejecutar_actualizacion():
                 en_curso=False,
                 mensaje="Actualización fallida: " + str(error)
             )
+
+
+
+@app.get("/api/wikipedia")
+def api_wikipedia():
+    """Devuelve un artículo de Wikipedia solo si encaja con el artista o la canción."""
+    tipo = (request.args.get("tipo") or "").strip().lower()
+    nombre = re.sub(r"\s+", " ", (request.args.get("nombre") or "").strip())
+    artista = re.sub(r"\s+", " ", (request.args.get("artista") or "").strip())
+    if tipo not in ("artista", "cancion") or not nombre or (tipo == "cancion" and not artista):
+        return jsonify({"encontrado": False}), 400
+    def normalizar(texto):
+        texto = unicodedata.normalize("NFKD", str(texto or ""))
+        return "".join(c for c in texto if not unicodedata.combining(c)).casefold().strip()
+    consulta = nombre if tipo == "artista" else nombre + " " + artista
+    params = urlencode({"action":"query","generator":"search","gsrsearch":consulta,"gsrnamespace":"0","gsrlimit":"8","prop":"extracts","exintro":"1","explaintext":"1","exsentences":"5","format":"json","redirects":"1"})
+    try:
+        req = Request("https://es.wikipedia.org/w/api.php?" + params, headers={"User-Agent":"MiRadarMusical/1.0 (Wikipedia relevance check)"})
+        with urlopen(req, timeout=5) as respuesta:
+            datos = json.loads(respuesta.read().decode("utf-8"))
+        paginas = list((datos.get("query", {}).get("pages") or {}).values())
+        n_nombre, n_artista = normalizar(nombre), normalizar(artista)
+        for pagina in paginas:
+            titulo, extracto = str(pagina.get("title") or ""), str(pagina.get("extract") or "")
+            n_titulo, n_extracto = normalizar(titulo), normalizar(extracto)
+            if not extracto:
+                continue
+            titulo_valido = n_titulo == n_nombre or n_titulo.startswith(n_nombre + " (")
+            if tipo == "artista":
+                contexto = any(p in n_extracto for p in ("cantante","grupo musical","banda musical","musico","musica","vocalista","compositor","interprete","artista musical"))
+                if not (titulo_valido and contexto):
+                    continue
+            elif not titulo_valido or n_artista not in n_extracto:
+                continue
+            from urllib.parse import quote
+            return jsonify({"encontrado":True,"url":"https://es.wikipedia.org/wiki/"+quote(titulo.replace(" ","_"),safe="()_,-"),"titulo":titulo})
+    except Exception:
+        app.logger.exception("No se pudo verificar el artículo de Wikipedia")
+    return jsonify({"encontrado":False})
 
 
 @app.get("/api/estado-actualizacion")
