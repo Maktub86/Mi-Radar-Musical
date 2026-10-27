@@ -1,0 +1,27 @@
+name: Comprobación Python
+
+on:
+  push:
+    branches:
+      - feature/fichas-musicales-modal
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Comprobar sintaxis de la aplicación
+        run: python -m compileall -q app
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+      - name: Comprobar importación del servidor
+        working-directory: app
+        run: python -c "import servidor; print('Servidor importado correctamente')"
