@@ -98,7 +98,7 @@ nav.navegacion-comun a.activo{font-weight:700}
    const fila=b.closest('.pista,.fila-cancion,.tarjeta,.publicacion,.artista-mejor')||b.parentElement;
    const tituloNodo=fila&&fila.querySelector('.pista-titulo,.titulo-cancion,.titulo,.pista-titulo');
    const artistaNodo=fila&&fila.querySelector('.artista-cancion,.artista,.pista-meta');
-   nombre=(tituloNodo&&tituloNodo.textContent||'').replace(/\\s*[Wℹ️G]\\s*$/,'').trim();
+   nombre=(tituloNodo&&tituloNodo.textContent||'').replace(/\s*[Wℹ️G]\s*$/,'').trim();
    artista=(artistaNodo&&artistaNodo.textContent||'').trim().split(' · ').filter(Boolean).slice(-1)[0]||'';
   }
   const tipoFinal=tipo==='artista'||/artista|biografía/i.test((b.title||'')+' '+(b.getAttribute('aria-label')||''))?'artista':'cancion';
