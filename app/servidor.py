@@ -122,6 +122,7 @@ def _pagina_portada(tipo="inicio"):
 <style>
 body[data-pagina="inicio"] #listas-musicales{display:none}
 body[data-pagina^="lista-"] main>.cabecera,
+body[data-pagina^="lista-"] .selector-lanzamientos,
 body[data-pagina^="lista-"] #estado,
 body[data-pagina^="lista-"] #ultima-actualizacion,
 body[data-pagina^="lista-"] #lista{display:none}
