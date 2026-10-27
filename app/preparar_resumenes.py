@@ -98,13 +98,12 @@ def preparar_resumen(cliente, tipo, nombre, artista, cache):
     fuente_tipo = "gemini"
     if respuesta.status_code != 200 or not datos.get("encontrado"):
         # No recurrir a Wikipedia: guardar el fallo para reintentarlo más adelante.
-        if respuesta.status_code != 200 or not datos.get("encontrado"):
-            cache["items"][k] = {
-                "tipo": tipo, "nombre": nombre, "artista": artista,
-                "encontrado": False, "fuentes": [], "comprobado": ahora(),
-                "reintentar_despues": (datetime.now(timezone.utc) + timedelta(days=REINTENTO_DIAS)).isoformat(timespec="seconds"),
-            }
-            return False
+        cache["items"][k] = {
+            "tipo": tipo, "nombre": nombre, "artista": artista,
+            "encontrado": False, "fuentes": [], "comprobado": ahora(),
+            "reintentar_despues": (datetime.now(timezone.utc) + timedelta(days=REINTENTO_DIAS)).isoformat(timespec="seconds"),
+        }
+        return False
 
     resumen = re.sub(r"\s+", " ", str(datos.get("resumen") or "")).strip()
     if not resumen or len(resumen) < 80:
