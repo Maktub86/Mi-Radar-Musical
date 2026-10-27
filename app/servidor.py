@@ -1132,7 +1132,19 @@ def publicaciones(nombre):
         return jsonify({"error": "Artista todavía no consultado"}), 404
 
     lista = list(artista.get("publicaciones", {}).values())
-    lista.sort(key=lambda p: p.get("fecha", ""), reverse=True)
+
+    # MusicBrainz puede devolver fechas con precisión distinta: YYYY, YYYY-MM
+    # o YYYY-MM-DD. Comparamos sus componentes numéricos para que el orden
+    # cronológico no dependa de una comparación textual de las fechas.
+    def clave_fecha_publicacion(publicacion):
+        fecha = str(publicacion.get("fecha") or "").strip()
+        coincidencia = re.match(r"^(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?", fecha)
+        if not coincidencia:
+            return (0, 0, 0, 0)
+        anio, mes, dia = coincidencia.groups()
+        return (1, int(anio), int(mes or 0), int(dia or 0))
+
+    lista.sort(key=clave_fecha_publicacion, reverse=True)
 
     return jsonify({
         "artista": artista.get("nombre_musicbrainz", nombre),

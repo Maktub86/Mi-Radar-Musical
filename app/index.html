@@ -364,6 +364,17 @@ async function cargarPublicaciones(nombre,contenedor){
    zona.textContent='No hay publicaciones registradas.';
    return;
   }
+  // Reordenación defensiva en la interfaz: más recientes primero.
+  // Admite fechas completas (YYYY-MM-DD), parciales (YYYY-MM) o solo año (YYYY).
+  const claveFechaPublicacion=fecha=>{
+   const m=String(fecha||'').trim().match(/^(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?/);
+   return m?[1,Number(m[1]),Number(m[2]||0),Number(m[3]||0)]:[0,0,0,0];
+  };
+  datos.publicaciones.sort((a,b)=>{
+   const fa=claveFechaPublicacion(a.fecha),fb=claveFechaPublicacion(b.fecha);
+   for(let i=0;i<fa.length;i++){if(fa[i]!==fb[i])return fb[i]-fa[i];}
+   return String(a.titulo||'').localeCompare(String(b.titulo||''),'es',{sensitivity:'base'});
+  });
   datos.publicaciones.forEach(p=>{
    const item=document.createElement('div');
    item.className='publicacion';
