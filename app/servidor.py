@@ -59,6 +59,70 @@ nav.navegacion-comun a.activo{font-weight:700}
 """
         if "</head>" in html:
             html = html.replace("</head>", css_nav + "</head>", 1)
+        # Ventana común para las fichas musicales: se mantiene al usuario en la página actual.
+        modal_fichas = r"""
+<style id="modal-fichas-musicales-estilos">
+#mr-ficha-modal[hidden]{display:none!important}
+#mr-ficha-modal{position:fixed;inset:0;z-index:999999;background:#05050bd9;display:flex;align-items:center;justify-content:center;padding:16px}
+#mr-ficha-caja{width:min(760px,100%);max-height:88vh;overflow:auto;background:#171827;color:#f7f5ff;border:1px solid #ffffff30;border-radius:18px;padding:22px;box-shadow:0 18px 60px #000b}
+#mr-ficha-cabecera{display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:-22px;background:#171827;padding:4px 0 14px}
+#mr-ficha-titulo{font-size:clamp(22px,4vw,30px);margin:0;overflow-wrap:anywhere}
+#mr-ficha-cerrar{background:#34394a;color:white;border:1px solid #ffffff25;border-radius:10px;padding:10px 13px;flex-shrink:0}
+#mr-ficha-contenido{white-space:pre-wrap;line-height:1.65;overflow-wrap:anywhere}
+#mr-ficha-fuentes{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+#mr-ficha-fuentes a{color:#a9c7ff;overflow-wrap:anywhere}
+#mr-ficha-estado{color:#c6c3da;line-height:1.5}
+@media(max-width:520px){#mr-ficha-caja{padding:16px;max-height:92vh}#mr-ficha-cabecera{top:-16px}}
+</style>
+<div id="mr-ficha-modal" hidden role="dialog" aria-modal="true" aria-labelledby="mr-ficha-titulo">
+ <section id="mr-ficha-caja">
+  <div id="mr-ficha-cabecera"><h2 id="mr-ficha-titulo">Información musical</h2><button id="mr-ficha-cerrar" type="button">Cerrar ✕</button></div>
+  <p id="mr-ficha-estado" role="status">Preparando la ficha…</p>
+  <div id="mr-ficha-contenido"></div><div id="mr-ficha-fuentes"></div>
+ </section>
+</div>
+<script id="mr-fichas-musicales-script">
+(()=> {
+ if(window.__mrFichasModalInstalado)return;window.__mrFichasModalInstalado=true;
+ const modal=document.getElementById('mr-ficha-modal'),titulo=document.getElementById('mr-ficha-titulo'),estado=document.getElementById('mr-ficha-estado'),contenido=document.getElementById('mr-ficha-contenido'),fuentes=document.getElementById('mr-ficha-fuentes'),cerrar=document.getElementById('mr-ficha-cerrar');
+ if(!modal)return;let focoAnterior=null,peticion=0;
+ function ocultar(){modal.hidden=true;if(focoAnterior&&focoAnterior.isConnected)focoAnterior.focus()}
+ cerrar.addEventListener('click',ocultar);modal.addEventListener('click',e=>{if(e.target===modal)ocultar()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)ocultar()});
+ function textoCercano(b,selector){const n=b.closest(selector);return n?n.innerText||'':''}
+ document.addEventListener('click',async e=>{
+  const b=e.target.closest('button.wiki-icon,button.boton-wikipedia');if(!b)return;
+  const tipo=(b.dataset.wikiTipo||'').toLowerCase();
+  let nombre=(b.dataset.wikiNombre||'').trim(),artista=(b.dataset.wikiArtista||'').trim();
+  if(!nombre){
+   const fila=b.closest('.pista,.fila-cancion,.tarjeta,.publicacion,.artista-mejor')||b.parentElement;
+   const tituloNodo=fila&&fila.querySelector('.pista-titulo,.titulo-cancion,.titulo,.pista-titulo');
+   const artistaNodo=fila&&fila.querySelector('.artista-cancion,.artista,.pista-meta');
+   nombre=(tituloNodo&&tituloNodo.textContent||'').replace(/\\s*[Wℹ️G]\\s*$/,'').trim();
+   artista=(artistaNodo&&artistaNodo.textContent||'').trim().split(' · ').filter(Boolean).slice(-1)[0]||'';
+  }
+  const tipoFinal=tipo==='artista'||/artista|biografía/i.test((b.title||'')+' '+(b.getAttribute('aria-label')||''))?'artista':'cancion';
+  if(tipoFinal==='artista'&&!b.dataset.wikiNombre){nombre=(b.closest('.artista-mejor')?.querySelector('h2')?.textContent||nombre).trim()}
+  if(!nombre){return}
+  e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
+  focoAnterior=b;const id=++peticion;
+  titulo.textContent=tipoFinal==='artista'?nombre:nombre+(artista?' — '+artista:'');
+  estado.textContent='Buscando información fiable…';contenido.replaceChildren();fuentes.replaceChildren();modal.hidden=false;cerrar.focus();
+  try{
+   const q=new URLSearchParams({tipo:tipoFinal,nombre:nombre});if(artista)q.set('artista',artista);
+   const r=await fetch('/api/wikipedia?'+q.toString(),{headers:{'Accept':'application/json'}});
+   const d=await r.json();if(id!==peticion)return;
+   if(d.resumen){contenido.textContent=d.resumen;estado.textContent=d.encontrado?'Información encontrada. La fuente disponible se indica abajo.':(d.mensaje||'No se ha encontrado información suficiente.')}
+   else{estado.textContent=d.error||'No se ha encontrado información suficiente.'}
+   for(const f of (d.fuentes||[])){if(!f.url)continue;const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=f.titulo||'Consultar fuente original';fuentes.appendChild(a)}
+   if(d.url&&!fuentes.querySelector('a')){const a=document.createElement('a');a.href=d.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Consultar fuente original';fuentes.appendChild(a)}
+  }catch(err){if(id===peticion)estado.textContent='No se ha podido consultar la información ahora mismo. Puedes cerrar esta ventana e intentarlo más tarde.'}
+ },true);
+})();
+</script>
+"""
+        if 'id="mr-ficha-modal"' not in html and "</body>" in html:
+            html = html.replace("</body>", modal_fichas + "\n</body>", 1)
         response.set_data(html)
     return response
 
