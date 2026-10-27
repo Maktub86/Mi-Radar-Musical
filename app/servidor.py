@@ -1342,10 +1342,10 @@ def api_resumenes_disponibles():
         items = datos.get("items", {}) if isinstance(datos, dict) else {}
         claves = [
             k for k, v in items.items()
-            if isinstance(v, dict) and v.get("encontrado") and v.get("fuentes")
-            and not any("wikipedia.org" in str(f.get("url") or "").casefold()
-                        or "wikimedia.org" in str(f.get("url") or "").casefold()
-                        for f in (v.get("fuentes") or []) if isinstance(f, dict))
+            if isinstance(v, dict) and v.get("encontrado") and len(str(v.get("resumen") or "").strip()) >= 100
+            and v.get("fuentes")
+            and all(isinstance(f, dict) and str(f.get("url") or "").startswith("https://")
+                    for f in (v.get("fuentes") or []))
         ]
         return jsonify({"claves": claves, "actualizado": datos.get("actualizado")})
     except (OSError, json.JSONDecodeError, AttributeError):
