@@ -134,9 +134,12 @@ document.getElementById('mostrar-filtro').addEventListener('click',()=>{
 });
 buscar.addEventListener('input',mostrar);
 const CLAVE_CACHE_MUSICA='miRadarMusicalColeccionV1';
+let filtrosMusicaInicializados=false;
 function aplicarColeccionMusical(datos,desdeCache=false){
  if(!Array.isArray(datos))throw new Error('La colección no tiene un formato válido.');
- canciones=datos;cargarFiltros();mostrar();
+ canciones=datos;
+ if(!filtrosMusicaInicializados){cargarFiltros();filtrosMusicaInicializados=true;}
+ mostrar();
  if(desdeCache)resumen.textContent='Colección cargada desde la copia guardada en este dispositivo · '+canciones.length.toLocaleString('es-ES')+' canciones. Actualizando…';
 }
 let cacheMusicaLocal=null;
