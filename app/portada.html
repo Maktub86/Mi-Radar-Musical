@@ -112,6 +112,22 @@ footer{text-align:center;color:var(--suave);font-size:12px;padding:35px}
 }
 
 body[data-wikipedia-off="1"] .wiki-icon,body[data-wikipedia-off="1"] .boton-wikipedia,body[data-wikipedia-off="1"] .wiki{display:none!important}
+
+/* Ficha musical modal */
+.modal-info-musical{position:fixed;inset:0;z-index:10050;background:rgba(4,5,14,.78);display:flex;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(5px)}
+.modal-info-musical[hidden]{display:none}
+.modal-info-musical-panel{width:min(720px,100%);max-height:min(82vh,850px);overflow:auto;background:#171827;color:#f7f5ff;border:1px solid #ffffff26;border-radius:18px;box-shadow:0 20px 70px #0009;padding:24px}
+.modal-info-musical-cabecera{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.modal-info-musical-titulo{font-size:22px;font-weight:800;line-height:1.3;margin:0}
+.modal-info-musical-cerrar{flex:none;border-radius:50%;width:40px;height:40px;padding:0;font-size:23px;line-height:1}
+.modal-info-musical-texto{white-space:pre-line;line-height:1.7;font-size:15px}
+.modal-info-musical-fuentes{display:flex;flex-direction:column;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid #ffffff20}
+.modal-info-musical-fuentes a{color:#91d9ff;overflow-wrap:anywhere}
+.modal-info-musical-motor{font-size:12px;color:#9de8ca;margin-bottom:12px}
+.modal-info-musical-error{color:#ffb9c0;line-height:1.6}
+body.modal-info-musical-abierto{overflow:hidden}
+.wiki-icon{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;padding:0;margin-left:4px;border-radius:50%;font-size:13px;vertical-align:middle}
+
 </style>
 </head>
 <body>
@@ -403,33 +419,7 @@ function solicitarConsultaWikiPortada(url){return new Promise((resolve,reject)=>
 async function obtenerInfoPortada(tipo,nombre,artista){const clave=[tipo,nombre,artista||''].join('|');let p=cacheinformacionWikiWiki.get(clave);if(!p){const q=new URLSearchParams({tipo,nombre,artista:artista||''});p=solicitarConsultaWikiPortada('/api/resumen-musical?'+q+'&_='+Date.now()).then(async r=>{let d={};try{d=await r.json();}catch(e){}if(!r.ok&&!d.error)d.error='Gemini no ha podido generar la ficha (HTTP '+r.status+').';return d;}).catch(()=>({encontrado:false,error:'No se ha podido conectar con Gemini. Comprueba la conexión e inténtalo de nuevo.'}));cacheinformacionWikiWiki.set(clave,p);}return p;}
 const observadorWikiPortada=typeof IntersectionObserver!=='undefined'?new IntersectionObserver(es=>{for(const e of es){if(e.isIntersecting){observadorWikiPortada.unobserve(e.target);preverificarWikiPortada(e.target);}}},{rootMargin:'180px'}):null;
 async function preverificarWikiPortada(b){const d=await obtenerInfoPortada(b.dataset.wikiTipo,b.dataset.wikiNombre,b.dataset.wikiArtista||'');const contenido=b.dataset.wikiTipo==='artista'?d.biografia:d.informacion;if(d.encontrado&&contenido){b.textContent='ℹ';b.title='Información musical disponible';}else b.hidden=true;}
-function configurarIconosWiki(contenedor){
- for(const b of contenedor.querySelectorAll('.wiki-icon')){
-  b.type='button';
-  // No consultar Wikipedia automáticamente al entrar o al desplazarse: buscar solo al pulsar W.
-  b.addEventListener('click',async()=>{
-   const tipo=b.dataset.wikiTipo||'artista',nombre=b.dataset.wikiNombre||'',artista=b.dataset.wikiArtista||'';
-   let caja=contenedor.querySelector('.info-wikipedia');
-   if(caja){caja.remove();if(b.dataset.abierto==='1'){b.dataset.abierto='0';return;}}
-   caja=document.createElement('div');caja.className='info-wikipedia';caja.textContent='Consultando Gemini…';contenedor.appendChild(caja);b.dataset.abierto='1';b.disabled=true;
-   const clave=[tipo,nombre,artista].join('|');
-   try{
-    const d=await obtenerInfoPortada(tipo,nombre,artista);caja.replaceChildren();
-    const contenido=d.resumen||(tipo==='artista'?d.biografia:d.informacion);
-    if(d.encontrado&&contenido){
-     const motor=document.createElement('div');motor.className='fuente-info-musical';motor.textContent=d.motor==='gemini'||d.fuente_tipo==='gemini'?'✨ Información generada por Gemini con búsqueda web':(d.aviso_gemini?'Gemini no disponible; se ha usado una fuente alternativa':'Información musical');caja.appendChild(motor);
-     const etiqueta=document.createElement('strong');etiqueta.textContent=tipo==='artista'?'Biografía: ':'Sobre la canción: ';caja.appendChild(etiqueta);
-     const texto=document.createElement('span');texto.textContent=contenido+' ';caja.appendChild(texto);
-     if(d.fuentes&&d.fuentes.length){const lista=document.createElement('div');lista.className='fuentes-info-musical';const titulo=document.createElement('strong');titulo.textContent='Fuentes consultadas:';lista.appendChild(titulo);for(const fuente of d.fuentes.slice(0,5)){if(!fuente.url||!fuente.url.startsWith('https://'))continue;const a=document.createElement('a');a.href=fuente.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=fuente.titulo||'Consultar fuente';lista.appendChild(a);}caja.appendChild(lista);}
-     else if(d.url){const a=document.createElement('a');a.href=d.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Fuente: '+(d.fuente||'fuente musical');caja.appendChild(a);}
-     if(d.aviso_gemini){const aviso=document.createElement('p');aviso.textContent='Aviso: '+d.aviso_gemini;aviso.className='aviso-gemini';caja.appendChild(aviso);}
-     b.textContent='ℹ';
-    }
-    else{caja.textContent=d.error||'Gemini no ha podido generar una ficha para este elemento.';}
-   }catch(e){caja.textContent='No se ha podido consultar la información musical. Pulsa de nuevo para reintentarlo.'}finally{b.disabled=false;}
-  });
- }
-}
+function configurarIconosWiki(contenedor){ /* Los clics se gestionan por delegación para abrir una única ficha modal. */ }
 function mostrarLista(tipo,datos){
  const estado=document.getElementById("estado-"+tipo);
  const contenedor=document.getElementById("canciones-"+tipo);
@@ -613,6 +603,54 @@ if (tipoListaPagina) cargarLista(tipoListaPagina);
   <div id="resultados-mediahuman"></div>
  </div>
 </div>
+
+
+<script>
+(()=> {
+ const cache=new Map();
+ let modal, panel, titulo, texto, motor, fuentes, cerrador;
+ function prepararModal(){
+  if(modal)return;
+  modal=document.createElement('div');modal.className='modal-info-musical';modal.hidden=true;
+  modal.innerHTML='<section class="modal-info-musical-panel" role="dialog" aria-modal="true" aria-labelledby="modal-info-musical-titulo"><div class="modal-info-musical-cabecera"><h2 class="modal-info-musical-titulo" id="modal-info-musical-titulo">Información musical</h2><button class="modal-info-musical-cerrar" type="button" aria-label="Cerrar ficha">×</button></div><div class="modal-info-musical-motor"></div><div class="modal-info-musical-texto"></div><div class="modal-info-musical-fuentes"></div></section>';
+  document.body.appendChild(modal);panel=modal.querySelector('.modal-info-musical-panel');titulo=modal.querySelector('.modal-info-musical-titulo');texto=modal.querySelector('.modal-info-musical-texto');motor=modal.querySelector('.modal-info-musical-motor');fuentes=modal.querySelector('.modal-info-musical-fuentes');cerrador=modal.querySelector('.modal-info-musical-cerrar');
+  cerrador.addEventListener('click',cerrar);
+  modal.addEventListener('click',e=>{if(e.target===modal)cerrar();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)cerrar();});
+ }
+ function cerrar(){if(!modal)return;modal.hidden=true;document.body.classList.remove('modal-info-musical-abierto');}
+ async function consultar(tipo,nombre,artista){
+  const key=[tipo,nombre,artista||''].join('|');
+  if(!cache.has(key)){
+   const q=new URLSearchParams({tipo,nombre,artista:artista||''});
+   cache.set(key,fetch('/api/resumen-musical?'+q.toString()+'&_='+Date.now(),{signal:AbortSignal.timeout(40000)}).then(async r=>{let d={};try{d=await r.json()}catch(e){}if(!r.ok&&!d.error)d.error='Gemini no ha podido generar la ficha (HTTP '+r.status+').';return d;}).catch(()=>({encontrado:false,error:'No se ha podido conectar con Gemini.'})));
+  }
+  return cache.get(key);
+ }
+ async function abrir(b){
+  prepararModal();
+  const tipo=b.dataset.wikiTipo||'artista',nombre=b.dataset.wikiNombre||'',artista=b.dataset.wikiArtista||'';
+  if(!nombre)return;
+  const foco=document.activeElement;
+  titulo.textContent=(tipo==='artista'?'Biografía de ':'Información sobre ')+nombre;
+  motor.textContent='Consultando Gemini con búsqueda web…';texto.textContent='';fuentes.replaceChildren();texto.classList.remove('modal-info-musical-error');
+  modal.hidden=false;document.body.classList.add('modal-info-musical-abierto');cerrador.focus();
+  try{
+   const d=await consultar(tipo,nombre,artista);
+   const contenido=d.resumen||(tipo==='artista'?d.biografia:d.informacion);
+   if(!d.encontrado||!contenido){motor.textContent='';texto.classList.add('modal-info-musical-error');texto.textContent=d.error||'Gemini no ha podido generar una ficha con fuentes verificables.';return;}
+   motor.textContent='✨ Información generada por Gemini con búsqueda web';
+   texto.textContent=contenido;
+   for(const f of (d.fuentes||[]).slice(0,5)){
+    if(!f.url||!f.url.startsWith('https://'))continue;
+    const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=f.titulo||'Consultar fuente';fuentes.appendChild(a);
+   }
+   if(!fuentes.children.length)fuentes.textContent='Gemini no ha proporcionado enlaces de fuentes.';
+  }catch(e){motor.textContent='';texto.classList.add('modal-info-musical-error');texto.textContent='No se ha podido consultar la información musical.';}
+ }
+ document.addEventListener('click',e=>{const b=e.target.closest('.wiki-icon');if(b){e.preventDefault();e.stopPropagation();abrir(b);}});
+})();
+</script>
 
 </body>
 </html>
