@@ -385,8 +385,8 @@ _candado_cache_resumen = threading.Lock()
 def api_resumen_musical():
     """Entrega solo fichas de Gemini y conserva las respuestas entre sesiones."""
     tipo = (request.args.get("tipo") or "").strip().lower()
-    nombre = re.sub(r"\\s+", " ", (request.args.get("nombre") or "").strip())[:180]
-    artista = re.sub(r"\\s+", " ", (request.args.get("artista") or "").strip())[:180]
+    nombre = re.sub(r"\s+", " ", (request.args.get("nombre") or "").strip())[:180]
+    artista = re.sub(r"\s+", " ", (request.args.get("artista") or "").strip())[:180]
     if tipo not in ("artista", "cancion") or not nombre or (tipo == "cancion" and not artista):
         return jsonify({"encontrado": False, "motor": "ninguno", "fuente_tipo": "ninguna",
                         "error": "Falta el artista o la canción."}), 400
