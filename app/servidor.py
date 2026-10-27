@@ -197,7 +197,7 @@ _candado_cache_portada = threading.Lock()
 def _fecha_clave_portada(valor):
     """Devuelve una clave numérica de fecha y descarta fechas inválidas o futuras."""
     texto = str(valor or "").strip()
-    coincidencia = re.match(r"^(\\d{4})(?:-(\\d{2})(?:-(\\d{2}))?)?$", texto)
+    coincidencia = re.match(r"^(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?$", texto)
     if not coincidencia:
         return None
     anio, mes, dia = coincidencia.groups()
