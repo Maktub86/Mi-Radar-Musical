@@ -405,18 +405,26 @@ async function consultarGemini(tipo,nombre,artista){
  return resultado;
 }
 function mostrarInfoWikipedia(contenedor,info,tipo){
- const anterior=contenedor.querySelector('.info-wikipedia');
- if(anterior){anterior.remove();return;}
- const caja=nodo('div','info-wikipedia');
- caja.style.cssText='margin:8px 0 12px;padding:12px 14px;border-radius:10px;background:#ffffff0d;border:1px solid #ffffff20;color:#d9e8f4;line-height:1.5;font-size:13px';
- const contenido=info.resumen||'';
- const p=nodo('p','',contenido);p.style.whiteSpace='pre-line';caja.appendChild(p);
- (info.fuentes||[]).forEach(f=>{
-  if(!f.url||!(f.url.startsWith('https://')||f.url.startsWith('http://')))return;
-  const a=nodo('a','','Fuente: '+(f.titulo||f.url)+' ↗');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';
-  a.style.cssText='display:block;margin-top:6px;color:#9ecbff;font-weight:700';caja.appendChild(a);
- });
- contenedor.appendChild(caja);
+ let modal=document.getElementById('modal-info-musical');
+ if(!modal){
+  modal=nodo('div','');modal.id='modal-info-musical';modal.hidden=true;
+  modal.style.cssText='position:fixed;inset:0;z-index:50000;background:#000b;display:flex;align-items:center;justify-content:center;padding:16px';
+  const caja=nodo('section','');caja.style.cssText='width:min(680px,100%);max-height:85vh;overflow:auto;background:#171b29;color:#fff;border:1px solid #ffffff35;border-radius:16px;padding:20px;box-shadow:0 18px 60px #0009';
+  const cabecera=nodo('div','');cabecera.style.cssText='display:flex;align-items:center;justify-content:space-between;gap:12px';
+  const titulo=nodo('h2','','Información musical');titulo.id='titulo-modal-info-musical';titulo.style.margin='0';
+  const cerrar=nodo('button','','Cerrar ✕');cerrar.type='button';cerrar.addEventListener('click',()=>{modal.hidden=true;if(modal._boton)modal._boton.focus();});
+  cabecera.append(titulo,cerrar);
+  const cuerpo=nodo('div','');cuerpo.id='contenido-modal-info-musical';cuerpo.style.cssText='line-height:1.65;margin-top:14px';
+  caja.append(cabecera,cuerpo);modal.appendChild(caja);
+  modal.addEventListener('click',e=>{if(e.target===modal){modal.hidden=true;if(modal._boton)modal._boton.focus();}});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden){modal.hidden=true;if(modal._boton)modal._boton.focus();}});
+  document.body.appendChild(modal);
+ }
+ document.getElementById('titulo-modal-info-musical').textContent=(tipo==='artista'?'Biografía y curiosidad: ':'Sobre la canción: ')+(info.nombre||info.titulo||'Información musical');
+ const cuerpo=document.getElementById('contenido-modal-info-musical');cuerpo.replaceChildren();
+ const p=nodo('p','',info.resumen||'');p.style.whiteSpace='pre-line';cuerpo.appendChild(p);
+ (info.fuentes||[]).forEach(f=>{if(!f.url||!String(f.url).startsWith('https://'))return;const a=nodo('a','','Fuente: '+(f.titulo||f.url)+' ↗');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.style.cssText='display:block;margin-top:8px;color:#c9b0ff;font-weight:700';cuerpo.appendChild(a);});
+ modal._boton=contenedor.querySelector('button.boton-wikipedia')||null;modal.hidden=false;
 }
 let audioActivo=null;
 let temporizador=null;
