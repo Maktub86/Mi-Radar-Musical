@@ -1484,7 +1484,7 @@ def api_wikipedia():
         return any(normalizar(p) in n for p in indicadores_desambiguacion)
 
     def respuesta_ok(titulo, extracto, url, idioma="es"):
-        texto = re.sub(r"\\s+", " ", str(extracto or "")).strip()
+        texto = re.sub(r"\s+", " ", str(extracto or "")).strip()
         if not texto:
             return None
 
@@ -1504,7 +1504,7 @@ def api_wikipedia():
             with urlopen(req_articulo, timeout=8) as resp:
                 paginas = json.loads(resp.read().decode("utf-8")).get("query", {}).get("pages", {})
             for pagina in paginas.values():
-                articulo = re.sub(r"\\s+", " ", str(pagina.get("extract") or "")).strip()
+                articulo = re.sub(r"\s+", " ", str(pagina.get("extract") or "")).strip()
                 if articulo and len(articulo) > len(texto):
                     texto = articulo
                     break
