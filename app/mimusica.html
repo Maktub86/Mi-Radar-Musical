@@ -101,14 +101,14 @@ function mostrar(){
 }
 function cargarFiltros(){
  const opciones={
-  anio:[...new Set(canciones.map(c=>String(c.anio)).filter(v=>v&&v!=='0'&&v!=='NaN'))].sort((a,b)=>Number(a)-Number(b)),
-  autor:[...new Set(canciones.map(c=>c.artista).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es')),
-  genero:[...new Set(canciones.map(c=>c.genero).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es')),
+  anio:[...new Set(canciones.map(c=>String(c.anio||'')).filter(v=>v&&v!=='0'&&v!=='NaN'))].sort((a,b)=>Number(a)-Number(b)),
+  autor:[...new Set(canciones.map(c=>String(c.artista||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es')),
+  genero:[...new Set(canciones.map(c=>String(c.genero||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es')),
   decada:[...new Set(canciones.map(c=>String(Math.floor(Number(c.anio)/10)*10)).filter(v=>v&&v!=='0'&&v!=='NaN'))].sort((a,b)=>Number(a)-Number(b))
  };
- modo.addEventListener('change',()=>{
-  valorFiltro.replaceChildren();
+ function actualizarOpciones(){
   const tipo=modo.value;
+  valorFiltro.replaceChildren();
   if(tipo==='todos'){
    valorFiltro.disabled=true;
    const op=document.createElement('option');op.value='';op.textContent='Toda la colección';valorFiltro.appendChild(op);
@@ -122,7 +122,11 @@ function cargarFiltros(){
     const o=document.createElement('option');o.value=v;o.textContent=tipo==='decada'?v+'s':v;valorFiltro.appendChild(o);
    }
   }
- });
+ }
+ // Se enlaza el cambio una sola vez y se actualizan los dos desplegables inmediatamente.
+ modo.addEventListener('change',()=>{actualizarOpciones();mostrar();});
+ valorFiltro.addEventListener('change',mostrar);
+ actualizarOpciones();
 }
 document.getElementById('mostrar-filtro').addEventListener('click',()=>{
  if(!modo.value){resumen.textContent='Elige Año, Autor, Género, Décadas o Todos.';return;}
