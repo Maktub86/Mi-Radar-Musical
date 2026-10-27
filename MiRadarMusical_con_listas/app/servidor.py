@@ -279,25 +279,25 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
     entidad = f"la canción «{nombre}» de {artista}" if tipo == "cancion" else f"el artista «{nombre}»"
     if tipo == "artista":
         instrucciones = (
-            "Redacta una biografía breve pero sustanciosa en español: orígenes, trayectoria, "
-            "estilo musical y momentos relevantes. Termina con un apartado «Curiosidad documentada» "
-            "solo si encuentras un dato concreto respaldado por las fuentes; si no, dilo claramente."
+            "Escribe una biografía informativa y concreta en español que incluya, cuando lo sepas, "
+            "su nombre real, fecha y lugar de nacimiento, comienzos, salto a la fama, principales "
+            "éxitos, estilo musical, colaboraciones y evolución profesional. "
+            "Termina con una curiosidad interesante y prudente."
         )
     else:
         instrucciones = (
-            "Explica en español el contexto de la canción, sus autores, publicación o álbum cuando "
-            "pueda verificarse. Añade un apartado «Curiosidad documentada» con una anécdota sobre "
-            "su creación, grabación, versiones o impacto únicamente si las fuentes la respaldan. "
-            "No confundas una versión con la canción original."
+            "Explica qué canción es, quién la compuso e interpreta, cuándo y en qué álbum se publicó "
+            "si lo sabes, su estilo, contexto, recepción e impacto. Distingue la versión original "
+            "de las versiones posteriores y termina con una curiosidad relevante si la conoces."
         )
     prompt = (
-        f"Investiga {entidad}. {instrucciones} "
-        "No tienes búsqueda web disponible en esta consulta. Utiliza únicamente información "
-        "general de la que tengas confianza y no inventes hechos, fechas, anécdotas ni fuentes. "
-        "Si no estás seguro de un dato, omítelo. Si no hay una curiosidad fiable, "
-        "escribe claramente que no has encontrado una curiosidad suficientemente documentada. "
-        "Redacta entre 120 y 260 palabras, con los encabezados «Resumen» y "
-        "«Curiosidad». No incluyas enlaces ni afirmes que has consultado fuentes externas."
+        f"Prepara una ficha musical útil sobre {entidad}. {instrucciones} "
+        "Escribe en español natural entre 180 y 250 palabras. Organiza la respuesta con los "
+        "encabezados «Biografía» (o «Sobre la canción») y «Curiosidad». "
+        "No tienes búsqueda web disponible: usa solo datos de tu conocimiento general, no inventes "
+        "fechas, cifras, anécdotas ni fuentes y omite los detalles de los que no estés seguro. "
+        "Si no conoces una curiosidad fiable, indícalo en una sola frase y desarrolla el resto de la ficha. "
+        "No incluyas enlaces ni digas que has consultado fuentes externas."
     )
     # La API Interactions es la vía recomendada para los modelos actuales de Gemini.
     # store=False evita que Google conserve esta consulta en el historial de interacciones.
@@ -319,26 +319,33 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
         with urlopen(req, timeout=45) as resp:
             respuesta = json.loads(resp.read().decode("utf-8"))
 
-        # Interactions devuelve los bloques de respuesta dentro de los pasos model_output.
-        pasos = respuesta.get("steps") or respuesta.get("output") or []
+        # La estructura de Interactions puede variar: extraemos todos los bloques de texto
+        # sin depender de una única forma concreta de "steps" u "output".
         textos = []
         fuentes = []
         urls_vistas = set()
-        for paso in pasos:
-            if not isinstance(paso, dict):
-                continue
-            if paso.get("type") not in (None, "model_output"):
-                continue
-            bloques = paso.get("content") or []
-            if isinstance(bloques, dict):
-                bloques = [bloques]
-            for bloque in bloques:
-                if not isinstance(bloque, dict):
-                    continue
-                texto_bloque = str(bloque.get("text") or "").strip()
-                if texto_bloque:
-                    textos.append(texto_bloque)
-                for anotacion in bloque.get("annotations") or []:
+
+        def extraer_textos(obj):
+            if isinstance(obj, dict):
+                texto = obj.get("text")
+                if isinstance(texto, str) and texto.strip():
+                    textos.append(texto.strip())
+                for clave_obj, valor_obj in obj.items():
+                    if clave_obj not in ("text", "annotations"):
+                        extraer_textos(valor_obj)
+            elif isinstance(obj, list):
+                for elemento in obj:
+                    extraer_textos(elemento)
+
+        extraer_textos(respuesta.get("steps") or respuesta.get("output") or [])
+        resumen = "\\n\\n".join(dict.fromkeys(textos)).strip()
+        if not resumen:
+            resumen = str(respuesta.get("output_text") or "").strip()
+
+        # Conserva enlaces anotados si el proveedor los incluye, aunque esta petición no usa búsqueda.
+        def extraer_fuentes(obj):
+            if isinstance(obj, dict):
+                for anotacion in obj.get("annotations") or []:
                     if not isinstance(anotacion, dict):
                         continue
                     enlace = str(anotacion.get("url") or "").strip()
@@ -346,12 +353,14 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
                     if enlace.startswith("https://") and enlace not in urls_vistas:
                         urls_vistas.add(enlace)
                         fuentes.append({"titulo": titulo[:160], "url": enlace})
-                        if len(fuentes) >= 5:
-                            break
-        resumen = "\\n".join(textos).strip()
-        # Compatibilidad defensiva si la API devuelve el texto resumido en la raíz.
-        if not resumen:
-            resumen = str(respuesta.get("output_text") or "").strip()
+                for clave_obj, valor_obj in obj.items():
+                    if clave_obj != "annotations":
+                        extraer_fuentes(valor_obj)
+            elif isinstance(obj, list):
+                for elemento in obj:
+                    extraer_fuentes(elemento)
+
+        extraer_fuentes(respuesta)
         if not fuentes:
             # Algunas respuestas pueden incluir las anotaciones en la salida resumida.
             for bloque in respuesta.get("content") or []:
@@ -367,8 +376,8 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
                         fuentes.append({"titulo": titulo[:160], "url": enlace})
                         if len(fuentes) >= 5:
                             break
-        if len(resumen) < 100:
-            return None, "Gemini devolvió un texto demasiado corto para una ficha útil."
+        if len(resumen) < 80:
+            return None, "Gemini no devolvió suficiente texto para crear la ficha. Inténtalo de nuevo."
         return ({
             "encontrado": True,
             "nombre": nombre,
