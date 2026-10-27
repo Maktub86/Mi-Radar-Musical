@@ -71,23 +71,14 @@ def leer_objetivos():
 def preparar_resumen(cliente, tipo, nombre, artista, cache):
     k = clave(tipo, nombre, artista)
     previo = cache["items"].get(k)
-    if previo and previo.get("encontrado"):
-        fuentes_previas = previo.get("fuentes") or []
-        if any("wikipedia.org" in str(f.get("url") or "").casefold() for f in fuentes_previas if isinstance(f, dict)):
-            # Invalidar las fichas antiguas que dependían de Wikipedia para regenerarlas.
-            previo["encontrado"] = False
-            previo["fuentes"] = []
-            previo["reintentar_despues"] = ""
+    # Las fichas de Wikipedia también son válidas como último recurso; no se invalidan.
     if previo:
         try:
             reintentar = datetime.fromisoformat(previo.get("reintentar_despues", ""))
             if reintentar > datetime.now(timezone.utc):
                 return False
         except (ValueError, TypeError):
-            if previo.get("encontrado") and not any(
-                "wikipedia.org" in str(f.get("url") or "").casefold()
-                for f in (previo.get("fuentes") or []) if isinstance(f, dict)
-            ):
+            if previo.get("encontrado") and str(previo.get("fuente_tipo") or "").casefold() in ("lastfm", "wikipedia"):
                 return False
 
     query = {"tipo": tipo, "nombre": nombre}
@@ -95,7 +86,7 @@ def preparar_resumen(cliente, tipo, nombre, artista, cache):
         query["artista"] = artista
     respuesta = cliente.get("/api/resumen-musical", query_string=query)
     datos = respuesta.get_json(silent=True) or {}
-    fuente_tipo = "gemini"
+    fuente_tipo = str(datos.get("fuente_tipo") or "fuente_musical")
     if respuesta.status_code != 200 or not datos.get("encontrado"):
         # No recurrir a Wikipedia: guardar el fallo para reintentarlo más adelante.
         cache["items"][k] = {
@@ -124,9 +115,7 @@ def preparar_resumen(cliente, tipo, nombre, artista, cache):
     fuentes = [
         {"titulo": str(f.get("titulo") or "Fuente consultada")[:120], "url": str(f.get("url") or "")}
         for f in fuentes
-        if str(f.get("url") or "").startswith("https://")
-        and "wikipedia.org" not in str(f.get("url") or "").casefold()
-        and "wikimedia.org" not in str(f.get("url") or "").casefold()
+        if isinstance(f, dict) and str(f.get("url") or "").startswith("https://")
     ][:4]
     if not fuentes:
         cache["items"][k] = {
@@ -160,12 +149,15 @@ def main():
         cache = {"version": 1, "actualizado": None, "items": {}}
 
     artistas, canciones = leer_objetivos()
-    pendientes_artistas = [a for a in artistas if clave("artista", a) not in cache["items"] or
-        (not cache["items"][clave("artista", a)].get("encontrado") and
-         cache["items"][clave("artista", a)].get("reintentar_despues", "") < ahora())]
-    pendientes_canciones = [p for p in canciones if clave("cancion", p[0], p[1]) not in cache["items"] or
-        (not cache["items"][clave("cancion", p[0], p[1])].get("encontrado") and
-         cache["items"][clave("cancion", p[0], p[1])].get("reintentar_despues", "") < ahora())]
+    def necesita_actualizacion(item):
+        if not isinstance(item, dict):
+            return True
+        if item.get("encontrado"):
+            return str(item.get("fuente_tipo") or "").casefold() not in ("lastfm", "wikipedia")
+        return item.get("reintentar_despues", "") < ahora()
+
+    pendientes_artistas = [a for a in artistas if necesita_actualizacion(cache["items"].get(clave("artista", a)))]
+    pendientes_canciones = [p for p in canciones if necesita_actualizacion(cache["items"].get(clave("cancion", p[0], p[1])))]
 
     print(f"Resúmenes pendientes: {len(pendientes_artistas)} artistas y {len(pendientes_canciones)} canciones.", flush=True)
     procesados = 0
