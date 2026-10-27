@@ -96,7 +96,7 @@ nav.navegacion-comun a.activo{font-weight:700}
   let nombre=(b.dataset.wikiNombre||'').trim(),artista=(b.dataset.wikiArtista||'').trim();
   if(!nombre){
    const etiqueta=(b.getAttribute('aria-label')||b.title||'').trim();
-   const coincidencia=etiqueta.match(/información(?: sobre| de)?\\s+(.+?)\\s+de\\s+(.+)$/i);
+   const coincidencia=etiqueta.match(/información(?: sobre| de)?\s+(.+?)\s+de\s+(.+)$/i);
    if(coincidencia){nombre=coincidencia[1].trim();artista=coincidencia[2].trim()}
   }
   if(!nombre){
