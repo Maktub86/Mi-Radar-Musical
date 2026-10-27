@@ -1602,7 +1602,7 @@ def _buscar_groq_musical(tipo, nombre, artista=""):
         "omite los detalles de los que no estés seguro. No incluyas enlaces ni afirmes haber consultado fuentes."
     )
     cuerpo = {
-        "model": "llama-3.3-70b-versatile",
+        "model": "openai/gpt-oss-120b",
         "messages": [
             {"role": "system", "content": "Eres un asistente especializado en música. Responde en español y sé prudente con los datos no verificados."},
             {"role": "user", "content": prompt}
