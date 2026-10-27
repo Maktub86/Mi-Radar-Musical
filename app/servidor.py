@@ -1434,8 +1434,7 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
         "model": "gemini-3.6-flash",
         "input": prompt,
         "store": False,
-        "temperature": 0.2,
-        "max_output_tokens": 1800
+        "generation_config": {"max_output_tokens": 1800}
     }
     url = "https://generativelanguage.googleapis.com/v1beta/interactions"
     req = Request(
