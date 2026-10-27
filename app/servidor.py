@@ -1721,15 +1721,36 @@ def _consulta_json(url, user_agent="MiRadarMusical/1.0 (fichas musicales; contac
 
 def _musicbrainz_consultar(url):
     global _ULTIMA_PETICION_MUSICBRAINZ
-    # MusicBrainz solicita no superar una petición por segundo por aplicación.
+    # Coordina también entre procesos Gunicorn mediante SQLite, no solo con un lock local.
     with _CANDADO_MUSICBRAINZ:
-        espera = 1.05 - (time.monotonic() - _ULTIMA_PETICION_MUSICBRAINZ)
-        if espera > 0:
-            time.sleep(espera)
+        try:
+            _RUTA_FICHAS_DB.parent.mkdir(parents=True, exist_ok=True)
+            with sqlite3.connect(str(_RUTA_FICHAS_DB), timeout=15) as db:
+                db.execute("CREATE TABLE IF NOT EXISTS musicbrainz_rate_limit (id INTEGER PRIMARY KEY CHECK(id=1), ultima_peticion REAL NOT NULL)")
+                db.execute("BEGIN IMMEDIATE")
+                fila = db.execute("SELECT ultima_peticion FROM musicbrainz_rate_limit WHERE id=1").fetchone()
+                ahora = time.time()
+                if fila:
+                    espera = 1.05 - (ahora - float(fila[0]))
+                    if espera > 0:
+                        time.sleep(espera)
+                momento = time.time()
+                db.execute("INSERT INTO musicbrainz_rate_limit(id, ultima_peticion) VALUES(1, ?) ON CONFLICT(id) DO UPDATE SET ultima_peticion=excluded.ultima_peticion", (momento,))
+                db.commit()
+        except Exception as error:
+            app.logger.warning("No se pudo coordinar el límite de MusicBrainz en SQLite: %s", error)
+            espera = 1.05 - (time.monotonic() - _ULTIMA_PETICION_MUSICBRAINZ)
+            if espera > 0:
+                time.sleep(espera)
         try:
             return _consulta_json(url, "MiRadarMusical/1.0 (fichas musicales)")
         finally:
             _ULTIMA_PETICION_MUSICBRAINZ = time.monotonic()
+
+
+def _limitar_palabras(texto, maximo=180):
+    palabras = str(texto or "").split()
+    return " ".join(palabras[:maximo])
 
 
 def _lastfm_consultar(metodo, parametros):
@@ -1880,6 +1901,9 @@ def api_ficha_musical():
         except Exception as error:
             app.logger.info("Wikipedia no disponible para la ficha %s: %s", nombre, error)
             datos["avisos"].append("Wikipedia no ha podido consultarse ahora mismo.")
+
+        datos["biografia"] = _limitar_palabras(datos["biografia"], 180)
+        datos["historia"] = _limitar_palabras(datos["historia"], 180)
 
         # No se fabrican curiosidades: hasta integrar una fuente documentada, se indica claramente.
         if not datos["curiosidad"]:
