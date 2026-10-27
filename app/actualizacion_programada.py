@@ -15,6 +15,12 @@ def ejecutar(*argumentos):
 
 def main():
     ejecutar(sys.executable, str(APP / "detector.py"), "--all")
+    # Preparar biografías y datos de canciones con fuentes antes de publicar las novedades.
+    # Si falla el servicio externo, el radar y sus listas siguen pudiendo actualizarse.
+    try:
+        ejecutar(sys.executable, str(APP / "preparar_resumenes.py"))
+    except subprocess.CalledProcessError as error:
+        print(f"AVISO: no se pudieron completar los resúmenes musicales: {error}", flush=True)
     ejecutar(sys.executable, str(APP / "preparar_portada.py"))
     shutil.copy2(RAIZ / "portada.json", APP / "portada.json")
 
