@@ -68,8 +68,8 @@ nav.navegacion-comun a.activo{font-weight:700}
  function clave(b){return [b.dataset.resumenTipo||'',normalizar(b.dataset.resumenNombre),normalizar(b.dataset.resumenArtista)].join('|');}
  fetch('/api/resumenes-disponibles',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{
   const disponibles=new Set(d.claves||[]);
-  document.querySelectorAll('[data-resumen-tipo]').forEach(b=>{b.hidden=!disponibles.has(clave(b));});
- }).catch(()=>{document.querySelectorAll('[data-resumen-tipo]').forEach(b=>{b.hidden=true;});});
+  document.querySelectorAll('[data-resumen-tipo]').forEach(b=>{b.hidden=!disponibles.has(clave(b));b.style.display=b.hidden?'none':'';});
+ }).catch(()=>{document.querySelectorAll('[data-resumen-tipo]').forEach(b=>{b.hidden=true;b.style.display='none';});});
 })();
 </script>
 """
@@ -432,6 +432,7 @@ function mostrarArtistas(){
   cabecera.appendChild(nodo('h2','',nombre+(artista.cancionesEnColeccion?' · '+artista.cancionesEnColeccion+' canciones en tu colección':'')));
   const huecoWiki=nodo('span','');huecoWiki.style.marginRight='auto';
   const wikiArtista=nodo('button','boton-wikipedia','G');wikiArtista.type='button';
+  wikiArtista.dataset.resumenTipo='artista';wikiArtista.dataset.resumenNombre=nombre;wikiArtista.dataset.resumenArtista='';
   wikiArtista.title='Consultar biografía y curiosidad de '+nombre;wikiArtista.setAttribute('aria-label','Consultar biografía de '+nombre);
   wikiArtista.addEventListener('click',async()=>{
    if(wikiArtista.disabled)return;wikiArtista.disabled=true;wikiArtista.textContent='…';
@@ -489,6 +490,7 @@ async function cargarTop(nombre,caja,boton,tipo='populares'){
    const tituloPista=nodo('span','pista-titulo',pista.titulo);
    const tituloLinea=nodo('div','');tituloLinea.appendChild(tituloPista);detalle.appendChild(tituloLinea);
    const wiki=nodo('button','boton-wikipedia','G');wiki.type='button';
+   wiki.dataset.resumenTipo='cancion';wiki.dataset.resumenNombre=pista.titulo;wiki.dataset.resumenArtista=pista.artista;
    wiki.title='Consultar información de '+pista.titulo+' de '+pista.artista;
    wiki.setAttribute('aria-label','Consultar información sobre '+pista.titulo+' de '+pista.artista);
    wiki.addEventListener('click',async()=>{
