@@ -1,0 +1,19 @@
+{
+  "id": "/",
+  "name": "Mi Radar Musical",
+  "short_name": "Mi Radar",
+  "description": "Tu universo musical, en un solo lugar.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#17102a",
+  "theme_color": "#6d28a8",
+  "icons": [
+    {
+      "src": "/icono-mrm.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
