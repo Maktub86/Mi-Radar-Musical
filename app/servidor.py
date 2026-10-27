@@ -7,7 +7,7 @@ import shutil
 import threading
 import time
 import sys
-from datetime import datetime
+from datetime import date, datetime
 from zoneinfo import ZoneInfo
 from pathlib import Path
 from urllib.parse import quote, urlencode
@@ -16,6 +16,7 @@ from urllib.error import HTTPError
 import unicodedata
 import difflib
 import os
+import secrets
 from listas_musicales import cargar as cargar_lista, actualizar as actualizar_lista
 
 BASE = Path(__file__).resolve().parent
@@ -187,6 +188,93 @@ def pagina_lista(tipo):
     if tipo not in ("youtube", "los40", "canal-fiesta"):
         return "Lista no encontrada", 404
     return _pagina_portada("lista-" + tipo)
+
+# Caché en memoria para no volver a leer el archivo de portada completo en cada clic.
+_cache_portada = {"mtime": None, "publicaciones": []}
+_candado_cache_portada = threading.Lock()
+
+
+def _fecha_clave_portada(valor):
+    """Devuelve una clave numérica de fecha y descarta fechas inválidas o futuras."""
+    texto = str(valor or "").strip()
+    coincidencia = re.match(r"^(\\d{4})(?:-(\\d{2})(?:-(\\d{2}))?)?$", texto)
+    if not coincidencia:
+        return None
+    anio, mes, dia = coincidencia.groups()
+    try:
+        anio = int(anio)
+        mes_num = int(mes or 0)
+        dia_num = int(dia or 0)
+        fecha_base = date(anio, mes_num or 1, dia_num or 1)
+    except (TypeError, ValueError):
+        return None
+    hoy = datetime.now(ZoneInfo("Europe/Madrid")).date()
+    if fecha_base > hoy:
+        return None
+    return (anio, mes_num, dia_num)
+
+
+def _tipo_normalizado_portada(valor):
+    tipo = str(valor or "").strip().casefold()
+    if tipo in ("single", "singles"):
+        return "Single"
+    if tipo in ("album", "álbum", "albums", "álbumes"):
+        return "Album"
+    return tipo
+
+
+@app.get("/api/portada")
+def api_portada():
+    """Devuelve solo las 12 o 32 novedades del tipo solicitado, sin fechas futuras."""
+    tipo = _tipo_normalizado_portada(request.args.get("tipo") or "Single")
+    if tipo not in ("Single", "Album"):
+        return jsonify({"error": "Tipo de publicación no válido."}), 400
+    try:
+        cantidad = int(request.args.get("cantidad", "12"))
+    except (TypeError, ValueError):
+        cantidad = 12
+    if cantidad not in (12, 32):
+        cantidad = 12
+
+    ruta = BASE / "portada.json"
+    try:
+        mtime = ruta.stat().st_mtime_ns
+        with _candado_cache_portada:
+            if _cache_portada["mtime"] != mtime:
+                datos = json.loads(ruta.read_text(encoding="utf-8"))
+                if not isinstance(datos, list):
+                    raise ValueError("El archivo de portada no contiene una lista.")
+                _cache_portada["publicaciones"] = datos
+                _cache_portada["mtime"] = mtime
+            publicaciones = list(_cache_portada["publicaciones"])
+    except (OSError, json.JSONDecodeError, ValueError):
+        app.logger.exception("No se pudo cargar el catálogo de portada.")
+        return jsonify({"error": "No se han podido cargar las publicaciones."}), 503
+
+    filtradas = []
+    for publicacion in publicaciones:
+        if not isinstance(publicacion, dict):
+            continue
+        if _tipo_normalizado_portada(publicacion.get("tipo")) != tipo:
+            continue
+        fecha = str(publicacion.get("fecha") or "").strip()
+        clave_fecha = _fecha_clave_portada(fecha)
+        if fecha and clave_fecha is None:
+            continue
+        filtradas.append((clave_fecha or (0, 0, 0), publicacion))
+
+    filtradas.sort(
+        key=lambda item: (bool(item[0][0]), item[0], str(item[1].get("titulo") or "").casefold()),
+        reverse=True,
+    )
+    respuesta = jsonify({
+        "tipo": tipo,
+        "total": len(filtradas),
+        "publicaciones": [item[1] for item in filtradas[:cantidad]],
+    })
+    respuesta.headers["Cache-Control"] = "public, max-age=180"
+    return respuesta
+
 
 @app.get("/programas")
 def pagina_programas():
@@ -1645,8 +1733,54 @@ def estado_actualizacion():
 
 
 
+# Las acciones que lanzan actualizaciones tienen límite de frecuencia.
+# Si ADMIN_ACTION_TOKEN está configurado, también exigen ese secreto en una cabecera.
+_VENTANA_ACCIONES_SEGUNDOS = 600
+_MAX_ACCIONES_POR_VENTANA = 10
+_acciones_por_ip = {}
+_candado_acciones_ip = threading.Lock()
+
+
+def _comprobar_permiso_actualizacion():
+    token_configurado = (os.environ.get("ADMIN_ACTION_TOKEN") or "").strip()
+    token_recibido = (request.headers.get("X-Admin-Token") or "").strip()
+    if token_configurado and (
+        not token_recibido or not secrets.compare_digest(token_recibido, token_configurado)
+    ):
+        return jsonify({"error": "Esta acción requiere el token de administración."}), 401
+
+    # En Render, la actualización completa queda bloqueada hasta configurar un token.
+    if request.path == "/api/actualizar" and os.environ.get("RENDER") and not token_configurado:
+        return jsonify({
+            "error": "La actualización manual está desactivada hasta configurar ADMIN_ACTION_TOKEN en el entorno del servidor."
+        }), 503
+
+    ip = (request.headers.get("X-Forwarded-For") or request.remote_addr or "desconocida").split(",")[0].strip()
+    ahora = time.time()
+    with _candado_acciones_ip:
+        recientes = [t for t in _acciones_por_ip.get(ip, []) if ahora - t < _VENTANA_ACCIONES_SEGUNDOS]
+        if len(recientes) >= _MAX_ACCIONES_POR_VENTANA:
+            return jsonify({
+                "error": "Se han solicitado demasiadas actualizaciones. Espera unos minutos antes de volver a intentarlo."
+            }), 429
+        recientes.append(ahora)
+        _acciones_por_ip[ip] = recientes
+        if len(_acciones_por_ip) > 1000:
+            for clave_ip in list(_acciones_por_ip):
+                _acciones_por_ip[clave_ip] = [
+                    t for t in _acciones_por_ip[clave_ip]
+                    if ahora - t < _VENTANA_ACCIONES_SEGUNDOS
+                ]
+                if not _acciones_por_ip[clave_ip]:
+                    _acciones_por_ip.pop(clave_ip, None)
+    return None
+
+
 @app.post("/api/actualizar")
 def actualizar_radar():
+    permiso = _comprobar_permiso_actualizacion()
+    if permiso:
+        return permiso
     with _candado_estado:
         if _estado_actualizacion["en_curso"]:
             return jsonify({"error": "Ya hay una actualización en curso."}), 409
@@ -1673,6 +1807,9 @@ def api_lista_musical(tipo):
 
 @app.post("/api/listas/<tipo>/actualizar")
 def api_actualizar_lista_musical(tipo):
+    permiso = _comprobar_permiso_actualizacion()
+    if permiso:
+        return permiso
     if tipo not in ("los40", "canal-fiesta", "youtube"):
         return jsonify({"error": "Lista desconocida."}), 404
     resultado = actualizar_lista(tipo)
