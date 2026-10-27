@@ -225,21 +225,30 @@ function elegirTipo(tipo) {
   document.getElementById("album").classList.toggle("activo", tipo === "Album");
   mostrar(cantidadSeleccionada);
 }
-function mostrar(cantidad) {
+let solicitudPortada = 0;
+async function mostrar(cantidad) {
   cantidadSeleccionada = cantidad;
   document.getElementById("b12").classList.toggle("activo", cantidad === 12);
   document.getElementById("b32").classList.toggle("activo", cantidad === 32);
   const lista = document.getElementById("lista");
   lista.innerHTML = "";
-  const filtradas = publicaciones.filter(p => tipoNormalizado(p.tipo) === tipoSeleccionado);
-  const elementos = filtradas.slice(0, cantidad);
-  document.getElementById("estado").textContent =
-    `${filtradas.length.toLocaleString("es-ES")} ${tipoSeleccionado === "Single" ? "singles" : "álbumes"} registrados`;
-  if (!elementos.length) {
-    lista.innerHTML = '<div class="vacio">No hay lanzamientos de este tipo en los datos disponibles.</div>';
-    return;
-  }
-  for (const p of elementos) {
+  const idSolicitud = ++solicitudPortada;
+  document.getElementById("estado").textContent = "Cargando publicaciones…";
+  try {
+    const consulta = new URLSearchParams({tipo: tipoSeleccionado, cantidad: String(cantidad)});
+    const respuesta = await fetch("/api/portada?" + consulta.toString());
+    const datos = await respuesta.json();
+    if (!respuesta.ok) throw new Error(datos.error || "No se han podido cargar las publicaciones.");
+    if (idSolicitud !== solicitudPortada) return;
+    publicaciones = Array.isArray(datos.publicaciones) ? datos.publicaciones : [];
+    const elementos = publicaciones;
+    document.getElementById("estado").textContent =
+      `${Number(datos.total || 0).toLocaleString("es-ES")} ${tipoSeleccionado === "Single" ? "singles" : "álbumes"} publicados`;
+    if (!elementos.length) {
+      lista.innerHTML = '<div class="vacio">No hay lanzamientos publicados de este tipo en los datos disponibles.</div>';
+      return;
+    }
+    for (const p of elementos) {
     const tarjeta = document.createElement("article");
     tarjeta.className = "tarjeta";
     const imagen = p.imagen || (p.id ? `https://coverartarchive.org/release-group/${encodeURIComponent(p.id)}/front-250` : "");
@@ -271,6 +280,11 @@ function mostrar(cantidad) {
       tarjeta.querySelector(".boton-youtube").addEventListener("click", () => buscarCancionYouTube(p,"youtube"));
     }
     lista.appendChild(tarjeta);
+    }
+  } catch (error) {
+    if (idSolicitud !== solicitudPortada) return;
+    document.getElementById("estado").textContent = error.message || "No se han podido cargar las publicaciones.";
+    lista.innerHTML = '<div class="vacio">No se han podido cargar las novedades. Inténtalo de nuevo más tarde.</div>';
   }
 }
 
@@ -343,10 +357,7 @@ async function reproducirMuestra(publicacion, tarjeta, boton) {
     boton.disabled = false;
   }
 }
-fetch("/portada.json")
-  .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-  .then(datos => { publicaciones = datos; mostrar(cantidadSeleccionada); })
-  .catch(() => { document.getElementById("estado").textContent = "No se han podido cargar las publicaciones."; });
+mostrar(cantidadSeleccionada);
 fetch("/ultima_actualizacion.txt")
   .then(r => { if (!r.ok) throw new Error(); return r.text(); })
   .then(fecha => { document.getElementById("ultima-actualizacion").textContent = "Última actualización: " + fecha.trim(); })
@@ -354,6 +365,26 @@ fetch("/ultima_actualizacion.txt")
 </script>
 
 <script>
+async function fetchAccionProtegida(url, opciones={}) {
+  const cabeceras = new Headers(opciones.headers || {});
+  let token = "";
+  try { token = sessionStorage.getItem("mrAdminActionToken") || ""; } catch (e) {}
+  if (token) cabeceras.set("X-Admin-Token", token);
+  let respuesta = await fetch(url, {...opciones, headers: cabeceras});
+  if (respuesta.status === 401) {
+    const nuevo = window.prompt("Esta acción requiere el token de administración configurado en el servidor. Introduce el token:");
+    if (nuevo === null || !nuevo.trim()) return respuesta;
+    token = nuevo.trim();
+    try { sessionStorage.setItem("mrAdminActionToken", token); } catch (e) {}
+    cabeceras.set("X-Admin-Token", token);
+    respuesta = await fetch(url, {...opciones, headers: cabeceras});
+    if (respuesta.status === 401) {
+      try { sessionStorage.removeItem("mrAdminActionToken"); } catch (e) {}
+      window.alert("El token no es válido. Comprueba la configuración del servidor.");
+    }
+  }
+  return respuesta;
+}
 const nombresListas={
   "los40":"LOS40",
   "canal-fiesta":"Canal Fiesta",
@@ -533,7 +564,7 @@ async function cargarLista(tipo){
   // Si Canal Fiesta aún no tiene caché, intentar cargarla automáticamente la primera vez.
   if(tipo==="canal-fiesta" && !datos.canciones?.length && !datos.actualizado){
    estado.textContent="Cargando por primera vez el Top 50 de Canal Fiesta…";
-   const actualizacion=await fetch("/api/listas/canal-fiesta/actualizar",{method:"POST"});
+   const actualizacion=await fetchAccionProtegida("/api/listas/canal-fiesta/actualizar",{method:"POST"});
    const resultado=await actualizacion.json();
    mostrarLista("canal-fiesta",resultado);
    if(!actualizacion.ok && !resultado.canciones?.length){
@@ -547,7 +578,7 @@ async function actualizarLista(tipo,boton){
  boton.disabled=true;
  estado.textContent="Consultando la fuente oficial…";
  try{
-  const r=await fetch("/api/listas/"+tipo+"/actualizar",{method:"POST"});
+  const r=await fetchAccionProtegida("/api/listas/"+tipo+"/actualizar",{method:"POST"});
   const datos=await r.json();
   mostrarLista(tipo,datos);
   if(!r.ok && !datos.canciones?.length){
