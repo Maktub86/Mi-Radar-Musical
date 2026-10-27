@@ -95,6 +95,11 @@ nav.navegacion-comun a.activo{font-weight:700}
   const tipo=(b.dataset.wikiTipo||'').toLowerCase();
   let nombre=(b.dataset.wikiNombre||'').trim(),artista=(b.dataset.wikiArtista||'').trim();
   if(!nombre){
+   const etiqueta=(b.getAttribute('aria-label')||b.title||'').trim();
+   const coincidencia=etiqueta.match(/información(?: sobre| de)?\\s+(.+?)\\s+de\\s+(.+)$/i);
+   if(coincidencia){nombre=coincidencia[1].trim();artista=coincidencia[2].trim()}
+  }
+  if(!nombre){
    const fila=b.closest('.pista,.fila-cancion,.tarjeta,.publicacion,.artista-mejor')||b.parentElement;
    const tituloNodo=fila&&fila.querySelector('.pista-titulo,.titulo-cancion,.titulo,.pista-titulo');
    const artistaNodo=fila&&fila.querySelector('.artista-cancion,.artista,.pista-meta');
