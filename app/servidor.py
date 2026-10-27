@@ -59,6 +59,22 @@ nav.navegacion-comun a.activo{font-weight:700}
 """
         if "</head>" in html:
             html = html.replace("</head>", css_nav + "</head>", 1)
+        # Los iconos informativos solo aparecen si la actualización diaria guardó
+        # una ficha con fuentes verificables. La normalización coincide con el preparador.
+        script_resumenes = r"""
+<script id="visibilidad-resumenes-cache">
+(function(){
+ function normalizar(v){return String(v||'').normalize('NFKD').replace(/[\\u0300-\\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]+/g,' ').trim();}
+ function clave(b){return [b.dataset.resumenTipo||'',normalizar(b.dataset.resumenNombre),normalizar(b.dataset.resumenArtista)].join('|');}
+ fetch('/api/resumenes-disponibles',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{
+  const disponibles=new Set(d.claves||[]);
+  document.querySelectorAll('[data-resumen-tipo]').forEach(b=>{b.hidden=!disponibles.has(clave(b));});
+ }).catch(()=>{document.querySelectorAll('[data-resumen-tipo]').forEach(b=>{b.hidden=true;});});
+})();
+</script>
+"""
+        if "</body>" in html and "visibilidad-resumenes-cache" not in html:
+            html = html.replace("</body>", script_resumenes + "</body>", 1)
         response.set_data(html)
     return response
 
@@ -1200,6 +1216,25 @@ def _ejecutar_actualizacion():
 
 
 
+def _clave_resumen(tipo, nombre, artista=""):
+    def normalizar(valor):
+        valor = unicodedata.normalize("NFKD", str(valor or "")).encode("ascii", "ignore").decode("ascii").upper()
+        return re.sub(r"[^A-Z0-9]+", " ", valor).strip()
+    return "|".join((tipo, normalizar(nombre), normalizar(artista)))
+
+
+@app.get("/api/resumenes-disponibles")
+def api_resumenes_disponibles():
+    ruta = BASE / "resumenes_musicales.json"
+    try:
+        datos = json.loads(ruta.read_text(encoding="utf-8"))
+        items = datos.get("items", {}) if isinstance(datos, dict) else {}
+        claves = [k for k, v in items.items() if isinstance(v, dict) and v.get("encontrado") and v.get("fuentes")]
+        return jsonify({"claves": claves, "actualizado": datos.get("actualizado")})
+    except (OSError, json.JSONDecodeError, AttributeError):
+        return jsonify({"claves": [], "actualizado": None})
+
+
 @app.get("/api/resumen-musical")
 def api_resumen_musical():
     """Genera bajo demanda un resumen musical breve con Gemini y búsqueda web."""
@@ -1216,6 +1251,19 @@ def api_resumen_musical():
             app.logger.warning("No se pudo leer el archivo local de la clave de Gemini.")
     if tipo not in ("artista", "cancion") or not nombre or (tipo == "cancion" and not artista):
         return jsonify({"encontrado": False, "error": "Falta el artista o la canción."}), 400
+
+    # Primero servir la ficha preparada durante la actualización diaria.
+    ruta_cache = BASE / "resumenes_musicales.json"
+    try:
+        datos_cache = json.loads(ruta_cache.read_text(encoding="utf-8"))
+        ficha = (datos_cache.get("items") or {}).get(_clave_resumen(tipo, nombre, artista))
+        if isinstance(ficha, dict):
+            if ficha.get("encontrado") and ficha.get("fuentes"):
+                return jsonify(ficha)
+            return jsonify({"encontrado": False, "error": "No se encontró una fuente fiable para esta ficha."})
+    except (OSError, json.JSONDecodeError, AttributeError):
+        pass
+
     if not api_key:
         return jsonify({"encontrado": False, "error": "Falta configurar la clave de Gemini (GEMINI_API_KEY) en Windows."}), 503
 
