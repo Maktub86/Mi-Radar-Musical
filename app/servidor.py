@@ -69,9 +69,9 @@ nav.navegacion-comun a.activo{font-weight:700}
  function normalizar(v){return String(v||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]+/g,' ').trim();}
  function clave(b){return [b.dataset.resumenTipo||'',normalizar(b.dataset.resumenNombre),normalizar(b.dataset.resumenArtista)].join('|');}
  let disponibles=new Set(),cargado=false;
- function aplicar(){document.querySelectorAll('[data-resumen-tipo]').forEach(b=>{b.hidden=!cargado||!disponibles.has(clave(b));b.style.display=b.hidden?'none':'';});}
+ function aplicar(){document.querySelectorAll('[data-resumen-tipo]').forEach(b=>{b.hidden=false;b.style.display='';});}
  const observador=new MutationObserver(aplicar);observador.observe(document.documentElement,{childList:true,subtree:true});
- fetch('/api/resumenes-disponibles',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{disponibles=new Set(d.claves||[]);cargado=true;aplicar();}).catch(()=>{cargado=true;aplicar();});
+ aplicar();
 })();
 </script>
 """
