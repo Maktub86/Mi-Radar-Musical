@@ -1359,239 +1359,97 @@ def _normalizar_nombre_musical(valor):
 
 
 def _buscar_fallback_musical(tipo, nombre, artista=""):
-    """Consulta Last.fm si hay clave y MusicBrainz como alternativa a Gemini."""
-    textos, fuentes = [], []
-    cabeceras = {"User-Agent": "MiRadarMusical/1.0 (catalogo musical)"}
-    def pedir(url):
-        with urlopen(Request(url, headers=cabeceras), timeout=8) as resp:
-            return json.loads(resp.read().decode("utf-8"))
+    """Busca un resumen existente en Last.fm; MusicBrainz no se trata como biografía."""
     clave = (os.environ.get("LASTFM_API_KEY") or "").strip()
-    if clave:
-        try:
-            params = {"method": "artist.getinfo" if tipo == "artista" else "track.getinfo",
-                      "api_key": clave, "format": "json", "lang": "es", "autocorrect": "1"}
-            if tipo == "artista": params["artist"] = nombre
-            else: params.update({"track": nombre, "artist": artista})
-            datos = pedir("https://ws.audioscrobbler.com/2.0/?" + urlencode(params))
-            entidad = datos.get("artist") if tipo == "artista" else datos.get("track")
-            wiki = (entidad or {}).get("bio" if tipo == "artista" else "wiki") or {}
-            texto = re.sub(r"<[^>]+>", " ", str(wiki.get("content") or wiki.get("summary") or ""))
-            texto = re.sub(r"\s+", " ", texto).strip()
-            texto = re.sub(r"Read more on Last.fm.*$", "", texto, flags=re.I).strip()
-            if len(texto) > 80:
-                textos.append(texto[:2400])
-                fuentes.append({"titulo": "Last.fm", "url": "https://www.last.fm/"})
-        except Exception as error:
-            app.logger.info("Last.fm no disponible para %s: %s", nombre, error)
+    if not clave:
+        return None
+    cabeceras = {"User-Agent": "MiRadarMusical/1.0 (catalogo musical)"}
     try:
+        params = {"method": "artist.getinfo" if tipo == "artista" else "track.getinfo",
+                  "api_key": clave, "format": "json", "lang": "es", "autocorrect": "1"}
         if tipo == "artista":
-            params = urlencode({"query": 'artist:"' + nombre + '"', "fmt": "json", "limit": "5"})
-            datos = pedir("https://musicbrainz.org/ws/2/artist/?" + params)
-            objetivo = _normalizar_nombre_musical(nombre)
-            elegido = next((x for x in (datos.get("artists") or []) if _normalizar_nombre_musical(x.get("name", "")) == objetivo), None)
-            if elegido:
-                partes = [str(elegido.get("name") or nombre) + " figura en MusicBrainz, una base de datos musical colaborativa."]
-                if elegido.get("type"): partes.append("Tipo registrado: " + str(elegido["type"]) + ".")
-                if elegido.get("country"): partes.append("País asociado: " + str(elegido["country"]) + ".")
-                if elegido.get("begin-area", {}).get("name"): partes.append("Lugar asociado: " + str(elegido["begin-area"]["name"]) + ".")
-                if elegido.get("life-span", {}).get("begin"): partes.append("Año de inicio registrado: " + str(elegido["life-span"]["begin"]) + ".")
-                if elegido.get("disambiguation"): partes.append("Aclaración: " + str(elegido["disambiguation"]) + ".")
-                textos.append(" ".join(partes))
-                fuentes.append({"titulo": "MusicBrainz — artista", "url": "https://musicbrainz.org/artist/" + str(elegido["id"])})
+            params["artist"] = nombre
         else:
-            query = 'recording:"' + nombre + '" AND artist:"' + artista + '"'
-            params = urlencode({"query": query, "fmt": "json", "limit": "5"})
-            datos = pedir("https://musicbrainz.org/ws/2/recording/?" + params)
-            n, a = _normalizar_nombre_musical(nombre), _normalizar_nombre_musical(artista)
-            elegido = next((x for x in (datos.get("recordings") or []) if _normalizar_nombre_musical(x.get("title", "")) == n and any(_normalizar_nombre_musical(z.get("name", "")) == a for z in (x.get("artist-credit") or []) if isinstance(z, dict))), None)
-            if elegido:
-                partes = ["«" + str(elegido.get("title") or nombre) + "» figura en MusicBrainz como grabación de " + artista + "."]
-                if elegido.get("first-release-date"): partes.append("Primera publicación registrada: " + str(elegido["first-release-date"]) + ".")
-                lanzamientos = [z.get("title") for z in (elegido.get("releases") or [])[:3] if z.get("title")]
-                if lanzamientos: partes.append("Álbum/publicación asociada: " + ", ".join(lanzamientos) + ".")
-                textos.append(" ".join(partes))
-                fuentes.append({"titulo": "MusicBrainz — grabación", "url": "https://musicbrainz.org/recording/" + str(elegido["id"])})
+            params.update({"track": nombre, "artist": artista})
+        req = Request("https://ws.audioscrobbler.com/2.0/?" + urlencode(params), headers=cabeceras)
+        with urlopen(req, timeout=8) as resp:
+            datos = json.loads(resp.read().decode("utf-8"))
+        entidad = datos.get("artist") if tipo == "artista" else datos.get("track")
+        wiki = (entidad or {}).get("bio" if tipo == "artista" else "wiki") or {}
+        texto = re.sub(r"<[^>]+>", " ", str(wiki.get("content") or wiki.get("summary") or ""))
+        texto = re.sub(r"\s+", " ", texto).strip()
+        texto = re.sub(r"Read more on Last.fm.*$", "", texto, flags=re.I).strip()
+        if len(texto) < 100:
+            return None
+        # Last.fm suele entregar un extracto corto; no lo presentamos como biografía
+        # completa si no alcanza una extensión mínimamente útil.
+        return {
+            "encontrado": True,
+            "resumen": texto[:2400],
+            "biografia": texto[:2400] if tipo == "artista" else "",
+            "informacion": texto[:2400] if tipo == "cancion" else "",
+            "fuentes": [{"titulo": "Last.fm", "url": "https://www.last.fm/"}],
+            "fuente_tipo": "lastfm",
+            "fuente": "Last.fm"
+        }
     except Exception as error:
-        app.logger.info("MusicBrainz no disponible/no encontró coincidencia para %s: %s", nombre, error)
-    if not textos: return None
-    resumen = "\n\n".join(dict.fromkeys(textos))
-    return {"encontrado": True, "resumen": resumen, "biografia": resumen if tipo == "artista" else "",
-            "informacion": resumen if tipo == "cancion" else "", "fuentes": fuentes[:4],
-            "fuente_tipo": "catalogo_musical", "fuente": ", ".join(x["titulo"] for x in fuentes)}
+        app.logger.info("Last.fm no disponible para %s: %s", nombre, error)
+        return None
+
 
 @app.get("/api/wikipedia")
 @app.get("/api/resumen-musical")
 def api_resumen_musical():
-    """Genera bajo demanda un resumen musical breve con Gemini y búsqueda web."""
+    """Busca primero un resumen de Last.fm y recurre a Wikipedia si hace falta; no usa Gemini."""
     tipo = (request.args.get("tipo") or "").strip().lower()
     nombre = re.sub(r"\s+", " ", (request.args.get("nombre") or "").strip())[:180]
     artista = re.sub(r"\s+", " ", (request.args.get("artista") or "").strip())[:180]
-    api_key = (os.environ.get("GEMINI_API_KEY") or "").strip()
-    if not api_key:
-        archivo_clave = BASE / "gemini_api_key.txt"
-        try:
-            if archivo_clave.is_file():
-                api_key = archivo_clave.read_text(encoding="utf-8").strip()
-        except OSError:
-            app.logger.warning("No se pudo leer el archivo local de la clave de Gemini.")
     if tipo not in ("artista", "cancion") or not nombre or (tipo == "cancion" and not artista):
         return jsonify({"encontrado": False, "error": "Falta el artista o la canción."}), 400
 
-    # Primero servir la ficha preparada durante la actualización diaria.
+    # Reutilizar únicamente fichas previas de fuentes que no dependen de Gemini
+    # ni de la ficha mínima de metadatos de MusicBrainz.
     ruta_cache = BASE / "resumenes_musicales.json"
     try:
         datos_cache = json.loads(ruta_cache.read_text(encoding="utf-8"))
         ficha = (datos_cache.get("items") or {}).get(_clave_resumen(tipo, nombre, artista))
         if isinstance(ficha, dict):
-            fuentes_cache = ficha.get("fuentes") or []
-            usa_wikipedia = any("wikipedia.org" in str(f.get("url") or "").casefold() for f in fuentes_cache if isinstance(f, dict))
-            if ficha.get("encontrado") and fuentes_cache and not usa_wikipedia:
+            fuente_tipo = str(ficha.get("fuente_tipo") or "").casefold()
+            resumen = str(ficha.get("resumen") or "").strip()
+            fuentes = ficha.get("fuentes") or []
+            if (ficha.get("encontrado") and len(resumen) >= 100 and fuentes
+                    and fuente_tipo in ("lastfm", "wikipedia")
+                    and all(isinstance(x, dict) and str(x.get("url") or "").startswith("https://") for x in fuentes)):
                 return jsonify(ficha)
-            # Las fichas negativas no bloquean un nuevo intento cuando vence el plazo de reintento.
     except (OSError, json.JSONDecodeError, AttributeError):
         pass
 
-    if not api_key:
-        fallback = _buscar_fallback_musical(tipo, nombre, artista)
-        if fallback: return jsonify(fallback)
-        return jsonify({"encontrado": False, "error": "No se ha encontrado información en las fuentes musicales alternativas."}), 503
+    # Fuente musical con texto descriptivo real; MusicBrainz se reserva para metadatos.
+    fallback = _buscar_fallback_musical(tipo, nombre, artista)
+    if fallback:
+        return jsonify(fallback)
 
-    if tipo == "artista":
-        instruccion = (
-            "Escribe en español una biografía musical sustanciosa y una curiosidad interesante y verificable "
-            "sobre el artista o grupo indicado. Para artistas, intenta ofrecer entre 180 y 230 palabras; "
-            "para grupos, explica su formación, trayectoria, estilo y relevancia. Separa en apartados: "
-            "«Trayectoria» y «Curiosidad». No inventes fechas, premios, relaciones ni datos personales. "
-        )
-        objetivo = "Artista o grupo: " + nombre
-    else:
-        instruccion = (
-            "Escribe en español una explicación musical informativa de entre 140 y 190 palabras sobre la canción "
-            "y su relación con el artista: contexto de creación o publicación, autores, álbum, significado declarado "
-            "por el artista, historia o impacto cultural, solo cuando existan fuentes que lo confirmen. "
-            "No inventes interpretaciones ni atribuyas declaraciones sin pruebas. "
-        )
-        objetivo = "Canción: " + nombre + "\nArtista: " + artista
-    prompt = (
-        instruccion + "\nUsa Google Search para investigar y contrastar varias fuentes. NO uses Wikipedia ni copies "
-        "información de Wikipedia. Prioriza la web oficial del artista o sello, entrevistas, medios musicales "
-        "reconocidos, Last.fm y otras bases de datos musicales fiables. Comprueba que la identidad coincide "
-        "exactamente con el nombre solicitado; esto es especialmente importante para artistas independientes "
-        "o poco conocidos. Si no encuentras fuentes fiables que confirmen la identidad, responde únicamente "
-        "NO_ENCONTRADO. No inventes datos.\n\n"
-        + objetivo
-    )
+    # Último recurso: la búsqueda de Wikipedia ya comprueba que la página corresponde
+    # al artista/canción y devuelve el extracto en español o traducido.
     try:
-        payload = {
-            "contents": [{"parts": [{"text": prompt}]}],
-            "tools": [{"google_search": {}}],
-            "generationConfig": {"temperature": 0.2, "maxOutputTokens": 700}
-        }
-        req = Request(
-            "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent",
-            data=json.dumps(payload).encode("utf-8"),
-            headers={"Content-Type": "application/json", "x-goog-api-key": api_key,
-                     "User-Agent": "MiRadarMusical/1.0"},
-            method="POST"
-        )
-        with urlopen(req, timeout=25) as respuesta:
-            datos = json.loads(respuesta.read().decode("utf-8"))
-        candidatos = datos.get("candidates") or []
-        partes = ((candidatos[0].get("content") or {}).get("parts") or []) if candidatos else []
-        resumen = " ".join(str(p.get("text") or "").strip() for p in partes if p.get("text")).strip()
-        if not resumen or "NO_ENCONTRADO" in resumen.upper():
-            fallback = _buscar_fallback_musical(tipo, nombre, artista)
-            if fallback: return jsonify(fallback)
-            return jsonify({"encontrado": False, "error": "No se ha encontrado información verificable en las fuentes consultadas."})
-        # Solo se presentan enlaces que Gemini devuelve como fuentes de búsqueda.
-        fuentes = []
-        meta = candidatos[0].get("groundingMetadata") or {}
-        for chunk in meta.get("groundingChunks") or []:
-            web_info = chunk.get("web") or {}
-            url_fuente = web_info.get("uri") or ""
-            titulo_fuente = web_info.get("title") or "Fuente consultada"
-            if (url_fuente.startswith("https://")
-                    and "wikipedia.org" not in url_fuente.casefold()
-                    and "wikimedia.org" not in url_fuente.casefold()
-                    and all(x.get("url") != url_fuente for x in fuentes)):
-                fuentes.append({"titulo": titulo_fuente, "url": url_fuente})
-        if not fuentes:
-            fallback = _buscar_fallback_musical(tipo, nombre, artista)
-            if fallback: return jsonify(fallback)
-            return jsonify({"encontrado": False, "error": "No se han encontrado fuentes web verificables."})
-        return jsonify({"encontrado": True, "resumen": resumen, "biografia": resumen if tipo == "artista" else "",
-                        "informacion": resumen if tipo == "cancion" else "", "fuentes": fuentes[:4],
-                        "fuente_tipo": "gemini", "fuente": ", ".join(f.get("titulo", "") for f in fuentes[:3])})
-    except HTTPError as error:
-        # Mostrar el código real de Gemini para distinguir errores de modelo, clave y cuota.
-        cuerpo = error.read().decode("utf-8", errors="replace")
-        try:
-            detalle = json.loads(cuerpo).get("error", {}).get("message", "")
-        except (ValueError, AttributeError):
-            detalle = ""
-        app.logger.warning("Gemini HTTP %s para %s: %s", error.code, nombre, detalle or cuerpo[:500])
-        mensajes = {
-            400: "Gemini rechazó la petición (HTTP 400).",
-            401: "Gemini no ha aceptado la autenticación (HTTP 401). Revisa que la clave configurada sea válida.",
-            403: "Gemini ha denegado el acceso (HTTP 403). Revisa los permisos o el acceso a la API.",
-            404: "Gemini no encuentra el modelo o recurso solicitado (HTTP 404).",
-            429: "Gemini ha aplicado un límite de uso o cuota (HTTP 429).",
-        }
-        mensaje = mensajes.get(error.code, f"Gemini ha respondido con HTTP {error.code}.")
-        if detalle: mensaje += " Detalle: " + detalle[:500]
-        fallback = _buscar_fallback_musical(tipo, nombre, artista)
-        if fallback:
-            fallback["aviso"] = "Gemini no respondió; se ha utilizado una fuente musical alternativa."
-            return jsonify(fallback)
-        return jsonify({"encontrado": False, "error": mensaje, "codigo": error.code}), 502
+        respuesta = api_wikipedia()
+        datos = respuesta.get_json(silent=True) if hasattr(respuesta, "get_json") else None
+        if isinstance(datos, dict):
+            resumen = re.sub(r"\s+", " ", str(datos.get("resumen") or "")).strip()
+            fuentes = datos.get("fuentes") or []
+            if (datos.get("encontrado") and datos.get("fuente_tipo") == "wikipedia"
+                    and len(resumen) >= 100 and fuentes):
+                datos["biografia"] = resumen if tipo == "artista" else ""
+                datos["informacion"] = resumen if tipo == "cancion" else ""
+                return jsonify(datos)
     except Exception:
-        app.logger.exception("Error consultando Gemini para %s", nombre)
-        fallback = _buscar_fallback_musical(tipo, nombre, artista)
-        if fallback:
-            fallback["aviso"] = "Gemini no respondió; se ha utilizado una fuente musical alternativa."
-            return jsonify(fallback)
-        return jsonify({"encontrado": False, "error": "Gemini y las fuentes alternativas no han devuelto información verificable. Inténtalo más tarde."}), 502
+        app.logger.exception("Falló el fallback de Wikipedia para %s", nombre)
 
-
-# Caché breve de Wikipedia: evita repetir consultas externas para las mismas canciones/artistas.
-_cache_wikipedia = {}
-_candado_cache_wikipedia = threading.Lock()
-
-def cache_respuesta_wikipedia(vista):
-    def envoltura(*args, **kwargs):
-        tipo = (request.args.get("tipo") or "").strip().lower()
-        nombre = re.sub(r"\s+", " ", (request.args.get("nombre") or "").strip())[:180]
-        artista = re.sub(r"\s+", " ", (request.args.get("artista") or "").strip())[:180]
-        clave = (tipo, unicodedata.normalize("NFKD", nombre).casefold(), unicodedata.normalize("NFKD", artista).casefold())
-        ahora = time.time()
-        with _candado_cache_wikipedia:
-            entrada = _cache_wikipedia.get(clave)
-            if entrada and entrada[0] > ahora:
-                return jsonify(entrada[1]), entrada[2]
-            if entrada:
-                _cache_wikipedia.pop(clave, None)
-        salida = vista(*args, **kwargs)
-        try:
-            respuesta, estado = salida if isinstance(salida, tuple) else (salida, 200)
-            datos = respuesta.get_json()
-            if isinstance(datos, dict):
-                # Las biografías verificadas duran 30 min; los fallos/no coincidencias, 1 min.
-                ttl = 1800 if datos.get("fuente_tipo") == "wikipedia" and datos.get("encontrado") else 60
-                with _candado_cache_wikipedia:
-                    _cache_wikipedia[clave] = (time.time() + ttl, datos, estado)
-                    if len(_cache_wikipedia) > 500:
-                        vencidas = [k for k, v in _cache_wikipedia.items() if v[0] <= time.time()]
-                        for k in vencidas:
-                            _cache_wikipedia.pop(k, None)
-                        while len(_cache_wikipedia) > 500:
-                            _cache_wikipedia.pop(next(iter(_cache_wikipedia)))
-        except Exception:
-            # La caché nunca debe impedir que se entregue una respuesta válida.
-            pass
-        return salida
-    envoltura.__name__ = vista.__name__
-    return envoltura
-
+    return jsonify({
+        "encontrado": False,
+        "error": "No he encontrado un resumen fiable en Last.fm ni en Wikipedia.",
+        "fuente_tipo": "ninguna"
+    }), 503
 
 @app.get("/api/wikipedia")
 @cache_respuesta_wikipedia
