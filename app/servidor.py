@@ -1344,7 +1344,7 @@ def api_resumenes_disponibles():
         claves = [
             k for k, v in items.items()
             if isinstance(v, dict) and v.get("encontrado") and len(str(v.get("resumen") or "").strip()) >= 100
-            and str(v.get("fuente_tipo") or "").casefold() in ("lastfm", "wikipedia")
+            and str(v.get("fuente_tipo") or "").casefold() in ("gemini", "lastfm", "wikipedia")
             and v.get("fuentes")
             and all(isinstance(f, dict) and str(f.get("url") or "").startswith("https://")
                     for f in (v.get("fuentes") or []))
@@ -1505,35 +1505,41 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
 
 @app.get("/api/resumen-musical")
 def api_resumen_musical():
-    """Intenta primero Gemini con búsqueda web; si falla, usa fuentes alternativas sin ocultarlo."""
+    """Usa primero una ficha Gemini ya verificada; si no existe, consulta Gemini y luego alternativas."""
     tipo = (request.args.get("tipo") or "").strip().lower()
     nombre = re.sub(r"\s+", " ", (request.args.get("nombre") or "").strip())[:180]
     artista = re.sub(r"\s+", " ", (request.args.get("artista") or "").strip())[:180]
     if tipo not in ("artista", "cancion") or not nombre or (tipo == "cancion" and not artista):
         return jsonify({"encontrado": False, "error": "Falta el artista o la canción."}), 400
 
+    # Leer la caché una vez. Las fichas Gemini evitan llamadas repetidas y gasto innecesario.
+    ficha_cache = None
+    try:
+        datos_cache = json.loads((BASE / "resumenes_musicales.json").read_text(encoding="utf-8"))
+        posible = (datos_cache.get("items") or {}).get(_clave_resumen(tipo, nombre, artista))
+        if isinstance(posible, dict):
+            fuente_tipo = str(posible.get("fuente_tipo") or "").casefold()
+            resumen_cache = str(posible.get("resumen") or "").strip()
+            fuentes_cache = posible.get("fuentes") or []
+            if (posible.get("encontrado") and len(resumen_cache) >= 100 and fuentes_cache
+                    and fuente_tipo in ("gemini", "lastfm", "wikipedia")
+                    and all(isinstance(x, dict) and str(x.get("url") or "").startswith("https://")
+                            for x in fuentes_cache)):
+                ficha_cache = dict(posible)
+                ficha_cache["motor"] = fuente_tipo
+                if fuente_tipo == "gemini":
+                    return jsonify(ficha_cache)
+    except (OSError, json.JSONDecodeError, AttributeError):
+        pass
+
     resultado_gemini, error_gemini = _buscar_gemini_musical(tipo, nombre, artista)
     if resultado_gemini:
         return jsonify(resultado_gemini)
 
-    # Si Gemini no está disponible, conservar el servicio alternativo e indicar el motivo.
-    ruta_cache = BASE / "resumenes_musicales.json"
-    try:
-        datos_cache = json.loads(ruta_cache.read_text(encoding="utf-8"))
-        ficha = (datos_cache.get("items") or {}).get(_clave_resumen(tipo, nombre, artista))
-        if isinstance(ficha, dict):
-            fuente_tipo = str(ficha.get("fuente_tipo") or "").casefold()
-            resumen = str(ficha.get("resumen") or "").strip()
-            fuentes = ficha.get("fuentes") or []
-            if (ficha.get("encontrado") and len(resumen) >= 100 and fuentes
-                    and fuente_tipo in ("lastfm", "wikipedia")
-                    and all(isinstance(x, dict) and str(x.get("url") or "").startswith("https://") for x in fuentes)):
-                salida = dict(ficha)
-                salida["motor"] = fuente_tipo
-                salida["aviso_gemini"] = error_gemini
-                return jsonify(salida)
-    except (OSError, json.JSONDecodeError, AttributeError):
-        pass
+    # Si Gemini falla, mostrar la ficha alternativa guardada indicando claramente el motivo.
+    if ficha_cache:
+        ficha_cache["aviso_gemini"] = error_gemini
+        return jsonify(ficha_cache)
 
     fallback = _buscar_fallback_musical(tipo, nombre, artista)
     if fallback:
