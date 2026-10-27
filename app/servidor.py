@@ -16,6 +16,7 @@ from urllib.error import HTTPError
 import unicodedata
 import difflib
 import os
+import sqlite3
 from listas_musicales import cargar as cargar_lista, actualizar as actualizar_lista
 
 BASE = Path(__file__).resolve().parent
@@ -1636,6 +1637,251 @@ def api_wikipedia():
         "fuentes": [{"titulo": "Buscar información en español", "url": url_busqueda}],
         "fuente_tipo": "busqueda_web", "mensaje": "No se mostró una coincidencia dudosa."
     }), 200
+
+
+# Fichas musicales reutilizables. La ruta de la base de datos se puede fijar
+# con MR_FICHAS_DB para usar un disco persistente en el servicio de alojamiento.
+_RUTA_FICHAS_DB = Path(os.environ.get("MR_FICHAS_DB", str(BASE.parent / "fichas_musicales.sqlite3")))
+_CANDADO_FICHAS_DB = threading.Lock()
+_CANDADO_MUSICBRAINZ = threading.Lock()
+_ULTIMA_PETICION_MUSICBRAINZ = 0.0
+_CANDADOS_FICHA = {}
+_CANDADOS_FICHA_LOCK = threading.Lock()
+
+
+def _inicializar_db_fichas():
+    try:
+        _RUTA_FICHAS_DB.parent.mkdir(parents=True, exist_ok=True)
+        with sqlite3.connect(str(_RUTA_FICHAS_DB), timeout=5) as db:
+            db.execute("""
+                CREATE TABLE IF NOT EXISTS fichas_musicales (
+                    clave TEXT PRIMARY KEY,
+                    datos TEXT NOT NULL,
+                    actualizado REAL NOT NULL
+                )
+            """)
+            db.commit()
+        return True
+    except Exception as error:
+        app.logger.warning("No se pudo inicializar la base de fichas: %s", error)
+        return False
+
+
+def _leer_ficha_guardada(clave):
+    try:
+        with _CANDADO_FICHAS_DB:
+            with sqlite3.connect(str(_RUTA_FICHAS_DB), timeout=5) as db:
+                fila = db.execute(
+                    "SELECT datos FROM fichas_musicales WHERE clave = ?", (clave,)
+                ).fetchone()
+        return json.loads(fila[0]) if fila else None
+    except Exception as error:
+        app.logger.warning("No se pudo leer la caché de fichas: %s", error)
+        return None
+
+
+def _guardar_ficha(clave, datos):
+    try:
+        serializado = json.dumps(datos, ensure_ascii=False)
+        with _CANDADO_FICHAS_DB:
+            with sqlite3.connect(str(_RUTA_FICHAS_DB), timeout=5) as db:
+                db.execute(
+                    "INSERT INTO fichas_musicales(clave, datos, actualizado) VALUES(?, ?, ?) "
+                    "ON CONFLICT(clave) DO UPDATE SET datos=excluded.datos, actualizado=excluded.actualizado",
+                    (clave, serializado, time.time())
+                )
+                db.commit()
+        return True
+    except Exception as error:
+        app.logger.warning("No se pudo guardar la ficha musical: %s", error)
+        return False
+
+
+def _consulta_json(url, user_agent="MiRadarMusical/1.0 (fichas musicales; contacto: configuracion del sitio)"):
+    req = Request(url, headers={"User-Agent": user_agent, "Accept": "application/json"})
+    with urlopen(req, timeout=7) as respuesta:
+        return json.loads(respuesta.read().decode("utf-8"))
+
+
+def _musicbrainz_consultar(url):
+    global _ULTIMA_PETICION_MUSICBRAINZ
+    # MusicBrainz solicita no superar una petición por segundo por aplicación.
+    with _CANDADO_MUSICBRAINZ:
+        espera = 1.05 - (time.monotonic() - _ULTIMA_PETICION_MUSICBRAINZ)
+        if espera > 0:
+            time.sleep(espera)
+        try:
+            return _consulta_json(url, "MiRadarMusical/1.0 (fichas musicales)")
+        finally:
+            _ULTIMA_PETICION_MUSICBRAINZ = time.monotonic()
+
+
+def _lastfm_consultar(metodo, parametros):
+    clave_api = os.environ.get("LASTFM_API_KEY", "").strip()
+    if not clave_api:
+        return None
+    valores = dict(parametros)
+    valores.update({"method": metodo, "api_key": clave_api, "format": "json", "autocorrect": "1"})
+    try:
+        return _consulta_json("https://ws.audioscrobbler.com/2.0/?" + urlencode(valores))
+    except Exception as error:
+        app.logger.info("Last.fm no disponible para %s: %s", metodo, error)
+        return None
+
+
+def _texto_lastfm(valor):
+    if isinstance(valor, dict):
+        return re.sub(r"<[^>]*>", " ", str(valor.get("#text") or "")).strip()
+    return re.sub(r"<[^>]*>", " ", str(valor or "")).strip()
+
+
+@app.get("/api/ficha-musical")
+def api_ficha_musical():
+    tipo = (request.args.get("tipo") or "").strip().lower()
+    nombre = re.sub(r"\s+", " ", (request.args.get("nombre") or "").strip())[:180]
+    artista = re.sub(r"\s+", " ", (request.args.get("artista") or "").strip())[:180]
+    if tipo not in ("artista", "cancion") or not nombre or (tipo == "cancion" and not artista):
+        return jsonify({"error": "Indica si es artista o canción, el nombre y, para canciones, el artista."}), 400
+
+    def normalizar_clave(valor):
+        return unicodedata.normalize("NFKD", valor).encode("ascii", "ignore").decode("ascii").casefold().strip()
+
+    clave = "|".join((tipo, normalizar_clave(nombre), normalizar_clave(artista)))
+    if not _inicializar_db_fichas():
+        app.logger.warning("La ficha seguirá disponible sin almacenamiento duradero en esta petición.")
+
+    guardado = _leer_ficha_guardada(clave)
+    if guardado and guardado.get("version") == 1:
+        guardado["desde_cache"] = True
+        return jsonify(guardado)
+
+    with _CANDADOS_FICHA_LOCK:
+        candado = _CANDADOS_FICHA.setdefault(clave, threading.Lock())
+    with candado:
+        guardado = _leer_ficha_guardada(clave)
+        if guardado and guardado.get("version") == 1:
+            guardado["desde_cache"] = True
+            return jsonify(guardado)
+
+        fuentes = []
+        datos = {
+            "version": 1, "tipo": tipo, "nombre": nombre, "artista": artista,
+            "biografia": "", "historia": "", "curiosidad": "",
+            "datos_musicales": {}, "fuentes": [], "avisos": [],
+            "encontrado": False, "desde_cache": False
+        }
+
+        # MusicBrainz aporta identificación y metadatos estructurados, no relatos inventados.
+        try:
+            if tipo == "artista":
+                consulta = urlencode({"query": nombre, "fmt": "json", "limit": "5"})
+                mb = _musicbrainz_consultar("https://musicbrainz.org/ws/2/artist/?" + consulta)
+                candidatos = mb.get("artists", [])
+                esperado = normalizar_clave(nombre)
+                candidato = next((x for x in candidatos if normalizar_clave(x.get("name", "")) == esperado), None)
+                if candidato:
+                    datos["datos_musicales"].update({
+                        "nombre_oficial": candidato.get("name", ""),
+                        "tipo_artista": candidato.get("type", ""),
+                        "pais": candidato.get("country", ""),
+                        "formado_o_nacido": candidato.get("life-span", {}).get("begin", ""),
+                        "disuelto_o_fallecido": candidato.get("life-span", {}).get("end", ""),
+                        "musicbrainz_id": candidato.get("id", "")
+                    })
+                    fuentes.append({"titulo": "MusicBrainz — ficha del artista", "url": "https://musicbrainz.org/artist/" + candidato["id"]})
+            else:
+                consulta = urlencode({"query": 'recording:"' + nombre + '" AND artist:"' + artista + '"', "fmt": "json", "limit": "5"})
+                mb = _musicbrainz_consultar("https://musicbrainz.org/ws/2/recording/?" + consulta)
+                candidatos = mb.get("recordings", [])
+                n_cancion, n_artista = normalizar_clave(nombre), normalizar_clave(artista)
+                candidato = next((x for x in candidatos if normalizar_clave(x.get("title", "")) == n_cancion and any(normalizar_clave(a.get("name", "")) == n_artista for a in x.get("artist-credit", []) if isinstance(a, dict))), None)
+                if candidato:
+                    creditos = candidato.get("artist-credit", [])
+                    artistas_mb = " ".join(str(a.get("name", "")) for a in creditos if isinstance(a, dict))
+                    releases = candidato.get("releases", [])
+                    datos["datos_musicales"].update({
+                        "titulo_oficial": candidato.get("title", ""),
+                        "artista_creditado": artistas_mb,
+                        "fecha_publicacion": (releases[0].get("date", "") if releases else ""),
+                        "album": (releases[0].get("title", "") if releases else ""),
+                        "musicbrainz_id": candidato.get("id", "")
+                    })
+                    fuentes.append({"titulo": "MusicBrainz — grabación", "url": "https://musicbrainz.org/recording/" + candidato["id"]})
+        except Exception as error:
+            app.logger.info("MusicBrainz no disponible para %s: %s", nombre, error)
+            datos["avisos"].append("No se ha podido consultar MusicBrainz ahora mismo.")
+
+        # Last.fm solo se consulta cuando el administrador ha configurado una clave válida.
+        try:
+            if tipo == "artista":
+                last = _lastfm_consultar("artist.getinfo", {"artist": nombre, "lang": "es"})
+                info = (last or {}).get("artist", {})
+                wiki = info.get("bio", {}).get("content", "") or info.get("bio", {}).get("summary", "")
+                wiki = re.sub(r"<a\b[^>]*>.*?</a>", "", str(wiki), flags=re.I | re.S)
+                wiki = re.sub(r"<[^>]*>", " ", wiki).strip()
+                if wiki:
+                    datos["biografia"] = wiki[:4000]
+                    url_last = info.get("url") or ("https://www.last.fm/music/" + quote(nombre.replace(" ", "+")))
+                    fuentes.append({"titulo": "Last.fm — información del artista", "url": url_last})
+            else:
+                last = _lastfm_consultar("track.getinfo", {"artist": artista, "track": nombre})
+                track = (last or {}).get("track", {})
+                album = track.get("album", {}) if isinstance(track.get("album"), dict) else {}
+                if track:
+                    datos["datos_musicales"].setdefault("album", album.get("title", ""))
+                    datos["datos_musicales"]["oyentes_lastfm"] = track.get("listeners", "")
+                    datos["datos_musicales"]["reproducciones_lastfm"] = track.get("playcount", "")
+                    url_last = track.get("url") or ("https://www.last.fm/music/" + quote(artista.replace(" ", "+")) + "/_/" + quote(nombre.replace(" ", "+")))
+                    fuentes.append({"titulo": "Last.fm — información de la canción", "url": url_last})
+                    wiki = track.get("wiki", {}) if isinstance(track.get("wiki"), dict) else {}
+                    historia = wiki.get("content", "") or wiki.get("summary", "")
+                    historia = re.sub(r"<a\b[^>]*>.*?</a>", "", str(historia), flags=re.I | re.S)
+                    historia = re.sub(r"<[^>]*>", " ", historia).strip()
+                    if historia:
+                        datos["historia"] = historia[:4000]
+        except Exception as error:
+            app.logger.info("Last.fm no disponible para %s: %s", nombre, error)
+            datos["avisos"].append("Last.fm no ha devuelto información para esta consulta.")
+
+        # Reutiliza la comprobación de identidad de la ruta de Wikipedia ya existente.
+        try:
+            with app.test_request_context(
+                "/api/wikipedia?" + urlencode({"tipo": tipo, "nombre": nombre, "artista": artista})
+            ):
+                respuesta_wiki = api_wikipedia()
+                resp, status = respuesta_wiki if isinstance(respuesta_wiki, tuple) else (respuesta_wiki, 200)
+                wiki = resp.get_json() if hasattr(resp, "get_json") else {}
+            if status < 400 and wiki and wiki.get("encontrado") and wiki.get("fuente_tipo") == "wikipedia":
+                texto_wiki = str(wiki.get("resumen") or "").strip()
+                if tipo == "artista" and not datos["biografia"]:
+                    datos["biografia"] = texto_wiki[:4000]
+                elif tipo == "cancion" and not datos["historia"]:
+                    datos["historia"] = texto_wiki[:4000]
+                for fuente in wiki.get("fuentes", []):
+                    if fuente.get("url"):
+                        fuentes.append(fuente)
+                datos["encontrado"] = bool(texto_wiki or datos["datos_musicales"])
+        except Exception as error:
+            app.logger.info("Wikipedia no disponible para la ficha %s: %s", nombre, error)
+            datos["avisos"].append("Wikipedia no ha podido consultarse ahora mismo.")
+
+        # No se fabrican curiosidades: hasta integrar una fuente documentada, se indica claramente.
+        if not datos["curiosidad"]:
+            datos["avisos"].append("No se muestra una curiosidad porque todavía no hay una fuente documental específica confirmada.")
+
+        unicas = []
+        urls = set()
+        for fuente in fuentes:
+            url = str(fuente.get("url") or "").strip()
+            if url and url not in urls:
+                urls.add(url)
+                unicas.append({"titulo": str(fuente.get("titulo") or "Fuente original"), "url": url})
+        datos["fuentes"] = unicas
+        datos["encontrado"] = bool(datos["biografia"] or datos["historia"] or datos["datos_musicales"])
+        datos["guardado"] = _guardar_ficha(clave, datos)
+        return jsonify(datos)
+
+
 @app.get("/api/estado-actualizacion")
 def estado_actualizacion():
     with _candado_estado:
