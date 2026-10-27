@@ -54,6 +54,7 @@ def agregar_enlace_mi_musica(response):
 nav.navegacion-comun{display:flex;flex-flow:row wrap;align-items:center;gap:8px;padding:10px 14px;box-sizing:border-box;width:100%}
 nav.navegacion-comun a{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;margin:0!important;white-space:nowrap;text-decoration:none}
 nav.navegacion-comun a.activo{font-weight:700}
+#modal-info-musical[hidden]{display:none!important}
 @media(max-width:760px){nav.navegacion-comun{gap:6px;padding:8px}nav.navegacion-comun a{font-size:14px;padding:8px 10px}}
 </style>
 """
