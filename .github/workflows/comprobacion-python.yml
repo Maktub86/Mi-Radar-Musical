@@ -28,3 +28,6 @@ jobs:
       - name: Pruebas básicas de rutas y ventana
         working-directory: app
         run: python -c "import servidor; c=servidor.app.test_client(); p=c.get('/'); assert p.status_code == 200; assert b'mr-ficha-modal' in p.data; assert c.get('/api/ficha-musical').status_code == 400; print('Rutas y ventana comprobadas')"
+      - name: Probar fichas y caché
+        working-directory: app
+        run: python -m unittest discover -s . -p "test_*.py" -v
