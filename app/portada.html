@@ -11,6 +11,7 @@
 :root{color-scheme:dark;--panel:#1b1b2d;--texto:#f7f5ff;--suave:#b8b6cf;--rosa:#ff4fa3;--azul:#706bff;--verde:#55e6bd}
 *{box-sizing:border-box}
 body{margin:0;background:linear-gradient(140deg,#17152d,#10101c 55%,#26152e);color:var(--texto);font-family:Segoe UI,Arial,sans-serif;min-height:100vh}
+ .control-cantidad{display:flex;align-items:center;gap:8px;margin:4px 0 14px}.control-cantidad span{display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:38px;padding:0 12px;border-radius:10px;background:#ffffff12;border:1px solid #ffffff30;font-weight:800;font-size:16px}.control-cantidad button{width:38px;height:38px;padding:0;border-radius:10px;font-size:24px;line-height:1;background:linear-gradient(120deg,#706bff,#b72d83)}.control-cantidad button:disabled{opacity:.45;cursor:default}
 .ajustes-portada{position:relative;display:flex;justify-content:flex-end;align-items:center;margin-left:auto}.ajustes-portada>button{display:flex;align-items:center;gap:8px;background:#281442;border:1px solid #a77be4;border-radius:13px;padding:10px 13px;font-size:18px;color:#f7efff;cursor:pointer}.panel-ajustes{position:absolute;right:0;bottom:52px;width:min(280px,82vw);padding:15px;background:#21172f;border:1px solid #a77be4;border-radius:14px;box-shadow:0 12px 32px #0008;z-index:30}.panel-ajustes label{display:flex;align-items:center;gap:10px;font-size:14px}.panel-ajustes input{width:18px;height:18px;accent-color:#9b5de5}.panel-ajustes p{font-size:12px;color:#c9bfd8;margin:10px 0 0}@media(max-width:520px){.ajustes-portada>button span{display:none}}
 header{position:relative;padding:32px 6%;background:linear-gradient(110deg,#5727a5,#b72d83 65%,#f06a76)}
 .marca{font-size:13px;font-weight:800;letter-spacing:3px;text-transform:uppercase}
@@ -97,7 +98,8 @@ footer{text-align:center;color:var(--suave);font-size:12px;padding:35px}
 .estado-lista{color:var(--suave);font-size:13px;margin:10px 0}
 .enlace-fuente{color:#bcb7ff;font-size:13px;text-decoration:none}
 .lista-canciones{display:flex;flex-direction:column;gap:7px;margin-top:12px}
-.fila-cancion{display:grid;grid-template-columns:42px minmax(0,1fr) minmax(110px,150px);gap:12px;align-items:center;padding:10px 12px;background:var(--panel);border:1px solid #ffffff12;border-radius:12px}
+ .fila-cancion{display:grid;grid-template-columns:42px 52px minmax(0,1fr) minmax(110px,150px);gap:12px;align-items:center;padding:10px 12px;background:var(--panel);border:1px solid #ffffff12;border-radius:12px}
+ .miniatura-cancion{width:52px;height:52px;border-radius:8px;object-fit:cover;background:#ffffff12;display:flex;align-items:center;justify-content:center;overflow:hidden}.miniatura-cancion img{width:100%;height:100%;object-fit:cover;display:block}.miniatura-fallback{font-size:23px;color:var(--suave)}
 .puesto-cancion{font-size:18px;font-weight:800;color:var(--verde);text-align:center}
 .detalle-cancion{min-width:0}
 .titulo-cancion{font-weight:750;overflow-wrap:anywhere}
@@ -108,10 +110,11 @@ footer{text-align:center;color:var(--suave);font-size:12px;padding:35px}
 .fila-cancion .reproductor-muestra{grid-column:2 / -1;margin-top:0}
 .fila-cancion .reproductor-muestra audio{max-width:100%}
 @media(max-width:560px){
- .fila-cancion{grid-template-columns:32px minmax(0,1fr);gap:8px}
- .acciones-cancion{grid-column:2}
+ .fila-cancion{grid-template-columns:32px 44px minmax(0,1fr);gap:8px}
+ .miniatura-cancion{width:44px;height:44px}
+ .acciones-cancion{grid-column:3}
  .acciones-cancion .boton-muestra{width:auto}
- .fila-cancion .reproductor-muestra{grid-column:2}
+ .fila-cancion .reproductor-muestra{grid-column:2 / -1}
 }
 
 body[data-wikipedia-off="1"] .wiki-icon,body[data-wikipedia-off="1"] .boton-wikipedia,body[data-wikipedia-off="1"] .wiki{display:none!important}
@@ -160,9 +163,9 @@ body.modal-info-musical-abierto{overflow:hidden}
     <button id="single" class="activo" onclick="elegirTipo('Single')">🎵 Singles</button>
     <button id="album" onclick="elegirTipo('Album')">💿 Álbumes</button>
   </div>
-  <div class="botones" aria-label="Cantidad de resultados">
-    <button id="b12" class="activo" onclick="mostrar(12)">Ver 12</button>
-    <button id="b32" onclick="mostrar(32)">Ver 32</button>
+  <div class="control-cantidad" aria-label="Cantidad de lanzamientos">
+    <span id="cantidad-visible" aria-live="polite">12</span>
+    <button id="expandir-lista" type="button" aria-label="Mostrar hasta 32 lanzamientos" title="Mostrar hasta 32 lanzamientos">+</button>
   </div>
   <div id="estado">Cargando publicaciones…</div>
   <div id="ultima-actualizacion">Consultando última actualización…</div>
@@ -222,6 +225,9 @@ activarWikipedia.addEventListener('change',()=>{document.body.dataset.wikipediaO
 let publicaciones = [];
 let tipoSeleccionado = "Single";
 let cantidadSeleccionada = 12;
+const controlCantidad=document.getElementById("cantidad-visible");
+const botonExpandir=document.getElementById("expandir-lista");
+botonExpandir.addEventListener("click",()=>mostrar(cantidadSeleccionada===12?32:12));
 let audioActual = null;
 let temporizadorMuestra = null;
 let tarjetaReproduciendo = null;
@@ -246,8 +252,10 @@ function elegirTipo(tipo) {
 let solicitudPortada = 0;
 async function mostrar(cantidad) {
   cantidadSeleccionada = cantidad;
-  document.getElementById("b12").classList.toggle("activo", cantidad === 12);
-  document.getElementById("b32").classList.toggle("activo", cantidad === 32);
+  controlCantidad.textContent=String(cantidad);
+  botonExpandir.textContent=cantidad===12?"+":"−";
+  botonExpandir.setAttribute("aria-label",cantidad===12?"Mostrar hasta 32 lanzamientos":"Volver a mostrar 12 lanzamientos");
+  botonExpandir.title=cantidad===12?"Mostrar hasta 32 lanzamientos":"Volver a mostrar 12 lanzamientos";
   const lista = document.getElementById("lista");
   lista.innerHTML = "";
   const idSolicitud = ++solicitudPortada;
@@ -422,6 +430,17 @@ async function obtenerInfoPortada(tipo,nombre,artista){const clave=[tipo,nombre,
 const observadorWikiPortada=typeof IntersectionObserver!=='undefined'?new IntersectionObserver(es=>{for(const e of es){if(e.isIntersecting){observadorWikiPortada.unobserve(e.target);preverificarWikiPortada(e.target);}}},{rootMargin:'180px'}):null;
 async function preverificarWikiPortada(b){const d=await obtenerInfoPortada(b.dataset.wikiTipo,b.dataset.wikiNombre,b.dataset.wikiArtista||'');const contenido=b.dataset.wikiTipo==='artista'?d.biografia:d.informacion;if(d.encontrado&&contenido){b.textContent='ℹ';b.title='Información musical disponible';}else b.hidden=true;}
 function configurarIconosWiki(contenedor){ /* Los clics se gestionan por delegación para abrir una única ficha modal. */ }
+const cacheImagenesLista=new Map();
+const colaImagenesLista=[];let imagenesActivasLista=0;
+function despacharImagenesLista(){while(imagenesActivasLista<3&&colaImagenesLista.length){const tarea=colaImagenesLista.shift();imagenesActivasLista++;(async()=>{try{const url="https://itunes.apple.com/search?"+new URLSearchParams({term:(tarea.cancion.artista||"")+" "+(tarea.cancion.titulo||""),entity:"song",limit:"1",country:"ES"});const r=await fetch(url,{signal:AbortSignal.timeout(7000)});if(!r.ok)throw new Error();const d=await r.json();const item=(d.results||[])[0];if(item&&item.artworkUrl100){const src=item.artworkUrl100.replace(/\\d+x\\d+bb/, "100x100bb");cacheImagenesLista.set(String(tarea.cancion.artista||"")+"|"+String(tarea.cancion.titulo||""),src);tarea.img.src=src;tarea.img.hidden=false;tarea.fallback.hidden=true;}else cacheImagenesLista.set(String(tarea.cancion.artista||"")+"|"+String(tarea.cancion.titulo||""),"");}catch(e){}finally{imagenesActivasLista--;despacharImagenesLista();}})();}}
+function cargarImagenCancionLista(cancion,img,fallback){
+ const directa=String(cancion.imagen||cancion.thumbnail||cancion.portada||"").trim();
+ if(directa&&/^https?:\\/\\//i.test(directa)){img.src=directa;return;}
+ const clave=String(cancion.artista||"")+"|"+String(cancion.titulo||"");
+ if(cacheImagenesLista.has(clave)){const url=cacheImagenesLista.get(clave);if(url){img.src=url;img.hidden=false;fallback.hidden=true;}return;}
+ const observador=typeof IntersectionObserver!=="undefined"?new IntersectionObserver((entries)=>{if(entries.some(e=>e.isIntersecting)){observador.disconnect();colaImagenesLista.push({cancion,img,fallback});despacharImagenesLista();}},{rootMargin:"160px"}):null;
+ if(observador)observador.observe(img);else{colaImagenesLista.push({cancion,img,fallback});despacharImagenesLista();}
+}
 function mostrarLista(tipo,datos){
  const estado=document.getElementById("estado-"+tipo);
  const contenedor=document.getElementById("canciones-"+tipo);
@@ -438,8 +457,19 @@ function mostrarLista(tipo,datos){
   const puesto=document.createElement("div");
   puesto.className="puesto-cancion";
   puesto.textContent=String(cancion.puesto||"–");
+  const miniatura=document.createElement("div");
+  miniatura.className="miniatura-cancion";
+  const imagenCancion=document.createElement("img");
+  imagenCancion.alt="Portada de "+(cancion.titulo||"la canción");
+  imagenCancion.loading="lazy";imagenCancion.decoding="async";imagenCancion.referrerPolicy="no-referrer";
+  imagenCancion.hidden=true;
+  const fallbackMiniatura=document.createElement("span");fallbackMiniatura.className="miniatura-fallback";fallbackMiniatura.textContent="♪";
+  miniatura.append(imagenCancion,fallbackMiniatura);
+  imagenCancion.addEventListener("load",()=>{fallbackMiniatura.hidden=true;imagenCancion.hidden=false;});
+  imagenCancion.addEventListener("error",()=>{imagenCancion.hidden=true;fallbackMiniatura.hidden=false;});
   const detalle=document.createElement("div");
   detalle.className="detalle-cancion";
+  cargarImagenCancionLista(cancion,imagenCancion,fallbackMiniatura);
   detalle.innerHTML='<div class="titulo-cancion">'+escaparLista(cancion.titulo)+' <button class="wiki-icon" data-wiki-tipo="cancion" data-wiki-nombre="'+escaparLista(cancion.titulo||'')+'" data-wiki-artista="'+escaparLista(cancion.artista||'')+'" title="Consultar información de la canción" aria-label="Consultar información de la canción">ℹ</button></div><div class="artista-cancion">'+escaparLista(cancion.artista)+' <button class="wiki-icon" data-wiki-tipo="artista" data-wiki-nombre="'+escaparLista(cancion.artista||'')+'" title="Consultar información del artista" aria-label="Consultar información del artista">ℹ</button></div>';
   configurarIconosWiki(detalle);
   const acciones=document.createElement("div");
@@ -459,7 +489,7 @@ function mostrarLista(tipo,datos){
    const reproductor=document.createElement("div");
   reproductor.className="reproductor-muestra";reproductor.hidden=true;
   acciones.append(boton,botonMedia,botonYoutube);
-  fila.append(puesto,detalle,acciones,reproductor);
+  fila.append(puesto,miniatura,detalle,acciones,reproductor);
   boton.addEventListener("click",()=>reproducirMuestra({
    titulo:cancion.titulo||"",
    artista:cancion.artista||""
