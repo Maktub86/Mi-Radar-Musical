@@ -1503,37 +1503,60 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
         return None, "No se ha podido conectar con Gemini en este momento."
 
 
+
+_candado_cache_resumen = threading.Lock()
+
 @app.get("/api/resumen-musical")
 def api_resumen_musical():
-    """Devuelve fichas exclusivamente generadas por Gemini con búsqueda web; nunca usa fuentes alternativas."""
+    """Entrega solo fichas de Gemini y conserva las respuestas entre sesiones."""
     tipo = (request.args.get("tipo") or "").strip().lower()
-    nombre = re.sub(r"\s+", " ", (request.args.get("nombre") or "").strip())[:180]
-    artista = re.sub(r"\s+", " ", (request.args.get("artista") or "").strip())[:180]
+    nombre = re.sub(r"\\s+", " ", (request.args.get("nombre") or "").strip())[:180]
+    artista = re.sub(r"\\s+", " ", (request.args.get("artista") or "").strip())[:180]
     if tipo not in ("artista", "cancion") or not nombre or (tipo == "cancion" and not artista):
-        return jsonify({
-            "encontrado": False,
-            "motor": "ninguno",
-            "fuente_tipo": "ninguna",
-            "error": "Falta el artista o la canción."
-        }), 400
+        return jsonify({"encontrado": False, "motor": "ninguno", "fuente_tipo": "ninguna",
+                        "error": "Falta el artista o la canción."}), 400
+
+    clave_cache = _clave_resumen(tipo, nombre, artista)
+    ruta_cache = BASE / "resumenes_musicales.json"
+    with _candado_cache_resumen:
+        try:
+            datos_cache = json.loads(ruta_cache.read_text(encoding="utf-8"))
+            guardado = (datos_cache.get("items") or {}).get(clave_cache)
+            if isinstance(guardado, dict) and guardado.get("encontrado") and guardado.get("fuente_tipo") == "gemini":
+                return jsonify(guardado)
+        except (OSError, json.JSONDecodeError, AttributeError):
+            pass
 
     resultado_gemini, error_gemini = _buscar_gemini_musical(tipo, nombre, artista)
     if resultado_gemini:
+        with _candado_cache_resumen:
+            try:
+                datos_cache = json.loads(ruta_cache.read_text(encoding="utf-8"))
+                if not isinstance(datos_cache, dict):
+                    datos_cache = {"items": {}}
+            except (OSError, json.JSONDecodeError):
+                datos_cache = {"items": {}}
+            if not isinstance(datos_cache.get("items"), dict):
+                datos_cache["items"] = {}
+            datos_cache["items"][clave_cache] = resultado_gemini
+            datos_cache["actualizado"] = datetime.now(ZoneInfo("Europe/Madrid")).isoformat()
+            temporal = ruta_cache.with_suffix(".tmp")
+            try:
+                temporal.write_text(json.dumps(datos_cache, ensure_ascii=False, indent=2), encoding="utf-8")
+                temporal.replace(ruta_cache)
+            except OSError as error_cache:
+                app.logger.warning("No se pudo guardar la ficha Gemini en caché: %s", error_cache)
+                try:
+                    temporal.unlink(missing_ok=True)
+                except OSError:
+                    pass
         return jsonify(resultado_gemini)
 
-    # No devolver MusicBrainz, Last.fm ni Wikipedia si Gemini falla.
     mensaje = error_gemini or "Gemini no ha podido generar una ficha con fuentes verificables."
     app.logger.warning("No se generó ficha Gemini para %s (%s): %s", nombre, tipo, mensaje)
-    return jsonify({
-        "encontrado": False,
-        "nombre": nombre,
-        "titulo": nombre,
-        "fuente_tipo": "ninguna",
-        "motor": "ninguno",
-        "aviso_gemini": mensaje,
-        "error": mensaje,
-        "fuentes": []
-    }), 503
+    return jsonify({"encontrado": False, "nombre": nombre, "titulo": nombre,
+                    "fuente_tipo": "ninguna", "motor": "ninguno",
+                    "aviso_gemini": mensaje, "error": mensaje, "fuentes": []}), 503
 
 @app.get("/api/wikipedia")
 def api_wikipedia():
