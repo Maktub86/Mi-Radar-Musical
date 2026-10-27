@@ -13,14 +13,14 @@ main{max-width:1200px;margin:auto;padding:26px 5%}.intro{color:var(--suave);marg
 .controles{display:grid;grid-template-columns:minmax(220px,2fr) minmax(150px,1fr) minmax(180px,1.2fr);gap:9px;padding:15px;background:#ffffff08;border:1px solid var(--borde);border-radius:16px}
 input,select{width:100%;min-width:0;padding:12px;border:1px solid #ffffff2a;border-radius:10px;background:#10232c;color:#f3fdff;font:inherit}
 #resumen{color:var(--suave);font-size:14px;margin:15px 2px}
-.cancion{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:15px;margin:9px 0;background:linear-gradient(120deg,#132d37,#152631);border:1px solid var(--borde);border-radius:14px}
+.cancion{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px;margin:9px 0;background:linear-gradient(120deg,#132d37,#152631);border:1px solid var(--borde);border-radius:14px}.miniatura-musica{width:64px;height:64px;border-radius:9px;object-fit:cover;background:#ffffff12;display:flex;align-items:center;justify-content:center;overflow:hidden}.miniatura-musica img{width:100%;height:100%;object-fit:cover;display:block}.miniatura-musica .fallback{font-size:25px;color:var(--suave)}
 .titulo{font-weight:800;font-size:16px;line-height:1.4;overflow-wrap:anywhere}.artista{margin-top:5px;color:#c1dce2;font-size:14px;overflow-wrap:anywhere}.meta{margin-top:6px;color:#91b0ba;font-size:12px}
 .wiki{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin-left:6px;width:25px;height:25px;border-radius:6px;background:#e2e9ed;color:#26343b;text-decoration:none;font-weight:900;font-size:13px;border:1px solid #fff6;cursor:pointer;padding:0}.wiki:hover{background:#fff}.info-wikipedia{margin:9px 0;padding:11px;border-left:3px solid #aeb4c0;background:#ffffff0b;border-radius:7px;color:#e4e4ec;font-size:13px;line-height:1.5}.info-wikipedia a{color:#c9b0ff}
 .acciones{display:flex;gap:7px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
 button{border:1px solid #ffffff26;border-radius:10px;padding:10px 12px;color:white;background:#203b47;font-weight:750;cursor:pointer}button:hover{filter:brightness(1.15)}button:disabled{opacity:.55;cursor:wait}
 .b30{background:linear-gradient(120deg,#ff4fa3 0%,#8a4dff 48%,#20bde8 100%);border:1px solid #ffffff85;box-shadow:0 4px 15px #9d46ff4d,inset 0 1px 0 #ffffff45;letter-spacing:.2px}.b30:hover{filter:brightness(1.18);transform:translateY(-1px)}.descarga{background:#188653;border-color:#3dcf8b}.youtube{background:#e62129;border-color:#e62129}
 #modal[hidden]{display:none}#modal{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#000b;padding:16px}.caja{width:min(700px,100%);max-height:85vh;overflow:auto;padding:18px;background:#12232d;border:1px solid #ffffff30;border-radius:16px}.cabecera-modal{display:flex;align-items:center;justify-content:space-between;gap:12px}.cabecera-modal h2{margin:0;font-size:20px}.resultado{display:block;width:100%;margin:8px 0;text-align:left;background:#1c3541}.resultado span{display:block;margin-top:5px;font-size:12px;color:#aac7d0}.nota{color:#aac7d0;font-size:13px;line-height:1.5}
-@media(max-width:760px){.controles{grid-template-columns:1fr 1fr}.controles input{grid-column:1/-1}.cancion{grid-template-columns:1fr}.acciones{justify-content:flex-start}.acciones button{flex:1}.meta{line-height:1.5}}
+@media(max-width:760px){.controles{grid-template-columns:1fr 1fr}.controles input{grid-column:1/-1}.cancion{grid-template-columns:54px minmax(0,1fr)}.miniatura-musica{width:54px;height:54px}.cancion .acciones{grid-column:2;justify-content:flex-start}.acciones{justify-content:flex-start}.acciones button{flex:1}.meta{line-height:1.5}}
 @media(max-width:420px){.controles{grid-template-columns:1fr}.controles input{grid-column:auto}nav{padding:12px 4%}nav a{padding:9px 11px}}
 body[data-wikipedia-off="1"] .wiki{display:none!important}
 @media(max-width:760px){.controles{grid-template-columns:minmax(0,1fr);}.controles>*{width:100%;min-width:0;}#mostrar-filtro{width:100%;}}
@@ -68,6 +68,24 @@ document.getElementById('cerrar').addEventListener('click',()=>modal.hidden=true
 function crearBoton(texto,clase,titulo,accion){const b=document.createElement('button');b.type='button';b.className=clase;b.textContent=texto;b.title=titulo;b.addEventListener('click',()=>accion(b));return b}
 async function muestra(c,b){b.disabled=true;const original=b.textContent;b.textContent='Buscando…';try{const q=new URLSearchParams({titulo:c.titulo,artista:c.artista});const r=await fetch('/api/muestra?'+q);const d=await r.json();if(!r.ok)throw new Error(d.error||'No se encontró una muestra.');abrirModal('Muestra de 30 segundos',d.artista+' — '+d.titulo+' · Fuente: '+(d.fuente||'catálogo musical'));const audio=document.createElement('audio');audio.controls=true;audio.preload='none';audio.src=d.previewUrl;audio.style.width='100%';resultados.appendChild(audio);if(d.trackViewUrl){const a=document.createElement('a');a.href=d.trackViewUrl;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Ver canción en el catálogo';resultados.appendChild(a)}await audio.play();setTimeout(()=>{audio.pause();audio.currentTime=0},30000)}catch(e){abrirModal('Muestra no disponible',e.message||'No se ha podido encontrar la muestra.')}finally{b.disabled=false;b.textContent=original}}
 async function buscarVideos(c,modo,b){if(b)b.disabled=true;abrirModal(modo==='youtube'?'Elegir versión de YouTube':'Descargar con MediaHuman','Buscando resultados para '+c.artista+' — '+c.titulo+'…');try{const q=new URLSearchParams({titulo:c.titulo,artista:c.artista});const r=await fetch('/api/youtube/buscar?'+q);const d=await r.json();if(!r.ok)throw new Error(d.error||'No se encontraron resultados.');resultados.replaceChildren();if(!(d.resultados||[]).length)throw new Error('No hay resultados disponibles.');estadoModal.textContent=modo==='youtube'?'Pulsa una versión para abrirla en YouTube.':'Elige la versión correcta: se copiará su enlace para pegarlo en MediaHuman YouTube Downloader.';for(const v of d.resultados){const btn=document.createElement('button');btn.type='button';btn.className='resultado';const t=document.createElement('strong');t.textContent=v.titulo||'Vídeo sin título';const sub=document.createElement('span');sub.textContent=v.canal||'Canal desconocido';btn.append(t,sub);btn.addEventListener('click',async()=>{if(modo==='youtube'){window.open(v.url,'_blank','noopener,noreferrer');return}try{await navigator.clipboard.writeText(v.url);estadoModal.textContent='Enlace copiado. Pégalo en MediaHuman YouTube Downloader.';btn.textContent='✓ Enlace copiado: '+(v.titulo||'canción')}catch(e){window.prompt('Copia el enlace para MediaHuman:',v.url)}});resultados.appendChild(btn)}}catch(e){estadoModal.textContent=e.message||'No se pudo consultar YouTube.'}finally{if(b)b.disabled=false}}
+const cachePortadas=new Map();
+async function cargarPortadaCancion(c,img,fallback){
+ const clave=String(c.artista||"")+"|"+String(c.titulo||"");
+ if(cachePortadas.has(clave)){const url=cachePortadas.get(clave);if(url){img.src=url;img.hidden=false;fallback.hidden=true;}return;}
+ try{
+  const q=new URLSearchParams({term:(c.artista||"")+" "+(c.titulo||""),entity:"song",limit:"1",country:"ES"});
+  const r=await fetch("https://itunes.apple.com/search?"+q.toString(),{signal:AbortSignal.timeout(6000)});
+  if(!r.ok)return;
+  const d=await r.json(),item=(d.results||[])[0],url=item&&item.artworkUrl100?item.artworkUrl100.replace(/\\d+x\\d+bb/,"100x100bb"):"";
+  cachePortadas.set(clave,url);
+  if(url){img.src=url;img.hidden=false;fallback.hidden=true;}
+ }catch(e){}
+}
+function observarPortada(c,img,fallback){
+ if(typeof IntersectionObserver==="undefined"){cargarPortadaCancion(c,img,fallback);return;}
+ const obs=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){obs.disconnect();cargarPortadaCancion(c,img,fallback);}},{rootMargin:"140px"});
+ obs.observe(img.parentElement||img);
+}
 function mostrar(){
  const q=norm(buscar.value),tipo=modo.value,valor=valorFiltro.value;
  if(!q&&!tipo){resumen.textContent='Escribe una búsqueda o elige Año, Autor, Género, Décadas o Todos.';lista.replaceChildren();return;}
@@ -86,6 +104,11 @@ function mostrar(){
  lista.replaceChildren();const frag=document.createDocumentFragment();
  for(const c of f){
   const fila=document.createElement('article');fila.className='cancion';
+  const miniatura=document.createElement('div');miniatura.className='miniatura-musica';
+  const imagen=document.createElement('img');imagen.alt='Portada de '+(c.titulo||'la canción');imagen.loading='lazy';imagen.decoding='async';imagen.referrerPolicy='no-referrer';imagen.hidden=true;
+  const fallback=document.createElement('span');fallback.className='fallback';fallback.textContent='♪';
+  imagen.addEventListener('error',()=>{imagen.hidden=true;fallback.hidden=false;});imagen.addEventListener('load',()=>{fallback.hidden=true;imagen.hidden=false;});
+  miniatura.append(imagen,fallback);observarPortada(c,imagen,fallback);
   const info=document.createElement('div'),titulo=document.createElement('div');titulo.className='titulo';titulo.textContent=c.titulo;
   const wikiCancion=enlaceWiki('cancion',c.titulo,c.artista,'Consultar información de la canción');titulo.appendChild(wikiCancion);
   const artista=document.createElement('div');artista.className='artista';
@@ -94,7 +117,7 @@ function mostrar(){
   info.append(titulo,artista,meta);
   const acciones=document.createElement('div');acciones.className='acciones';
   acciones.append(crearBoton('▶ 30 s','b30','Escuchar muestra de 30 segundos',b=>muestra(c,b)),crearBoton('⬇','descarga','Buscar enlace para descargar con MediaHuman',b=>buscarVideos(c,'mediahuman',b)),crearBoton('▶','youtube','Buscar en YouTube',b=>buscarVideos(c,'youtube',b)));
-  fila.append(info,acciones);frag.appendChild(fila);
+  fila.append(miniatura,info,acciones);frag.appendChild(fila);
  }
  lista.appendChild(frag);
  // La información musical se consulta solo cuando se pulsa su botón.
