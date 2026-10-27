@@ -119,8 +119,8 @@ nav.navegacion-comun a.activo{font-weight:700}
    const r=await fetch('/api/ficha-musical?'+q.toString(),{headers:{'Accept':'application/json'}});
    const d=await r.json();if(id!==peticion)return;
    const bloques=[];
-   if(d.biografia)bloques.push('BIOGRAFÍA\\n'+d.biografia);
-   if(d.historia)bloques.push('INFORMACIÓN DE LA CANCIÓN\\n'+d.historia);
+   if(d.biografia)bloques.push('BIOGRAFÍA\n'+d.biografia);
+   if(d.historia)bloques.push('INFORMACIÓN DE LA CANCIÓN\n'+d.historia);
    const dm=d.datos_musicales||{};
    const filas=[];
    if(dm.nombre_oficial||dm.titulo_oficial)filas.push('Nombre oficial: '+(dm.nombre_oficial||dm.titulo_oficial));
@@ -131,9 +131,9 @@ nav.navegacion-comun a.activo{font-weight:700}
    if(dm.album)filas.push('Álbum: '+dm.album);
    if(dm.artista_creditado)filas.push('Artista acreditado: '+dm.artista_creditado);
    if(dm.compositores)filas.push('Compositores: '+dm.compositores);
-   if(filas.length)bloques.push('DATOS MUSICALES\\n'+filas.join('\\n'));
-   if(d.curiosidad)bloques.push('CURIOSIDAD DOCUMENTADA\\n'+d.curiosidad);
-   contenido.textContent=bloques.join('\\n\\n');
+   if(filas.length)bloques.push('DATOS MUSICALES\n'+filas.join('\n'));
+   if(d.curiosidad)bloques.push('CURIOSIDAD DOCUMENTADA\n'+d.curiosidad);
+   contenido.textContent=bloques.join('\n\n');
    estado.textContent=d.desde_cache?'Ficha recuperada de la caché guardada.':(d.encontrado?'Información disponible. Revisa las fuentes originales indicadas abajo.':'No se ha encontrado información fiable suficiente.');
    for(const aviso of (d.avisos||[])){const p=document.createElement('p');p.textContent=aviso;contenido.appendChild(p)}
    for(const f of (d.fuentes||[])){if(!f.url)continue;const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=f.titulo||'Consultar fuente original';fuentes.appendChild(a)}
