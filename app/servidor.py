@@ -1340,7 +1340,13 @@ def api_resumenes_disponibles():
     try:
         datos = json.loads(ruta.read_text(encoding="utf-8"))
         items = datos.get("items", {}) if isinstance(datos, dict) else {}
-        claves = [k for k, v in items.items() if isinstance(v, dict) and v.get("encontrado") and v.get("fuentes")]
+        claves = [
+            k for k, v in items.items()
+            if isinstance(v, dict) and v.get("encontrado") and v.get("fuentes")
+            and not any("wikipedia.org" in str(f.get("url") or "").casefold()
+                        or "wikimedia.org" in str(f.get("url") or "").casefold()
+                        for f in (v.get("fuentes") or []) if isinstance(f, dict))
+        ]
         return jsonify({"claves": claves, "actualizado": datos.get("actualizado")})
     except (OSError, json.JSONDecodeError, AttributeError):
         return jsonify({"claves": [], "actualizado": None})
@@ -1409,7 +1415,7 @@ def api_resumen_musical():
         payload = {
             "contents": [{"parts": [{"text": prompt}]}],
             "tools": [{"google_search": {}}],
-            "generationConfig": {"temperature": 0.2, "maxOutputTokens": 450}
+            "generationConfig": {"temperature": 0.2, "maxOutputTokens": 700}
         }
         req = Request(
             "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent",
