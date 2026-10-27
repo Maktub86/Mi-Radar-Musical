@@ -439,7 +439,7 @@ function cargarImagenCancionLista(cancion,img,fallback){
  const clave=String(cancion.artista||"")+"|"+String(cancion.titulo||"");
  if(cacheImagenesLista.has(clave)){const url=cacheImagenesLista.get(clave);if(url){img.src=url;img.hidden=false;fallback.hidden=true;}return;}
  const observador=typeof IntersectionObserver!=="undefined"?new IntersectionObserver((entries)=>{if(entries.some(e=>e.isIntersecting)){observador.disconnect();colaImagenesLista.push({cancion,img,fallback});despacharImagenesLista();}},{rootMargin:"160px"}):null;
- if(observador)observador.observe(img);else{colaImagenesLista.push({cancion,img,fallback});despacharImagenesLista();}
+ if(observador)observador.observe(img.parentElement||img);else{colaImagenesLista.push({cancion,img,fallback});despacharImagenesLista();}
 }
 function mostrarLista(tipo,datos){
  const estado=document.getElementById("estado-"+tipo);
@@ -462,10 +462,10 @@ function mostrarLista(tipo,datos){
   const imagenCancion=document.createElement("img");
   imagenCancion.alt="Portada de "+(cancion.titulo||"la canción");
   imagenCancion.loading="lazy";imagenCancion.decoding="async";imagenCancion.referrerPolicy="no-referrer";
-  imagenCancion.hidden=true;
+  imagenCancion.style.opacity="0";
   const fallbackMiniatura=document.createElement("span");fallbackMiniatura.className="miniatura-fallback";fallbackMiniatura.textContent="♪";
   miniatura.append(imagenCancion,fallbackMiniatura);
-  imagenCancion.addEventListener("load",()=>{fallbackMiniatura.hidden=true;imagenCancion.hidden=false;});
+  imagenCancion.addEventListener("load",()=>{fallbackMiniatura.hidden=true;imagenCancion.hidden=false;imagenCancion.style.opacity="1";});
   imagenCancion.addEventListener("error",()=>{imagenCancion.hidden=true;fallbackMiniatura.hidden=false;});
   const detalle=document.createElement("div");
   detalle.className="detalle-cancion";
