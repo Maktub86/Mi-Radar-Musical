@@ -316,8 +316,20 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
         method="POST"
     )
     try:
-        with urlopen(req, timeout=45) as resp:
-            respuesta = json.loads(resp.read().decode("utf-8"))
+        # Reintenta brevemente los errores 503 de saturación temporal de Google.
+        respuesta = None
+        for intento in range(3):
+            try:
+                with urlopen(req, timeout=45) as resp:
+                    respuesta = json.loads(resp.read().decode("utf-8"))
+                break
+            except HTTPError as error:
+                if error.code != 503 or intento == 2:
+                    raise
+                error.close()
+                time.sleep(1 + intento * 2)
+        if respuesta is None:
+            return None, "Gemini no ha devuelto una respuesta. Inténtalo de nuevo."
 
         estado = str(respuesta.get("status") or "").lower()
         if estado == "incomplete":
