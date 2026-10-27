@@ -1433,12 +1433,16 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
         "«Curiosidad documentada». No incluyas enlaces inventados ni afirmes que algo está "
         "verificado si no aparece en las fuentes consultadas."
     )
+    # La API Interactions es la vía recomendada para los modelos actuales de Gemini.
+    # store=False evita que Google conserve esta consulta en el historial de interacciones.
     cuerpo = {
-        "contents": [{"parts": [{"text": prompt}]}],
-        "tools": [{"google_search": {}}],
-        "generationConfig": {"temperature": 0.2, "maxOutputTokens": 700}
+        "model": "gemini-3.8-flash",
+        "input": prompt,
+        "tools": [{"type": "google_search"}],
+        "store": False,
+        "generation_config": {"temperature": 0.2, "max_output_tokens": 700}
     }
-    url = "https://generativelanguage.googleapis.com/v1beta/models/" + quote(modelo, safe="") + ":generateContent"
+    url = "https://generativelanguage.googleapis.com/v1beta/interactions"
     req = Request(
         url,
         data=json.dumps(cuerpo, ensure_ascii=False).encode("utf-8"),
@@ -1447,27 +1451,57 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
         method="POST"
     )
     try:
-        with urlopen(req, timeout=35) as resp:
+        with urlopen(req, timeout=45) as resp:
             respuesta = json.loads(resp.read().decode("utf-8"))
-        candidatos = respuesta.get("candidates") or []
-        if not candidatos:
-            return None, "Gemini no devolvió una respuesta utilizable."
-        candidato = candidatos[0]
-        partes = ((candidato.get("content") or {}).get("parts") or [])
-        resumen = "\n".join(str(p.get("text") or "").strip() for p in partes if p.get("text")).strip()
-        metadatos = candidato.get("groundingMetadata") or {}
-        chunks = metadatos.get("groundingChunks") or []
+
+        # Interactions devuelve los bloques de respuesta dentro de los pasos model_output.
+        pasos = respuesta.get("steps") or respuesta.get("output") or []
+        textos = []
         fuentes = []
         urls_vistas = set()
-        for chunk in chunks:
-            web = chunk.get("web") or {}
-            enlace = str(web.get("uri") or "").strip()
-            titulo = str(web.get("title") or "Fuente consultada").strip()
-            if enlace.startswith("https://") and enlace not in urls_vistas:
-                urls_vistas.add(enlace)
-                fuentes.append({"titulo": titulo[:160], "url": enlace})
-            if len(fuentes) >= 5:
-                break
+        for paso in pasos:
+            if not isinstance(paso, dict):
+                continue
+            if paso.get("type") not in (None, "model_output"):
+                continue
+            bloques = paso.get("content") or []
+            if isinstance(bloques, dict):
+                bloques = [bloques]
+            for bloque in bloques:
+                if not isinstance(bloque, dict):
+                    continue
+                texto_bloque = str(bloque.get("text") or "").strip()
+                if texto_bloque:
+                    textos.append(texto_bloque)
+                for anotacion in bloque.get("annotations") or []:
+                    if not isinstance(anotacion, dict):
+                        continue
+                    enlace = str(anotacion.get("url") or "").strip()
+                    titulo = str(anotacion.get("title") or "Fuente consultada").strip()
+                    if enlace.startswith("https://") and enlace not in urls_vistas:
+                        urls_vistas.add(enlace)
+                        fuentes.append({"titulo": titulo[:160], "url": enlace})
+                        if len(fuentes) >= 5:
+                            break
+        resumen = "\\n".join(textos).strip()
+        # Compatibilidad defensiva si la API devuelve el texto resumido en la raíz.
+        if not resumen:
+            resumen = str(respuesta.get("output_text") or "").strip()
+        if not fuentes:
+            # Algunas respuestas pueden incluir las anotaciones en la salida resumida.
+            for bloque in respuesta.get("content") or []:
+                if not isinstance(bloque, dict):
+                    continue
+                for anotacion in bloque.get("annotations") or []:
+                    if not isinstance(anotacion, dict):
+                        continue
+                    enlace = str(anotacion.get("url") or "").strip()
+                    titulo = str(anotacion.get("title") or "Fuente consultada").strip()
+                    if enlace.startswith("https://") and enlace not in urls_vistas:
+                        urls_vistas.add(enlace)
+                        fuentes.append({"titulo": titulo[:160], "url": enlace})
+                        if len(fuentes) >= 5:
+                            break
         if len(resumen) < 100:
             return None, "Gemini devolvió un texto demasiado corto para una ficha útil."
         if not fuentes:
