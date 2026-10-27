@@ -78,10 +78,7 @@ def preparar_resumen(cliente, tipo, nombre, artista, cache):
             if reintentar > datetime.now(timezone.utc):
                 return False
         except (ValueError, TypeError):
-            if previo.get("encontrado") and not any(
-                "wikipedia.org" in str(f.get("url") or "").casefold()
-                for f in (previo.get("fuentes") or []) if isinstance(f, dict)
-            ):
+            if previo.get("encontrado") and str(previo.get("fuente_tipo") or "").casefold() in ("lastfm", "wikipedia"):
                 return False
 
     query = {"tipo": tipo, "nombre": nombre}
@@ -152,12 +149,15 @@ def main():
         cache = {"version": 1, "actualizado": None, "items": {}}
 
     artistas, canciones = leer_objetivos()
-    pendientes_artistas = [a for a in artistas if clave("artista", a) not in cache["items"] or
-        (not cache["items"][clave("artista", a)].get("encontrado") and
-         cache["items"][clave("artista", a)].get("reintentar_despues", "") < ahora())]
-    pendientes_canciones = [p for p in canciones if clave("cancion", p[0], p[1]) not in cache["items"] or
-        (not cache["items"][clave("cancion", p[0], p[1])].get("encontrado") and
-         cache["items"][clave("cancion", p[0], p[1])].get("reintentar_despues", "") < ahora())]
+    def necesita_actualizacion(item):
+        if not isinstance(item, dict):
+            return True
+        if item.get("encontrado"):
+            return str(item.get("fuente_tipo") or "").casefold() not in ("lastfm", "wikipedia")
+        return item.get("reintentar_despues", "") < ahora()
+
+    pendientes_artistas = [a for a in artistas if necesita_actualizacion(cache["items"].get(clave("artista", a)))]
+    pendientes_canciones = [p for p in canciones if necesita_actualizacion(cache["items"].get(clave("cancion", p[0], p[1])))]
 
     print(f"Resúmenes pendientes: {len(pendientes_artistas)} artistas y {len(pendientes_canciones)} canciones.", flush=True)
     procesados = 0
