@@ -25,3 +25,6 @@ jobs:
       - name: Comprobar importación del servidor
         working-directory: app
         run: python -c "import servidor; print('Servidor importado correctamente')"
+      - name: Pruebas básicas de rutas y ventana
+        working-directory: app
+        run: python -c "import servidor; c=servidor.app.test_client(); p=c.get('/'); assert p.status_code == 200; assert b'mr-ficha-modal' in p.data; assert c.get('/api/ficha-musical').status_code == 400; print('Rutas y ventana comprobadas')"
