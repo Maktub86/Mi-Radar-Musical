@@ -1405,7 +1405,10 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
     if not clave:
         return None, "Falta configurar GEMINI_API_KEY en las variables de entorno del servicio."
 
-    modelo = (os.environ.get("GEMINI_MODEL") or "gemini-3.8-flash").strip()
+    # Gemini 2.5 Flash mantiene búsqueda web fundamentada en el nivel gratuito (límite compartido de 500 solicitudes/día).
+    # Se fija aquí para evitar que una variable antigua GEMINI_MODEL vuelva a seleccionar Gemini 3.x,
+    # cuya búsqueda web fundamentada no está disponible en el nivel gratuito.
+    modelo = "gemini-2.5-flash"
     entidad = f"la canción «{nombre}» de {artista}" if tipo == "cancion" else f"el artista «{nombre}»"
     if tipo == "artista":
         instrucciones = (
@@ -1493,9 +1496,20 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
         elif error.code in (401, 403):
             mensaje = "Gemini no acepta la clave o el proyecto no tiene permiso para usar la API."
         elif error.code == 429:
-            mensaje = "Gemini ha alcanzado un límite de uso o cuota; hay que revisar la cuota del proyecto."
+            mensaje = (
+                "Google ha rechazado la consulta por cuota o límite (HTTP 429). "
+                "Esto no demuestra que hayas consumido llamadas: la cuota disponible para el modelo "
+                "o la búsqueda web puede ser cero. "
+                + (f"Detalle de Google: {detalle[:450]}" if detalle else "Google no ha enviado más detalles.")
+            )
+        elif error.code == 400:
+            mensaje = "Gemini ha rechazado los parámetros de la petición (HTTP 400)."
+            if detalle:
+                mensaje += f" Detalle de Google: {detalle[:450]}"
         else:
             mensaje = f"Gemini devuelve HTTP {error.code}."
+            if detalle:
+                mensaje += f" Detalle de Google: {detalle[:450]}"
         app.logger.warning("%s Detalle API: %s", mensaje, detalle[:500])
         return None, mensaje
     except Exception as error:
