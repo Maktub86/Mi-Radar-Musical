@@ -92,7 +92,7 @@ nav.navegacion-comun a.activo{font-weight:700}
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)ocultar()});
  function textoCercano(b,selector){const n=b.closest(selector);return n?n.innerText||'':''}
  document.addEventListener('click',async e=>{
-  const b=e.target.closest('button.wiki-icon,button.boton-wikipedia');if(!b)return;
+  const b=e.target.closest('button.wiki-icon,button.boton-wikipedia,button.wiki');if(!b)return;
   const tipo=(b.dataset.wikiTipo||'').toLowerCase();
   let nombre=(b.dataset.wikiNombre||'').trim(),artista=(b.dataset.wikiArtista||'').trim();
   if(!nombre){
