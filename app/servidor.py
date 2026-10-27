@@ -135,6 +135,7 @@ nav.navegacion-comun a.activo{font-weight:700}
    if(dm.album)filas.push('Álbum: '+dm.album);
    if(dm.artista_creditado)filas.push('Artista acreditado: '+dm.artista_creditado);
    if(dm.compositores)filas.push('Compositores: '+dm.compositores);
+   if(dm.letristas)filas.push('Letra: '+dm.letristas);
    if(filas.length)bloques.push('DATOS MUSICALES\n'+filas.join('\n'));
    if(d.curiosidad)bloques.push('CURIOSIDAD DOCUMENTADA\n'+d.curiosidad);
    contenido.textContent=bloques.join('\n\n');
