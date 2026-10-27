@@ -40,7 +40,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A -- mi_radar_musical.csv lanzamientos.json portada.json app/portada.json app/listas_cache app/ultima_actualizacion.txt
+          git add -A -- mi_radar_musical.csv lanzamientos.json portada.json app/portada.json app/listas_cache app/resumenes_musicales.json app/ultima_actualizacion.txt
           if git diff --cached --quiet; then
             echo "No hay cambios que guardar."
           else
