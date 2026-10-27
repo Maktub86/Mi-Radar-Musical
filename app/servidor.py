@@ -517,11 +517,26 @@ function mostrarInfoWikipedia(contenedor,info,tipo){
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden){modal.hidden=true;if(modal._boton)modal._boton.focus();}});
   document.body.appendChild(modal);
  }
- document.getElementById('titulo-modal-info-musical').textContent=(tipo==='artista'?'Biografía y curiosidad: ':'Sobre la canción: ')+(info.nombre||info.titulo||'Información musical');
+ document.getElementById('titulo-modal-info-musical').textContent=(tipo==='artista'?'Biografía de ':'Sobre la canción: ')+(info.nombre||info.titulo||'Información musical');
  const cuerpo=document.getElementById('contenido-modal-info-musical');cuerpo.replaceChildren();
+ const motor=String(info.motor||info.fuente_tipo||'').toLowerCase();
+ let etiqueta='';
+ if(motor==='gemini'||motor==='google') etiqueta='✨ Información generada por Gemini (sin búsqueda web)';
+ else if(motor==='groq') etiqueta='⚡ Información generada por Groq (alternativa a Gemini)';
+ else if(motor==='web'||motor==='wikipedia') etiqueta='🌐 Información consultada en la web';
+ else etiqueta='Información musical generada automáticamente';
+ const atribucion=nodo('p','atribucion-motor',etiqueta);
+ atribucion.style.cssText='margin:0 0 12px;color:#c9b0ff;font-size:0.9em;font-weight:700';
+ cuerpo.appendChild(atribucion);
  const p=nodo('p','',info.resumen||'');p.style.whiteSpace='pre-line';cuerpo.appendChild(p);
- if(info.aviso_gemini){const aviso=nodo('p','','Aviso: '+info.aviso_gemini+' Esta ficha procede de una fuente alternativa, no de Gemini.');aviso.style.cssText='margin-top:14px;padding:10px;border-radius:8px;background:#5b3b162e;color:#ffd9a3;font-size:0.92em';cuerpo.appendChild(aviso);}
- (info.fuentes||[]).forEach(f=>{if(!f.url||!String(f.url).startsWith('https://'))return;const a=nodo('a','','Fuente: '+(f.titulo||f.url)+' ↗');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.style.cssText='display:block;margin-top:8px;color:#c9b0ff;font-weight:700';cuerpo.appendChild(a);});
+ const fuentesValidas=(info.fuentes||[]).filter(f=>f.url&&String(f.url).startsWith('https://'));
+ if(motor==='gemini'&&!fuentesValidas.length){
+  const avisoFuentes=nodo('p','','Gemini no ha proporcionado enlaces de fuentes para esta ficha.');
+  avisoFuentes.style.cssText='margin-top:12px;color:#c5c8d3;font-size:0.9em';
+  cuerpo.appendChild(avisoFuentes);
+ }
+ if(info.aviso_gemini){const aviso=nodo('p','',String(info.aviso_gemini));aviso.style.cssText='margin-top:14px;padding:10px;border-radius:8px;background:#5b3b162e;color:#ffd9a3;font-size:0.92em';cuerpo.appendChild(aviso);}
+ fuentesValidas.forEach(f=>{const a=nodo('a','','Fuente: '+(f.titulo||f.url)+' ↗');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.style.cssText='display:block;margin-top:8px;color:#c9b0ff;font-weight:700';cuerpo.appendChild(a);});
  modal._boton=contenedor.querySelector('button.boton-wikipedia')||null;modal.hidden=false;
 }
 let audioActivo=null;
