@@ -453,7 +453,7 @@ async function cargarTop(nombre,caja,boton,tipo='populares'){
  const etiqueta=recientes?'🆕 Éxitos recientes (5)':'⭐ Más populares (20)';
  const etiquetaOcultar=recientes?'Ocultar éxitos recientes':'Ocultar canciones populares';
  const etiquetaReintentar=recientes?'Reintentar éxitos recientes':'Reintentar canciones populares';
- if(!zona.hidden){zona.hidden=true;boton.textContent=etiqueta;return;}
+ if(!zona.hidden&&boton.dataset.error!=='1'){zona.hidden=true;boton.textContent=etiqueta;return;}
  zona.hidden=false;
  if(zona.dataset.cargado==='1'){boton.textContent=etiquetaOcultar;return;}
  zona.replaceChildren();boton.disabled=true;boton.textContent='Consultando Deezer…';
@@ -505,8 +505,10 @@ async function cargarTop(nombre,caja,boton,tipo='populares'){
    acciones.append(muestra,mediahuman,youtube);fila.append(detalle,acciones);zona.appendChild(fila);
   }
   zona.dataset.cargado='1';
+  zona.dataset.error='0';
   correcto=true;
  }catch(e){
+  zona.dataset.error='1';
   const mensaje=e.name==='AbortError'?'Deezer está tardando demasiado en responder. Inténtalo otra vez.':(e.message||'Error al consultar Deezer.');
   zona.appendChild(nodo('div','mensaje-pista',mensaje));
   boton.textContent=etiquetaReintentar;
