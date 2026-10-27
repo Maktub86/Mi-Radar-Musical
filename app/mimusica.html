@@ -97,7 +97,7 @@ function mostrar(){
   fila.append(info,acciones);frag.appendChild(fila);
  }
  lista.appendChild(frag);
- for(const b of lista.querySelectorAll('.wiki')){// La información se consulta solo al pulsar, no al cargar la pestaña.}
+ // La información musical se consulta solo cuando se pulsa su botón.
 }
 function cargarFiltros(){
  const opciones={
@@ -133,6 +133,18 @@ document.getElementById('mostrar-filtro').addEventListener('click',()=>{
  mostrar();
 });
 buscar.addEventListener('input',mostrar);
-fetch('/api/mi-musica',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error();return r.json()}).then(d=>{canciones=d;cargarFiltros();mostrar()}).catch(()=>{resumen.textContent='No se ha podido cargar la colección. Comprueba que el archivo de música está publicado.'});
+const CLAVE_CACHE_MUSICA='miRadarMusicalColeccionV1';
+function aplicarColeccionMusical(datos,desdeCache=false){
+ if(!Array.isArray(datos))throw new Error('La colección no tiene un formato válido.');
+ canciones=datos;cargarFiltros();mostrar();
+ if(desdeCache)resumen.textContent='Colección cargada desde la copia guardada en este dispositivo · '+canciones.length.toLocaleString('es-ES')+' canciones. Actualizando…';
+}
+let cacheMusicaLocal=null;
+try{const guardada=localStorage.getItem(CLAVE_CACHE_MUSICA);if(guardada)cacheMusicaLocal=JSON.parse(guardada);}catch(e){}
+if(Array.isArray(cacheMusicaLocal)){try{aplicarColeccionMusical(cacheMusicaLocal,true);}catch(e){}}
+fetch('/api/mi-musica',{cache:'no-store',signal:AbortSignal.timeout(12000)})
+ .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+ .then(datos=>{aplicarColeccionMusical(datos,false);try{localStorage.setItem(CLAVE_CACHE_MUSICA,JSON.stringify(datos));}catch(e){} })
+ .catch(()=>{if(Array.isArray(cacheMusicaLocal)){resumen.textContent='Colección guardada cargada sin conexión · '+canciones.length.toLocaleString('es-ES')+' canciones.';}else{resumen.textContent='No se ha podido cargar la colección. Reintenta en unos segundos; la copia local se guardará automáticamente cuando cargue.';}});
 </script>
 </body></html>
