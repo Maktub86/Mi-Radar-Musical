@@ -1397,7 +1397,7 @@ def _buscar_fallback_musical(tipo, nombre, artista=""):
 
 
 def _buscar_gemini_musical(tipo, nombre, artista=""):
-    """Genera una ficha en español con Gemini y fuentes obtenidas mediante Google Search."""
+    """Genera una ficha en español con Gemini sin búsqueda web."""
     clave = (os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or "").strip()
     if not clave:
         return None, "Falta configurar GEMINI_API_KEY en las variables de entorno del servicio."
@@ -1434,7 +1434,8 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
         "model": "gemini-3.6-flash",
         "input": prompt,
         "store": False,
-        "generation_config": {"temperature": 0.2, "max_output_tokens": 700}
+        "temperature": 0.2,
+        "max_output_tokens": 1800
     }
     url = "https://generativelanguage.googleapis.com/v1beta/interactions"
     req = Request(
@@ -1447,6 +1448,12 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
     try:
         with urlopen(req, timeout=45) as resp:
             respuesta = json.loads(resp.read().decode("utf-8"))
+
+        estado = str(respuesta.get("status") or "").lower()
+        if estado == "incomplete":
+            return None, "Gemini ha empezado la ficha, pero la respuesta ha quedado incompleta. Inténtalo de nuevo; no mostraremos una biografía cortada."
+        if estado in ("failed", "cancelled"):
+            return None, "Gemini no ha podido terminar la ficha. Inténtalo de nuevo."
 
         # La estructura de Interactions puede variar: extraemos todos los bloques de texto
         # sin depender de una única forma concreta de "steps" u "output".
@@ -1467,7 +1474,7 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
                     extraer_textos(elemento)
 
         extraer_textos(respuesta.get("steps") or respuesta.get("output") or [])
-        resumen = "\\n\\n".join(dict.fromkeys(textos)).strip()
+        resumen = "\n\n".join(dict.fromkeys(textos)).strip()
         if not resumen:
             resumen = str(respuesta.get("output_text") or "").strip()
 
