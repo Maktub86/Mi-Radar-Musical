@@ -411,13 +411,21 @@ function configurarIconosWiki(contenedor){
    const tipo=b.dataset.wikiTipo||'artista',nombre=b.dataset.wikiNombre||'',artista=b.dataset.wikiArtista||'';
    let caja=contenedor.querySelector('.info-wikipedia');
    if(caja){caja.remove();if(b.dataset.abierto==='1'){b.dataset.abierto='0';return;}}
-   caja=document.createElement('div');caja.className='info-wikipedia';caja.textContent='Buscando información…';contenedor.appendChild(caja);b.dataset.abierto='1';b.disabled=true;
+   caja=document.createElement('div');caja.className='info-wikipedia';caja.textContent='Consultando Gemini…';contenedor.appendChild(caja);b.dataset.abierto='1';b.disabled=true;
    const clave=[tipo,nombre,artista].join('|');
    try{
     const d=await obtenerInfoPortada(tipo,nombre,artista);caja.replaceChildren();
     const contenido=d.resumen||(tipo==='artista'?d.biografia:d.informacion);
-    if(d.encontrado&&contenido){const etiqueta=document.createElement('strong');etiqueta.textContent=tipo==='artista'?'Biografía: ':'Sobre la canción: ';caja.appendChild(etiqueta);const texto=document.createElement('span');texto.textContent=contenido+' ';caja.appendChild(texto);if(d.url){const a=document.createElement('a');a.href=d.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Fuente: '+(d.fuente||'fuente musical');caja.appendChild(a);}b.textContent='ℹ';}
-    else{caja.remove();b.hidden=true;}
+    if(d.encontrado&&contenido){
+     const motor=document.createElement('div');motor.className='fuente-info-musical';motor.textContent=d.motor==='gemini'||d.fuente_tipo==='gemini'?'✨ Información generada por Gemini con búsqueda web':(d.aviso_gemini?'Gemini no disponible; se ha usado una fuente alternativa':'Información musical');caja.appendChild(motor);
+     const etiqueta=document.createElement('strong');etiqueta.textContent=tipo==='artista'?'Biografía: ':'Sobre la canción: ';caja.appendChild(etiqueta);
+     const texto=document.createElement('span');texto.textContent=contenido+' ';caja.appendChild(texto);
+     if(d.fuentes&&d.fuentes.length){const lista=document.createElement('div');lista.className='fuentes-info-musical';const titulo=document.createElement('strong');titulo.textContent='Fuentes consultadas:';lista.appendChild(titulo);for(const fuente of d.fuentes.slice(0,5)){if(!fuente.url||!fuente.url.startsWith('https://'))continue;const a=document.createElement('a');a.href=fuente.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=fuente.titulo||'Consultar fuente';lista.appendChild(a);}caja.appendChild(lista);}
+     else if(d.url){const a=document.createElement('a');a.href=d.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Fuente: '+(d.fuente||'fuente musical');caja.appendChild(a);}
+     if(d.aviso_gemini){const aviso=document.createElement('p');aviso.textContent='Aviso: '+d.aviso_gemini;aviso.className='aviso-gemini';caja.appendChild(aviso);}
+     b.textContent='ℹ';
+    }
+    else{caja.textContent=d.error||'Gemini no ha podido generar una ficha para este elemento.';}
    }catch(e){caja.textContent='No se ha podido consultar la información musical. Pulsa de nuevo para reintentarlo.'}finally{b.disabled=false;}
   });
  }

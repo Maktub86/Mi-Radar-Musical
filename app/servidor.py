@@ -1503,6 +1503,7 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
         return None, "No se ha podido conectar con Gemini en este momento."
 
 
+@app.get("/api/wikipedia")
 @app.get("/api/resumen-musical")
 def api_resumen_musical():
     """Usa primero una ficha Gemini ya verificada; si no existe, consulta Gemini y luego alternativas."""
