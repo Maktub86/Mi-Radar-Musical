@@ -223,22 +223,36 @@ function despacharConsultaWikiMisartistas(){while(consultasWikiActivasMisartista
 function solicitarConsultaWikiMisartistas(url){return new Promise((resolve,reject)=>{colaConsultasWikiMisartistas.push({url,resolve,reject});despacharConsultaWikiMisartistas();});}
 async function obtenerInfoWiki(tipo,nombre,artista){const clave=[tipo,nombre,artista||''].join('|');let promesa=cacheWikipediaInfo.get(clave);if(!promesa){const q=new URLSearchParams({tipo,nombre,artista:artista||''});promesa=solicitarConsultaWikiMisartistas('/api/resumen-musical?'+q).then(r=>r.ok?r.json():{encontrado:false}).then(d=>{if(d.encontrado&&d.resumen){if(tipo==='artista')d.biografia=d.resumen;else d.informacion=d.resumen;d.url=d.url||(d.fuentes&&d.fuentes[0]&&d.fuentes[0].url)||'';d.fuente=d.fuente||(d.fuentes&&d.fuentes[0]&&d.fuentes[0].titulo)||'Fuente verificada';}return d;}).catch(()=>({encontrado:false}));cacheWikipediaInfo.set(clave,promesa);}return promesa;}
 async function preverificarInfoWiki(b){if(b.dataset.verificado==='1')return;b.dataset.verificando='1';const d=await obtenerInfoWiki(b.dataset.wikiTipo,b.dataset.wikiNombre,b.dataset.wikiArtista||'');b.dataset.verificando='0';b.dataset.verificado='1';const contenido=b.dataset.wikiTipo==='artista'?d.biografia:d.informacion;if(d.encontrado&&contenido){b.textContent=d.fuente_tipo==='web'?'🌐':'W';b.title=d.fuente_tipo==='web'?'Información encontrada en la web':'Información encontrada en Wikipedia';}else b.hidden=true;}
+function abrirModalInfoMusical(tipo,nombre,contenido,fuentes,boton){
+ let modal=document.getElementById('modal-info-musical');
+ if(!modal){
+  modal=document.createElement('div');modal.id='modal-info-musical';modal.hidden=true;
+  modal.style.cssText='position:fixed;inset:0;z-index:50000;background:#000b;display:flex;align-items:center;justify-content:center;padding:16px';
+  const caja=document.createElement('section');caja.style.cssText='width:min(680px,100%);max-height:85vh;overflow:auto;background:#171b29;color:#fff;border:1px solid #ffffff35;border-radius:16px;padding:20px;box-shadow:0 18px 60px #0009';
+  const cabecera=document.createElement('div');cabecera.style.cssText='display:flex;align-items:center;justify-content:space-between;gap:12px';
+  const titulo=document.createElement('h2');titulo.id='titulo-modal-info-musical';titulo.style.margin='0';cabecera.appendChild(titulo);
+  const cerrar=document.createElement('button');cerrar.type='button';cerrar.textContent='Cerrar ✕';cerrar.addEventListener('click',()=>{modal.hidden=true;if(modal._boton)modal._boton.focus();});cabecera.appendChild(cerrar);
+  const cuerpo=document.createElement('div');cuerpo.id='contenido-modal-info-musical';cuerpo.style.cssText='line-height:1.65;margin-top:14px;white-space:normal';
+  caja.append(cabecera,cuerpo);modal.appendChild(caja);modal.addEventListener('click',e=>{if(e.target===modal){modal.hidden=true;if(modal._boton)modal._boton.focus();}});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden){modal.hidden=true;if(modal._boton)modal._boton.focus();}});
+  document.body.appendChild(modal);
+ }
+ document.getElementById('titulo-modal-info-musical').textContent=(tipo==='artista'?'Biografía y curiosidad: ':'Sobre la canción: ')+nombre;
+ const cuerpo=document.getElementById('contenido-modal-info-musical');cuerpo.replaceChildren();
+ const p=document.createElement('p');p.textContent=contenido;cuerpo.appendChild(p);
+ (fuentes||[]).forEach(f=>{if(!f.url||!String(f.url).startsWith('https://'))return;const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Fuente: '+(f.titulo||f.url)+' ↗';a.style.cssText='display:block;margin-top:8px;color:#c9b0ff;font-weight:700';cuerpo.appendChild(a);});
+ modal._boton=boton||null;modal.hidden=false;
+}
 async function mostrarInfoWikipedia(tipo,nombre,artista,contenedor,boton){
- let caja=contenedor.querySelector(':scope > .info-wikipedia');
- if(caja){caja.remove();if(boton.dataset.abierto==='1'){boton.dataset.abierto='0';return;}}
- caja=document.createElement('div');caja.className='info-wikipedia';
- caja.textContent=tipo==='artista'?'Consultando biografía…':'Buscando información de la canción en Wikipedia…';
- contenedor.appendChild(caja);boton.dataset.abierto='1';boton.disabled=true;
- const clave=[tipo,nombre,artista||''].join('|');
+ boton.disabled=true;
  try{
-  const d=await obtenerInfoWiki(tipo,nombre,artista);caja.replaceChildren();
+  const d=await obtenerInfoWiki(tipo,nombre,artista);
   const contenido=tipo==='artista'?d.biografia:d.informacion;
-  if(d.encontrado&&contenido){
-   const tituloInfo=document.createElement('strong');tituloInfo.textContent=tipo==='artista'?'Biografía: ':'Sobre la canción: ';caja.appendChild(tituloInfo);
-   const texto=document.createElement('span');texto.textContent=contenido+' ';caja.appendChild(texto);
-   if(d.url){const link=document.createElement('a');link.href=d.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Fuente: '+(d.fuente||'Wikipedia');caja.appendChild(link);}
-  }else{caja.remove();boton.hidden=true;}
- }catch(e){caja.textContent='Wikipedia no está disponible ahora mismo.'}finally{boton.disabled=false;}
+  if(d.encontrado&&contenido){abrirModalInfoMusical(tipo,nombre,contenido,d.fuentes||(d.url?[{titulo:d.fuente||'Fuente consultada',url:d.url}]:[]),boton);}
+  else{boton.hidden=true;boton.style.display='none';}
+ }catch(e){
+  abrirModalInfoMusical(tipo,nombre,'No se ha podido cargar la información ahora mismo. Inténtalo de nuevo más tarde.',[],boton);
+ }finally{boton.disabled=false;}
 }
 function crearTarjetaArtista(a, destino){
   const nombreArtista=a.NombreOriginal||a.NombreNormalizado||'Sin nombre';
