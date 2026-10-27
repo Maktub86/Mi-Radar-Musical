@@ -71,13 +71,23 @@ def leer_objetivos():
 def preparar_resumen(cliente, tipo, nombre, artista, cache):
     k = clave(tipo, nombre, artista)
     previo = cache["items"].get(k)
+    if previo and previo.get("encontrado"):
+        fuentes_previas = previo.get("fuentes") or []
+        if any("wikipedia.org" in str(f.get("url") or "").casefold() for f in fuentes_previas if isinstance(f, dict)):
+            # Invalidar las fichas antiguas que dependían de Wikipedia para regenerarlas.
+            previo["encontrado"] = False
+            previo["fuentes"] = []
+            previo["reintentar_despues"] = ""
     if previo:
         try:
             reintentar = datetime.fromisoformat(previo.get("reintentar_despues", ""))
             if reintentar > datetime.now(timezone.utc):
                 return False
         except (ValueError, TypeError):
-            if previo.get("encontrado"):
+            if previo.get("encontrado") and not any(
+                "wikipedia.org" in str(f.get("url") or "").casefold()
+                for f in (previo.get("fuentes") or []) if isinstance(f, dict)
+            ):
                 return False
 
     query = {"tipo": tipo, "nombre": nombre}
@@ -87,18 +97,13 @@ def preparar_resumen(cliente, tipo, nombre, artista, cache):
     datos = respuesta.get_json(silent=True) or {}
     fuente_tipo = "gemini"
     if respuesta.status_code != 200 or not datos.get("encontrado"):
-        # Alternativa gratuita basada en Wikipedia; se rechazan páginas de búsqueda
-        # y resultados ambiguos. En canciones solo se guarda información real de artículo.
-        respuesta = cliente.get("/api/wikipedia", query_string=query)
-        datos = respuesta.get_json(silent=True) or {}
-        fuente_tipo = datos.get("fuente_tipo") or "ninguna"
-        if respuesta.status_code != 200 or not datos.get("encontrado") or fuente_tipo != "wikipedia":
-            cache["items"][k] = {
-                "tipo": tipo, "nombre": nombre, "artista": artista,
-                "encontrado": False, "fuentes": [], "comprobado": ahora(),
-                "reintentar_despues": (datetime.now(timezone.utc) + timedelta(days=REINTENTO_DIAS)).isoformat(timespec="seconds"),
-            }
-            return False
+        # No recurrir a Wikipedia: guardar el fallo para reintentarlo más adelante.
+        cache["items"][k] = {
+            "tipo": tipo, "nombre": nombre, "artista": artista,
+            "encontrado": False, "fuentes": [], "comprobado": ahora(),
+            "reintentar_despues": (datetime.now(timezone.utc) + timedelta(days=REINTENTO_DIAS)).isoformat(timespec="seconds"),
+        }
+        return False
 
     resumen = re.sub(r"\s+", " ", str(datos.get("resumen") or "")).strip()
     if not resumen or len(resumen) < 80:
@@ -110,7 +115,7 @@ def preparar_resumen(cliente, tipo, nombre, artista, cache):
         return False
 
     # Resúmenes cortos, legibles en móvil; conserva frases completas.
-    max_palabras = 115 if tipo == "artista" else 95
+    max_palabras = 220 if tipo == "artista" else 180
     palabras = resumen.split()
     if len(palabras) > max_palabras:
         resumen = " ".join(palabras[:max_palabras]).rsplit(" ", 1)[0].rstrip(" ,;:") + "…"
@@ -120,6 +125,8 @@ def preparar_resumen(cliente, tipo, nombre, artista, cache):
         {"titulo": str(f.get("titulo") or "Fuente consultada")[:120], "url": str(f.get("url") or "")}
         for f in fuentes
         if str(f.get("url") or "").startswith("https://")
+        and "wikipedia.org" not in str(f.get("url") or "").casefold()
+        and "wikimedia.org" not in str(f.get("url") or "").casefold()
     ][:4]
     if not fuentes:
         cache["items"][k] = {

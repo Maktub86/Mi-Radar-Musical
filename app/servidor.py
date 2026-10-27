@@ -1340,7 +1340,13 @@ def api_resumenes_disponibles():
     try:
         datos = json.loads(ruta.read_text(encoding="utf-8"))
         items = datos.get("items", {}) if isinstance(datos, dict) else {}
-        claves = [k for k, v in items.items() if isinstance(v, dict) and v.get("encontrado") and v.get("fuentes")]
+        claves = [
+            k for k, v in items.items()
+            if isinstance(v, dict) and v.get("encontrado") and v.get("fuentes")
+            and not any("wikipedia.org" in str(f.get("url") or "").casefold()
+                        or "wikimedia.org" in str(f.get("url") or "").casefold()
+                        for f in (v.get("fuentes") or []) if isinstance(f, dict))
+        ]
         return jsonify({"claves": claves, "actualizado": datos.get("actualizado")})
     except (OSError, json.JSONDecodeError, AttributeError):
         return jsonify({"claves": [], "actualizado": None})
@@ -1369,7 +1375,9 @@ def api_resumen_musical():
         datos_cache = json.loads(ruta_cache.read_text(encoding="utf-8"))
         ficha = (datos_cache.get("items") or {}).get(_clave_resumen(tipo, nombre, artista))
         if isinstance(ficha, dict):
-            if ficha.get("encontrado") and ficha.get("fuentes"):
+            fuentes_cache = ficha.get("fuentes") or []
+            usa_wikipedia = any("wikipedia.org" in str(f.get("url") or "").casefold() for f in fuentes_cache if isinstance(f, dict))
+            if ficha.get("encontrado") and fuentes_cache and not usa_wikipedia:
                 return jsonify(ficha)
             # Las fichas negativas no bloquean un nuevo intento cuando vence el plazo de reintento.
     except (OSError, json.JSONDecodeError, AttributeError):
@@ -1380,29 +1388,34 @@ def api_resumen_musical():
 
     if tipo == "artista":
         instruccion = (
-            "Escribe en español un resumen biográfico breve y una curiosidad interesante y verificable "
-            "sobre el artista o grupo indicado. Separa en dos apartados: «Resumen de su vida» y «Curiosidad». "
-            "En grupos, resume la historia del grupo en vez de inventar una vida individual. "
+            "Escribe en español una biografía musical sustanciosa y una curiosidad interesante y verificable "
+            "sobre el artista o grupo indicado. Para artistas, intenta ofrecer entre 180 y 230 palabras; "
+            "para grupos, explica su formación, trayectoria, estilo y relevancia. Separa en apartados: "
+            "«Trayectoria» y «Curiosidad». No inventes fechas, premios, relaciones ni datos personales. "
         )
         objetivo = "Artista o grupo: " + nombre
     else:
         instruccion = (
-            "Explica en español algo interesante y concreto sobre la canción indicada y su relación con el artista: "
-            "contexto de creación o publicación, significado conocido, historia o impacto cultural. "
-            "No inventes interpretaciones como si fueran declaraciones confirmadas. "
+            "Escribe en español una explicación musical informativa de entre 140 y 190 palabras sobre la canción "
+            "y su relación con el artista: contexto de creación o publicación, autores, álbum, significado declarado "
+            "por el artista, historia o impacto cultural, solo cuando existan fuentes que lo confirmen. "
+            "No inventes interpretaciones ni atribuyas declaraciones sin pruebas. "
         )
         objetivo = "Canción: " + nombre + "\nArtista: " + artista
     prompt = (
-        instruccion + "\nUsa búsqueda web para comprobar los datos. Si no encuentras fuentes fiables que "
-        "confirmen que la persona/grupo o canción corresponde exactamente a la consulta, responde únicamente "
-        "con el texto exacto NO_ENCONTRADO. No rellenes huecos inventando hechos. Máximo 130 palabras.\n\n"
+        instruccion + "\nUsa Google Search para investigar y contrastar varias fuentes. NO uses Wikipedia ni copies "
+        "información de Wikipedia. Prioriza la web oficial del artista o sello, entrevistas, medios musicales "
+        "reconocidos, Last.fm y otras bases de datos musicales fiables. Comprueba que la identidad coincide "
+        "exactamente con el nombre solicitado; esto es especialmente importante para artistas independientes "
+        "o poco conocidos. Si no encuentras fuentes fiables que confirmen la identidad, responde únicamente "
+        "NO_ENCONTRADO. No inventes datos.\n\n"
         + objetivo
     )
     try:
         payload = {
             "contents": [{"parts": [{"text": prompt}]}],
             "tools": [{"google_search": {}}],
-            "generationConfig": {"temperature": 0.2, "maxOutputTokens": 450}
+            "generationConfig": {"temperature": 0.2, "maxOutputTokens": 700}
         }
         req = Request(
             "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent",
@@ -1425,7 +1438,10 @@ def api_resumen_musical():
             web_info = chunk.get("web") or {}
             url_fuente = web_info.get("uri") or ""
             titulo_fuente = web_info.get("title") or "Fuente consultada"
-            if url_fuente.startswith("https://") and all(x.get("url") != url_fuente for x in fuentes):
+            if (url_fuente.startswith("https://")
+                    and "wikipedia.org" not in url_fuente.casefold()
+                    and "wikimedia.org" not in url_fuente.casefold()
+                    and all(x.get("url") != url_fuente for x in fuentes)):
                 fuentes.append({"titulo": titulo_fuente, "url": url_fuente})
         if not fuentes:
             return jsonify({"encontrado": False, "error": "Gemini no ha encontrado fuentes web que permitan verificar la información."})
