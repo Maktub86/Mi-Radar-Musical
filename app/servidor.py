@@ -1576,6 +1576,86 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
         return None, "No se ha podido conectar con Gemini en este momento."
 
 
+def _buscar_groq_musical(tipo, nombre, artista=""):
+    """Genera una ficha musical en español con Groq como alternativa a Gemini."""
+    clave = (os.environ.get("GROQ_API_KEY") or "").strip()
+    if not clave:
+        return None, "Gemini ha alcanzado su límite, pero falta configurar GROQ_API_KEY en Render."
+
+    entidad = f"la canción «{nombre}» de {artista}" if tipo == "cancion" else f"el artista «{nombre}»"
+    if tipo == "artista":
+        instrucciones = (
+            "Escribe una biografía informativa y concreta en español: comienzos, salto a la fama, "
+            "éxitos, estilo musical, colaboraciones y evolución profesional cuando se conozcan. "
+            "Termina con una curiosidad prudente si conoces una fiable."
+        )
+    else:
+        instrucciones = (
+            "Explica quién compuso e interpreta la canción, cuándo se publicó y en qué álbum si se sabe, "
+            "su estilo, contexto, recepción e impacto. Distingue la versión original de versiones posteriores "
+            "y termina con una curiosidad fiable si la conoces."
+        )
+    prompt = (
+        f"Prepara una ficha musical útil sobre {entidad}. {instrucciones} "
+        "Escribe en español natural entre 180 y 250 palabras. Usa los encabezados «Biografía» "
+        "(o «Sobre la canción») y «Curiosidad». No inventes fechas, cifras, anécdotas ni fuentes; "
+        "omite los detalles de los que no estés seguro. No incluyas enlaces ni afirmes haber consultado fuentes."
+    )
+    cuerpo = {
+        "model": "llama-3.3-70b-versatile",
+        "messages": [
+            {"role": "system", "content": "Eres un asistente especializado en música. Responde en español y sé prudente con los datos no verificados."},
+            {"role": "user", "content": prompt}
+        ],
+        "temperature": 0.4,
+        "max_tokens": 1200
+    }
+    req = Request(
+        "https://api.groq.com/openai/v1/chat/completions",
+        data=json.dumps(cuerpo, ensure_ascii=False).encode("utf-8"),
+        headers={"Content-Type": "application/json", "Authorization": "Bearer " + clave,
+                 "User-Agent": "MiRadarMusical/1.0"},
+        method="POST"
+    )
+    try:
+        with urlopen(req, timeout=35) as resp:
+            respuesta = json.loads(resp.read().decode("utf-8"))
+        resumen = str((((respuesta.get("choices") or [{}])[0].get("message") or {}).get("content")) or "").strip()
+        if len(resumen) < 80:
+            return None, "Groq no ha devuelto suficiente texto para crear la ficha."
+        return ({
+            "encontrado": True,
+            "nombre": nombre,
+            "titulo": nombre,
+            "resumen": resumen[:7000],
+            "biografia": resumen if tipo == "artista" else "",
+            "informacion": resumen if tipo == "cancion" else "",
+            "fuentes": [],
+            "fuente_tipo": "groq",
+            "fuente": "Groq (alternativa automática a Gemini)",
+            "motor": "groq",
+            "aviso_gemini": "Gemini ha alcanzado su límite o cuota; esta ficha se ha generado automáticamente con Groq."
+        }, None)
+    except HTTPError as error:
+        detalle = ""
+        try:
+            cuerpo_error = json.loads(error.read().decode("utf-8"))
+            detalle = str((cuerpo_error.get("error") or {}).get("message") or "")
+        except Exception:
+            pass
+        app.logger.warning("Groq devuelve HTTP %s: %s", error.code, detalle[:400])
+        if error.code == 429:
+            mensaje = "Groq también ha alcanzado su límite de uso. Inténtalo más tarde."
+        elif error.code in (401, 403):
+            mensaje = "Groq no acepta la clave API configurada en Render."
+        else:
+            mensaje = f"Groq devuelve HTTP {error.code}." + (f" {detalle[:300]}" if detalle else "")
+        return None, mensaje
+    except Exception as error:
+        app.logger.warning("No se pudo consultar Groq para %s: %s", nombre, error)
+        return None, "No se ha podido conectar con Groq en este momento."
+
+
 
 _candado_cache_resumen = threading.Lock()
 
@@ -1595,13 +1675,21 @@ def api_resumen_musical():
         try:
             datos_cache = json.loads(ruta_cache.read_text(encoding="utf-8"))
             guardado = (datos_cache.get("items") or {}).get(clave_cache)
-            if isinstance(guardado, dict) and guardado.get("encontrado") and guardado.get("fuente_tipo") == "gemini":
+            if isinstance(guardado, dict) and guardado.get("encontrado") and guardado.get("fuente_tipo") in ("gemini", "groq"):
                 return jsonify(guardado)
         except (OSError, json.JSONDecodeError, AttributeError):
             pass
 
     resultado_gemini, error_gemini = _buscar_gemini_musical(tipo, nombre, artista)
-    if resultado_gemini:
+    resultado_final = resultado_gemini
+    error_final = error_gemini
+    # El cambio automático a Groq se activa cuando Gemini devuelve HTTP 429 (cuota/límite).
+    if not resultado_final and error_gemini and "HTTP 429" in error_gemini:
+        resultado_final, error_groq = _buscar_groq_musical(tipo, nombre, artista)
+        if not resultado_final:
+            error_final = (error_gemini + " " + (error_groq or "")).strip()
+
+    if resultado_final:
         with _candado_cache_resumen:
             try:
                 datos_cache = json.loads(ruta_cache.read_text(encoding="utf-8"))
@@ -1611,7 +1699,7 @@ def api_resumen_musical():
                 datos_cache = {"items": {}}
             if not isinstance(datos_cache.get("items"), dict):
                 datos_cache["items"] = {}
-            datos_cache["items"][clave_cache] = resultado_gemini
+            datos_cache["items"][clave_cache] = resultado_final
             datos_cache["actualizado"] = datetime.now(ZoneInfo("Europe/Madrid")).isoformat()
             temporal = ruta_cache.with_suffix(".tmp")
             try:
@@ -1623,9 +1711,9 @@ def api_resumen_musical():
                     temporal.unlink(missing_ok=True)
                 except OSError:
                     pass
-        return jsonify(resultado_gemini)
+        return jsonify(resultado_final)
 
-    mensaje = error_gemini or "Gemini no ha podido generar una ficha con fuentes verificables."
+    mensaje = error_final or "Gemini no ha podido generar una ficha con fuentes verificables."
     app.logger.warning("No se generó ficha Gemini para %s (%s): %s", nombre, tipo, mensaje)
     return jsonify({"encontrado": False, "nombre": nombre, "titulo": nombre,
                     "fuente_tipo": "ninguna", "motor": "ninguno",
