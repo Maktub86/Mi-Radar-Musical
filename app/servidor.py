@@ -116,12 +116,28 @@ nav.navegacion-comun a.activo{font-weight:700}
   estado.textContent='Buscando información fiable…';contenido.replaceChildren();fuentes.replaceChildren();modal.hidden=false;cerrar.focus();
   try{
    const q=new URLSearchParams({tipo:tipoFinal,nombre:nombre});if(artista)q.set('artista',artista);
-   const r=await fetch('/api/wikipedia?'+q.toString(),{headers:{'Accept':'application/json'}});
+   const r=await fetch('/api/ficha-musical?'+q.toString(),{headers:{'Accept':'application/json'}});
    const d=await r.json();if(id!==peticion)return;
-   if(d.resumen){contenido.textContent=d.resumen;estado.textContent=d.encontrado?'Información encontrada. La fuente disponible se indica abajo.':(d.mensaje||'No se ha encontrado información suficiente.')}
-   else{estado.textContent=d.error||'No se ha encontrado información suficiente.'}
+   const bloques=[];
+   if(d.biografia)bloques.push('BIOGRAFÍA\\n'+d.biografia);
+   if(d.historia)bloques.push('INFORMACIÓN DE LA CANCIÓN\\n'+d.historia);
+   const dm=d.datos_musicales||{};
+   const filas=[];
+   if(dm.nombre_oficial||dm.titulo_oficial)filas.push('Nombre oficial: '+(dm.nombre_oficial||dm.titulo_oficial));
+   if(dm.tipo_artista)filas.push('Tipo: '+dm.tipo_artista);
+   if(dm.pais)filas.push('País: '+dm.pais);
+   if(dm.formado_o_nacido)filas.push('Inicio: '+dm.formado_o_nacido);
+   if(dm.fecha_publicacion)filas.push('Fecha: '+dm.fecha_publicacion);
+   if(dm.album)filas.push('Álbum: '+dm.album);
+   if(dm.artista_creditado)filas.push('Artista acreditado: '+dm.artista_creditado);
+   if(dm.compositores)filas.push('Compositores: '+dm.compositores);
+   if(filas.length)bloques.push('DATOS MUSICALES\\n'+filas.join('\\n'));
+   if(d.curiosidad)bloques.push('CURIOSIDAD DOCUMENTADA\\n'+d.curiosidad);
+   contenido.textContent=bloques.join('\\n\\n');
+   estado.textContent=d.desde_cache?'Ficha recuperada de la caché guardada.':(d.encontrado?'Información disponible. Revisa las fuentes originales indicadas abajo.':'No se ha encontrado información fiable suficiente.');
+   for(const aviso of (d.avisos||[])){const p=document.createElement('p');p.textContent=aviso;contenido.appendChild(p)}
    for(const f of (d.fuentes||[])){if(!f.url)continue;const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=f.titulo||'Consultar fuente original';fuentes.appendChild(a)}
-   if(d.url&&!fuentes.querySelector('a')){const a=document.createElement('a');a.href=d.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Consultar fuente original';fuentes.appendChild(a)}
+   if(!r.ok)estado.textContent=d.error||'No se ha podido recuperar la ficha.';
   }catch(err){if(id===peticion)estado.textContent='No se ha podido consultar la información ahora mismo. Puedes cerrar esta ventana e intentarlo más tarde.'}
  },true);
 })();
@@ -1878,7 +1894,7 @@ def api_ficha_musical():
                 unicas.append({"titulo": str(fuente.get("titulo") or "Fuente original"), "url": url})
         datos["fuentes"] = unicas
         datos["encontrado"] = bool(datos["biografia"] or datos["historia"] or datos["datos_musicales"])
-        datos["guardado"] = _guardar_ficha(clave, datos)
+        datos["guardado"] = _guardar_ficha(clave, datos) if datos["encontrado"] else False
         return jsonify(datos)
 
 
