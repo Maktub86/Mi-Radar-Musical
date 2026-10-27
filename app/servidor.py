@@ -1507,8 +1507,8 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
 def api_resumen_musical():
     """Devuelve fichas exclusivamente generadas por Gemini con búsqueda web; nunca usa fuentes alternativas."""
     tipo = (request.args.get("tipo") or "").strip().lower()
-    nombre = re.sub(r"\\s+", " ", (request.args.get("nombre") or "").strip())[:180]
-    artista = re.sub(r"\\s+", " ", (request.args.get("artista") or "").strip())[:180]
+    nombre = re.sub(r"\s+", " ", (request.args.get("nombre") or "").strip())[:180]
+    artista = re.sub(r"\s+", " ", (request.args.get("artista") or "").strip())[:180]
     if tipo not in ("artista", "cancion") or not nombre or (tipo == "cancion" and not artista):
         return jsonify({
             "encontrado": False,
