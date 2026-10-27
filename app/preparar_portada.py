@@ -1,6 +1,8 @@
 import json
+import re
 from pathlib import Path
-from datetime import date
+from datetime import date, datetime
+from zoneinfo import ZoneInfo
 
 BASE = Path(__file__).resolve().parent.parent
 DATOS = BASE / "lanzamientos.json"
@@ -18,10 +20,29 @@ for artista in datos.values():
     for id_publicacion, pub in artista.get("publicaciones", {}).items():
         fecha = str(pub.get("fecha") or "").strip()
 
-        try:
-            fecha_orden = date.fromisoformat(fecha[:10]).isoformat()
-        except ValueError:
-            fecha_orden = ""
+        # MusicBrainz puede aportar fechas completas, año-mes o solo año.
+        # Si la fecha conocida cae en el futuro, no se publica como novedad disponible.
+        coincidencia = re.match(r"^(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?$", fecha)
+        fecha_orden = ""
+        fecha_valida = True
+        if coincidencia:
+            anio_txt, mes_txt, dia_txt = coincidencia.groups()
+            try:
+                anio = int(anio_txt)
+                mes = int(mes_txt or 0)
+                dia = int(dia_txt or 0)
+                fecha_base = date(anio, mes or 1, dia or 1)
+                hoy = datetime.now(ZoneInfo("Europe/Madrid")).date()
+                if fecha_base > hoy:
+                    fecha_valida = False
+                else:
+                    fecha_orden = f"{anio:04d}-{mes:02d}-{dia:02d}"
+            except ValueError:
+                fecha_valida = False
+        elif fecha:
+            fecha_valida = False
+        if not fecha_valida:
+            continue
 
         publicaciones.append({
             "id": id_publicacion,
