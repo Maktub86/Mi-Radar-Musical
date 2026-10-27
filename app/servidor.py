@@ -54,11 +54,28 @@ def agregar_enlace_mi_musica(response):
 nav.navegacion-comun{display:flex;flex-flow:row wrap;align-items:center;gap:8px;padding:10px 14px;box-sizing:border-box;width:100%}
 nav.navegacion-comun a{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;margin:0!important;white-space:nowrap;text-decoration:none}
 nav.navegacion-comun a.activo{font-weight:700}
+#modal-info-musical[hidden]{display:none!important}
 @media(max-width:760px){nav.navegacion-comun{gap:6px;padding:8px}nav.navegacion-comun a{font-size:14px;padding:8px 10px}}
 </style>
 """
         if "</head>" in html:
             html = html.replace("</head>", css_nav + "</head>", 1)
+        # Los iconos informativos solo aparecen si la actualización diaria guardó
+        # una ficha con fuentes verificables. La normalización coincide con el preparador.
+        script_resumenes = r"""
+<script id="visibilidad-resumenes-cache">
+(function(){
+ function normalizar(v){return String(v||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]+/g,' ').trim();}
+ function clave(b){return [b.dataset.resumenTipo||'',normalizar(b.dataset.resumenNombre),normalizar(b.dataset.resumenArtista)].join('|');}
+ fetch('/api/resumenes-disponibles',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{
+  const disponibles=new Set(d.claves||[]);
+  document.querySelectorAll('[data-resumen-tipo]').forEach(b=>{b.hidden=!disponibles.has(clave(b));b.style.display=b.hidden?'none':'';});
+ }).catch(()=>{document.querySelectorAll('[data-resumen-tipo]').forEach(b=>{b.hidden=true;b.style.display='none';});});
+})();
+</script>
+"""
+        if "</body>" in html and "visibilidad-resumenes-cache" not in html:
+            html = html.replace("</body>", script_resumenes + "</body>", 1)
         response.set_data(html)
     return response
 
@@ -377,7 +394,7 @@ async function consultarGemini(tipo,nombre,artista){
   cacheGemini.set(clave,(async()=>{
    try{
     const q=new URLSearchParams({tipo,nombre,artista:artista||''});
-    const r=await fetch('/api/wikipedia?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(45000)});
+    const r=await fetch('/api/resumen-musical?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(45000)});
     const d=await r.json();
     if(!r.ok||!d.encontrado||!d.resumen)return {encontrado:false,mensaje:d.error||'No se ha encontrado información en español para este resultado.'};
     return d;
@@ -389,18 +406,26 @@ async function consultarGemini(tipo,nombre,artista){
  return resultado;
 }
 function mostrarInfoWikipedia(contenedor,info,tipo){
- const anterior=contenedor.querySelector('.info-wikipedia');
- if(anterior){anterior.remove();return;}
- const caja=nodo('div','info-wikipedia');
- caja.style.cssText='margin:8px 0 12px;padding:12px 14px;border-radius:10px;background:#ffffff0d;border:1px solid #ffffff20;color:#d9e8f4;line-height:1.5;font-size:13px';
- const contenido=info.resumen||'';
- const p=nodo('p','',contenido);p.style.whiteSpace='pre-line';caja.appendChild(p);
- (info.fuentes||[]).forEach(f=>{
-  if(!f.url||!(f.url.startsWith('https://')||f.url.startsWith('http://')))return;
-  const a=nodo('a','','Fuente: '+(f.titulo||f.url)+' ↗');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';
-  a.style.cssText='display:block;margin-top:6px;color:#9ecbff;font-weight:700';caja.appendChild(a);
- });
- contenedor.appendChild(caja);
+ let modal=document.getElementById('modal-info-musical');
+ if(!modal){
+  modal=nodo('div','');modal.id='modal-info-musical';modal.hidden=true;
+  modal.style.cssText='position:fixed;inset:0;z-index:50000;background:#000b;display:flex;align-items:center;justify-content:center;padding:16px';
+  const caja=nodo('section','');caja.style.cssText='width:min(680px,100%);max-height:85vh;overflow:auto;background:#171b29;color:#fff;border:1px solid #ffffff35;border-radius:16px;padding:20px;box-shadow:0 18px 60px #0009';
+  const cabecera=nodo('div','');cabecera.style.cssText='display:flex;align-items:center;justify-content:space-between;gap:12px';
+  const titulo=nodo('h2','','Información musical');titulo.id='titulo-modal-info-musical';titulo.style.margin='0';
+  const cerrar=nodo('button','','Cerrar ✕');cerrar.type='button';cerrar.addEventListener('click',()=>{modal.hidden=true;if(modal._boton)modal._boton.focus();});
+  cabecera.append(titulo,cerrar);
+  const cuerpo=nodo('div','');cuerpo.id='contenido-modal-info-musical';cuerpo.style.cssText='line-height:1.65;margin-top:14px';
+  caja.append(cabecera,cuerpo);modal.appendChild(caja);
+  modal.addEventListener('click',e=>{if(e.target===modal){modal.hidden=true;if(modal._boton)modal._boton.focus();}});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden){modal.hidden=true;if(modal._boton)modal._boton.focus();}});
+  document.body.appendChild(modal);
+ }
+ document.getElementById('titulo-modal-info-musical').textContent=(tipo==='artista'?'Biografía y curiosidad: ':'Sobre la canción: ')+(info.nombre||info.titulo||'Información musical');
+ const cuerpo=document.getElementById('contenido-modal-info-musical');cuerpo.replaceChildren();
+ const p=nodo('p','',info.resumen||'');p.style.whiteSpace='pre-line';cuerpo.appendChild(p);
+ (info.fuentes||[]).forEach(f=>{if(!f.url||!String(f.url).startsWith('https://'))return;const a=nodo('a','','Fuente: '+(f.titulo||f.url)+' ↗');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.style.cssText='display:block;margin-top:8px;color:#c9b0ff;font-weight:700';cuerpo.appendChild(a);});
+ modal._boton=contenedor.querySelector('button.boton-wikipedia')||null;modal.hidden=false;
 }
 let audioActivo=null;
 let temporizador=null;
@@ -416,6 +441,7 @@ function mostrarArtistas(){
   cabecera.appendChild(nodo('h2','',nombre+(artista.cancionesEnColeccion?' · '+artista.cancionesEnColeccion+' canciones en tu colección':'')));
   const huecoWiki=nodo('span','');huecoWiki.style.marginRight='auto';
   const wikiArtista=nodo('button','boton-wikipedia','G');wikiArtista.type='button';
+  wikiArtista.dataset.resumenTipo='artista';wikiArtista.dataset.resumenNombre=nombre;wikiArtista.dataset.resumenArtista='';
   wikiArtista.title='Consultar biografía y curiosidad de '+nombre;wikiArtista.setAttribute('aria-label','Consultar biografía de '+nombre);
   wikiArtista.addEventListener('click',async()=>{
    if(wikiArtista.disabled)return;wikiArtista.disabled=true;wikiArtista.textContent='…';
@@ -473,6 +499,7 @@ async function cargarTop(nombre,caja,boton,tipo='populares'){
    const tituloPista=nodo('span','pista-titulo',pista.titulo);
    const tituloLinea=nodo('div','');tituloLinea.appendChild(tituloPista);detalle.appendChild(tituloLinea);
    const wiki=nodo('button','boton-wikipedia','G');wiki.type='button';
+   wiki.dataset.resumenTipo='cancion';wiki.dataset.resumenNombre=pista.titulo;wiki.dataset.resumenArtista=pista.artista;
    wiki.title='Consultar información de '+pista.titulo+' de '+pista.artista;
    wiki.setAttribute('aria-label','Consultar información sobre '+pista.titulo+' de '+pista.artista);
    wiki.addEventListener('click',async()=>{
@@ -1200,6 +1227,25 @@ def _ejecutar_actualizacion():
 
 
 
+def _clave_resumen(tipo, nombre, artista=""):
+    def normalizar(valor):
+        valor = unicodedata.normalize("NFKD", str(valor or "")).encode("ascii", "ignore").decode("ascii").upper()
+        return re.sub(r"[^A-Z0-9]+", " ", valor).strip()
+    return "|".join((tipo, normalizar(nombre), normalizar(artista)))
+
+
+@app.get("/api/resumenes-disponibles")
+def api_resumenes_disponibles():
+    ruta = BASE / "resumenes_musicales.json"
+    try:
+        datos = json.loads(ruta.read_text(encoding="utf-8"))
+        items = datos.get("items", {}) if isinstance(datos, dict) else {}
+        claves = [k for k, v in items.items() if isinstance(v, dict) and v.get("encontrado") and v.get("fuentes")]
+        return jsonify({"claves": claves, "actualizado": datos.get("actualizado")})
+    except (OSError, json.JSONDecodeError, AttributeError):
+        return jsonify({"claves": [], "actualizado": None})
+
+
 @app.get("/api/resumen-musical")
 def api_resumen_musical():
     """Genera bajo demanda un resumen musical breve con Gemini y búsqueda web."""
@@ -1216,6 +1262,19 @@ def api_resumen_musical():
             app.logger.warning("No se pudo leer el archivo local de la clave de Gemini.")
     if tipo not in ("artista", "cancion") or not nombre or (tipo == "cancion" and not artista):
         return jsonify({"encontrado": False, "error": "Falta el artista o la canción."}), 400
+
+    # Primero servir la ficha preparada durante la actualización diaria.
+    ruta_cache = BASE / "resumenes_musicales.json"
+    try:
+        datos_cache = json.loads(ruta_cache.read_text(encoding="utf-8"))
+        ficha = (datos_cache.get("items") or {}).get(_clave_resumen(tipo, nombre, artista))
+        if isinstance(ficha, dict):
+            if ficha.get("encontrado") and ficha.get("fuentes"):
+                return jsonify(ficha)
+            # Las fichas negativas no bloquean un nuevo intento cuando vence el plazo de reintento.
+    except (OSError, json.JSONDecodeError, AttributeError):
+        pass
+
     if not api_key:
         return jsonify({"encontrado": False, "error": "Falta configurar la clave de Gemini (GEMINI_API_KEY) en Windows."}), 503
 
