@@ -78,7 +78,7 @@ def preparar_resumen(cliente, tipo, nombre, artista, cache):
             if reintentar > datetime.now(timezone.utc):
                 return False
         except (ValueError, TypeError):
-            if previo.get("encontrado") and str(previo.get("fuente_tipo") or "").casefold() in ("lastfm", "wikipedia"):
+            if previo.get("encontrado") and str(previo.get("fuente_tipo") or "").casefold() in ("gemini", "lastfm", "wikipedia"):
                 return False
 
     query = {"tipo": tipo, "nombre": nombre}
@@ -153,7 +153,7 @@ def main():
         if not isinstance(item, dict):
             return True
         if item.get("encontrado"):
-            return str(item.get("fuente_tipo") or "").casefold() not in ("lastfm", "wikipedia")
+            return str(item.get("fuente_tipo") or "").casefold() not in ("gemini", "lastfm", "wikipedia")
         return item.get("reintentar_despues", "") < ahora()
 
     pendientes_artistas = [a for a in artistas if necesita_actualizacion(cache["items"].get(clave("artista", a)))]

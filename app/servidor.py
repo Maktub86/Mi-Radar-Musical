@@ -512,6 +512,7 @@ function mostrarInfoWikipedia(contenedor,info,tipo){
  document.getElementById('titulo-modal-info-musical').textContent=(tipo==='artista'?'Biografía y curiosidad: ':'Sobre la canción: ')+(info.nombre||info.titulo||'Información musical');
  const cuerpo=document.getElementById('contenido-modal-info-musical');cuerpo.replaceChildren();
  const p=nodo('p','',info.resumen||'');p.style.whiteSpace='pre-line';cuerpo.appendChild(p);
+ if(info.aviso_gemini){const aviso=nodo('p','','Aviso: '+info.aviso_gemini+' Esta ficha procede de una fuente alternativa, no de Gemini.');aviso.style.cssText='margin-top:14px;padding:10px;border-radius:8px;background:#5b3b162e;color:#ffd9a3;font-size:0.92em';cuerpo.appendChild(aviso);}
  (info.fuentes||[]).forEach(f=>{if(!f.url||!String(f.url).startsWith('https://'))return;const a=nodo('a','','Fuente: '+(f.titulo||f.url)+' ↗');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.style.cssText='display:block;margin-top:8px;color:#c9b0ff;font-weight:700';cuerpo.appendChild(a);});
  modal._boton=contenedor.querySelector('button.boton-wikipedia')||null;modal.hidden=false;
 }
@@ -1343,7 +1344,7 @@ def api_resumenes_disponibles():
         claves = [
             k for k, v in items.items()
             if isinstance(v, dict) and v.get("encontrado") and len(str(v.get("resumen") or "").strip()) >= 100
-            and str(v.get("fuente_tipo") or "").casefold() in ("lastfm", "wikipedia")
+            and str(v.get("fuente_tipo") or "").casefold() in ("gemini", "lastfm", "wikipedia")
             and v.get("fuentes")
             and all(isinstance(f, dict) and str(f.get("url") or "").startswith("https://")
                     for f in (v.get("fuentes") or []))
@@ -1398,40 +1399,154 @@ def _buscar_fallback_musical(tipo, nombre, artista=""):
         return None
 
 
-@app.get("/api/wikipedia")
+def _buscar_gemini_musical(tipo, nombre, artista=""):
+    """Genera una ficha en español con Gemini y fuentes obtenidas mediante Google Search."""
+    clave = (os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or "").strip()
+    if not clave:
+        return None, "Falta configurar GEMINI_API_KEY en las variables de entorno del servicio."
+
+    modelo = (os.environ.get("GEMINI_MODEL") or "gemini-3.8-flash").strip()
+    entidad = f"la canción «{nombre}» de {artista}" if tipo == "cancion" else f"el artista «{nombre}»"
+    if tipo == "artista":
+        instrucciones = (
+            "Redacta una biografía breve pero sustanciosa en español: orígenes, trayectoria, "
+            "estilo musical y momentos relevantes. Termina con un apartado «Curiosidad documentada» "
+            "solo si encuentras un dato concreto respaldado por las fuentes; si no, dilo claramente."
+        )
+    else:
+        instrucciones = (
+            "Explica en español el contexto de la canción, sus autores, publicación o álbum cuando "
+            "pueda verificarse. Añade un apartado «Curiosidad documentada» con una anécdota sobre "
+            "su creación, grabación, versiones o impacto únicamente si las fuentes la respaldan. "
+            "No confundas una versión con la canción original."
+        )
+    prompt = (
+        f"Investiga {entidad}. {instrucciones} "
+        "Usa búsqueda web para contrastar la identidad y los datos. Prioriza fuentes oficiales, "
+        "entrevistas y medios musicales fiables; puedes usar enciclopedias como apoyo. "
+        "No inventes hechos, fechas, anécdotas ni fuentes. Si no hay una curiosidad verificable, "
+        "escribe claramente que no has encontrado una curiosidad suficientemente documentada. "
+        "Redacta entre 120 y 260 palabras, con los encabezados «Resumen» y "
+        "«Curiosidad documentada». No incluyas enlaces inventados ni afirmes que algo está "
+        "verificado si no aparece en las fuentes consultadas."
+    )
+    cuerpo = {
+        "contents": [{"parts": [{"text": prompt}]}],
+        "tools": [{"google_search": {}}],
+        "generationConfig": {"temperature": 0.2, "maxOutputTokens": 700}
+    }
+    url = "https://generativelanguage.googleapis.com/v1beta/models/" + quote(modelo, safe="") + ":generateContent"
+    req = Request(
+        url,
+        data=json.dumps(cuerpo, ensure_ascii=False).encode("utf-8"),
+        headers={"Content-Type": "application/json", "x-goog-api-key": clave,
+                 "User-Agent": "MiRadarMusical/1.0"},
+        method="POST"
+    )
+    try:
+        with urlopen(req, timeout=35) as resp:
+            respuesta = json.loads(resp.read().decode("utf-8"))
+        candidatos = respuesta.get("candidates") or []
+        if not candidatos:
+            return None, "Gemini no devolvió una respuesta utilizable."
+        candidato = candidatos[0]
+        partes = ((candidato.get("content") or {}).get("parts") or [])
+        resumen = "\n".join(str(p.get("text") or "").strip() for p in partes if p.get("text")).strip()
+        metadatos = candidato.get("groundingMetadata") or {}
+        chunks = metadatos.get("groundingChunks") or []
+        fuentes = []
+        urls_vistas = set()
+        for chunk in chunks:
+            web = chunk.get("web") or {}
+            enlace = str(web.get("uri") or "").strip()
+            titulo = str(web.get("title") or "Fuente consultada").strip()
+            if enlace.startswith("https://") and enlace not in urls_vistas:
+                urls_vistas.add(enlace)
+                fuentes.append({"titulo": titulo[:160], "url": enlace})
+            if len(fuentes) >= 5:
+                break
+        if len(resumen) < 100:
+            return None, "Gemini devolvió un texto demasiado corto para una ficha útil."
+        if not fuentes:
+            return None, "Gemini no devolvió fuentes web verificables para esta respuesta."
+        return ({
+            "encontrado": True,
+            "nombre": nombre,
+            "titulo": nombre,
+            "resumen": resumen[:7000],
+            "biografia": resumen if tipo == "artista" else "",
+            "informacion": resumen if tipo == "cancion" else "",
+            "fuentes": fuentes,
+            "fuente_tipo": "gemini",
+            "fuente": "Gemini con búsqueda web",
+            "motor": "gemini"
+        }, None)
+    except HTTPError as error:
+        detalle = ""
+        try:
+            cuerpo_error = json.loads(error.read().decode("utf-8"))
+            detalle = str((cuerpo_error.get("error") or {}).get("message") or "")
+        except Exception:
+            pass
+        if error.code == 402:
+            mensaje = "Gemini devuelve HTTP 402: la cuenta API puede necesitar saldo o facturación activa."
+        elif error.code in (401, 403):
+            mensaje = "Gemini no acepta la clave o el proyecto no tiene permiso para usar la API."
+        elif error.code == 429:
+            mensaje = "Gemini ha alcanzado un límite de uso o cuota; hay que revisar la cuota del proyecto."
+        else:
+            mensaje = f"Gemini devuelve HTTP {error.code}."
+        app.logger.warning("%s Detalle API: %s", mensaje, detalle[:500])
+        return None, mensaje
+    except Exception as error:
+        app.logger.warning("No se pudo consultar Gemini para %s: %s", nombre, error)
+        return None, "No se ha podido conectar con Gemini en este momento."
+
+
 @app.get("/api/resumen-musical")
 def api_resumen_musical():
-    """Busca primero un resumen de Last.fm y recurre a Wikipedia si hace falta; no usa Gemini."""
+    """Usa primero una ficha Gemini ya verificada; si no existe, consulta Gemini y luego alternativas."""
     tipo = (request.args.get("tipo") or "").strip().lower()
     nombre = re.sub(r"\s+", " ", (request.args.get("nombre") or "").strip())[:180]
     artista = re.sub(r"\s+", " ", (request.args.get("artista") or "").strip())[:180]
     if tipo not in ("artista", "cancion") or not nombre or (tipo == "cancion" and not artista):
         return jsonify({"encontrado": False, "error": "Falta el artista o la canción."}), 400
 
-    # Reutilizar únicamente fichas previas de fuentes que no dependen de Gemini
-    # ni de la ficha mínima de metadatos de MusicBrainz.
-    ruta_cache = BASE / "resumenes_musicales.json"
+    # Leer la caché una vez. Las fichas Gemini evitan llamadas repetidas y gasto innecesario.
+    ficha_cache = None
     try:
-        datos_cache = json.loads(ruta_cache.read_text(encoding="utf-8"))
-        ficha = (datos_cache.get("items") or {}).get(_clave_resumen(tipo, nombre, artista))
-        if isinstance(ficha, dict):
-            fuente_tipo = str(ficha.get("fuente_tipo") or "").casefold()
-            resumen = str(ficha.get("resumen") or "").strip()
-            fuentes = ficha.get("fuentes") or []
-            if (ficha.get("encontrado") and len(resumen) >= 100 and fuentes
-                    and fuente_tipo in ("lastfm", "wikipedia")
-                    and all(isinstance(x, dict) and str(x.get("url") or "").startswith("https://") for x in fuentes)):
-                return jsonify(ficha)
+        datos_cache = json.loads((BASE / "resumenes_musicales.json").read_text(encoding="utf-8"))
+        posible = (datos_cache.get("items") or {}).get(_clave_resumen(tipo, nombre, artista))
+        if isinstance(posible, dict):
+            fuente_tipo = str(posible.get("fuente_tipo") or "").casefold()
+            resumen_cache = str(posible.get("resumen") or "").strip()
+            fuentes_cache = posible.get("fuentes") or []
+            if (posible.get("encontrado") and len(resumen_cache) >= 100 and fuentes_cache
+                    and fuente_tipo in ("gemini", "lastfm", "wikipedia")
+                    and all(isinstance(x, dict) and str(x.get("url") or "").startswith("https://")
+                            for x in fuentes_cache)):
+                ficha_cache = dict(posible)
+                ficha_cache["motor"] = fuente_tipo
+                if fuente_tipo == "gemini":
+                    return jsonify(ficha_cache)
     except (OSError, json.JSONDecodeError, AttributeError):
         pass
 
-    # Fuente musical con texto descriptivo real; MusicBrainz se reserva para metadatos.
+    resultado_gemini, error_gemini = _buscar_gemini_musical(tipo, nombre, artista)
+    if resultado_gemini:
+        return jsonify(resultado_gemini)
+
+    # Si Gemini falla, mostrar la ficha alternativa guardada indicando claramente el motivo.
+    if ficha_cache:
+        ficha_cache["aviso_gemini"] = error_gemini
+        return jsonify(ficha_cache)
+
     fallback = _buscar_fallback_musical(tipo, nombre, artista)
     if fallback:
+        fallback["aviso_gemini"] = error_gemini
+        fallback["motor"] = "lastfm"
         return jsonify(fallback)
 
-    # Último recurso: la búsqueda de Wikipedia ya comprueba que la página corresponde
-    # al artista/canción y devuelve el extracto en español o traducido.
     try:
         respuesta = api_wikipedia()
         datos = respuesta.get_json(silent=True) if hasattr(respuesta, "get_json") else None
@@ -1442,14 +1557,17 @@ def api_resumen_musical():
                     and len(resumen) >= 100 and fuentes):
                 datos["biografia"] = resumen if tipo == "artista" else ""
                 datos["informacion"] = resumen if tipo == "cancion" else ""
+                datos["aviso_gemini"] = error_gemini
+                datos["motor"] = "wikipedia"
                 return jsonify(datos)
     except Exception:
         app.logger.exception("Falló el fallback de Wikipedia para %s", nombre)
 
     return jsonify({
         "encontrado": False,
-        "error": "No he encontrado un resumen fiable en Last.fm ni en Wikipedia.",
-        "fuente_tipo": "ninguna"
+        "error": error_gemini or "No he encontrado un resumen fiable en Gemini ni en las fuentes alternativas.",
+        "fuente_tipo": "ninguna",
+        "motor": "ninguno"
     }), 503
 
 @app.get("/api/wikipedia")
