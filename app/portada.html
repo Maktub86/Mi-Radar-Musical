@@ -3,12 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/icono-mrm.svg">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#6d28a8">
 <title>Mi Radar Musical</title>
 <style>
 :root{color-scheme:dark;--panel:#1b1b2d;--texto:#f7f5ff;--suave:#b8b6cf;--rosa:#ff4fa3;--azul:#706bff;--verde:#55e6bd}
 *{box-sizing:border-box}
 body{margin:0;background:linear-gradient(140deg,#17152d,#10101c 55%,#26152e);color:var(--texto);font-family:Segoe UI,Arial,sans-serif;min-height:100vh}
-.ajustes-portada{position:absolute;right:6%;top:18px;z-index:20}.ajustes-portada>button{display:flex;align-items:center;gap:8px;background:#24153d88;border:1px solid #ffffff80;border-radius:13px;padding:10px 13px;font-size:18px}.panel-ajustes{position:absolute;right:0;top:48px;width:min(280px,82vw);padding:15px;background:#21172f;border:1px solid #ffffff40;border-radius:14px;box-shadow:0 12px 32px #0008}.panel-ajustes label{display:flex;align-items:center;gap:10px;font-size:14px}.panel-ajustes input{width:18px;height:18px;accent-color:#ff4fa3}.panel-ajustes p{font-size:12px;color:#c9bfd8;margin:10px 0 0}@media(max-width:520px){header{padding-top:76px}.ajustes-portada{top:14px}.ajustes-portada>button span{display:none}}
+.ajustes-portada{position:relative;display:flex;justify-content:flex-end;align-items:center;margin-left:auto}.ajustes-portada>button{display:flex;align-items:center;gap:8px;background:#281442;border:1px solid #a77be4;border-radius:13px;padding:10px 13px;font-size:18px;color:#f7efff;cursor:pointer}.panel-ajustes{position:absolute;right:0;bottom:52px;width:min(280px,82vw);padding:15px;background:#21172f;border:1px solid #a77be4;border-radius:14px;box-shadow:0 12px 32px #0008;z-index:30}.panel-ajustes label{display:flex;align-items:center;gap:10px;font-size:14px}.panel-ajustes input{width:18px;height:18px;accent-color:#9b5de5}.panel-ajustes p{font-size:12px;color:#c9bfd8;margin:10px 0 0}@media(max-width:520px){.ajustes-portada>button span{display:none}}
 header{position:relative;padding:32px 6%;background:linear-gradient(110deg,#5727a5,#b72d83 65%,#f06a76)}
 .marca{font-size:13px;font-weight:800;letter-spacing:3px;text-transform:uppercase}
 h1{font-size:clamp(32px,6vw,58px);margin:12px 0 8px}
@@ -131,10 +134,9 @@ body.modal-info-musical-abierto{overflow:hidden}
 </style>
 </head>
 <body>
-<script>try{if(localStorage.getItem('mrWikipediaEnabled')==='0')document.body.dataset.wikipediaOff='1'}catch(e){}</script>
+<script>try{if(localStorage.getItem('mrWikipediaEnabled')!=='1')document.body.dataset.wikipediaOff='1'}catch(e){document.body.dataset.wikipediaOff='1'}</script>
 <header>
-<div class="ajustes-portada"><button id="boton-ajustes" type="button" aria-expanded="false" aria-controls="panel-ajustes" title="Ajustes">⚙️ <span>Ajustes</span></button><div id="panel-ajustes" class="panel-ajustes" hidden><label><input id="activar-wikipedia" type="checkbox" checked> Mostrar información musical</label><p>Activa o desactiva los botones de información musical</p></div></div>
-  <div class="marca">Tu universo musical</div>
+<div class="marca">Tu universo musical</div>
   <h1>Mi Radar Musical 🎧</h1>
   <p>Todo lo que suena en tu radar, en un solo lugar.</p>
 </header>
@@ -208,12 +210,12 @@ body.modal-info-musical-abierto{overflow:hidden}
 </section>
 
 </main>
-<footer>Mi Radar Musical · Datos de tu colección personal</footer>
+<footer style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap"><span>Mi Radar Musical · Datos de tu colección personal</span><div class="ajustes-portada"><button id="boton-ajustes" type="button" aria-expanded="false" aria-controls="panel-ajustes" title="Ajustes">⚙️ <span>Ajustes</span></button><div id="panel-ajustes" class="panel-ajustes" hidden><label><input id="activar-wikipedia" type="checkbox"> Mostrar iconos de información musical</label><p>Si lo desactivas, los iconos se ocultan. Las fichas que genere Gemini se seguirán guardando para reutilizarlas.</p></div></div></footer>
 <script>
 const panelAjustes=document.getElementById('panel-ajustes');
 const botonAjustes=document.getElementById('boton-ajustes');
 const activarWikipedia=document.getElementById('activar-wikipedia');
-try{activarWikipedia.checked=localStorage.getItem('mrWikipediaEnabled')!=='0'}catch(e){}
+try{activarWikipedia.checked=localStorage.getItem('mrWikipediaEnabled')==='1'}catch(e){activarWikipedia.checked=false}
 document.body.dataset.wikipediaOff=activarWikipedia.checked?'0':'1';
 botonAjustes.addEventListener('click',()=>{panelAjustes.hidden=!panelAjustes.hidden;botonAjustes.setAttribute('aria-expanded',String(!panelAjustes.hidden))});
 activarWikipedia.addEventListener('change',()=>{document.body.dataset.wikipediaOff=activarWikipedia.checked?'0':'1';try{localStorage.setItem('mrWikipediaEnabled',activarWikipedia.checked?'1':'0')}catch(e){}});
