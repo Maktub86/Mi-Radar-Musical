@@ -31,7 +31,7 @@ class FichasMusicalesTests(unittest.TestCase):
         with patch.object(servidor, "_musicbrainz_consultar", return_value=artista_mb) as consulta_mb, \
              patch.object(servidor, "_lastfm_consultar", return_value=None), \
              patch.object(servidor, "api_wikipedia", return_value=(
-                 servidor.jsonify({"encontrado": False, "fuente_tipo": "ninguna"}), 200
+                 servidor.app.response_class('{"encontrado": false, "fuente_tipo": "ninguna"}', mimetype="application/json"), 200
              )):
             primera = self.cliente.get(
                 "/api/ficha-musical?tipo=artista&nombre=Artista%20de%20prueba"
