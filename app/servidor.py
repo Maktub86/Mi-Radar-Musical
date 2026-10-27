@@ -99,6 +99,10 @@ nav.navegacion-comun a.activo{font-weight:700}
    const etiqueta=(b.getAttribute('aria-label')||b.title||'').trim();
    const coincidencia=etiqueta.match(/información(?: sobre| de)?\s+(.+?)\s+de\s+(.+)$/i);
    if(coincidencia){nombre=coincidencia[1].trim();artista=coincidencia[2].trim()}
+   else{
+    const biografia=etiqueta.match(/biografía(?: y curiosidad)? de\s+(.+)$/i);
+    if(biografia)nombre=biografia[1].trim();
+   }
   }
   if(!nombre){
    const fila=b.closest('.pista,.fila-cancion,.tarjeta,.publicacion,.artista-mejor')||b.parentElement;
