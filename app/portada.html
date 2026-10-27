@@ -25,7 +25,7 @@ main{max-width:1250px;margin:auto;padding:30px 6%}
 .cabecera{display:flex;align-items:end;justify-content:space-between;gap:15px;flex-wrap:wrap}
 h2{font-size:27px;margin:0 0 8px}
 .sub{color:var(--suave);margin:0 0 22px}
-.botones{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.selector-lanzamientos{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:4px 0 16px}.selector-lanzamientos .botones{display:flex;gap:8px;flex-wrap:wrap;margin:0}.selector-lanzamientos .botones button{min-height:42px;border-radius:13px;padding:10px 17px;background:#ffffff0d;border:1px solid #ffffff26;transition:background .18s,border-color .18s,transform .18s}.selector-lanzamientos .botones button.activo{background:linear-gradient(120deg,#706bff,#b72d83);border-color:#c6a5ff;box-shadow:0 4px 14px #7d45cf40}.selector-lanzamientos .botones button:hover{transform:translateY(-1px);border-color:#bda4ff}.control-cantidad{display:flex;align-items:center;gap:9px;margin:0;padding-left:16px;border-left:1px solid #ffffff25}.control-cantidad span{display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:38px;padding:0 12px;border-radius:10px;background:#ffffff12;border:1px solid #ffffff30;font-weight:800;font-size:16px}.control-cantidad button{width:38px;height:38px;padding:0;border-radius:10px;font-size:24px;line-height:1;background:linear-gradient(120deg,#706bff,#b72d83)}.control-cantidad button:disabled{opacity:.45;cursor:default}@media(max-width:520px){.selector-lanzamientos{gap:12px}.control-cantidad{padding-left:12px;gap:7px}}
 button{border:1px solid #ffffff25;border-radius:22px;padding:10px 17px;background:var(--panel);color:white;cursor:pointer;font-weight:700}
 button.activo{background:var(--azul);border-color:var(--azul)}
 #estado{color:var(--suave);margin:10px 0 20px}
@@ -159,13 +159,15 @@ body.modal-info-musical-abierto{overflow:hidden}
     <h2>Tu radar de lanzamientos</h2>
     <p class="sub">Explora los singles y álbumes de los artistas que sigues.</p>
   </div></div>
-  <div class="botones" aria-label="Tipo de lanzamiento">
-    <button id="single" class="activo" onclick="elegirTipo('Single')">🎵 Singles</button>
-    <button id="album" onclick="elegirTipo('Album')">💿 Álbumes</button>
-  </div>
-  <div class="control-cantidad" aria-label="Cantidad de lanzamientos">
-    <span id="cantidad-visible" aria-live="polite">12</span>
-    <button id="expandir-lista" type="button" aria-label="Mostrar hasta 32 lanzamientos" title="Mostrar hasta 32 lanzamientos">+</button>
+  <div class="selector-lanzamientos" aria-label="Selector de lanzamientos">
+    <div class="botones" role="group" aria-label="Tipo de lanzamiento">
+      <button id="single" class="activo" onclick="elegirTipo('Single')">🎵 Singles</button>
+      <button id="album" onclick="elegirTipo('Album')">💿 Álbumes</button>
+    </div>
+    <div class="control-cantidad" aria-label="Cantidad de lanzamientos">
+      <span id="cantidad-visible" aria-live="polite">12</span>
+      <button id="expandir-lista" type="button" aria-label="Mostrar hasta 32 lanzamientos" title="Mostrar hasta 32 lanzamientos">+</button>
+    </div>
   </div>
   <div id="estado">Cargando publicaciones…</div>
   <div id="ultima-actualizacion">Consultando última actualización…</div>
@@ -314,23 +316,69 @@ async function mostrar(cantidad) {
   }
 }
 
+function iconoBotonMuestra(boton, reproduciendo, texto='30 s') {
+  boton.innerHTML = reproduciendo
+    ? '<svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" focusable="false"><path d="M6 5h4v14H6zM14 5h4v14h-4z" fill="currentColor"/></svg><span>'+texto+'</span>'
+    : '<svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg><span>'+texto+'</span>';
+}
+function limpiarTemporizadorMuestra() {
+  if (temporizadorMuestra) clearTimeout(temporizadorMuestra);
+  temporizadorMuestra = null;
+}
+function programarFinMuestra(audio, boton, milisegundos) {
+  limpiarTemporizadorMuestra();
+  audio._muestraFinEn = Date.now() + milisegundos;
+  temporizadorMuestra = setTimeout(() => {
+    if (audioActual !== audio) return;
+    audio.pause();
+    audio.currentTime = 0;
+    audioActual = null;
+    audio._muestraRestante = 30000;
+    iconoBotonMuestra(boton, false);
+  }, milisegundos);
+}
 async function reproducirMuestra(publicacion, tarjeta, boton) {
   const zona = tarjeta.querySelector(".reproductor-muestra");
+  // El mismo botón pausa o reanuda la muestra ya cargada, sin volver a buscarla.
+  if (tarjetaReproduciendo === tarjeta && audioActual && zona.querySelector("audio")) {
+    const audio = audioActual;
+    if (!audio.paused) {
+      audio.pause();
+      if (audio._muestraFinEn) audio._muestraRestante = Math.max(0, audio._muestraFinEn - Date.now());
+      limpiarTemporizadorMuestra();
+      iconoBotonMuestra(boton, false);
+      boton.title = "Reanudar muestra de 30 segundos";
+    } else {
+      try {
+        await audio.play();
+        programarFinMuestra(audio, boton, audio._muestraRestante || 30000);
+        iconoBotonMuestra(boton, true);
+        boton.title = "Pausar muestra";
+      } catch (error) {
+        zona.textContent = "No se ha podido reanudar la muestra.";
+      }
+    }
+    return;
+  }
   if (audioActual) {
     audioActual.pause();
     audioActual.currentTime = 0;
     audioActual = null;
   }
-  if (temporizadorMuestra) clearTimeout(temporizadorMuestra);
+  limpiarTemporizadorMuestra();
   if (tarjetaReproduciendo) {
     const anterior = tarjetaReproduciendo.querySelector(".reproductor-muestra");
     if (anterior) { anterior.hidden = true; anterior.innerHTML = ""; }
     const botonAnterior = tarjetaReproduciendo.querySelector(".boton-muestra");
-    if (botonAnterior) { botonAnterior.disabled = false; botonAnterior.textContent = "▶ Escuchar muestra (30 s)"; }
+    if (botonAnterior) {
+      botonAnterior.disabled = false;
+      iconoBotonMuestra(botonAnterior, false);
+      botonAnterior.title = "Escuchar muestra de 30 segundos";
+    }
   }
   tarjetaReproduciendo = tarjeta;
   boton.disabled = true;
-  boton.textContent = "Buscando muestra…";
+  boton.textContent = "Buscando…";
   zona.hidden = false;
   zona.textContent = "Buscando una coincidencia en el catálogo musical…";
   try {
@@ -346,6 +394,7 @@ async function reproducirMuestra(publicacion, tarjeta, boton) {
     audio.controls = true;
     audio.preload = "none";
     audio.src = datos.previewUrl;
+    audio._muestraRestante = 30000;
     audioActual = audio;
     const atribucion = document.createElement("div");
     atribucion.textContent = `Muestra proporcionada por ${datos.fuente || "el catálogo musical"}: ${datos.artista} — ${datos.titulo}`;
@@ -367,18 +416,36 @@ async function reproducirMuestra(publicacion, tarjeta, boton) {
       zona.appendChild(document.createElement("br"));
       zona.appendChild(enlace);
     }
-    boton.textContent = "▶ Reproducir de nuevo";
-    await audio.play();
-    temporizadorMuestra = setTimeout(() => {
-      if (audioActual === audio) { audio.pause(); audio.currentTime = 0; }
-    }, 30000);
+    audio.addEventListener("play", () => {
+      if (audioActual === audio) {
+        iconoBotonMuestra(boton, true);
+        boton.title = "Pausar muestra";
+      }
+    });
+    audio.addEventListener("pause", () => {
+      if (audioActual === audio && audio.currentTime > 0 && !audio.ended && temporizadorMuestra) {
+        if (audio._muestraFinEn) audio._muestraRestante = Math.max(0, audio._muestraFinEn - Date.now());
+        limpiarTemporizadorMuestra();
+        iconoBotonMuestra(boton, false);
+        boton.title = "Reanudar muestra de 30 segundos";
+      }
+    });
     audio.addEventListener("ended", () => {
-      if (temporizadorMuestra) clearTimeout(temporizadorMuestra);
-      boton.disabled = false;
-    }, { once: true });
+      if (audioActual === audio) {
+        limpiarTemporizadorMuestra();
+        audioActual = null;
+        iconoBotonMuestra(boton, false);
+        boton.title = "Escuchar muestra de 30 segundos";
+      }
+    });
+    await audio.play();
+    programarFinMuestra(audio, boton, 30000);
+    iconoBotonMuestra(boton, true);
+    boton.title = "Pausar muestra";
   } catch (error) {
     zona.textContent = error.message || "No se ha podido reproducir la muestra.";
-    boton.textContent = "▶ Intentar de nuevo";
+    iconoBotonMuestra(boton, false);
+    boton.title = "Intentar reproducir la muestra";
   } finally {
     boton.disabled = false;
   }
