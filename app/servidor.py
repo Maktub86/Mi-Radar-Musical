@@ -287,6 +287,8 @@ main{max-width:1100px;margin:auto;padding:28px 5%}
 .artista-mejor{background:var(--panel);border:1px solid #ffffff18;border-radius:14px;margin:10px 0;overflow:hidden}
 .cabecera-artista{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 17px}
 .cabecera-artista h2{font-size:18px;margin:0}
+.botones-ranking{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.botones-ranking button{font-size:13px;padding:9px 11px}
 button{cursor:pointer;border:0;border-radius:9px;padding:10px 13px;background:linear-gradient(100deg,#706bff,#b72d83);color:#fff;font-weight:700}
 button:disabled{opacity:.55;cursor:wait}
 .canciones-artista{padding:0 16px 14px}
@@ -329,7 +331,7 @@ button:disabled{opacity:.55;cursor:wait}
 @media(max-width:600px){.cabecera-artista{align-items:flex-start;flex-direction:column}.pista{grid-template-columns:1fr}.acciones-pista{justify-content:flex-start}}
 </style></head>
 <body>
-<header><div>Tu universo musical</div><h1>⭐ Lo mejor</h1><p>⭐ Pulsa la estrella para ver tus 20 artistas con más canciones en tu colección y descubrir sus 20 temas más populares, ordenados por año.</p></header>
+<header><div>Tu universo musical</div><h1>⭐ Lo mejor</h1><p>Consulta los temas más populares de cada artista o descubre sus éxitos recientes.</p></header>
 <nav><a href="/">🏠 Portada</a><a href="/listas/youtube">▶ YouTube</a><a href="/listas/los40">🎵 LOS40</a><a href="/listas/canal-fiesta">📻 Canal Fiesta</a><a class="activo" href="/lo-mejor">⭐ Lo mejor</a><a href="/programas">🧰 Programas</a><a href="/artistas">🎤 Mis artistas</a></nav>
 <main><input id="buscar-artista" type="search" placeholder="Buscar artista de tu lista…"><div id="alfabeto-lo-mejor" class="barra-alfabetica" aria-label="Buscar por inicial"></div><div id="letra-actual" hidden aria-live="polite"></div><div id="estado-lo-mejor" role="status">Cargando tus artistas…</div><div id="artistas-lo-mejor"></div></main>
 <div id="modal-youtube" hidden role="dialog" aria-modal="true" aria-labelledby="titulo-modal-youtube"><div class="modal-caja"><div class="modal-top"><h2 id="titulo-modal-youtube">Elegir versión para MediaHuman</h2><button id="cerrar-modal" class="boton-secundario">Cerrar ✕</button></div><p id="estado-youtube">Buscando en YouTube…</p><div id="reproductor-completo"></div><div id="resultados-youtube"></div></div></div>
@@ -427,25 +429,40 @@ function mostrarArtistas(){
    }finally{wikiArtista.disabled=false;wikiArtista.textContent='G';}
   });
   huecoWiki.appendChild(wikiArtista);cabecera.appendChild(huecoWiki);
-  const boton=nodo('button','','Ver sus 20 canciones');
-  boton.addEventListener('click',()=>cargarTop(nombre,caja,boton));
-  cabecera.appendChild(boton);
+  const botonesRanking=nodo('div','botones-ranking');
+  const boton=nodo('button','','⭐ Más populares (20)');
+  boton.addEventListener('click',()=>cargarTop(nombre,caja,boton,'populares'));
+  const botonRecientes=nodo('button','','🆕 Éxitos recientes (5)');
+  botonRecientes.addEventListener('click',()=>cargarTop(nombre,caja,botonRecientes,'recientes'));
+  botonesRanking.append(boton,botonRecientes);
+  cabecera.appendChild(botonesRanking);
   caja.appendChild(cabecera);
-  const canciones=nodo('div','canciones-artista');
+  const canciones=nodo('div','canciones-artista canciones-populares');
   canciones.hidden=true;
   caja.appendChild(canciones);
+  const recientes=nodo('div','canciones-artista canciones-recientes');
+  recientes.hidden=true;
+  caja.appendChild(recientes);
   contenedor.appendChild(caja);
  }
  estado.textContent=filtrados.length+' artistas. Pulsa «Ver sus 20 canciones» para consultar su ranking.';for(const b of alfabetoLoMejor.querySelectorAll('button'))b.classList.toggle('activa',b.dataset.letra===inicialSeleccionada);
 }
-async function cargarTop(nombre,caja,boton){
- const zona=caja.querySelector('.canciones-artista');
- if(!zona.hidden&&boton.textContent!=='Reintentar las 20 canciones'){zona.hidden=true;boton.textContent='Ver sus 20 canciones';return;}
- zona.hidden=false;zona.replaceChildren();boton.disabled=true;boton.textContent='Consultando Deezer…';
+async function cargarTop(nombre,caja,boton,tipo='populares'){
+ const recientes=tipo==='recientes';
+ const zona=caja.querySelector(recientes?'.canciones-recientes':'.canciones-populares');
+ const etiqueta=recientes?'🆕 Éxitos recientes (5)':'⭐ Más populares (20)';
+ const etiquetaOcultar=recientes?'Ocultar éxitos recientes':'Ocultar canciones populares';
+ const etiquetaReintentar=recientes?'Reintentar éxitos recientes':'Reintentar canciones populares';
+ if(!zona.hidden&&boton.dataset.error!=='1'){zona.hidden=true;boton.textContent=etiqueta;return;}
+ zona.hidden=false;
+ if(zona.dataset.cargado==='1'){boton.textContent=etiquetaOcultar;return;}
+ zona.replaceChildren();boton.disabled=true;boton.textContent='Consultando Deezer…';
  const controlador=new AbortController();
  const limite=setTimeout(()=>controlador.abort(),30000);
+ let correcto=false;
  try{
-  const r=await fetch('/api/lo-mejor?artista='+encodeURIComponent(nombre),{cache:'no-store',signal:controlador.signal});
+  const parametros=new URLSearchParams({artista:nombre,tipo});
+  const r=await fetch('/api/lo-mejor?'+parametros.toString(),{cache:'no-store',signal:controlador.signal});
   let d;
   try{d=await r.json();}catch(_){throw new Error('La consulta musical ha devuelto una respuesta no válida. Inténtalo de nuevo.');}
   if(!r.ok)throw new Error(d.error||'No se ha podido cargar el ranking.');
@@ -470,9 +487,10 @@ async function cargarTop(nombre,caja,boton){
     }finally{wiki.disabled=false;wiki.textContent='G';}
    });
    tituloLinea.appendChild(wiki);
-   detalle.appendChild(nodo('div','pista-meta',(pista.anio||'Año no disponible')+' · '+pista.artista+' · Popularidad en Deezer'+(pista.album?' · '+pista.album:'')));
+   const descripcion=recientes?'Lanzamiento reciente entre los temas destacados de Deezer':'Popularidad en Deezer';
+   detalle.appendChild(nodo('div','pista-meta',(pista.anio||'Año no disponible')+' · '+pista.artista+' · '+descripcion+(pista.album?' · '+pista.album:'')));
    const acciones=nodo('div','acciones-pista');
-   const muestra=nodo('button','boton-30',pista.preview?'▶ 30':'▶ 30');
+   const muestra=nodo('button','boton-30','▶ 30');
    muestra.title=pista.preview?'Reproducir muestra de 30 segundos':'Muestra de 30 segundos no disponible';
    muestra.disabled=!pista.preview;
    muestra.addEventListener('click',()=>reproducir(pista,muestra));
@@ -486,12 +504,18 @@ async function cargarTop(nombre,caja,boton){
    youtube.addEventListener('click',()=>buscarYouTube(pista,'youtube'));
    acciones.append(muestra,mediahuman,youtube);fila.append(detalle,acciones);zona.appendChild(fila);
   }
+  zona.dataset.cargado='1';
+  zona.dataset.error='0';
+  correcto=true;
  }catch(e){
-  const mensaje=e.name==='AbortError'?'Deezer está tardando demasiado en responder. Pulsa «Ver sus 5 canciones» para intentarlo otra vez.':(e.message||'Error al consultar Deezer.');
+  zona.dataset.error='1';
+  const mensaje=e.name==='AbortError'?'Deezer está tardando demasiado en responder. Inténtalo otra vez.':(e.message||'Error al consultar Deezer.');
   zona.appendChild(nodo('div','mensaje-pista',mensaje));
-  if(e.name==='AbortError'||!zona.querySelector('.pista')){zona.hidden=false;boton.textContent='Reintentar las 5 canciones';}
+  boton.textContent=etiquetaReintentar;
+ }finally{
+  clearTimeout(limite);boton.disabled=false;
+  if(correcto)boton.textContent=etiquetaOcultar;
  }
- finally{clearTimeout(limite);boton.disabled=false;if(boton.textContent!=='Reintentar las 5 canciones')boton.textContent='Ocultar canciones';}
 }
 function reproducir(pista,boton){
  if(audioActivo){audioActivo.pause();audioActivo.currentTime=0;audioActivo=null;}
@@ -602,8 +626,11 @@ def api_lo_mejor_artistas():
 @app.get("/api/lo-mejor")
 def api_lo_mejor():
     nombre_solicitado = (request.args.get("artista") or "").strip()
+    tipo = (request.args.get("tipo") or "populares").strip().lower()
     if not nombre_solicitado:
         return jsonify({"error": "Falta el nombre del artista."}), 400
+    if tipo not in ("populares", "recientes"):
+        return jsonify({"error": "Tipo de ranking no válido."}), 400
 
     try:
         parametros = urlencode({"q": nombre_solicitado, "limit": 10})
@@ -718,19 +745,34 @@ def api_lo_mejor():
                 "rank": pista.get("rank"),
                 "anio": anio
             })
-        # Primero elegir las 20 más populares; después ordenarlas cronológicamente.
-        canciones.sort(key=lambda c: int(c.get("rank") or 0), reverse=True)
-        canciones = canciones[:20]
-        canciones.sort(key=lambda c: (int(c["anio"]) if str(c.get("anio") or "").isdigit() else 9999, -(int(c.get("rank") or 0))))
+        if tipo == "recientes":
+            # Seleccionar primero los temas destacados que tengan año verificable
+            # y priorizar el lanzamiento más reciente; el ranking de Deezer desempata.
+            canciones = [
+                c for c in canciones
+                if str(c.get("anio") or "").isdigit() and len(str(c.get("anio"))) == 4
+            ]
+            canciones.sort(
+                key=lambda c: (int(c.get("anio") or 0), int(c.get("rank") or 0)),
+                reverse=True
+            )
+            canciones = canciones[:5]
+            mensaje_vacio = "Deezer no ha devuelto temas destacados con fecha de lanzamiento identificable para este artista."
+        else:
+            # Mantener el comportamiento actual: las 20 más populares,
+            # ordenadas cronológicamente para facilitar la consulta por año.
+            canciones.sort(key=lambda c: int(c.get("rank") or 0), reverse=True)
+            canciones = canciones[:20]
+            canciones.sort(key=lambda c: (int(c["anio"]) if str(c.get("anio") or "").isdigit() else 9999, -(int(c.get("rank") or 0))))
+            mensaje_vacio = "Deezer no ha encontrado canciones para este artista en este momento. Prueba de nuevo más tarde."
 
         if not canciones:
-            return jsonify({
-                "error": "Deezer no ha encontrado canciones para este artista en este momento. Prueba de nuevo más tarde."
-            }), 502
+            return jsonify({"error": mensaje_vacio}), 502
 
         return jsonify({
             "artista": mejor.get("name", nombre_solicitado),
             "fuente": "Deezer",
+            "tipo": tipo,
             "canciones": canciones
         })
     except Exception:
