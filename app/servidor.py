@@ -1431,7 +1431,7 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
     # La API Interactions es la vía recomendada para los modelos actuales de Gemini.
     # store=False evita que Google conserve esta consulta en el historial de interacciones.
     cuerpo = {
-        "model": "gemini-3.8-flash",
+        "model": "gemini-3.6-flash",
         "input": prompt,
         "store": False,
         "generation_config": {"temperature": 0.2, "max_output_tokens": 700}
