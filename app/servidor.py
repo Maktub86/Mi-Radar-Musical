@@ -61,9 +61,12 @@ nav.navegacion-comun a.activo{font-weight:700}
 """
         if "</head>" in html:
             enlaces_marca = """
-<link rel="icon" type="image/svg+xml" href="/icono-mrm.svg">
-<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="/icono-mrm-192.png?v=3">
+<link rel="icon" type="image/svg+xml" href="/icono-mrm.svg?v=3">
+<link rel="apple-touch-icon" sizes="192x192" href="/icono-mrm-192.png?v=3">
+<link rel="manifest" href="/manifest.webmanifest?v=3">
 <meta name="theme-color" content="#6d28a8">
+<meta name="application-name" content="Mi Radar Musical">
 """
             html = html.replace("</head>", enlaces_marca + css_nav + "</head>", 1)
         # Los iconos informativos solo aparecen si la actualización diaria guardó
