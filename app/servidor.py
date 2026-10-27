@@ -1848,6 +1848,39 @@ def api_ficha_musical():
                         "musicbrainz_id": candidato.get("id", "")
                     })
                     fuentes.append({"titulo": "MusicBrainz — grabación", "url": "https://musicbrainz.org/recording/" + candidato["id"]})
+                    # Solo cuando la grabación está identificada, pedir las relaciones de la obra
+                    # para mostrar compositores/letristas únicamente si MusicBrainz los documenta.
+                    try:
+                        params_detalle = urlencode({"inc": "work-rels+work-level-rels", "fmt": "json"})
+                        detalle = _musicbrainz_consultar(
+                            "https://musicbrainz.org/ws/2/recording/" + quote(candidato["id"], safe="") + "?" + params_detalle
+                        )
+                        compositores = []
+                        letristas = []
+
+                        def recoger_creditos(obj):
+                            if isinstance(obj, dict):
+                                tipo_relacion = normalizar_clave(str(obj.get("type") or ""))
+                                artista_relacionado = obj.get("artist")
+                                if isinstance(artista_relacionado, dict) and artista_relacionado.get("name"):
+                                    nombre_credito = str(artista_relacionado["name"]).strip()
+                                    if tipo_relacion == "composer" and nombre_credito not in compositores:
+                                        compositores.append(nombre_credito)
+                                    elif tipo_relacion in ("lyricist", "writer") and nombre_credito not in letristas:
+                                        letristas.append(nombre_credito)
+                                for valor in obj.values():
+                                    recoger_creditos(valor)
+                            elif isinstance(obj, list):
+                                for valor in obj:
+                                    recoger_creditos(valor)
+
+                        recoger_creditos(detalle)
+                        if compositores:
+                            datos["datos_musicales"]["compositores"] = ", ".join(compositores[:10])
+                        if letristas:
+                            datos["datos_musicales"]["letristas"] = ", ".join(letristas[:10])
+                    except Exception as error_detalle:
+                        app.logger.info("No se pudieron recuperar los créditos de la obra %s: %s", nombre, error_detalle)
         except Exception as error:
             app.logger.info("MusicBrainz no disponible para %s: %s", nombre, error)
             datos["avisos"].append("No se ha podido consultar MusicBrainz ahora mismo.")
