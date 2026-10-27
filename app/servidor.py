@@ -1352,6 +1352,74 @@ def api_resumenes_disponibles():
         return jsonify({"claves": [], "actualizado": None})
 
 
+
+def _normalizar_nombre_musical(valor):
+    valor = unicodedata.normalize("NFKD", str(valor or "")).encode("ascii", "ignore").decode("ascii").casefold()
+    return re.sub(r"[^a-z0-9]+", " ", valor).strip()
+
+
+def _buscar_fallback_musical(tipo, nombre, artista=""):
+    """Consulta Last.fm si hay clave y MusicBrainz como alternativa a Gemini."""
+    textos, fuentes = [], []
+    cabeceras = {"User-Agent": "MiRadarMusical/1.0 (catalogo musical)"}
+    def pedir(url):
+        with urlopen(Request(url, headers=cabeceras), timeout=8) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    clave = (os.environ.get("LASTFM_API_KEY") or "").strip()
+    if clave:
+        try:
+            params = {"method": "artist.getinfo" if tipo == "artista" else "track.getinfo",
+                      "api_key": clave, "format": "json", "lang": "es", "autocorrect": "1"}
+            if tipo == "artista": params["artist"] = nombre
+            else: params.update({"track": nombre, "artist": artista})
+            datos = pedir("https://ws.audioscrobbler.com/2.0/?" + urlencode(params))
+            entidad = datos.get("artist") if tipo == "artista" else datos.get("track")
+            wiki = (entidad or {}).get("bio" if tipo == "artista" else "wiki") or {}
+            texto = re.sub(r"<[^>]+>", " ", str(wiki.get("content") or wiki.get("summary") or ""))
+            texto = re.sub(r"\\s+", " ", texto).strip()
+            texto = re.sub(r"Read more on Last.fm.*$", "", texto, flags=re.I).strip()
+            if len(texto) > 80:
+                textos.append(texto[:2400])
+                fuentes.append({"titulo": "Last.fm", "url": "https://www.last.fm/"})
+        except Exception as error:
+            app.logger.info("Last.fm no disponible para %s: %s", nombre, error)
+    try:
+        if tipo == "artista":
+            params = urlencode({"query": 'artist:"' + nombre + '"', "fmt": "json", "limit": "5"})
+            datos = pedir("https://musicbrainz.org/ws/2/artist/?" + params)
+            objetivo = _normalizar_nombre_musical(nombre)
+            elegido = next((x for x in (datos.get("artists") or []) if _normalizar_nombre_musical(x.get("name", "")) == objetivo), None)
+            if elegido:
+                partes = [str(elegido.get("name") or nombre) + " figura en MusicBrainz, una base de datos musical colaborativa."]
+                if elegido.get("type"): partes.append("Tipo registrado: " + str(elegido["type"]) + ".")
+                if elegido.get("country"): partes.append("País asociado: " + str(elegido["country"]) + ".")
+                if elegido.get("begin-area", {}).get("name"): partes.append("Lugar asociado: " + str(elegido["begin-area"]["name"]) + ".")
+                if elegido.get("life-span", {}).get("begin"): partes.append("Año de inicio registrado: " + str(elegido["life-span"]["begin"]) + ".")
+                if elegido.get("disambiguation"): partes.append("Aclaración: " + str(elegido["disambiguation"]) + ".")
+                textos.append(" ".join(partes))
+                fuentes.append({"titulo": "MusicBrainz — artista", "url": "https://musicbrainz.org/artist/" + str(elegido["id"])})
+        else:
+            query = 'recording:"' + nombre + '" AND artist:"' + artista + '"'
+            params = urlencode({"query": query, "fmt": "json", "limit": "5"})
+            datos = pedir("https://musicbrainz.org/ws/2/recording/?" + params)
+            n, a = _normalizar_nombre_musical(nombre), _normalizar_nombre_musical(artista)
+            elegido = next((x for x in (datos.get("recordings") or []) if _normalizar_nombre_musical(x.get("title", "")) == n and any(_normalizar_nombre_musical(z.get("name", "")) == a for z in (x.get("artist-credit") or []) if isinstance(z, dict))), None)
+            if elegido:
+                partes = ["«" + str(elegido.get("title") or nombre) + "» figura en MusicBrainz como grabación de " + artista + "."]
+                if elegido.get("first-release-date"): partes.append("Primera publicación registrada: " + str(elegido["first-release-date"]) + ".")
+                lanzamientos = [z.get("title") for z in (elegido.get("releases") or [])[:3] if z.get("title")]
+                if lanzamientos: partes.append("Álbum/publicación asociada: " + ", ".join(lanzamientos) + ".")
+                textos.append(" ".join(partes))
+                fuentes.append({"titulo": "MusicBrainz — grabación", "url": "https://musicbrainz.org/recording/" + str(elegido["id"])})
+    except Exception as error:
+        app.logger.info("MusicBrainz no disponible/no encontró coincidencia para %s: %s", nombre, error)
+    if not textos: return None
+    resumen = "\\n\\n".join(dict.fromkeys(textos))
+    return {"encontrado": True, "resumen": resumen, "biografia": resumen if tipo == "artista" else "",
+            "informacion": resumen if tipo == "cancion" else "", "fuentes": fuentes[:4],
+            "fuente_tipo": "catalogo_musical", "fuente": ", ".join(x["titulo"] for x in fuentes)}
+
+@app.get("/api/wikipedia")
 @app.get("/api/resumen-musical")
 def api_resumen_musical():
     """Genera bajo demanda un resumen musical breve con Gemini y búsqueda web."""
@@ -1384,7 +1452,9 @@ def api_resumen_musical():
         pass
 
     if not api_key:
-        return jsonify({"encontrado": False, "error": "Falta configurar la clave de Gemini (GEMINI_API_KEY) en Windows."}), 503
+        fallback = _buscar_fallback_musical(tipo, nombre, artista)
+        if fallback: return jsonify(fallback)
+        return jsonify({"encontrado": False, "error": "No se ha encontrado información en las fuentes musicales alternativas."}), 503
 
     if tipo == "artista":
         instruccion = (
@@ -1430,7 +1500,9 @@ def api_resumen_musical():
         partes = ((candidatos[0].get("content") or {}).get("parts") or []) if candidatos else []
         resumen = " ".join(str(p.get("text") or "").strip() for p in partes if p.get("text")).strip()
         if not resumen or "NO_ENCONTRADO" in resumen.upper():
-            return jsonify({"encontrado": False, "error": "No se ha encontrado información fiable sobre este resultado."})
+            fallback = _buscar_fallback_musical(tipo, nombre, artista)
+            if fallback: return jsonify(fallback)
+            return jsonify({"encontrado": False, "error": "No se ha encontrado información verificable en las fuentes consultadas."})
         # Solo se presentan enlaces que Gemini devuelve como fuentes de búsqueda.
         fuentes = []
         meta = candidatos[0].get("groundingMetadata") or {}
@@ -1444,8 +1516,12 @@ def api_resumen_musical():
                     and all(x.get("url") != url_fuente for x in fuentes)):
                 fuentes.append({"titulo": titulo_fuente, "url": url_fuente})
         if not fuentes:
-            return jsonify({"encontrado": False, "error": "Gemini no ha encontrado fuentes web que permitan verificar la información."})
-        return jsonify({"encontrado": True, "resumen": resumen, "fuentes": fuentes[:4]})
+            fallback = _buscar_fallback_musical(tipo, nombre, artista)
+            if fallback: return jsonify(fallback)
+            return jsonify({"encontrado": False, "error": "No se han encontrado fuentes web verificables."})
+        return jsonify({"encontrado": True, "resumen": resumen, "biografia": resumen if tipo == "artista" else "",
+                        "informacion": resumen if tipo == "cancion" else "", "fuentes": fuentes[:4],
+                        "fuente_tipo": "gemini", "fuente": ", ".join(f.get("titulo", "") for f in fuentes[:3])})
     except HTTPError as error:
         # Mostrar el código real de Gemini para distinguir errores de modelo, clave y cuota.
         cuerpo = error.read().decode("utf-8", errors="replace")
@@ -1462,12 +1538,19 @@ def api_resumen_musical():
             429: "Gemini ha aplicado un límite de uso o cuota (HTTP 429).",
         }
         mensaje = mensajes.get(error.code, f"Gemini ha respondido con HTTP {error.code}.")
-        if detalle:
-            mensaje += " Detalle: " + detalle[:500]
+        if detalle: mensaje += " Detalle: " + detalle[:500]
+        fallback = _buscar_fallback_musical(tipo, nombre, artista)
+        if fallback:
+            fallback["aviso"] = "Gemini no respondió; se ha utilizado una fuente musical alternativa."
+            return jsonify(fallback)
         return jsonify({"encontrado": False, "error": mensaje, "codigo": error.code}), 502
     except Exception:
         app.logger.exception("Error consultando Gemini para %s", nombre)
-        return jsonify({"encontrado": False, "error": "Fallo de conexión al consultar Gemini. Consulta los registros de Render para ver el detalle."}), 502
+        fallback = _buscar_fallback_musical(tipo, nombre, artista)
+        if fallback:
+            fallback["aviso"] = "Gemini no respondió; se ha utilizado una fuente musical alternativa."
+            return jsonify(fallback)
+        return jsonify({"encontrado": False, "error": "Gemini y las fuentes alternativas no han devuelto información verificable. Inténtalo más tarde."}), 502
 
 
 # Caché breve de Wikipedia: evita repetir consultas externas para las mismas canciones/artistas.
