@@ -1376,7 +1376,7 @@ def _buscar_fallback_musical(tipo, nombre, artista=""):
             entidad = datos.get("artist") if tipo == "artista" else datos.get("track")
             wiki = (entidad or {}).get("bio" if tipo == "artista" else "wiki") or {}
             texto = re.sub(r"<[^>]+>", " ", str(wiki.get("content") or wiki.get("summary") or ""))
-            texto = re.sub(r"\\s+", " ", texto).strip()
+            texto = re.sub(r"\s+", " ", texto).strip()
             texto = re.sub(r"Read more on Last.fm.*$", "", texto, flags=re.I).strip()
             if len(texto) > 80:
                 textos.append(texto[:2400])
@@ -1414,7 +1414,7 @@ def _buscar_fallback_musical(tipo, nombre, artista=""):
     except Exception as error:
         app.logger.info("MusicBrainz no disponible/no encontró coincidencia para %s: %s", nombre, error)
     if not textos: return None
-    resumen = "\\n\\n".join(dict.fromkeys(textos))
+    resumen = "\n\n".join(dict.fromkeys(textos))
     return {"encontrado": True, "resumen": resumen, "biografia": resumen if tipo == "artista" else "",
             "informacion": resumen if tipo == "cancion" else "", "fuentes": fuentes[:4],
             "fuente_tipo": "catalogo_musical", "fuente": ", ".join(x["titulo"] for x in fuentes)}
