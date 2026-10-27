@@ -64,7 +64,7 @@ nav.navegacion-comun a.activo{font-weight:700}
         script_resumenes = r"""
 <script id="visibilidad-resumenes-cache">
 (function(){
- function normalizar(v){return String(v||'').normalize('NFKD').replace(/[\\u0300-\\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]+/g,' ').trim();}
+ function normalizar(v){return String(v||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]+/g,' ').trim();}
  function clave(b){return [b.dataset.resumenTipo||'',normalizar(b.dataset.resumenNombre),normalizar(b.dataset.resumenArtista)].join('|');}
  fetch('/api/resumenes-disponibles',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{
   const disponibles=new Set(d.claves||[]);
@@ -1262,7 +1262,7 @@ def api_resumen_musical():
         if isinstance(ficha, dict):
             if ficha.get("encontrado") and ficha.get("fuentes"):
                 return jsonify(ficha)
-            return jsonify({"encontrado": False, "error": "No se encontró una fuente fiable para esta ficha."})
+            # Las fichas negativas no bloquean un nuevo intento cuando vence el plazo de reintento.
     except (OSError, json.JSONDecodeError, AttributeError):
         pass
 
