@@ -1885,26 +1885,27 @@ def api_ficha_musical():
             datos["avisos"].append("Last.fm no ha devuelto información para esta consulta.")
 
         # Reutiliza la comprobación de identidad de la ruta de Wikipedia ya existente.
-        try:
-            with app.test_request_context(
-                "/api/wikipedia?" + urlencode({"tipo": tipo, "nombre": nombre, "artista": artista})
-            ):
-                respuesta_wiki = api_wikipedia()
-                resp, status = respuesta_wiki if isinstance(respuesta_wiki, tuple) else (respuesta_wiki, 200)
-                wiki = resp.get_json() if hasattr(resp, "get_json") else {}
-            if status < 400 and wiki and wiki.get("encontrado") and wiki.get("fuente_tipo") == "wikipedia":
-                texto_wiki = str(wiki.get("resumen") or "").strip()
-                if tipo == "artista" and not datos["biografia"]:
-                    datos["biografia"] = texto_wiki[:4000]
-                elif tipo == "cancion" and not datos["historia"]:
-                    datos["historia"] = texto_wiki[:4000]
-                for fuente in wiki.get("fuentes", []):
-                    if fuente.get("url"):
-                        fuentes.append(fuente)
-                datos["encontrado"] = bool(texto_wiki or datos["datos_musicales"])
-        except Exception as error:
-            app.logger.info("Wikipedia no disponible para la ficha %s: %s", nombre, error)
-            datos["avisos"].append("Wikipedia no ha podido consultarse ahora mismo.")
+        if (tipo == "artista" and not datos["biografia"]) or (tipo == "cancion" and not datos["historia"]):
+            try:
+                with app.test_request_context(
+                    "/api/wikipedia?" + urlencode({"tipo": tipo, "nombre": nombre, "artista": artista})
+                ):
+                    respuesta_wiki = api_wikipedia()
+                    resp, status = respuesta_wiki if isinstance(respuesta_wiki, tuple) else (respuesta_wiki, 200)
+                    wiki = resp.get_json() if hasattr(resp, "get_json") else {}
+                if status < 400 and wiki and wiki.get("encontrado") and wiki.get("fuente_tipo") == "wikipedia":
+                    texto_wiki = str(wiki.get("resumen") or "").strip()
+                    if tipo == "artista" and not datos["biografia"]:
+                        datos["biografia"] = texto_wiki[:4000]
+                    elif tipo == "cancion" and not datos["historia"]:
+                        datos["historia"] = texto_wiki[:4000]
+                    for fuente in wiki.get("fuentes", []):
+                        if fuente.get("url"):
+                            fuentes.append(fuente)
+                    datos["encontrado"] = bool(texto_wiki or datos["datos_musicales"])
+            except Exception as error:
+                app.logger.info("Wikipedia no disponible para la ficha %s: %s", nombre, error)
+                datos["avisos"].append("Wikipedia no ha podido consultarse ahora mismo.")
 
         datos["biografia"] = _limitar_palabras(datos["biografia"], 180)
         datos["historia"] = _limitar_palabras(datos["historia"], 180)
