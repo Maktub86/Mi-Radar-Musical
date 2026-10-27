@@ -71,13 +71,7 @@ def leer_objetivos():
 def preparar_resumen(cliente, tipo, nombre, artista, cache):
     k = clave(tipo, nombre, artista)
     previo = cache["items"].get(k)
-    if previo and previo.get("encontrado"):
-        fuentes_previas = previo.get("fuentes") or []
-        if any("wikipedia.org" in str(f.get("url") or "").casefold() for f in fuentes_previas if isinstance(f, dict)):
-            # Invalidar las fichas antiguas que dependían de Wikipedia para regenerarlas.
-            previo["encontrado"] = False
-            previo["fuentes"] = []
-            previo["reintentar_despues"] = ""
+    # Las fichas de Wikipedia también son válidas como último recurso; no se invalidan.
     if previo:
         try:
             reintentar = datetime.fromisoformat(previo.get("reintentar_despues", ""))
@@ -95,7 +89,7 @@ def preparar_resumen(cliente, tipo, nombre, artista, cache):
         query["artista"] = artista
     respuesta = cliente.get("/api/resumen-musical", query_string=query)
     datos = respuesta.get_json(silent=True) or {}
-    fuente_tipo = "gemini"
+    fuente_tipo = str(datos.get("fuente_tipo") or "fuente_musical")
     if respuesta.status_code != 200 or not datos.get("encontrado"):
         # No recurrir a Wikipedia: guardar el fallo para reintentarlo más adelante.
         cache["items"][k] = {
@@ -124,9 +118,7 @@ def preparar_resumen(cliente, tipo, nombre, artista, cache):
     fuentes = [
         {"titulo": str(f.get("titulo") or "Fuente consultada")[:120], "url": str(f.get("url") or "")}
         for f in fuentes
-        if str(f.get("url") or "").startswith("https://")
-        and "wikipedia.org" not in str(f.get("url") or "").casefold()
-        and "wikimedia.org" not in str(f.get("url") or "").casefold()
+        if isinstance(f, dict) and str(f.get("url") or "").startswith("https://")
     ][:4]
     if not fuentes:
         cache["items"][k] = {
