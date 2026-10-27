@@ -1,7 +1,8 @@
 import json
 import re
 from pathlib import Path
-from datetime import date
+from datetime import date, datetime
+from zoneinfo import ZoneInfo
 
 BASE = Path(__file__).resolve().parent.parent
 DATOS = BASE / "lanzamientos.json"
@@ -21,7 +22,7 @@ for artista in datos.values():
 
         # MusicBrainz puede aportar fechas completas, año-mes o solo año.
         # Si la fecha conocida cae en el futuro, no se publica como novedad disponible.
-        coincidencia = re.match(r"^(\\d{4})(?:-(\\d{2})(?:-(\\d{2}))?)?$", fecha)
+        coincidencia = re.match(r"^(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?$", fecha)
         fecha_orden = ""
         fecha_valida = True
         if coincidencia:
@@ -31,7 +32,7 @@ for artista in datos.values():
                 mes = int(mes_txt or 0)
                 dia = int(dia_txt or 0)
                 fecha_base = date(anio, mes or 1, dia or 1)
-                hoy = date.today()
+                hoy = datetime.now(ZoneInfo("Europe/Madrid")).date()
                 if fecha_base > hoy:
                     fecha_valida = False
                 else:
