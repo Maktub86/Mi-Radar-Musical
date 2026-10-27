@@ -273,10 +273,9 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
     if not clave:
         return None, "Falta configurar GEMINI_API_KEY en las variables de entorno del servicio."
 
-    # Gemini 2.5 Flash mantiene búsqueda web fundamentada en el nivel gratuito (límite compartido de 500 solicitudes/día).
-    # Se fija aquí para evitar que una variable antigua GEMINI_MODEL vuelva a seleccionar Gemini 3.x,
-    # cuya búsqueda web fundamentada no está disponible en el nivel gratuito.
-    modelo = "gemini-2.5-flash"
+    # Se usa generación de texto sin Google Search para evitar la cuota de búsqueda,
+    # que no está disponible en el nivel gratuito para los modelos Gemini 3.x.
+    modelo = "gemini-3.6-flash"
     entidad = f"la canción «{nombre}» de {artista}" if tipo == "cancion" else f"el artista «{nombre}»"
     if tipo == "artista":
         instrucciones = (
@@ -293,20 +292,18 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
         )
     prompt = (
         f"Investiga {entidad}. {instrucciones} "
-        "Usa búsqueda web para contrastar la identidad y los datos. Prioriza fuentes oficiales, "
-        "entrevistas y medios musicales fiables; puedes usar enciclopedias como apoyo. "
-        "No inventes hechos, fechas, anécdotas ni fuentes. Si no hay una curiosidad verificable, "
+        "No tienes búsqueda web disponible en esta consulta. Utiliza únicamente información "
+        "general de la que tengas confianza y no inventes hechos, fechas, anécdotas ni fuentes. "
+        "Si no estás seguro de un dato, omítelo. Si no hay una curiosidad fiable, "
         "escribe claramente que no has encontrado una curiosidad suficientemente documentada. "
         "Redacta entre 120 y 260 palabras, con los encabezados «Resumen» y "
-        "«Curiosidad documentada». No incluyas enlaces inventados ni afirmes que algo está "
-        "verificado si no aparece en las fuentes consultadas."
+        "«Curiosidad». No incluyas enlaces ni afirmes que has consultado fuentes externas."
     )
     # La API Interactions es la vía recomendada para los modelos actuales de Gemini.
     # store=False evita que Google conserve esta consulta en el historial de interacciones.
     cuerpo = {
-        "model": "gemini-3.8-flash",
+        "model": "gemini-3.6-flash",
         "input": prompt,
-        "tools": [{"type": "google_search"}],
         "store": False,
         "generation_config": {"temperature": 0.2, "max_output_tokens": 700}
     }
@@ -372,8 +369,6 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
                             break
         if len(resumen) < 100:
             return None, "Gemini devolvió un texto demasiado corto para una ficha útil."
-        if not fuentes:
-            return None, "Gemini no devolvió fuentes web verificables para esta respuesta."
         return ({
             "encontrado": True,
             "nombre": nombre,
@@ -383,7 +378,7 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
             "informacion": resumen if tipo == "cancion" else "",
             "fuentes": fuentes,
             "fuente_tipo": "gemini",
-            "fuente": "Gemini con búsqueda web",
+            "fuente": "Gemini (sin búsqueda web)",
             "motor": "gemini"
         }, None)
     except HTTPError as error:
@@ -400,8 +395,6 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
         elif error.code == 429:
             mensaje = (
                 "Google ha rechazado la consulta por cuota o límite (HTTP 429). "
-                "Esto no demuestra que hayas consumido llamadas: la cuota disponible para el modelo "
-                "o la búsqueda web puede ser cero. "
                 + (f"Detalle de Google: {detalle[:450]}" if detalle else "Google no ha enviado más detalles.")
             )
         elif error.code == 400:
