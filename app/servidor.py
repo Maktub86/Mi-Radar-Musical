@@ -1343,6 +1343,7 @@ def api_resumenes_disponibles():
         claves = [
             k for k, v in items.items()
             if isinstance(v, dict) and v.get("encontrado") and len(str(v.get("resumen") or "").strip()) >= 100
+            and str(v.get("fuente_tipo") or "").casefold() in ("lastfm", "wikipedia")
             and v.get("fuentes")
             and all(isinstance(f, dict) and str(f.get("url") or "").startswith("https://")
                     for f in (v.get("fuentes") or []))
