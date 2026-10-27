@@ -1503,72 +1503,36 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
         return None, "No se ha podido conectar con Gemini en este momento."
 
 
-@app.get("/api/wikipedia")
 @app.get("/api/resumen-musical")
 def api_resumen_musical():
-    """Usa primero una ficha Gemini ya verificada; si no existe, consulta Gemini y luego alternativas."""
+    """Devuelve fichas exclusivamente generadas por Gemini con búsqueda web; nunca usa fuentes alternativas."""
     tipo = (request.args.get("tipo") or "").strip().lower()
     nombre = re.sub(r"\s+", " ", (request.args.get("nombre") or "").strip())[:180]
     artista = re.sub(r"\s+", " ", (request.args.get("artista") or "").strip())[:180]
     if tipo not in ("artista", "cancion") or not nombre or (tipo == "cancion" and not artista):
-        return jsonify({"encontrado": False, "error": "Falta el artista o la canción."}), 400
-
-    # Leer la caché una vez. Las fichas Gemini evitan llamadas repetidas y gasto innecesario.
-    ficha_cache = None
-    try:
-        datos_cache = json.loads((BASE / "resumenes_musicales.json").read_text(encoding="utf-8"))
-        posible = (datos_cache.get("items") or {}).get(_clave_resumen(tipo, nombre, artista))
-        if isinstance(posible, dict):
-            fuente_tipo = str(posible.get("fuente_tipo") or "").casefold()
-            resumen_cache = str(posible.get("resumen") or "").strip()
-            fuentes_cache = posible.get("fuentes") or []
-            if (posible.get("encontrado") and len(resumen_cache) >= 100 and fuentes_cache
-                    and fuente_tipo in ("gemini", "lastfm", "wikipedia")
-                    and all(isinstance(x, dict) and str(x.get("url") or "").startswith("https://")
-                            for x in fuentes_cache)):
-                ficha_cache = dict(posible)
-                ficha_cache["motor"] = fuente_tipo
-                if fuente_tipo == "gemini":
-                    return jsonify(ficha_cache)
-    except (OSError, json.JSONDecodeError, AttributeError):
-        pass
+        return jsonify({
+            "encontrado": False,
+            "motor": "ninguno",
+            "fuente_tipo": "ninguna",
+            "error": "Falta el artista o la canción."
+        }), 400
 
     resultado_gemini, error_gemini = _buscar_gemini_musical(tipo, nombre, artista)
     if resultado_gemini:
         return jsonify(resultado_gemini)
 
-    # Si Gemini falla, mostrar la ficha alternativa guardada indicando claramente el motivo.
-    if ficha_cache:
-        ficha_cache["aviso_gemini"] = error_gemini
-        return jsonify(ficha_cache)
-
-    fallback = _buscar_fallback_musical(tipo, nombre, artista)
-    if fallback:
-        fallback["aviso_gemini"] = error_gemini
-        fallback["motor"] = "lastfm"
-        return jsonify(fallback)
-
-    try:
-        respuesta = api_wikipedia()
-        datos = respuesta.get_json(silent=True) if hasattr(respuesta, "get_json") else None
-        if isinstance(datos, dict):
-            resumen = re.sub(r"\s+", " ", str(datos.get("resumen") or "")).strip()
-            fuentes = datos.get("fuentes") or []
-            if (datos.get("encontrado") and datos.get("fuente_tipo") == "wikipedia"
-                    and len(resumen) >= 100 and fuentes):
-                datos["biografia"] = resumen if tipo == "artista" else ""
-                datos["informacion"] = resumen if tipo == "cancion" else ""
-                datos["aviso_gemini"] = error_gemini
-                datos["motor"] = "wikipedia"
-                return jsonify(datos)
-    except Exception:
-        app.logger.exception("Falló el fallback de Wikipedia para %s", nombre)
-
+    # No devolver MusicBrainz, Last.fm ni Wikipedia si Gemini falla.
+    mensaje = error_gemini or "Gemini no ha podido generar una ficha con fuentes verificables."
+    app.logger.warning("No se generó ficha Gemini para %s (%s): %s", nombre, tipo, mensaje)
     return jsonify({
         "encontrado": False,
-        "error": error_gemini or "No he encontrado un resumen fiable en Gemini ni en las fuentes alternativas.",
+        "nombre": nombre,
+        "titulo": nombre,
         "fuente_tipo": "ninguna",
-        "motor": "ninguno"
+        "motor": "ninguno",
+        "aviso_gemini": mensaje,
+        "error": mensaje,
+        "fuentes": []
     }), 503
 
 @app.get("/api/wikipedia")
