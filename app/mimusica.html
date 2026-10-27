@@ -76,7 +76,7 @@ async function cargarPortadaCancion(c,img,fallback){
   const q=new URLSearchParams({term:(c.artista||"")+" "+(c.titulo||""),entity:"song",limit:"1",country:"ES"});
   const r=await fetch("https://itunes.apple.com/search?"+q.toString(),{signal:AbortSignal.timeout(6000)});
   if(!r.ok)return;
-  const d=await r.json(),item=(d.results||[])[0],url=item&&item.artworkUrl100?item.artworkUrl100.replace(/\\d+x\\d+bb/,"100x100bb"):"";
+  const d=await r.json(),item=(d.results||[])[0],url=item&&item.artworkUrl100?item.artworkUrl100:"";
   cachePortadas.set(clave,url);
   if(url){img.src=url;img.hidden=false;fallback.hidden=true;}
  }catch(e){}
