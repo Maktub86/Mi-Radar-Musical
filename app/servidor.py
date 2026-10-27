@@ -60,7 +60,12 @@ nav.navegacion-comun a.activo{font-weight:700}
 </style>
 """
         if "</head>" in html:
-            html = html.replace("</head>", css_nav + "</head>", 1)
+            enlaces_marca = """
+<link rel="icon" type="image/svg+xml" href="/icono-mrm.svg">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#6d28a8">
+"""
+            html = html.replace("</head>", enlaces_marca + css_nav + "</head>", 1)
         # Los iconos informativos solo aparecen si la actualización diaria guardó
         # una ficha con fuentes verificables. La normalización coincide con el preparador.
         script_resumenes = r"""
