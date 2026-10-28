@@ -1056,6 +1056,7 @@ def api_recomendaciones():
 
     candidatos = {}
     cache_peticion = {}
+
     def consultar(url, timeout=4):
         if url in cache_peticion:
             return cache_peticion[url]
@@ -1071,59 +1072,155 @@ def api_recomendaciones():
         cache_peticion[url] = {}
         return {}
 
-    for semilla in semillas:
-        q = urlencode({"q": semilla["nombre"], "limit": 8})
-        datos_artista = consultar("https://api.deezer.com/search/artist?" + q)
-        objetivo = clave(semilla["nombre"])
-        artistas_deezer = datos_artista.get("data") or []
-        if not artistas_deezer:
+    def añadir_candidata(pista, semilla, peso, fuente):
+        titulo = str(pista.get("title") or pista.get("titulo") or pista.get("name") or "").strip()
+        artista_info = pista.get("artist") or {}
+        nombre_artista = str(artista_info.get("name") or pista.get("artista") or "").strip()
+        if not titulo or not nombre_artista:
+            return
+        llave = (clave(nombre_artista), clave(titulo))
+        if llave in existentes:
+            return
+        album = pista.get("album") or {}
+        portada = album.get("cover_medium") or album.get("cover") or ""
+        if not portada:
+            imagenes = pista.get("image") or []
+            if isinstance(imagenes, list):
+                portada = next((im.get("#text") or im.get("url") for im in reversed(imagenes)
+                                if isinstance(im, dict) and (im.get("#text") or im.get("url"))), "")
+        puntaje = peso * 100 + min(int(pista.get("rank") or 0) / 100000, 30)
+        actual = candidatos.get(llave)
+        if actual and actual["puntuacion"] >= puntaje:
+            return
+        candidatos[llave] = {
+            "titulo": titulo,
+            "artista": nombre_artista,
+            "album": album.get("title") or "",
+            "portada": portada,
+            "preview": pista.get("preview") or "",
+            "url": pista.get("link") or pista.get("url") or "",
+            "genero": genero_solicitado or (max(semilla["generos"], key=semilla["generos"].get) if semilla.get("generos") else ""),
+            "relacionado_con": semilla["nombre"],
+            "puntuacion": puntaje,
+            "fuente_recomendacion": fuente
+        }
+
+    # Primera opción: similitud entre canciones en Last.fm. Reutiliza LASTFM_API_KEY,
+    # que ya emplea la aplicación para consultar información musical.
+    clave_lastfm = (os.environ.get("LASTFM_API_KEY") or "").strip()
+    semillas_pistas = []
+    for pista in biblioteca:
+        if not isinstance(pista, dict):
             continue
-        coincidencia = next((a for a in artistas_deezer if clave(a.get("name")) == objetivo), None)
-        if not coincidencia:
-            coincidencia = max(artistas_deezer, key=lambda a: difflib.SequenceMatcher(None, objetivo, clave(a.get("name"))).ratio())
-            if difflib.SequenceMatcher(None, objetivo, clave(coincidencia.get("name"))).ratio() < 0.82:
-                continue
-        id_artista = coincidencia.get("id")
-        relacionados = consultar("https://api.deezer.com/artist/" + str(id_artista) + "/related?" + urlencode({"limit": 4})).get("data") or []
-        # Si Deezer no proporciona artistas relacionados, usamos temas populares del artista semilla como alternativa.
-        objetivos = [(a, 1.0) for a in relacionados[:4]]
-        if not objetivos:
-            objetivos = [(coincidencia, 0.55)]
-        for artista_rel, peso in objetivos:
-            id_rel = artista_rel.get("id")
-            if not id_rel:
-                continue
-            top = consultar("https://api.deezer.com/artist/" + str(id_rel) + "/top?" + urlencode({"limit": 8})).get("data") or []
-            for pista in top:
-                titulo = str(pista.get("title") or "").strip()
-                datos_artista_pista = pista.get("artist") or artista_rel
-                nombre_artista = str(datos_artista_pista.get("name") or artista_rel.get("name") or "").strip()
+        artista = str(pista.get("artista") or "").strip()
+        titulo = str(pista.get("titulo") or "").strip()
+        genero = str(pista.get("genero") or "").strip()
+        if not artista or not titulo:
+            continue
+        if genero_solicitado and genero.casefold() != genero_solicitado.casefold():
+            continue
+        semillas_pistas.append({"nombre": artista, "titulo": titulo, "genero": genero})
+    # Usar varias canciones de artistas distintos evita que una sola domine los resultados.
+    semillas_pistas.sort(key=lambda p: (clave(p["nombre"]), clave(p["titulo"])))
+    if semillas_pistas:
+        # Muestreo determinista distribuido por la biblioteca, con un máximo de seis consultas.
+        paso = max(1, len(semillas_pistas) // 6)
+        semillas_lastfm = semillas_pistas[::paso][:6]
+    else:
+        semillas_lastfm = []
+
+    if clave_lastfm:
+        for indice, semilla in enumerate(semillas_lastfm):
+            params = urlencode({
+                "method": "track.getSimilar",
+                "artist": semilla["nombre"],
+                "track": semilla["titulo"],
+                "api_key": clave_lastfm,
+                "format": "json",
+                "autocorrect": 1,
+                "limit": 20
+            })
+            datos = consultar("https://ws.audioscrobbler.com/2.0/?" + params, timeout=6)
+            similares = (datos.get("similartracks") or {}).get("track") or []
+            if isinstance(similares, dict):
+                similares = [similares]
+            for similar in similares:
+                titulo = str(similar.get("name") or "").strip()
+                artista_info = similar.get("artist") or {}
+                nombre_artista = str(artista_info.get("name") or "").strip()
                 if not titulo or not nombre_artista or (clave(nombre_artista), clave(titulo)) in existentes:
                     continue
-                album = pista.get("album") or {}
-                llave = (clave(nombre_artista), clave(titulo))
-                puntaje = peso * 100 + min(int(pista.get("rank") or 0) / 100000, 30)
-                actual = candidatos.get(llave)
-                if actual and actual["puntuacion"] >= puntaje:
+                # Last.fm descubre el tema; Deezer aporta portada, álbum, enlace y muestra.
+                q = urlencode({"q": 'artist:"' + nombre_artista + '" track:"' + titulo + '"', "limit": 8})
+                resultados_deezer = consultar("https://api.deezer.com/search/track?" + q).get("data") or []
+                objetivo_artista, objetivo_titulo = clave(nombre_artista), clave(titulo)
+                mejor = None
+                mejor_puntuacion = 0.0
+                for resultado in resultados_deezer:
+                    artista_dz = str((resultado.get("artist") or {}).get("name") or "")
+                    titulo_dz = str(resultado.get("title") or "")
+                    puntuacion = difflib.SequenceMatcher(None, objetivo_artista, clave(artista_dz)).ratio() * 0.45
+                    puntuacion += difflib.SequenceMatcher(None, objetivo_titulo, clave(titulo_dz)).ratio() * 0.55
+                    if objetivo_artista == clave(artista_dz):
+                        puntuacion += 0.25
+                    if objetivo_titulo == clave(titulo_dz):
+                        puntuacion += 0.30
+                    if puntuacion > mejor_puntuacion:
+                        mejor, mejor_puntuacion = resultado, puntuacion
+                if mejor and mejor_puntuacion >= 1.05:
+                    añadir_candidata(mejor, semilla, max(0.5, float(similar.get("match") or 0.5)) * 1.2,
+                                     "Last.fm")
+                elif not mejor:
+                    # Si Deezer no localiza la canción, se conserva el título de Last.fm
+                    # para que pueda seguir descubriéndose en YouTube; la portada puede faltar.
+                    añadir_candidata({
+                        "titulo": titulo, "artista": {"name": nombre_artista},
+                        "url": similar.get("url") or "",
+                        "image": similar.get("image") or []
+                    }, semilla, max(0.5, float(similar.get("match") or 0.5)), "Last.fm")
+
+    fuente_final = "Last.fm + Deezer + tu biblioteca" if candidatos else "Deezer + tu biblioteca"
+
+    # Si Last.fm no está configurado o no devuelve suficientes temas, completar con el
+    # sistema anterior de artistas relacionados de Deezer.
+    if len(candidatos) < 10:
+        semillas_artistas = sorted(artistas.values(), key=lambda a: (-a["total"], a["nombre"].casefold()))
+        if genero_solicitado:
+            semillas_artistas = [a for a in semillas_artistas if a["generos"] and
+                                 max(a["generos"], key=a["generos"].get).casefold() == genero_solicitado.casefold()]
+        semillas_artistas = semillas_artistas[:5]
+        for semilla in semillas_artistas:
+            q = urlencode({"q": semilla["nombre"], "limit": 8})
+            datos_artista = consultar("https://api.deezer.com/search/artist?" + q)
+            objetivo = clave(semilla["nombre"])
+            artistas_deezer = datos_artista.get("data") or []
+            if not artistas_deezer:
+                continue
+            coincidencia = next((a for a in artistas_deezer if clave(a.get("name")) == objetivo), None)
+            if not coincidencia:
+                coincidencia = max(artistas_deezer, key=lambda a: difflib.SequenceMatcher(None, objetivo, clave(a.get("name"))).ratio())
+                if difflib.SequenceMatcher(None, objetivo, clave(coincidencia.get("name"))).ratio() < 0.82:
                     continue
-                candidatos[llave] = {
-                    "titulo": titulo, "artista": nombre_artista,
-                    "album": album.get("title") or "",
-                    "portada": album.get("cover_medium") or album.get("cover") or "",
-                    "preview": pista.get("preview") or "", "url": pista.get("link") or "",
-                    "genero": genero_solicitado or (max(semilla["generos"], key=semilla["generos"].get) if semilla["generos"] else ""),
-                    "relacionado_con": semilla["nombre"], "puntuacion": puntaje
-                }
+            relacionados = consultar("https://api.deezer.com/artist/" + str(coincidencia.get("id")) +
+                                     "/related?" + urlencode({"limit": 4})).get("data") or []
+            objetivos = [(a, 1.0) for a in relacionados[:4]] or [(coincidencia, 0.55)]
+            for artista_rel, peso in objetivos:
+                id_rel = artista_rel.get("id")
+                if not id_rel:
+                    continue
+                top = consultar("https://api.deezer.com/artist/" + str(id_rel) +
+                                "/top?" + urlencode({"limit": 8})).get("data") or []
+                for pista in top:
+                    añadir_candidata(pista, semilla, peso, "Deezer")
 
     ordenadas = sorted(candidatos.values(), key=lambda p: (-p["puntuacion"], clave(p["artista"]), clave(p["titulo"])))
-    # Rota el orden de resultados al solicitar otras tandas, sin cambiar la exclusión de la colección.
     if ordenadas:
         inicio_real = inicio % len(ordenadas)
         ordenadas = ordenadas[inicio_real:] + ordenadas[:inicio_real]
     return jsonify({"canciones": ordenadas[:10], "generos": generos,
                     "total_candidatas": len(candidatos), "total_biblioteca": len(biblioteca),
-                    "inicio": inicio, "fuente": "Deezer + tu biblioteca",
-                    "aviso": "La similitud se estima por artistas relacionados y popularidad del catálogo; no es un análisis acústico de audio."})
+                    "inicio": inicio, "fuente": fuente_final,
+                    "aviso": "Se prioriza la similitud entre canciones de Last.fm cuando está configurado; Deezer completa los datos disponibles. Si no, se usan artistas relacionados de Deezer. Las canciones de tu biblioteca se excluyen."})
 
 
 @app.get("/mi-musica")
