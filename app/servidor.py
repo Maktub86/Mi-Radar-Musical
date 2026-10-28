@@ -1049,7 +1049,7 @@ def api_recomendaciones():
     semillas = sorted(artistas.values(), key=lambda a: (-a["total"], a["nombre"].casefold()))
     if genero_solicitado:
         semillas = [a for a in semillas if a["generos"] and max(a["generos"], key=a["generos"].get).casefold() == genero_solicitado.casefold()]
-    semillas = semillas[:8]
+    semillas = semillas[:5]
     if not semillas:
         return jsonify({"canciones": [], "generos": generos, "total_biblioteca": len(biblioteca),
                         "error": "No hay suficientes artistas en tu colección para ese género."}), 200
@@ -1084,16 +1084,16 @@ def api_recomendaciones():
             if difflib.SequenceMatcher(None, objetivo, clave(coincidencia.get("name"))).ratio() < 0.82:
                 continue
         id_artista = coincidencia.get("id")
-        relacionados = consultar("https://api.deezer.com/artist/" + str(id_artista) + "/related?" + urlencode({"limit": 8})).get("data") or []
+        relacionados = consultar("https://api.deezer.com/artist/" + str(id_artista) + "/related?" + urlencode({"limit": 4})).get("data") or []
         # Si Deezer no proporciona artistas relacionados, usamos temas populares del artista semilla como alternativa.
-        objetivos = [(a, 1.0) for a in relacionados[:8]]
+        objetivos = [(a, 1.0) for a in relacionados[:4]]
         if not objetivos:
             objetivos = [(coincidencia, 0.55)]
         for artista_rel, peso in objetivos:
             id_rel = artista_rel.get("id")
             if not id_rel:
                 continue
-            top = consultar("https://api.deezer.com/artist/" + str(id_rel) + "/top?" + urlencode({"limit": 12})).get("data") or []
+            top = consultar("https://api.deezer.com/artist/" + str(id_rel) + "/top?" + urlencode({"limit": 8})).get("data") or []
             for pista in top:
                 titulo = str(pista.get("title") or "").strip()
                 datos_artista_pista = pista.get("artist") or artista_rel
