@@ -205,23 +205,24 @@ function cargarFiltros(){
   }
  }
  // Se enlaza el cambio una sola vez y se actualizan los dos desplegables inmediatamente.
- modo.addEventListener('change',()=>{actualizarOpciones();mostrar();});
- valorFiltro.addEventListener('change',mostrar);
+ modo.addEventListener('change',()=>{actualizarOpciones();lista.replaceChildren();resumen.textContent='Pulsa «Mostrar» para ver los resultados.';});
+ valorFiltro.addEventListener('change',()=>{lista.replaceChildren();resumen.textContent='Pulsa «Mostrar» para ver los resultados.';});
  actualizarOpciones();
 }
 document.getElementById('mostrar-filtro').addEventListener('click',()=>{
- if(!modo.value){resumen.textContent='Elige Año, Autor, Género, Décadas o Todos.';return;}
+ if(!modo.value&&!buscar.value.trim()){resumen.textContent='Escribe una búsqueda o elige Año, Autor, Género, Décadas o Todos.';return;}
  mostrar();
 });
-buscar.addEventListener('input',mostrar);
+buscar.addEventListener('input',()=>{lista.replaceChildren();resumen.textContent='Pulsa «Mostrar» para ver los resultados.';});
 const CLAVE_CACHE_MUSICA='miRadarMusicalColeccionV1';
 let filtrosMusicaInicializados=false;
 function aplicarColeccionMusical(datos,desdeCache=false){
  if(!Array.isArray(datos))throw new Error('La colección no tiene un formato válido.');
  canciones=datos;
  if(!filtrosMusicaInicializados){cargarFiltros();filtrosMusicaInicializados=true;}
- mostrar();
- if(desdeCache)resumen.textContent='Colección cargada desde la copia guardada en este dispositivo · '+canciones.length.toLocaleString('es-ES')+' canciones. Actualizando…';
+ lista.replaceChildren();
+ resumen.textContent='Colección cargada · '+canciones.length.toLocaleString('es-ES')+' canciones. Elige los filtros y pulsa «Mostrar».';
+ if(desdeCache)resumen.textContent='Colección guardada cargada · '+canciones.length.toLocaleString('es-ES')+' canciones. Elige los filtros y pulsa «Mostrar». Actualizando…';
 }
 let cacheMusicaLocal=null;
 try{const guardada=localStorage.getItem(CLAVE_CACHE_MUSICA);if(guardada)cacheMusicaLocal=JSON.parse(guardada);}catch(e){}
