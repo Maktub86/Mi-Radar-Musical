@@ -57,6 +57,44 @@ nav.navegacion-comun a.activo{font-weight:700}
 button,a[role=button],.icono-boton,[class*=icono][role=button]{transition:filter .15s ease,transform .15s ease,box-shadow .15s ease}
 button:hover,a[role=button]:hover,.icono-boton:hover,[class*=icono][role=button]:hover{filter:brightness(1.18);transform:translateY(-1px)}
 button:focus-visible,a:focus-visible{outline:2px solid #c9a5ff;outline-offset:3px}
+/* Identidad común para los iconos de muestra, descarga y YouTube en toda la web */
+.boton-30,.boton-muestra,.b30{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;
+  min-height:42px!important;border-radius:12px!important;padding:0 12px!important;
+  background:linear-gradient(135deg,#7867ff 0%,#9b45cf 52%,#d43e8f 100%)!important;
+  border:1px solid #ffffff70!important;color:#fff!important;font-weight:850!important;
+  box-shadow:0 4px 12px #7c45d044,inset 0 1px 0 #ffffff35!important;
+  text-decoration:none!important;cursor:pointer!important;
+}
+.boton-mediahuman,.boton-descarga-radar,.descarga{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  min-width:42px!important;min-height:42px!important;padding:8px 11px!important;border-radius:12px!important;
+  background:linear-gradient(135deg,#168653,#20ad70)!important;border:1px solid #69e5a4!important;
+  color:#fff!important;font-size:19px!important;font-weight:900!important;
+  box-shadow:0 4px 12px #16865340,inset 0 1px 0 #ffffff35!important;
+  text-decoration:none!important;cursor:pointer!important;
+}
+.boton-youtube,.youtube{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  min-width:42px!important;min-height:42px!important;padding:8px 11px!important;border-radius:12px!important;
+  background:linear-gradient(135deg,#ff4545,#d80d20)!important;border:1px solid #ff8c8c!important;
+  color:#fff!important;font-size:17px!important;font-weight:900!important;
+  box-shadow:0 4px 12px #e6212940,inset 0 1px 0 #ffffff35!important;
+  text-decoration:none!important;cursor:pointer!important;
+}
+.boton-30:hover,.boton-muestra:hover,.b30:hover,
+.boton-mediahuman:hover,.boton-descarga-radar:hover,.descarga:hover,
+.boton-youtube:hover,.youtube:hover{
+  filter:brightness(1.15)!important;transform:translateY(-2px) scale(1.035)!important;
+  box-shadow:0 7px 18px #0004,inset 0 1px 0 #ffffff55!important;
+}
+.boton-30:active,.boton-muestra:active,.b30:active,
+.boton-mediahuman:active,.boton-descarga-radar:active,.descarga:active,
+.boton-youtube:active,.youtube:active{transform:translateY(0) scale(.98)!important}
+.boton-30:focus-visible,.boton-muestra:focus-visible,.b30:focus-visible,
+.boton-mediahuman:focus-visible,.boton-descarga-radar:focus-visible,.descarga:focus-visible,
+.boton-youtube:focus-visible,.youtube:focus-visible{outline:2px solid #f0d7ff!important;outline-offset:3px!important}
+
 #modal-info-musical[hidden]{display:none!important}\n.wiki-icon,.boton-wikipedia,.wiki{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:30px!important;height:30px!important;min-width:30px!important;padding:0!important;border-radius:50%!important;border:1px solid #ffffffa8!important;background:linear-gradient(145deg,#b58aff,#7440b8 65%,#54258c)!important;color:#fff!important;font-size:16px!important;font-family:Segoe UI,Arial,sans-serif!important;font-weight:900!important;line-height:1!important;text-align:center!important;box-shadow:0 3px 10px #0004,inset 0 1px 0 #ffffff55!important;cursor:pointer!important;vertical-align:middle!important;transition:transform .15s ease,filter .15s ease!important}\n.wiki-icon:hover,.boton-wikipedia:hover,.wiki:hover{transform:translateY(-1px) scale(1.06);filter:brightness(1.12)}\n.wiki-icon:focus-visible,.boton-wikipedia:focus-visible,.wiki:focus-visible{outline:2px solid #e8d4ff;outline-offset:3px}
 @media(max-width:760px){nav.navegacion-comun{gap:6px;padding:8px 5%}nav.navegacion-comun a{font-size:14px;padding:8px 10px}}
 </style>
