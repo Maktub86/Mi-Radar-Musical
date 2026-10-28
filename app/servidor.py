@@ -710,15 +710,15 @@ async function cargarTop(nombre,caja,boton,tipo='populares'){
    const descripcion=recientes?'Lanzamiento reciente entre los temas destacados de Deezer':'Popularidad en Deezer';
    detalle.appendChild(nodo('div','pista-meta',(pista.anio||'Año no disponible')+' · '+pista.artista+' · '+descripcion+(pista.album?' · '+pista.album:'')));
    const acciones=nodo('div','acciones-pista');
-   const muestra=nodo('button','boton-30','<svg aria-hidden="true" viewBox="0 0 24 24" width="17" height="17" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg><span>30 s</span>');
+   const muestra=nodo('button','boton-30','');muestra.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="17" height="17" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg><span>30 s</span>';
    muestra.title=pista.preview?'Reproducir muestra de 30 segundos':'Muestra de 30 segundos no disponible';
    muestra.disabled=!pista.preview;
    muestra.addEventListener('click',()=>reproducir(pista,muestra));
-   const mediahuman=nodo('button','boton-mediahuman','<svg aria-hidden="true" viewBox="0 0 24 24" width="21" height="21" focusable="false"><path d="M12 3v11m-5-5 5 5 5-5M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+   const mediahuman=nodo('button','boton-mediahuman','');mediahuman.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="21" height="21" focusable="false"><path d="M12 3v11m-5-5 5 5 5-5M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
    mediahuman.title='Buscar enlace para MediaHuman';
    mediahuman.setAttribute('aria-label','MediaHuman');
    mediahuman.addEventListener('click',()=>buscarYouTube(pista,'mediahuman'));
-   const youtube=nodo('button','boton-youtube','<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" focusable="false"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"/><path d="M10 8.2v7.6l6-3.8z" fill="#e62129"/></svg>');
+   const youtube=nodo('button','boton-youtube','');youtube.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" focusable="false"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"/><path d="M10 8.2v7.6l6-3.8z" fill="#e62129"/></svg>';
    youtube.title='Abrir opciones de YouTube';
    youtube.setAttribute('aria-label','YouTube');
    youtube.addEventListener('click',()=>buscarYouTube(pista,'youtube'));
