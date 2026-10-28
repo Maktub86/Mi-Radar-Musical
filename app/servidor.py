@@ -38,6 +38,7 @@ def agregar_enlace_mi_musica(response):
             ("/listas/canal-fiesta", "📻 Canal Fiesta"),
             ("/lo-mejor", "🎤 Cantantes"),
             ("/mi-musica", "🎧 Mi música"),
+            ("/recomendaciones", "✨ Recomendaciones"),
             ("/programas", "🧰 Programas"),
         ]
         ruta = request.path.rstrip("/") or "/"
@@ -996,6 +997,133 @@ def api_lo_mejor():
         return jsonify({
             "error": "No se ha podido consultar Deezer ahora mismo. Inténtalo de nuevo más tarde."
         }), 502
+
+
+
+@app.get("/recomendaciones")
+def pagina_recomendaciones():
+    return (BASE / "recomendaciones.html").read_text(encoding="utf-8")
+
+
+@app.get("/api/recomendaciones")
+def api_recomendaciones():
+    """Recomienda temas ajenos a la biblioteca a partir de los artistas más representados."""
+    genero_solicitado = (request.args.get("genero") or "").strip()
+    try:
+        inicio = max(0, min(int(request.args.get("inicio") or 0), 500))
+    except (TypeError, ValueError):
+        inicio = 0
+
+    ruta_biblioteca = BASE / "mi_musica.json"
+    try:
+        with ruta_biblioteca.open("r", encoding="utf-8") as archivo:
+            biblioteca = json.load(archivo)
+    except (OSError, json.JSONDecodeError):
+        return jsonify({"error": "No se ha podido leer tu biblioteca musical."}), 503
+    if not isinstance(biblioteca, list) or not biblioteca:
+        return jsonify({"error": "Tu biblioteca está vacía o no está disponible todavía."}), 503
+
+    def clave(valor):
+        return normalizar_texto(valor)
+
+    existentes = set()
+    artistas = {}
+    generos_por_artista = {}
+    for pista in biblioteca:
+        if not isinstance(pista, dict):
+            continue
+        artista = str(pista.get("artista") or "").strip()
+        titulo = str(pista.get("titulo") or "").strip()
+        genero = str(pista.get("genero") or "").strip()
+        if artista and titulo:
+            existentes.add((clave(artista), clave(titulo)))
+        if artista:
+            entrada = artistas.setdefault(clave(artista), {"nombre": artista, "total": 0, "generos": {}})
+            entrada["total"] += 1
+            if genero:
+                entrada["generos"][genero] = entrada["generos"].get(genero, 0) + 1
+                generos_por_artista.setdefault(clave(artista), {})
+                generos_por_artista[clave(artista)][genero] = generos_por_artista[clave(artista)].get(genero, 0) + 1
+
+    generos = sorted({g for p in biblioteca if isinstance(p, dict) for g in [str(p.get("genero") or "").strip()] if g}, key=str.casefold)
+    semillas = sorted(artistas.values(), key=lambda a: (-a["total"], a["nombre"].casefold()))
+    if genero_solicitado:
+        semillas = [a for a in semillas if a["generos"] and max(a["generos"], key=a["generos"].get).casefold() == genero_solicitado.casefold()]
+    semillas = semillas[:8]
+    if not semillas:
+        return jsonify({"canciones": [], "generos": generos, "total_biblioteca": len(biblioteca),
+                        "error": "No hay suficientes artistas en tu colección para ese género."}), 200
+
+    candidatos = {}
+    cache_peticion = {}
+    def consultar(url, timeout=4):
+        if url in cache_peticion:
+            return cache_peticion[url]
+        try:
+            pet = Request(url, headers={"User-Agent": "MiRadarMusical/1.0"})
+            with urlopen(pet, timeout=timeout) as respuesta:
+                datos = json.loads(respuesta.read().decode("utf-8"))
+            if isinstance(datos, dict) and not datos.get("error"):
+                cache_peticion[url] = datos
+                return datos
+        except Exception as error:
+            app.logger.info("Recomendaciones: fallo consultando catálogo: %s", error)
+        cache_peticion[url] = {}
+        return {}
+
+    for semilla in semillas:
+        q = urlencode({"q": semilla["nombre"], "limit": 8})
+        datos_artista = consultar("https://api.deezer.com/search/artist?" + q)
+        objetivo = clave(semilla["nombre"])
+        artistas_deezer = datos_artista.get("data") or []
+        if not artistas_deezer:
+            continue
+        coincidencia = next((a for a in artistas_deezer if clave(a.get("name")) == objetivo), None)
+        if not coincidencia:
+            coincidencia = max(artistas_deezer, key=lambda a: difflib.SequenceMatcher(None, objetivo, clave(a.get("name"))).ratio())
+            if difflib.SequenceMatcher(None, objetivo, clave(coincidencia.get("name"))).ratio() < 0.82:
+                continue
+        id_artista = coincidencia.get("id")
+        relacionados = consultar("https://api.deezer.com/artist/" + str(id_artista) + "/related?" + urlencode({"limit": 8})).get("data") or []
+        # Si Deezer no proporciona artistas relacionados, usamos temas populares del artista semilla como alternativa.
+        objetivos = [(a, 1.0) for a in relacionados[:8]]
+        if not objetivos:
+            objetivos = [(coincidencia, 0.55)]
+        for artista_rel, peso in objetivos:
+            id_rel = artista_rel.get("id")
+            if not id_rel:
+                continue
+            top = consultar("https://api.deezer.com/artist/" + str(id_rel) + "/top?" + urlencode({"limit": 12})).get("data") or []
+            for pista in top:
+                titulo = str(pista.get("title") or "").strip()
+                datos_artista_pista = pista.get("artist") or artista_rel
+                nombre_artista = str(datos_artista_pista.get("name") or artista_rel.get("name") or "").strip()
+                if not titulo or not nombre_artista or (clave(nombre_artista), clave(titulo)) in existentes:
+                    continue
+                album = pista.get("album") or {}
+                llave = (clave(nombre_artista), clave(titulo))
+                puntaje = peso * 100 + min(int(pista.get("rank") or 0) / 100000, 30)
+                actual = candidatos.get(llave)
+                if actual and actual["puntuacion"] >= puntaje:
+                    continue
+                candidatos[llave] = {
+                    "titulo": titulo, "artista": nombre_artista,
+                    "album": album.get("title") or "",
+                    "portada": album.get("cover_medium") or album.get("cover") or "",
+                    "preview": pista.get("preview") or "", "url": pista.get("link") or "",
+                    "genero": genero_solicitado or (max(semilla["generos"], key=semilla["generos"].get) if semilla["generos"] else ""),
+                    "relacionado_con": semilla["nombre"], "puntuacion": puntaje
+                }
+
+    ordenadas = sorted(candidatos.values(), key=lambda p: (-p["puntuacion"], clave(p["artista"]), clave(p["titulo"])))
+    # Rota el orden de resultados al solicitar otras tandas, sin cambiar la exclusión de la colección.
+    if ordenadas:
+        inicio_real = inicio % len(ordenadas)
+        ordenadas = ordenadas[inicio_real:] + ordenadas[:inicio_real]
+    return jsonify({"canciones": ordenadas[:10], "generos": generos,
+                    "total_candidatas": len(candidatos), "total_biblioteca": len(biblioteca),
+                    "inicio": inicio, "fuente": "Deezer + tu biblioteca",
+                    "aviso": "La similitud se estima por artistas relacionados y popularidad del catálogo; no es un análisis acústico de audio."})
 
 
 @app.get("/mi-musica")
