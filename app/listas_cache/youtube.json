@@ -19,15 +19,15 @@
       "puesto": 3
     },
     {
-      "titulo": "Te Imagino",
-      "artista": "Myke Towers",
-      "url": "https://www.youtube.com/watch?v=5j8fIDh1V0A",
+      "titulo": "Galvan Real - Mi Rompecabezas (Videoclip Oficial)",
+      "artista": "GALVAN REAL",
+      "url": "https://www.youtube.com/watch?v=mZm0CZlc9so",
       "puesto": 4
     },
     {
-      "titulo": "Dame Hombro",
-      "artista": "Kevin Wai, Breyco En Producidera, Bulin 47",
-      "url": "https://www.youtube.com/watch?v=VUIgT-E4IS0",
+      "titulo": "Te Imagino",
+      "artista": "Myke Towers",
+      "url": "https://www.youtube.com/watch?v=5j8fIDh1V0A",
       "puesto": 5
     },
     {
@@ -37,9 +37,9 @@
       "puesto": 6
     },
     {
-      "titulo": "Galvan Real - Mi Rompecabezas (Videoclip Oficial)",
-      "artista": "GALVAN REAL",
-      "url": "https://www.youtube.com/watch?v=mZm0CZlc9so",
+      "titulo": "Dame Hombro",
+      "artista": "Kevin Wai, Breyco En Producidera, Bulin 47",
+      "url": "https://www.youtube.com/watch?v=VUIgT-E4IS0",
       "puesto": 7
     },
     {
@@ -49,15 +49,15 @@
       "puesto": 8
     },
     {
-      "titulo": "El Problema Fue La Solución",
-      "artista": "Antonio Orozco",
-      "url": "https://www.youtube.com/watch?v=jevtWW_3Jwk",
-      "puesto": 9
-    },
-    {
       "titulo": "El Pastor De Mareas",
       "artista": "El Barrio",
       "url": "https://www.youtube.com/watch?v=j68DbvilXrw",
+      "puesto": 9
+    },
+    {
+      "titulo": "El Problema Fue La Solución",
+      "artista": "Antonio Orozco",
+      "url": "https://www.youtube.com/watch?v=jevtWW_3Jwk",
       "puesto": 10
     },
     {
@@ -67,124 +67,124 @@
       "puesto": 11
     },
     {
+      "titulo": "El Tándem con Cráneo",
+      "artista": "SFDK",
+      "url": "https://www.youtube.com/watch?v=G2yPTomFA9A",
+      "puesto": 12
+    },
+    {
       "titulo": "RED BOTTOM",
       "artista": "YOLAMASCARA",
       "url": "https://www.youtube.com/watch?v=9ox8EfPRCWc",
-      "puesto": 12
+      "puesto": 13
     },
     {
       "titulo": "YOUR NUMBER - Spanish Version",
       "artista": "Yapi",
       "url": "https://www.youtube.com/watch?v=xxToWcYEGJw",
-      "puesto": 13
-    },
-    {
-      "titulo": "El Tándem con Cráneo",
-      "artista": "SFDK",
-      "url": "https://www.youtube.com/watch?v=G2yPTomFA9A",
       "puesto": 14
-    },
-    {
-      "titulo": "La Falda",
-      "artista": "Judeline",
-      "url": "https://www.youtube.com/watch?v=7L6oiqd91qE",
-      "puesto": 15
-    },
-    {
-      "titulo": "Housewife (Official Video)",
-      "artista": "Tate McRae",
-      "url": "https://www.youtube.com/watch?v=DPEodkHzH-s",
-      "puesto": 16
-    },
-    {
-      "titulo": "BbY WOW (Live From New York)",
-      "artista": "KAROL G, Judeline, rusowsky",
-      "url": "https://www.youtube.com/watch?v=ckPbVDXw9Gc",
-      "puesto": 17
-    },
-    {
-      "titulo": "Bicho raro",
-      "artista": "Estopa",
-      "url": "https://www.youtube.com/watch?v=8IMveAh7nhA",
-      "puesto": 18
-    },
-    {
-      "titulo": "Tarantino (Official Music Video)",
-      "artista": "LISA",
-      "url": "https://www.youtube.com/watch?v=-5ZXrO_lYSA",
-      "puesto": 19
     },
     {
       "titulo": "Vete Pa Tu Casa (Official Visualizer)",
       "artista": "Conep",
       "url": "https://www.youtube.com/watch?v=HBoW8-q-sSs",
+      "puesto": 15
+    },
+    {
+      "titulo": "BbY WOW (Live From New York)",
+      "artista": "KAROL G, Judeline, rusowsky",
+      "url": "https://www.youtube.com/watch?v=ckPbVDXw9Gc",
+      "puesto": 16
+    },
+    {
+      "titulo": "La Falda",
+      "artista": "Judeline",
+      "url": "https://www.youtube.com/watch?v=7L6oiqd91qE",
+      "puesto": 17
+    },
+    {
+      "titulo": "Housewife (Official Video)",
+      "artista": "Tate McRae",
+      "url": "https://www.youtube.com/watch?v=DPEodkHzH-s",
+      "puesto": 18
+    },
+    {
+      "titulo": "Bicho raro",
+      "artista": "Estopa",
+      "url": "https://www.youtube.com/watch?v=8IMveAh7nhA",
+      "puesto": 19
+    },
+    {
+      "titulo": "Tarantino (Official Music Video)",
+      "artista": "LISA",
+      "url": "https://www.youtube.com/watch?v=-5ZXrO_lYSA",
       "puesto": 20
+    },
+    {
+      "titulo": "Coming Up Roses (Official Video)",
+      "artista": "Harry Styles",
+      "url": "https://www.youtube.com/watch?v=M4qX5wzx-wY",
+      "puesto": 21
     },
     {
       "titulo": "Chiribi",
       "artista": "Angeliyo El Blanco",
       "url": "https://www.youtube.com/watch?v=8SLaold8IO8",
-      "puesto": 21
-    },
-    {
-      "titulo": "Vuelve",
-      "artista": "Anuel AA",
-      "url": "https://www.youtube.com/watch?v=3juuih0WdH8",
       "puesto": 22
-    },
-    {
-      "titulo": "KARINA - Entre tú y yo (VIDEO OFICIAL)",
-      "artista": "Karina y Marina, Anthony & Yeigo, Karina",
-      "url": "https://www.youtube.com/watch?v=mc9c1eDkvb0",
-      "puesto": 23
-    },
-    {
-      "titulo": "Fua kabrón",
-      "artista": "GRECAS",
-      "url": "https://www.youtube.com/watch?v=orwiyr_FUgE",
-      "puesto": 24
     },
     {
       "titulo": "Drip",
       "artista": "ATEEZ",
       "url": "https://www.youtube.com/watch?v=iqQWCYMlMw0",
+      "puesto": 23
+    },
+    {
+      "titulo": "Vuelve",
+      "artista": "Anuel AA",
+      "url": "https://www.youtube.com/watch?v=3juuih0WdH8",
+      "puesto": 24
+    },
+    {
+      "titulo": "Muertx",
+      "artista": "Yan Block",
+      "url": "https://www.youtube.com/watch?v=mc2TyQK2NKY",
       "puesto": 25
     },
     {
-      "titulo": "Raquel Sans",
-      "artista": "The Tyets, Miki Núñez",
-      "url": "https://www.youtube.com/watch?v=RQnM1yL3fn8",
+      "titulo": "KARINA - Entre tú y yo (VIDEO OFICIAL)",
+      "artista": "Karina y Marina, Anthony & Yeigo, Karina",
+      "url": "https://www.youtube.com/watch?v=mc9c1eDkvb0",
       "puesto": 26
+    },
+    {
+      "titulo": "Fua kabrón",
+      "artista": "GRECAS",
+      "url": "https://www.youtube.com/watch?v=orwiyr_FUgE",
+      "puesto": 27
+    },
+    {
+      "titulo": "Sarà perché ti amo – AFRO CODE 🔥| Afro House Extended Mix",
+      "artista": "AFRO CODE",
+      "url": "https://www.youtube.com/watch?v=AAZpeg19RWw",
+      "puesto": 28
     },
     {
       "titulo": "Tímala",
       "artista": "GRECAS",
       "url": "https://www.youtube.com/watch?v=6Vol_WMpxss",
-      "puesto": 27
-    },
-    {
-      "titulo": "+ DELOMISMO",
-      "artista": "Juseph",
-      "url": "https://www.youtube.com/watch?v=vkAO4KXFFgo",
-      "puesto": 28
-    },
-    {
-      "titulo": "Es un Secreto",
-      "artista": "Plan B",
-      "url": "https://www.youtube.com/watch?v=XrxQJT2vGX0",
       "puesto": 29
     },
     {
-      "titulo": "0 AMIGOS cap. 5 - YOLAMASCARA",
-      "artista": "YOLAMASCARA",
-      "url": "https://www.youtube.com/watch?v=aqS1yAEEASw",
+      "titulo": "Raquel Sans",
+      "artista": "The Tyets, Miki Núñez",
+      "url": "https://www.youtube.com/watch?v=RQnM1yL3fn8",
       "puesto": 30
     }
   ],
   "fuente": "https://charts.youtube.com/charts/TrendingVideos/es",
   "nombre": "Tendencias musicales de YouTube",
   "tipo": "youtube",
-  "actualizado": "2026-10-27T04:58+00:00",
+  "actualizado": "2026-10-28T05:00+00:00",
   "en_curso": false,
   "mensaje": "Lista actualizada: 30 canciones."
 }
