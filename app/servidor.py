@@ -465,9 +465,6 @@ button:disabled{opacity:.55;cursor:wait}
 .boton-30,.boton-completa{background:#292d3b;border:1px solid #ffffff30;color:#fff;min-width:42px}
 .boton-30{flex:0 0 82px;width:82px;background:linear-gradient(120deg,#ff4fa3,#8a4dff 52%,#20bde8);border:1px solid #ffffff50;box-shadow:0 3px 12px #8e42e833}
 .boton-mediahuman{background:#238b55;color:#fff;border:1px solid #55c783;min-width:42px}
-/* Centra la flecha como icono, sin depender de la línea base del carácter */
-.acciones-pista .boton-mediahuman{font-size:0!important;position:relative;}
-.acciones-pista .boton-mediahuman::before{content:'⬇';display:block;font-family:Arial,sans-serif;font-size:21px;line-height:1;position:relative;top:-2px;}
 .boton-youtube{background:#e62129;color:#fff;min-width:42px}
 .boton-youtube:hover{background:#ff333b}
 .boton-wikipedia{display:inline-flex;align-items:center;justify-content:center;flex:0 0 30px;width:30px;height:30px;margin-left:8px;border-radius:5px;background:#777d88;color:#fff;font-weight:900;border:1px solid #a8adb6;cursor:pointer;text-decoration:none}
@@ -718,7 +715,7 @@ async function cargarTop(nombre,caja,boton,tipo='populares'){
    mediahuman.title='Buscar enlace para MediaHuman';
    mediahuman.setAttribute('aria-label','MediaHuman');
    mediahuman.addEventListener('click',()=>buscarYouTube(pista,'mediahuman'));
-   const youtube=nodo('button','boton-youtube','');youtube.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" focusable="false"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"/><path d="M10 8.2v7.6l6-3.8z" fill="#e62129"/></svg>';
+   const youtube=nodo('button','boton-youtube','');youtube.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg>';
    youtube.title='Abrir opciones de YouTube';
    youtube.setAttribute('aria-label','YouTube');
    youtube.addEventListener('click',()=>buscarYouTube(pista,'youtube'));
