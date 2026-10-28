@@ -552,13 +552,13 @@ let temporizador=null;
 function nodo(tag,clase,texto){const n=document.createElement(tag);if(clase)n.className=clase;if(texto!==undefined)n.textContent=texto;return n;}
 function mostrarArtistas(){
  const q=buscar.value.trim().toLocaleLowerCase('es');
- const filtrados=artistasBase.filter(a=>{const nombre=a.NombreOriginal||a.NombreNormalizado||'',ini=normalizarNombre(nombre).charAt(0)||'#';const coincide=!inicialSeleccionada||(inicialSeleccionada==='#'?!/^[A-Z]/.test(normalizarNombre(nombre)):ini===inicialSeleccionada);return nombre.toLocaleLowerCase('es').includes(q)&&coincide;}).sort((a,b)=>(a.NombreOriginal||a.NombreNormalizado||'').localeCompare(b.NombreOriginal||b.NombreNormalizado||'','es',{sensitivity:'base'}));
+ const filtrados=artistasBase.filter(a=>{const nombre=a.NombreOriginal||a.NombreNormalizado||'',ini=normalizarNombre(nombre).charAt(0)||'#';const coincide=!inicialSeleccionada||(inicialSeleccionada==='#'?!/^[A-Z]/.test(normalizarNombre(nombre)):ini===inicialSeleccionada);return nombre.toLocaleLowerCase('es').includes(q)&&coincide;}).sort((a,b)=>mostrandoFavoritos?((Number(b.cancionesEnColeccion)||0)-(Number(a.cancionesEnColeccion)||0)||(a.NombreOriginal||a.NombreNormalizado||'').localeCompare(b.NombreOriginal||b.NombreNormalizado||'','es',{sensitivity:'base'})):(a.NombreOriginal||a.NombreNormalizado||'').localeCompare(b.NombreOriginal||b.NombreNormalizado||'','es',{sensitivity:'base'}));
  contenedor.replaceChildren();
  for(const artista of filtrados){
   const nombre=artista.NombreOriginal||artista.NombreNormalizado;
   const caja=nodo('section','artista-mejor');
   const cabecera=nodo('div','cabecera-artista');
-  cabecera.appendChild(nodo('h2','',nombre+(artista.cancionesEnColeccion?' · '+artista.cancionesEnColeccion+' canciones en tu colección':'')));
+  cabecera.appendChild(nodo('h2','',nombre+(artista.cancionesEnColeccion?' · '+artista.cancionesEnColeccion+' canciones':'')));
   const huecoWiki=nodo('span','');huecoWiki.style.marginRight='auto';
   const wikiArtista=nodo('button','boton-wikipedia','I');wikiArtista.type='button';
   wikiArtista.dataset.resumenTipo='artista';wikiArtista.dataset.resumenNombre=nombre;wikiArtista.dataset.resumenArtista='';
