@@ -38,7 +38,6 @@ def agregar_enlace_mi_musica(response):
             ("/listas/canal-fiesta", "📻 Canal Fiesta"),
             ("/lo-mejor", "⭐ Lo mejor"),
             ("/mi-musica", "🎧 Mi música"),
-            ("/artistas", "🎤 Mis artistas"),
             ("/programas", "🧰 Programas"),
         ]
         ruta = request.path.rstrip("/") or "/"
