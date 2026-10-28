@@ -9,7 +9,7 @@
 header{padding:30px 6%;background:linear-gradient(110deg,#37205f,#56328c 55%,#8d438e);border-bottom:1px solid #ffffff25}
 .marca{font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#e9ddff}h1{font-size:clamp(30px,5vw,46px);margin:8px 0}header p{margin:0;color:#eee4ff;max-width:800px;line-height:1.5}
 main{max-width:1300px;margin:auto;padding:24px 5%}.intro{color:var(--suave);line-height:1.6}
-.controles{display:grid;grid-template-columns:minmax(170px,1fr) minmax(220px,2fr) auto;gap:10px;align-items:end;padding:16px;background:#ffffff08;border:1px solid var(--borde);border-radius:16px}
+.controles{display:grid;grid-template-columns:minmax(220px,1fr) auto;gap:10px;align-items:end;padding:16px;background:#ffffff08;border:1px solid var(--borde);border-radius:16px}
 label{display:block;font-size:12px;color:#d5c9ee;margin:0 0 7px;font-weight:750}select,button{font:inherit}select{width:100%;min-width:0;padding:12px;border:1px solid #ffffff2a;border-radius:10px;background:#171d2c;color:#fff}
 button{border:1px solid #ffffff2a;border-radius:11px;padding:11px 14px;color:#fff;background:#283148;font-weight:750;cursor:pointer}button:hover{filter:brightness(1.15);transform:translateY(-1px)}button:disabled{opacity:.55;cursor:wait;transform:none}
 .primario{background:linear-gradient(135deg,#8e5de7,#c14f9b);border-color:#d8b6ff;box-shadow:0 4px 14px #6d39b944}
@@ -22,7 +22,7 @@ button{border:1px solid #ffffff2a;border-radius:11px;padding:11px 14px;color:#ff
 svg{display:block;flex:none}
 .nota{font-size:12px;color:#aeb2ca;line-height:1.6;margin-top:18px}
 #modal[hidden]{display:none}#modal{position:fixed;inset:0;z-index:10000;background:#000b;display:flex;align-items:center;justify-content:center;padding:16px}.caja{width:min(700px,100%);max-height:85vh;overflow:auto;padding:18px;background:#171d2c;border:1px solid #ffffff35;border-radius:16px}.cabecera-modal{display:flex;align-items:center;justify-content:space-between;gap:12px}.cabecera-modal h2{font-size:20px;margin:0}.resultado{display:block;width:100%;margin:8px 0;text-align:left;background:#243047}.resultado span{display:block;margin-top:5px;font-size:12px;color:#b8bad0}.texto-modal{white-space:pre-line;line-height:1.65}
-@media(max-width:800px){.grid{grid-template-columns:1fr}.controles{grid-template-columns:1fr 1fr}.controles>div:nth-child(2){grid-column:1/-1}.controles button{width:100%}}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.controles{grid-template-columns:1fr 1fr}.controles button{width:100%}}
 @media(max-width:480px){main{padding:18px 4%}.controles{grid-template-columns:1fr}.controles>div:nth-child(2){grid-column:auto}.cancion{grid-template-columns:82px minmax(0,1fr);gap:10px;padding:10px}.portada{width:82px}.acciones button{flex:1}.titulo{font-size:15px}}
 </style>
 </head>
@@ -32,7 +32,7 @@ svg{display:block;flex:none}
 <p class="intro">El sistema parte de tus artistas más representados y consulta artistas relacionados en Deezer. Puedes pedir recomendaciones generales o limitar la búsqueda a un género de tu colección.</p>
 <section class="controles" aria-label="Opciones de recomendaciones">
 <div><label for="genero">GÉNERO MUSICAL</label><select id="genero"><option value="">Todos los géneros</option></select></div>
-<div><label for="criterio">TIPO DE RECOMENDACIÓN</label><select id="criterio"><option value="personal">Para mí · según mi colección</option><option value="genero">Priorizar el género seleccionado</option></select></div>
+
 <button id="otras" class="primario" type="button">✨ Descubrir 10 canciones</button>
 </section>
 <div id="estado" role="status" aria-live="polite">Preparando recomendaciones basadas en tu biblioteca…</div>
@@ -41,7 +41,7 @@ svg{display:block;flex:none}
 </main>
 <div id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-titulo"><div class="caja"><div class="cabecera-modal"><h2 id="modal-titulo">Opciones</h2><button id="cerrar" type="button">Cerrar ✕</button></div><p id="estado-modal" class="texto-modal"></p><div id="resultados-modal"></div></div></div>
 <script>
-const genero=document.getElementById('genero'),criterio=document.getElementById('criterio'),otras=document.getElementById('otras'),estado=document.getElementById('estado'),contenedor=document.getElementById('resultados');
+const genero=document.getElementById('genero'),otras=document.getElementById('otras'),estado=document.getElementById('estado'),contenedor=document.getElementById('resultados');
 const modal=document.getElementById('modal'),modalTitulo=document.getElementById('modal-titulo'),estadoModal=document.getElementById('estado-modal'),resultadosModal=document.getElementById('resultados-modal');
 let inicio=0,ultimaGeneracion=0;
 const svgPlay='<svg aria-hidden="true" viewBox="0 0 24 24" width="17" height="17"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg>';
@@ -54,7 +54,7 @@ async function escuchar(c,b){b.disabled=true;const original=b.innerHTML;b.textCo
 async function informacion(c,b){b.disabled=true;abrirModal('Información sobre '+c.titulo,'Consultando información musical…');try{const q=new URLSearchParams({tipo:'cancion',nombre:c.titulo,artista:c.artista});const r=await fetch('/api/resumen-musical?'+q);const d=await r.json();estadoModal.textContent=d.resumen||d.informacion||d.error||'No se ha encontrado información.';for(const f of (d.fuentes||[])){if(!f.url||!f.url.startsWith('https://'))continue;const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=f.titulo||'Consultar fuente';a.style.display='block';a.style.color='#d2b8ff';resultadosModal.appendChild(a)}}catch(e){estadoModal.textContent='No se ha podido consultar la información ahora mismo.'}finally{b.disabled=false}}
 function pintarCancion(c){const fila=document.createElement('article');fila.className='cancion';const img=document.createElement('img');img.className='portada';img.loading='lazy';img.alt='Portada de '+c.titulo;img.src=c.portada||'';img.onerror=()=>{const f=document.createElement('div');f.className='portada';f.textContent='♪';img.replaceWith(f)};const info=document.createElement('div');info.className='info';const titulo=document.createElement('div');titulo.className='titulo';titulo.textContent=c.titulo;const artista=document.createElement('div');artista.className='artista';artista.textContent=c.artista;const meta=document.createElement('div');meta.className='meta';meta.textContent=(c.genero||'Estilo relacionado')+' · Similar a '+(c.relacionado_con||'tus gustos')+(c.album?' · '+c.album:'');info.append(titulo,artista,meta);const acciones=document.createElement('div');acciones.className='acciones';acciones.append(boton(svgPlay+'<span>30 s</span>','b30','Escuchar muestra de 30 segundos',b=>escuchar(c,b)),boton(svgDownload,'descarga','Buscar enlace para descargar con MediaHuman',b=>buscarVideos(c,'mediahuman',b)),boton(svgPlay,'youtube','Buscar en YouTube',b=>buscarVideos(c,'youtube',b)),boton('ℹ','info-btn','Consultar información de la canción',b=>informacion(c,b)));info.appendChild(acciones);fila.append(img,info);contenedor.appendChild(fila)}
 async function cargar(reset=false){if(reset)inicio=0;otras.disabled=true;estado.textContent='Analizando tu colección y buscando canciones que no tengas…';contenedor.replaceChildren();const gen=++ultimaGeneracion;try{const q=new URLSearchParams({inicio:String(inicio),genero:genero.value});const r=await fetch('/api/recomendaciones?'+q,{cache:'no-store'});const d=await r.json();if(!r.ok)throw new Error(d.error||'No se pudieron cargar las recomendaciones.');if(gen!==ultimaGeneracion)return;if(d.generos&&genero.options.length<=1){for(const g of d.generos){const o=document.createElement('option');o.value=g;o.textContent=g;genero.appendChild(o)}}if(!(d.canciones||[]).length){estado.textContent=d.error||'No se han encontrado recomendaciones para esta selección. Prueba otro género.';return}for(const c of d.canciones)pintarCancion(c);estado.textContent='Mostrando '+d.canciones.length+' recomendaciones · '+Number(d.total_biblioteca||0).toLocaleString('es-ES')+' canciones analizadas en tu colección · '+(d.fuente||'Catálogo musical')+'. '+(d.aviso||'');inicio+=10;if(Number(d.total_candidatas||0)<=inicio)estado.textContent+=' Has visto todas las recomendaciones encontradas por esta búsqueda; puedes volver a empezar.'}catch(e){estado.textContent=e.message||'Ha ocurrido un error al buscar recomendaciones.'}finally{otras.disabled=false;}}
-otras.addEventListener('click',()=>cargar(false));genero.addEventListener('change',()=>cargar(true));criterio.addEventListener('change',()=>{if(criterio.value==='genero'&&!genero.value){estado.textContent='Elige primero un género musical para priorizarlo.';return}cargar(true)});
+otras.addEventListener('click',()=>cargar(false));genero.addEventListener('change',()=>cargar(true));
 cargar(true);
 </script>
 </body></html>
