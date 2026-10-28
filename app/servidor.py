@@ -560,7 +560,7 @@ function mostrarArtistas(){
   const cabecera=nodo('div','cabecera-artista');
   cabecera.appendChild(nodo('h2','',nombre+(artista.cancionesEnColeccion?' · '+artista.cancionesEnColeccion+' canciones en tu colección':'')));
   const huecoWiki=nodo('span','');huecoWiki.style.marginRight='auto';
-  const wikiArtista=nodo('button','boton-wikipedia','G');wikiArtista.type='button';
+  const wikiArtista=nodo('button','boton-wikipedia','I');wikiArtista.type='button';
   wikiArtista.dataset.resumenTipo='artista';wikiArtista.dataset.resumenNombre=nombre;wikiArtista.dataset.resumenArtista='';
   wikiArtista.title='Consultar biografía y curiosidad de '+nombre;wikiArtista.setAttribute('aria-label','Consultar biografía de '+nombre);
   wikiArtista.addEventListener('click',async()=>{
@@ -572,7 +572,7 @@ function mostrarArtistas(){
     cargando.remove();
     if(info.encontrado)mostrarInfoWikipedia(caja,info,'artista');
     else caja.appendChild(nodo('div','info-wikipedia',info.mensaje||'No se ha encontrado información sobre este artista.'));
-   }finally{wikiArtista.disabled=false;wikiArtista.textContent='G';}
+   }finally{wikiArtista.disabled=false;wikiArtista.textContent='I';}
   });
   huecoWiki.appendChild(wikiArtista);cabecera.appendChild(huecoWiki);
   const botonesRanking=nodo('div','botones-ranking');
@@ -663,7 +663,7 @@ async function cargarTop(nombre,caja,boton,tipo='populares'){
      cargando.remove();
      if(info.encontrado)mostrarInfoWikipedia(fila,info,'cancion');
      else fila.insertAdjacentElement('afterend',nodo('div','info-wikipedia',info.mensaje||'No se ha encontrado información sobre esta canción.'));
-    }finally{wiki.disabled=false;wiki.textContent='G';}
+    }finally{wiki.disabled=false;wiki.textContent='I';}
    });
    tituloLinea.appendChild(wiki);
    const descripcion=recientes?'Lanzamiento reciente entre los temas destacados de Deezer':'Popularidad en Deezer';
