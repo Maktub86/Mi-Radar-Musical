@@ -24,6 +24,20 @@ button{border:1px solid #ffffff26;border-radius:10px;padding:10px 12px;color:whi
 @media(max-width:420px){.controles{grid-template-columns:1fr}.controles input{grid-column:auto}nav{padding:12px 4%}nav a{padding:9px 11px}}
 body[data-wikipedia-off="1"] .wiki{display:none!important}
 @media(max-width:760px){.controles{grid-template-columns:minmax(0,1fr);}.controles>*{width:100%;min-width:0;}#mostrar-filtro{width:100%;}}
+
+/* Ficha informativa: mismo diseño y comportamiento modal que portada y listas */
+.modal-info-musical{position:fixed;inset:0;z-index:50000;background:rgba(4,5,14,.78);display:flex;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(5px)}
+.modal-info-musical[hidden]{display:none}
+.modal-info-musical-panel{width:min(720px,100%);max-height:min(82vh,850px);overflow:auto;background:#132b35;color:#effcff;border:1px solid #ffffff35;border-radius:16px;box-shadow:0 20px 70px #0009;padding:24px}
+.modal-info-musical-cabecera{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.modal-info-musical-titulo{font-size:22px;font-weight:800;line-height:1.3;margin:0}
+.modal-info-musical-cerrar{flex:none;border-radius:50%;width:40px;height:40px;padding:0;font-size:23px;line-height:1}
+.modal-info-musical-texto{white-space:pre-line;line-height:1.7;font-size:15px}
+.modal-info-musical-fuentes{display:flex;flex-direction:column;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid #ffffff20}
+.modal-info-musical-fuentes a{color:#8ce8df;overflow-wrap:anywhere}
+.modal-info-musical-motor{font-size:12px;color:#9de8ca;margin-bottom:12px}
+.modal-info-musical-error{color:#ffb9c0;line-height:1.6}
+body.modal-info-musical-abierto{overflow:hidden}
 </style>
 </head>
 <body>
@@ -51,18 +65,62 @@ const modal=document.getElementById('modal'),estadoModal=document.getElementById
 const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('es');
 const wiki=(s)=>'https://es.wikipedia.org/w/index.php?search='+encodeURIComponent(s);
 function enlaceWiki(tipo,nombre,artista,etiqueta){const a=document.createElement('button');a.type='button';a.className='wiki';a.textContent='W';a.title=etiqueta;a.setAttribute('aria-label',etiqueta);a.dataset.wikiTipo=tipo;a.dataset.wikiNombre=nombre;a.dataset.wikiArtista=artista||'';a.addEventListener('click',()=>consultarInformacionWiki(a));return a}
-const cacheWikipediaInfo=new Map();
+const cacheInformacionMusical=new Map();
+let modalInfoMusical=null,tituloInfoMusical=null,textoInfoMusical=null,motorInfoMusical=null,fuentesInfoMusical=null,cerrarInfoMusical=null;
+function prepararModalInfoMusical(){
+ if(modalInfoMusical)return;
+ modalInfoMusical=document.createElement('div');modalInfoMusical.id='modal-info-musical';modalInfoMusical.className='modal-info-musical';modalInfoMusical.hidden=true;modalInfoMusical.setAttribute('role','dialog');modalInfoMusical.setAttribute('aria-modal','true');modalInfoMusical.setAttribute('aria-labelledby','titulo-modal-info-musical');
+ const panel=document.createElement('section');panel.className='modal-info-musical-panel';
+ const cabecera=document.createElement('div');cabecera.className='modal-info-musical-cabecera';
+ tituloInfoMusical=document.createElement('h2');tituloInfoMusical.id='titulo-modal-info-musical';tituloInfoMusical.className='modal-info-musical-titulo';
+ cerrarInfoMusical=document.createElement('button');cerrarInfoMusical.type='button';cerrarInfoMusical.className='modal-info-musical-cerrar';cerrarInfoMusical.textContent='✕';cerrarInfoMusical.setAttribute('aria-label','Cerrar información musical');cerrarInfoMusical.addEventListener('click',cerrarModalInfoMusical);
+ cabecera.append(tituloInfoMusical,cerrarInfoMusical);
+ motorInfoMusical=document.createElement('div');motorInfoMusical.className='modal-info-musical-motor';
+ textoInfoMusical=document.createElement('div');textoInfoMusical.className='modal-info-musical-texto';
+ fuentesInfoMusical=document.createElement('div');fuentesInfoMusical.className='modal-info-musical-fuentes';
+ panel.append(cabecera,motorInfoMusical,textoInfoMusical,fuentesInfoMusical);modalInfoMusical.appendChild(panel);
+ modalInfoMusical.addEventListener('click',e=>{if(e.target===modalInfoMusical)cerrarModalInfoMusical();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modalInfoMusical&&!modalInfoMusical.hidden)cerrarModalInfoMusical();});
+ document.body.appendChild(modalInfoMusical);
+}
+function cerrarModalInfoMusical(){if(!modalInfoMusical)return;modalInfoMusical.hidden=true;document.body.classList.remove('modal-info-musical-abierto');if(modalInfoMusical._boton)modalInfoMusical._boton.focus();}
 async function obtenerInfoWikiMusica(tipo,nombre,artista){
- const clave=[tipo,norm(nombre),norm(artista||'')].join('|');
- if(!cacheWikipediaInfo.has(clave)){cacheWikipediaInfo.set(clave,(async()=>{try{const q=new URLSearchParams({tipo,nombre,artista:artista||''});const r=await fetch('/api/resumen-musical?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(45000)});const d=await r.json();if(!r.ok||!d.encontrado||!d.resumen)return {encontrado:false,mensaje:d.error||'No se ha encontrado información en español para este resultado.'};return d;}catch(e){return {encontrado:false,mensaje:'No se ha podido cargar la información ahora mismo. Inténtalo de nuevo.'};}})());}
- const d=await cacheWikipediaInfo.get(clave);if(!d.encontrado)cacheWikipediaInfo.delete(clave);return d;
+ const clave=[tipo,nombre,artista||''].join('|');
+ if(!cacheInformacionMusical.has(clave)){
+  const q=new URLSearchParams({tipo,nombre,artista:artista||''});
+  cacheInformacionMusical.set(clave,fetch('/api/resumen-musical?'+q.toString()+'&_='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(40000)}).then(async r=>{let d={};try{d=await r.json();}catch(e){}if(!r.ok&&!d.error)d.error='No se ha podido generar la ficha (HTTP '+r.status+').';return d;}).catch(()=>({encontrado:false,error:'No se ha podido conectar con el sistema de información musical. Comprueba la conexión e inténtalo de nuevo.'})));
+ }
+ return cacheInformacionMusical.get(clave);
 }
 function abrirModalInfoMusical(tipo,nombre,d,boton){
- let infoModal=document.getElementById('modal-info-musical');
- if(!infoModal){infoModal=document.createElement('div');infoModal.id='modal-info-musical';infoModal.hidden=true;infoModal.style.cssText='position:fixed;inset:0;z-index:50000;background:#000b;display:flex;align-items:center;justify-content:center;padding:16px';const caja=document.createElement('section');caja.style.cssText='width:min(680px,100%);max-height:85vh;overflow:auto;background:#132b35;color:#effcff;border:1px solid #ffffff35;border-radius:16px;padding:20px;box-shadow:0 18px 60px #0009';const cabecera=document.createElement('div');cabecera.style.cssText='display:flex;align-items:center;justify-content:space-between;gap:12px';const titulo=document.createElement('h2');titulo.id='titulo-modal-info-musical';titulo.style.margin='0';cabecera.appendChild(titulo);const cerrar=document.createElement('button');cerrar.type='button';cerrar.textContent='Cerrar ✕';cerrar.addEventListener('click',()=>{infoModal.hidden=true;if(infoModal._boton)infoModal._boton.focus();});cabecera.appendChild(cerrar);const cuerpo=document.createElement('div');cuerpo.id='contenido-modal-info-musical';cuerpo.style.cssText='line-height:1.65;margin-top:14px';caja.append(cabecera,cuerpo);infoModal.appendChild(caja);infoModal.addEventListener('click',e=>{if(e.target===infoModal){infoModal.hidden=true;if(infoModal._boton)infoModal._boton.focus();}});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!infoModal.hidden){infoModal.hidden=true;if(infoModal._boton)infoModal._boton.focus();}});document.body.appendChild(infoModal);}
- document.getElementById('titulo-modal-info-musical').textContent=(tipo==='artista'?'Biografía y curiosidad: ':'Sobre la canción: ')+nombre;const cuerpo=document.getElementById('contenido-modal-info-musical');cuerpo.replaceChildren();const p=document.createElement('p');p.textContent=d.resumen||'';p.style.whiteSpace='pre-line';cuerpo.appendChild(p);(d.fuentes||[]).forEach(f=>{if(!f.url||!String(f.url).startsWith('https://'))return;const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Fuente: '+(f.titulo||f.url)+' ↗';a.style.cssText='display:block;margin-top:8px;color:#8ce8df;font-weight:700';cuerpo.appendChild(a);});infoModal._boton=boton||null;infoModal.hidden=false;
+ prepararModalInfoMusical();
+ tituloInfoMusical.textContent=(tipo==='artista'?'Biografía de ':'Información sobre ')+nombre;
+ motorInfoMusical.textContent='';
+ textoInfoMusical.textContent='';textoInfoMusical.classList.remove('modal-info-musical-error');fuentesInfoMusical.replaceChildren();
+ const contenido=d.resumen||(tipo==='artista'?d.biografia:d.informacion);
+ if(!d.encontrado||!contenido){
+  textoInfoMusical.classList.add('modal-info-musical-error');textoInfoMusical.textContent=d.error||d.mensaje||'No se ha encontrado información para este resultado.';
+ }else{
+  const motor=String(d.motor||d.fuente_tipo||d.fuente||'').toLowerCase();
+  motorInfoMusical.textContent=motor.includes('groq')?'✨ Información generada por Groq':motor.includes('gemini')?'✨ Información generada por Gemini':'✨ Información musical';
+  textoInfoMusical.textContent=contenido;
+  for(const f of (d.fuentes||[]).slice(0,5)){
+   if(!f.url||!String(f.url).startsWith('https://'))continue;
+   const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=f.titulo||'Consultar fuente';fuentesInfoMusical.appendChild(a);
+  }
+  if(!fuentesInfoMusical.children.length)fuentesInfoMusical.textContent='No se han proporcionado enlaces de fuentes para esta ficha.';
+ }
+ modalInfoMusical._boton=boton||null;modalInfoMusical.hidden=false;document.body.classList.add('modal-info-musical-abierto');cerrarInfoMusical.focus();
 }
-async function consultarInformacionWiki(b){const tipo=b.dataset.wikiTipo,nombre=b.dataset.wikiNombre,artista=b.dataset.wikiArtista||'';b.disabled=true;const original=b.textContent;b.textContent='…';try{const d=await obtenerInfoWikiMusica(tipo,nombre,artista);if(d.encontrado&&d.resumen)abrirModalInfoMusical(tipo,nombre,d,b);else abrirModalInfoMusical(tipo,nombre,{resumen:d.mensaje||'No se ha encontrado información en español para este resultado.',fuentes:[]},b);}catch(e){abrirModalInfoMusical(tipo,nombre,{resumen:'No se ha podido cargar la información ahora mismo. Inténtalo de nuevo más tarde.',fuentes:[]},b);}finally{b.disabled=false;b.textContent=original;}}
+async function consultarInformacionWiki(b){
+ const tipo=b.dataset.wikiTipo,nombre=b.dataset.wikiNombre,artista=b.dataset.wikiArtista||'';
+ if(!nombre)return;
+ b.disabled=true;const original=b.textContent;b.textContent='…';
+ prepararModalInfoMusical();tituloInfoMusical.textContent=(tipo==='artista'?'Biografía de ':'Información sobre ')+nombre;motorInfoMusical.textContent='Consultando el sistema de información musical…';textoInfoMusical.textContent='';textoInfoMusical.classList.remove('modal-info-musical-error');fuentesInfoMusical.replaceChildren();modalInfoMusical._boton=b;modalInfoMusical.hidden=false;document.body.classList.add('modal-info-musical-abierto');cerrarInfoMusical.focus();
+ try{const d=await obtenerInfoWikiMusica(tipo,nombre,artista);abrirModalInfoMusical(tipo,nombre,d,b);}
+ catch(e){abrirModalInfoMusical(tipo,nombre,{encontrado:false,error:'No se ha podido cargar la información ahora mismo. Inténtalo de nuevo más tarde.'},b);}
+ finally{b.disabled=false;b.textContent=original;}
+}
 function abrirModal(titulo,mensaje){document.getElementById('modal-titulo').textContent=titulo;estadoModal.textContent=mensaje;resultados.replaceChildren();modal.hidden=false}
 document.getElementById('cerrar').addEventListener('click',()=>modal.hidden=true);modal.addEventListener('click',e=>{if(e.target===modal)modal.hidden=true});document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.hidden=true});
 function crearBoton(texto,clase,titulo,accion){const b=document.createElement('button');b.type='button';b.className=clase;b.textContent=texto;b.title=titulo;b.addEventListener('click',()=>accion(b));return b}
