@@ -15,7 +15,7 @@ input,select{width:100%;min-width:0;padding:12px;border:1px solid #ffffff2a;bord
 #resumen{color:var(--suave);font-size:14px;margin:15px 2px}
 .cancion{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px;margin:9px 0;background:linear-gradient(120deg,#132d37,#152631);border:1px solid var(--borde);border-radius:14px}.miniatura-musica{width:64px;height:64px;border-radius:9px;object-fit:cover;background:#ffffff12;display:flex;align-items:center;justify-content:center;overflow:hidden}.miniatura-musica img{width:100%;height:100%;object-fit:cover;display:block}.miniatura-musica .fallback{font-size:25px;color:var(--suave)}
 .titulo{font-weight:800;font-size:16px;line-height:1.4;overflow-wrap:anywhere}.artista{margin-top:5px;color:#c1dce2;font-size:14px;overflow-wrap:anywhere}.meta{margin-top:6px;color:#91b0ba;font-size:12px}
-.wiki{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin-left:6px;width:25px;height:25px;border-radius:6px;background:#e2e9ed;color:#26343b;text-decoration:none;font-weight:900;font-size:13px;border:1px solid #fff6;cursor:pointer;padding:0}.wiki:hover{background:#fff}.info-wikipedia{margin:9px 0;padding:11px;border-left:3px solid #aeb4c0;background:#ffffff0b;border-radius:7px;color:#e4e4ec;font-size:13px;line-height:1.5}.info-wikipedia a{color:#c9b0ff}
+.wiki{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin-left:6px;width:24px;height:24px;border-radius:50%;background:#777d88;color:#fff;text-decoration:none;font-weight:900;font-size:13px;border:1px solid #a8adb6;cursor:pointer;padding:0}.wiki:hover{background:#555d6b}.info-wikipedia{margin:9px 0;padding:11px;border-left:3px solid #aeb4c0;background:#ffffff0b;border-radius:7px;color:#e4e4ec;font-size:13px;line-height:1.5}.info-wikipedia a{color:#c9b0ff}
 .acciones{display:flex;gap:7px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
 button{border:1px solid #ffffff26;border-radius:10px;padding:10px 12px;color:white;background:#203b47;font-weight:750;cursor:pointer}button:hover{filter:brightness(1.15)}button:disabled{opacity:.55;cursor:wait}
 .b30{background:linear-gradient(120deg,#ff4fa3 0%,#8a4dff 48%,#20bde8 100%);border:1px solid #ffffff85;box-shadow:0 4px 15px #9d46ff4d,inset 0 1px 0 #ffffff45;letter-spacing:.2px}.b30:hover{filter:brightness(1.18);transform:translateY(-1px)}.descarga{background:#188653;border-color:#3dcf8b}.youtube{background:#e62129;border-color:#e62129}
@@ -64,7 +64,7 @@ let canciones=[];const lista=document.getElementById('lista'),buscar=document.ge
 const modal=document.getElementById('modal'),estadoModal=document.getElementById('estado-modal'),resultados=document.getElementById('resultados');
 const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('es');
 const wiki=(s)=>'https://es.wikipedia.org/w/index.php?search='+encodeURIComponent(s);
-function enlaceWiki(tipo,nombre,artista,etiqueta){const a=document.createElement('button');a.type='button';a.className='wiki';a.textContent='W';a.title=etiqueta;a.setAttribute('aria-label',etiqueta);a.dataset.wikiTipo=tipo;a.dataset.wikiNombre=nombre;a.dataset.wikiArtista=artista||'';a.addEventListener('click',()=>consultarInformacionWiki(a));return a}
+function enlaceWiki(tipo,nombre,artista,etiqueta){const a=document.createElement('button');a.type='button';a.className='wiki';a.textContent='ℹ';a.title=etiqueta;a.setAttribute('aria-label',etiqueta);a.dataset.wikiTipo=tipo;a.dataset.wikiNombre=nombre;a.dataset.wikiArtista=artista||'';a.addEventListener('click',()=>consultarInformacionWiki(a));return a}
 const cacheInformacionMusical=new Map();
 let modalInfoMusical=null,tituloInfoMusical=null,textoInfoMusical=null,motorInfoMusical=null,fuentesInfoMusical=null,cerrarInfoMusical=null;
 function prepararModalInfoMusical(){
@@ -102,7 +102,7 @@ function abrirModalInfoMusical(tipo,nombre,d,boton){
   textoInfoMusical.classList.add('modal-info-musical-error');textoInfoMusical.textContent=d.error||d.mensaje||'No se ha encontrado información para este resultado.';
  }else{
   const motor=String(d.motor||d.fuente_tipo||d.fuente||'').toLowerCase();
-  motorInfoMusical.textContent=motor.includes('groq')?'✨ Información generada por Groq':motor.includes('gemini')?'✨ Información generada por Gemini':'✨ Información musical';
+  motorInfoMusical.textContent=motor.includes('groq')?'⚡ Información generada por Groq (alternativa a Gemini)':motor.includes('gemini')?'✨ Información generada por Gemini':'🌐 Información musical consultada';
   textoInfoMusical.textContent=contenido;
   for(const f of (d.fuentes||[]).slice(0,5)){
    if(!f.url||!String(f.url).startsWith('https://'))continue;
