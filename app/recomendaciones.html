@@ -33,7 +33,7 @@ svg{display:block;flex:none}
 <header><div class="marca">Mi Radar Musical</div><h1>✨ Recomendaciones</h1><p>Descubre canciones nuevas a partir de los artistas que más aparecen en tu colección. Cada tanda contiene hasta diez temas que no figuran en tu biblioteca.</p></header>
 <nav aria-label="Navegación principal"></nav>
 <main>
-<p class="intro">El sistema parte de tus artistas más representados y consulta artistas relacionados en Deezer. Puedes pedir recomendaciones generales o limitar la búsqueda a un género de tu colección.</p>
+<p class="intro">El sistema busca canciones similares a las de tu colección con Last.fm cuando está configurado y completa sus datos con Deezer. Si Last.fm no está disponible, utiliza artistas relacionados de Deezer. Puedes limitar la búsqueda a un género de tu colección.</p>
 <section class="controles" aria-label="Opciones de recomendaciones">
 <div><label for="genero">GÉNERO MUSICAL</label><select id="genero"><option value="">Todos los géneros</option></select></div>
 
@@ -41,7 +41,7 @@ svg{display:block;flex:none}
 </section>
 <div id="estado" role="status" aria-live="polite">Preparando recomendaciones basadas en tu biblioteca…</div>
 <section id="resultados" class="grid" aria-live="polite"></section>
-<p class="nota">Las recomendaciones se basan en artistas relacionados y popularidad de catálogo, no en un análisis acústico directo. Las portadas y las muestras dependen de la disponibilidad en los catálogos consultados. Los temas de tu colección se excluyen comparando artista y título normalizados.</p>
+<p class="nota">Las recomendaciones priorizan la similitud entre canciones de Last.fm cuando está configurado; Deezer aporta portadas, álbumes y muestras cuando están disponibles. Si Last.fm no está disponible, se recurre a artistas relacionados de Deezer. No se realiza un análisis acústico directo. Los temas de tu colección se excluyen comparando artista y título normalizados.</p>
 </main>
 <div id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-titulo"><div class="caja"><div class="cabecera-modal"><h2 id="modal-titulo">Opciones</h2><button id="cerrar" type="button">Cerrar ✕</button></div><p id="estado-modal" class="texto-modal"></p><div id="resultados-modal"></div></div></div>
 <script>
