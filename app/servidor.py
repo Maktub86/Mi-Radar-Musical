@@ -1125,7 +1125,7 @@ def api_recomendaciones():
     if semillas_pistas:
         # Muestreo determinista distribuido por la biblioteca, con un máximo de seis consultas.
         paso = max(1, len(semillas_pistas) // 6)
-        semillas_lastfm = semillas_pistas[::paso][:6]
+        semillas_lastfm = semillas_pistas[::paso][:4]
     else:
         semillas_lastfm = []
 
@@ -1138,13 +1138,13 @@ def api_recomendaciones():
                 "api_key": clave_lastfm,
                 "format": "json",
                 "autocorrect": 1,
-                "limit": 20
+                "limit": 12
             })
             datos = consultar("https://ws.audioscrobbler.com/2.0/?" + params, timeout=6)
             similares = (datos.get("similartracks") or {}).get("track") or []
             if isinstance(similares, dict):
                 similares = [similares]
-            for similar in similares:
+            for similar in similares[:6]:
                 titulo = str(similar.get("name") or "").strip()
                 artista_info = similar.get("artist") or {}
                 nombre_artista = str(artista_info.get("name") or "").strip()
