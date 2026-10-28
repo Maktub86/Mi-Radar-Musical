@@ -261,7 +261,7 @@ function crearTarjetaArtista(a, destino){
   nombre.textContent=nombreArtista;
   div.appendChild(nombre);
   const wikiArtista=document.createElement('button');
-  wikiArtista.type='button';wikiArtista.className='boton-wikipedia';wikiArtista.textContent='W';
+  wikiArtista.type='button';wikiArtista.className='boton-wikipedia';wikiArtista.textContent='I';
   wikiArtista.dataset.wikiTipo='artista';wikiArtista.dataset.wikiNombre=nombreArtista;wikiArtista.dataset.wikiArtista='';
   wikiArtista.dataset.resumenTipo='artista';wikiArtista.dataset.resumenNombre=nombreArtista;wikiArtista.dataset.resumenArtista='';
   wikiArtista.title='Consultar biografía del artista';wikiArtista.setAttribute('aria-label','Consultar biografía de '+nombreArtista);
@@ -380,7 +380,7 @@ async function cargarPublicaciones(nombre,contenedor){
    const t=document.createElement('strong');
    t.textContent=p.titulo||'Sin título';
    item.appendChild(t);
-   const botonWikiCancion=document.createElement('button');botonWikiCancion.type='button';botonWikiCancion.className='boton-wikipedia';botonWikiCancion.textContent='W';botonWikiCancion.title='Consultar información de la canción';
+   const botonWikiCancion=document.createElement('button');botonWikiCancion.type='button';botonWikiCancion.className='boton-wikipedia';botonWikiCancion.textContent='I';botonWikiCancion.title='Consultar información de la canción';
    botonWikiCancion.dataset.resumenTipo='cancion';botonWikiCancion.dataset.resumenNombre=p.titulo||'';botonWikiCancion.dataset.resumenArtista=datos.artista||nombre;
    botonWikiCancion.addEventListener('click',()=>mostrarInfoWikipedia('cancion',p.titulo||'',datos.artista||nombre,item,botonWikiCancion));
    item.appendChild(botonWikiCancion);
