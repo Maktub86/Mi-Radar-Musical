@@ -54,6 +54,9 @@ def agregar_enlace_mi_musica(response):
 nav.navegacion-comun{display:flex;flex-flow:row wrap;align-items:center;gap:8px;padding:10px 6%;box-sizing:border-box;width:100%}
 nav.navegacion-comun a{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;margin:0!important;white-space:nowrap;text-decoration:none}
 nav.navegacion-comun a.activo{font-weight:700}
+button,a[role=button],.icono-boton,[class*=icono][role=button]{transition:filter .15s ease,transform .15s ease,box-shadow .15s ease}
+button:hover,a[role=button]:hover,.icono-boton:hover,[class*=icono][role=button]:hover{filter:brightness(1.18);transform:translateY(-1px)}
+button:focus-visible,a:focus-visible{outline:2px solid #c9a5ff;outline-offset:3px}
 #modal-info-musical[hidden]{display:none!important}\n.wiki-icon,.boton-wikipedia,.wiki{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:30px!important;height:30px!important;min-width:30px!important;padding:0!important;border-radius:50%!important;border:1px solid #ffffffa8!important;background:linear-gradient(145deg,#b58aff,#7440b8 65%,#54258c)!important;color:#fff!important;font-size:16px!important;font-family:Segoe UI,Arial,sans-serif!important;font-weight:900!important;line-height:1!important;text-align:center!important;box-shadow:0 3px 10px #0004,inset 0 1px 0 #ffffff55!important;cursor:pointer!important;vertical-align:middle!important;transition:transform .15s ease,filter .15s ease!important}\n.wiki-icon:hover,.boton-wikipedia:hover,.wiki:hover{transform:translateY(-1px) scale(1.06);filter:brightness(1.12)}\n.wiki-icon:focus-visible,.boton-wikipedia:focus-visible,.wiki:focus-visible{outline:2px solid #e8d4ff;outline-offset:3px}
 @media(max-width:760px){nav.navegacion-comun{gap:6px;padding:8px 5%}nav.navegacion-comun a{font-size:14px;padding:8px 10px}}
 </style>
@@ -435,8 +438,8 @@ button:disabled{opacity:.55;cursor:wait}
 .barra-alfabetica{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0 16px;position:sticky;top:6px;z-index:100;background:#17152deb;backdrop-filter:blur(12px);padding:10px;border:1px solid #ffffff20;border-radius:13px}
 .barra-alfabetica button{min-width:30px;padding:7px 8px;background:#ffffff12;border:1px solid #ffffff20;color:#eee;border-radius:8px}
 .barra-alfabetica button.activa{background:#ff4fa3;color:#fff;font-weight:900}
-.barra-alfabetica .boton-estrella{font-size:17px;min-width:40px;background:#6c4b18;border:1px solid #f7c948;color:#ffe27a}
-.barra-alfabetica .boton-estrella.activa{background:#f7c948;color:#26152e;box-shadow:0 0 12px #f7c94866}
+.barra-alfabetica .boton-estrella{font-size:17px;min-width:30px;padding:7px 8px;background:#ffffff12;border:1px solid #ffffff20;color:#eee}
+.barra-alfabetica .boton-estrella.activa{background:#ff4fa3;color:#fff;font-weight:900;box-shadow:none}
 #letra-actual{position:fixed;right:16px;bottom:22px;z-index:15000;background:#ff4fa3;color:#fff;font-size:24px;font-weight:900;width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 24px #0008;pointer-events:none}
 #letra-actual[hidden]{display:none}
 .reproductor-completo{width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin:12px 0;background:#000}
