@@ -36,7 +36,7 @@ def agregar_enlace_mi_musica(response):
             ("/listas/youtube", "▶ YouTube"),
             ("/listas/los40", "🎵 LOS40"),
             ("/listas/canal-fiesta", "📻 Canal Fiesta"),
-            ("/lo-mejor", "⭐ Lo mejor"),
+            ("/lo-mejor", "🎤 Cantantes"),
             ("/mi-musica", "🎧 Mi música"),
             ("/programas", "🧰 Programas"),
         ]
@@ -54,7 +54,7 @@ def agregar_enlace_mi_musica(response):
 nav.navegacion-comun{display:flex;flex-flow:row wrap;align-items:center;gap:8px;padding:10px 6%;box-sizing:border-box;width:100%}
 nav.navegacion-comun a{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;margin:0!important;white-space:nowrap;text-decoration:none}
 nav.navegacion-comun a.activo{font-weight:700}
-#modal-info-musical[hidden]{display:none!important}
+#modal-info-musical[hidden]{display:none!important}\n.wiki-icon,.boton-wikipedia,.wiki{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:30px!important;height:30px!important;min-width:30px!important;padding:0!important;border-radius:50%!important;border:1px solid #ffffffa8!important;background:linear-gradient(145deg,#b58aff,#7440b8 65%,#54258c)!important;color:#fff!important;font-size:16px!important;font-family:Segoe UI,Arial,sans-serif!important;font-weight:900!important;line-height:1!important;text-align:center!important;box-shadow:0 3px 10px #0004,inset 0 1px 0 #ffffff55!important;cursor:pointer!important;vertical-align:middle!important;transition:transform .15s ease,filter .15s ease!important}\n.wiki-icon:hover,.boton-wikipedia:hover,.wiki:hover{transform:translateY(-1px) scale(1.06);filter:brightness(1.12)}\n.wiki-icon:focus-visible,.boton-wikipedia:focus-visible,.wiki:focus-visible{outline:2px solid #e8d4ff;outline-offset:3px}
 @media(max-width:760px){nav.navegacion-comun{gap:6px;padding:8px 5%}nav.navegacion-comun a{font-size:14px;padding:8px 10px}}
 </style>
 """
