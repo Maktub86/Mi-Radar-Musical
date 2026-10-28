@@ -334,7 +334,7 @@ footer{text-align:center;color:var(--suave);font-size:12px;padding:30px}
 <a href="/listas/canal-fiesta">📻 Canal Fiesta</a>
 <a href="/lo-mejor">⭐ Lo mejor</a>
 <a class="activo" href="/programas">🧰 Programas</a>
-<a href="/artistas">🎤 Mis artistas</a>
+
 </nav>
 <main>
 <section class="programa"><h2>MediaHuman YouTube to MP3 Converter</h2><p>Descarga audio de vídeos y listas de reproducción. El enlace lleva a la web del desarrollador.</p><a class="descargar" href="https://www.mediahuman.com/es/7/?mh_product=youtubetomp3" target="_blank" rel="noopener noreferrer">Ir a la descarga oficial ↗</a></section>
@@ -399,6 +399,14 @@ main{max-width:1100px;margin:auto;padding:28px 5%}
 #buscar-artista{width:100%;padding:13px 15px;border-radius:12px;border:1px solid #ffffff25;background:#171827;color:#fff;font-size:16px;margin:0 0 16px}
 #estado-lo-mejor{color:var(--suave);font-size:14px;margin:8px 0 18px}
 .artista-mejor{background:var(--panel);border:1px solid #ffffff18;border-radius:14px;margin:10px 0;overflow:hidden}
+.artista-mejor .canciones-populares{background:#30264b;border:1px solid #8b6ce0;border-radius:0 0 10px 10px;padding:12px 16px 14px;margin:0 8px 10px}
+.artista-mejor .canciones-recientes{background:#193b32;border:1px solid #46c49b;border-radius:0 0 10px 10px;padding:12px 16px 14px;margin:0 8px 10px}
+.artista-mejor .canciones-publicaciones{background:#463018;border:1px solid #e7a84e;border-radius:0 0 10px 10px;padding:12px 16px 14px;margin:0 8px 10px}
+.artista-mejor .boton-populares{background:linear-gradient(100deg,#6043a0,#9876e8)}
+.artista-mejor .boton-recientes{background:linear-gradient(100deg,#116b55,#36b58a)}
+.artista-mejor .boton-publicaciones{background:linear-gradient(100deg,#995b19,#e6a33e);color:#211506}
+.publicacion-mejor{padding:10px 0;border-top:1px solid #ffffff20}
+.publicacion-mejor small{display:block;color:#f0c98e;margin-top:4px}
 .cabecera-artista{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 17px}
 .cabecera-artista h2{font-size:18px;margin:0}
 .botones-ranking{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
@@ -569,11 +577,13 @@ function mostrarArtistas(){
   });
   huecoWiki.appendChild(wikiArtista);cabecera.appendChild(huecoWiki);
   const botonesRanking=nodo('div','botones-ranking');
-  const boton=nodo('button','','⭐ Más populares (20)');
+  const boton=nodo('button','boton-populares','⭐ Más populares (20)');
   boton.addEventListener('click',()=>cargarTop(nombre,caja,boton,'populares'));
-  const botonRecientes=nodo('button','','🆕 Éxitos recientes (5)');
+  const botonRecientes=nodo('button','boton-recientes','🆕 Éxitos recientes (5)');
   botonRecientes.addEventListener('click',()=>cargarTop(nombre,caja,botonRecientes,'recientes'));
-  botonesRanking.append(boton,botonRecientes);
+  const botonPublicaciones=nodo('button','boton-publicaciones','💿 Últimas publicaciones');
+  botonPublicaciones.addEventListener('click',()=>cargarPublicacionesLoMejor(nombre,caja,botonPublicaciones));
+  botonesRanking.append(boton,botonRecientes,botonPublicaciones);
   cabecera.appendChild(botonesRanking);
   caja.appendChild(cabecera);
   const canciones=nodo('div','canciones-artista canciones-populares');
@@ -582,9 +592,39 @@ function mostrarArtistas(){
   const recientes=nodo('div','canciones-artista canciones-recientes');
   recientes.hidden=true;
   caja.appendChild(recientes);
+  const publicaciones=nodo('div','canciones-artista canciones-publicaciones');
+  publicaciones.hidden=true;
+  caja.appendChild(publicaciones);
   contenedor.appendChild(caja);
  }
  estado.textContent=filtrados.length+' artistas. Pulsa «Ver sus 20 canciones» para consultar su ranking.';for(const b of alfabetoLoMejor.querySelectorAll('button'))b.classList.toggle('activa',b.dataset.letra===inicialSeleccionada);
+}
+async function cargarPublicacionesLoMejor(nombre,caja,boton){
+ const zona=caja.querySelector('.canciones-publicaciones');
+ if(!zona)return;
+ if(!zona.hidden&&zona.dataset.cargado==='1'){zona.hidden=true;boton.textContent='💿 Últimas publicaciones';return;}
+ zona.hidden=false;
+ if(zona.dataset.cargado==='1'){boton.textContent='Ocultar últimas publicaciones';return;}
+ zona.replaceChildren();boton.disabled=true;boton.textContent='Consultando publicaciones…';
+ try{
+  const r=await fetch('/api/publicaciones/'+encodeURIComponent(nombre),{cache:'no-store'});
+  const datos=await r.json();
+  if(!r.ok)throw new Error(datos.error||'No se han podido cargar las publicaciones.');
+  zona.appendChild(nodo('h3','','Últimas publicaciones de '+(datos.artista||nombre)+' ('+(datos.total||0)+' registradas)'));
+  const publicaciones=Array.isArray(datos.publicaciones)?datos.publicaciones:[];
+  if(!publicaciones.length)zona.appendChild(nodo('p','mensaje-pista','No hay publicaciones registradas para este artista.'));
+  for(const p of publicaciones){
+   const item=nodo('div','publicacion-mejor');
+   item.appendChild(nodo('strong','',p.titulo||'Sin título'));
+   const meta=[p.fecha,p.tipo].filter(Boolean).join(' · ');
+   if(meta)item.appendChild(nodo('small','',meta));
+   zona.appendChild(item);
+  }
+  zona.dataset.cargado='1';boton.textContent='Ocultar últimas publicaciones';
+ }catch(e){
+  zona.appendChild(nodo('p','mensaje-pista',e.message||'No se han podido cargar las publicaciones.'));
+  boton.textContent='Reintentar últimas publicaciones';
+ }finally{boton.disabled=false;}
 }
 async function cargarTop(nombre,caja,boton,tipo='populares'){
  const recientes=tipo==='recientes';
