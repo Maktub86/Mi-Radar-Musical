@@ -1121,11 +1121,11 @@ def api_recomendaciones():
             continue
         semillas_pistas.append({"nombre": artista, "titulo": titulo, "genero": genero})
     # Usar varias canciones de artistas distintos evita que una sola domine los resultados.
-    semillas_pistas.sort(key=lambda p: (clave(p["nombre"]), clave(p["titulo"])))
+    # Barajar las canciones de partida en cada petición para variar las recomendaciones.
+    secrets.SystemRandom().shuffle(semillas_pistas)
     if semillas_pistas:
-        # Muestreo determinista distribuido por la biblioteca, con un máximo de seis consultas.
-        paso = max(1, len(semillas_pistas) // 6)
-        semillas_lastfm = semillas_pistas[::paso][:4]
+        # Elegir hasta cuatro canciones de partida distintas en cada búsqueda.
+        semillas_lastfm = semillas_pistas[:4]
     else:
         semillas_lastfm = []
 
@@ -1214,6 +1214,17 @@ def api_recomendaciones():
                     añadir_candidata(pista, semilla, peso, "Deezer")
 
     ordenadas = sorted(candidatos.values(), key=lambda p: (-p["puntuacion"], clave(p["artista"]), clave(p["titulo"])))
+    # Mantener la relevancia como criterio principal, mezclando grupos de puntuación similar.
+    grupos = []
+    for candidata in ordenadas:
+        if not grupos or grupos[-1][0]["puntuacion"] - candidata["puntuacion"] > 8:
+            grupos.append([candidata])
+        else:
+            grupos[-1].append(candidata)
+    generador = secrets.SystemRandom()
+    for grupo in grupos:
+        generador.shuffle(grupo)
+    ordenadas = [c for grupo in grupos for c in grupo]
     if ordenadas:
         inicio_real = inicio % len(ordenadas)
         ordenadas = ordenadas[inicio_real:] + ordenadas[:inicio_real]
