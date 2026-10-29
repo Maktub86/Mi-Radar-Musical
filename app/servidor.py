@@ -103,7 +103,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #c9a5ff;outline-offset:3p
 </style>
 """
         # Solo estas cuatro secciones necesitan el ajuste: las otras páginas ya coinciden visualmente.
-        if request.path.rstrip("/") in ("/lo-mejor", "/mi-musica", "/recomendaciones", "/programas"):
+        if request.path.rstrip("/") in ("/lo-mejor", "/mi-musica", "/programas"):
             css_cabecera = """
 /* Las cuatro secciones usan la misma geometría de cabecera que Portada.
    Se conserva el fondo y los colores propios de cada sección. */
@@ -1239,7 +1239,97 @@ def _clave_guardada_recomendacion(cancion):
     return normalizar_texto(cancion.get("artista")) + "|" + normalizar_texto(cancion.get("titulo"))
 
 
+def _url_bd_recomendaciones():
+    return (os.environ.get("DATABASE_URL") or os.environ.get("RENDER_DATABASE_URL") or "").strip()
+
+
+def _preparar_tablas_recomendaciones(cursor):
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS recomendaciones_guardadas (
+            clave TEXT PRIMARY KEY,
+            cancion JSONB NOT NULL,
+            creado_en TIMESTAMPTZ NOT NULL DEFAULT NOW()
+        )
+    """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS recomendaciones_guardadas_estado (
+            id SMALLINT PRIMARY KEY CHECK (id = 1),
+            inicializado BOOLEAN NOT NULL DEFAULT FALSE
+        )
+    """)
+    cursor.execute("""
+        INSERT INTO recomendaciones_guardadas_estado (id, inicializado)
+        VALUES (1, FALSE) ON CONFLICT (id) DO NOTHING
+    """)
+
+
+def _fila_cancion_a_dict(valor):
+    if isinstance(valor, str):
+        try:
+            valor = json.loads(valor)
+        except json.JSONDecodeError:
+            return None
+    return valor if isinstance(valor, dict) else None
+
+
+def _leer_guardadas_recomendaciones_bd():
+    import psycopg
+    with psycopg.connect(_url_bd_recomendaciones(), connect_timeout=10) as conexion:
+        with conexion.cursor() as cursor:
+            _preparar_tablas_recomendaciones(cursor)
+            cursor.execute("SELECT inicializado FROM recomendaciones_guardadas_estado WHERE id = 1")
+            fila_estado = cursor.fetchone()
+            inicializado = bool(fila_estado and fila_estado[0])
+            # Conserva los datos del antiguo JSON si aún existen al conectar la base de datos.
+            if not inicializado:
+                try:
+                    antiguo = json.loads(_RUTA_GUARDADAS_RECOMENDACIONES.read_text(encoding="utf-8"))
+                except (OSError, json.JSONDecodeError):
+                    antiguo = {}
+                antiguas = antiguo.get("canciones", []) if isinstance(antiguo, dict) else []
+                if isinstance(antiguas, list) and antiguo.get("inicializado"):
+                    for cancion in antiguas:
+                        if isinstance(cancion, dict) and cancion.get("titulo") and cancion.get("artista"):
+                            cursor.execute(
+                                """INSERT INTO recomendaciones_guardadas (clave, cancion)
+                                   VALUES (%s, %s::jsonb) ON CONFLICT (clave) DO NOTHING""",
+                                (_clave_guardada_recomendacion(cancion), json.dumps(cancion, ensure_ascii=False))
+                            )
+                    cursor.execute("UPDATE recomendaciones_guardadas_estado SET inicializado = TRUE WHERE id = 1")
+                    inicializado = True
+            cursor.execute("SELECT cancion FROM recomendaciones_guardadas ORDER BY creado_en DESC")
+            canciones = [_fila_cancion_a_dict(f[0]) for f in cursor.fetchall()]
+            return {"inicializado": inicializado, "canciones": [c for c in canciones if c and c.get("titulo") and c.get("artista")]}
+
+
+def _anadir_guardadas_recomendaciones_bd(nuevas):
+    import psycopg
+    with psycopg.connect(_url_bd_recomendaciones(), connect_timeout=10) as conexion:
+        with conexion.cursor() as cursor:
+            _preparar_tablas_recomendaciones(cursor)
+            for cancion in nuevas:
+                cursor.execute(
+                    """INSERT INTO recomendaciones_guardadas (clave, cancion)
+                       VALUES (%s, %s::jsonb) ON CONFLICT (clave) DO NOTHING""",
+                    (_clave_guardada_recomendacion(cancion), json.dumps(cancion, ensure_ascii=False))
+                )
+            cursor.execute("UPDATE recomendaciones_guardadas_estado SET inicializado = TRUE WHERE id = 1")
+    return _leer_guardadas_recomendaciones_bd()
+
+
+def _quitar_guardada_recomendaciones_bd(clave):
+    import psycopg
+    with psycopg.connect(_url_bd_recomendaciones(), connect_timeout=10) as conexion:
+        with conexion.cursor() as cursor:
+            _preparar_tablas_recomendaciones(cursor)
+            cursor.execute("DELETE FROM recomendaciones_guardadas WHERE clave = %s", (clave,))
+            cursor.execute("UPDATE recomendaciones_guardadas_estado SET inicializado = TRUE WHERE id = 1")
+    return _leer_guardadas_recomendaciones_bd()
+
+
 def _leer_guardadas_recomendaciones():
+    if _url_bd_recomendaciones():
+        return _leer_guardadas_recomendaciones_bd()
     try:
         datos = json.loads(_RUTA_GUARDADAS_RECOMENDACIONES.read_text(encoding="utf-8"))
         if not isinstance(datos, dict):
@@ -1292,19 +1382,22 @@ def api_anadir_guardadas_recomendaciones():
             "preview": str(cancion.get("preview") or "")[:2000],
         })
     with _CANDADO_GUARDADAS_RECOMENDACIONES:
-        estado = _leer_guardadas_recomendaciones()
-        existentes = {_clave_guardada_recomendacion(c): c for c in estado["canciones"]}
-        for cancion in nuevas:
-            clave = _clave_guardada_recomendacion(cancion)
-            if clave not in existentes:
-                estado["canciones"].insert(0, cancion)
-                existentes[clave] = cancion
-        estado["inicializado"] = True
         try:
-            _guardar_estado_recomendaciones(estado)
-        except OSError:
-            app.logger.exception("No se pudieron guardar las recomendaciones en el servidor.")
-            return jsonify({"error": "No se han podido guardar las canciones en el servidor."}), 500
+            if _url_bd_recomendaciones():
+                estado = _anadir_guardadas_recomendaciones_bd(nuevas)
+            else:
+                estado = _leer_guardadas_recomendaciones()
+                existentes = {_clave_guardada_recomendacion(c): c for c in estado["canciones"]}
+                for cancion in nuevas:
+                    clave = _clave_guardada_recomendacion(cancion)
+                    if clave not in existentes:
+                        estado["canciones"].insert(0, cancion)
+                        existentes[clave] = cancion
+                estado["inicializado"] = True
+                _guardar_estado_recomendaciones(estado)
+        except Exception:
+            app.logger.exception("No se pudieron guardar las recomendaciones.")
+            return jsonify({"error": "No se han podido guardar las canciones. Comprueba la conexión de almacenamiento."}), 500
     return jsonify(estado)
 
 
@@ -1317,15 +1410,18 @@ def api_quitar_guardada_recomendacion():
         return jsonify({"error": "Faltan el título y el artista."}), 400
     clave_objetivo = normalizar_texto(artista) + "|" + normalizar_texto(titulo)
     with _CANDADO_GUARDADAS_RECOMENDACIONES:
-        estado = _leer_guardadas_recomendaciones()
-        estado["canciones"] = [
-            c for c in estado["canciones"]
-            if _clave_guardada_recomendacion(c) != clave_objetivo
-        ]
-        estado["inicializado"] = True
         try:
-            _guardar_estado_recomendaciones(estado)
-        except OSError:
+            if _url_bd_recomendaciones():
+                estado = _quitar_guardada_recomendaciones_bd(clave_objetivo)
+            else:
+                estado = _leer_guardadas_recomendaciones()
+                estado["canciones"] = [
+                    c for c in estado["canciones"]
+                    if _clave_guardada_recomendacion(c) != clave_objetivo
+                ]
+                estado["inicializado"] = True
+                _guardar_estado_recomendaciones(estado)
+        except Exception:
             app.logger.exception("No se pudo quitar la recomendación guardada.")
             return jsonify({"error": "No se ha podido actualizar la lista del servidor."}), 500
     return jsonify(estado)
