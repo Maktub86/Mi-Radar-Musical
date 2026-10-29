@@ -1569,50 +1569,23 @@ def api_recomendaciones():
                     datos_itunes = json.loads(respuesta.read().decode("utf-8"))
                 with bloqueo_diagnostico:
                     anios_diagnostico["respuestas"] += 1
-                artista_obj = clave(pista.get("artista"))
-                titulo_obj = clave(pista.get("titulo"))
-                mejor = None
-                mejor_puntos = -1
-                for item in datos_itunes.get("results") or []:
-                    artista_itunes = clave(item.get("artistName"))
-                    titulo_itunes = clave(item.get("trackName"))
-                    artista_exacto = artista_itunes == artista_obj
-                    titulo_exacto = titulo_itunes == titulo_obj
-                    similitud_titulo = difflib.SequenceMatcher(None, titulo_obj, titulo_itunes).ratio()
-                    puntos = (4 if artista_exacto else
-                              2 if difflib.SequenceMatcher(None, artista_obj, artista_itunes).ratio() >= 0.92 else 0)
-                    puntos += (5 if titulo_exacto else 2 if similitud_titulo >= 0.88 else 0)
-                    if puntos > mejor_puntos:
-                        mejor, mejor_puntos = item, puntos
+                mejor = _coincidencia_itunes_segura(
+                    pista.get("artista"), pista.get("titulo"),
+                    datos_itunes.get("results") or []
+                )
                 if mejor:
-                    artista_itunes = clave(mejor.get("artistName"))
-                    titulo_itunes = clave(mejor.get("trackName"))
-                    similitud_titulo = difflib.SequenceMatcher(None, titulo_obj, titulo_itunes).ratio()
-                    # Para asignar un año, exigir el artista exacto y título exacto
-                    # o una variante de título casi idéntica.
-                    similitud_artista = difflib.SequenceMatcher(
-                        None, artista_obj, artista_itunes
-                    ).ratio()
-                    # Los catálogos escriben a veces el artista con colaboraciones,
-                    # puntuación o variantes del nombre. No exigir igualdad literal:
-                    # basta una coincidencia muy alta de artista y título.
-                    coincide_fiable = (
-                        (artista_itunes == artista_obj or similitud_artista >= 0.90)
-                        and (titulo_itunes == titulo_obj or similitud_titulo >= 0.82)
-                    )
-                    if coincide_fiable:
+                    with bloqueo_diagnostico:
+                        anios_diagnostico["coincidencias"] += 1
+                    fecha_itunes = str(mejor.get("releaseDate") or "")
+                    coincidencia = re.search(r"(?:19|20)\d{2}", fecha_itunes)
+                    if coincidencia:
+                        pista["anio"] = coincidencia.group(0)
                         with bloqueo_diagnostico:
-                            anios_diagnostico["coincidencias"] += 1
-                        fecha_itunes = str(mejor.get("releaseDate") or "")
-                        coincidencia = re.search(r"(?:19|20)\d{2}", fecha_itunes)
-                        if coincidencia:
-                            pista["anio"] = coincidencia.group(0)
-                            with bloqueo_diagnostico:
-                                anios_diagnostico["con_anio"] += 1
-                        if not pista.get("portada") and mejor.get("artworkUrl100"):
-                            pista["portada"] = str(mejor["artworkUrl100"]).replace("100x100bb", "600x600bb")
-                        if not pista.get("album"):
-                            pista["album"] = str(mejor.get("collectionName") or "")
+                            anios_diagnostico["con_anio"] += 1
+                    if not pista.get("portada") and mejor.get("artworkUrl100"):
+                        pista["portada"] = str(mejor["artworkUrl100"]).replace("100x100bb", "600x600bb")
+                    if not pista.get("album"):
+                        pista["album"] = str(mejor.get("collectionName") or "")
             except Exception as error:
                 with bloqueo_diagnostico:
                     anios_diagnostico["errores"] += 1
@@ -1691,39 +1664,86 @@ def api_recomendaciones():
                     "aviso": "Se prioriza la similitud entre canciones de Last.fm cuando está configurado; Deezer completa los datos disponibles. Si no, se usan artistas relacionados de Deezer. Las canciones de tu biblioteca se excluyen."})
 
 
+def _coincidencia_itunes_segura(artista, titulo, resultados):
+    """Selecciona una grabación de Apple solo si artista y título coinciden con suficiente seguridad."""
+    artista_objetivo = normalizar_texto(str(artista or ""))
+    titulo_objetivo = normalizar_texto(str(titulo or ""))
+    mejor = None
+    mejor_puntuacion = -1.0
+
+    for item in resultados or []:
+        artista_catalogo = normalizar_texto(str(item.get("artistName") or ""))
+        titulo_catalogo = normalizar_texto(str(item.get("trackName") or ""))
+        if not artista_catalogo or not titulo_catalogo:
+            continue
+
+        similitud_artista = difflib.SequenceMatcher(
+            None, artista_objetivo, artista_catalogo
+        ).ratio()
+        similitud_titulo = difflib.SequenceMatcher(
+            None, titulo_objetivo, titulo_catalogo
+        ).ratio()
+        artista_exacto = artista_catalogo == artista_objetivo
+        titulo_exacto = titulo_catalogo == titulo_objetivo
+
+        # Una coincidencia parcial solo se admite si el texto compartido es
+        # suficientemente largo; evita confundir títulos cortos o canciones distintas.
+        titulo_contenido = (
+            len(titulo_objetivo) >= 8 and
+            (titulo_objetivo in titulo_catalogo or titulo_catalogo in titulo_objetivo)
+        )
+        if not (
+            (artista_exacto or similitud_artista >= 0.92) and
+            (titulo_exacto or similitud_titulo >= 0.86 or
+             (titulo_contenido and similitud_titulo >= 0.78))
+        ):
+            continue
+
+        puntuacion = (
+            (1.0 if artista_exacto else similitud_artista) * 0.45 +
+            (1.0 if titulo_exacto else similitud_titulo) * 0.55
+        )
+        if puntuacion > mejor_puntuacion:
+            mejor = item
+            mejor_puntuacion = puntuacion
+
+    return mejor
+
+
 @app.get("/api/recomendaciones/datos")
 def api_recomendaciones_datos():
-    """Completa portada y año de una recomendación mediante el catálogo de Apple/iTunes."""
+    """Completa portada y año con una coincidencia prudente en Apple/iTunes."""
     artista = (request.args.get("artista") or "").strip()
     titulo = (request.args.get("titulo") or "").strip()
     if not artista or not titulo:
         return jsonify({"error": "Faltan artista o título."}), 400
-    parametros = urlencode({"term": artista + " " + titulo, "country": "es",
-                            "media": "music", "entity": "song", "limit": 15})
+
     try:
-        peticion = Request("https://itunes.apple.com/search?" + parametros,
-                           headers={"User-Agent": "MiRadarMusical/1.0"})
-        with urlopen(peticion, timeout=6) as respuesta:
-            datos = json.loads(respuesta.read().decode("utf-8"))
-        def clave_catalogo(valor):
-            return normalizar_texto(str(valor or ""))
-        artista_objetivo, titulo_objetivo = clave_catalogo(artista), clave_catalogo(titulo)
-        mejor = None
-        mejor_puntos = -1
-        for item in datos.get("results") or []:
-            artista_catalogo = clave_catalogo(item.get("artistName"))
-            titulo_catalogo = clave_catalogo(item.get("trackName"))
-            if not artista_catalogo or not titulo_catalogo:
-                continue
-            # Exigir artista y título exactos tras normalizar tildes y puntuación.
-            # Las coincidencias aproximadas estaban devolviendo portadas de temas distintos.
-            if artista_catalogo != artista_objetivo or titulo_catalogo != titulo_objetivo:
-                continue
-            mejor = item
-            mejor_puntos = 7
-            break
+        resultados = []
+        # España primero; Estados Unidos amplía el catálogo si el tema no aparece
+        # en la tienda española. Se reúnen resultados antes de decidir la coincidencia.
+        for pais in ("es", "us"):
+            parametros = urlencode({
+                "term": artista + " " + titulo,
+                "country": pais,
+                "media": "music",
+                "entity": "song",
+                "limit": 50
+            })
+            peticion = Request(
+                "https://itunes.apple.com/search?" + parametros,
+                headers={"User-Agent": "MiRadarMusical/1.0"}
+            )
+            with urlopen(peticion, timeout=6) as respuesta:
+                datos = json.loads(respuesta.read().decode("utf-8"))
+            resultados.extend(datos.get("results") or [])
+            if _coincidencia_itunes_segura(artista, titulo, resultados):
+                break
+
+        mejor = _coincidencia_itunes_segura(artista, titulo, resultados)
         if not mejor:
             return jsonify({"anio": "", "portada": "", "album": ""})
+
         fecha = str(mejor.get("releaseDate") or "")
         coincidencia = re.search(r"(?:19|20)\d{2}", fecha)
         imagen = str(mejor.get("artworkUrl100") or "").replace("100x100bb", "600x600bb")
@@ -1731,10 +1751,16 @@ def api_recomendaciones_datos():
             imagen = "https://" + imagen[7:]
         if not imagen.startswith("https://"):
             imagen = ""
-        return jsonify({"anio": coincidencia.group(0) if coincidencia else "",
-                        "portada": imagen, "album": str(mejor.get("collectionName") or "")})
+
+        return jsonify({
+            "anio": coincidencia.group(0) if coincidencia else "",
+            "portada": imagen,
+            "album": str(mejor.get("collectionName") or "")
+        })
     except Exception as error:
-        app.logger.info("Recomendaciones: no se pudo completar año/portada con iTunes: %s", error)
+        app.logger.info(
+            "Recomendaciones: no se pudo completar año/portada con iTunes: %s", error
+        )
         return jsonify({"anio": "", "portada": "", "album": ""})
 
 @app.get("/mi-musica")
