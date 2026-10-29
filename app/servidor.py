@@ -1479,6 +1479,71 @@ def api_recomendaciones():
                     # hacer búsquedas de detalle/álbum por cada resultado.
                     añadir_candidata(pista, semilla, peso, "Deezer", completar_datos=False)
 
+    if decada_solicitada and not genero_solicitado:
+        # Fuente específica por década: MusicBrainz permite buscar grabaciones por
+        # su primera fecha de publicación. Así no dependemos de que las canciones
+        # parecidas a la biblioteca resulten ser casualmente de esa época.
+        try:
+            inicio_decada = int(decada_solicitada)
+            fin_decada = inicio_decada + 9
+            consulta_mb = f"firstreleasedate:[{inicio_decada} TO {fin_decada}]"
+            parametros_mb = urlencode({"query": consulta_mb, "fmt": "json", "limit": 100})
+            peticion_mb = Request(
+                "https://musicbrainz.org/ws/2/recording/?" + parametros_mb,
+                headers={
+                    "User-Agent": "MiRadarMusical/1.0 (https://mi-radar-musical.onrender.com/)",
+                    "Accept": "application/json"
+                }
+            )
+            with urlopen(peticion_mb, timeout=5.0) as respuesta_mb:
+                datos_mb = json.loads(respuesta_mb.read().decode("utf-8"))
+            incorporadas_mb = 0
+            for grabacion in datos_mb.get("recordings") or []:
+                titulo_mb = str(grabacion.get("title") or "").strip()
+                artista_credito = grabacion.get("artist-credit") or []
+                partes_artista = []
+                for parte in artista_credito:
+                    if isinstance(parte, dict):
+                        nombre_parte = str(parte.get("name") or
+                                            (parte.get("artist") or {}).get("name") or "").strip()
+                        if nombre_parte:
+                            partes_artista.append(nombre_parte + str(parte.get("joinphrase") or ""))
+                artista_mb = "".join(partes_artista).strip()
+                fecha_mb = str(grabacion.get("first-release-date") or "").strip()
+                coincidencia_mb = re.match(r"^(19|20)\\d{2}", fecha_mb)
+                if not titulo_mb or not artista_mb or not coincidencia_mb:
+                    continue
+                anio_mb = coincidencia_mb.group(0)
+                if not anio_mb.startswith(decada_solicitada[:3]):
+                    continue
+                llave_mb = (clave(artista_mb), clave(titulo_mb))
+                if llave_mb in existentes or llave_mb in candidatos:
+                    continue
+                candidatos[llave_mb] = {
+                    "titulo": titulo_mb,
+                    "artista": artista_mb,
+                    "album": "",
+                    "album_id": "",
+                    "portada": "",
+                    "preview": "",
+                    "anio": anio_mb,
+                    "url": "https://musicbrainz.org/recording/" + str(grabacion.get("id") or ""),
+                    "genero": "",
+                    "relacionado_con": "Catálogo MusicBrainz",
+                    "puntuacion": 100,
+                    "fuente_recomendacion": "MusicBrainz"
+                }
+                incorporadas_mb += 1
+            app.logger.warning(
+                "Recomendaciones por década MusicBrainz: década=%s, grabaciones_recibidas=%s, candidatas_añadidas=%s",
+                decada_solicitada, len(datos_mb.get("recordings") or []), incorporadas_mb
+            )
+        except Exception as error_mb:
+            app.logger.warning(
+                "Recomendaciones por década MusicBrainz no disponible: década=%s, error=%s",
+                decada_solicitada, error_mb
+            )
+
     if decada_solicitada:
         # Deezer a menudo no incluye fecha. Completar los años por tandas y seguir
         # avanzando mientras no haya suficientes canciones de la década solicitada.
@@ -1598,8 +1663,12 @@ def api_recomendaciones():
         # hasta llenar la tanda o agotar el límite de consultas, no solo las primeras 60.
         consultadas = 0
         tamano_lote = 24
+        resultados_ya_encontrados = [
+            p for p in candidatos_ordenados
+            if p.get("anio") and p["anio"].startswith(decada_solicitada[:3])
+        ]
         with ThreadPoolExecutor(max_workers=12) as executor:
-            while consultadas < max_consultas_anio:
+            while consultadas < max_consultas_anio and len(resultados_ya_encontrados) < objetivo_resultados:
                 lote = candidatas_para_anio[consultadas:min(consultadas + tamano_lote, max_consultas_anio)]
                 list(executor.map(completar_anio_decada, lote))
                 consultadas += len(lote)
