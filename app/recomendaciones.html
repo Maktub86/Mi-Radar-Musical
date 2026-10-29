@@ -65,66 +65,61 @@ async function buscarVideos(c,modo,b){b.disabled=true;abrirModal(modo==='youtube
 async function escuchar(c,b){b.disabled=true;const original=b.innerHTML;b.textContent='Buscando…';try{let url=c.preview;let artista=c.artista,titulo=c.titulo;if(!url){const q=new URLSearchParams({titulo,artista});const r=await fetch('/api/muestra?'+q);const d=await r.json();if(!r.ok)throw new Error(d.error||'No hay muestra disponible.');url=d.previewUrl;artista=d.artista||artista;titulo=d.titulo||titulo}if(!url)throw new Error('No hay muestra de 30 segundos disponible para esta canción.');abrirModal('Muestra de 30 segundos',artista+' — '+titulo);const audio=document.createElement('audio');audio.controls=true;audio.preload='none';audio.src=url;audio.style.width='100%';resultadosModal.appendChild(audio);await audio.play();setTimeout(()=>{audio.pause();audio.currentTime=0},30000)}catch(e){abrirModal('Muestra no disponible',e.message||'No se ha podido reproducir la muestra.')}finally{b.disabled=false;b.innerHTML=original}}
 async function informacion(c,b){b.disabled=true;abrirModal('Información sobre '+c.titulo,'Consultando información musical…');try{const q=new URLSearchParams({tipo:'cancion',nombre:c.titulo,artista:c.artista});const r=await fetch('/api/resumen-musical?'+q);const d=await r.json();estadoModal.textContent=d.resumen||d.informacion||d.error||'No se ha encontrado información.';for(const f of (d.fuentes||[])){if(!f.url||!f.url.startsWith('https://'))continue;const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=f.titulo||'Consultar fuente';a.style.display='block';a.style.color='#d2b8ff';resultadosModal.appendChild(a)}}catch(e){estadoModal.textContent='No se ha podido consultar la información ahora mismo.'}finally{b.disabled=false}}
 const cachePortadasRecomendaciones=new Map();
+const colaPortadasRecomendaciones=[];let portadasActivasRecomendaciones=0;
 function crearPortadaAlternativa(titulo){const caja=document.createElement('div');caja.className='portada portada-alternativa';caja.setAttribute('role','img');caja.setAttribute('aria-label','Portada no disponible para '+(titulo||'esta canción'));caja.textContent='♪';return caja}
-async function cargarPortadaRecomendacion(c,img){
- const clave=String(c.artista||'')+'|'+String(c.titulo||'');
- const directa=String(c.portada||'').trim();
- if(/^https?:\/\//i.test(directa)){cachePortadasRecomendaciones.set(clave,directa);img.src=directa;return true}
- if(cachePortadasRecomendaciones.has(clave)){const guardada=cachePortadasRecomendaciones.get(clave);if(guardada){img.src=guardada;return true}return false}
- cachePortadasRecomendaciones.set(clave,'');
- return false;
-}
-async function buscarPortadaAlternativa(c,img,fallback){
- if(!img.isConnected||img.dataset.busquedaPortada==='1')return;
- img.dataset.busquedaPortada='1';
- const clave=String(c.artista||'')+'|'+String(c.titulo||'');
- try{
-  // Mismo método que ya funciona en «Mi música»: búsqueda de Apple/iTunes desde el navegador.
-  const q=new URLSearchParams({term:(c.artista||'')+' '+(c.titulo||''),entity:'song',limit:'1',country:'ES'});
-  const r=await fetch('https://itunes.apple.com/search?'+q.toString(),{signal:AbortSignal.timeout(7000),cache:'no-store'});
-  if(!r.ok)throw new Error('iTunes no disponible');
-  const d=await r.json();
-  const item=(d.results||[])[0];
-  if(!item||!item.artworkUrl100)throw new Error('No hay portada en iTunes');
-  const url=String(item.artworkUrl100).replace(/\d+x\d+bb/,'600x600bb').replace(/^http:\/\//i,'https://');
-  if(!/^https:\/\//i.test(url))throw new Error('URL de portada no válida');
-  c.portada=url;
-  if(!c.anio){const m=String(item.releaseDate||'').match(/(?:19|20)\d{2}/);if(m)c.anio=m[0]}
-  if(!c.album)c.album=item.collectionName||'';
-  cachePortadasRecomendaciones.set(clave,url);
-  if(img.isConnected){img.src=url;img.hidden=false}
- }catch(e){
-  if(img.isConnected){img.hidden=true;if(fallback)fallback.hidden=false}
+function despacharPortadasRecomendaciones(){
+ while(portadasActivasRecomendaciones<3&&colaPortadasRecomendaciones.length){
+  const tarea=colaPortadasRecomendaciones.shift();portadasActivasRecomendaciones++;
+  (async()=>{
+   const {c,img,fallback,clave}=tarea;
+   try{
+    const q=new URLSearchParams({term:(c.artista||'')+' '+(c.titulo||''),entity:'song',limit:'1',country:'ES'});
+    const r=await fetch('https://itunes.apple.com/search?'+q.toString(),{signal:AbortSignal.timeout(7000),cache:'no-store'});
+    if(!r.ok)throw new Error('iTunes no disponible');
+    const d=await r.json();const item=(d.results||[])[0];
+    if(!item||!item.artworkUrl100)throw new Error('No hay portada en iTunes');
+    const url=String(item.artworkUrl100).replace(/\d+x\d+bb/,'100x100bb').replace(/^http:\/\//i,'https://');
+    if(!/^https:\/\//i.test(url))throw new Error('URL de portada no válida');
+    cachePortadasRecomendaciones.set(clave,url);
+    if(!c.anio){const m=String(item.releaseDate||'').match(/(?:19|20)\d{2}/);if(m)c.anio=m[0]}
+    if(!c.album)c.album=item.collectionName||'';
+    if(img.isConnected){img.src=url}
+   }catch(e){
+    cachePortadasRecomendaciones.set(clave,'');
+    if(img.isConnected){img.hidden=true;if(fallback)fallback.hidden=false}
+   }finally{portadasActivasRecomendaciones--;despacharPortadasRecomendaciones();}
+  })();
  }
 }
-async function completarDatosRecomendacion(c,img,tituloNodo,metaNodo){
+function buscarPortadaAlternativa(c,img,fallback){
+ if(!img.isConnected)return;
  const clave=String(c.artista||'')+'|'+String(c.titulo||'');
+ if(cachePortadasRecomendaciones.has(clave)){
+  const url=cachePortadasRecomendaciones.get(clave);
+  if(url)img.src=url;else{img.hidden=true;fallback.hidden=false}
+  return;
+ }
+ if(img.dataset.busquedaPortada==='1')return;
+ img.dataset.busquedaPortada='1';
+ colaPortadasRecomendaciones.push({c,img,fallback,clave});
+ despacharPortadasRecomendaciones();
+}
+async function completarDatosRecomendacion(c,img,tituloNodo,metaNodo){
  const actualizar=()=>{
   tituloNodo.textContent=c.anio?(c.titulo+' ('+c.anio+')'):(c.titulo+' (año no disponible)');
   metaNodo.textContent=(c.genero||'Estilo relacionado')+' · Similar a '+(c.relacionado_con||'tus gustos')+(c.album?' · '+c.album:'')+(c.anio?' · Año '+c.anio:' · Año no confirmado');
  };
  try{
-  if(!c.anio||!c.portada){
+  if(!c.anio||!c.album){
    const q=new URLSearchParams({artista:c.artista||'',titulo:c.titulo||''});
    const r=await fetch('/api/recomendaciones/datos?'+q.toString(),{cache:'no-store'});
-   if(r.ok){
-    const d=await r.json();
-    if(!c.anio&&d.anio)c.anio=d.anio;
-    if(!c.portada&&d.portada)c.portada=d.portada;
-    if(!c.album&&d.album)c.album=d.album;
-   }
+   if(r.ok){const d=await r.json();if(!c.anio&&d.anio)c.anio=d.anio;if(!c.album&&d.album)c.album=d.album}
   }
  }catch(e){}
- if(c.portada&&img.isConnected&&!img.dataset.busquedaPortada){
-  cachePortadasRecomendaciones.set(clave,c.portada);
-  img.src=c.portada;
- }else if(!c.portada&&img.isConnected){
-  const fallback=img.parentElement.querySelector('.portada-alternativa');
-  await buscarPortadaAlternativa(c,img,fallback);
- }
+ if(img.isConnected)buscarPortadaAlternativa(c,img,img.parentElement.querySelector('.portada-alternativa'));
  actualizar();
 }
-function pintarCancion(c,destino=contenedor,esGuardada=false){const fila=document.createElement('article');fila.className='cancion';fila.dataset.titulo=c.titulo||'';fila.dataset.artista=c.artista||'';const img=document.createElement('img');img.className='portada';img.loading='lazy';img.decoding='async';img.referrerPolicy='no-referrer';img.alt='Portada de '+c.titulo;img.hidden=true;const fallback=crearPortadaAlternativa(c.titulo);img.addEventListener('load',()=>{img.hidden=false;fallback.hidden=true});img.addEventListener('error',()=>{if(img.dataset.busquedaPortada!=='1'){buscarPortadaAlternativa(c,img,fallback);return}img.hidden=true;fallback.hidden=false});cargarPortadaRecomendacion(c,img).then(ok=>{if(!ok&&img.isConnected){img.hidden=true;fallback.hidden=false}});const info=document.createElement('div');info.className='info';const titulo=document.createElement('div');titulo.className='titulo';titulo.textContent=c.anio?(c.titulo+' ('+c.anio+')'):(c.titulo+' (buscando año…)');const artista=document.createElement('div');artista.className='artista';artista.textContent=c.artista;const meta=document.createElement('div');meta.className='meta';meta.textContent=(c.genero||'Estilo relacionado')+' · Similar a '+(c.relacionado_con||'tus gustos')+(c.album?' · '+c.album:'')+(c.anio?' · Año '+c.anio:' · Año pendiente de confirmar');info.append(titulo,artista,meta);const acciones=document.createElement('div');acciones.className='acciones';acciones.append(boton(svgPlay+'<span>30 s</span>','b30','Escuchar muestra de 30 segundos',b=>escuchar(c,b)),boton(svgDownload,'descarga','Buscar enlace para descargar con MediaHuman',b=>buscarVideos(c,'mediahuman',b)),boton(svgPlay,'youtube','Buscar en YouTube',b=>buscarVideos(c,'youtube',b)),boton('ℹ','info-btn','Consultar información de la canción',b=>informacion(c,b)));acciones.appendChild(esGuardada?boton('−','guardar-btn guardada','Quitar de Guardadas',()=>quitarGuardada(c)):boton(estaGuardada(c)?'✓':'+','guardar-btn'+(estaGuardada(c)?' guardada':''),estaGuardada(c)?'Ya está guardada':'Guardar canción',()=>guardarCancion(c)));info.appendChild(acciones);const miniatura=document.createElement('div');miniatura.className='portada-contenedor';miniatura.style.position='relative';miniatura.style.width='112px';miniatura.style.aspectRatio='1';miniatura.style.overflow='hidden';miniatura.append(img,fallback);fila.append(miniatura,info);destino.appendChild(fila);if(!c.anio||!c.portada)completarDatosRecomendacion(c,img,titulo,meta)}
+function pintarCancion(c,destino=contenedor,esGuardada=false){const fila=document.createElement('article');fila.className='cancion';fila.dataset.titulo=c.titulo||'';fila.dataset.artista=c.artista||'';const img=document.createElement('img');img.className='portada';img.loading='lazy';img.decoding='async';img.referrerPolicy='no-referrer';img.alt='Portada de '+c.titulo;img.hidden=true;const fallback=crearPortadaAlternativa(c.titulo);img.addEventListener('load',()=>{img.hidden=false;fallback.hidden=true});img.addEventListener('error',()=>{if(img.dataset.busquedaPortada!=='1'){buscarPortadaAlternativa(c,img,fallback);return}img.hidden=true;fallback.hidden=false});const info=document.createElement('div');info.className='info';const titulo=document.createElement('div');titulo.className='titulo';titulo.textContent=c.anio?(c.titulo+' ('+c.anio+')'):(c.titulo+' (buscando año…)');const artista=document.createElement('div');artista.className='artista';artista.textContent=c.artista;const meta=document.createElement('div');meta.className='meta';meta.textContent=(c.genero||'Estilo relacionado')+' · Similar a '+(c.relacionado_con||'tus gustos')+(c.album?' · '+c.album:'')+(c.anio?' · Año '+c.anio:' · Año pendiente de confirmar');info.append(titulo,artista,meta);const acciones=document.createElement('div');acciones.className='acciones';acciones.append(boton(svgPlay+'<span>30 s</span>','b30','Escuchar muestra de 30 segundos',b=>escuchar(c,b)),boton(svgDownload,'descarga','Buscar enlace para descargar con MediaHuman',b=>buscarVideos(c,'mediahuman',b)),boton(svgPlay,'youtube','Buscar en YouTube',b=>buscarVideos(c,'youtube',b)),boton('ℹ','info-btn','Consultar información de la canción',b=>informacion(c,b)));acciones.appendChild(esGuardada?boton('−','guardar-btn guardada','Quitar de Guardadas',()=>quitarGuardada(c)):boton(estaGuardada(c)?'✓':'+','guardar-btn'+(estaGuardada(c)?' guardada':''),estaGuardada(c)?'Ya está guardada':'Guardar canción',()=>guardarCancion(c)));info.appendChild(acciones);const miniatura=document.createElement('div');miniatura.className='portada-contenedor';miniatura.style.position='relative';miniatura.style.width='112px';miniatura.style.aspectRatio='1';miniatura.style.overflow='hidden';miniatura.append(img,fallback);fila.append(miniatura,info);destino.appendChild(fila);completarDatosRecomendacion(c,img,titulo,meta)}
 async function cargar(reset=false){if(reset)inicio=0;otras.disabled=true;estado.textContent='Analizando tu colección y buscando canciones que no tengas…';contenedor.replaceChildren();const gen=++ultimaGeneracion;try{const q=new URLSearchParams({inicio:String(inicio),genero:genero.value,decada:decada.value,azar:String(semillaAzar)});const r=await fetch('/api/recomendaciones?'+q,{cache:'no-store'});const d=await r.json();if(!r.ok)throw new Error(d.error||'No se pudieron cargar las recomendaciones.');if(gen!==ultimaGeneracion)return;if(d.generos&&genero.options.length<=1){for(const g of d.generos){const o=document.createElement('option');o.value=g;o.textContent=g;genero.appendChild(o)}}if(!(d.canciones||[]).length){estado.textContent=d.error||'No se han encontrado recomendaciones para esta selección. Prueba otro género.';return}for(const c of d.canciones)pintarCancion(c,contenedor,false);actualizarGuardadas();estado.textContent='Mostrando '+d.canciones.length+' recomendaciones · '+Number(d.total_biblioteca||0).toLocaleString('es-ES')+' canciones analizadas en tu colección · '+(d.fuente||'Catálogo musical')+'. '+(d.aviso||'');inicio+=10;if(Number(d.total_candidatas||0)<=inicio)estado.textContent+=' Has visto todas las recomendaciones encontradas por esta búsqueda; puedes volver a empezar.'}catch(e){estado.textContent=e.message||'Ha ocurrido un error al buscar recomendaciones.'}finally{otras.disabled=false;}}
 otras.addEventListener('click',()=>{inicio=0;semillaAzar=Math.floor(Math.random()*2147483647);cargar(true)});genero.addEventListener('change',()=>{inicio=0;contenedor.replaceChildren();estado.textContent='Género seleccionado. Pulsa «Buscar recomendaciones» para aplicar el filtro.'});decada.addEventListener('change',()=>{inicio=0;contenedor.replaceChildren();estado.textContent='Década seleccionada. Pulsa «Buscar recomendaciones» para mostrar canciones similares de esa década.'});tabRecomendaciones.addEventListener('click',()=>cambiarVista('recomendaciones'));tabGuardadas.addEventListener('click',()=>{actualizarGuardadas();cambiarVista('guardadas')});
 actualizarGuardadas();
