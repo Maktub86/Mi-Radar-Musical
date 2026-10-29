@@ -1126,7 +1126,7 @@ def api_recomendaciones():
         actual = candidatos.get(llave)
         if actual and actual["puntuacion"] >= puntaje:
             return
-        coincidencia_anio = re.search(r"(?:19|20)\\d{2}", str(fecha_lanzamiento))
+        coincidencia_anio = re.search(r"(?:19|20)\d{2}", str(fecha_lanzamiento))
         anio = coincidencia_anio.group(0) if coincidencia_anio else ""
         candidatos[llave] = {
             "titulo": titulo,
