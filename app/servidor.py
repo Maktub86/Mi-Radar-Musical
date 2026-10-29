@@ -54,8 +54,6 @@ def agregar_enlace_mi_musica(response):
             html = re.sub(r"<nav\b[^>]*>.*?</nav>", lambda _: nav_comun, html, count=1, flags=re.IGNORECASE | re.DOTALL)
         css_nav = """
 <style id="navegacion-comun-estilos">
-/* Altura única de todas las cabeceras: Portada, listas y secciones */
-header{box-sizing:border-box!important;height:152px!important;min-height:152px!important;max-height:152px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;overflow:hidden!important}
 nav.navegacion-comun{display:flex;flex-flow:row wrap;align-items:center;gap:8px;padding:10px 6%;box-sizing:border-box;width:100%}
 nav.navegacion-comun a{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;margin:0!important;white-space:nowrap;text-decoration:none}
 nav.navegacion-comun a.activo{font-weight:700}
@@ -104,6 +102,13 @@ button:focus-visible,a:focus-visible{outline:2px solid #c9a5ff;outline-offset:3p
 @media(max-width:760px){nav.navegacion-comun{gap:6px;padding:8px 5%}nav.navegacion-comun a{font-size:14px;padding:8px 10px}}
 </style>
 """
+        # Solo estas cuatro secciones necesitan el ajuste: las otras páginas ya coinciden visualmente.
+        if request.path.rstrip("/") in ("/lo-mejor", "/mi-musica", "/recomendaciones", "/programas"):
+            css_cabecera = """
+/* Igualar el borde inferior de la franja con la cabecera de Portada */
+header{box-sizing:border-box!important;height:152px!important;min-height:152px!important;max-height:152px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;overflow:hidden!important}
+"""
+            css_nav = css_nav.replace("</style>", css_cabecera + "\n</style>", 1)
         if "</head>" in html:
             # Elimina declaraciones antiguas o duplicadas: Android/Chrome puede
             # elegir el primer icono/manifiesto y conservar un acceso directo obsoleto.
