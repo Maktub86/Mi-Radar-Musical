@@ -1510,7 +1510,7 @@ def api_recomendaciones():
                             partes_artista.append(nombre_parte + str(parte.get("joinphrase") or ""))
                 artista_mb = "".join(partes_artista).strip()
                 fecha_mb = str(grabacion.get("first-release-date") or "").strip()
-                coincidencia_mb = re.match(r"^(19|20)\\d{2}", fecha_mb)
+                coincidencia_mb = re.match(r"^(19|20)\d{2}", fecha_mb)
                 if not titulo_mb or not artista_mb or not coincidencia_mb:
                     continue
                 anio_mb = coincidencia_mb.group(0)
