@@ -1216,6 +1216,9 @@ def api_recomendaciones():
     cache_peticion = {}
 
     def consultar(url, timeout=4):
+        # Las recomendaciones por década deben terminar antes del timeout de Gunicorn.
+        if decada_solicitada:
+            timeout = min(timeout, 1.5)
         if url in cache_peticion:
             return cache_peticion[url]
         try:
@@ -1425,7 +1428,7 @@ def api_recomendaciones():
         if genero_solicitado:
             semillas_artistas = [a for a in semillas_artistas if a["generos"] and
                                  max(a["generos"], key=a["generos"].get).casefold() == genero_solicitado.casefold()]
-        semillas_artistas = semillas_artistas[:5]
+        semillas_artistas = semillas_artistas[:2 if decada_solicitada else 5]
         for semilla in semillas_artistas:
             q = urlencode({"q": semilla["nombre"], "limit": 8})
             datos_artista = consultar("https://api.deezer.com/search/artist?" + q)
@@ -1440,7 +1443,7 @@ def api_recomendaciones():
                     continue
             # Al filtrar por década hace falta una muestra más amplia: el top 8
             # habitual suele dejar fuera canciones antiguas o con fecha disponible.
-            limite_relacionados = 4 if decada_solicitada else 4
+            limite_relacionados = 2 if decada_solicitada else 4
             relacionados = consultar("https://api.deezer.com/artist/" + str(coincidencia.get("id")) +
                                      "/related?" + urlencode({"limit": limite_relacionados})).get("data") or []
             objetivos = [(a, 1.0) for a in relacionados[:limite_relacionados]] or [(coincidencia, 0.55)]
@@ -1466,7 +1469,7 @@ def api_recomendaciones():
                                                      clave(p.get("artista")), clave(p.get("titulo"))))
         pendientes_anio = [p for p in candidatos_ordenados if not p.get("anio")]
         # Límite conservador para evitar que Gunicorn mate al trabajador por tiempo.
-        max_consultas_anio = min(len(pendientes_anio), 60)
+        max_consultas_anio = min(len(pendientes_anio), 32)
 
         def completar_anio_decada(pista):
             parametros = urlencode({
