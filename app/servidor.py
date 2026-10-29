@@ -1321,6 +1321,7 @@ def api_recomendaciones():
             "titulo": titulo,
             "artista": nombre_artista,
             "album": album.get("title") or "",
+            "album_id": str(album.get("id") or ""),
             "portada": portada,
             "preview": pista.get("preview") or "",
             "anio": anio,
@@ -1507,6 +1508,30 @@ def api_recomendaciones():
         max_consultas_anio = min(len(candidatas_para_anio), 120)
 
         def completar_anio_decada(pista):
+            # Primero aprovechar el ID de álbum que ya entrega Deezer. Es una
+            # consulta más directa que buscar de nuevo artista y canción en Apple.
+            album_id = str(pista.get("album_id") or "").strip()
+            if album_id:
+                try:
+                    peticion_album = Request(
+                        "https://api.deezer.com/album/" + album_id,
+                        headers={"User-Agent": "MiRadarMusical/1.0"}
+                    )
+                    with urlopen(peticion_album, timeout=2.0) as respuesta_album:
+                        datos_album = json.loads(respuesta_album.read().decode("utf-8"))
+                    fecha_album = str(datos_album.get("release_date") or "")
+                    coincidencia_album = re.search(r"(?:19|20)\\d{2}", fecha_album)
+                    if coincidencia_album:
+                        pista["anio"] = coincidencia_album.group(0)
+                        if not pista.get("album"):
+                            pista["album"] = str(datos_album.get("title") or "")
+                        with bloqueo_diagnostico:
+                            anios_diagnostico["respuestas"] += 1
+                            anios_diagnostico["con_anio"] += 1
+                        return
+                except Exception as error_album:
+                    app.logger.debug("No se pudo recuperar el año del álbum Deezer %s: %s", album_id, error_album)
+
             parametros = urlencode({
                 "term": str(pista.get("artista") or "") + " " + str(pista.get("titulo") or ""),
                 "country": "us", "media": "music", "entity": "song", "limit": 25
@@ -1516,7 +1541,7 @@ def api_recomendaciones():
                     anios_diagnostico["consultas"] += 1
                 peticion = Request("https://itunes.apple.com/search?" + parametros,
                                    headers={"User-Agent": "MiRadarMusical/1.0"})
-                with urlopen(peticion, timeout=1.2) as respuesta:
+                with urlopen(peticion, timeout=2.5) as respuesta:
                     datos_itunes = json.loads(respuesta.read().decode("utf-8"))
                 with bloqueo_diagnostico:
                     anios_diagnostico["respuestas"] += 1
