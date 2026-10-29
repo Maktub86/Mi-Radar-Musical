@@ -1162,7 +1162,7 @@ def pagina_recomendaciones():
 
 @app.get("/api/recomendaciones")
 def api_recomendaciones():
-    """Recomienda temas ajenos a la biblioteca a partir de los artistas más representados."""
+    """Recomienda temas ajenos a la biblioteca usando una muestra aleatoria de toda la colección."""
     genero_solicitado = (request.args.get("genero") or "").strip()
     decada_solicitada = (request.args.get("decada") or "").strip()
     if decada_solicitada and not re.fullmatch(r"(19|20)\d0", decada_solicitada):
