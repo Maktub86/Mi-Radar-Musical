@@ -108,7 +108,7 @@ async function completarDatosRecomendacion(c,img,tituloNodo,metaNodo){
   metaNodo.textContent=(c.genero||'Estilo relacionado')+' · Similar a '+(c.relacionado_con||'tus gustos')+(c.album?' · '+c.album:'')+(c.anio?' · Año '+c.anio:' · Año no confirmado');
  };
  try{
-  if(!c.anio||!c.album){
+  if(!c.anio||!c.album||!c.portada){
    const q=new URLSearchParams({artista:c.artista||'',titulo:c.titulo||''});
    const r=await fetch('/api/recomendaciones/datos?'+q.toString(),{cache:'no-store'});
    if(r.ok){const d=await r.json();if(!c.anio&&d.anio)c.anio=d.anio;if(!c.album&&d.album)c.album=d.album;if(!c.portada&&d.portada)c.portada=d.portada}
