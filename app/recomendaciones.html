@@ -75,15 +75,32 @@ async function buscarPortadaCatalogo(c){
  const r=await fetch('https://itunes.apple.com/search?'+q.toString(),{signal:AbortSignal.timeout(6000),cache:'no-store'});
  if(!r.ok)throw new Error('El catálogo de portadas no responde');
  const d=await r.json(),items=d.results||[],tituloBuscado=normalizarTextoPortada(c.titulo),artistaBuscado=normalizarTextoPortada(c.artista);
- const candidatos=items.map(item=>{const titulo=normalizarTextoPortada(item.trackName),artista=normalizarTextoPortada(item.artistName);const tituloExacto=titulo===tituloBuscado;const tituloRelacionado=!!tituloBuscado&&(titulo.includes(tituloBuscado)||tituloBuscado.includes(titulo));const artistaRelacionado=!!artistaBuscado&&(artista===artistaBuscado||artista.includes(artistaBuscado)||artistaBuscado.includes(artista));return{item,puntuacion:(tituloExacto?4:tituloRelacionado?2:0)+(artistaRelacionado?3:0)}}).filter(x=>x.puntuacion>=5).sort((a,b)=>b.puntuacion-a.puntuacion);
- for(const candidato of candidatos.slice(0,2)){const url=String(candidato.item.artworkUrl100||'').replace(/\d+x\d+bb\.(jpg|png)/i,'600x600bb.$1').replace(/^http:\/\//i,'https://');if(await probarImagenPortada(url,3000)){cachePortadasRecomendaciones.set(clave,url);return url}}
+ // No aceptar coincidencias aproximadas: una portada de otra canción es peor que indicar que falta.
+ const candidatos=items.filter(item=>normalizarTextoPortada(item.trackName)===tituloBuscado&&normalizarTextoPortada(item.artistName)===artistaBuscado);
+ for(const candidato of candidatos){const url=String(candidato.artworkUrl100||'').replace(/\d+x\d+bb\.(jpg|png)/i,'600x600bb.$1').replace(/^http:\/\//i,'https://');if(await probarImagenPortada(url,3000)){cachePortadasRecomendaciones.set(clave,url);return url}}
  cachePortadasRecomendaciones.set(clave,'');return '';
 }
 async function prepararPortadaRecomendacion(c){
- const clave=clavePortada(c);if(cachePortadasRecomendaciones.has(clave)&&cachePortadasRecomendaciones.get(clave))return cachePortadasRecomendaciones.get(clave);
- let url=String(c.portada||'').replace(/^http:\/\//i,'https://');
- if(url&&await probarImagenPortada(url,3000)){c.portada=url;cachePortadasRecomendaciones.set(clave,url);return url}
- try{url=await buscarPortadaCatalogo(c);if(url){c.portada=url;return url}}catch(e){}
+ const clave=clavePortada(c);
+ // Recuperar también año y álbum: se habían dejado de consultar al acelerar la búsqueda.
+ try{
+  const q=new URLSearchParams({artista:c.artista||'',titulo:c.titulo||''});
+  const r=await fetch('/api/recomendaciones/datos?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(7000)});
+  if(r.ok){
+   const d=await r.json();
+   if(!c.anio&&d.anio)c.anio=String(d.anio);
+   if(!c.album&&d.album)c.album=String(d.album);
+   const portadaDatos=String(d.portada||'').replace(/^http:\/\//i,'https://');
+   if(portadaDatos&&await probarImagenPortada(portadaDatos,3000)){
+    c.portada=portadaDatos;cachePortadasRecomendaciones.set(clave,portadaDatos);return portadaDatos;
+   }
+  }
+ }catch(e){}
+ try{
+  const url=await buscarPortadaCatalogo(c);
+  if(url){c.portada=url;return url}
+ }catch(e){}
+ // No usar una portada aproximada de Deezer: puede pertenecer a otra canción.
  c.portada='';return '';
 }
 async function prepararLotePortadas(canciones,gen){
