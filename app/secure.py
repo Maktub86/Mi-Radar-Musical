@@ -31,6 +31,11 @@ LOGIN_HTML = """<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Acceso · Mi Radar Musical</title>
+<link rel="icon" type="image/png" sizes="192x192" href="/icono-mrm-192.png?v=12">
+<link rel="icon" type="image/svg+xml" href="/icono-mrm.svg?v=12">
+<link rel="apple-touch-icon" sizes="192x192" href="/icono-mrm-192.png?v=12">
+<link rel="manifest" href="/manifest.webmanifest?v=12">
+<meta name="theme-color" content="#6d28a8">
 <style>
 *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:linear-gradient(140deg,#17152d,#10101c 55%,#26152e);color:#f7f5ff;font-family:Segoe UI,Arial,sans-serif;padding:20px}
 main{width:min(420px,100%);background:#1b1b2d;border:1px solid #ffffff20;border-radius:18px;padding:28px;box-shadow:0 18px 55px #0006}
