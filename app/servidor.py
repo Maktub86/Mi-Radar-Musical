@@ -1224,7 +1224,7 @@ def api_recomendaciones():
     def consultar(url, timeout=4):
         # Todas las recomendaciones deben quedar acotadas: Gunicorn mata el
         # trabajador si una cadena de catálogos externos tarda demasiado.
-        timeout = min(timeout, 1.5)
+        timeout = min(timeout, 1.0 if decada_solicitada else 1.5)
         if url in cache_peticion:
             return cache_peticion[url]
         try:
@@ -1447,7 +1447,7 @@ def api_recomendaciones():
         # en vez de favorecer siempre a los más repetidos. La selección es estable
         # durante la paginación y cambia al iniciar una nueva búsqueda.
         random.Random(semilla_azar ^ 0x5F3759DF).shuffle(semillas_artistas)
-        semillas_artistas = semillas_artistas[:3 if decada_solicitada else 3]
+        semillas_artistas = semillas_artistas[:2 if decada_solicitada else 3]
         for semilla in semillas_artistas:
             q = urlencode({"q": semilla["nombre"], "limit": 8})
             datos_artista = consultar("https://api.deezer.com/search/artist?" + q)
@@ -1462,7 +1462,7 @@ def api_recomendaciones():
                     continue
             # Al filtrar por década hace falta una muestra más amplia: el top 8
             # habitual suele dejar fuera canciones antiguas o con fecha disponible.
-            limite_relacionados = 2 if decada_solicitada else 2
+            limite_relacionados = 3 if decada_solicitada else 2
             relacionados = consultar("https://api.deezer.com/artist/" + str(coincidencia.get("id")) +
                                      "/related?" + urlencode({"limit": limite_relacionados})).get("data") or []
             objetivos = [(a, 1.0) for a in relacionados[:limite_relacionados]] or [(coincidencia, 0.55)]
@@ -1470,7 +1470,7 @@ def api_recomendaciones():
                 id_rel = artista_rel.get("id")
                 if not id_rel:
                     continue
-                limite_top = 20 if decada_solicitada else 6
+                limite_top = 40 if decada_solicitada else 6
                 top = consultar("https://api.deezer.com/artist/" + str(id_rel) +
                                 "/top?" + urlencode({"limit": limite_top})).get("data") or []
                 for pista in top:
@@ -1493,7 +1493,11 @@ def api_recomendaciones():
         )
         pendientes_anio = [p for p in candidatos_ordenados if not p.get("anio")]
         # Límite conservador para evitar que Gunicorn mate al trabajador por tiempo.
-        max_consultas_anio = min(len(pendientes_anio), 60)
+        # Revisar más candidatas y repartir las consultas por toda la lista; las primeras
+        # por puntuación suelen ser éxitos recientes y sesgan las décadas antiguas.
+        candidatas_para_anio = list(pendientes_anio)
+        random.Random(semilla_azar ^ 0x6A09E667).shuffle(candidatas_para_anio)
+        max_consultas_anio = min(len(candidatas_para_anio), 120)
 
         def completar_anio_decada(pista):
             parametros = urlencode({
@@ -1503,7 +1507,7 @@ def api_recomendaciones():
             try:
                 peticion = Request("https://itunes.apple.com/search?" + parametros,
                                    headers={"User-Agent": "MiRadarMusical/1.0"})
-                with urlopen(peticion, timeout=2) as respuesta:
+                with urlopen(peticion, timeout=1.2) as respuesta:
                     datos_itunes = json.loads(respuesta.read().decode("utf-8"))
                 artista_obj = clave(pista.get("artista"))
                 titulo_obj = clave(pista.get("titulo"))
@@ -1551,10 +1555,10 @@ def api_recomendaciones():
         # Consultar primero las canciones mejor puntuadas y ampliar por lotes de 40
         # hasta llenar la tanda o agotar el límite de consultas, no solo las primeras 60.
         consultadas = 0
-        tamano_lote = 20
-        with ThreadPoolExecutor(max_workers=8) as executor:
+        tamano_lote = 24
+        with ThreadPoolExecutor(max_workers=12) as executor:
             while consultadas < max_consultas_anio:
-                lote = pendientes_anio[consultadas:min(consultadas + tamano_lote, max_consultas_anio)]
+                lote = candidatas_para_anio[consultadas:min(consultadas + tamano_lote, max_consultas_anio)]
                 list(executor.map(completar_anio_decada, lote))
                 consultadas += len(lote)
                 coincidencias_decada = [p for p in candidatos_ordenados
