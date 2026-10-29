@@ -1520,7 +1520,7 @@ def api_recomendaciones():
                     with urlopen(peticion_album, timeout=2.0) as respuesta_album:
                         datos_album = json.loads(respuesta_album.read().decode("utf-8"))
                     fecha_album = str(datos_album.get("release_date") or "")
-                    coincidencia_album = re.search(r"(?:19|20)\\d{2}", fecha_album)
+                    coincidencia_album = re.search(r"(?:19|20)\d{2}", fecha_album)
                     if coincidencia_album:
                         pista["anio"] = coincidencia_album.group(0)
                         if not pista.get("album"):
