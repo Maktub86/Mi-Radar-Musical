@@ -1230,6 +1230,107 @@ def pagina_recomendaciones():
     return (BASE / "recomendaciones.html").read_text(encoding="utf-8")
 
 
+# Las canciones guardadas se almacenan en el servidor para compartirlas entre móvil y ordenador.
+_RUTA_GUARDADAS_RECOMENDACIONES = BASE / "recomendaciones_guardadas.json"
+_CANDADO_GUARDADAS_RECOMENDACIONES = threading.Lock()
+
+
+def _clave_guardada_recomendacion(cancion):
+    return normalizar_texto(cancion.get("artista")) + "|" + normalizar_texto(cancion.get("titulo"))
+
+
+def _leer_guardadas_recomendaciones():
+    try:
+        datos = json.loads(_RUTA_GUARDADAS_RECOMENDACIONES.read_text(encoding="utf-8"))
+        if not isinstance(datos, dict):
+            return {"inicializado": False, "canciones": []}
+        canciones = datos.get("canciones")
+        if not isinstance(canciones, list):
+            canciones = []
+        return {"inicializado": bool(datos.get("inicializado")), "canciones": [
+            c for c in canciones if isinstance(c, dict) and c.get("titulo") and c.get("artista")
+        ]}
+    except (OSError, json.JSONDecodeError):
+        return {"inicializado": False, "canciones": []}
+
+
+def _guardar_estado_recomendaciones(estado):
+    temporal = _RUTA_GUARDADAS_RECOMENDACIONES.with_suffix(".tmp")
+    temporal.write_text(json.dumps(estado, ensure_ascii=False, indent=2), encoding="utf-8")
+    temporal.replace(_RUTA_GUARDADAS_RECOMENDACIONES)
+
+
+@app.get("/api/recomendaciones/guardadas")
+def api_leer_guardadas_recomendaciones():
+    with _CANDADO_GUARDADAS_RECOMENDACIONES:
+        estado = _leer_guardadas_recomendaciones()
+    return jsonify(estado)
+
+
+@app.post("/api/recomendaciones/guardadas")
+def api_anadir_guardadas_recomendaciones():
+    cuerpo = request.get_json(silent=True) or {}
+    canciones = cuerpo.get("canciones")
+    if not isinstance(canciones, list) or len(canciones) > 1000:
+        return jsonify({"error": "La lista de canciones no es válida."}), 400
+    nuevas = []
+    for cancion in canciones:
+        if not isinstance(cancion, dict):
+            continue
+        titulo = str(cancion.get("titulo") or "").strip()[:300]
+        artista = str(cancion.get("artista") or "").strip()[:300]
+        if not titulo or not artista:
+            continue
+        nuevas.append({
+            "titulo": titulo,
+            "artista": artista,
+            "anio": str(cancion.get("anio") or "")[:20],
+            "genero": str(cancion.get("genero") or "")[:120],
+            "relacionado_con": str(cancion.get("relacionado_con") or "")[:300],
+            "album": str(cancion.get("album") or "")[:300],
+            "portada": str(cancion.get("portada") or "")[:2000],
+            "preview": str(cancion.get("preview") or "")[:2000],
+        })
+    with _CANDADO_GUARDADAS_RECOMENDACIONES:
+        estado = _leer_guardadas_recomendaciones()
+        existentes = {_clave_guardada_recomendacion(c): c for c in estado["canciones"]}
+        for cancion in nuevas:
+            clave = _clave_guardada_recomendacion(cancion)
+            if clave not in existentes:
+                estado["canciones"].insert(0, cancion)
+                existentes[clave] = cancion
+        estado["inicializado"] = True
+        try:
+            _guardar_estado_recomendaciones(estado)
+        except OSError:
+            app.logger.exception("No se pudieron guardar las recomendaciones en el servidor.")
+            return jsonify({"error": "No se han podido guardar las canciones en el servidor."}), 500
+    return jsonify(estado)
+
+
+@app.delete("/api/recomendaciones/guardadas")
+def api_quitar_guardada_recomendacion():
+    cuerpo = request.get_json(silent=True) or {}
+    titulo = str(cuerpo.get("titulo") or "").strip()
+    artista = str(cuerpo.get("artista") or "").strip()
+    if not titulo or not artista:
+        return jsonify({"error": "Faltan el título y el artista."}), 400
+    clave_objetivo = normalizar_texto(artista) + "|" + normalizar_texto(titulo)
+    with _CANDADO_GUARDADAS_RECOMENDACIONES:
+        estado = _leer_guardadas_recomendaciones()
+        estado["canciones"] = [
+            c for c in estado["canciones"]
+            if _clave_guardada_recomendacion(c) != clave_objetivo
+        ]
+        estado["inicializado"] = True
+        try:
+            _guardar_estado_recomendaciones(estado)
+        except OSError:
+            app.logger.exception("No se pudo quitar la recomendación guardada.")
+            return jsonify({"error": "No se ha podido actualizar la lista del servidor."}), 500
+    return jsonify(estado)
+
+
 @app.get("/api/recomendaciones")
 def api_recomendaciones():
     """Recomienda temas ajenos a la biblioteca usando una muestra aleatoria de toda la colección."""
