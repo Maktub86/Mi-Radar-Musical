@@ -1100,12 +1100,16 @@ def api_recomendaciones():
         actual = candidatos.get(llave)
         if actual and actual["puntuacion"] >= puntaje:
             return
+        fecha_lanzamiento = (pista.get("release_date") or album.get("release_date") or
+                             pista.get("releaseDate") or "")
+        anio = str(fecha_lanzamiento)[:4] if re.match(r"^\d{4}", str(fecha_lanzamiento)) else ""
         candidatos[llave] = {
             "titulo": titulo,
             "artista": nombre_artista,
             "album": album.get("title") or "",
             "portada": portada,
             "preview": pista.get("preview") or "",
+            "anio": anio,
             "url": pista.get("link") or pista.get("url") or "",
             "genero": genero_solicitado or (max(semilla["generos"], key=semilla["generos"].get) if semilla.get("generos") else ""),
             "relacionado_con": semilla["nombre"],
@@ -1128,14 +1132,10 @@ def api_recomendaciones():
         if genero_solicitado and genero.casefold() != genero_solicitado.casefold():
             continue
         semillas_pistas.append({"nombre": artista, "titulo": titulo, "genero": genero})
-    # Usar varias canciones de artistas distintos evita que una sola domine los resultados.
-    # Barajar las canciones de partida en cada petición para variar las recomendaciones.
-    secrets.SystemRandom().shuffle(semillas_pistas)
-    if semillas_pistas:
-        # Elegir hasta cuatro canciones de partida distintas en cada búsqueda.
-        semillas_lastfm = semillas_pistas[:4]
-    else:
-        semillas_lastfm = []
+    # Mantener las semillas estables entre páginas: el parámetro inicio debe paginar
+    # la misma lista, no una lista distinta en cada clic.
+    semillas_pistas.sort(key=lambda p: (clave(p["nombre"]), clave(p["titulo"])))
+    semillas_lastfm = semillas_pistas[:4] if semillas_pistas else []
 
     if clave_lastfm:
         for indice, semilla in enumerate(semillas_lastfm):
@@ -1175,14 +1175,22 @@ def api_recomendaciones():
                         puntuacion += 0.30
                     if puntuacion > mejor_puntuacion:
                         mejor, mejor_puntuacion = resultado, puntuacion
-                if mejor and mejor_puntuacion >= 1.05:
-                    añadir_candidata(mejor, semilla, max(0.5, float(similar.get("match") or 0.5)) * 1.2,
+                # No aceptar coincidencias aproximadas débiles: pueden asociar otra
+                # canción y mostrar título, portada y álbum que no corresponden.
+                if mejor and mejor_puntuacion >= 1.25 and objetivo_artista == clave((mejor.get("artist") or {}).get("name")):
+                    detalle = mejor
+                    id_pista = mejor.get("id")
+                    if id_pista:
+                        datos_detalle = consultar("https://api.deezer.com/track/" + str(id_pista), timeout=5)
+                        if datos_detalle:
+                            detalle = datos_detalle
+                    añadir_candidata(detalle, semilla, max(0.5, float(similar.get("match") or 0.5)) * 1.2,
                                      "Last.fm")
-                elif not mejor:
-                    # Si Deezer no localiza la canción, se conserva el título de Last.fm
-                    # para que pueda seguir descubriéndose en YouTube; la portada puede faltar.
+                else:
+                    # Si Deezer no encuentra una coincidencia fiable, conservar los
+                    # datos originales de Last.fm, sin atribuirle la portada de otro tema.
                     añadir_candidata({
-                        "titulo": titulo, "artista": {"name": nombre_artista},
+                        "titulo": titulo, "artist": {"name": nombre_artista},
                         "url": similar.get("url") or "",
                         "image": similar.get("image") or []
                     }, semilla, max(0.5, float(similar.get("match") or 0.5)), "Last.fm")
@@ -1222,17 +1230,15 @@ def api_recomendaciones():
                     añadir_candidata(pista, semilla, peso, "Deezer")
 
     ordenadas = sorted(candidatos.values(), key=lambda p: (-p["puntuacion"], clave(p["artista"]), clave(p["titulo"])))
-    # Mantener la relevancia como criterio principal, mezclando grupos de puntuación similar.
+    # Orden estable entre peticiones para que «Descubrir otras 10» no mezcle
+    # una nueva tanda aleatoria con el desplazamiento de la anterior.
     grupos = []
     for candidata in ordenadas:
         if not grupos or grupos[-1][0]["puntuacion"] - candidata["puntuacion"] > 8:
             grupos.append([candidata])
         else:
             grupos[-1].append(candidata)
-    generador = secrets.SystemRandom()
-    for grupo in grupos:
-        generador.shuffle(grupo)
-    ordenadas = [c for grupo in grupos for c in grupo]
+    ordenadas = [c for grupo in grupos for c in sorted(grupo, key=lambda p: (clave(p["artista"]), clave(p["titulo"])))]
     if ordenadas:
         inicio_real = inicio % len(ordenadas)
         ordenadas = ordenadas[inicio_real:] + ordenadas[:inicio_real]
