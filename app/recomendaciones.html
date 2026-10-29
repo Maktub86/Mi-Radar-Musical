@@ -66,9 +66,9 @@ async function escuchar(c,b){b.disabled=true;const original=b.innerHTML;b.textCo
 async function informacion(c,b){b.disabled=true;abrirModal('Información sobre '+c.titulo,'Consultando información musical…');try{const q=new URLSearchParams({tipo:'cancion',nombre:c.titulo,artista:c.artista});const r=await fetch('/api/resumen-musical?'+q);const d=await r.json();estadoModal.textContent=d.resumen||d.informacion||d.error||'No se ha encontrado información.';for(const f of (d.fuentes||[])){if(!f.url||!f.url.startsWith('https://'))continue;const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=f.titulo||'Consultar fuente';a.style.display='block';a.style.color='#d2b8ff';resultadosModal.appendChild(a)}}catch(e){estadoModal.textContent='No se ha podido consultar la información ahora mismo.'}finally{b.disabled=false}}
 const cachePortadasRecomendaciones=new Map();
 function crearPortadaAlternativa(titulo){const caja=document.createElement('div');caja.className='portada portada-alternativa';caja.setAttribute('role','img');caja.setAttribute('aria-label','Portada no disponible para '+(titulo||'esta canción'));caja.textContent='♪';return caja}
-function normalizarTextoPortada(s){return String(s||'').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLocaleLowerCase('es').replace(/[^a-z0-9]+/g,' ').trim()}
+function normalizarTextoPortada(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('es').replace(/[^a-z0-9]+/g,' ').trim()}
 function clavePortada(c){return normalizarTextoPortada(c.artista)+'|'+normalizarTextoPortada(c.titulo)}
-function probarImagenPortada(url,timeout=9000){return new Promise(resolve=>{if(!url||!/^https?:\\/\\//i.test(String(url))){resolve(false);return}const imagen=new Image();let terminado=false;const finalizar=ok=>{if(terminado)return;terminado=true;clearTimeout(reloj);imagen.onload=null;imagen.onerror=null;resolve(ok)};const reloj=setTimeout(()=>finalizar(false),timeout);imagen.onload=()=>finalizar(imagen.naturalWidth>0);imagen.onerror=()=>finalizar(false);imagen.referrerPolicy='no-referrer';imagen.src=String(url).replace(/^http:\\/\\//i,'https://');if(imagen.complete&&imagen.naturalWidth>0)finalizar(true)})}
+function probarImagenPortada(url,timeout=9000){return new Promise(resolve=>{if(!url||!/^https?:\/\//i.test(String(url))){resolve(false);return}const imagen=new Image();let terminado=false;const finalizar=ok=>{if(terminado)return;terminado=true;clearTimeout(reloj);imagen.onload=null;imagen.onerror=null;resolve(ok)};const reloj=setTimeout(()=>finalizar(false),timeout);imagen.onload=()=>finalizar(imagen.naturalWidth>0);imagen.onerror=()=>finalizar(false);imagen.referrerPolicy='no-referrer';imagen.src=String(url).replace(/^http:\/\//i,'https://');if(imagen.complete&&imagen.naturalWidth>0)finalizar(true)})}
 async function buscarPortadaCatalogo(c){
  const clave=clavePortada(c);if(cachePortadasRecomendaciones.has(clave))return cachePortadasRecomendaciones.get(clave)||'';
  const q=new URLSearchParams({term:(c.artista||'')+' '+(c.titulo||''),entity:'song',limit:'8',country:'ES'});
@@ -76,17 +76,17 @@ async function buscarPortadaCatalogo(c){
  if(!r.ok)throw new Error('El catálogo de portadas no responde');
  const d=await r.json(),items=d.results||[],tituloBuscado=normalizarTextoPortada(c.titulo),artistaBuscado=normalizarTextoPortada(c.artista);
  const candidatos=items.map(item=>{const titulo=normalizarTextoPortada(item.trackName),artista=normalizarTextoPortada(item.artistName);const tituloExacto=titulo===tituloBuscado;const tituloRelacionado=!!tituloBuscado&&(titulo.includes(tituloBuscado)||tituloBuscado.includes(titulo));const artistaRelacionado=!!artistaBuscado&&(artista===artistaBuscado||artista.includes(artistaBuscado)||artistaBuscado.includes(artista));return{item,puntuacion:(tituloExacto?4:tituloRelacionado?2:0)+(artistaRelacionado?3:0)}}).filter(x=>x.puntuacion>=5).sort((a,b)=>b.puntuacion-a.puntuacion);
- for(const candidato of candidatos){const url=String(candidato.item.artworkUrl100||'').replace(/\\d+x\\d+bb\\.(jpg|png)/i,'600x600bb.$1').replace(/^http:\\/\\//i,'https://');if(await probarImagenPortada(url)){cachePortadasRecomendaciones.set(clave,url);return url}}
+ for(const candidato of candidatos){const url=String(candidato.item.artworkUrl100||'').replace(/\d+x\d+bb\.(jpg|png)/i,'600x600bb.$1').replace(/^http:\/\//i,'https://');if(await probarImagenPortada(url)){cachePortadasRecomendaciones.set(clave,url);return url}}
  cachePortadasRecomendaciones.set(clave,'');return '';
 }
 async function prepararPortadaRecomendacion(c){
  const clave=clavePortada(c);if(cachePortadasRecomendaciones.has(clave)&&cachePortadasRecomendaciones.get(clave))return cachePortadasRecomendaciones.get(clave);
- let url=String(c.portada||'').replace(/^http:\\/\\//i,'https://');
+ let url=String(c.portada||'').replace(/^http:\/\//i,'https://');
  if(url&&await probarImagenPortada(url)){c.portada=url;cachePortadasRecomendaciones.set(clave,url);return url}
  try{
   const q=new URLSearchParams({artista:c.artista||'',titulo:c.titulo||''});
   const r=await fetch('/api/recomendaciones/datos?'+q.toString(),{cache:'no-store',signal:AbortSignal.timeout(10000)});
-  if(r.ok){const d=await r.json();if(!c.anio&&d.anio)c.anio=d.anio;if(!c.album&&d.album)c.album=d.album;if(d.portada){url=String(d.portada).replace(/^http:\\/\\//i,'https://');if(await probarImagenPortada(url)){c.portada=url;cachePortadasRecomendaciones.set(clave,url);return url}}}
+  if(r.ok){const d=await r.json();if(!c.anio&&d.anio)c.anio=d.anio;if(!c.album&&d.album)c.album=d.album;if(d.portada){url=String(d.portada).replace(/^http:\/\//i,'https://');if(await probarImagenPortada(url)){c.portada=url;cachePortadasRecomendaciones.set(clave,url);return url}}}
  }catch(e){}
  try{url=await buscarPortadaCatalogo(c);if(url){c.portada=url;return url}}catch(e){}
  c.portada='';return '';
