@@ -1346,15 +1346,22 @@ def api_recomendaciones():
             continue
         if genero_solicitado and genero.casefold() != genero_solicitado.casefold():
             continue
-        semillas_pistas.append({"nombre": artista, "titulo": titulo, "genero": genero})
-    # Elegir pistas de partida de forma aleatoria entre toda la biblioteca,
-    # no de los artistas más repetidos ni de los primeros por orden alfabético.
+        anio_pista = str(pista.get("anio") or "").strip()
+        if decada_solicitada and not anio_pista.startswith(decada_solicitada[:3]):
+            continue
+        semillas_pistas.append({
+            "nombre": artista, "titulo": titulo, "genero": genero, "anio": anio_pista
+        })
+    # En una búsqueda por década, las semillas salen exclusivamente de canciones
+    # de esa época presentes en la biblioteca. En la búsqueda general se mantiene
+    # la selección aleatoria de toda la colección.
     # La semilla del navegador hace que las páginas siguientes mantengan la misma selección.
     random.Random(semilla_azar).shuffle(semillas_pistas)
     semillas_lastfm = []
     artistas_semilla = set()
-    # Mantener pocas consultas por petición para no bloquear el servidor.
-    limite_semillas = 2 if decada_solicitada else 3
+    # Ampliar las referencias por década para que la personalización no dependa
+    # de solo dos canciones. El conjunto de semillas sigue siendo diverso por artista.
+    limite_semillas = 5 if decada_solicitada else 3
     for pista_semilla in semillas_pistas:
         artista_clave = clave(pista_semilla["nombre"])
         if artista_clave in artistas_semilla:
@@ -1444,11 +1451,25 @@ def api_recomendaciones():
         if genero_solicitado:
             semillas_artistas = [a for a in semillas_artistas if a["generos"] and
                                  max(a["generos"], key=a["generos"].get).casefold() == genero_solicitado.casefold()]
-        # Seleccionar artistas repartidos aleatoriamente por toda la biblioteca,
-        # en vez de favorecer siempre a los más repetidos. La selección es estable
-        # durante la paginación y cambia al iniciar una nueva búsqueda.
+        if decada_solicitada:
+            artistas_con_canciones_de_decada = {
+                clave(str(p.get("artista") or ""))
+                for p in biblioteca
+                if isinstance(p, dict)
+                and str(p.get("artista") or "").strip()
+                and str(p.get("anio") or "").strip().startswith(decada_solicitada[:3])
+                and (not genero_solicitado or
+                     str(p.get("genero") or "").strip().casefold() == genero_solicitado.casefold())
+            }
+            semillas_artistas = [
+                a for a in semillas_artistas
+                if clave(a["nombre"]) in artistas_con_canciones_de_decada
+            ]
+        # En búsquedas por década, las referencias de Deezer también deben proceder
+        # de artistas que tengas en la biblioteca durante esa época. La búsqueda
+        # general conserva su selección previa.
         random.Random(semilla_azar ^ 0x5F3759DF).shuffle(semillas_artistas)
-        semillas_artistas = semillas_artistas[:2 if decada_solicitada else 3]
+        semillas_artistas = semillas_artistas[:4 if decada_solicitada else 3]
         for semilla in semillas_artistas:
             q = urlencode({"q": semilla["nombre"], "limit": 8})
             datos_artista = consultar("https://api.deezer.com/search/artist?" + q)
@@ -1463,7 +1484,7 @@ def api_recomendaciones():
                     continue
             # Al filtrar por década hace falta una muestra más amplia: el top 8
             # habitual suele dejar fuera canciones antiguas o con fecha disponible.
-            limite_relacionados = 5 if decada_solicitada else 2
+            limite_relacionados = 3 if decada_solicitada else 2
             relacionados = consultar("https://api.deezer.com/artist/" + str(coincidencia.get("id")) +
                                      "/related?" + urlencode({"limit": limite_relacionados})).get("data") or []
             objetivos = [(a, 1.0) for a in relacionados[:limite_relacionados]] or [(coincidencia, 0.55)]
@@ -1479,70 +1500,8 @@ def api_recomendaciones():
                     # hacer búsquedas de detalle/álbum por cada resultado.
                     añadir_candidata(pista, semilla, peso, "Deezer", completar_datos=False)
 
-    if decada_solicitada and not genero_solicitado:
-        # Fuente específica por década: MusicBrainz permite buscar grabaciones por
-        # su primera fecha de publicación. Así no dependemos de que las canciones
-        # parecidas a la biblioteca resulten ser casualmente de esa época.
-        try:
-            inicio_decada = int(decada_solicitada)
-            fin_decada = inicio_decada + 9
-            consulta_mb = f"firstreleasedate:[{inicio_decada} TO {fin_decada}]"
-            parametros_mb = urlencode({"query": consulta_mb, "fmt": "json", "limit": 100})
-            peticion_mb = Request(
-                "https://musicbrainz.org/ws/2/recording/?" + parametros_mb,
-                headers={
-                    "User-Agent": "MiRadarMusical/1.0 (https://mi-radar-musical.onrender.com/)",
-                    "Accept": "application/json"
-                }
-            )
-            with urlopen(peticion_mb, timeout=5.0) as respuesta_mb:
-                datos_mb = json.loads(respuesta_mb.read().decode("utf-8"))
-            incorporadas_mb = 0
-            for grabacion in datos_mb.get("recordings") or []:
-                titulo_mb = str(grabacion.get("title") or "").strip()
-                artista_credito = grabacion.get("artist-credit") or []
-                partes_artista = []
-                for parte in artista_credito:
-                    if isinstance(parte, dict):
-                        nombre_parte = str(parte.get("name") or
-                                            (parte.get("artist") or {}).get("name") or "").strip()
-                        if nombre_parte:
-                            partes_artista.append(nombre_parte + str(parte.get("joinphrase") or ""))
-                artista_mb = "".join(partes_artista).strip()
-                fecha_mb = str(grabacion.get("first-release-date") or "").strip()
-                coincidencia_mb = re.match(r"^(19|20)\d{2}", fecha_mb)
-                if not titulo_mb or not artista_mb or not coincidencia_mb:
-                    continue
-                anio_mb = coincidencia_mb.group(0)
-                if not anio_mb.startswith(decada_solicitada[:3]):
-                    continue
-                llave_mb = (clave(artista_mb), clave(titulo_mb))
-                if llave_mb in existentes or llave_mb in candidatos:
-                    continue
-                candidatos[llave_mb] = {
-                    "titulo": titulo_mb,
-                    "artista": artista_mb,
-                    "album": "",
-                    "album_id": "",
-                    "portada": "",
-                    "preview": "",
-                    "anio": anio_mb,
-                    "url": "https://musicbrainz.org/recording/" + str(grabacion.get("id") or ""),
-                    "genero": "",
-                    "relacionado_con": "Catálogo MusicBrainz",
-                    "puntuacion": 100,
-                    "fuente_recomendacion": "MusicBrainz"
-                }
-                incorporadas_mb += 1
-            app.logger.warning(
-                "Recomendaciones por década MusicBrainz: década=%s, grabaciones_recibidas=%s, candidatas_añadidas=%s",
-                decada_solicitada, len(datos_mb.get("recordings") or []), incorporadas_mb
-            )
-        except Exception as error_mb:
-            app.logger.warning(
-                "Recomendaciones por década MusicBrainz no disponible: década=%s, error=%s",
-                decada_solicitada, error_mb
-            )
+    # No rellenar las búsquedas por década con canciones genéricas de MusicBrainz:
+    # las recomendaciones visibles deben proceder de similitudes con tu biblioteca.
 
     if decada_solicitada:
         # Deezer a menudo no incluye fecha. Completar los años por tandas y seguir
@@ -1706,26 +1665,23 @@ def api_recomendaciones():
         )
     else:
         ordenadas = list(candidatos.values())
-    # En las búsquedas por década, priorizar las canciones descubiertas a partir
-    # de la biblioteca mediante Last.fm/Deezer. MusicBrainz queda como catálogo
-    # de apoyo para completar la lista cuando faltan coincidencias personalizadas.
-    # Mantener el orden aleatorio dentro de cada grupo, sin mezclar ambos grupos.
+    # En búsquedas por década solo quedan recomendaciones derivadas de la biblioteca.
+    # No se añaden rellenos genéricos de catálogos externos.
     try:
         semilla_azar = int(request.args.get("azar") or "0")
     except (TypeError, ValueError):
         semilla_azar = 0
     if decada_solicitada:
-        personalizadas = [
-            p for p in ordenadas
-            if p.get("fuente_recomendacion") != "MusicBrainz"
-        ]
-        catalogo_apoyo = [
-            p for p in ordenadas
-            if p.get("fuente_recomendacion") == "MusicBrainz"
-        ]
-        random.Random(semilla_azar).shuffle(personalizadas)
-        random.Random(semilla_azar ^ 0x5F3759DF).shuffle(catalogo_apoyo)
-        ordenadas = personalizadas + catalogo_apoyo
+        # Deduplicar por pareja artista+título, nunca por artista solamente:
+        # se permiten varios temas del mismo artista si son canciones distintas.
+        unicas = {}
+        for pista in ordenadas:
+            llave = (clave(pista.get("artista") or ""), clave(pista.get("titulo") or ""))
+            if llave in existentes or llave in unicas:
+                continue
+            unicas[llave] = pista
+        ordenadas = list(unicas.values())
+        random.Random(semilla_azar).shuffle(ordenadas)
     else:
         ordenadas.sort(key=lambda p: (-p["puntuacion"], clave(p["artista"]), clave(p["titulo"])))
         random.Random(semilla_azar).shuffle(ordenadas)
