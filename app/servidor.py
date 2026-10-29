@@ -1494,7 +1494,7 @@ def api_recomendaciones():
         pendientes_anio = [p for p in candidatos_ordenados if not p.get("anio")]
         anios_diagnostico = {"consultas": 0, "respuestas": 0, "coincidencias": 0, "con_anio": 0, "errores": 0}
         bloqueo_diagnostico = threading.Lock()
-        app.logger.info(
+        app.logger.warning(
             "Recomendaciones por década: década=%s, candidatos=%s, ya_con_año=%s, pendientes_de_verificar=%s",
             decada_solicitada, len(candidatos_ordenados),
             len(candidatos_ordenados) - len(pendientes_anio), len(pendientes_anio)
@@ -1585,7 +1585,7 @@ def api_recomendaciones():
 
         ordenadas = [p for p in candidatos_ordenados
                      if p.get("anio") and p["anio"].startswith(decada_solicitada[:3])]
-        app.logger.info(
+        app.logger.warning(
             "Recomendaciones por década resultado: década=%s, candidatas=%s, consultas_años=%s, respuestas_itunes=%s, coincidencias_fiables=%s, años_recuperados=%s, errores_consulta=%s, resultados_de_la_decada=%s",
             decada_solicitada, len(candidatos_ordenados),
             anios_diagnostico["consultas"], anios_diagnostico["respuestas"],
