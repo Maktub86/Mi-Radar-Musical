@@ -36,7 +36,7 @@ def _identidad_iconos_mi_radar(response):
             html = response.get_data(as_text=True)
             if "</head>" in html:
                 html = re.sub(
-                    r'<link\\b(?=[^>]*\\brel=["\\'](?:icon|apple-touch-icon|manifest)["\\'])[^>]*>\\s*',
+                    r'<link\b(?=[^>]*\brel=["\'](?:icon|apple-touch-icon|manifest)["\'])[^>]*>\s*',
                     "",
                     html,
                     flags=re.IGNORECASE,
