@@ -13,6 +13,7 @@ from pathlib import Path
 from urllib.parse import quote, urlencode
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import unicodedata
 import difflib
 import random
