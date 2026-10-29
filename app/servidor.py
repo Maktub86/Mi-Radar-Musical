@@ -1342,7 +1342,7 @@ def api_recomendaciones():
         semillas_pistas.append({"nombre": artista, "titulo": titulo, "genero": genero})
     # Mantener las semillas estables entre páginas: el parámetro inicio debe paginar
     # la misma lista, no una lista distinta en cada clic.
-    semillas_pistas.sort(key=lambda p: (clave(p["nombre"]), clave(p["titulo"])))
+    semillas_pistas.sort(key=lambda p: (-artistas.get(clave(p["nombre"]), {}).get("total", 0), clave(p["nombre"]), clave(p["titulo"])))
     # En búsquedas por década limitamos las semillas para no exceder el tiempo de Gunicorn.
     semillas_lastfm = semillas_pistas[:2 if decada_solicitada else 4] if semillas_pistas else []
 
@@ -1466,9 +1466,12 @@ def api_recomendaciones():
         # descartaba el resto aunque hubiera más canciones válidas detrás.
         from concurrent.futures import ThreadPoolExecutor
         objetivo_resultados = inicio + 10
-        candidatos_ordenados = sorted(candidatos.values(),
-                                      key=lambda p: (-p.get("puntuacion", 0),
-                                                     clave(p.get("artista")), clave(p.get("titulo"))))
+        # Mantener el orden de descubrimiento cuando la puntuación empata.
+        # Ordenar por artista/título alfabéticamente sesgaba las 60 consultas de año.
+        candidatos_ordenados = sorted(
+            candidatos.values(),
+            key=lambda p: -p.get("puntuacion", 0)
+        )
         pendientes_anio = [p for p in candidatos_ordenados if not p.get("anio")]
         # Límite conservador para evitar que Gunicorn mate al trabajador por tiempo.
         max_consultas_anio = min(len(pendientes_anio), 60)
