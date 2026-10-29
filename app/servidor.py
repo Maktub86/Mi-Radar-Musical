@@ -1017,6 +1017,9 @@ def pagina_recomendaciones():
 def api_recomendaciones():
     """Recomienda temas ajenos a la biblioteca a partir de los artistas más representados."""
     genero_solicitado = (request.args.get("genero") or "").strip()
+    decada_solicitada = (request.args.get("decada") or "").strip()
+    if decada_solicitada and not re.fullmatch(r"(19|20)\d0", decada_solicitada):
+        decada_solicitada = ""
     try:
         inicio = max(0, min(int(request.args.get("inicio") or 0), 500))
     except (TypeError, ValueError):
@@ -1089,8 +1092,17 @@ def api_recomendaciones():
         llave = (clave(nombre_artista), clave(titulo))
         if llave in existentes:
             return
+        # Completar metadatos con la ficha de Deezer cuando solo tenemos el resultado resumido.
         album = pista.get("album") or {}
-        portada = album.get("cover_medium") or album.get("cover") or ""
+        fecha_inicial = pista.get("release_date") or album.get("release_date") or pista.get("releaseDate") or ""
+        necesita_detalle = bool(pista.get("id")) and (not fecha_inicial or not (album.get("cover_xl") or album.get("cover_big") or album.get("cover_medium") or album.get("cover")))
+        if necesita_detalle:
+            detalle = consultar("https://api.deezer.com/track/" + str(pista["id"]), timeout=5)
+            if detalle:
+                pista = {**pista, **detalle}
+                album = pista.get("album") or album
+        portada = (album.get("cover_xl") or album.get("cover_big") or album.get("cover_medium") or
+                   album.get("cover") or pista.get("cover_xl") or pista.get("cover_big") or "")
         if not portada:
             imagenes = pista.get("image") or []
             if isinstance(imagenes, list):
@@ -1101,8 +1113,9 @@ def api_recomendaciones():
         if actual and actual["puntuacion"] >= puntaje:
             return
         fecha_lanzamiento = (pista.get("release_date") or album.get("release_date") or
-                             pista.get("releaseDate") or "")
-        anio = str(fecha_lanzamiento)[:4] if re.match(r"^\d{4}", str(fecha_lanzamiento)) else ""
+                             pista.get("releaseDate") or pista.get("date") or "")
+        coincidencia_anio = re.match(r"^(19|20)\d{2}", str(fecha_lanzamiento))
+        anio = coincidencia_anio.group(0) if coincidencia_anio else ""
         candidatos[llave] = {
             "titulo": titulo,
             "artista": nombre_artista,
@@ -1229,7 +1242,11 @@ def api_recomendaciones():
                 for pista in top:
                     añadir_candidata(pista, semilla, peso, "Deezer")
 
-    ordenadas = sorted(candidatos.values(), key=lambda p: (-p["puntuacion"], clave(p["artista"]), clave(p["titulo"])))
+    if decada_solicitada:
+        ordenadas = [p for p in candidatos.values() if p.get("anio") and p["anio"].startswith(decada_solicitada[:3])]
+    else:
+        ordenadas = list(candidatos.values())
+    ordenadas.sort(key=lambda p: (-p["puntuacion"], clave(p["artista"]), clave(p["titulo"])))
     # Orden estable entre peticiones para que «Descubrir otras 10» no mezcle
     # una nueva tanda aleatoria con el desplazamiento de la anterior.
     grupos = []
@@ -1242,9 +1259,9 @@ def api_recomendaciones():
     if ordenadas:
         inicio_real = inicio % len(ordenadas)
         ordenadas = ordenadas[inicio_real:] + ordenadas[:inicio_real]
-    return jsonify({"canciones": ordenadas[:10], "generos": generos,
-                    "total_candidatas": len(candidatos), "total_biblioteca": len(biblioteca),
-                    "inicio": inicio, "fuente": fuente_final,
+    return jsonify({"canciones": ordenadas[inicio:inicio + 10] if decada_solicitada else ordenadas[inicio:inicio + 10], "generos": generos,
+                    "total_candidatas": len(ordenadas), "total_biblioteca": len(biblioteca),
+                    "inicio": inicio, "decada": decada_solicitada, "fuente": fuente_final,
                     "aviso": "Se prioriza la similitud entre canciones de Last.fm cuando está configurado; Deezer completa los datos disponibles. Si no, se usan artistas relacionados de Deezer. Las canciones de tu biblioteca se excluyen."})
 
 
