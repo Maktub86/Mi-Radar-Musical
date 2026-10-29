@@ -1092,15 +1092,29 @@ def api_recomendaciones():
         llave = (clave(nombre_artista), clave(titulo))
         if llave in existentes:
             return
-        # Completar metadatos con la ficha de Deezer cuando solo tenemos el resultado resumido.
+        # Completar los datos con Deezer: la búsqueda resumida no siempre incluye
+        # fecha ni una portada de tamaño utilizable.
         album = pista.get("album") or {}
-        fecha_inicial = pista.get("release_date") or album.get("release_date") or pista.get("releaseDate") or ""
-        necesita_detalle = bool(pista.get("id")) and (not fecha_inicial or not (album.get("cover_xl") or album.get("cover_big") or album.get("cover_medium") or album.get("cover")))
-        if necesita_detalle:
+        fecha_lanzamiento = (pista.get("release_date") or album.get("release_date") or
+                             pista.get("releaseDate") or pista.get("date") or "")
+        tiene_portada = bool(album.get("cover_xl") or album.get("cover_big") or
+                             album.get("cover_medium") or album.get("cover") or
+                             pista.get("cover_xl") or pista.get("cover_big"))
+        if pista.get("id") and (not fecha_lanzamiento or not tiene_portada or not pista.get("preview")):
             detalle = consultar("https://api.deezer.com/track/" + str(pista["id"]), timeout=5)
             if detalle:
                 pista = {**pista, **detalle}
                 album = pista.get("album") or album
+                fecha_lanzamiento = (pista.get("release_date") or album.get("release_date") or
+                                     pista.get("releaseDate") or pista.get("date") or fecha_lanzamiento)
+        # La fecha suele estar en la ficha del álbum, aunque falte en la canción.
+        if album.get("id") and (not fecha_lanzamiento or not (album.get("cover_xl") or album.get("cover_big") or album.get("cover_medium") or album.get("cover"))):
+            detalle_album = consultar("https://api.deezer.com/album/" + str(album["id"]), timeout=5)
+            if detalle_album:
+                album = {**album, **detalle_album}
+                pista["album"] = album
+                fecha_lanzamiento = (pista.get("release_date") or album.get("release_date") or
+                                     pista.get("releaseDate") or pista.get("date") or fecha_lanzamiento)
         portada = (album.get("cover_xl") or album.get("cover_big") or album.get("cover_medium") or
                    album.get("cover") or pista.get("cover_xl") or pista.get("cover_big") or "")
         if not portada:
@@ -1112,9 +1126,7 @@ def api_recomendaciones():
         actual = candidatos.get(llave)
         if actual and actual["puntuacion"] >= puntaje:
             return
-        fecha_lanzamiento = (pista.get("release_date") or album.get("release_date") or
-                             pista.get("releaseDate") or pista.get("date") or "")
-        coincidencia_anio = re.match(r"^(19|20)\d{2}", str(fecha_lanzamiento))
+        coincidencia_anio = re.search(r"(?:19|20)\\d{2}", str(fecha_lanzamiento))
         anio = coincidencia_anio.group(0) if coincidencia_anio else ""
         candidatos[llave] = {
             "titulo": titulo,
@@ -1188,9 +1200,15 @@ def api_recomendaciones():
                         puntuacion += 0.30
                     if puntuacion > mejor_puntuacion:
                         mejor, mejor_puntuacion = resultado, puntuacion
-                # No aceptar coincidencias aproximadas débiles: pueden asociar otra
-                # canción y mostrar título, portada y álbum que no corresponden.
-                if mejor and mejor_puntuacion >= 1.25 and objetivo_artista == clave((mejor.get("artist") or {}).get("name")):
+                # La coincidencia exacta de título era demasiado estricta: versiones,
+                # signos o subtítulos podían dejar fuera resultados válidos de Deezer.
+                # Exigir el mismo artista y una similitud razonable del título evita
+                # asignar portadas de otro artista sin perder variantes legítimas.
+                similitud_titulo = (difflib.SequenceMatcher(
+                    None, objetivo_titulo, clave((mejor or {}).get("title") or "")
+                ).ratio() if mejor else 0.0)
+                if (mejor and objetivo_artista == clave((mejor.get("artist") or {}).get("name"))
+                        and (objetivo_titulo == clave(mejor.get("title")) or similitud_titulo >= 0.72)):
                     detalle = mejor
                     id_pista = mejor.get("id")
                     if id_pista:
