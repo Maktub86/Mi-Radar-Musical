@@ -1287,7 +1287,7 @@ def _leer_guardadas_recomendaciones_bd():
                 except (OSError, json.JSONDecodeError):
                     antiguo = {}
                 antiguas = antiguo.get("canciones", []) if isinstance(antiguo, dict) else []
-                if isinstance(antiguas, list) and antiguo.get("inicializado"):
+                if isinstance(antiguo, dict) and isinstance(antiguas, list) and antiguo.get("inicializado"):
                     for cancion in antiguas:
                         if isinstance(cancion, dict) and cancion.get("titulo") and cancion.get("artista"):
                             cursor.execute(
