@@ -102,10 +102,10 @@ button:focus-visible,a:focus-visible{outline:2px solid #c9a5ff;outline-offset:3p
 """
         if "</head>" in html:
             enlaces_marca = """
-<link rel="icon" type="image/png" sizes="192x192" href="/icono-mrm-192.png?v=4">
-<link rel="icon" type="image/svg+xml" href="/icono-mrm.svg?v=4">
-<link rel="apple-touch-icon" sizes="192x192" href="/icono-mrm-192.png?v=4">
-<link rel="manifest" href="/manifest.webmanifest?v=4">
+<link rel="icon" type="image/png" sizes="192x192" href="/icono-mrm-192.png?v=5">
+<link rel="icon" type="image/svg+xml" href="/icono-mrm.svg?v=5">
+<link rel="apple-touch-icon" sizes="192x192" href="/icono-mrm-192.png?v=5">
+<link rel="manifest" href="/manifest.webmanifest?v=5">
 <meta name="theme-color" content="#6d28a8">
 <meta name="application-name" content="Mi Radar Musical">
 """
