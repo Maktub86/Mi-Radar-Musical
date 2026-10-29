@@ -1610,12 +1610,24 @@ def api_recomendaciones():
 
         ordenadas = [p for p in candidatos_ordenados
                      if p.get("anio") and p["anio"].startswith(decada_solicitada[:3])]
+        distribucion_anios = {}
+        ejemplos_anios = []
+        for pista_con_anio in candidatos_ordenados:
+            anio_recuperado = str(pista_con_anio.get("anio") or "")
+            if anio_recuperado:
+                distribucion_anios[anio_recuperado[:3] + "0s"] = distribucion_anios.get(anio_recuperado[:3] + "0s", 0) + 1
+                if len(ejemplos_anios) < 8:
+                    ejemplos_anios.append(
+                        str(pista_con_anio.get("artista") or "") + " — " +
+                        str(pista_con_anio.get("titulo") or "") + " (" + anio_recuperado + ")"
+                    )
         app.logger.warning(
-            "Recomendaciones por década resultado: década=%s, candidatas=%s, consultas_años=%s, respuestas_itunes=%s, coincidencias_fiables=%s, años_recuperados=%s, errores_consulta=%s, resultados_de_la_decada=%s",
+            "Recomendaciones por década resultado: década=%s, candidatas=%s, consultas_itunes=%s, respuestas_totales=%s, coincidencias_itunes_fiables=%s, años_recuperados=%s, errores_itunes=%s, resultados_de_la_decada=%s, distribucion_anios=%s, ejemplos=%s",
             decada_solicitada, len(candidatos_ordenados),
             anios_diagnostico["consultas"], anios_diagnostico["respuestas"],
             anios_diagnostico["coincidencias"], anios_diagnostico["con_anio"],
-            anios_diagnostico["errores"], len(ordenadas)
+            anios_diagnostico["errores"], len(ordenadas),
+            distribucion_anios, ejemplos_anios
         )
     else:
         ordenadas = list(candidatos.values())
