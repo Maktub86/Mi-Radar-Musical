@@ -1516,7 +1516,9 @@ def api_recomendaciones():
             candidatos.values(),
             key=lambda p: -p.get("puntuacion", 0)
         )
-        pendientes_anio = [p for p in candidatos_ordenados if not p.get("anio")]
+        # Revisar también años fuera de la década: pueden venir de una reedición.
+        pendientes_anio = [p for p in candidatos_ordenados
+                           if not str(p.get("anio") or "").strip().startswith(decada_solicitada[:3])]
         anios_diagnostico = {"consultas": 0, "respuestas": 0, "coincidencias": 0, "con_anio": 0, "errores": 0}
         bloqueo_diagnostico = threading.Lock()
         app.logger.warning(
@@ -1532,10 +1534,11 @@ def api_recomendaciones():
         max_consultas_anio = min(len(candidatas_para_anio), 120)
 
         def completar_anio_decada(pista):
-            # Primero aprovechar el ID de álbum que ya entrega Deezer. Es una
-            # consulta más directa que buscar de nuevo artista y canción en Apple.
+            # Si falta el año, aprovechar primero el álbum que ya devuelve Deezer.
+            # Si el álbum da un año de otra década, contrastarlo con Apple antes de descartarlo.
+            anio_actual = str(pista.get("anio") or "").strip()
             album_id = str(pista.get("album_id") or "").strip()
-            if album_id:
+            if album_id and not anio_actual:
                 try:
                     peticion_album = Request(
                         "https://api.deezer.com/album/" + album_id,
@@ -1549,29 +1552,39 @@ def api_recomendaciones():
                         pista["anio"] = coincidencia_album.group(0)
                         if not pista.get("album"):
                             pista["album"] = str(datos_album.get("title") or "")
+                        anio_actual = pista["anio"]
                         with bloqueo_diagnostico:
                             anios_diagnostico["respuestas"] += 1
                             anios_diagnostico["con_anio"] += 1
-                        return
+                        if anio_actual.startswith(decada_solicitada[:3]):
+                            return
                 except Exception as error_album:
                     app.logger.debug("No se pudo recuperar el año del álbum Deezer %s: %s", album_id, error_album)
 
-            parametros = urlencode({
-                "term": str(pista.get("artista") or "") + " " + str(pista.get("titulo") or ""),
-                "country": "us", "media": "music", "entity": "song", "limit": 50
-            })
-            try:
-                with bloqueo_diagnostico:
-                    anios_diagnostico["consultas"] += 1
+            # Reutilizar el método de la web: consultar los catálogos español y
+            # estadounidense y aceptar solo coincidencias fiables de artista y título.
+            def consultar_itunes_decada(pais):
+                parametros = urlencode({
+                    "term": str(pista.get("artista") or "") + " " + str(pista.get("titulo") or ""),
+                    "country": pais, "media": "music", "entity": "song", "limit": 50
+                })
                 peticion = Request("https://itunes.apple.com/search?" + parametros,
                                    headers={"User-Agent": "MiRadarMusical/1.0"})
                 with urlopen(peticion, timeout=2.5) as respuesta:
-                    datos_itunes = json.loads(respuesta.read().decode("utf-8"))
+                    return json.loads(respuesta.read().decode("utf-8"))
+
+            try:
                 with bloqueo_diagnostico:
-                    anios_diagnostico["respuestas"] += 1
+                    anios_diagnostico["consultas"] += 2
+                with ThreadPoolExecutor(max_workers=2) as executor_itunes:
+                    consultas_itunes = list(executor_itunes.map(consultar_itunes_decada, ("es", "us")))
+                resultados_itunes = []
+                for datos_itunes in consultas_itunes:
+                    resultados_itunes.extend(datos_itunes.get("results") or [])
+                with bloqueo_diagnostico:
+                    anios_diagnostico["respuestas"] += 2
                 mejor = _coincidencia_itunes_segura(
-                    pista.get("artista"), pista.get("titulo"),
-                    datos_itunes.get("results") or []
+                    pista.get("artista"), pista.get("titulo"), resultados_itunes
                 )
                 if mejor:
                     with bloqueo_diagnostico:
@@ -1579,6 +1592,7 @@ def api_recomendaciones():
                     fecha_itunes = str(mejor.get("releaseDate") or "")
                     coincidencia = re.search(r"(?:19|20)\d{2}", fecha_itunes)
                     if coincidencia:
+                        # Apple puede aportar un año distinto al de una reedición de Deezer.
                         pista["anio"] = coincidencia.group(0)
                         with bloqueo_diagnostico:
                             anios_diagnostico["con_anio"] += 1
@@ -1590,7 +1604,6 @@ def api_recomendaciones():
                 with bloqueo_diagnostico:
                     anios_diagnostico["errores"] += 1
                 app.logger.debug("Recomendaciones: no se pudo recuperar año de iTunes: %s", error)
-
         # Consultar primero las canciones mejor puntuadas y ampliar por lotes de 40
         # hasta llenar la tanda o agotar el límite de consultas, no solo las primeras 60.
         consultadas = 0
