@@ -1663,18 +1663,24 @@ def api_recomendaciones():
         # hasta llenar la tanda o agotar el límite de consultas, no solo las primeras 60.
         consultadas = 0
         tamano_lote = 24
-        resultados_ya_encontrados = [
+        # No contar MusicBrainz para decidir si ya hay suficientes resultados:
+        # esas canciones sirven de respaldo, pero no prueban afinidad con la biblioteca.
+        resultados_personalizados = [
             p for p in candidatos_ordenados
-            if p.get("anio") and p["anio"].startswith(decada_solicitada[:3])
+            if p.get("fuente_recomendacion") != "MusicBrainz"
+            and p.get("anio") and p["anio"].startswith(decada_solicitada[:3])
         ]
         with ThreadPoolExecutor(max_workers=12) as executor:
-            while consultadas < max_consultas_anio and len(resultados_ya_encontrados) < objetivo_resultados:
+            while consultadas < max_consultas_anio and len(resultados_personalizados) < objetivo_resultados:
                 lote = candidatas_para_anio[consultadas:min(consultadas + tamano_lote, max_consultas_anio)]
                 list(executor.map(completar_anio_decada, lote))
                 consultadas += len(lote)
-                coincidencias_decada = [p for p in candidatos_ordenados
-                                        if p.get("anio") and p["anio"].startswith(decada_solicitada[:3])]
-                if len(coincidencias_decada) >= objetivo_resultados:
+                resultados_personalizados = [
+                    p for p in candidatos_ordenados
+                    if p.get("fuente_recomendacion") != "MusicBrainz"
+                    and p.get("anio") and p["anio"].startswith(decada_solicitada[:3])
+                ]
+                if len(resultados_personalizados) >= objetivo_resultados:
                     break
 
         ordenadas = [p for p in candidatos_ordenados
