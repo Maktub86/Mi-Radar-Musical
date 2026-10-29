@@ -1568,21 +1568,29 @@ def api_recomendaciones():
                     "term": str(pista.get("artista") or "") + " " + str(pista.get("titulo") or ""),
                     "country": pais, "media": "music", "entity": "song", "limit": 50
                 })
-                peticion = Request("https://itunes.apple.com/search?" + parametros,
-                                   headers={"User-Agent": "MiRadarMusical/1.0"})
-                with urlopen(peticion, timeout=2.5) as respuesta:
-                    return json.loads(respuesta.read().decode("utf-8"))
+                try:
+                    peticion = Request("https://itunes.apple.com/search?" + parametros,
+                                       headers={"User-Agent": "MiRadarMusical/1.0"})
+                    with urlopen(peticion, timeout=2.5) as respuesta:
+                        datos_pais = json.loads(respuesta.read().decode("utf-8"))
+                    with bloqueo_diagnostico:
+                        anios_diagnostico["respuestas"] += 1
+                    return datos_pais
+                except Exception as error_pais:
+                    with bloqueo_diagnostico:
+                        anios_diagnostico["errores"] += 1
+                    app.logger.debug("Recomendaciones: iTunes %s no respondió para una candidata: %s", pais, error_pais)
+                    return {}
 
             try:
                 with bloqueo_diagnostico:
                     anios_diagnostico["consultas"] += 2
+                # Una caída regional no debe descartar la respuesta del otro catálogo.
                 with ThreadPoolExecutor(max_workers=2) as executor_itunes:
                     consultas_itunes = list(executor_itunes.map(consultar_itunes_decada, ("es", "us")))
                 resultados_itunes = []
                 for datos_itunes in consultas_itunes:
                     resultados_itunes.extend(datos_itunes.get("results") or [])
-                with bloqueo_diagnostico:
-                    anios_diagnostico["respuestas"] += 2
                 mejor = _coincidencia_itunes_segura(
                     pista.get("artista"), pista.get("titulo"), resultados_itunes
                 )
@@ -1601,8 +1609,6 @@ def api_recomendaciones():
                     if not pista.get("album"):
                         pista["album"] = str(mejor.get("collectionName") or "")
             except Exception as error:
-                with bloqueo_diagnostico:
-                    anios_diagnostico["errores"] += 1
                 app.logger.debug("Recomendaciones: no se pudo recuperar año de iTunes: %s", error)
         # Consultar primero las canciones mejor puntuadas y ampliar por lotes de 40
         # hasta llenar la tanda o agotar el límite de consultas, no solo las primeras 60.
