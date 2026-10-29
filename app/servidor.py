@@ -1476,7 +1476,7 @@ def api_recomendaciones():
         def completar_anio_decada(pista):
             parametros = urlencode({
                 "term": str(pista.get("artista") or "") + " " + str(pista.get("titulo") or ""),
-                "country": "es", "media": "music", "entity": "song", "limit": 10
+                "country": "us", "media": "music", "entity": "song", "limit": 25
             })
             try:
                 peticion = Request("https://itunes.apple.com/search?" + parametros,
@@ -1504,8 +1504,16 @@ def api_recomendaciones():
                     similitud_titulo = difflib.SequenceMatcher(None, titulo_obj, titulo_itunes).ratio()
                     # Para asignar un año, exigir el artista exacto y título exacto
                     # o una variante de título casi idéntica.
-                    coincide_fiable = (artista_itunes == artista_obj and
-                                       (titulo_itunes == titulo_obj or similitud_titulo >= 0.88))
+                    similitud_artista = difflib.SequenceMatcher(
+                        None, artista_obj, artista_itunes
+                    ).ratio()
+                    # Los catálogos escriben a veces el artista con colaboraciones,
+                    # puntuación o variantes del nombre. No exigir igualdad literal:
+                    # basta una coincidencia muy alta de artista y título.
+                    coincide_fiable = (
+                        (artista_itunes == artista_obj or similitud_artista >= 0.90)
+                        and (titulo_itunes == titulo_obj or similitud_titulo >= 0.82)
+                    )
                     if coincide_fiable:
                         fecha_itunes = str(mejor.get("releaseDate") or "")
                         coincidencia = re.search(r"(?:19|20)\d{2}", fecha_itunes)
