@@ -75,38 +75,26 @@ async function cargarPortadaRecomendacion(c,img){
  return false;
 }
 async function buscarPortadaAlternativa(c,img,fallback){
- if(!img.isConnected||img.dataset.reintentada==='1')return;
- img.dataset.reintentada='1';
+ if(!img.isConnected||img.dataset.busquedaPortada==='1')return;
+ img.dataset.busquedaPortada='1';
  const clave=String(c.artista||'')+'|'+String(c.titulo||'');
  try{
-  const q=new URLSearchParams({term:(c.artista||'')+' '+(c.titulo||''),entity:'song',limit:'15',country:'ES'});
+  // Mismo método que ya funciona en «Mi música»: búsqueda de Apple/iTunes desde el navegador.
+  const q=new URLSearchParams({term:(c.artista||'')+' '+(c.titulo||''),entity:'song',limit:'1',country:'ES'});
   const r=await fetch('https://itunes.apple.com/search?'+q.toString(),{signal:AbortSignal.timeout(7000),cache:'no-store'});
-  if(!r.ok)throw new Error('No se pudo consultar iTunes');
+  if(!r.ok)throw new Error('iTunes no disponible');
   const d=await r.json();
-  const normalizar=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
-  const a=normalizar(c.artista),t=normalizar(c.titulo);
-  const resultados=(d.results||[]).filter(x=>x.artworkUrl100);
-  const puntuacion=x=>{
-   const aa=normalizar(x.artistName),tt=normalizar(x.trackName);
-   let p=0;
-   if(aa===a)p+=5;else if(aa.includes(a)||a.includes(aa))p+=2;
-   if(tt===t)p+=6;else if(tt.includes(t)||t.includes(tt))p+=3;
-   return p;
-  };
-  resultados.sort((x,y)=>puntuacion(y)-puntuacion(x));
-  const item=resultados.find(x=>puntuacion(x)>=5)||resultados[0];
-  if(!item||!img.isConnected)throw new Error('No se encontró portada');
-  const url=String(item.artworkUrl100||'').replace(/100x100bb/g,'600x600bb').replace(/^http:\/\//i,'https://');
-  if(!/^https:\/\//i.test(url))throw new Error('Portada no válida');
+  const item=(d.results||[])[0];
+  if(!item||!item.artworkUrl100)throw new Error('No hay portada en iTunes');
+  const url=String(item.artworkUrl100).replace(/\\d+x\\d+bb/,'600x600bb').replace(/^http:\\/\\//i,'https://');
+  if(!/^https:\\/\\//i.test(url))throw new Error('URL de portada no válida');
   c.portada=url;
-  if(!c.anio){const m=String(item.releaseDate||'').match(/(?:19|20)\d{2}/);if(m)c.anio=m[0]}
+  if(!c.anio){const m=String(item.releaseDate||'').match(/(?:19|20)\\d{2}/);if(m)c.anio=m[0]}
   if(!c.album)c.album=item.collectionName||'';
   cachePortadasRecomendaciones.set(clave,url);
-  img.src=url;
-  img.hidden=false;
-  fallback.hidden=true;
+  if(img.isConnected){img.src=url;img.hidden=false}
  }catch(e){
-  if(img.isConnected){img.hidden=true;fallback.hidden=false}
+  if(img.isConnected){img.hidden=true;if(fallback)fallback.hidden=false}
  }
 }
 async function completarDatosRecomendacion(c,img,tituloNodo,metaNodo){
@@ -127,7 +115,7 @@ async function completarDatosRecomendacion(c,img,tituloNodo,metaNodo){
    }
   }
  }catch(e){}
- if(c.portada&&img.isConnected&&!img.dataset.reintentada){
+ if(c.portada&&img.isConnected&&!img.dataset.busquedaPortada){
   cachePortadasRecomendaciones.set(clave,c.portada);
   img.src=c.portada;
  }else if(!c.portada&&img.isConnected){
