@@ -1256,10 +1256,8 @@ def api_recomendaciones():
         else:
             grupos[-1].append(candidata)
     ordenadas = [c for grupo in grupos for c in sorted(grupo, key=lambda p: (clave(p["artista"]), clave(p["titulo"])))]
-    if ordenadas:
-        inicio_real = inicio % len(ordenadas)
-        ordenadas = ordenadas[inicio_real:] + ordenadas[:inicio_real]
-    return jsonify({"canciones": ordenadas[inicio:inicio + 10] if decada_solicitada else ordenadas[inicio:inicio + 10], "generos": generos,
+    # Paginar la lista estable una sola vez; no rotar y volver a aplicar inicio.
+    return jsonify({"canciones": ordenadas[inicio:inicio + 10], "generos": generos,
                     "total_candidatas": len(ordenadas), "total_biblioteca": len(biblioteca),
                     "inicio": inicio, "decada": decada_solicitada, "fuente": fuente_final,
                     "aviso": "Se prioriza la similitud entre canciones de Last.fm cuando está configurado; Deezer completa los datos disponibles. Si no, se usan artistas relacionados de Deezer. Las canciones de tu biblioteca se excluyen."})
