@@ -1316,6 +1316,51 @@ def api_recomendaciones():
                     "aviso": "Se prioriza la similitud entre canciones de Last.fm cuando está configurado; Deezer completa los datos disponibles. Si no, se usan artistas relacionados de Deezer. Las canciones de tu biblioteca se excluyen."})
 
 
+@app.get("/api/recomendaciones/datos")
+def api_recomendaciones_datos():
+    """Completa portada y año de una recomendación mediante el catálogo de Apple/iTunes."""
+    artista = (request.args.get("artista") or "").strip()
+    titulo = (request.args.get("titulo") or "").strip()
+    if not artista or not titulo:
+        return jsonify({"error": "Faltan artista o título."}), 400
+    parametros = urlencode({"term": artista + " " + titulo, "country": "es",
+                            "media": "music", "entity": "song", "limit": 15})
+    try:
+        peticion = Request("https://itunes.apple.com/search?" + parametros,
+                           headers={"User-Agent": "MiRadarMusical/1.0"})
+        with urlopen(peticion, timeout=6) as respuesta:
+            datos = json.loads(respuesta.read().decode("utf-8"))
+        def clave_catalogo(valor):
+            return normalizar_texto(str(valor or ""))
+        artista_objetivo, titulo_objetivo = clave_catalogo(artista), clave_catalogo(titulo)
+        mejor = None
+        mejor_puntos = -1
+        for item in datos.get("results") or []:
+            artista_catalogo = clave_catalogo(item.get("artistName"))
+            titulo_catalogo = clave_catalogo(item.get("trackName"))
+            if not artista_catalogo or not titulo_catalogo:
+                continue
+            puntos = (3 if artista_catalogo == artista_objetivo else
+                      1 if difflib.SequenceMatcher(None, artista_objetivo, artista_catalogo).ratio() >= 0.88 else 0)
+            puntos += (4 if titulo_catalogo == titulo_objetivo else
+                       2 if difflib.SequenceMatcher(None, titulo_objetivo, titulo_catalogo).ratio() >= 0.85 else 0)
+            if puntos > mejor_puntos:
+                mejor, mejor_puntos = item, puntos
+        if not mejor or mejor_puntos < 5:
+            return jsonify({"anio": "", "portada": "", "album": ""})
+        fecha = str(mejor.get("releaseDate") or "")
+        coincidencia = re.search(r"(?:19|20)\d{2}", fecha)
+        imagen = str(mejor.get("artworkUrl100") or "").replace("100x100bb", "600x600bb")
+        if imagen.startswith("http://"):
+            imagen = "https://" + imagen[7:]
+        if not imagen.startswith("https://"):
+            imagen = ""
+        return jsonify({"anio": coincidencia.group(0) if coincidencia else "",
+                        "portada": imagen, "album": str(mejor.get("collectionName") or "")})
+    except Exception as error:
+        app.logger.info("Recomendaciones: no se pudo completar año/portada con iTunes: %s", error)
+        return jsonify({"anio": "", "portada": "", "album": ""})
+
 @app.get("/mi-musica")
 def pagina_mi_musica():
     return (BASE / "mimusica.html").read_text(encoding="utf-8")
