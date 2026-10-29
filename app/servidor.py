@@ -1222,9 +1222,9 @@ def api_recomendaciones():
     cache_peticion = {}
 
     def consultar(url, timeout=4):
-        # Las recomendaciones por década deben terminar antes del timeout de Gunicorn.
-        if decada_solicitada:
-            timeout = min(timeout, 1.5)
+        # Todas las recomendaciones deben quedar acotadas: Gunicorn mata el
+        # trabajador si una cadena de catálogos externos tarda demasiado.
+        timeout = min(timeout, 1.5)
         if url in cache_peticion:
             return cache_peticion[url]
         try:
@@ -1352,7 +1352,8 @@ def api_recomendaciones():
     random.Random(semilla_azar).shuffle(semillas_pistas)
     semillas_lastfm = []
     artistas_semilla = set()
-    limite_semillas = 2 if decada_solicitada else 4
+    # Mantener pocas consultas por petición para no bloquear el servidor.
+    limite_semillas = 2 if decada_solicitada else 3
     for pista_semilla in semillas_pistas:
         artista_clave = clave(pista_semilla["nombre"])
         if artista_clave in artistas_semilla:
@@ -1377,7 +1378,7 @@ def api_recomendaciones():
             similares = (datos.get("similartracks") or {}).get("track") or []
             if isinstance(similares, dict):
                 similares = [similares]
-            for similar in similares[:4 if decada_solicitada else 6]:
+            for similar in similares[:4 if decada_solicitada else 4]:
                 titulo = str(similar.get("name") or "").strip()
                 artista_info = similar.get("artist") or {}
                 nombre_artista = str(artista_info.get("name") or "").strip()
@@ -1424,8 +1425,10 @@ def api_recomendaciones():
                         datos_detalle = consultar("https://api.deezer.com/track/" + str(id_pista), timeout=5)
                         if datos_detalle:
                             detalle = datos_detalle
+                    # Ya se ha buscado y, si hacía falta, consultado el detalle de
+                    # Deezer. No repetir esas peticiones dentro de añadir_candidata.
                     añadir_candidata(detalle, semilla, max(0.5, float(similar.get("match") or 0.5)) * 1.2,
-                                     "Last.fm")
+                                     "Last.fm", completar_datos=False)
                 else:
                     # Si Deezer no encuentra una coincidencia fiable, conservar los
                     # datos originales de Last.fm, sin atribuirle la portada de otro tema.
@@ -1433,7 +1436,8 @@ def api_recomendaciones():
                         "titulo": titulo, "artist": {"name": nombre_artista},
                         "url": similar.get("url") or "",
                         "image": similar.get("image") or []
-                    }, semilla, max(0.5, float(similar.get("match") or 0.5)), "Last.fm")
+                    }, semilla, max(0.5, float(similar.get("match") or 0.5)), "Last.fm",
+                       completar_datos=False)
 
     fuente_final = "Last.fm + Deezer + tu biblioteca" if candidatos else "Deezer + tu biblioteca"
 
@@ -1448,7 +1452,7 @@ def api_recomendaciones():
         # en vez de favorecer siempre a los más repetidos. La selección es estable
         # durante la paginación y cambia al iniciar una nueva búsqueda.
         random.Random(semilla_azar ^ 0x5F3759DF).shuffle(semillas_artistas)
-        semillas_artistas = semillas_artistas[:4 if decada_solicitada else 5]
+        semillas_artistas = semillas_artistas[:3 if decada_solicitada else 3]
         for semilla in semillas_artistas:
             q = urlencode({"q": semilla["nombre"], "limit": 8})
             datos_artista = consultar("https://api.deezer.com/search/artist?" + q)
@@ -1463,7 +1467,7 @@ def api_recomendaciones():
                     continue
             # Al filtrar por década hace falta una muestra más amplia: el top 8
             # habitual suele dejar fuera canciones antiguas o con fecha disponible.
-            limite_relacionados = 2 if decada_solicitada else 4
+            limite_relacionados = 2 if decada_solicitada else 2
             relacionados = consultar("https://api.deezer.com/artist/" + str(coincidencia.get("id")) +
                                      "/related?" + urlencode({"limit": limite_relacionados})).get("data") or []
             objetivos = [(a, 1.0) for a in relacionados[:limite_relacionados]] or [(coincidencia, 0.55)]
@@ -1471,7 +1475,7 @@ def api_recomendaciones():
                 id_rel = artista_rel.get("id")
                 if not id_rel:
                     continue
-                limite_top = 20 if decada_solicitada else 8
+                limite_top = 20 if decada_solicitada else 6
                 top = consultar("https://api.deezer.com/artist/" + str(id_rel) +
                                 "/top?" + urlencode({"limit": limite_top})).get("data") or []
                 for pista in top:
