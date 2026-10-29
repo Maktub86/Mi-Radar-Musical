@@ -1428,7 +1428,9 @@ def api_recomendaciones():
         if genero_solicitado:
             semillas_artistas = [a for a in semillas_artistas if a["generos"] and
                                  max(a["generos"], key=a["generos"].get).casefold() == genero_solicitado.casefold()]
-        semillas_artistas = semillas_artistas[:2 if decada_solicitada else 5]
+        # En una década concreta hay que explorar más artistas de la biblioteca:
+        # limitarlo a dos podía producir cero coincidencias aunque hubiera catálogo.
+        semillas_artistas = semillas_artistas[:4 if decada_solicitada else 5]
         for semilla in semillas_artistas:
             q = urlencode({"q": semilla["nombre"], "limit": 8})
             datos_artista = consultar("https://api.deezer.com/search/artist?" + q)
@@ -1451,7 +1453,7 @@ def api_recomendaciones():
                 id_rel = artista_rel.get("id")
                 if not id_rel:
                     continue
-                limite_top = 25 if decada_solicitada else 8
+                limite_top = 20 if decada_solicitada else 8
                 top = consultar("https://api.deezer.com/artist/" + str(id_rel) +
                                 "/top?" + urlencode({"limit": limite_top})).get("data") or []
                 for pista in top:
@@ -1469,7 +1471,7 @@ def api_recomendaciones():
                                                      clave(p.get("artista")), clave(p.get("titulo"))))
         pendientes_anio = [p for p in candidatos_ordenados if not p.get("anio")]
         # Límite conservador para evitar que Gunicorn mate al trabajador por tiempo.
-        max_consultas_anio = min(len(pendientes_anio), 32)
+        max_consultas_anio = min(len(pendientes_anio), 60)
 
         def completar_anio_decada(pista):
             parametros = urlencode({
@@ -1479,7 +1481,7 @@ def api_recomendaciones():
             try:
                 peticion = Request("https://itunes.apple.com/search?" + parametros,
                                    headers={"User-Agent": "MiRadarMusical/1.0"})
-                with urlopen(peticion, timeout=3) as respuesta:
+                with urlopen(peticion, timeout=2) as respuesta:
                     datos_itunes = json.loads(respuesta.read().decode("utf-8"))
                 artista_obj = clave(pista.get("artista"))
                 titulo_obj = clave(pista.get("titulo"))
