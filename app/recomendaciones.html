@@ -86,7 +86,7 @@ async function buscarPortadaAlternativa(c,img,fallback){
   const d=await r.json();
   const item=(d.results||[])[0];
   if(!item||!item.artworkUrl100)throw new Error('No hay portada en iTunes');
-  const url=String(item.artworkUrl100).replace(/\\d+x\\d+bb/,'600x600bb').replace(/^http:\\/\\//i,'https://');
+  const url=String(item.artworkUrl100).replace(/\d+x\d+bb/,'600x600bb').replace(/^http:\/\//i,'https://');
   if(!/^https:\\/\\//i.test(url))throw new Error('URL de portada no válida');
   c.portada=url;
   if(!c.anio){const m=String(item.releaseDate||'').match(/(?:19|20)\\d{2}/);if(m)c.anio=m[0]}
