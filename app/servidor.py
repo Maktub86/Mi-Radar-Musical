@@ -1419,15 +1419,10 @@ def api_recomendaciones():
                 ).ratio() if mejor else 0.0)
                 if (mejor and objetivo_artista == clave((mejor.get("artist") or {}).get("name"))
                         and (objetivo_titulo == clave(mejor.get("title")) or similitud_titulo >= 0.72)):
-                    detalle = mejor
-                    id_pista = mejor.get("id")
-                    if id_pista:
-                        datos_detalle = consultar("https://api.deezer.com/track/" + str(id_pista), timeout=5)
-                        if datos_detalle:
-                            detalle = datos_detalle
-                    # Ya se ha buscado y, si hacía falta, consultado el detalle de
-                    # Deezer. No repetir esas peticiones dentro de añadir_candidata.
-                    añadir_candidata(detalle, semilla, max(0.5, float(similar.get("match") or 0.5)) * 1.2,
+                    # La búsqueda de Deezer ya aporta portada, álbum y muestra.
+                    # Evitar una consulta extra por canción: Render estaba agotando
+                    # el tiempo de la petición al encadenar llamadas externas.
+                    añadir_candidata(mejor, semilla, max(0.5, float(similar.get("match") or 0.5)) * 1.2,
                                      "Last.fm", completar_datos=False)
                 else:
                     # Si Deezer no encuentra una coincidencia fiable, conservar los
@@ -1479,7 +1474,9 @@ def api_recomendaciones():
                 top = consultar("https://api.deezer.com/artist/" + str(id_rel) +
                                 "/top?" + urlencode({"limit": limite_top})).get("data") or []
                 for pista in top:
-                    añadir_candidata(pista, semilla, peso, "Deezer", completar_datos=not bool(decada_solicitada))
+                    # Las pistas del top de Deezer ya incluyen datos básicos; no
+                    # hacer búsquedas de detalle/álbum por cada resultado.
+                    añadir_candidata(pista, semilla, peso, "Deezer", completar_datos=False)
 
     if decada_solicitada:
         # Deezer a menudo no incluye fecha. Completar los años por tandas y seguir
