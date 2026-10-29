@@ -974,9 +974,75 @@ def api_lo_mejor():
                 "fecha": fecha[:10] if len(fecha) >= 4 and fecha[:4].isdigit() else ""
             })
 
-        # Deezer define el ranking de popularidad; Apple/iTunes se usa como
-        # segunda fuente para completar fechas exactas cuando Deezer no las ofrece.
-        canciones.sort(key=lambda c: int(c.get("rank") or 0), reverse=True)
+        # Para «Más populares», combinar el ranking de Deezer con Last.fm cuando
+        # exista LASTFM_API_KEY. Apple/iTunes se reserva para verificar fechas,
+        # porque su endpoint de búsqueda no publica un ranking de popularidad por artista.
+        lastfm_usado = False
+        if tipo == "populares":
+            clave_lastfm = (os.environ.get("LASTFM_API_KEY") or "").strip()
+            if clave_lastfm:
+                try:
+                    parametros_lastfm = urlencode({
+                        "method": "artist.gettoptracks", "artist": nombre_deezer,
+                        "api_key": clave_lastfm, "format": "json", "limit": 50
+                    })
+                    datos_lastfm = consultar(
+                        "https://ws.audioscrobbler.com/2.0/?" + parametros_lastfm,
+                        timeout=5
+                    )
+                    pistas_lastfm = ((datos_lastfm.get("toptracks") or {}).get("track") or [])
+                    if isinstance(pistas_lastfm, dict):
+                        pistas_lastfm = [pistas_lastfm]
+                    if pistas_lastfm:
+                        canciones.sort(key=lambda c: int(c.get("rank") or 0), reverse=True)
+                        por_titulo = {}
+                        for posicion, cancion in enumerate(canciones):
+                            llave = normalizar_texto(cancion.get("titulo"))
+                            cancion["_pos_deezer"] = posicion
+                            cancion["_pos_lastfm"] = None
+                            por_titulo.setdefault(llave, cancion)
+                        for posicion, pista_lastfm in enumerate(pistas_lastfm):
+                            titulo_lastfm = str(pista_lastfm.get("name") or "").strip()
+                            llave = normalizar_texto(titulo_lastfm)
+                            if not llave:
+                                continue
+                            existente = por_titulo.get(llave)
+                            if existente:
+                                existente["_pos_lastfm"] = posicion
+                                continue
+                            artista_lastfm = pista_lastfm.get("artist") or {}
+                            if isinstance(artista_lastfm, dict):
+                                artista_lastfm = artista_lastfm.get("name") or nombre_deezer
+                            canciones.append({
+                                "titulo": titulo_lastfm,
+                                "artista": str(artista_lastfm or nombre_deezer),
+                                "album": "",
+                                "preview": "",
+                                "url": str(pista_lastfm.get("url") or ""),
+                                "rank": 0,
+                                "anio": anios_locales.get(llave),
+                                "fecha": "",
+                                "_pos_deezer": None,
+                                "_pos_lastfm": posicion
+                            })
+                            por_titulo[llave] = canciones[-1]
+                        for cancion in canciones:
+                            posicion_deezer = cancion.get("_pos_deezer")
+                            posicion_lastfm = cancion.get("_pos_lastfm")
+                            puntuacion = 0.0
+                            if posicion_deezer is not None:
+                                puntuacion += 1.0 / (60 + posicion_deezer)
+                            if posicion_lastfm is not None:
+                                puntuacion += 1.0 / (60 + posicion_lastfm)
+                            cancion["_puntuacion_fuentes"] = puntuacion
+                        canciones.sort(key=lambda c: c.get("_puntuacion_fuentes", 0), reverse=True)
+                        lastfm_usado = True
+                except Exception as error_lastfm:
+                    app.logger.info("Last.fm no pudo completar el ranking de %s: %s", nombre_deezer, error_lastfm)
+
+        # Apple/iTunes completa fechas exactas cuando Deezer no las ofrece.
+        if not lastfm_usado:
+            canciones.sort(key=lambda c: int(c.get("rank") or 0), reverse=True)
 
         def completar_fecha_apple(cancion):
             if cancion.get("fecha") and len(cancion["fecha"]) >= 10:
@@ -1060,17 +1126,24 @@ def api_lo_mejor():
             canciones = canciones[:5]
             mensaje_vacio = "Deezer no ha devuelto temas destacados con fecha de lanzamiento identificable para este artista."
         else:
-            # Mantener el orden real de popularidad de Deezer; las fechas se muestran
-            # como metadatos y no deben reordenar ni falsear el ranking.
+            # La puntuación combina posiciones de Deezer y Last.fm cuando ambas fuentes responden.
             canciones = canciones[:20]
-            mensaje_vacio = "Deezer no ha encontrado canciones para este artista en este momento. Prueba de nuevo más tarde."
+            mensaje_vacio = "No se han encontrado canciones populares para este artista en las fuentes disponibles."
 
         if not canciones:
             return jsonify({"error": mensaje_vacio}), 502
 
+        for cancion in canciones:
+            for clave_interna in ("_pos_deezer", "_pos_lastfm", "_puntuacion_fuentes"):
+                cancion.pop(clave_interna, None)
+        fuente_resultado = (
+            "Deezer + Last.fm (ranking combinado) + Apple/iTunes (fechas cuando están disponibles)"
+            if lastfm_usado else
+            "Deezer (popularidad) + Apple/iTunes (fechas cuando están disponibles)"
+        )
         return jsonify({
             "artista": mejor.get("name", nombre_solicitado),
-            "fuente": "Deezer (popularidad) + Apple/iTunes (fechas cuando están disponibles)",
+            "fuente": fuente_resultado,
             "tipo": tipo,
             "canciones": canciones
         })
