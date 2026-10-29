@@ -1340,7 +1340,8 @@ def api_recomendaciones():
     # Mantener las semillas estables entre páginas: el parámetro inicio debe paginar
     # la misma lista, no una lista distinta en cada clic.
     semillas_pistas.sort(key=lambda p: (clave(p["nombre"]), clave(p["titulo"])))
-    semillas_lastfm = semillas_pistas[:4] if semillas_pistas else []
+    # En búsquedas por década limitamos las semillas para no exceder el tiempo de Gunicorn.
+    semillas_lastfm = semillas_pistas[:2 if decada_solicitada else 4] if semillas_pistas else []
 
     if clave_lastfm:
         for indice, semilla in enumerate(semillas_lastfm):
@@ -1357,13 +1358,22 @@ def api_recomendaciones():
             similares = (datos.get("similartracks") or {}).get("track") or []
             if isinstance(similares, dict):
                 similares = [similares]
-            for similar in similares[:6]:
+            for similar in similares[:4 if decada_solicitada else 6]:
                 titulo = str(similar.get("name") or "").strip()
                 artista_info = similar.get("artist") or {}
                 nombre_artista = str(artista_info.get("name") or "").strip()
                 if not titulo or not nombre_artista or (clave(nombre_artista), clave(titulo)) in existentes:
                     continue
                 # Last.fm descubre el tema; Deezer aporta portada, álbum, enlace y muestra.
+                # En búsquedas por década, guardar el descubrimiento de Last.fm sin
+                # consultas Deezer individuales; reservar tiempo para comprobar los años.
+                if decada_solicitada:
+                    añadir_candidata({
+                        "titulo": titulo, "artist": {"name": nombre_artista},
+                        "url": similar.get("url") or "", "image": similar.get("image") or []
+                    }, semilla, max(0.5, float(similar.get("match") or 0.5)), "Last.fm",
+                       completar_datos=False)
+                    continue
                 q = urlencode({"q": 'artist:"' + nombre_artista + '" track:"' + titulo + '"', "limit": 8})
                 resultados_deezer = consultar("https://api.deezer.com/search/track?" + q).get("data") or []
                 objetivo_artista, objetivo_titulo = clave(nombre_artista), clave(titulo)
@@ -1430,7 +1440,7 @@ def api_recomendaciones():
                     continue
             # Al filtrar por década hace falta una muestra más amplia: el top 8
             # habitual suele dejar fuera canciones antiguas o con fecha disponible.
-            limite_relacionados = 8 if decada_solicitada else 4
+            limite_relacionados = 4 if decada_solicitada else 4
             relacionados = consultar("https://api.deezer.com/artist/" + str(coincidencia.get("id")) +
                                      "/related?" + urlencode({"limit": limite_relacionados})).get("data") or []
             objetivos = [(a, 1.0) for a in relacionados[:limite_relacionados]] or [(coincidencia, 0.55)]
@@ -1438,7 +1448,7 @@ def api_recomendaciones():
                 id_rel = artista_rel.get("id")
                 if not id_rel:
                     continue
-                limite_top = 50 if decada_solicitada else 8
+                limite_top = 25 if decada_solicitada else 8
                 top = consultar("https://api.deezer.com/artist/" + str(id_rel) +
                                 "/top?" + urlencode({"limit": limite_top})).get("data") or []
                 for pista in top:
@@ -1455,7 +1465,8 @@ def api_recomendaciones():
                                       key=lambda p: (-p.get("puntuacion", 0),
                                                      clave(p.get("artista")), clave(p.get("titulo"))))
         pendientes_anio = [p for p in candidatos_ordenados if not p.get("anio")]
-        max_consultas_anio = min(len(pendientes_anio), 300)
+        # Límite conservador para evitar que Gunicorn mate al trabajador por tiempo.
+        max_consultas_anio = min(len(pendientes_anio), 60)
 
         def completar_anio_decada(pista):
             parametros = urlencode({
@@ -1505,7 +1516,7 @@ def api_recomendaciones():
         # Consultar primero las canciones mejor puntuadas y ampliar por lotes de 40
         # hasta llenar la tanda o agotar el límite de consultas, no solo las primeras 60.
         consultadas = 0
-        tamano_lote = 40
+        tamano_lote = 20
         with ThreadPoolExecutor(max_workers=8) as executor:
             while consultadas < max_consultas_anio:
                 lote = pendientes_anio[consultadas:min(consultadas + tamano_lote, max_consultas_anio)]
