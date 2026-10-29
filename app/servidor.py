@@ -1720,9 +1720,11 @@ def api_recomendaciones_datos():
 
     try:
         resultados = []
-        # España primero; Estados Unidos amplía el catálogo si el tema no aparece
-        # en la tienda española. Se reúnen resultados antes de decidir la coincidencia.
-        for pais in ("es", "us"):
+        # Consultar España y Estados Unidos en paralelo: la página cancela la
+        # petición tras 7 segundos y dos consultas secuenciales podían superar ese límite.
+        from concurrent.futures import ThreadPoolExecutor
+
+        def consultar_itunes(pais):
             parametros = urlencode({
                 "term": artista + " " + titulo,
                 "country": pais,
@@ -1734,11 +1736,15 @@ def api_recomendaciones_datos():
                 "https://itunes.apple.com/search?" + parametros,
                 headers={"User-Agent": "MiRadarMusical/1.0"}
             )
-            with urlopen(peticion, timeout=6) as respuesta:
-                datos = json.loads(respuesta.read().decode("utf-8"))
+            with urlopen(peticion, timeout=5) as respuesta:
+                return json.loads(respuesta.read().decode("utf-8"))
+
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            consultas = list(executor.map(consultar_itunes, ("es", "us")))
+        # Priorizar España para que, si ambas tiendas tienen la misma grabación,
+        # prevalezca su ficha local; Estados Unidos sirve como catálogo adicional.
+        for datos in consultas:
             resultados.extend(datos.get("results") or [])
-            if _coincidencia_itunes_segura(artista, titulo, resultados):
-                break
 
         mejor = _coincidencia_itunes_segura(artista, titulo, resultados)
         if not mejor:
