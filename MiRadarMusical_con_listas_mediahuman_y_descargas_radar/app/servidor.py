@@ -24,6 +24,39 @@ TAREA = "MiRadarMusical_Actualizacion"
 
 app = Flask(__name__, static_folder=str(BASE), static_url_path="")
 
+@app.after_request
+def _identidad_iconos_mi_radar(response):
+    # Mantiene los iconos y el manifiesto disponibles en cualquiera de las copias
+    # de la aplicación y evita que Chrome reutilice respuestas antiguas.
+    if request.path in ("/manifest.webmanifest", "/icono-mrm-192.png",
+                        "/icono-mrm.svg", "/icono-mrm-maskable.svg"):
+        response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    if response.mimetype == "text/html":
+        try:
+            html = response.get_data(as_text=True)
+            if "</head>" in html:
+                html = re.sub(
+                    r'<link\\b(?=[^>]*\\brel=["\\'](?:icon|apple-touch-icon|manifest)["\\'])[^>]*>\\s*',
+                    "",
+                    html,
+                    flags=re.IGNORECASE,
+                )
+                links = """
+<link rel="icon" type="image/png" sizes="192x192" href="/icono-mrm-192.png?v=9">
+<link rel="icon" type="image/svg+xml" href="/icono-mrm.svg?v=9">
+<link rel="apple-touch-icon" sizes="192x192" href="/icono-mrm-192.png?v=9">
+<link rel="manifest" href="/manifest.webmanifest?v=9">
+<meta name="theme-color" content="#6d28a8">
+<meta name="application-name" content="Mi Radar Musical">
+"""
+                html = html.replace("</head>", links + "</head>", 1)
+                response.set_data(html)
+        except Exception:
+            app.logger.exception("No se pudieron aplicar los iconos de Mi Radar Musical")
+    return response
+
+
+
 BOTON_HTML = '\n<style>\n#panel-actualizacion{position:fixed;top:12px;right:16px;z-index:9999;background:#202633;color:#fff;padding:12px;border-radius:12px;box-shadow:0 3px 18px #0008;width:275px;max-width:calc(100vw - 32px);font:13px Arial}\n#panel-actualizacion button{width:100%;padding:10px;border:0;border-radius:8px;background:#e8bd62;color:#171717;font-weight:bold;cursor:pointer}\n#panel-actualizacion button:disabled{opacity:.65;cursor:wait}\n#progreso-actualizacion{height:8px;background:#414858;border-radius:8px;margin-top:9px;overflow:hidden}\n#barra-actualizacion{height:100%;width:0;background:#76e0c2;transition:width .2s}\n#estado-actualizacion{display:block;margin-top:7px;line-height:1.4}\n@media(max-width:600px){#panel-actualizacion{top:8px;right:8px;width:220px}body{padding-top:90px}}\n</style>\n<div id="panel-actualizacion">\n<button id="boton-actualizar" type="button">↻ Actualizar artistas y radar</button>\n<div id="progreso-actualizacion"><div id="barra-actualizacion"></div></div>\n<span id="estado-actualizacion" role="status">Actualización manual</span>\n</div>\n<script>\n(()=>{\nconst b=document.getElementById(\'boton-actualizar\');\nconst e=document.getElementById(\'estado-actualizacion\');\nconst barra=document.getElementById(\'barra-actualizacion\');\nlet vigilando=false;\nasync function consultar(){\n const r=await fetch(\'/api/estado-actualizacion\');\n const d=await r.json();\n barra.style.width=(d.progreso||0)+\'%\';\n e.textContent=(d.progreso||0)+\'% · \'+d.mensaje;\n b.disabled=!!d.en_curso;\n return d;\n}\nasync function vigilar(){\n if(vigilando)return;\n vigilando=true;\n try{\n  let d;\n  do{\n   await new Promise(r=>setTimeout(r,1500));\n   d=await consultar();\n  }while(d.en_curso);\n }catch(err){\n  e.textContent=\'No se pudo consultar el progreso.\';\n  b.disabled=false;\n }finally{vigilando=false;}\n}\nb.addEventListener(\'click\',async()=>{\n if(!confirm(\'¿Actualizar todos los artistas activos y regenerar el radar?\'))return;\n b.disabled=true;barra.style.width=\'0%\';e.textContent=\'Iniciando actualización...\';\n try{\n  const r=await fetch(\'/api/actualizar\',{method:\'POST\'});\n  const d=await r.json();\n  if(!r.ok){e.textContent=d.error||\'No se pudo iniciar.\';b.disabled=false;return;}\n  e.textContent=d.mensaje||\'Actualización iniciada.\';\n  vigilar();\n }catch(err){\n  e.textContent=\'No se pudo contactar con el servidor.\';\n  b.disabled=false;\n }\n});\nconsultar().catch(()=>{});\n})();\n</script>\n'
 
 
