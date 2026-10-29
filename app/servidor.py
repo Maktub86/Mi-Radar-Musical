@@ -1329,7 +1329,7 @@ def api_recomendaciones():
                         mejor, mejor_puntos = item, puntos
                 if mejor and mejor_puntos >= 7:
                     fecha_itunes = str(mejor.get("releaseDate") or "")
-                    coincidencia = re.search(r"(?:19|20)\\d{2}", fecha_itunes)
+                    coincidencia = re.search(r"(?:19|20)\d{2}", fecha_itunes)
                     if coincidencia:
                         pista["anio"] = coincidencia.group(0)
                     if not pista.get("portada") and mejor.get("artworkUrl100"):
