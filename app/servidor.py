@@ -1168,6 +1168,12 @@ def api_recomendaciones():
     if decada_solicitada and not re.fullmatch(r"(19|20)\d0", decada_solicitada):
         decada_solicitada = ""
     try:
+        semilla_azar = int(request.args.get("azar") or 0)
+    except (TypeError, ValueError):
+        semilla_azar = 0
+    # La misma semilla mantiene las recomendaciones estables al paginar;
+    # al pulsar «Buscar recomendaciones», el navegador genera otra semilla.
+    try:
         inicio = max(0, min(int(request.args.get("inicio") or 0), 500))
     except (TypeError, ValueError):
         inicio = 0
@@ -1340,11 +1346,21 @@ def api_recomendaciones():
         if genero_solicitado and genero.casefold() != genero_solicitado.casefold():
             continue
         semillas_pistas.append({"nombre": artista, "titulo": titulo, "genero": genero})
-    # Mantener las semillas estables entre páginas: el parámetro inicio debe paginar
-    # la misma lista, no una lista distinta en cada clic.
-    semillas_pistas.sort(key=lambda p: (-artistas.get(clave(p["nombre"]), {}).get("total", 0), clave(p["nombre"]), clave(p["titulo"])))
-    # En búsquedas por década limitamos las semillas para no exceder el tiempo de Gunicorn.
-    semillas_lastfm = semillas_pistas[:2 if decada_solicitada else 4] if semillas_pistas else []
+    # Elegir pistas de partida de forma aleatoria entre toda la biblioteca,
+    # no de los artistas más repetidos ni de los primeros por orden alfabético.
+    # La semilla del navegador hace que las páginas siguientes mantengan la misma selección.
+    random.Random(semilla_azar).shuffle(semillas_pistas)
+    semillas_lastfm = []
+    artistas_semilla = set()
+    limite_semillas = 2 if decada_solicitada else 4
+    for pista_semilla in semillas_pistas:
+        artista_clave = clave(pista_semilla["nombre"])
+        if artista_clave in artistas_semilla:
+            continue
+        semillas_lastfm.append(pista_semilla)
+        artistas_semilla.add(artista_clave)
+        if len(semillas_lastfm) >= limite_semillas:
+            break
 
     if clave_lastfm:
         for indice, semilla in enumerate(semillas_lastfm):
@@ -1424,12 +1440,14 @@ def api_recomendaciones():
     # Si Last.fm no está configurado o no devuelve suficientes temas, completar con el
     # sistema anterior de artistas relacionados de Deezer.
     if len(candidatos) < 10 or decada_solicitada:
-        semillas_artistas = sorted(artistas.values(), key=lambda a: (-a["total"], a["nombre"].casefold()))
+        semillas_artistas = list(artistas.values())
         if genero_solicitado:
             semillas_artistas = [a for a in semillas_artistas if a["generos"] and
                                  max(a["generos"], key=a["generos"].get).casefold() == genero_solicitado.casefold()]
-        # En una década concreta hay que explorar más artistas de la biblioteca:
-        # limitarlo a dos podía producir cero coincidencias aunque hubiera catálogo.
+        # Seleccionar artistas repartidos aleatoriamente por toda la biblioteca,
+        # en vez de favorecer siempre a los más repetidos. La selección es estable
+        # durante la paginación y cambia al iniciar una nueva búsqueda.
+        random.Random(semilla_azar ^ 0x5F3759DF).shuffle(semillas_artistas)
         semillas_artistas = semillas_artistas[:4 if decada_solicitada else 5]
         for semilla in semillas_artistas:
             q = urlencode({"q": semilla["nombre"], "limit": 8})
