@@ -105,8 +105,37 @@ button:focus-visible,a:focus-visible{outline:2px solid #c9a5ff;outline-offset:3p
         # Solo estas cuatro secciones necesitan el ajuste: las otras páginas ya coinciden visualmente.
         if request.path.rstrip("/") in ("/lo-mejor", "/mi-musica", "/recomendaciones", "/programas"):
             css_cabecera = """
-/* Igualar el borde inferior de la franja con la cabecera de Portada */
-header{box-sizing:border-box!important;height:152px!important;min-height:152px!important;max-height:152px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;overflow:hidden!important}
+/* Las cuatro secciones usan la misma geometría de cabecera que Portada.
+   Se conserva el fondo y los colores propios de cada sección. */
+header{
+  position:relative!important;
+  box-sizing:border-box!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  display:block!important;
+  padding:32px 6%!important;
+  overflow:visible!important;
+}
+header>div,.marca{
+  font-size:13px!important;
+  font-weight:800!important;
+  letter-spacing:3px!important;
+  text-transform:uppercase!important;
+}
+header h1{
+  font-size:clamp(32px,6vw,58px)!important;
+  line-height:normal!important;
+  margin:12px 0 8px!important;
+}
+header p{
+  display:block!important;
+  margin:0!important;
+  max-width:none!important;
+  overflow:visible!important;
+  -webkit-line-clamp:unset!important;
+  -webkit-box-orient:initial!important;
+}
 """
             css_nav = css_nav.replace("</style>", css_cabecera + "\n</style>", 1)
         if "</head>" in html:
