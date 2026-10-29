@@ -1532,13 +1532,14 @@ def api_recomendaciones_datos():
             titulo_catalogo = clave_catalogo(item.get("trackName"))
             if not artista_catalogo or not titulo_catalogo:
                 continue
-            puntos = (3 if artista_catalogo == artista_objetivo else
-                      1 if difflib.SequenceMatcher(None, artista_objetivo, artista_catalogo).ratio() >= 0.88 else 0)
-            puntos += (4 if titulo_catalogo == titulo_objetivo else
-                       2 if difflib.SequenceMatcher(None, titulo_objetivo, titulo_catalogo).ratio() >= 0.85 else 0)
-            if puntos > mejor_puntos:
-                mejor, mejor_puntos = item, puntos
-        if not mejor or mejor_puntos < 5:
+            # Exigir artista y título exactos tras normalizar tildes y puntuación.
+            # Las coincidencias aproximadas estaban devolviendo portadas de temas distintos.
+            if artista_catalogo != artista_objetivo or titulo_catalogo != titulo_objetivo:
+                continue
+            mejor = item
+            mejor_puntos = 7
+            break
+        if not mejor:
             return jsonify({"anio": "", "portada": "", "album": ""})
         fecha = str(mejor.get("releaseDate") or "")
         coincidencia = re.search(r"(?:19|20)\d{2}", fecha)
