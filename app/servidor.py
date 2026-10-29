@@ -663,10 +663,44 @@ async function cargarPublicacionesLoMejor(nombre,caja,boton){
   if(!publicaciones.length)zona.appendChild(nodo('p','mensaje-pista','No hay publicaciones registradas para este artista.'));
   for(const p of publicaciones){
    const item=nodo('div','publicacion-mejor');
-   item.appendChild(nodo('strong','',p.titulo||'Sin título'));
+   const fila=nodo('div','pista');
+   const detalle=nodo('div','');
+   const tituloLinea=nodo('div','');
+   const tituloPista=nodo('strong','pista-titulo',p.titulo||'Sin título');
+   tituloLinea.appendChild(tituloPista);
+   const info=nodo('button','boton-wikipedia','I');info.type='button';
+   info.title='Consultar información sobre esta publicación';
+   info.setAttribute('aria-label','Consultar información sobre '+(p.titulo||'esta publicación'));
+   info.addEventListener('click',async()=>{
+    if(info.disabled)return;info.disabled=true;info.textContent='…';
+    try{
+     const resumen=await consultarGemini('cancion',p.titulo||'',nombre);
+     if(resumen.encontrado)mostrarInfoWikipedia(fila,resumen,'cancion');
+     else{const aviso=nodo('div','info-wikipedia',resumen.mensaje||'No se ha encontrado información sobre esta publicación.');fila.insertAdjacentElement('afterend',aviso);}
+    }finally{info.disabled=false;info.textContent='I';}
+   });
+   tituloLinea.appendChild(info);detalle.appendChild(tituloLinea);
    const meta=[p.fecha,p.tipo].filter(Boolean).join(' · ');
-   if(meta)item.appendChild(nodo('small','',meta));
-   zona.appendChild(item);
+   if(meta)detalle.appendChild(nodo('div','pista-meta',meta+' · Publicación de '+nombre));
+   const acciones=nodo('div','acciones-pista');
+   const muestra=nodo('button','boton-30','');muestra.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="17" height="17" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg><span>30 s</span>';
+   muestra.title='Buscar una muestra de 30 segundos de esta publicación';
+   muestra.addEventListener('click',async()=>{
+    muestra.disabled=true;
+    try{
+     const r=await fetch('/api/publicaciones/preview?'+new URLSearchParams({artista:nombre,titulo:p.titulo||''}),{cache:'no-store'});
+     const d=await r.json();
+     if(!r.ok||!d.preview)throw new Error(d.error||'No hay una muestra de 30 segundos disponible para esta publicación.');
+     reproducir({preview:d.preview,titulo:d.titulo||p.titulo,artista:nombre},muestra);
+    }catch(e){estado.textContent=e.message||'No se ha podido obtener la muestra.';muestra.disabled=false;}
+   });
+   const mediahuman=nodo('button','boton-mediahuman','');mediahuman.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="21" height="21" focusable="false"><path d="M12 3v11m-5-5 5 5 5-5M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+   mediahuman.title='Buscar enlace para MediaHuman';mediahuman.setAttribute('aria-label','Descargar con MediaHuman');
+   mediahuman.addEventListener('click',()=>buscarYouTube({titulo:p.titulo||'',artista:nombre},'mediahuman'));
+   const youtube=nodo('button','boton-youtube','');youtube.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg>';
+   youtube.title='Abrir opciones de YouTube';youtube.setAttribute('aria-label','YouTube');
+   youtube.addEventListener('click',()=>buscarYouTube({titulo:p.titulo||'',artista:nombre},'youtube'));
+   acciones.append(muestra,mediahuman,youtube);fila.append(detalle,acciones);item.appendChild(fila);zona.appendChild(item);
   }
   zona.dataset.cargado='1';boton.textContent='Ocultar últimas publicaciones';
  }catch(e){
@@ -2092,6 +2126,41 @@ def buscar_videos_youtube():
         return jsonify({
             "error": "No he podido consultar los resultados de YouTube. Comprueba la conexión e inténtalo de nuevo."
         }), 502
+
+
+@app.get("/api/publicaciones/preview")
+def preview_publicacion():
+    """Busca una muestra de Deezer para una publicación por artista y título."""
+    artista = (request.args.get("artista") or "").strip()
+    titulo = (request.args.get("titulo") or "").strip()
+    if not artista or not titulo:
+        return jsonify({"error": "Faltan artista o título de la publicación."}), 400
+    try:
+        consulta = urlencode({"q": artista + " " + titulo, "limit": 25})
+        peticion = Request("https://api.deezer.com/search/track?" + consulta,
+                           headers={"User-Agent": "MiRadarMusical/1.0"})
+        with urlopen(peticion, timeout=4) as respuesta:
+            datos = json.loads(respuesta.read().decode("utf-8"))
+        objetivo_artista = normalizar_texto(artista)
+        objetivo_titulo = normalizar_texto(titulo)
+        mejor = None
+        mejor_puntuacion = 0.0
+        for pista in datos.get("data") or []:
+            nombre_artista = normalizar_texto((pista.get("artist") or {}).get("name") or "")
+            nombre_titulo = normalizar_texto(pista.get("title") or "")
+            similitud_artista = difflib.SequenceMatcher(None, objetivo_artista, nombre_artista).ratio()
+            similitud_titulo = difflib.SequenceMatcher(None, objetivo_titulo, nombre_titulo).ratio()
+            if similitud_artista < 0.86 or similitud_titulo < 0.72:
+                continue
+            puntuacion = similitud_artista * 0.45 + similitud_titulo * 0.55
+            if puntuacion > mejor_puntuacion:
+                mejor, mejor_puntuacion = pista, puntuacion
+        if not mejor or not mejor.get("preview"):
+            return jsonify({"error": "Deezer no ofrece una muestra de 30 segundos para esta publicación."}), 404
+        return jsonify({"preview": mejor.get("preview"), "titulo": mejor.get("title") or titulo})
+    except Exception as error:
+        app.logger.info("No se pudo buscar una muestra de publicación: %s", error)
+        return jsonify({"error": "No se ha podido consultar la muestra ahora mismo."}), 502
 
 
 @app.get("/api/publicaciones/<nombre>")
