@@ -1248,15 +1248,19 @@ def api_recomendaciones():
                 coincidencia = max(artistas_deezer, key=lambda a: difflib.SequenceMatcher(None, objetivo, clave(a.get("name"))).ratio())
                 if difflib.SequenceMatcher(None, objetivo, clave(coincidencia.get("name"))).ratio() < 0.82:
                     continue
+            # Al filtrar por década hace falta una muestra más amplia: el top 8
+            # habitual suele dejar fuera canciones antiguas o con fecha disponible.
+            limite_relacionados = 8 if decada_solicitada else 4
             relacionados = consultar("https://api.deezer.com/artist/" + str(coincidencia.get("id")) +
-                                     "/related?" + urlencode({"limit": 4})).get("data") or []
-            objetivos = [(a, 1.0) for a in relacionados[:4]] or [(coincidencia, 0.55)]
+                                     "/related?" + urlencode({"limit": limite_relacionados})).get("data") or []
+            objetivos = [(a, 1.0) for a in relacionados[:limite_relacionados]] or [(coincidencia, 0.55)]
             for artista_rel, peso in objetivos:
                 id_rel = artista_rel.get("id")
                 if not id_rel:
                     continue
+                limite_top = 50 if decada_solicitada else 8
                 top = consultar("https://api.deezer.com/artist/" + str(id_rel) +
-                                "/top?" + urlencode({"limit": 8})).get("data") or []
+                                "/top?" + urlencode({"limit": limite_top})).get("data") or []
                 for pista in top:
                     añadir_candidata(pista, semilla, peso, "Deezer")
 
