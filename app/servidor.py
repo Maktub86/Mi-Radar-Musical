@@ -1558,7 +1558,7 @@ def api_recomendaciones():
 
             parametros = urlencode({
                 "term": str(pista.get("artista") or "") + " " + str(pista.get("titulo") or ""),
-                "country": "us", "media": "music", "entity": "song", "limit": 25
+                "country": "us", "media": "music", "entity": "song", "limit": 50
             })
             try:
                 with bloqueo_diagnostico:
@@ -1693,8 +1693,8 @@ def _coincidencia_itunes_segura(artista, titulo, resultados):
             (titulo_objetivo in titulo_catalogo or titulo_catalogo in titulo_objetivo)
         )
         if not (
-            (artista_exacto or similitud_artista >= 0.92) and
-            (titulo_exacto or similitud_titulo >= 0.86 or
+            (artista_exacto or similitud_artista >= 0.90) and
+            (titulo_exacto or similitud_titulo >= 0.82 or
              (titulo_contenido and similitud_titulo >= 0.78))
         ):
             continue
