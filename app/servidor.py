@@ -15,6 +15,7 @@ from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 import unicodedata
 import difflib
+import random
 import os
 import secrets
 from listas_musicales import cargar as cargar_lista, actualizar as actualizar_lista
@@ -1092,6 +1093,28 @@ def api_recomendaciones():
         llave = (clave(nombre_artista), clave(titulo))
         if llave in existentes:
             return
+        # Si la recomendación viene de Last.fm sin ID de Deezer, buscar una ficha
+        # fiable por artista y título para recuperar portada, álbum y fecha.
+        album_inicial = pista.get("album") or {}
+        fecha_inicial = (pista.get("release_date") or album_inicial.get("release_date") or
+                         pista.get("releaseDate") or pista.get("date") or "")
+        portada_inicial = (album_inicial.get("cover_xl") or album_inicial.get("cover_big") or
+                           album_inicial.get("cover_medium") or album_inicial.get("cover") or
+                           pista.get("cover_xl") or pista.get("cover_big") or "")
+        if not pista.get("id") or not fecha_inicial or not portada_inicial:
+            consulta_dz = urlencode({"q": 'artist:"' + nombre_artista + '" track:"' + titulo + '"', "limit": 10})
+            resultados_dz = consultar("https://api.deezer.com/search/track?" + consulta_dz).get("data") or []
+            objetivo_artista, objetivo_titulo = clave(nombre_artista), clave(titulo)
+            posibles = []
+            for resultado_dz in resultados_dz:
+                artista_dz = clave((resultado_dz.get("artist") or {}).get("name") or "")
+                titulo_dz = clave(resultado_dz.get("title") or "")
+                similitud_dz = difflib.SequenceMatcher(None, objetivo_titulo, titulo_dz).ratio()
+                if artista_dz == objetivo_artista and (titulo_dz == objetivo_titulo or similitud_dz >= 0.72):
+                    posibles.append((int(titulo_dz == objetivo_titulo), similitud_dz, resultado_dz))
+            if posibles:
+                mejor_dz = max(posibles, key=lambda x: (x[0], x[1]))[2]
+                pista = {**mejor_dz, **pista} if pista.get("id") else mejor_dz
         # Completar los datos con Deezer: la búsqueda resumida no siempre incluye
         # fecha ni una portada de tamaño utilizable.
         album = pista.get("album") or {}
@@ -1269,16 +1292,13 @@ def api_recomendaciones():
     else:
         ordenadas = list(candidatos.values())
     ordenadas.sort(key=lambda p: (-p["puntuacion"], clave(p["artista"]), clave(p["titulo"])))
-    # Orden estable entre peticiones para que «Descubrir otras 10» no mezcle
-    # una nueva tanda aleatoria con el desplazamiento de la anterior.
-    grupos = []
-    for candidata in ordenadas:
-        if not grupos or grupos[-1][0]["puntuacion"] - candidata["puntuacion"] > 8:
-            grupos.append([candidata])
-        else:
-            grupos[-1].append(candidata)
-    ordenadas = [c for grupo in grupos for c in sorted(grupo, key=lambda p: (clave(p["artista"]), clave(p["titulo"])))]
-    # Paginar la lista estable una sola vez; no rotar y volver a aplicar inicio.
+    # Orden aleatorio reproducible durante una tanda: el navegador envía una
+    # semilla nueva al pulsar buscar, evitando que el mismo tema quede siempre primero.
+    try:
+        semilla_azar = int(request.args.get("azar") or "0")
+    except (TypeError, ValueError):
+        semilla_azar = 0
+    random.Random(semilla_azar).shuffle(ordenadas)
     return jsonify({"canciones": ordenadas[inicio:inicio + 10], "generos": generos,
                     "total_candidatas": len(ordenadas), "total_biblioteca": len(biblioteca),
                     "inicio": inicio, "decada": decada_solicitada, "fuente": fuente_final,
