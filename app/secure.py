@@ -65,8 +65,20 @@ def exigir_acceso():
             503,
             {"Content-Type": "text/plain; charset=utf-8"},
         )
-    if request.endpoint == "login":
+
+    # El navegador necesita poder descargar estos recursos antes de iniciar sesión
+    # para mostrar el icono correcto al crear el acceso directo en Android.
+    recursos_publicos = {
+        "/login",
+        "/manifest.webmanifest",
+        "/icono-mrm-192.png",
+        "/icono-mrm.svg",
+        "/icono-mrm-maskable.svg",
+        "/favicon.ico",
+    }
+    if request.path in recursos_publicos:
         return None
+
     if session.get("radar_autenticado") is True:
         return None
     return redirect(url_for("login"))
