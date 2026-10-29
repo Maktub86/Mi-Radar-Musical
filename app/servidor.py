@@ -1492,6 +1492,13 @@ def api_recomendaciones():
             key=lambda p: -p.get("puntuacion", 0)
         )
         pendientes_anio = [p for p in candidatos_ordenados if not p.get("anio")]
+        anios_diagnostico = {"consultas": 0, "respuestas": 0, "coincidencias": 0, "con_anio": 0, "errores": 0}
+        bloqueo_diagnostico = threading.Lock()
+        app.logger.info(
+            "Recomendaciones por década: década=%s, candidatos=%s, ya_con_año=%s, pendientes_de_verificar=%s",
+            decada_solicitada, len(candidatos_ordenados),
+            len(candidatos_ordenados) - len(pendientes_anio), len(pendientes_anio)
+        )
         # Límite conservador para evitar que Gunicorn mate al trabajador por tiempo.
         # Revisar más candidatas y repartir las consultas por toda la lista; las primeras
         # por puntuación suelen ser éxitos recientes y sesgan las décadas antiguas.
@@ -1505,10 +1512,14 @@ def api_recomendaciones():
                 "country": "us", "media": "music", "entity": "song", "limit": 25
             })
             try:
+                with bloqueo_diagnostico:
+                    anios_diagnostico["consultas"] += 1
                 peticion = Request("https://itunes.apple.com/search?" + parametros,
                                    headers={"User-Agent": "MiRadarMusical/1.0"})
                 with urlopen(peticion, timeout=1.2) as respuesta:
                     datos_itunes = json.loads(respuesta.read().decode("utf-8"))
+                with bloqueo_diagnostico:
+                    anios_diagnostico["respuestas"] += 1
                 artista_obj = clave(pista.get("artista"))
                 titulo_obj = clave(pista.get("titulo"))
                 mejor = None
@@ -1541,15 +1552,21 @@ def api_recomendaciones():
                         and (titulo_itunes == titulo_obj or similitud_titulo >= 0.82)
                     )
                     if coincide_fiable:
+                        with bloqueo_diagnostico:
+                            anios_diagnostico["coincidencias"] += 1
                         fecha_itunes = str(mejor.get("releaseDate") or "")
                         coincidencia = re.search(r"(?:19|20)\d{2}", fecha_itunes)
                         if coincidencia:
                             pista["anio"] = coincidencia.group(0)
+                            with bloqueo_diagnostico:
+                                anios_diagnostico["con_anio"] += 1
                         if not pista.get("portada") and mejor.get("artworkUrl100"):
                             pista["portada"] = str(mejor["artworkUrl100"]).replace("100x100bb", "600x600bb")
                         if not pista.get("album"):
                             pista["album"] = str(mejor.get("collectionName") or "")
             except Exception as error:
+                with bloqueo_diagnostico:
+                    anios_diagnostico["errores"] += 1
                 app.logger.debug("Recomendaciones: no se pudo recuperar año de iTunes: %s", error)
 
         # Consultar primero las canciones mejor puntuadas y ampliar por lotes de 40
@@ -1568,6 +1585,13 @@ def api_recomendaciones():
 
         ordenadas = [p for p in candidatos_ordenados
                      if p.get("anio") and p["anio"].startswith(decada_solicitada[:3])]
+        app.logger.info(
+            "Recomendaciones por década resultado: década=%s, candidatas=%s, consultas_años=%s, respuestas_itunes=%s, coincidencias_fiables=%s, años_recuperados=%s, errores_consulta=%s, resultados_de_la_decada=%s",
+            decada_solicitada, len(candidatos_ordenados),
+            anios_diagnostico["consultas"], anios_diagnostico["respuestas"],
+            anios_diagnostico["coincidencias"], anios_diagnostico["con_anio"],
+            anios_diagnostico["errores"], len(ordenadas)
+        )
     else:
         ordenadas = list(candidatos.values())
     ordenadas.sort(key=lambda p: (-p["puntuacion"], clave(p["artista"]), clave(p["titulo"])))
