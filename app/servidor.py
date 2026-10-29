@@ -2155,9 +2155,40 @@ def preview_publicacion():
             puntuacion = similitud_artista * 0.45 + similitud_titulo * 0.55
             if puntuacion > mejor_puntuacion:
                 mejor, mejor_puntuacion = pista, puntuacion
-        if not mejor or not mejor.get("preview"):
-            return jsonify({"error": "Deezer no ofrece una muestra de 30 segundos para esta publicación."}), 404
-        return jsonify({"preview": mejor.get("preview"), "titulo": mejor.get("title") or titulo})
+        if mejor and mejor.get("preview"):
+            return jsonify({"preview": mejor.get("preview"), "titulo": mejor.get("title") or titulo})
+
+        # Si el título es un álbum/EP y no una canción, buscar el lanzamiento
+        # y usar la primera pista con muestra disponible.
+        consulta_album = urlencode({"q": artista + " " + titulo, "limit": 15})
+        peticion_album = Request("https://api.deezer.com/search/album?" + consulta_album,
+                                 headers={"User-Agent": "MiRadarMusical/1.0"})
+        with urlopen(peticion_album, timeout=4) as respuesta_album:
+            datos_album = json.loads(respuesta_album.read().decode("utf-8"))
+        mejor_album = None
+        puntuacion_album = 0.0
+        for album in datos_album.get("data") or []:
+            nombre_album = normalizar_texto(album.get("title") or "")
+            nombre_artista = normalizar_texto((album.get("artist") or {}).get("name") or "")
+            sim_artista = difflib.SequenceMatcher(None, objetivo_artista, nombre_artista).ratio()
+            sim_titulo = difflib.SequenceMatcher(None, objetivo_titulo, nombre_album).ratio()
+            if sim_artista < 0.86 or sim_titulo < 0.72:
+                continue
+            puntuacion = sim_artista * 0.45 + sim_titulo * 0.55
+            if puntuacion > puntuacion_album:
+                mejor_album, puntuacion_album = album, puntuacion
+        if mejor_album and mejor_album.get("id"):
+            peticion_pistas = Request(
+                "https://api.deezer.com/album/" + str(mejor_album["id"]) + "/tracks",
+                headers={"User-Agent": "MiRadarMusical/1.0"}
+            )
+            with urlopen(peticion_pistas, timeout=4) as respuesta_pistas:
+                datos_pistas = json.loads(respuesta_pistas.read().decode("utf-8"))
+            pista_preview = next((p for p in (datos_pistas.get("data") or []) if p.get("preview")), None)
+            if pista_preview:
+                return jsonify({"preview": pista_preview["preview"],
+                                "titulo": pista_preview.get("title") or titulo})
+        return jsonify({"error": "Deezer no ofrece una muestra de 30 segundos para esta publicación."}), 404
     except Exception as error:
         app.logger.info("No se pudo buscar una muestra de publicación: %s", error)
         return jsonify({"error": "No se ha podido consultar la muestra ahora mismo."}), 502
