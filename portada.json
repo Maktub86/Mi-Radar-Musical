@@ -1,5 +1,21 @@
 [
   {
+    "id": "apple-6826741510",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d3/97/e9/d397e902-08a1-261a-80f3-2ab03d9c4acc/196874862568.jpg/100x100bb.jpg",
+    "titulo": "Ojalá Que Llueva Café (Cafecito Navideño) - Single",
+    "fecha": "2026-10-29",
+    "artista": "Diego Torres",
+    "tipo": "Single"
+  },
+  {
+    "id": "9bbe8925-d95b-47bd-893a-d98f9bf0a214",
+    "imagen": "https://coverartarchive.org/release-group/9bbe8925-d95b-47bd-893a-d98f9bf0a214/front-250",
+    "titulo": "Combien pour la nuit",
+    "fecha": "2026-10-28",
+    "artista": "DJ Snake",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6819491751",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b7/dd/9b/b7dd9b2e-93b5-7a64-0167-4a655ab50ad2/4571673442689.jpg/100x100bb.jpg",
     "titulo": "The News Music Library Vol.12",
@@ -1491,14 +1507,6 @@
     "id": "c6e5b9cd-fac2-4f95-94e9-a19887a2f59f",
     "imagen": "https://coverartarchive.org/release-group/c6e5b9cd-fac2-4f95-94e9-a19887a2f59f/front-250",
     "titulo": "Called it Love (Serena X FIFTY FIFTY) (Original Webtoon Soundtrack)",
-    "fecha": "2026-09-18",
-    "artista": "FIFTY FIFTY",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6812138566",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5d/2e/1b/5d2e1b2c-21f5-52bc-56d0-638824bdf599/8800366472570.jpg/100x100bb.jpg",
-    "titulo": "Called it Love (Serena X FIFTY FIFTY) (Original Webtoon Soundtrack) - Single",
     "fecha": "2026-09-18",
     "artista": "FIFTY FIFTY",
     "tipo": "Single"
@@ -3923,14 +3931,6 @@
     "id": "8ceecac5-27ba-4bf8-8e64-c40e67b18a25",
     "imagen": "https://coverartarchive.org/release-group/8ceecac5-27ba-4bf8-8e64-c40e67b18a25/front-250",
     "titulo": "EPA (Don Diablo remix)",
-    "fecha": "2026-07-10",
-    "artista": "Becky G",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6786796588",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/2b/d8/f8/2bd8f8a3-ae9f-fa37-5973-b0b7647bd7ef/196874567579.jpg/100x100bb.jpg",
-    "titulo": "EPA (Don Diablo Remix) - Single",
     "fecha": "2026-07-10",
     "artista": "Becky G",
     "tipo": "Single"
@@ -6968,14 +6968,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6768420251",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/21/84/5b/21845b8f-3df2-98ea-beff-9f81cf906a47/196874013915.jpg/100x100bb.jpg",
-    "titulo": "EPA - Single",
-    "fecha": "2026-05-15",
-    "artista": "Becky G",
-    "tipo": "Single"
-  },
-  {
     "id": "ee7d5cfd-033b-49c7-a0e4-8b2cc62c4d72",
     "imagen": "https://coverartarchive.org/release-group/ee7d5cfd-033b-49c7-a0e4-8b2cc62c4d72/front-250",
     "titulo": "Eternia (From \"Masters of the Universe\")",
@@ -7728,6 +7720,14 @@
     "tipo": "Single"
   },
   {
+    "id": "apple-1896059642",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a4/7c/cc/a47ccc36-ea90-43ac-bf86-f26527199617/196874318393.jpg/100x100bb.jpg",
+    "titulo": "top diesel (bundle) - Single",
+    "fecha": "2026-05-05",
+    "artista": "Beéle",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-1896059532",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/36/81/39/368139d5-2edb-4d3e-38fd-5e24131fa944/196874319567.jpg/100x100bb.jpg",
     "titulo": "sobelove (bundle) - Single",
@@ -7747,14 +7747,6 @@
     "id": "apple-1896059616",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/27/bc/1c/27bc1c16-01f7-91c7-c957-00ea4de7da3b/196874319659.jpg/100x100bb.jpg",
     "titulo": "una curita por favor (bundle) - Single",
-    "fecha": "2026-05-05",
-    "artista": "Beéle",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1896059642",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a4/7c/cc/a47ccc36-ea90-43ac-bf86-f26527199617/196874318393.jpg/100x100bb.jpg",
-    "titulo": "top diesel (bundle) - Single",
     "fecha": "2026-05-05",
     "artista": "Beéle",
     "tipo": "Single"
@@ -54008,6 +54000,14 @@
     "tipo": "Single"
   },
   {
+    "id": "1e8ceb9c-39a3-4cf2-bbb8-478a3ddcc7ee",
+    "imagen": "https://coverartarchive.org/release-group/1e8ceb9c-39a3-4cf2-bbb8-478a3ddcc7ee/front-250",
+    "titulo": "Live in Buenos Aires",
+    "fecha": "2023-01-27",
+    "artista": "Michael Jackson",
+    "tipo": "Album"
+  },
+  {
     "id": "a610168b-57ef-4ad4-998b-1f7b8f940e68",
     "imagen": "https://coverartarchive.org/release-group/a610168b-57ef-4ad4-998b-1f7b8f940e68/front-250",
     "titulo": "Los Angeles 1989",
@@ -98848,14 +98848,6 @@
     "tipo": "Single"
   },
   {
-    "id": "be64a241-ec07-4a59-bc32-88a85abe5e58",
-    "imagen": "https://coverartarchive.org/release-group/be64a241-ec07-4a59-bc32-88a85abe5e58/front-250",
-    "titulo": "SouthSide (Riot Ten remix)",
-    "fecha": "2020-01-17",
-    "artista": "DJ Snake",
-    "tipo": "Single"
-  },
-  {
     "id": "4dc68462-651d-43e9-98ca-7d2cf2fcaffe",
     "imagen": "https://coverartarchive.org/release-group/4dc68462-651d-43e9-98ca-7d2cf2fcaffe/front-250",
     "titulo": "SouthSide (Ship Wrek remix)",
@@ -98875,6 +98867,14 @@
     "id": "ac6fe25a-4d0c-4d4c-98e1-fffcc07a0288",
     "imagen": "https://coverartarchive.org/release-group/ac6fe25a-4d0c-4d4c-98e1-fffcc07a0288/front-250",
     "titulo": "Southside (Teez remix)",
+    "fecha": "2020-01-17",
+    "artista": "DJ Snake",
+    "tipo": "Single"
+  },
+  {
+    "id": "be64a241-ec07-4a59-bc32-88a85abe5e58",
+    "imagen": "https://coverartarchive.org/release-group/be64a241-ec07-4a59-bc32-88a85abe5e58/front-250",
+    "titulo": "SouthSide (Riot Ten remix)",
     "fecha": "2020-01-17",
     "artista": "DJ Snake",
     "tipo": "Single"
@@ -111016,9 +111016,9 @@
     "tipo": "Single"
   },
   {
-    "id": "b623850c-8b21-4b07-aa73-5e111b130604",
-    "imagen": "https://coverartarchive.org/release-group/b623850c-8b21-4b07-aa73-5e111b130604/front-250",
-    "titulo": "On My Way - Single",
+    "id": "7e23ef28-20f8-4ffa-9a3e-f00e6e68dbf1",
+    "imagen": "https://coverartarchive.org/release-group/7e23ef28-20f8-4ffa-9a3e-f00e6e68dbf1/front-250",
+    "titulo": "On My Way",
     "fecha": "2019-03-21",
     "artista": "Sabrina Carpenter",
     "tipo": "Single"
@@ -114134,14 +114134,6 @@
     "fecha": "2019",
     "artista": "REO Speedwagon",
     "tipo": "Album"
-  },
-  {
-    "id": "7e23ef28-20f8-4ffa-9a3e-f00e6e68dbf1",
-    "imagen": "https://coverartarchive.org/release-group/7e23ef28-20f8-4ffa-9a3e-f00e6e68dbf1/front-250",
-    "titulo": "On My Way",
-    "fecha": "2019",
-    "artista": "Sabrina Carpenter",
-    "tipo": "Single"
   },
   {
     "id": "cc1667ec-7b1e-4e23-9b3d-244365a24c17",
@@ -148680,6 +148672,14 @@
     "tipo": "Single"
   },
   {
+    "id": "3d970e43-763f-46d6-852c-56e242e98d97",
+    "imagen": "https://coverartarchive.org/release-group/3d970e43-763f-46d6-852c-56e242e98d97/front-250",
+    "titulo": "Me Too",
+    "fecha": "2016-05-11",
+    "artista": "Meghan Trainor",
+    "tipo": "Single"
+  },
+  {
     "id": "10a2a71d-fdde-4ce4-a909-33678ed7b328",
     "imagen": "https://coverartarchive.org/release-group/10a2a71d-fdde-4ce4-a909-33678ed7b328/front-250",
     "titulo": "Escápate",
@@ -148845,14 +148845,6 @@
     "titulo": "Mi corazón",
     "fecha": "2016-05-06",
     "artista": "Xriz",
-    "tipo": "Single"
-  },
-  {
-    "id": "3d970e43-763f-46d6-852c-56e242e98d97",
-    "imagen": "https://coverartarchive.org/release-group/3d970e43-763f-46d6-852c-56e242e98d97/front-250",
-    "titulo": "Me Too",
-    "fecha": "2016-05-05",
-    "artista": "Meghan Trainor",
     "tipo": "Single"
   },
   {
@@ -185848,6 +185840,14 @@
     "tipo": "Album"
   },
   {
+    "id": "81f75f9a-5f9b-4906-9985-89b547b4e98c",
+    "imagen": "https://coverartarchive.org/release-group/81f75f9a-5f9b-4906-9985-89b547b4e98c/front-250",
+    "titulo": "Little Things",
+    "fecha": "2012-11-02",
+    "artista": "One Direction",
+    "tipo": "Single"
+  },
+  {
     "id": "3ea778b5-2796-4183-bde7-73aa4117a3b0",
     "imagen": "https://coverartarchive.org/release-group/3ea778b5-2796-4183-bde7-73aa4117a3b0/front-250",
     "titulo": "Tanto",
@@ -193821,14 +193821,6 @@
     "titulo": "Say Goodbye",
     "fecha": "2012",
     "artista": "Norah Jones",
-    "tipo": "Single"
-  },
-  {
-    "id": "81f75f9a-5f9b-4906-9985-89b547b4e98c",
-    "imagen": "https://coverartarchive.org/release-group/81f75f9a-5f9b-4906-9985-89b547b4e98c/front-250",
-    "titulo": "Little Things",
-    "fecha": "2012",
-    "artista": "One Direction",
     "tipo": "Single"
   },
   {
@@ -206258,7 +206250,7 @@
   {
     "id": "ee9f5d9d-3d43-4816-8be3-8958baaa546c",
     "imagen": "https://coverartarchive.org/release-group/ee9f5d9d-3d43-4816-8be3-8958baaa546c/front-250",
-    "titulo": "Tráfico de Sentimientos",
+    "titulo": "Tráfico de sentimientos",
     "fecha": "2010-10-25",
     "artista": "Camilo",
     "tipo": "Album"
@@ -213624,17 +213616,17 @@
     "tipo": "Album"
   },
   {
-    "id": "2c905c0e-79ca-4cc2-9dc0-ea497c770990",
-    "imagen": "https://coverartarchive.org/release-group/2c905c0e-79ca-4cc2-9dc0-ea497c770990/front-250",
-    "titulo": "J.Period & Spike Lee Present... Man or the Music (40 Acres Edition)",
+    "id": "e9c545d7-a9a8-4b83-91b8-2c69479b1db0",
+    "imagen": "https://coverartarchive.org/release-group/e9c545d7-a9a8-4b83-91b8-2c69479b1db0/front-250",
+    "titulo": "Dangerous / Bad",
     "fecha": "2010",
     "artista": "Michael Jackson",
     "tipo": "Album"
   },
   {
-    "id": "e9c545d7-a9a8-4b83-91b8-2c69479b1db0",
-    "imagen": "https://coverartarchive.org/release-group/e9c545d7-a9a8-4b83-91b8-2c69479b1db0/front-250",
-    "titulo": "Dangerous / Bad",
+    "id": "2c905c0e-79ca-4cc2-9dc0-ea497c770990",
+    "imagen": "https://coverartarchive.org/release-group/2c905c0e-79ca-4cc2-9dc0-ea497c770990/front-250",
+    "titulo": "J.Period & Spike Lee Present... Man or the Music (40 Acres Edition)",
     "fecha": "2010",
     "artista": "Michael Jackson",
     "tipo": "Album"
@@ -229274,7 +229266,7 @@
   {
     "id": "0aab2039-64b6-3ec4-9ab3-3370bbbca89e",
     "imagen": "https://coverartarchive.org/release-group/0aab2039-64b6-3ec4-9ab3-3370bbbca89e/front-250",
-    "titulo": "Arde El Cielo",
+    "titulo": "Arde el cielo",
     "fecha": "2008-04-25",
     "artista": "Maná",
     "tipo": "Album"
@@ -230478,6 +230470,14 @@
     "fecha": "2008-01-01",
     "artista": "Andrea Bocelli",
     "tipo": "Album"
+  },
+  {
+    "id": "575702c1-53cc-4d97-be05-68578ae66f15",
+    "imagen": "https://coverartarchive.org/release-group/575702c1-53cc-4d97-be05-68578ae66f15/front-250",
+    "titulo": "Se Deja Llevar",
+    "fecha": "2008-01-01",
+    "artista": "Antonio Orozco",
+    "tipo": "Single"
   },
   {
     "id": "a452919a-e2d2-4c14-a398-d1789e26cf42",
@@ -233019,14 +233019,6 @@
     "id": "703d608e-a9d2-49fc-a7dd-8d89c4276b48",
     "imagen": "https://coverartarchive.org/release-group/703d608e-a9d2-49fc-a7dd-8d89c4276b48/front-250",
     "titulo": "Los Angeles Magnetic: The Forum Los Angeles, CA Dec 18, 2008",
-    "fecha": "2008",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
-    "id": "0961b21a-da93-43de-83b4-332f8de25f0e",
-    "imagen": "https://coverartarchive.org/release-group/0961b21a-da93-43de-83b4-332f8de25f0e/front-250",
-    "titulo": "Demo Magnetic",
     "fecha": "2008",
     "artista": "Metallica",
     "tipo": "Album"
@@ -237914,7 +237906,7 @@
   {
     "id": "1ad11422-79b1-4f93-b517-8b912878ed2b",
     "imagen": "https://coverartarchive.org/release-group/1ad11422-79b1-4f93-b517-8b912878ed2b/front-250",
-    "titulo": "Ojalá Pudiera Borrarte",
+    "titulo": "Ojalá pudiera borrarte",
     "fecha": "2007-06-12",
     "artista": "Maná",
     "tipo": "Single"
@@ -244754,7 +244746,7 @@
   {
     "id": "ab856d63-67ff-4d22-930b-1ba88a24c872",
     "imagen": "https://coverartarchive.org/release-group/ab856d63-67ff-4d22-930b-1ba88a24c872/front-250",
-    "titulo": "Bendita Tu Luz",
+    "titulo": "Bendita tu luz",
     "fecha": "2006-11-07",
     "artista": "Maná",
     "tipo": "Single"
@@ -246258,7 +246250,7 @@
   {
     "id": "ccb3cd5b-8cfb-4ebd-8d74-292324d7670b",
     "imagen": "https://coverartarchive.org/release-group/ccb3cd5b-8cfb-4ebd-8d74-292324d7670b/front-250",
-    "titulo": "Labios Compartidos",
+    "titulo": "Labios compartidos",
     "fecha": "2006-07-10",
     "artista": "Maná",
     "tipo": "Single"
@@ -258618,7 +258610,7 @@
   {
     "id": "2014d775-87b8-40c2-ad9b-1096d312b21b",
     "imagen": "https://coverartarchive.org/release-group/2014d775-87b8-40c2-ad9b-1096d312b21b/front-250",
-    "titulo": "Acceso Total",
+    "titulo": "Acceso total",
     "fecha": "2005",
     "artista": "Maná",
     "tipo": "Album"
@@ -291256,6 +291248,14 @@
     "tipo": "Album"
   },
   {
+    "id": "78db4ad4-fd78-4aae-8c8c-f16b8806319b",
+    "imagen": "https://coverartarchive.org/release-group/78db4ad4-fd78-4aae-8c8c-f16b8806319b/front-250",
+    "titulo": "Lo mejor de Louis Armstrong & Ella Fitzgerald CD 2",
+    "fecha": "2001",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
     "id": "80b37e16-34f2-351e-8b39-61efb84cbcb2",
     "imagen": "https://coverartarchive.org/release-group/80b37e16-34f2-351e-8b39-61efb84cbcb2/front-250",
     "titulo": "Celebrating the Best of Jazz",
@@ -295650,7 +295650,7 @@
   {
     "id": "24d80b42-0a3a-46e8-b291-1558debaa28e",
     "imagen": "https://coverartarchive.org/release-group/24d80b42-0a3a-46e8-b291-1558debaa28e/front-250",
-    "titulo": "Corazón Espinado",
+    "titulo": "Corazón espinado",
     "fecha": "2000-07-03",
     "artista": "Maná",
     "tipo": "Single"
@@ -344234,7 +344234,7 @@
   {
     "id": "47bb6e8b-14ab-3929-a140-57733e7cd3c1",
     "imagen": "https://coverartarchive.org/release-group/47bb6e8b-14ab-3929-a140-57733e7cd3c1/front-250",
-    "titulo": "En Vivo",
+    "titulo": "En vivo",
     "fecha": "1994-12-13",
     "artista": "Maná",
     "tipo": "Album"
@@ -389936,6 +389936,14 @@
     "tipo": "Single"
   },
   {
+    "id": "c4f73385-56d1-4ab6-a238-7838d0c14047",
+    "imagen": "https://coverartarchive.org/release-group/c4f73385-56d1-4ab6-a238-7838d0c14047/front-250",
+    "titulo": "Bee Gees Mix",
+    "fecha": "1987",
+    "artista": "Bee Gees",
+    "tipo": "EP"
+  },
+  {
     "id": "7a350ff0-f356-4c56-9c07-ab31283ac4b1",
     "imagen": "https://coverartarchive.org/release-group/7a350ff0-f356-4c56-9c07-ab31283ac4b1/front-250",
     "titulo": "Stand By Me",
@@ -430976,14 +430984,6 @@
     "tipo": "Album"
   },
   {
-    "id": "b35364f0-72f4-39f7-a563-adc9daf620d1",
-    "imagen": "https://coverartarchive.org/release-group/b35364f0-72f4-39f7-a563-adc9daf620d1/front-250",
-    "titulo": "Come to My Garden",
-    "fecha": "1971",
-    "artista": "Minnie Riperton",
-    "tipo": "Album"
-  },
-  {
     "id": "f9ea1790-de2c-3b77-82d1-811e0adc28c9",
     "imagen": "https://coverartarchive.org/release-group/f9ea1790-de2c-3b77-82d1-811e0adc28c9/front-250",
     "titulo": "Les Fleur",
@@ -431765,6 +431765,14 @@
     "titulo": "New Ways but Love Stays",
     "fecha": "1970-10",
     "artista": "The Supremes",
+    "tipo": "Album"
+  },
+  {
+    "id": "b35364f0-72f4-39f7-a563-adc9daf620d1",
+    "imagen": "https://coverartarchive.org/release-group/b35364f0-72f4-39f7-a563-adc9daf620d1/front-250",
+    "titulo": "Come to My Garden",
+    "fecha": "1970-09-23",
+    "artista": "Minnie Riperton",
     "tipo": "Album"
   },
   {
@@ -447464,14 +447472,6 @@
     "tipo": "Album"
   },
   {
-    "id": "0158c1b2-8b4e-4159-8393-aa73298c7796",
-    "imagen": "https://coverartarchive.org/release-group/0158c1b2-8b4e-4159-8393-aa73298c7796/front-250",
-    "titulo": "Skookian / Otchi-Tchor-Ni-Ya",
-    "fecha": "1954",
-    "artista": "Louis Armstrong",
-    "tipo": "EP"
-  },
-  {
     "id": "81e67993-5ee8-432d-b6fd-2f38a108f25d",
     "imagen": "https://coverartarchive.org/release-group/81e67993-5ee8-432d-b6fd-2f38a108f25d/front-250",
     "titulo": "Louis Armstrong Plays W.C. Handy, Volume 1",
@@ -447491,6 +447491,14 @@
     "id": "aa27b632-fc0c-4600-81f2-10e89f4d49bc",
     "imagen": "https://coverartarchive.org/release-group/aa27b632-fc0c-4600-81f2-10e89f4d49bc/front-250",
     "titulo": "Louis Armstrong and the Mills Brothers, Volume One",
+    "fecha": "1954",
+    "artista": "Louis Armstrong",
+    "tipo": "EP"
+  },
+  {
+    "id": "0158c1b2-8b4e-4159-8393-aa73298c7796",
+    "imagen": "https://coverartarchive.org/release-group/0158c1b2-8b4e-4159-8393-aa73298c7796/front-250",
+    "titulo": "Skookian / Otchi-Tchor-Ni-Ya",
     "fecha": "1954",
     "artista": "Louis Armstrong",
     "tipo": "EP"
@@ -461704,6 +461712,22 @@
     "tipo": "Album"
   },
   {
+    "id": "4d585e02-3e8d-4405-930f-270617422437",
+    "imagen": "https://coverartarchive.org/release-group/4d585e02-3e8d-4405-930f-270617422437/front-250",
+    "titulo": "Perfect (acoustic)",
+    "fecha": "",
+    "artista": "Ed Sheeran",
+    "tipo": "Single"
+  },
+  {
+    "id": "593e5134-9fd2-4266-bc9a-8f40d921ad69",
+    "imagen": "https://coverartarchive.org/release-group/593e5134-9fd2-4266-bc9a-8f40d921ad69/front-250",
+    "titulo": "Castle on the Hill (acoustic)",
+    "fecha": "",
+    "artista": "Ed Sheeran",
+    "tipo": "Single"
+  },
+  {
     "id": "ab1b2a21-285e-421d-b319-05dba3c0b03f",
     "imagen": "https://coverartarchive.org/release-group/ab1b2a21-285e-421d-b319-05dba3c0b03f/front-250",
     "titulo": "I See Fire (Gestört aber GeiL remix)",
@@ -468152,14 +468176,6 @@
     "tipo": "Single"
   },
   {
-    "id": "ed1d5c9f-ac4a-46d6-9b14-c0d3442beef4",
-    "imagen": "https://coverartarchive.org/release-group/ed1d5c9f-ac4a-46d6-9b14-c0d3442beef4/front-250",
-    "titulo": "Essentials",
-    "fecha": "",
-    "artista": "Lewis Capaldi",
-    "tipo": "Publicación"
-  },
-  {
     "id": "8414f749-26f8-3dcb-b088-95cc7f0f27e0",
     "imagen": "https://coverartarchive.org/release-group/8414f749-26f8-3dcb-b088-95cc7f0f27e0/front-250",
     "titulo": "The Best Of",
@@ -468379,14 +468395,6 @@
     "id": "1f256894-97eb-323f-8852-2812beefc0f6",
     "imagen": "https://coverartarchive.org/release-group/1f256894-97eb-323f-8852-2812beefc0f6/front-250",
     "titulo": "Cool Breeze",
-    "fecha": "",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "25438651-3b9d-3fc7-b055-bb6c9da4f423",
-    "imagen": "https://coverartarchive.org/release-group/25438651-3b9d-3fc7-b055-bb6c9da4f423/front-250",
-    "titulo": "Stardust",
     "fecha": "",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -468883,6 +468891,14 @@
     "id": "1c37007f-7bf2-4521-88d0-a0cb2062bac8",
     "imagen": "https://coverartarchive.org/release-group/1c37007f-7bf2-4521-88d0-a0cb2062bac8/front-250",
     "titulo": "The Magic of Louis Armstrong",
+    "fecha": "",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "25438651-3b9d-3fc7-b055-bb6c9da4f423",
+    "imagen": "https://coverartarchive.org/release-group/25438651-3b9d-3fc7-b055-bb6c9da4f423/front-250",
+    "titulo": "Stardust",
     "fecha": "",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -469386,7 +469402,7 @@
   {
     "id": "cb3ff638-9b22-3bc6-88d3-fa129e3cd2a0",
     "imagen": "https://coverartarchive.org/release-group/cb3ff638-9b22-3bc6-88d3-fa129e3cd2a0/front-250",
-    "titulo": "Lo Mejor De",
+    "titulo": "Lo mejor de",
     "fecha": "",
     "artista": "Maná",
     "tipo": "Album"
@@ -469715,6 +469731,14 @@
     "id": "03d3b08f-f3d3-4c76-9fc7-66b0ae561634",
     "imagen": "https://coverartarchive.org/release-group/03d3b08f-f3d3-4c76-9fc7-66b0ae561634/front-250",
     "titulo": "Orlando, Florida - July 5, 2017",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "0961b21a-da93-43de-83b4-332f8de25f0e",
+    "imagen": "https://coverartarchive.org/release-group/0961b21a-da93-43de-83b4-332f8de25f0e/front-250",
+    "titulo": "Demo Magnetic",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -481738,7 +481762,7 @@
   {
     "id": "a2c66288-ca85-44ee-9271-e90662f08243",
     "imagen": "https://coverartarchive.org/release-group/a2c66288-ca85-44ee-9271-e90662f08243/front-250",
-    "titulo": "Ultra Rare Trax Vol. 2",
+    "titulo": "Ultra Rare Trax, Vol. 2",
     "fecha": "",
     "artista": "The Rolling Stones",
     "tipo": "Album"
