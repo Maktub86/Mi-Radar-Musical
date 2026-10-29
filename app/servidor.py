@@ -387,7 +387,7 @@ header{box-sizing:border-box;height:152px;min-height:152px;display:flex;flex-dir
 h1{font-size:clamp(32px,6vw,52px);line-height:1.1;margin:10px 0 8px;color:#281506}header p{margin:0;color:#38200d;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 nav{display:flex;gap:10px;flex-wrap:wrap;padding:18px 6%;border-bottom:1px solid #ffffff18}
 nav a{color:#e8e5ff;text-decoration:none;background:#ffffff12;padding:10px 15px;border-radius:22px;font-size:14px}
-nav a.activo{background:#ff4fa3;color:#fff;font-weight:bold}
+nav a.activo{background:#c94f79;color:#fff;font-weight:bold}
 main{max-width:1000px;margin:auto;padding:30px 6%}
 .programa{padding:20px;margin:12px 0;background:var(--panel);border:1px solid #ffffff18;border-radius:15px}
 .programa h2{margin:0 0 8px;font-size:clamp(22px,3vw,28px)}
@@ -477,8 +477,8 @@ def pagina_lo_mejor():
 *{box-sizing:border-box}
 body{margin:0;background:linear-gradient(140deg,#17152d,#10101c 55%,#26152e);color:#f7f5ff;font-family:Segoe UI,Arial,sans-serif;min-height:100vh}
 
-header{box-sizing:border-box;height:152px;min-height:152px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:24px 6%;background:linear-gradient(110deg,#278c36 0%,#82d34f 65%,#d5f26b 100%);color:#183014}
-h1{font-size:clamp(32px,6vw,52px);line-height:1.1;margin:10px 0 8px;color:#183014}header p{color:#25431e;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+header{box-sizing:border-box;height:152px;min-height:152px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:24px 6%;background:linear-gradient(110deg,#76233f 0%,#c94f79 65%,#f2a0a0 100%);color:#fff7fa}
+h1{font-size:clamp(32px,6vw,52px);line-height:1.1;margin:10px 0 8px;color:#fff7fa}header p{color:#fff0f4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 nav{display:flex;gap:10px;flex-wrap:wrap;padding:18px 6%;border-bottom:1px solid #ffffff18}
 nav a{color:#e8e5ff;text-decoration:none;background:#ffffff12;padding:10px 15px;border-radius:22px;font-size:14px}
 nav a.activo{background:#ff4fa3;color:#fff;font-weight:bold}
