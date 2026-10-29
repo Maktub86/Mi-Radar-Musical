@@ -970,8 +970,82 @@ def api_lo_mejor():
                 "preview": pista.get("preview") or "",
                 "url": pista.get("link") or "",
                 "rank": pista.get("rank"),
-                "anio": anio
+                "anio": anio,
+                "fecha": fecha[:10] if len(fecha) >= 4 and fecha[:4].isdigit() else ""
             })
+
+        # Deezer define el ranking de popularidad; Apple/iTunes se usa como
+        # segunda fuente para completar fechas exactas cuando Deezer no las ofrece.
+        canciones.sort(key=lambda c: int(c.get("rank") or 0), reverse=True)
+
+        def completar_fecha_apple(cancion):
+            if cancion.get("fecha") and len(cancion["fecha"]) >= 10:
+                return None
+            artista_busqueda = str(cancion.get("artista") or nombre_deezer)
+            titulo_busqueda = str(cancion.get("titulo") or "")
+            if not artista_busqueda or not titulo_busqueda:
+                return None
+            parametros_apple = urlencode({
+                "term": artista_busqueda + " " + titulo_busqueda,
+                "country": "ES", "entity": "song", "limit": 10
+            })
+            try:
+                peticion_apple = Request(
+                    "https://itunes.apple.com/search?" + parametros_apple,
+                    headers={"User-Agent": "MiRadarMusical/1.0"}
+                )
+                with urlopen(peticion_apple, timeout=4) as respuesta_apple:
+                    catalogo = json.loads(respuesta_apple.read().decode("utf-8"))
+                objetivo_artista = normalizar_texto(artista_busqueda)
+                objetivo_titulo = normalizar_texto(titulo_busqueda)
+                mejor_apple = None
+                mejor_puntuacion = -1
+                for item in catalogo.get("results") or []:
+                    artista_apple = normalizar_texto(item.get("artistName"))
+                    titulo_apple = normalizar_texto(item.get("trackName"))
+                    if not artista_apple or not titulo_apple:
+                        continue
+                    puntuacion = (
+                        4 if artista_apple == objetivo_artista else
+                        2 if difflib.SequenceMatcher(None, objetivo_artista, artista_apple).ratio() >= 0.88 else 0
+                    )
+                    puntuacion += (
+                        5 if titulo_apple == objetivo_titulo else
+                        2 if difflib.SequenceMatcher(None, objetivo_titulo, titulo_apple).ratio() >= 0.85 else 0
+                    )
+                    if puntuacion > mejor_puntuacion:
+                        mejor_apple, mejor_puntuacion = item, puntuacion
+                if not mejor_apple or mejor_puntuacion < 7:
+                    return None
+                fecha_apple = str(mejor_apple.get("releaseDate") or "")[:10]
+                if not re.match(r"^\\d{4}(?:-\\d{2}(?:-\\d{2})?)?$", fecha_apple):
+                    fecha_apple = ""
+                return (
+                    cancion, fecha_apple,
+                    fecha_apple[:4] if fecha_apple else "",
+                    str(mejor_apple.get("collectionName") or "")
+                )
+            except Exception as error_apple:
+                app.logger.debug("Apple/iTunes no pudo completar la fecha de %s: %s", titulo_busqueda, error_apple)
+                return None
+
+        # Limitar la consulta extra a los 30 temas mejor clasificados y paralelizarla
+        # para no convertir la carga de la lista en decenas de esperas consecutivas.
+        pendientes_fecha = [c for c in canciones[:30] if len(str(c.get("fecha") or "")) < 10]
+        if pendientes_fecha:
+            with ThreadPoolExecutor(max_workers=6) as executor:
+                tareas_fecha = [executor.submit(completar_fecha_apple, c) for c in pendientes_fecha]
+                for tarea in as_completed(tareas_fecha):
+                    resultado_fecha = tarea.result()
+                    if not resultado_fecha:
+                        continue
+                    cancion_fecha, fecha_apple, anio_apple, album_apple = resultado_fecha
+                    if fecha_apple:
+                        cancion_fecha["fecha"] = fecha_apple
+                        cancion_fecha["anio"] = anio_apple
+                    if not cancion_fecha.get("album") and album_apple:
+                        cancion_fecha["album"] = album_apple
+
         if tipo == "recientes":
             # Seleccionar primero los temas destacados que tengan año verificable
             # y priorizar el lanzamiento más reciente; el ranking de Deezer desempata.
@@ -986,11 +1060,9 @@ def api_lo_mejor():
             canciones = canciones[:5]
             mensaje_vacio = "Deezer no ha devuelto temas destacados con fecha de lanzamiento identificable para este artista."
         else:
-            # Mantener el comportamiento actual: las 20 más populares,
-            # ordenadas cronológicamente para facilitar la consulta por año.
-            canciones.sort(key=lambda c: int(c.get("rank") or 0), reverse=True)
+            # Mantener el orden real de popularidad de Deezer; las fechas se muestran
+            # como metadatos y no deben reordenar ni falsear el ranking.
             canciones = canciones[:20]
-            canciones.sort(key=lambda c: (int(c["anio"]) if str(c.get("anio") or "").isdigit() else 9999, -(int(c.get("rank") or 0))))
             mensaje_vacio = "Deezer no ha encontrado canciones para este artista en este momento. Prueba de nuevo más tarde."
 
         if not canciones:
@@ -998,7 +1070,7 @@ def api_lo_mejor():
 
         return jsonify({
             "artista": mejor.get("name", nombre_solicitado),
-            "fuente": "Deezer",
+            "fuente": "Deezer (popularidad) + Apple/iTunes (fechas cuando están disponibles)",
             "tipo": tipo,
             "canciones": canciones
         })
