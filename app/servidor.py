@@ -714,8 +714,8 @@ async function cargarTop(nombre,caja,boton,tipo='populares'){
     }finally{wiki.disabled=false;wiki.textContent='I';}
    });
    tituloLinea.appendChild(wiki);
-   const descripcion=recientes?'Lanzamiento reciente entre los temas destacados de Deezer':'Popularidad en Deezer';
-   detalle.appendChild(nodo('div','pista-meta',(pista.anio||'Año no disponible')+' · '+pista.artista+' · '+descripcion+(pista.album?' · '+pista.album:'')));
+   const descripcion=recientes?'Lanzamiento reciente (Deezer + Apple/iTunes)':'Popularidad según el ranking de Deezer';
+   detalle.appendChild(nodo('div','pista-meta',(pista.fecha||pista.anio||'Fecha no disponible')+' · '+pista.artista+' · '+descripcion+(pista.album?' · '+pista.album:'')));
    const acciones=nodo('div','acciones-pista');
    const muestra=nodo('button','boton-30','');muestra.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="17" height="17" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg><span>30 s</span>';
    muestra.title=pista.preview?'Reproducir muestra de 30 segundos':'Muestra de 30 segundos no disponible';
@@ -1018,7 +1018,7 @@ def api_lo_mejor():
                 if not mejor_apple or mejor_puntuacion < 7:
                     return None
                 fecha_apple = str(mejor_apple.get("releaseDate") or "")[:10]
-                if not re.match(r"^\\d{4}(?:-\\d{2}(?:-\\d{2})?)?$", fecha_apple):
+                if not re.match(r"^\d{4}(?:-\d{2}(?:-\d{2})?)?$", fecha_apple):
                     fecha_apple = ""
                 return (
                     cancion, fecha_apple,
