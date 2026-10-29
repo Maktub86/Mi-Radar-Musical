@@ -81,8 +81,6 @@ function despacharPortadasRecomendaciones(){
     const url=String(item.artworkUrl100).replace(/\d+x\d+bb/,'100x100bb').replace(/^http:\/\//i,'https://');
     if(!/^https:\/\//i.test(url))throw new Error('URL de portada no válida');
     cachePortadasRecomendaciones.set(clave,url);
-    if(!c.anio){const m=String(item.releaseDate||'').match(/(?:19|20)\d{2}/);if(m)c.anio=m[0]}
-    if(!c.album)c.album=item.collectionName||'';
     if(img.isConnected){img.src=url}
    }catch(e){
     cachePortadasRecomendaciones.set(clave,'');
