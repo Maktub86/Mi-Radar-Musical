@@ -110,10 +110,10 @@ button:focus-visible,a:focus-visible{outline:2px solid #c9a5ff;outline-offset:3p
                 flags=re.IGNORECASE,
             )
             enlaces_marca = """
-<link rel="icon" type="image/png" sizes="192x192" href="/icono-mrm-192.png?v=11">
-<link rel="icon" type="image/svg+xml" href="/icono-mrm.svg?v=11">
-<link rel="apple-touch-icon" sizes="192x192" href="/icono-mrm-192.png?v=11">
-<link rel="manifest" href="/manifest.webmanifest?v=11">
+<link rel="icon" type="image/png" sizes="192x192" href="/icono-mrm-192.png?v=12">
+<link rel="icon" type="image/svg+xml" href="/icono-mrm.svg?v=12">
+<link rel="apple-touch-icon" sizes="192x192" href="/icono-mrm-192.png?v=12">
+<link rel="manifest" href="/manifest.webmanifest?v=12">
 <meta name="theme-color" content="#6d28a8">
 <meta name="application-name" content="Mi Radar Musical">
 """
