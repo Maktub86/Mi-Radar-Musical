@@ -1700,14 +1700,29 @@ def api_recomendaciones():
         )
     else:
         ordenadas = list(candidatos.values())
-    ordenadas.sort(key=lambda p: (-p["puntuacion"], clave(p["artista"]), clave(p["titulo"])))
-    # Orden aleatorio reproducible durante una tanda: el navegador envía una
-    # semilla nueva al pulsar buscar, evitando que el mismo tema quede siempre primero.
+    # En las búsquedas por década, priorizar las canciones descubiertas a partir
+    # de la biblioteca mediante Last.fm/Deezer. MusicBrainz queda como catálogo
+    # de apoyo para completar la lista cuando faltan coincidencias personalizadas.
+    # Mantener el orden aleatorio dentro de cada grupo, sin mezclar ambos grupos.
     try:
         semilla_azar = int(request.args.get("azar") or "0")
     except (TypeError, ValueError):
         semilla_azar = 0
-    random.Random(semilla_azar).shuffle(ordenadas)
+    if decada_solicitada:
+        personalizadas = [
+            p for p in ordenadas
+            if p.get("fuente_recomendacion") != "MusicBrainz"
+        ]
+        catalogo_apoyo = [
+            p for p in ordenadas
+            if p.get("fuente_recomendacion") == "MusicBrainz"
+        ]
+        random.Random(semilla_azar).shuffle(personalizadas)
+        random.Random(semilla_azar ^ 0x5F3759DF).shuffle(catalogo_apoyo)
+        ordenadas = personalizadas + catalogo_apoyo
+    else:
+        ordenadas.sort(key=lambda p: (-p["puntuacion"], clave(p["artista"]), clave(p["titulo"])))
+        random.Random(semilla_azar).shuffle(ordenadas)
     return jsonify({"canciones": ordenadas[inicio:inicio + 10], "generos": generos,
                     "total_candidatas": len(ordenadas), "total_biblioteca": len(biblioteca),
                     "inicio": inicio, "decada": decada_solicitada, "fuente": fuente_final,
