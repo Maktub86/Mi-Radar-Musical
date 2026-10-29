@@ -1145,6 +1145,17 @@ def api_recomendaciones():
             if isinstance(imagenes, list):
                 portada = next((im.get("#text") or im.get("url") for im in reversed(imagenes)
                                 if isinstance(im, dict) and (im.get("#text") or im.get("url"))), "")
+        # Normalizar URLs antiguas/protocol-relative antes de enviarlas al navegador.
+        if isinstance(portada, str):
+            portada = portada.strip()
+            if portada.startswith("//"):
+                portada = "https:" + portada
+            elif portada.startswith("http://"):
+                portada = "https://" + portada[len("http://"):]
+            if not portada.startswith("https://"):
+                portada = ""
+        else:
+            portada = ""
         puntaje = peso * 100 + min(int(pista.get("rank") or 0) / 100000, 30)
         actual = candidatos.get(llave)
         if actual and actual["puntuacion"] >= puntaje:
