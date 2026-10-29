@@ -1378,7 +1378,7 @@ def api_recomendaciones():
             similares = (datos.get("similartracks") or {}).get("track") or []
             if isinstance(similares, dict):
                 similares = [similares]
-            for similar in similares[:4 if decada_solicitada else 4]:
+            for similar in similares[:12 if decada_solicitada else 4]:
                 titulo = str(similar.get("name") or "").strip()
                 artista_info = similar.get("artist") or {}
                 nombre_artista = str(artista_info.get("name") or "").strip()
@@ -1462,7 +1462,7 @@ def api_recomendaciones():
                     continue
             # Al filtrar por década hace falta una muestra más amplia: el top 8
             # habitual suele dejar fuera canciones antiguas o con fecha disponible.
-            limite_relacionados = 3 if decada_solicitada else 2
+            limite_relacionados = 5 if decada_solicitada else 2
             relacionados = consultar("https://api.deezer.com/artist/" + str(coincidencia.get("id")) +
                                      "/related?" + urlencode({"limit": limite_relacionados})).get("data") or []
             objetivos = [(a, 1.0) for a in relacionados[:limite_relacionados]] or [(coincidencia, 0.55)]
