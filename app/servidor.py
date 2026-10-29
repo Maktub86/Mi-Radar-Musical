@@ -1230,7 +1230,7 @@ def api_recomendaciones():
         cache_peticion[url] = {}
         return {}
 
-    def añadir_candidata(pista, semilla, peso, fuente):
+    def añadir_candidata(pista, semilla, peso, fuente, completar_datos=True):
         titulo = str(pista.get("title") or pista.get("titulo") or pista.get("name") or "").strip()
         artista_info = pista.get("artist") or {}
         nombre_artista = str(artista_info.get("name") or pista.get("artista") or "").strip()
@@ -1247,7 +1247,7 @@ def api_recomendaciones():
         portada_inicial = (album_inicial.get("cover_xl") or album_inicial.get("cover_big") or
                            album_inicial.get("cover_medium") or album_inicial.get("cover") or
                            pista.get("cover_xl") or pista.get("cover_big") or "")
-        if not pista.get("id") or not fecha_inicial or not portada_inicial:
+        if completar_datos and (not pista.get("id") or not fecha_inicial or not portada_inicial):
             consulta_dz = urlencode({"q": 'artist:"' + nombre_artista + '" track:"' + titulo + '"', "limit": 10})
             resultados_dz = consultar("https://api.deezer.com/search/track?" + consulta_dz).get("data") or []
             objetivo_artista, objetivo_titulo = clave(nombre_artista), clave(titulo)
@@ -1269,7 +1269,7 @@ def api_recomendaciones():
         tiene_portada = bool(album.get("cover_xl") or album.get("cover_big") or
                              album.get("cover_medium") or album.get("cover") or
                              pista.get("cover_xl") or pista.get("cover_big"))
-        if pista.get("id") and (not fecha_lanzamiento or not tiene_portada or not pista.get("preview")):
+        if completar_datos and pista.get("id") and (not fecha_lanzamiento or not tiene_portada or not pista.get("preview")):
             detalle = consultar("https://api.deezer.com/track/" + str(pista["id"]), timeout=5)
             if detalle:
                 pista = {**pista, **detalle}
@@ -1277,7 +1277,7 @@ def api_recomendaciones():
                 fecha_lanzamiento = (pista.get("release_date") or album.get("release_date") or
                                      pista.get("releaseDate") or pista.get("date") or fecha_lanzamiento)
         # La fecha suele estar en la ficha del álbum, aunque falte en la canción.
-        if album.get("id") and (not fecha_lanzamiento or not (album.get("cover_xl") or album.get("cover_big") or album.get("cover_medium") or album.get("cover"))):
+        if completar_datos and album.get("id") and (not fecha_lanzamiento or not (album.get("cover_xl") or album.get("cover_big") or album.get("cover_medium") or album.get("cover"))):
             detalle_album = consultar("https://api.deezer.com/album/" + str(album["id"]), timeout=5)
             if detalle_album:
                 album = {**album, **detalle_album}
@@ -1410,7 +1410,7 @@ def api_recomendaciones():
 
     # Si Last.fm no está configurado o no devuelve suficientes temas, completar con el
     # sistema anterior de artistas relacionados de Deezer.
-    if len(candidatos) < 10:
+    if len(candidatos) < 10 or decada_solicitada:
         semillas_artistas = sorted(artistas.values(), key=lambda a: (-a["total"], a["nombre"].casefold()))
         if genero_solicitado:
             semillas_artistas = [a for a in semillas_artistas if a["generos"] and
@@ -1442,7 +1442,7 @@ def api_recomendaciones():
                 top = consultar("https://api.deezer.com/artist/" + str(id_rel) +
                                 "/top?" + urlencode({"limit": limite_top})).get("data") or []
                 for pista in top:
-                    añadir_candidata(pista, semilla, peso, "Deezer")
+                    añadir_candidata(pista, semilla, peso, "Deezer", completar_datos=not bool(decada_solicitada))
 
     if decada_solicitada:
         # Deezer a menudo no incluye fecha. Completar los años por tandas y seguir
