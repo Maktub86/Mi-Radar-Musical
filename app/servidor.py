@@ -347,8 +347,8 @@ def pagina_programas():
 :root{color-scheme:dark;--panel:#1b1b2d;--texto:#f7f5ff;--suave:#b8b6cf;--verde:#55e6bd}
 *{box-sizing:border-box}
 body{margin:0;background:linear-gradient(140deg,#17152d,#10101c 55%,#26152e);color:var(--texto);font-family:Segoe UI,Arial,sans-serif;min-height:100vh}
-header{box-sizing:border-box;min-height:190px;display:flex;flex-direction:column;justify-content:center;padding:30px 6%;background:linear-gradient(110deg,#f28c28,#ffad42 65%,#ffd166);color:#281506}
-h1{font-size:clamp(32px,6vw,52px);margin:12px 0 8px;color:#281506}header p{margin:0;color:#38200d}
+header{box-sizing:border-box;height:194px;min-height:194px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:24px 6%;background:linear-gradient(110deg,#d95a12 0%,#ff982b 65%,#ffd166 100%);color:#281506}
+h1{font-size:clamp(32px,6vw,52px);line-height:1.1;margin:10px 0 8px;color:#281506}header p{margin:0;color:#38200d;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 nav{display:flex;gap:10px;flex-wrap:wrap;padding:18px 6%;border-bottom:1px solid #ffffff18}
 nav a{color:#e8e5ff;text-decoration:none;background:#ffffff12;padding:10px 15px;border-radius:22px;font-size:14px}
 nav a.activo{background:#ff4fa3;color:#fff;font-weight:bold}
@@ -441,8 +441,8 @@ def pagina_lo_mejor():
 *{box-sizing:border-box}
 body{margin:0;background:linear-gradient(140deg,#17152d,#10101c 55%,#26152e);color:#f7f5ff;font-family:Segoe UI,Arial,sans-serif;min-height:100vh}
 
-header{box-sizing:border-box;min-height:190px;display:flex;flex-direction:column;justify-content:center;padding:30px 6%;background:linear-gradient(110deg,#8bdc65,#b7ed8a 65%,#d8f5a2);color:#183014}
-h1{font-size:clamp(32px,6vw,52px);margin:12px 0 8px;color:#183014}header p{color:#25431e}
+header{box-sizing:border-box;height:194px;min-height:194px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:24px 6%;background:linear-gradient(110deg,#278c36 0%,#82d34f 65%,#d5f26b 100%);color:#183014}
+h1{font-size:clamp(32px,6vw,52px);line-height:1.1;margin:10px 0 8px;color:#183014}header p{color:#25431e;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 nav{display:flex;gap:10px;flex-wrap:wrap;padding:18px 6%;border-bottom:1px solid #ffffff18}
 nav a{color:#e8e5ff;text-decoration:none;background:#ffffff12;padding:10px 15px;border-radius:22px;font-size:14px}
 nav a.activo{background:#ff4fa3;color:#fff;font-weight:bold}
