@@ -1299,7 +1299,53 @@ def api_recomendaciones():
                     añadir_candidata(pista, semilla, peso, "Deezer")
 
     if decada_solicitada:
-        ordenadas = [p for p in candidatos.values() if p.get("anio") and p["anio"].startswith(decada_solicitada[:3])]
+        # Deezer a menudo no incluye fecha en sus búsquedas. Completar los años
+        # ausentes desde iTunes ANTES de filtrar; el navegador los completaba
+        # después de recibir la lista, demasiado tarde para este filtro.
+        pendientes_anio = [p for p in candidatos.values() if not p.get("anio")][:60]
+
+        def completar_anio_decada(pista):
+            parametros = urlencode({
+                "term": str(pista.get("artista") or "") + " " + str(pista.get("titulo") or ""),
+                "country": "es", "media": "music", "entity": "song", "limit": 10
+            })
+            try:
+                peticion = Request("https://itunes.apple.com/search?" + parametros,
+                                   headers={"User-Agent": "MiRadarMusical/1.0"})
+                with urlopen(peticion, timeout=3) as respuesta:
+                    datos_itunes = json.loads(respuesta.read().decode("utf-8"))
+                artista_obj = clave(pista.get("artista"))
+                titulo_obj = clave(pista.get("titulo"))
+                mejor = None
+                mejor_puntos = -1
+                for item in datos_itunes.get("results") or []:
+                    artista_itunes = clave(item.get("artistName"))
+                    titulo_itunes = clave(item.get("trackName"))
+                    puntos = (4 if artista_itunes == artista_obj else
+                              2 if difflib.SequenceMatcher(None, artista_obj, artista_itunes).ratio() >= 0.88 else 0)
+                    puntos += (5 if titulo_itunes == titulo_obj else
+                               2 if difflib.SequenceMatcher(None, titulo_obj, titulo_itunes).ratio() >= 0.88 else 0)
+                    if puntos > mejor_puntos:
+                        mejor, mejor_puntos = item, puntos
+                if mejor and mejor_puntos >= 7:
+                    fecha_itunes = str(mejor.get("releaseDate") or "")
+                    coincidencia = re.search(r"(?:19|20)\\d{2}", fecha_itunes)
+                    if coincidencia:
+                        pista["anio"] = coincidencia.group(0)
+                    if not pista.get("portada") and mejor.get("artworkUrl100"):
+                        pista["portada"] = str(mejor["artworkUrl100"]).replace("100x100bb", "600x600bb")
+                    if not pista.get("album"):
+                        pista["album"] = str(mejor.get("collectionName") or "")
+            except Exception as error:
+                app.logger.debug("Recomendaciones: no se pudo recuperar año de iTunes: %s", error)
+
+        # Paralelismo limitado para no alargar excesivamente la respuesta.
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            list(executor.map(completar_anio_decada, pendientes_anio))
+
+        ordenadas = [p for p in candidatos.values()
+                     if p.get("anio") and p["anio"].startswith(decada_solicitada[:3])]
     else:
         ordenadas = list(candidatos.values())
     ordenadas.sort(key=lambda p: (-p["puntuacion"], clave(p["artista"]), clave(p["titulo"])))
