@@ -9,9 +9,7 @@ import os
 import secrets
 import smtplib
 import sys
-from datetime import datetime, timedelta, timezone
 from email.message import EmailMessage
-from pathlib import Path
 from pathlib import Path
 
 from flask import redirect, render_template_string, request, session, url_for
@@ -141,24 +139,24 @@ def _enviar_enlace_recuperacion(enlace):
     if not all((host, usuario, clave, remitente)):
         raise RuntimeError("Falta configurar el servicio de correo en Render.")
 
-    for destinatario in CORREOS_RECUPERACION:
-        mensaje = EmailMessage()
-        mensaje["Subject"] = "Enlace para recuperar el acceso a Mi Radar Musical"
-        mensaje["From"] = remitente
-        mensaje["To"] = destinatario
-        mensaje.set_content(
-            "Has solicitado recuperar el acceso a Mi Radar Musical.\n\n"
-            "Abre este enlace para entrar sin cambiar tu contraseña. "
-            "El enlace caduca en 15 minutos y solo se puede utilizar una vez:\n\n"
-            f"{enlace}\n\n"
-            "Si no has solicitado este acceso, ignora este mensaje."
-        )
-        with smtplib.SMTP(host, puerto, timeout=15) as servidor:
-            servidor.ehlo()
-            servidor.starttls()
-            servidor.ehlo()
-            servidor.login(usuario, clave)
-            servidor.send_message(mensaje)
+    mensaje = EmailMessage()
+    mensaje["Subject"] = "Enlace para recuperar el acceso a Mi Radar Musical"
+    mensaje["From"] = remitente
+    mensaje["To"] = CORREOS_RECUPERACION[0]
+    mensaje["Bcc"] = ", ".join(CORREOS_RECUPERACION[1:])
+    mensaje.set_content(
+        "Has solicitado recuperar el acceso a Mi Radar Musical.\n\n"
+        "Abre este enlace para entrar sin cambiar tu contraseña. "
+        "El enlace caduca en 15 minutos y solo se puede utilizar una vez:\n\n"
+        f"{enlace}\n\n"
+        "Si no has solicitado este acceso, ignora este mensaje."
+    )
+    with smtplib.SMTP(host, puerto, timeout=15) as servidor:
+        servidor.ehlo()
+        servidor.starttls()
+        servidor.ehlo()
+        servidor.login(usuario, clave)
+        servidor.send_message(mensaje)
 
 
 @app.route("/recuperar", methods=["GET", "POST"])
