@@ -191,7 +191,7 @@ header p{
  '.mr-grid-guardadas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}'+
  '.mr-grid-guardadas[hidden]{display:none!important}'+
  '.mr-cancion-guardada{display:grid;grid-template-columns:112px minmax(0,1fr);gap:14px;padding:13px;background:linear-gradient(125deg,#1b2234,#171c2a);border:1px solid #ffffff20;border-radius:15px;min-width:0}'+
- '.mr-cancion-guardada .mr-portada{width:112px;aspect-ratio:1;border-radius:10px;object-fit:cover;background:#ffffff12;display:flex;align-items:center;justify-content:center;font-size:34px;color:#a6a8bd}'+
+ '.mr-portada-contenedor{width:112px;aspect-ratio:1;position:relative;overflow:hidden;border-radius:10px}.mr-cancion-guardada .mr-portada{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;background:#ffffff12;display:flex;align-items:center;justify-content:center;font-size:34px;color:#a6a8bd}'+
  '.mr-cancion-guardada .mr-info{min-width:0}.mr-cancion-guardada .mr-titulo{font-size:16px;font-weight:850;line-height:1.4;overflow-wrap:anywhere}.mr-cancion-guardada .mr-artista{margin-top:5px;color:#ded4f5;font-size:14px;overflow-wrap:anywhere}.mr-cancion-guardada .mr-meta{font-size:12px;color:#aeb2ca;margin-top:7px;line-height:1.5}'+
  '.mr-cancion-guardada .mr-acciones{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.mr-cancion-guardada .mr-acciones button{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:40px;min-height:39px;padding:8px 10px;border:1px solid #ffffff2a;border-radius:11px;color:#fff;font-weight:750;cursor:pointer}'+
  '.mr-cancion-guardada .mr-b30{background:linear-gradient(135deg,#7867ff,#9b45cf 52%,#d43e8f)}.mr-cancion-guardada .mr-descarga{background:linear-gradient(135deg,#168653,#20ad70)}.mr-cancion-guardada .mr-youtube{background:linear-gradient(135deg,#ff4545,#d80d20)}.mr-cancion-guardada .mr-quitar{background:linear-gradient(135deg,#238dba,#3862bd);font-size:20px}'+
@@ -231,18 +231,21 @@ header p{
  async function informacion(c,b){if(b)b.disabled=true;abrirModal('Información sobre '+c.titulo,'Consultando información musical…');try{const q=new URLSearchParams({tipo:'cancion',nombre:c.titulo,artista:c.artista});const r=await fetch('/api/resumen-musical?'+q);const d=await r.json();estadoModal.textContent=d.resumen||d.informacion||d.error||'No se ha encontrado información.';for(const f of (d.fuentes||[])){if(!f.url||!f.url.startsWith('https://'))continue;const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=f.titulo||'Consultar fuente';a.style.display='block';a.style.color='#d2b8ff';resultadosModal.appendChild(a)}}catch(e){estadoModal.textContent='No se ha podido consultar la información ahora mismo.'}finally{if(b)b.disabled=false}}
  function crearTarjeta(c){
   const f=document.createElement('article');f.className='mr-cancion-guardada';
+  const miniatura=document.createElement('div');miniatura.className='mr-portada-contenedor';miniatura.style.position='relative';miniatura.style.width='112px';miniatura.style.aspectRatio='1';miniatura.style.overflow='hidden';miniatura.style.borderRadius='10px';
   const img=document.createElement('img');img.className='mr-portada';img.alt='Portada de '+(c.titulo||'la canción');img.loading='lazy';img.decoding='async';img.referrerPolicy='no-referrer';
-  const fallback=document.createElement('div');fallback.className='mr-portada';fallback.textContent='♪';fallback.hidden=false;
-  if(c.portada){img.src=String(c.portada).replace('http://','https://');img.addEventListener('load',()=>{img.hidden=false;fallback.hidden=true});img.addEventListener('error',()=>{img.hidden=true;fallback.hidden=false})}else img.hidden=true;
+  const fallback=document.createElement('div');fallback.className='mr-portada';fallback.textContent='♪';fallback.setAttribute('role','img');fallback.setAttribute('aria-label','Portada no disponible');
+  if(c.portada){img.src=String(c.portada).replace(/^http:\/\//i,'https://');img.addEventListener('load',()=>{img.hidden=false;fallback.hidden=true});img.addEventListener('error',()=>{img.hidden=true;fallback.hidden=false})}else img.hidden=true;
+  if(!c.portada)fallback.hidden=false;
+  miniatura.append(img,fallback);
   const info=document.createElement('div');info.className='mr-info';
   const titulo=document.createElement('div');titulo.className='mr-titulo';titulo.textContent=c.anio?c.titulo+' ('+c.anio+')':(c.titulo||'Canción');
   const artista=document.createElement('div');artista.className='mr-artista';artista.textContent=c.artista||'Artista desconocido';
-  const meta=document.createElement('div');meta.className='mr-meta';meta.textContent=[c.genero||'',c.album||'',c.anio?'Año '+c.anio:''].filter(Boolean).join(' · ')||'Canción guardada';
+  const meta=document.createElement('div');meta.className='mr-meta';meta.textContent=(c.genero||'Estilo relacionado')+' · Similar a '+(c.relacionado_con||'tus gustos')+(c.album?' · '+c.album:'')+(c.anio?' · Año '+c.anio:'');
   const acciones=document.createElement('div');acciones.className='mr-acciones';
   acciones.append(boton(svgPlay+'<span>30 s</span>','mr-b30','Escuchar muestra de 30 segundos',b=>escuchar(c,b)),boton(svgDownload,'mr-descarga','Buscar enlace para descargar con MediaHuman',b=>buscarVideos(c,'mediahuman',b)),boton(svgPlay,'mr-youtube','Buscar en YouTube',b=>buscarVideos(c,'youtube',b)));
   if(localStorage.getItem('mrWikipediaEnabled')==='1')acciones.append(boton('ℹ','info-btn','Consultar información de la canción',b=>informacion(c,b)));
   acciones.append(boton('−','mr-quitar','Quitar de Guardadas',()=>quitar(c)));
-  info.append(titulo,artista,meta,acciones);f.append(img,fallback,info);return f;
+  info.append(titulo,artista,meta,acciones);f.append(miniatura,info);return f;
  }
  function dibujar(){if(!panel)return;const a=leer();tab.querySelector('#mr-total-guardadas').textContent=String(a.length);zona.hidden=false;zona.replaceChildren();if(!a.length){const v=document.createElement('div');v.className='mr-guardadas-vacio';v.textContent='Todavía no has guardado canciones. Pulsa el botón + de cualquier canción para añadirla aquí.';zona.appendChild(v);return}a.forEach(c=>zona.appendChild(crearTarjeta(c)))}
  function datos(n){
