@@ -25,33 +25,33 @@
       "puesto": 4
     },
     {
-      "titulo": "Vulnerable",
-      "artista": "Jory Boy, Ozuna, Ñengo Flow",
-      "url": "https://www.youtube.com/watch?v=OWbhwq9fecg",
-      "puesto": 5
-    },
-    {
       "titulo": "Te Imagino",
       "artista": "Myke Towers",
       "url": "https://www.youtube.com/watch?v=5j8fIDh1V0A",
-      "puesto": 6
+      "puesto": 5
     },
     {
-      "titulo": "K/DA - FIRESTARTER ft. MIYEON and SOYEON of i-dle, Sophie Powers, Mimi Webb (Official Music Video)",
-      "artista": "League of Legends",
-      "url": "https://www.youtube.com/watch?v=Mmw-PpWhKFg",
-      "puesto": 7
+      "titulo": "Vulnerable",
+      "artista": "Jory Boy, Ozuna, Ñengo Flow",
+      "url": "https://www.youtube.com/watch?v=OWbhwq9fecg",
+      "puesto": 6
     },
     {
       "titulo": "Querencia",
       "artista": "El Barrio",
       "url": "https://www.youtube.com/watch?v=PG7S8mt5isk",
+      "puesto": 7
+    },
+    {
+      "titulo": "POLEG - HELLO TOTO (Shot by @LlorkaProd )",
+      "artista": "Poleg",
+      "url": "https://www.youtube.com/watch?v=D-lICRbsXW4",
       "puesto": 8
     },
     {
-      "titulo": "Dame Hombro",
-      "artista": "Kevin Wai, Breyco En Producidera, Bulin 47",
-      "url": "https://www.youtube.com/watch?v=VUIgT-E4IS0",
+      "titulo": "K/DA - FIRESTARTER ft. MIYEON and SOYEON of i-dle, Sophie Powers, Mimi Webb (Official Music Video)",
+      "artista": "League of Legends",
+      "url": "https://www.youtube.com/watch?v=Mmw-PpWhKFg",
       "puesto": 9
     },
     {
@@ -61,15 +61,15 @@
       "puesto": 10
     },
     {
-      "titulo": "El Problema Fue La Solución",
-      "artista": "Antonio Orozco",
-      "url": "https://www.youtube.com/watch?v=jevtWW_3Jwk",
+      "titulo": "Dame Hombro",
+      "artista": "Kevin Wai, Breyco En Producidera, Bulin 47",
+      "url": "https://www.youtube.com/watch?v=VUIgT-E4IS0",
       "puesto": 11
     },
     {
-      "titulo": "POLEG - HELLO TOTO (Shot by @LlorkaProd )",
-      "artista": "Poleg",
-      "url": "https://www.youtube.com/watch?v=D-lICRbsXW4",
+      "titulo": "El Problema Fue La Solución",
+      "artista": "Antonio Orozco",
+      "url": "https://www.youtube.com/watch?v=jevtWW_3Jwk",
       "puesto": 12
     },
     {
@@ -79,39 +79,39 @@
       "puesto": 13
     },
     {
-      "titulo": "El Tándem con Cráneo",
-      "artista": "SFDK",
-      "url": "https://www.youtube.com/watch?v=G2yPTomFA9A",
+      "titulo": "La Gerencia [Remix]",
+      "artista": "Tito \"El Bambino\", Eladio Carrion, Ozuna, Ñengo Flow",
+      "url": "https://www.youtube.com/watch?v=J3jyzFP9vog",
       "puesto": 14
-    },
-    {
-      "titulo": "RED BOTTOM",
-      "artista": "YOLAMASCARA",
-      "url": "https://www.youtube.com/watch?v=9ox8EfPRCWc",
-      "puesto": 15
     },
     {
       "titulo": "Coming Up Roses (Official Video)",
       "artista": "Harry Styles",
       "url": "https://www.youtube.com/watch?v=M4qX5wzx-wY",
+      "puesto": 15
+    },
+    {
+      "titulo": "El Tándem con Cráneo",
+      "artista": "SFDK",
+      "url": "https://www.youtube.com/watch?v=G2yPTomFA9A",
       "puesto": 16
+    },
+    {
+      "titulo": "RED BOTTOM",
+      "artista": "YOLAMASCARA",
+      "url": "https://www.youtube.com/watch?v=9ox8EfPRCWc",
+      "puesto": 17
     },
     {
       "titulo": "Vete Pa Tu Casa (Official Visualizer)",
       "artista": "Conep",
       "url": "https://www.youtube.com/watch?v=HBoW8-q-sSs",
-      "puesto": 17
-    },
-    {
-      "titulo": "YOUR NUMBER - Spanish Version",
-      "artista": "Yapi",
-      "url": "https://www.youtube.com/watch?v=xxToWcYEGJw",
       "puesto": 18
     },
     {
-      "titulo": "BbY WOW (Live From New York)",
-      "artista": "KAROL G, Judeline, rusowsky",
-      "url": "https://www.youtube.com/watch?v=ckPbVDXw9Gc",
+      "titulo": "Sarà perché ti amo – AFRO CODE 🔥| Afro House Extended Mix",
+      "artista": "AFRO CODE",
+      "url": "https://www.youtube.com/watch?v=AAZpeg19RWw",
       "puesto": 19
     },
     {
@@ -121,51 +121,51 @@
       "puesto": 20
     },
     {
-      "titulo": "Tarantino (Official Music Video)",
-      "artista": "LISA",
-      "url": "https://www.youtube.com/watch?v=-5ZXrO_lYSA",
+      "titulo": "YOUR NUMBER - Spanish Version",
+      "artista": "Yapi",
+      "url": "https://www.youtube.com/watch?v=xxToWcYEGJw",
       "puesto": 21
     },
     {
-      "titulo": "La Falda",
-      "artista": "Judeline",
-      "url": "https://www.youtube.com/watch?v=7L6oiqd91qE",
+      "titulo": "BbY WOW (Live From New York)",
+      "artista": "KAROL G, Judeline, rusowsky",
+      "url": "https://www.youtube.com/watch?v=ckPbVDXw9Gc",
       "puesto": 22
-    },
-    {
-      "titulo": "Housewife (Official Video)",
-      "artista": "Tate McRae",
-      "url": "https://www.youtube.com/watch?v=DPEodkHzH-s",
-      "puesto": 23
-    },
-    {
-      "titulo": "Bicho raro",
-      "artista": "Estopa",
-      "url": "https://www.youtube.com/watch?v=8IMveAh7nhA",
-      "puesto": 24
-    },
-    {
-      "titulo": "Sarà perché ti amo – AFRO CODE 🔥| Afro House Extended Mix",
-      "artista": "AFRO CODE",
-      "url": "https://www.youtube.com/watch?v=AAZpeg19RWw",
-      "puesto": 25
-    },
-    {
-      "titulo": "Muertx",
-      "artista": "Yan Block",
-      "url": "https://www.youtube.com/watch?v=mc2TyQK2NKY",
-      "puesto": 26
-    },
-    {
-      "titulo": "Chiribi",
-      "artista": "Angeliyo El Blanco",
-      "url": "https://www.youtube.com/watch?v=8SLaold8IO8",
-      "puesto": 27
     },
     {
       "titulo": "You’re Under Arrest",
       "artista": "ILLIT",
       "url": "https://www.youtube.com/watch?v=V2V9-9VhYJo",
+      "puesto": 23
+    },
+    {
+      "titulo": "Muertx",
+      "artista": "Yan Block",
+      "url": "https://www.youtube.com/watch?v=mc2TyQK2NKY",
+      "puesto": 24
+    },
+    {
+      "titulo": "Tarantino (Official Music Video)",
+      "artista": "LISA",
+      "url": "https://www.youtube.com/watch?v=-5ZXrO_lYSA",
+      "puesto": 25
+    },
+    {
+      "titulo": "La Falda",
+      "artista": "Judeline",
+      "url": "https://www.youtube.com/watch?v=7L6oiqd91qE",
+      "puesto": 26
+    },
+    {
+      "titulo": "Housewife (Official Video)",
+      "artista": "Tate McRae",
+      "url": "https://www.youtube.com/watch?v=DPEodkHzH-s",
+      "puesto": 27
+    },
+    {
+      "titulo": "Bicho raro",
+      "artista": "Estopa",
+      "url": "https://www.youtube.com/watch?v=8IMveAh7nhA",
       "puesto": 28
     },
     {
@@ -175,16 +175,16 @@
       "puesto": 29
     },
     {
-      "titulo": "Vuelve",
-      "artista": "Anuel AA",
-      "url": "https://www.youtube.com/watch?v=3juuih0WdH8",
+      "titulo": "Chiribi",
+      "artista": "Angeliyo El Blanco",
+      "url": "https://www.youtube.com/watch?v=8SLaold8IO8",
       "puesto": 30
     }
   ],
   "fuente": "https://charts.youtube.com/charts/TrendingVideos/es",
   "nombre": "Tendencias musicales de YouTube",
   "tipo": "youtube",
-  "actualizado": "2026-10-29T05:04+00:00",
+  "actualizado": "2026-10-30T05:06+00:00",
   "en_curso": false,
   "mensaje": "Lista actualizada: 30 canciones."
 }
