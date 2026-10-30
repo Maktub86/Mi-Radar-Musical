@@ -156,12 +156,13 @@ body.modal-info-musical-abierto{overflow:hidden}
 
   <div class="cabecera"><div>
     <h2>Tu radar de lanzamientos</h2>
-    <p class="sub">Explora los singles y álbumes de los artistas que sigues.</p>
+    <p class="sub">Explora singles, álbumes y las novedades de los 50 artistas más presentes en tu colección.</p>
   </div></div>
   <div class="selector-lanzamientos" aria-label="Selector de lanzamientos">
     <div class="botones" role="group" aria-label="Tipo de lanzamiento">
       <button id="single" class="activo" onclick="elegirTipo('Single')">🎵 Singles</button>
       <button id="album" onclick="elegirTipo('Album')">💿 Álbumes</button>
+      <button id="recomendados" onclick="elegirTipo('Recomendados')">⭐ Recomendados</button>
     </div>
     <div class="control-cantidad" aria-label="Cantidad de lanzamientos">
       <span id="cantidad-visible" aria-live="polite">12</span>
@@ -251,6 +252,7 @@ function elegirTipo(tipo) {
   tipoSeleccionado = tipo;
   document.getElementById("single").classList.toggle("activo", tipo === "Single");
   document.getElementById("album").classList.toggle("activo", tipo === "Album");
+  document.getElementById("recomendados").classList.toggle("activo", tipo === "Recomendados");
   mostrar(cantidadSeleccionada);
 }
 let solicitudPortada = 0;
@@ -265,32 +267,40 @@ async function mostrar(cantidad) {
   const idSolicitud = ++solicitudPortada;
   document.getElementById("estado").textContent = "Cargando publicaciones…";
   try {
-    const consulta = new URLSearchParams({tipo: tipoSeleccionado, cantidad: String(cantidad)});
-    const respuesta = await fetch("/api/portada?" + consulta.toString());
+    const esRecomendados = tipoSeleccionado === "Recomendados";
+    const consulta = new URLSearchParams({cantidad: String(cantidad)});
+    if (!esRecomendados) consulta.set("tipo", tipoSeleccionado);
+    const endpoint = esRecomendados ? "/api/portada/recomendados?" : "/api/portada?";
+    const respuesta = await fetch(endpoint + consulta.toString());
     const datos = await respuesta.json();
     if (!respuesta.ok) throw new Error(datos.error || "No se han podido cargar las publicaciones.");
     if (idSolicitud !== solicitudPortada) return;
     publicaciones = Array.isArray(datos.publicaciones) ? datos.publicaciones : [];
     const elementos = publicaciones;
-    document.getElementById("estado").textContent =
-      `${Number(datos.total || 0).toLocaleString("es-ES")} ${tipoSeleccionado === "Single" ? "singles" : "álbumes"} publicados`;
+    document.getElementById("estado").textContent = esRecomendados
+      ? `${Number(datos.total || 0).toLocaleString("es-ES")} publicaciones recientes de tus ${Number(datos.total_artistas || 50)} artistas con más canciones`
+      : `${Number(datos.total || 0).toLocaleString("es-ES")} ${tipoSeleccionado === "Single" ? "singles" : "álbumes"} publicados`;
     if (!elementos.length) {
-      lista.innerHTML = '<div class="vacio">No hay lanzamientos publicados de este tipo en los datos disponibles.</div>';
+      lista.innerHTML = esRecomendados
+        ? '<div class="vacio">Todavía no hay publicaciones disponibles de tus 50 artistas más presentes en Mi música.</div>'
+        : '<div class="vacio">No hay lanzamientos publicados de este tipo en los datos disponibles.</div>';
       return;
     }
     for (const p of elementos) {
     const tarjeta = document.createElement("article");
     tarjeta.className = "tarjeta";
     const imagen = p.imagen || (p.id ? `https://coverartarchive.org/release-group/${encodeURIComponent(p.id)}/front-250` : "");
-    const icono = tipoSeleccionado === "Single" ? "🎵" : "💿";
+    const tipoPublicacion = esRecomendados ? tipoNormalizado(p.tipo) : tipoSeleccionado;
+    const icono = tipoPublicacion === "Single" ? "🎵" : "💿";
+    const etiquetaTipo = tipoPublicacion === "Single" ? "Single" : "Álbum";
     tarjeta.innerHTML = `
       <div class="portada-disco"><span>${icono}</span></div>
       <div class="info">
-        <div class="tipo">${tipoSeleccionado === "Single" ? "Single" : "Álbum"}</div>
+        <div class="tipo">${etiquetaTipo}</div>
         <div class="titulo">${escapar(p.titulo || "Sin título")} <button class="wiki-icon" data-wiki-tipo="cancion" data-wiki-nombre="${escapar(p.titulo || "")}" data-wiki-artista="${escapar(p.artista || "")}" title="Consultar información de la canción" aria-label="Consultar información de la canción">ℹ</button></div>
         <div class="artista">${escapar(p.artista || "Artista desconocido")} <button class="wiki-icon" data-wiki-tipo="artista" data-wiki-nombre="${escapar(p.artista || "")}" title="Consultar biografía del artista" aria-label="Consultar biografía del artista">ℹ</button></div>
         <div class="fecha">${escapar(p.fecha || "Fecha desconocida")}</div>
-        ${tipoSeleccionado === "Single" ? `<div class="acciones-radar"><button class="boton-muestra boton-30" type="button" title="Escuchar muestra de 30 segundos"><svg aria-hidden="true" viewBox="0 0 24 24" width="17" height="17" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg><span>30 s</span></button><button class="boton-mediahuman" type="button" title="Buscar enlace para MediaHuman" aria-label="Descargar con MediaHuman"><svg aria-hidden="true" viewBox="0 0 24 24" width="21" height="21" focusable="false"><path d="M12 3v11m-5-5 5 5 5-5M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="boton-youtube" type="button" title="Abrir YouTube" aria-label="YouTube">Y</button></div><div class="reproductor-muestra" hidden></div>` : ""}
+        ${(tipoSeleccionado === "Single" || esRecomendados) ? `<div class="acciones-radar"><button class="boton-muestra boton-30" type="button" title="Escuchar muestra de 30 segundos"><svg aria-hidden="true" viewBox="0 0 24 24" width="17" height="17" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg><span>30 s</span></button><button class="boton-mediahuman" type="button" title="Buscar enlace para MediaHuman" aria-label="Descargar con MediaHuman"><svg aria-hidden="true" viewBox="0 0 24 24" width="21" height="21" focusable="false"><path d="M12 3v11m-5-5 5 5 5-5M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="boton-youtube" type="button" title="Abrir YouTube" aria-label="YouTube">Y</button></div><div class="reproductor-muestra" hidden></div>` : ""}
       </div>`;
     configurarIconosWiki(tarjeta);
     const zonaImagen = tarjeta.querySelector(".portada-disco");
@@ -303,7 +313,7 @@ async function mostrar(cantidad) {
       zonaImagen.prepend(img);
       zonaImagen.querySelector("span").style.display = "none";
     }
-    if (tipoSeleccionado === "Single") {
+    if (tipoSeleccionado === "Single" || esRecomendados) {
       const boton = tarjeta.querySelector(".boton-muestra");
       boton.addEventListener("click", () => reproducirMuestra(p, tarjeta, boton));
       tarjeta.querySelector(".boton-mediahuman").addEventListener("click", () => buscarCancionYouTube(p,"mediahuman"));

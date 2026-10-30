@@ -477,6 +477,94 @@ def api_portada():
     return respuesta
 
 
+
+@app.get("/api/portada/recomendados")
+def api_portada_recomendados():
+    """Últimas publicaciones de los 50 artistas con más canciones en Mi música."""
+    try:
+        cantidad = int(request.args.get("cantidad", "12"))
+    except (TypeError, ValueError):
+        cantidad = 12
+    if cantidad not in (12, 32):
+        cantidad = 12
+
+    ruta_biblioteca = BASE / "mi_musica.json"
+    try:
+        with ruta_biblioteca.open("r", encoding="utf-8") as archivo:
+            biblioteca = json.load(archivo)
+        if not isinstance(biblioteca, list):
+            raise ValueError("La biblioteca no contiene una lista.")
+    except (OSError, json.JSONDecodeError, ValueError):
+        app.logger.exception("No se pudo leer la biblioteca para las publicaciones recomendadas.")
+        return jsonify({"error": "No se ha podido leer tu biblioteca musical."}), 503
+
+    conteo_artistas = {}
+    for pista in biblioteca:
+        if not isinstance(pista, dict):
+            continue
+        artista = str(pista.get("artista") or "").strip()
+        if not artista:
+            continue
+        clave = normalizar_texto(artista)
+        if not clave:
+            continue
+        entrada = conteo_artistas.setdefault(clave, {"nombre": artista, "total": 0})
+        entrada["total"] += 1
+
+    top_artistas = sorted(
+        conteo_artistas.items(),
+        key=lambda item: (-item[1]["total"], item[1]["nombre"].casefold())
+    )[:50]
+    claves_top = {clave for clave, _ in top_artistas}
+
+    ruta_portada = BASE / "portada.json"
+    try:
+        mtime = ruta_portada.stat().st_mtime_ns
+        with _candado_cache_portada:
+            if _cache_portada["mtime"] != mtime:
+                datos = json.loads(ruta_portada.read_text(encoding="utf-8"))
+                if not isinstance(datos, list):
+                    raise ValueError("El archivo de portada no contiene una lista.")
+                _cache_portada["publicaciones"] = datos
+                _cache_portada["mtime"] = mtime
+            publicaciones = list(_cache_portada["publicaciones"])
+    except (OSError, json.JSONDecodeError, ValueError):
+        app.logger.exception("No se pudo cargar el catálogo para las publicaciones recomendadas.")
+        return jsonify({"error": "No se han podido cargar las publicaciones."}), 503
+
+    filtradas = []
+    for publicacion in publicaciones:
+        if not isinstance(publicacion, dict):
+            continue
+        tipo = _tipo_normalizado_portada(publicacion.get("tipo"))
+        if tipo not in ("Single", "Album"):
+            continue
+        artista = normalizar_texto(publicacion.get("artista") or "")
+        if not artista or artista not in claves_top:
+            continue
+        fecha = str(publicacion.get("fecha") or "").strip()
+        clave_fecha = _fecha_clave_portada(fecha)
+        if fecha and clave_fecha is None:
+            continue
+        filtradas.append((clave_fecha or (0, 0, 0), publicacion))
+
+    filtradas.sort(
+        key=lambda item: (
+            bool(item[0][0]),
+            item[0],
+            str(item[1].get("titulo") or "").casefold()
+        ),
+        reverse=True
+    )
+    respuesta = jsonify({
+        "tipo": "Recomendados",
+        "total_artistas": len(top_artistas),
+        "total": len(filtradas),
+        "publicaciones": [item[1] for item in filtradas[:cantidad]],
+    })
+    respuesta.headers["Cache-Control"] = "public, max-age=180"
+    return respuesta
+
 @app.get("/programas")
 def pagina_programas():
     return """<!DOCTYPE html>
