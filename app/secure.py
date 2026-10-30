@@ -95,10 +95,7 @@ a{color:#c6a8ff}
 </main></body></html>"""
 
 
-CORREOS_RECUPERACION = (
-    "alemartinvera@gmail.com",
-    "rociromang@gmail.com",
-)
+CORREO_RECUPERACION = "alemartinvera@gmail.com"
 RUTA_PUBLICA_RECUPERACION = {"/login", "/recuperar", "/manifest.webmanifest",
     "/icono-mrm-192.png", "/icono-mrm.svg", "/icono-mrm-maskable.svg", "/favicon.ico"}
 
@@ -142,8 +139,7 @@ def _enviar_enlace_recuperacion(enlace):
     mensaje = EmailMessage()
     mensaje["Subject"] = "Enlace para recuperar el acceso a Mi Radar Musical"
     mensaje["From"] = remitente
-    mensaje["To"] = CORREOS_RECUPERACION[0]
-    mensaje["Bcc"] = ", ".join(CORREOS_RECUPERACION[1:])
+    mensaje["To"] = CORREO_RECUPERACION
     mensaje.set_content(
         "Has solicitado recuperar el acceso a Mi Radar Musical.\n\n"
         "Abre este enlace para entrar sin cambiar tu contraseña. "
@@ -193,7 +189,7 @@ def recuperar_acceso():
                 base = os.environ.get("RECOVERY_BASE_URL", "https://mi-radar-musical.onrender.com").rstrip("/")
                 enlace = f"{base}/acceso-recuperacion/{token}"
                 _enviar_enlace_recuperacion(enlace)
-                mensaje = "Si el servicio de correo está configurado, recibirás el enlace en los dos correos autorizados. Caduca en 15 minutos."
+                mensaje = "Si el servicio de correo está configurado, recibirás el enlace en alemartinvera@gmail.com. Caduca en 15 minutos."
         except Exception:
             app.logger.exception("No se pudo completar la solicitud de recuperación.")
             try:
