@@ -81,6 +81,22 @@ a{color:#c6a8ff}.error{color:#ff9dbb;background:#51233b;padding:10px;border-radi
 <p><a href="/login">Volver al inicio de sesión</a></p>
 </main></body></html>"""
 
+CONFIRMAR_RECUPERACION_HTML = """<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confirmar acceso · Mi Radar Musical</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:linear-gradient(140deg,#17152d,#10101c 55%,#26152e);color:#f7f5ff;font-family:Segoe UI,Arial,sans-serif;padding:20px}
+main{width:min(420px,100%);background:#1b1b2d;border:1px solid #ffffff20;border-radius:18px;padding:28px;box-shadow:0 18px 55px #0006}
+h1{margin:0 0 8px;font-size:25px}p{color:#b8b6cf;line-height:1.5}button{width:100%;margin-top:18px;padding:12px;border:0;border-radius:9px;background:linear-gradient(100deg,#706bff,#b72d83);color:white;font-weight:700;font-size:16px;cursor:pointer}
+a{color:#c6a8ff}
+</style></head><body><main>
+<h1>Confirmar recuperación</h1>
+<p>Al continuar entrarás en Mi Radar Musical sin cambiar tu contraseña. Este enlace solo se puede utilizar una vez.</p>
+<form method="post"><button type="submit">Entrar en Mi Radar Musical</button></form>
+<p><a href="/login">Cancelar</a></p>
+</main></body></html>"""
+
+
 CORREOS_RECUPERACION = (
     "alemartinvera@gmail.com",
     "rociromang@gmail.com",
@@ -182,6 +198,15 @@ def recuperar_acceso():
                 mensaje = "Si el servicio de correo está configurado, recibirás el enlace en los dos correos autorizados. Caduca en 15 minutos."
         except Exception:
             app.logger.exception("No se pudo completar la solicitud de recuperación.")
+            try:
+                with _conexion_recuperacion() as conexion:
+                    with conexion.cursor() as cursor:
+                        cursor.execute(
+                            "DELETE FROM radar_accesos_recuperacion WHERE token_hash = %s",
+                            (token_hash,)
+                        )
+            except Exception:
+                app.logger.exception("No se pudo invalidar el enlace no enviado.")
             mensaje = "Ahora mismo no se ha podido enviar el enlace. Inténtalo más tarde."
             error = True
     return render_template_string(
@@ -189,8 +214,13 @@ def recuperar_acceso():
     )
 
 
-@app.route("/acceso-recuperacion/<token>", methods=["GET"])
+@app.route("/acceso-recuperacion/<token>", methods=["GET", "POST"])
 def acceso_recuperacion(token):
+    if request.method == "GET":
+        # No consumir el token en GET: algunos servicios de correo inspeccionan
+        # automáticamente los enlaces antes de que el usuario los abra.
+        return render_template_string(CONFIRMAR_RECUPERACION_HTML)
+
     token_hash = hashlib.sha256(token.encode("utf-8")).hexdigest()
     try:
         with _conexion_recuperacion() as conexion:
