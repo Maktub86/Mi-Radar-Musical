@@ -2432,6 +2432,19 @@ def muestra_musical():
             ):
                 similitud_artista = max(similitud_artista, 0.90)
 
+            # Si se solicitó un directo, prioriza una grabación que también
+            # esté etiquetada como directo; la versión de estudio queda de respaldo.
+            pedido_directo = any(
+                marca in normalizar_texto(titulo)
+                for marca in ("live", "en directo", "from")
+            )
+            resultado_directo = any(
+                marca in titulo_resultado
+                for marca in ("live", "en directo")
+            )
+            if pedido_directo and not resultado_directo:
+                similitud_titulo *= 0.94
+
             puntuacion = similitud_titulo * 0.65 + similitud_artista * 0.35
             if puntuacion > mejor_puntuacion:
                 mejor_puntuacion = puntuacion
