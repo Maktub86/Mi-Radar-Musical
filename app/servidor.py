@@ -227,7 +227,7 @@ header p{
  async function guardar(c){let a=leer();if(!a.some(x=>clave(x)===clave(c)))a.unshift(c);escribir(a);try{const r=await fetch('/api/recomendaciones/guardadas',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({canciones:[c]})});if(!r.ok)throw new Error();const d=await r.json();if(Array.isArray(d.canciones))escribir(d.canciones)}catch(e){}dibujar();actualizarBotones()}
  async function quitar(c){escribir(leer().filter(x=>clave(x)!==clave(c)));dibujar();actualizarBotones();try{const r=await fetch('/api/recomendaciones/guardadas',{method:'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify({titulo:c.titulo,artista:c.artista})});if(r.ok){const d=await r.json();if(Array.isArray(d.canciones))escribir(d.canciones);dibujar();actualizarBotones()}}catch(e){}}
  async function buscarVideos(c,modo,b){if(b)b.disabled=true;abrirModal(modo==='youtube'?'Elegir versión de YouTube':'Descargar con MediaHuman','Buscando resultados para '+c.artista+' — '+c.titulo+'…');try{const q=new URLSearchParams({titulo:c.titulo,artista:c.artista});const r=await fetch('/api/youtube/buscar?'+q);const d=await r.json();if(!r.ok)throw new Error(d.error||'No se encontraron resultados.');resultadosModal.replaceChildren();if(!(d.resultados||[]).length)throw new Error('No se encontraron resultados.');estadoModal.textContent=modo==='youtube'?'Pulsa una versión para abrirla en YouTube.':'Elige una versión: se copiará su enlace para pegarlo en MediaHuman YouTube Downloader.';for(const v of d.resultados){const btn=document.createElement('button');btn.type='button';btn.className='mr-resultado';const t=document.createElement('strong');t.textContent=v.titulo||'Vídeo sin título';const sub=document.createElement('span');sub.textContent=v.canal||'Canal desconocido';btn.append(t,sub);btn.addEventListener('click',async()=>{if(modo==='youtube'){window.open(v.url,'_blank','noopener,noreferrer');return}try{await navigator.clipboard.writeText(v.url);estadoModal.textContent='Enlace copiado. Pégalo en MediaHuman YouTube Downloader.';btn.textContent='✓ Enlace copiado: '+(v.titulo||'canción')}catch(e){window.prompt('Copia el enlace para MediaHuman:',v.url)}});resultadosModal.appendChild(btn)}}catch(e){estadoModal.textContent=e.message||'No se pudo consultar YouTube.'}finally{if(b)b.disabled=false}}
- async function escuchar(c,b){if(b)b.disabled=true;const original=b?b.innerHTML:'';if(b)b.textContent='Buscando…';try{let url=c.preview||'';let artista=c.artista,titulo=c.titulo;if(!url){const q=new URLSearchParams({titulo,artista});const r=await fetch('/api/muestra?'+q);const d=await r.json();if(!r.ok)throw new Error(d.error||'No hay muestra disponible.');url=d.previewUrl;artista=d.artista||artista;titulo=d.titulo||titulo}if(!url)throw new Error('No hay muestra de 30 segundos disponible para esta canción.');abrirModal('Muestra de 30 segundos',artista+' — '+titulo);const audio=document.createElement('audio');audio.controls=true;audio.preload='none';audio.src=url;audio.style.width='100%';resultadosModal.appendChild(audio);await audio.play();setTimeout(()=>{audio.pause();audio.currentTime=0},30000)}catch(e){abrirModal('Muestra no disponible',e.message||'No se ha podido reproducir la muestra.')}finally{if(b){b.disabled=false;b.innerHTML=original}}}
+ async function escuchar(c,b){if(b)b.disabled=true;const original=b?b.innerHTML:'';if(b)b.textContent='Buscando…';try{let url=c.preview||'',nota='';let artista=c.artista,titulo=c.titulo;if(!url){const q=new URLSearchParams({titulo,artista});const r=await fetch('/api/muestra?'+q);const d=await r.json();if(!r.ok)throw new Error(d.error||'No hay muestra disponible.');url=d.previewUrl;artista=d.artista||artista;titulo=d.titulo||titulo;nota=d.nota||''}if(!url)throw new Error('No hay muestra de 30 segundos disponible para esta canción.');abrirModal('Muestra de 30 segundos',artista+' — '+titulo);if(nota){const aviso=document.createElement('p');aviso.textContent=nota;aviso.style.margin='8px 0';aviso.style.color='#f0c878';resultadosModal.appendChild(aviso)}const audio=document.createElement('audio');audio.controls=true;audio.preload='none';audio.src=url;audio.style.width='100%';resultadosModal.appendChild(audio);await audio.play();setTimeout(()=>{audio.pause();audio.currentTime=0},30000)}catch(e){abrirModal('Muestra no disponible',e.message||'No se ha podido reproducir la muestra.')}finally{if(b){b.disabled=false;b.innerHTML=original}}}
  async function informacion(c,b){if(b)b.disabled=true;abrirModal('Información sobre '+c.titulo,'Consultando información musical…');try{const q=new URLSearchParams({tipo:'cancion',nombre:c.titulo,artista:c.artista});const r=await fetch('/api/resumen-musical?'+q);const d=await r.json();estadoModal.textContent=d.resumen||d.informacion||d.error||'No se ha encontrado información.';for(const f of (d.fuentes||[])){if(!f.url||!f.url.startsWith('https://'))continue;const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=f.titulo||'Consultar fuente';a.style.display='block';a.style.color='#d2b8ff';resultadosModal.appendChild(a)}}catch(e){estadoModal.textContent='No se ha podido consultar la información ahora mismo.'}finally{if(b)b.disabled=false}}
  function crearTarjeta(c){
   const f=document.createElement('article');f.className='mr-cancion-guardada';
@@ -2341,28 +2341,42 @@ def buscar_audio_audius():
 
 @app.get("/api/muestra")
 def muestra_musical():
-    """Busca una muestra real de 30 segundos, tolerando sufijos de lanzamiento."""
+    """Busca muestras de 30 segundos y permite versiones alternativas verificadas."""
     titulo = (request.args.get("titulo") or "").strip()
     artista = (request.args.get("artista") or "").strip()
 
     if not titulo or not artista:
         return jsonify({"error": "Falta el título o el artista."}), 400
 
-    # Los listados suelen añadir "- Single" o "- EP" al título.
-    titulo_limpio = re.sub(
+    # Separa la canción de los añadidos habituales en títulos de vídeos o ediciones.
+    titulo_sin_lanzamiento = re.sub(
         r"\s*[-–—]\s*(?:single|ep|album)\s*$|\s*\((?:single|ep|album)\)\s*$",
-        "",
-        titulo,
-        flags=re.IGNORECASE
+        "", titulo, flags=re.IGNORECASE
     ).strip() or titulo
-    titulo_objetivo = normalizar_texto(titulo_limpio)
-    artista_objetivo = normalizar_texto(artista)
+    titulo_base = re.sub(
+        r"\s*\((?=[^)]*(?:live|en directo|from|acoustic|acústic|remix|remaster|version|versión|edit|sped up|slowed|instrumental|karaoke))[^)]*\)\s*$",
+        "", titulo_sin_lanzamiento, flags=re.IGNORECASE
+    ).strip()
+    titulo_base = re.sub(
+        r"\s*[-–—]\s*(?:live(?:\s+from\s+.*)?|en directo|acoustic|acústic|remix|remaster(?:ed)?|radio edit|sped up|slowed|instrumental|karaoke)\s*$",
+        "", titulo_base, flags=re.IGNORECASE
+    ).strip() or titulo_sin_lanzamiento
 
-    # Dos consultas por proveedor: artista+título (principal) y título solo
-    # (respaldo para catálogos que indexan mal el orden de los términos).
+    variantes_titulo = list(dict.fromkeys(
+        normalizar_texto(x) for x in (titulo_sin_lanzamiento, titulo_base) if x
+    ))
+    artista_objetivo = normalizar_texto(artista)
+    artistas_objetivo = [
+        normalizar_texto(x) for x in re.split(
+            r"\s*(?:,|&|\bfeat\.?\b|\bft\.?\b|\bfeaturing\b|\bx\b|\bcon\b)\s*",
+            artista, flags=re.IGNORECASE
+        ) if normalizar_texto(x)
+    ] or [artista_objetivo]
+
     consultas = list(dict.fromkeys([
-        f"{artista} {titulo_limpio}",
-        titulo_limpio
+        f"{artista} {titulo_sin_lanzamiento}",
+        f"{artistas_objetivo[0]} {titulo_base}",
+        titulo_base
     ]))
 
     def buscar_en_catalogo(url, fuente):
@@ -2394,25 +2408,27 @@ def muestra_musical():
             if not preview or not titulo_resultado or not artista_resultado:
                 continue
 
-            similitud_titulo = difflib.SequenceMatcher(
-                None, titulo_objetivo, titulo_resultado
-            ).ratio()
-            similitud_artista = difflib.SequenceMatcher(
-                None, artista_objetivo, artista_resultado
-            ).ratio()
-
-            # Acepta subtítulos habituales (remaster, versión, etc.) solo
-            # cuando el título buscado aparece completo en el título del catálogo.
-            if titulo_objetivo and (
-                titulo_objetivo in titulo_resultado
-                or titulo_resultado in titulo_objetivo
+            similitud_titulo = max(
+                difflib.SequenceMatcher(None, variante, titulo_resultado).ratio()
+                for variante in variantes_titulo
+            )
+            if any(
+                variante and (variante in titulo_resultado or titulo_resultado in variante)
+                for variante in variantes_titulo
             ):
                 similitud_titulo = max(similitud_titulo, 0.94)
 
-            # Algunos catálogos devuelven el artista principal con colaboradores.
-            if artista_objetivo and (
-                artista_objetivo in artista_resultado
-                or artista_resultado in artista_objetivo
+            # Compara cada colaborador por separado: un catálogo puede mostrar
+            # solo al artista principal aunque la ficha de origen liste varios.
+            similitud_artista = max(
+                difflib.SequenceMatcher(None, candidato, artista_resultado).ratio()
+                for candidato in artistas_objetivo
+            )
+            if any(
+                candidato and (
+                    candidato in artista_resultado or artista_resultado in candidato
+                )
+                for candidato in artistas_objetivo
             ):
                 similitud_artista = max(similitud_artista, 0.90)
 
@@ -2430,8 +2446,7 @@ def muestra_musical():
                 }
 
         if (
-            not mejor
-            or mejor_puntuacion < 0.76
+            not mejor or mejor_puntuacion < 0.76
             or mejor["_similitud_titulo"] < 0.72
             or mejor["_similitud_artista"] < 0.60
         ):
@@ -2451,17 +2466,28 @@ def muestra_musical():
         for consulta in consultas:
             parametros = {parametro: consulta, "limit": limite}
             if fuente != "Deezer":
-                parametros.update({
-                    "country": "es",
-                    "media": "music",
-                    "entity": "song"
-                })
+                parametros.update({"country": "es", "media": "music", "entity": "song"})
             try:
                 resultado = buscar_en_catalogo(
-                    base_url + urlencode(parametros),
-                    "Deezer" if fuente == "Deezer" else "Apple Music/iTunes"
+                    base_url + urlencode(parametros), fuente
                 )
                 if resultado:
+                    # Si se pidió un directo y solo existe muestra de estudio,
+                    # lo avisamos en la interfaz en vez de presentarlo como directo.
+                    titulo_pedido = normalizar_texto(titulo)
+                    titulo_encontrado = normalizar_texto(resultado.get("titulo"))
+                    pedido_directo = any(
+                        marca in titulo_pedido
+                        for marca in ("live", "en directo", "from")
+                    )
+                    encontrado_directo = any(
+                        marca in titulo_encontrado
+                        for marca in ("live", "en directo")
+                    )
+                    if pedido_directo and not encontrado_directo:
+                        resultado["nota"] = (
+                            "Se ha encontrado la versión de estudio; no es la grabación en directo."
+                        )
                     return jsonify({**resultado, "duracion": 30})
             except Exception:
                 if fuente not in errores:
