@@ -214,15 +214,18 @@ body.modal-info-musical-abierto{overflow:hidden}
 </section>
 
 </main>
-<footer style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap"><span>Mi Radar Musical · Datos de tu colección personal</span><div class="ajustes-portada"><button id="boton-ajustes" type="button" aria-expanded="false" aria-controls="panel-ajustes" title="Ajustes">⚙️ <span>Ajustes</span></button><div id="panel-ajustes" class="panel-ajustes" hidden><label><input id="activar-wikipedia" type="checkbox"> Mostrar iconos de información musical</label><p>Si lo desactivas, los iconos se ocultan. Las fichas que genere Gemini se seguirán guardando para reutilizarlas.</p></div></div></footer>
+<footer style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap"><span>Mi Radar Musical · Datos de tu colección personal</span><div class="ajustes-portada"><button id="boton-ajustes" type="button" aria-expanded="false" aria-controls="panel-ajustes" title="Ajustes">⚙️ <span>Ajustes</span></button><div id="panel-ajustes" class="panel-ajustes" hidden><label><input id="activar-wikipedia" type="checkbox"> Mostrar iconos de información musical</label><p>Controla los iconos informativos de toda la web. Las fichas guardadas se conservan aunque los ocultes.</p><label style="display:flex;gap:8px;align-items:center;margin-top:12px"><input id="activar-guardar" type="checkbox"> Mostrar iconos de agregar canciones</label><p>Añade canciones a Guardadas desde las listas y Cantantes. No afecta a Mi música.</p></div></div></footer>
 <script>
 const panelAjustes=document.getElementById('panel-ajustes');
 const botonAjustes=document.getElementById('boton-ajustes');
 const activarWikipedia=document.getElementById('activar-wikipedia');
+const activarGuardar=document.getElementById('activar-guardar');
 try{activarWikipedia.checked=localStorage.getItem('mrWikipediaEnabled')==='1'}catch(e){activarWikipedia.checked=false}
+try{activarGuardar.checked=localStorage.getItem('mrGuardarEnabled')==='1'}catch(e){activarGuardar.checked=false}
 document.body.dataset.wikipediaOff=activarWikipedia.checked?'0':'1';
 botonAjustes.addEventListener('click',()=>{panelAjustes.hidden=!panelAjustes.hidden;botonAjustes.setAttribute('aria-expanded',String(!panelAjustes.hidden))});
 activarWikipedia.addEventListener('change',()=>{document.body.dataset.wikipediaOff=activarWikipedia.checked?'0':'1';try{localStorage.setItem('mrWikipediaEnabled',activarWikipedia.checked?'1':'0')}catch(e){}});
+activarGuardar.addEventListener('change',()=>{try{localStorage.setItem('mrGuardarEnabled',activarGuardar.checked?'1':'0')}catch(e){};window.dispatchEvent(new Event('mrGuardarAjuste'));});
 let publicaciones = [];
 let tipoSeleccionado = "Single";
 let cantidadSeleccionada = 12;
