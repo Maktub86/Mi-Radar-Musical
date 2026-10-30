@@ -205,7 +205,7 @@ header p{
  let panel=null,tab=null,zona=null,modal=null,modalTitulo=null,estadoModal=null,resultadosModal=null;
  if(!esRecomendaciones){
   tab=document.createElement('button');tab.type='button';tab.className='mr-pestana-guardadas';tab.innerHTML='<span aria-hidden="true">▣</span> Guardadas <span id="mr-total-guardadas">0</span>';tab.setAttribute('aria-expanded','false');
-  panel=document.createElement('section');panel.className='mr-panel-guardadas';panel.innerHTML='<h2>🎵 Tus canciones guardadas</h2><p>Las mismas canciones y opciones disponibles en todas las secciones.</p><div class="mr-grid-guardadas" id="mr-grid-guardadas" hidden></div>';
+  panel=document.createElement('section');panel.className='mr-panel-guardadas';panel.innerHTML='<h2>🎵 Guardadas</h2><div class="mr-grid-guardadas" id="mr-grid-guardadas"></div>';
   zona=panel.querySelector('#mr-grid-guardadas');
   const footer=document.querySelector('footer');
   (footer||document.body).insertAdjacentElement(footer?'beforebegin':'beforeend',tab);
@@ -244,7 +244,7 @@ header p{
   acciones.append(boton('−','mr-quitar','Quitar de Guardadas',()=>quitar(c)));
   info.append(titulo,artista,meta,acciones);f.append(img,fallback,info);return f;
  }
- function dibujar(){if(!panel)return;const a=leer();tab.querySelector('#mr-total-guardadas').textContent=String(a.length);zona.replaceChildren();if(!a.length){const v=document.createElement('div');v.className='mr-guardadas-vacio';v.textContent='Todavía no has guardado canciones. Pulsa el botón + de cualquier canción para añadirla aquí.';zona.appendChild(v);return}a.forEach(c=>zona.appendChild(crearTarjeta(c)))}
+ function dibujar(){if(!panel)return;const a=leer();tab.querySelector('#mr-total-guardadas').textContent=String(a.length);zona.hidden=false;zona.replaceChildren();if(!a.length){const v=document.createElement('div');v.className='mr-guardadas-vacio';v.textContent='Todavía no has guardado canciones. Pulsa el botón + de cualquier canción para añadirla aquí.';zona.appendChild(v);return}a.forEach(c=>zona.appendChild(crearTarjeta(c)))}
  function datos(n){
   const w=n.querySelector('[data-wiki-tipo="cancion"]'),info=n.querySelector('[data-resumen-tipo="cancion"]');
   const titulo=n.dataset.titulo||w?.dataset.wikiNombre||info?.dataset.resumenNombre||n.querySelector('.pista-titulo,.titulo-cancion,.titulo')?.textContent?.trim()||'';
