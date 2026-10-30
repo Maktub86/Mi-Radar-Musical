@@ -249,9 +249,10 @@ header p{
   const w=n.querySelector('[data-wiki-tipo="cancion"]'),info=n.querySelector('[data-resumen-tipo="cancion"]');
   const titulo=n.dataset.titulo||w?.dataset.wikiNombre||info?.dataset.resumenNombre||n.querySelector('.pista-titulo,.titulo-cancion,.titulo')?.textContent?.trim()||'';
   const meta=n.querySelector('.pista-meta,.meta')?.textContent||'',partes=meta.split(' · ');
-  const artista=n.dataset.artista||w?.dataset.wikiArtista||info?.dataset.resumenArtista||n.querySelector('.artista-cancion,.artista')?.textContent?.trim()||(meta.includes('Publicación de ')?meta.split('Publicación de ').pop():partes.length>1?partes[1]:partes[0])||'';
-  const img=n.querySelector('img');
-  return {titulo:titulo.replace(/^[+ℹIG\s]+/,'').trim(),artista:artista.trim(),portada:img?.currentSrc||img?.src||'',anio:n.dataset.anio||'',genero:n.dataset.genero||'',album:n.dataset.album||''};
+  const artistaBruto=n.dataset.artista||w?.dataset.wikiArtista||info?.dataset.resumenArtista||n.querySelector('.artista-cancion,.artista')?.textContent?.trim()||(meta.includes('Publicación de ')?meta.split('Publicación de ').pop():partes.length>1?partes[1]:partes[0])||'';
+  const artista=artistaBruto.replace(/[ℹ]+$/,'').trim();
+  const img=n.querySelector('img'),anioEncontrado=meta.match(/(?:19|20)\d{2}/);
+  return {titulo:titulo.replace(/^[+ℹ]\s*/,'').trim(),artista,portada:img?.currentSrc||img?.src||'',anio:n.dataset.anio||(anioEncontrado?anioEncontrado[0]:''),genero:n.dataset.genero||(partes.length?partes[0]:''),album:n.dataset.album||''};
  }
  function actualizarBotones(){document.querySelectorAll('.mr-agregar').forEach(b=>{let c={};try{c=JSON.parse(b.dataset.cancion||'{}')}catch(e){}const guardada=leer().some(x=>clave(x)===clave(c));b.textContent=guardada?'✓':'+';b.title=guardada?'Ya está guardada':'Añadir a Guardadas';b.setAttribute('aria-label',b.title);b.classList.toggle('guardada',guardada)})}
  function aplicarVisibilidad(){const on=habilitado();document.body.dataset.wikipediaOff=(localStorage.getItem('mrWikipediaEnabled')==='1'?'0':'1');document.querySelectorAll('.mr-agregar,.guardar-btn').forEach(b=>b.classList.toggle('mr-visible',on))}
@@ -260,7 +261,7 @@ header p{
   document.querySelectorAll('.tarjeta,.pista,.fila-cancion,.publicacion-mejor,.cancion').forEach(n=>{
    if(n.closest('.mr-panel-guardadas')||n.querySelector('.mr-agregar'))return;
    const c=datos(n);if(!c.titulo||!c.artista)return;
-   const b=document.createElement('button');b.type='button';b.className='mr-agregar';b.textContent=leer().some(x=>clave(x)===clave(c))?'✓':'+';b.title='Añadir a Guardadas';b.dataset.cancion=JSON.stringify(c);b.setAttribute('aria-label','Añadir '+c.titulo+' a Guardadas');b.addEventListener('click',()=>guardar(c));
+   const b=document.createElement('button');b.type='button';b.className='mr-agregar';b.textContent=leer().some(x=>clave(x)===clave(c))?'✓':'+';b.title='Añadir a Guardadas';b.dataset.cancion=JSON.stringify(c);b.setAttribute('aria-label','Añadir '+c.titulo+' a Guardadas');b.addEventListener('click',()=>guardar(datos(n)));
    const youtube=n.querySelector('.boton-youtube,.youtube,a[href*="youtube.com"],a[href*="youtu.be"]');
    if(youtube)youtube.insertAdjacentElement('afterend',b);else{const acciones=n.querySelector('.acciones-pista,.acciones-radar,.acciones,.acciones-cancion,.acciones-publicacion');if(acciones)acciones.appendChild(b);else n.appendChild(b)}
   });
