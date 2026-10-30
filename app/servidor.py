@@ -2350,7 +2350,7 @@ def muestra_musical():
 
     # Los listados suelen añadir "- Single" o "- EP" al título.
     titulo_limpio = re.sub(
-        r"\\s*[-–—]\\s*(?:single|ep|album)\\s*$|\\s*\\((?:single|ep|album)\\)\\s*$",
+        r"\s*[-–—]\s*(?:single|ep|album)\s*$|\s*\((?:single|ep|album)\)\s*$",
         "",
         titulo,
         flags=re.IGNORECASE
