@@ -2341,16 +2341,31 @@ def buscar_audio_audius():
 
 @app.get("/api/muestra")
 def muestra_musical():
+    """Busca una muestra real de 30 segundos, tolerando sufijos de lanzamiento."""
     titulo = (request.args.get("titulo") or "").strip()
     artista = (request.args.get("artista") or "").strip()
 
     if not titulo or not artista:
         return jsonify({"error": "Falta el título o el artista."}), 400
 
-    titulo_objetivo = normalizar_texto(titulo)
+    # Los listados suelen añadir "- Single" o "- EP" al título.
+    titulo_limpio = re.sub(
+        r"\\s*[-–—]\\s*(?:single|ep|album)\\s*$|\\s*\\((?:single|ep|album)\\)\\s*$",
+        "",
+        titulo,
+        flags=re.IGNORECASE
+    ).strip() or titulo
+    titulo_objetivo = normalizar_texto(titulo_limpio)
     artista_objetivo = normalizar_texto(artista)
 
-    def buscar_en_catalogo(url, fuente, campos):
+    # Dos consultas por proveedor: artista+título (principal) y título solo
+    # (respaldo para catálogos que indexan mal el orden de los términos).
+    consultas = list(dict.fromkeys([
+        f"{artista} {titulo_limpio}",
+        titulo_limpio
+    ]))
+
+    def buscar_en_catalogo(url, fuente):
         peticion = Request(
             url,
             headers={"User-Agent": "MiRadarMusical/1.0", "Accept": "application/json"}
@@ -2358,15 +2373,9 @@ def muestra_musical():
         with urlopen(peticion, timeout=8) as respuesta:
             datos = json.loads(respuesta.read().decode("utf-8"))
 
-        if fuente == "Deezer":
-            resultados = datos.get("data", [])
-        else:
-            resultados = datos.get("results", [])
-
+        resultados = datos.get("data", []) if fuente == "Deezer" else datos.get("results", [])
         mejor = None
         mejor_puntuacion = 0.0
-        mejor_titulo = 0.0
-        mejor_artista = 0.0
 
         for resultado in resultados:
             if fuente == "Deezer":
@@ -2391,11 +2400,23 @@ def muestra_musical():
             similitud_artista = difflib.SequenceMatcher(
                 None, artista_objetivo, artista_resultado
             ).ratio()
+
+            # Acepta subtítulos habituales (remaster, versión, etc.) solo
+            # cuando el título buscado aparece completo en el título del catálogo.
+            if titulo_objetivo and (
+                titulo_objetivo in titulo_resultado
+                or titulo_resultado in titulo_objetivo
+            ):
+                similitud_titulo = max(similitud_titulo, 0.94)
+
+            # Algunos catálogos devuelven el artista principal con colaboradores.
+            if artista_objetivo and (
+                artista_objetivo in artista_resultado
+                or artista_resultado in artista_objetivo
+            ):
+                similitud_artista = max(similitud_artista, 0.90)
+
             puntuacion = similitud_titulo * 0.65 + similitud_artista * 0.35
-
-            if titulo_objetivo in titulo_resultado or titulo_resultado in titulo_objetivo:
-                puntuacion += 0.08
-
             if puntuacion > mejor_puntuacion:
                 mejor_puntuacion = puntuacion
                 mejor = {
@@ -2403,50 +2424,48 @@ def muestra_musical():
                     "trackViewUrl": enlace,
                     "titulo": titulo_original,
                     "artista": artista_original,
-                    "fuente": fuente
+                    "fuente": fuente,
+                    "_similitud_titulo": similitud_titulo,
+                    "_similitud_artista": similitud_artista
                 }
-                mejor_titulo = similitud_titulo
-                mejor_artista = similitud_artista
 
         if (
-            not mejor or mejor_puntuacion < 0.76
-            or mejor_titulo < 0.72 or mejor_artista < 0.60
+            not mejor
+            or mejor_puntuacion < 0.76
+            or mejor["_similitud_titulo"] < 0.72
+            or mejor["_similitud_artista"] < 0.60
         ):
             return None
+
+        mejor.pop("_similitud_titulo", None)
+        mejor.pop("_similitud_artista", None)
         return mejor
 
     errores = []
-    consulta_deezer = urlencode({"q": f"{artista} {titulo}", "limit": 15})
-    try:
-        resultado = buscar_en_catalogo(
-            "https://api.deezer.com/search?" + consulta_deezer,
-            "Deezer",
-            None
-        )
-        if resultado:
-            return jsonify({**resultado, "duracion": 30})
-    except Exception:
-        errores.append("Deezer")
+    proveedores = [
+        ("Deezer", "https://api.deezer.com/search?", "q", 50),
+        ("Apple Music/iTunes", "https://itunes.apple.com/search?", "term", 50)
+    ]
 
-    # Si Deezer no responde o no ofrece una coincidencia fiable con muestra,
-    # se intenta Apple/iTunes como alternativa.
-    parametros_itunes = urlencode({
-        "term": f"{artista} {titulo}",
-        "country": "es",
-        "media": "music",
-        "entity": "song",
-        "limit": 15
-    })
-    try:
-        resultado = buscar_en_catalogo(
-            "https://itunes.apple.com/search?" + parametros_itunes,
-            "Apple Music/iTunes",
-            None
-        )
-        if resultado:
-            return jsonify({**resultado, "duracion": 30})
-    except Exception:
-        errores.append("Apple Music/iTunes")
+    for fuente, base_url, parametro, limite in proveedores:
+        for consulta in consultas:
+            parametros = {parametro: consulta, "limit": limite}
+            if fuente != "Deezer":
+                parametros.update({
+                    "country": "es",
+                    "media": "music",
+                    "entity": "song"
+                })
+            try:
+                resultado = buscar_en_catalogo(
+                    base_url + urlencode(parametros),
+                    "Deezer" if fuente == "Deezer" else "Apple Music/iTunes"
+                )
+                if resultado:
+                    return jsonify({**resultado, "duracion": 30})
+            except Exception:
+                if fuente not in errores:
+                    errores.append(fuente)
 
     if len(errores) == 2:
         return jsonify({
@@ -2454,7 +2473,7 @@ def muestra_musical():
         }), 502
 
     return jsonify({
-        "error": "No he encontrado una muestra que coincida con suficiente seguridad en Deezer ni en Apple Music/iTunes."
+        "error": "No he encontrado una muestra de 30 segundos que coincida con seguridad en Deezer ni en Apple Music/iTunes."
     }), 404
 
 @app.get("/api/youtube/buscar")
