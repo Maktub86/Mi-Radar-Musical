@@ -52,11 +52,10 @@ button{width:100%;margin-top:20px;padding:12px;border:0;border-radius:9px;backgr
 <body><main>
 <div style="font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#76e0c2">Tu universo musical</div>
 <h1>Mi Radar Musical 🎧</h1>
-<p>Introduce tus credenciales para entrar.</p>
+<p>Introduce la contraseña para entrar.</p>
 {% if error %}<p class="error">{{ error }}</p>{% endif %}
 <form method="post" action="/login">
-<label for="username">Usuario</label><input id="username" name="username" autocomplete="username" required autofocus>
-<label for="password">Contraseña</label><input id="password" name="password" type="password" autocomplete="current-password" required>
+<label for="password">Contraseña</label><input id="password" name="password" type="password" autocomplete="current-password" required autofocus>
 <button type="submit">Entrar</button>
 </form>
 <p style="text-align:center;margin:18px 0 0"><a href="/recuperar" style="color:#c6a8ff">He olvidado cómo entrar</a></p>
@@ -243,9 +242,9 @@ def acceso_recuperacion(token):
 
 @app.before_request
 def exigir_acceso():
-    if not all(os.environ.get(k) for k in ("RADAR_USER", "RADAR_PASSWORD", "FLASK_SECRET_KEY")):
+    if not all(os.environ.get(k) for k in ("RADAR_PASSWORD", "FLASK_SECRET_KEY")):
         return (
-            "Falta configurar RADAR_USER, RADAR_PASSWORD y FLASK_SECRET_KEY en las variables de entorno de Render.",
+            "Falta configurar RADAR_PASSWORD y FLASK_SECRET_KEY en las variables de entorno de Render.",
             503,
             {"Content-Type": "text/plain; charset=utf-8"},
         )
@@ -263,15 +262,12 @@ def exigir_acceso():
 def login():
     error = None
     if request.method == "POST":
-        usuario = request.form.get("username", "")
         clave = request.form.get("password", "")
-        usuario_ok = hmac.compare_digest(usuario, os.environ["RADAR_USER"])
-        clave_ok = hmac.compare_digest(clave, os.environ["RADAR_PASSWORD"])
-        if usuario_ok and clave_ok:
+        if hmac.compare_digest(clave, os.environ["RADAR_PASSWORD"]):
             session.clear()
             session["radar_autenticado"] = True
             return redirect("/")
-        error = "Usuario o contraseña incorrectos."
+        error = "Contraseña incorrecta."
     return render_template_string(LOGIN_HTML, error=error)
 
 @app.after_request
