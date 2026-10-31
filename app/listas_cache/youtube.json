@@ -19,172 +19,172 @@
       "puesto": 3
     },
     {
+      "titulo": "POLEG - HELLO TOTO (Shot by @LlorkaProd )",
+      "artista": "Poleg",
+      "url": "https://www.youtube.com/watch?v=D-lICRbsXW4",
+      "puesto": 4
+    },
+    {
       "titulo": "Relicario",
       "artista": "El Barrio",
       "url": "https://www.youtube.com/watch?v=o0pX-KObmvs",
-      "puesto": 4
+      "puesto": 5
     },
     {
       "titulo": "Te Imagino",
       "artista": "Myke Towers",
       "url": "https://www.youtube.com/watch?v=5j8fIDh1V0A",
-      "puesto": 5
+      "puesto": 6
+    },
+    {
+      "titulo": "BODYPAINTING (Official Video)",
+      "artista": "Emilia",
+      "url": "https://www.youtube.com/watch?v=Whne2kfTjCk",
+      "puesto": 7
+    },
+    {
+      "titulo": "Lejos de Mi (Video Oficial)",
+      "artista": "Josue Rarujo",
+      "url": "https://www.youtube.com/watch?v=tA1QNxP5f_w",
+      "puesto": 8
     },
     {
       "titulo": "Vulnerable",
       "artista": "Jory Boy, Ozuna, Ñengo Flow",
       "url": "https://www.youtube.com/watch?v=OWbhwq9fecg",
-      "puesto": 6
+      "puesto": 9
     },
     {
       "titulo": "Querencia",
       "artista": "El Barrio",
       "url": "https://www.youtube.com/watch?v=PG7S8mt5isk",
-      "puesto": 7
-    },
-    {
-      "titulo": "POLEG - HELLO TOTO (Shot by @LlorkaProd )",
-      "artista": "Poleg",
-      "url": "https://www.youtube.com/watch?v=D-lICRbsXW4",
-      "puesto": 8
-    },
-    {
-      "titulo": "K/DA - FIRESTARTER ft. MIYEON and SOYEON of i-dle, Sophie Powers, Mimi Webb (Official Music Video)",
-      "artista": "League of Legends",
-      "url": "https://www.youtube.com/watch?v=Mmw-PpWhKFg",
-      "puesto": 9
-    },
-    {
-      "titulo": "El Pastor De Mareas",
-      "artista": "El Barrio",
-      "url": "https://www.youtube.com/watch?v=j68DbvilXrw",
       "puesto": 10
     },
     {
-      "titulo": "Dame Hombro",
-      "artista": "Kevin Wai, Breyco En Producidera, Bulin 47",
-      "url": "https://www.youtube.com/watch?v=VUIgT-E4IS0",
+      "titulo": "Cartier Remix",
+      "artista": "El Americano 4KT, Lil Naay",
+      "url": "https://www.youtube.com/watch?v=gMWW4zJhfA8",
       "puesto": 11
-    },
-    {
-      "titulo": "El Problema Fue La Solución",
-      "artista": "Antonio Orozco",
-      "url": "https://www.youtube.com/watch?v=jevtWW_3Jwk",
-      "puesto": 12
-    },
-    {
-      "titulo": "FAMA",
-      "artista": "YOLAMASCARA",
-      "url": "https://www.youtube.com/watch?v=NUzyKrRvwRk",
-      "puesto": 13
     },
     {
       "titulo": "La Gerencia [Remix]",
       "artista": "Tito \"El Bambino\", Eladio Carrion, Ozuna, Ñengo Flow",
       "url": "https://www.youtube.com/watch?v=J3jyzFP9vog",
+      "puesto": 12
+    },
+    {
+      "titulo": "Daddy Yankee and Diljit Dosanjh - POKITO (Official Music Video)",
+      "artista": "Daddy Yankee",
+      "url": "https://www.youtube.com/watch?v=XO1h5G6xytU",
+      "puesto": 13
+    },
+    {
+      "titulo": "K/DA - FIRESTARTER ft. MIYEON and SOYEON of i-dle, Sophie Powers, Mimi Webb (Official Music Video)",
+      "artista": "League of Legends",
+      "url": "https://www.youtube.com/watch?v=Mmw-PpWhKFg",
       "puesto": 14
+    },
+    {
+      "titulo": "El Pastor De Mareas",
+      "artista": "El Barrio",
+      "url": "https://www.youtube.com/watch?v=j68DbvilXrw",
+      "puesto": 15
+    },
+    {
+      "titulo": "Me Encanta",
+      "artista": "Cyril Kamer",
+      "url": "https://www.youtube.com/watch?v=GwyF-niH3Ew",
+      "puesto": 16
+    },
+    {
+      "titulo": "El Problema Fue La Solución",
+      "artista": "Antonio Orozco",
+      "url": "https://www.youtube.com/watch?v=jevtWW_3Jwk",
+      "puesto": 17
+    },
+    {
+      "titulo": "Dame Hombro",
+      "artista": "Kevin Wai, Breyco En Producidera, Bulin 47",
+      "url": "https://www.youtube.com/watch?v=VUIgT-E4IS0",
+      "puesto": 18
+    },
+    {
+      "titulo": "FAMA",
+      "artista": "YOLAMASCARA",
+      "url": "https://www.youtube.com/watch?v=NUzyKrRvwRk",
+      "puesto": 19
     },
     {
       "titulo": "Coming Up Roses (Official Video)",
       "artista": "Harry Styles",
       "url": "https://www.youtube.com/watch?v=M4qX5wzx-wY",
-      "puesto": 15
+      "puesto": 20
+    },
+    {
+      "titulo": "Eladio Carrión, Rauw Alejandro, De La Rose - Body Remix (Visualizer)",
+      "artista": "Eladio Carrion",
+      "url": "https://www.youtube.com/watch?v=Zq_bsX3i5c8",
+      "puesto": 21
+    },
+    {
+      "titulo": "La Canción de las Frutas 2 🍐🍒🥥 Frutas Talent ✨ Adivinanzas para Niños",
+      "artista": "El Jardín de la Fantasía",
+      "url": "https://www.youtube.com/watch?v=R7njZ8aGtBE",
+      "puesto": 22
     },
     {
       "titulo": "El Tándem con Cráneo",
       "artista": "SFDK",
       "url": "https://www.youtube.com/watch?v=G2yPTomFA9A",
-      "puesto": 16
-    },
-    {
-      "titulo": "RED BOTTOM",
-      "artista": "YOLAMASCARA",
-      "url": "https://www.youtube.com/watch?v=9ox8EfPRCWc",
-      "puesto": 17
+      "puesto": 23
     },
     {
       "titulo": "Vete Pa Tu Casa (Official Visualizer)",
       "artista": "Conep",
       "url": "https://www.youtube.com/watch?v=HBoW8-q-sSs",
-      "puesto": 18
+      "puesto": 24
+    },
+    {
+      "titulo": "RED BOTTOM",
+      "artista": "YOLAMASCARA",
+      "url": "https://www.youtube.com/watch?v=9ox8EfPRCWc",
+      "puesto": 25
     },
     {
       "titulo": "Sarà perché ti amo – AFRO CODE 🔥| Afro House Extended Mix",
       "artista": "AFRO CODE",
       "url": "https://www.youtube.com/watch?v=AAZpeg19RWw",
-      "puesto": 19
-    },
-    {
-      "titulo": "Drip",
-      "artista": "ATEEZ",
-      "url": "https://www.youtube.com/watch?v=iqQWCYMlMw0",
-      "puesto": 20
-    },
-    {
-      "titulo": "YOUR NUMBER - Spanish Version",
-      "artista": "Yapi",
-      "url": "https://www.youtube.com/watch?v=xxToWcYEGJw",
-      "puesto": 21
-    },
-    {
-      "titulo": "BbY WOW (Live From New York)",
-      "artista": "KAROL G, Judeline, rusowsky",
-      "url": "https://www.youtube.com/watch?v=ckPbVDXw9Gc",
-      "puesto": 22
+      "puesto": 26
     },
     {
       "titulo": "You’re Under Arrest",
       "artista": "ILLIT",
       "url": "https://www.youtube.com/watch?v=V2V9-9VhYJo",
-      "puesto": 23
-    },
-    {
-      "titulo": "Muertx",
-      "artista": "Yan Block",
-      "url": "https://www.youtube.com/watch?v=mc2TyQK2NKY",
-      "puesto": 24
-    },
-    {
-      "titulo": "Tarantino (Official Music Video)",
-      "artista": "LISA",
-      "url": "https://www.youtube.com/watch?v=-5ZXrO_lYSA",
-      "puesto": 25
-    },
-    {
-      "titulo": "La Falda",
-      "artista": "Judeline",
-      "url": "https://www.youtube.com/watch?v=7L6oiqd91qE",
-      "puesto": 26
-    },
-    {
-      "titulo": "Housewife (Official Video)",
-      "artista": "Tate McRae",
-      "url": "https://www.youtube.com/watch?v=DPEodkHzH-s",
       "puesto": 27
     },
     {
-      "titulo": "Bicho raro",
-      "artista": "Estopa",
-      "url": "https://www.youtube.com/watch?v=8IMveAh7nhA",
+      "titulo": "Drip",
+      "artista": "ATEEZ",
+      "url": "https://www.youtube.com/watch?v=iqQWCYMlMw0",
       "puesto": 28
     },
     {
-      "titulo": "El Popo CIEN POR MIL",
-      "artista": "El Popo",
-      "url": "https://www.youtube.com/watch?v=8F4s94g1Hws",
+      "titulo": "YOUR NUMBER - Spanish Version",
+      "artista": "Yapi",
+      "url": "https://www.youtube.com/watch?v=xxToWcYEGJw",
       "puesto": 29
     },
     {
-      "titulo": "Chiribi",
-      "artista": "Angeliyo El Blanco",
-      "url": "https://www.youtube.com/watch?v=8SLaold8IO8",
+      "titulo": "BbY WOW (Live From New York)",
+      "artista": "KAROL G, Judeline, rusowsky",
+      "url": "https://www.youtube.com/watch?v=ckPbVDXw9Gc",
       "puesto": 30
     }
   ],
   "fuente": "https://charts.youtube.com/charts/TrendingVideos/es",
   "nombre": "Tendencias musicales de YouTube",
   "tipo": "youtube",
-  "actualizado": "2026-10-30T05:06+00:00",
+  "actualizado": "2026-10-31T05:03+00:00",
   "en_curso": false,
   "mensaje": "Lista actualizada: 30 canciones."
 }
