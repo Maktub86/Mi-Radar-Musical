@@ -1,5 +1,37 @@
 [
   {
+    "id": "apple-6829352107",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/12/fe/54/12fe544c-4844-033f-8e29-f8e8f12b20dc/859749999034_cover.jpg/100x100bb.jpg",
+    "titulo": "Ven Dámelo - Single",
+    "fecha": "2026-11-01",
+    "artista": "OnMusic",
+    "tipo": "Single"
+  },
+  {
+    "id": "79cecb98-510a-4ff7-a066-92d68dacfcfc",
+    "imagen": "https://coverartarchive.org/release-group/79cecb98-510a-4ff7-a066-92d68dacfcfc/front-250",
+    "titulo": "BOY CRAZY. (featuring Jade)",
+    "fecha": "2026-11",
+    "artista": "Kesha",
+    "tipo": "Other"
+  },
+  {
+    "id": "apple-6829366029",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8b/ac/4b/8bac4b7d-789c-7de6-fb68-3404283b8339/859750005755_cover.jpg/100x100bb.jpg",
+    "titulo": "Ahora No - Single",
+    "fecha": "2026-10-31",
+    "artista": "OnMusic",
+    "tipo": "Single"
+  },
+  {
+    "id": "b109222a-f012-426f-8d2e-7b31e2f35ce6",
+    "imagen": "https://coverartarchive.org/release-group/b109222a-f012-426f-8d2e-7b31e2f35ce6/front-250",
+    "titulo": "Hong Kong",
+    "fecha": "2026-10-31",
+    "artista": "The Weeknd",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6827121389",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d6/21/2d/d6212d80-242c-3ddb-8b66-a722b3937b79/26UM1IM38195.rgb.jpg/100x100bb.jpg",
     "titulo": "petal - EP",
@@ -46,6 +78,14 @@
     "fecha": "2026-10-30",
     "artista": "Daddy Yankee",
     "tipo": "Album"
+  },
+  {
+    "id": "apple-6826230338",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/61/f4/06/61f406b5-831e-0952-871d-1e4ce45a3e49/1200220368198.jpg/100x100bb.jpg",
+    "titulo": "BAD IDEA - Single",
+    "fecha": "2026-10-30",
+    "artista": "Dara",
+    "tipo": "Single"
   },
   {
     "id": "apple-6824510305",
@@ -270,14 +310,6 @@
     "fecha": "2026-10-28",
     "artista": "DJ Snake",
     "tipo": "Single"
-  },
-  {
-    "id": "apple-6819491751",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b7/dd/9b/b7dd9b2e-93b5-7a64-0167-4a655ab50ad2/4571673442689.jpg/100x100bb.jpg",
-    "titulo": "The News Music Library Vol.12",
-    "fecha": "2026-10-28",
-    "artista": "Joe",
-    "tipo": "Album"
   },
   {
     "id": "apple-6828999972",
@@ -616,14 +648,6 @@
     "tipo": "Single"
   },
   {
-    "id": "57631844-c1a5-41a8-b8ec-60891070bf93",
-    "imagen": "https://coverartarchive.org/release-group/57631844-c1a5-41a8-b8ec-60891070bf93/front-250",
-    "titulo": "Before You Know It",
-    "fecha": "2026-10-16",
-    "artista": "Kygo",
-    "tipo": "Single"
-  },
-  {
     "id": "9d50225b-cd36-4b6e-9f58-c30064a782af",
     "imagen": "https://coverartarchive.org/release-group/9d50225b-cd36-4b6e-9f58-c30064a782af/front-250",
     "titulo": "Before You Know It",
@@ -701,6 +725,14 @@
     "titulo": "FADED (Nora En Pure Remix)",
     "fecha": "2026-10-16",
     "artista": "Nelly Furtado",
+    "tipo": "Single"
+  },
+  {
+    "id": "78c7875e-f1b3-41e2-9f22-b9eb2e68f9a4",
+    "imagen": "https://coverartarchive.org/release-group/78c7875e-f1b3-41e2-9f22-b9eb2e68f9a4/front-250",
+    "titulo": "expectations (feat. Chappell Roan)",
+    "fecha": "2026-10-16",
+    "artista": "Olivia Rodrigo",
     "tipo": "Single"
   },
   {
@@ -801,7 +833,7 @@
   },
   {
     "id": "apple-6822497770",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ce/c8/05/cec805c6-5f81-a897-a53e-f42025b9cd5a/196874840146.jpg/100x100bb.jpg",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/69/64/e4/6964e483-c02c-e389-14f4-c426e8c65f2c/196874840146.jpg/100x100bb.jpg",
     "titulo": "Housewife - Single",
     "fecha": "2026-10-15",
     "artista": "Tate McRae",
@@ -920,8 +952,8 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6820223916",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bc/3a/9e/bc3a9e97-ef83-93f1-e15f-e77953ee30d6/4464217.jpg/100x100bb.jpg",
+    "id": "apple-6819831126",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2f/ab/c5/2fabc5b9-4c7c-b146-28d6-9fe51a7e1b1c/4458713.jpg/100x100bb.jpg",
     "titulo": "BOTZ - Single",
     "fecha": "2026-10-09",
     "artista": "Daddy Yankee",
@@ -1779,6 +1811,14 @@
     "id": "c6e5b9cd-fac2-4f95-94e9-a19887a2f59f",
     "imagen": "https://coverartarchive.org/release-group/c6e5b9cd-fac2-4f95-94e9-a19887a2f59f/front-250",
     "titulo": "Called it Love (Serena X FIFTY FIFTY) (Original Webtoon Soundtrack)",
+    "fecha": "2026-09-18",
+    "artista": "FIFTY FIFTY",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6812138566",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5d/2e/1b/5d2e1b2c-21f5-52bc-56d0-638824bdf599/8800366472570.jpg/100x100bb.jpg",
+    "titulo": "Called it Love (Serena X FIFTY FIFTY) (Original Webtoon Soundtrack) - Single",
     "fecha": "2026-09-18",
     "artista": "FIFTY FIFTY",
     "tipo": "Single"
@@ -4006,14 +4046,6 @@
     "fecha": "2026-07-17",
     "artista": "Gracie Abrams",
     "tipo": "Album"
-  },
-  {
-    "id": "apple-6790879564",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/46/49/02/46490231-1aee-94f5-f595-f625922791e9/artwork.jpg/100x100bb.jpg",
-    "titulo": "GRiFF (BURN.) - Single",
-    "fecha": "2026-07-17",
-    "artista": "Griff",
-    "tipo": "Single"
   },
   {
     "id": "ca59a312-bad2-473b-b955-aea8248c1fdd",
@@ -7720,6 +7752,14 @@
     "tipo": "Album"
   },
   {
+    "id": "f411d4aa-5897-4598-be1c-058139a3cf6b",
+    "imagen": "https://coverartarchive.org/release-group/f411d4aa-5897-4598-be1c-058139a3cf6b/front-250",
+    "titulo": "Fascination",
+    "fecha": "2026-05-08",
+    "artista": "Jon Secada",
+    "tipo": "Album"
+  },
+  {
     "id": "aeee652b-deaa-436b-af81-f7bc7231fb64",
     "imagen": "https://coverartarchive.org/release-group/aeee652b-deaa-436b-af81-f7bc7231fb64/front-250",
     "titulo": "Somewhere Only We Know (live from Dermot O’Leary’s Saturday Sessions / 2014)",
@@ -8024,14 +8064,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1896059642",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a4/7c/cc/a47ccc36-ea90-43ac-bf86-f26527199617/196874318393.jpg/100x100bb.jpg",
-    "titulo": "top diesel (bundle) - Single",
-    "fecha": "2026-05-05",
-    "artista": "Beéle",
-    "tipo": "Single"
-  },
-  {
     "id": "apple-1896059532",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/36/81/39/368139d5-2edb-4d3e-38fd-5e24131fa944/196874319567.jpg/100x100bb.jpg",
     "titulo": "sobelove (bundle) - Single",
@@ -8043,6 +8075,14 @@
     "id": "apple-1896059569",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7f/eb/26/7feb262c-b2e5-603a-2913-f8ec2f4c957d/196874319499.jpg/100x100bb.jpg",
     "titulo": "frente al mar (bundle) - Single",
+    "fecha": "2026-05-05",
+    "artista": "Beéle",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-1896059642",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a4/7c/cc/a47ccc36-ea90-43ac-bf86-f26527199617/196874318393.jpg/100x100bb.jpg",
+    "titulo": "top diesel (bundle) - Single",
     "fecha": "2026-05-05",
     "artista": "Beéle",
     "tipo": "Single"
@@ -10403,14 +10443,6 @@
     "id": "apple-6781081338",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ed/0c/89/ed0c89b1-bb54-7933-f93a-4ba8d625fc10/602478438561.jpg/100x100bb.jpg",
     "titulo": "Queen II (2026 Mix)",
-    "fecha": "2026-03-27",
-    "artista": "Queen",
-    "tipo": "Album"
-  },
-  {
-    "id": "apple-6799160177",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f7/a5/65/f7a56513-1ef7-8703-b39d-d638a8745cb0/0602478438615.jpg/100x100bb.jpg",
-    "titulo": "Queen II (Collector's Edition)",
     "fecha": "2026-03-27",
     "artista": "Queen",
     "tipo": "Album"
@@ -15843,14 +15875,6 @@
     "id": "1f9c3cd1-b449-468a-89a5-74081210e7a8",
     "imagen": "https://coverartarchive.org/release-group/1f9c3cd1-b449-468a-89a5-74081210e7a8/front-250",
     "titulo": "Anthology 4",
-    "fecha": "2025-11-21",
-    "artista": "The Beatles",
-    "tipo": "Album"
-  },
-  {
-    "id": "7f375a51-4a07-455b-9e5f-6bca67225ae6",
-    "imagen": "https://coverartarchive.org/release-group/7f375a51-4a07-455b-9e5f-6bca67225ae6/front-250",
-    "titulo": "Anthology Collection",
     "fecha": "2025-11-21",
     "artista": "The Beatles",
     "tipo": "Album"
@@ -22594,7 +22618,7 @@
   {
     "id": "ba376534-7aa8-4db7-aaef-7a32304d17cc",
     "imagen": "https://coverartarchive.org/release-group/ba376534-7aa8-4db7-aaef-7a32304d17cc/front-250",
-    "titulo": "Noches de Cantina",
+    "titulo": "Noches de cantina",
     "fecha": "2025-05-29",
     "artista": "Maná",
     "tipo": "Album"
@@ -29389,7 +29413,7 @@
     "titulo": "Don't Lie (remixes)",
     "fecha": "2024-11-08",
     "artista": "The Chainsmokers",
-    "tipo": "EP"
+    "tipo": "Single"
   },
   {
     "id": "fcb2996a-32ff-4f8a-a565-1b86b13859ed",
@@ -35197,7 +35221,7 @@
     "titulo": "Addicted: Refreshed",
     "fecha": "2024-05-24",
     "artista": "The Chainsmokers",
-    "tipo": "EP"
+    "tipo": "Single"
   },
   {
     "id": "6c42b764-ff9f-4bf2-90ee-e0fd6ce8b4b8",
@@ -65877,7 +65901,7 @@
     "titulo": "High (remixes)",
     "fecha": "2022-03-09",
     "artista": "The Chainsmokers",
-    "tipo": "EP"
+    "tipo": "Single"
   },
   {
     "id": "3f1cedc2-c485-42e0-a075-3e3be9fdc982",
@@ -106829,7 +106853,7 @@
     "titulo": "Call You Mine: The Remixes",
     "fecha": "2019-07-19",
     "artista": "The Chainsmokers",
-    "tipo": "Publicación"
+    "tipo": "Single"
   },
   {
     "id": "b1e0428c-2eb1-4bb1-92a5-98ae4aa8347f",
@@ -110589,7 +110613,7 @@
     "titulo": "Kills You Slowly: The Remixes",
     "fecha": "2019-04-12",
     "artista": "The Chainsmokers",
-    "tipo": "EP"
+    "tipo": "Single"
   },
   {
     "id": "f518b3c0-e53d-464c-882a-22aa3b04d1d7",
@@ -116517,7 +116541,7 @@
     "titulo": "This Feeling (remixes)",
     "fecha": "2018-11-09",
     "artista": "The Chainsmokers",
-    "tipo": "EP"
+    "tipo": "Single"
   },
   {
     "id": "4e60b3d6-088c-454d-abbc-129f3bb6a74f",
@@ -119677,7 +119701,7 @@
     "titulo": "Side Effects: The Remixes",
     "fecha": "2018-08-20",
     "artista": "The Chainsmokers",
-    "tipo": "EP"
+    "tipo": "Single"
   },
   {
     "id": "58afd5f5-a3cb-43c4-a0dc-fd15fbfe33bf",
@@ -122437,7 +122461,7 @@
     "titulo": "Somebody: The Remixes",
     "fecha": "2018-05-25",
     "artista": "The Chainsmokers",
-    "tipo": "EP"
+    "tipo": "Single"
   },
   {
     "id": "b0a91062-4cf6-4aa3-a734-c738f347c009",
@@ -124533,7 +124557,7 @@
     "titulo": "Everybody Hates Me (remixes)",
     "fecha": "2018-03-30",
     "artista": "The Chainsmokers",
-    "tipo": "EP"
+    "tipo": "Single"
   },
   {
     "id": "286591d4-ade8-4d24-a804-7024a9b565a4",
@@ -125237,7 +125261,7 @@
     "titulo": "You Owe Me (remixes)",
     "fecha": "2018-03-09",
     "artista": "The Chainsmokers",
-    "tipo": "EP"
+    "tipo": "Single"
   },
   {
     "id": "3ed10929-5c6f-4621-be8f-2754e4253272",
@@ -126061,7 +126085,7 @@
     "titulo": "Sick Boy (remixes)",
     "fecha": "2018-02-09",
     "artista": "The Chainsmokers",
-    "tipo": "EP"
+    "tipo": "Single"
   },
   {
     "id": "9d25068c-8794-4a8f-9420-f0aa870b0b32",
@@ -133205,7 +133229,7 @@
     "titulo": "Honest (remixes)",
     "fecha": "2017-08-04",
     "artista": "The Chainsmokers",
-    "tipo": "EP"
+    "tipo": "Single"
   },
   {
     "id": "8aabeaef-e853-4d42-9c88-e61752e7538c",
@@ -136261,7 +136285,7 @@
     "titulo": "Something Just Like This (remixes)",
     "fecha": "2017-04-28",
     "artista": "Coldplay",
-    "tipo": "EP"
+    "tipo": "Single"
   },
   {
     "id": "7dc9d7fa-eb80-4304-ae11-961a8b62cdbf",
@@ -136405,7 +136429,7 @@
     "titulo": "Something Just Like This (remixes)",
     "fecha": "2017-04-28",
     "artista": "The Chainsmokers",
-    "tipo": "EP"
+    "tipo": "Single"
   },
   {
     "id": "59d68226-b9de-4f15-9fc5-238326e59cf6",
@@ -138933,7 +138957,7 @@
     "titulo": "Paris (remixes)",
     "fecha": "2017-02-17",
     "artista": "The Chainsmokers",
-    "tipo": "EP"
+    "tipo": "Single"
   },
   {
     "id": "47fc12ce-78b6-41de-a37c-45c3ac55852f",
@@ -141048,6 +141072,14 @@
     "tipo": "Album"
   },
   {
+    "id": "ac92127a-e0ae-438f-abf4-10244af92635",
+    "imagen": "https://coverartarchive.org/release-group/ac92127a-e0ae-438f-abf4-10244af92635/front-250",
+    "titulo": "The Complete 1951 Pasadena Concerts",
+    "fecha": "2017",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
     "id": "ec6b9264-7ca6-4fb2-87f6-1a7d12317ea5",
     "imagen": "https://coverartarchive.org/release-group/ec6b9264-7ca6-4fb2-87f6-1a7d12317ea5/front-250",
     "titulo": "The Standard Oil Sessions",
@@ -141664,14 +141696,6 @@
     "tipo": "Album"
   },
   {
-    "id": "226046c4-91f4-45dd-8f43-fb8fd91e515d",
-    "imagen": "https://coverartarchive.org/release-group/226046c4-91f4-45dd-8f43-fb8fd91e515d/front-250",
-    "titulo": "Touring Party Vol.4",
-    "fecha": "2017",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
     "id": "2dc2b730-e149-488f-b796-acacb76879a4",
     "imagen": "https://coverartarchive.org/release-group/2dc2b730-e149-488f-b796-acacb76879a4/front-250",
     "titulo": "Mad Shadows",
@@ -141688,17 +141712,25 @@
     "tipo": "Album"
   },
   {
-    "id": "6af82462-c6f8-4d6c-86dd-437b270e097d",
-    "imagen": "https://coverartarchive.org/release-group/6af82462-c6f8-4d6c-86dd-437b270e097d/front-250",
-    "titulo": "Twickenham 2003 1st Night",
+    "id": "97aa42b8-4c0d-4c89-bbb2-46edf9118028",
+    "imagen": "https://coverartarchive.org/release-group/97aa42b8-4c0d-4c89-bbb2-46edf9118028/front-250",
+    "titulo": "Handsome Girls Lexington",
     "fecha": "2017",
     "artista": "The Rolling Stones",
     "tipo": "Album"
   },
   {
-    "id": "97aa42b8-4c0d-4c89-bbb2-46edf9118028",
-    "imagen": "https://coverartarchive.org/release-group/97aa42b8-4c0d-4c89-bbb2-46edf9118028/front-250",
-    "titulo": "Handsome Girls Lexington",
+    "id": "226046c4-91f4-45dd-8f43-fb8fd91e515d",
+    "imagen": "https://coverartarchive.org/release-group/226046c4-91f4-45dd-8f43-fb8fd91e515d/front-250",
+    "titulo": "Touring Party Vol.4",
+    "fecha": "2017",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
+    "id": "6af82462-c6f8-4d6c-86dd-437b270e097d",
+    "imagen": "https://coverartarchive.org/release-group/6af82462-c6f8-4d6c-86dd-437b270e097d/front-250",
+    "titulo": "Twickenham 2003 1st Night",
     "fecha": "2017",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -142093,7 +142125,7 @@
     "titulo": "Setting Fires (remixes)",
     "fecha": "2016-12-23",
     "artista": "The Chainsmokers",
-    "tipo": "EP"
+    "tipo": "Single"
   },
   {
     "id": "a4847ad7-94ad-4c61-a660-1f093a5db9df",
@@ -145136,6 +145168,14 @@
     "tipo": "Single"
   },
   {
+    "id": "985a7746-4207-45ba-9400-49796eaaaf72",
+    "imagen": "https://coverartarchive.org/release-group/985a7746-4207-45ba-9400-49796eaaaf72/front-250",
+    "titulo": "Starboy",
+    "fecha": "2016-09-22",
+    "artista": "The Weeknd",
+    "tipo": "Single"
+  },
+  {
     "id": "a0694b19-8777-4cf9-8ba7-12663099779c",
     "imagen": "https://coverartarchive.org/release-group/a0694b19-8777-4cf9-8ba7-12663099779c/front-250",
     "titulo": "Keep It Mello (Sikdope remix)",
@@ -145150,14 +145190,6 @@
     "fecha": "2016-09-21",
     "artista": "Extreme",
     "tipo": "Album"
-  },
-  {
-    "id": "985a7746-4207-45ba-9400-49796eaaaf72",
-    "imagen": "https://coverartarchive.org/release-group/985a7746-4207-45ba-9400-49796eaaaf72/front-250",
-    "titulo": "Starboy",
-    "fecha": "2016-09-21",
-    "artista": "The Weeknd",
-    "tipo": "Single"
   },
   {
     "id": "1a155405-40a5-44c2-93dd-2834b9af8f6a",
@@ -147421,7 +147453,7 @@
     "titulo": "Don’t Let Me Down (remixes)",
     "fecha": "2016-07-08",
     "artista": "The Chainsmokers",
-    "tipo": "EP"
+    "tipo": "Single"
   },
   {
     "id": "b5ee5815-2b44-4888-9d02-5464d1792c87",
@@ -151101,7 +151133,7 @@
     "titulo": "Roses (remixes)",
     "fecha": "2016-02-12",
     "artista": "The Chainsmokers",
-    "tipo": "EP"
+    "tipo": "Single"
   },
   {
     "id": "4b6b9edc-fd1e-46cc-b0bc-853cd98d7fe4",
@@ -159360,17 +159392,17 @@
     "tipo": "Single"
   },
   {
-    "id": "bf1e91d8-6e13-4b6e-acf1-911b00863c2f",
-    "imagen": "https://coverartarchive.org/release-group/bf1e91d8-6e13-4b6e-acf1-911b00863c2f/front-250",
-    "titulo": "Let You Go (The Golden Pony Remix)",
+    "id": "7a229ec9-cbc2-4d36-98ba-a1fb7aca82cc",
+    "imagen": "https://coverartarchive.org/release-group/7a229ec9-cbc2-4d36-98ba-a1fb7aca82cc/front-250",
+    "titulo": "Let You Go (Steve James remix)",
     "fecha": "2015-05-12",
     "artista": "The Chainsmokers",
     "tipo": "Single"
   },
   {
-    "id": "7a229ec9-cbc2-4d36-98ba-a1fb7aca82cc",
-    "imagen": "https://coverartarchive.org/release-group/7a229ec9-cbc2-4d36-98ba-a1fb7aca82cc/front-250",
-    "titulo": "Let You Go (Steve James remix)",
+    "id": "bf1e91d8-6e13-4b6e-acf1-911b00863c2f",
+    "imagen": "https://coverartarchive.org/release-group/bf1e91d8-6e13-4b6e-acf1-911b00863c2f/front-250",
+    "titulo": "Let You Go (The Golden Pony Remix)",
     "fecha": "2015-05-12",
     "artista": "The Chainsmokers",
     "tipo": "Single"
@@ -160002,7 +160034,7 @@
   {
     "id": "723baaf3-7fa7-4d47-bc8c-95770e045402",
     "imagen": "https://coverartarchive.org/release-group/723baaf3-7fa7-4d47-bc8c-95770e045402/front-250",
-    "titulo": "Cama Incendiada",
+    "titulo": "Cama incendiada",
     "fecha": "2015-04-15",
     "artista": "Maná",
     "tipo": "Album"
@@ -163822,14 +163854,6 @@
     "fecha": "2015",
     "artista": "Justin Bieber",
     "tipo": "Album"
-  },
-  {
-    "id": "af77a98a-cea8-4a52-b66c-828a3e6c1ce0",
-    "imagen": "https://coverartarchive.org/release-group/af77a98a-cea8-4a52-b66c-828a3e6c1ce0/front-250",
-    "titulo": "Where Are Ü Now",
-    "fecha": "2015",
-    "artista": "Justin Bieber",
-    "tipo": "Single"
   },
   {
     "id": "21c36c79-4a93-46ed-a465-0b2b741ba226",
@@ -173040,20 +173064,20 @@
     "tipo": "Album"
   },
   {
-    "id": "be3449fb-60ac-4c9a-97e0-3ad17fa6907b",
-    "imagen": "https://coverartarchive.org/release-group/be3449fb-60ac-4c9a-97e0-3ad17fa6907b/front-250",
-    "titulo": "Diplo & Friends Guest Mix",
-    "fecha": "2014",
-    "artista": "Kygo",
-    "tipo": "Broadcast"
-  },
-  {
     "id": "ebeaeeb4-231f-42ed-8987-64f6bbc9a31f",
     "imagen": "https://coverartarchive.org/release-group/ebeaeeb4-231f-42ed-8987-64f6bbc9a31f/front-250",
     "titulo": "Nobody To Love (Kygo Remix)",
     "fecha": "2014",
     "artista": "Kygo",
     "tipo": "Single"
+  },
+  {
+    "id": "be3449fb-60ac-4c9a-97e0-3ad17fa6907b",
+    "imagen": "https://coverartarchive.org/release-group/be3449fb-60ac-4c9a-97e0-3ad17fa6907b/front-250",
+    "titulo": "Diplo & Friends Guest Mix",
+    "fecha": "2014",
+    "artista": "Kygo",
+    "tipo": "Broadcast"
   },
   {
     "id": "1a288b7d-a1de-4a11-bf0b-bf9cb511163f",
@@ -188162,7 +188186,7 @@
   {
     "id": "b381d79b-174e-46f2-9269-7a99f0e9e6a6",
     "imagen": "https://coverartarchive.org/release-group/b381d79b-174e-46f2-9269-7a99f0e9e6a6/front-250",
-    "titulo": "Exiliados En La Bahía: Lo Mejor de Maná",
+    "titulo": "Exiliados en la bahía: Lo mejor de Maná",
     "fecha": "2012-08-24",
     "artista": "Maná",
     "tipo": "Album"
@@ -192352,14 +192376,6 @@
     "tipo": "Single"
   },
   {
-    "id": "06fcb3f4-3bb3-4f0c-b150-81a5ee0c1901",
-    "imagen": "https://coverartarchive.org/release-group/06fcb3f4-3bb3-4f0c-b150-81a5ee0c1901/front-250",
-    "titulo": "Heavy Metal Lover",
-    "fecha": "2012-01-27",
-    "artista": "Lady Gaga",
-    "tipo": "Single"
-  },
-  {
     "id": "5282b2d0-b829-41c7-b1d6-1586f5fc6e6d",
     "imagen": "https://coverartarchive.org/release-group/5282b2d0-b829-41c7-b1d6-1586f5fc6e6d/front-250",
     "titulo": "Beyond the Sea",
@@ -194856,33 +194872,9 @@
     "tipo": "Album"
   },
   {
-    "id": "379a1c70-4645-4d0c-916e-1c6b8d9a8ddc",
-    "imagen": "https://coverartarchive.org/release-group/379a1c70-4645-4d0c-916e-1c6b8d9a8ddc/front-250",
-    "titulo": "Alternate Takes & Demos (1970–1979)",
-    "fecha": "2012",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
     "id": "95197bd4-62d4-4eed-ba0e-17b5de367797",
     "imagen": "https://coverartarchive.org/release-group/95197bd4-62d4-4eed-ba0e-17b5de367797/front-250",
     "titulo": "3 Singles & Five by Five EP",
-    "fecha": "2012",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
-    "id": "990c9a0b-9534-4471-a849-712296e716a4",
-    "imagen": "https://coverartarchive.org/release-group/990c9a0b-9534-4471-a849-712296e716a4/front-250",
-    "titulo": "2012 RMP Series – Left‐Overs (1987–2006)",
-    "fecha": "2012",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
-    "id": "e0ac4501-dd24-4b33-abc9-7a243aa42d21",
-    "imagen": "https://coverartarchive.org/release-group/e0ac4501-dd24-4b33-abc9-7a243aa42d21/front-250",
-    "titulo": "Complete Prudential Center Two Nights",
     "fecha": "2012",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -194915,6 +194907,14 @@
     "id": "1ac623b3-898d-414c-a716-cac696bf728c",
     "imagen": "https://coverartarchive.org/release-group/1ac623b3-898d-414c-a716-cac696bf728c/front-250",
     "titulo": "Released STUDIO Cookies Only! Volume 3",
+    "fecha": "2012",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
+    "id": "379a1c70-4645-4d0c-916e-1c6b8d9a8ddc",
+    "imagen": "https://coverartarchive.org/release-group/379a1c70-4645-4d0c-916e-1c6b8d9a8ddc/front-250",
+    "titulo": "Alternate Takes & Demos (1970–1979)",
     "fecha": "2012",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -194968,6 +194968,14 @@
     "tipo": "Album"
   },
   {
+    "id": "990c9a0b-9534-4471-a849-712296e716a4",
+    "imagen": "https://coverartarchive.org/release-group/990c9a0b-9534-4471-a849-712296e716a4/front-250",
+    "titulo": "2012 RMP Series – Left‐Overs (1987–2006)",
+    "fecha": "2012",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
     "id": "a8900197-c487-4be9-9dcc-277cc35b4332",
     "imagen": "https://coverartarchive.org/release-group/a8900197-c487-4be9-9dcc-277cc35b4332/front-250",
     "titulo": "Undercover – Alternate Takes (1982–1983)",
@@ -195003,6 +195011,14 @@
     "id": "d492661c-6d29-4430-b81a-1faf2eba61ba",
     "imagen": "https://coverartarchive.org/release-group/d492661c-6d29-4430-b81a-1faf2eba61ba/front-250",
     "titulo": "Some Girls – Alternate Takes",
+    "fecha": "2012",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
+    "id": "e0ac4501-dd24-4b33-abc9-7a243aa42d21",
+    "imagen": "https://coverartarchive.org/release-group/e0ac4501-dd24-4b33-abc9-7a243aa42d21/front-250",
+    "titulo": "Complete Prudential Center Two Nights",
     "fecha": "2012",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -196944,14 +196960,6 @@
     "tipo": "Album"
   },
   {
-    "id": "35aff19d-b192-48b5-8ab0-6486c1145749",
-    "imagen": "https://coverartarchive.org/release-group/35aff19d-b192-48b5-8ab0-6486c1145749/front-250",
-    "titulo": "The Lady Is a Tramp",
-    "fecha": "2011-10-21",
-    "artista": "Lady Gaga",
-    "tipo": "Single"
-  },
-  {
     "id": "dd8ce39e-9a37-4905-a7d0-41ad6b05f9a7",
     "imagen": "https://coverartarchive.org/release-group/dd8ce39e-9a37-4905-a7d0-41ad6b05f9a7/front-250",
     "titulo": "Christmas",
@@ -197360,6 +197368,14 @@
     "tipo": "Single"
   },
   {
+    "id": "b173178f-9077-43f6-83ed-78e1d064ff59",
+    "imagen": "https://coverartarchive.org/release-group/b173178f-9077-43f6-83ed-78e1d064ff59/front-250",
+    "titulo": "Yoü and I",
+    "fecha": "2011-09-30",
+    "artista": "Lady Gaga",
+    "tipo": "Single"
+  },
+  {
     "id": "8d235ee7-c942-4e41-8a7d-d9874a0fdabf",
     "imagen": "https://coverartarchive.org/release-group/8d235ee7-c942-4e41-8a7d-d9874a0fdabf/front-250",
     "titulo": "Gold: Selección de éxitos, vol.1",
@@ -197656,9 +197672,9 @@
     "tipo": "EP"
   },
   {
-    "id": "b173178f-9077-43f6-83ed-78e1d064ff59",
-    "imagen": "https://coverartarchive.org/release-group/b173178f-9077-43f6-83ed-78e1d064ff59/front-250",
-    "titulo": "Yoü and I",
+    "id": "a694b7c2-6eb4-4972-97b6-d936f86c5d2b",
+    "imagen": "https://coverartarchive.org/release-group/a694b7c2-6eb4-4972-97b6-d936f86c5d2b/front-250",
+    "titulo": "Yoü and I (The Remixes)",
     "fecha": "2011-09-18",
     "artista": "Lady Gaga",
     "tipo": "Single"
@@ -200808,6 +200824,14 @@
     "tipo": "Album"
   },
   {
+    "id": "44a9b217-bc04-4009-a55f-20413879f62c",
+    "imagen": "https://coverartarchive.org/release-group/44a9b217-bc04-4009-a55f-20413879f62c/front-250",
+    "titulo": "Born This Way (The Remixes) Pt. 2",
+    "fecha": "2011-03-25",
+    "artista": "Lady Gaga",
+    "tipo": "Single"
+  },
+  {
     "id": "58998c8a-f1b2-48fa-b98f-f8ebe47fec23",
     "imagen": "https://coverartarchive.org/release-group/58998c8a-f1b2-48fa-b98f-f8ebe47fec23/front-250",
     "titulo": "All Time Best",
@@ -201096,6 +201120,14 @@
     "tipo": "Album"
   },
   {
+    "id": "c9964c13-fdde-4809-b484-c75dce898f7a",
+    "imagen": "https://coverartarchive.org/release-group/c9964c13-fdde-4809-b484-c75dce898f7a/front-250",
+    "titulo": "Born This Way (The Remixes Pt. 1)",
+    "fecha": "2011-03-11",
+    "artista": "Lady Gaga",
+    "tipo": "Single"
+  },
+  {
     "id": "6a7d76b3-1bf4-457a-8a27-015e756d415b",
     "imagen": "https://coverartarchive.org/release-group/6a7d76b3-1bf4-457a-8a27-015e756d415b/front-250",
     "titulo": "Deep Cuts, Volume 1 (1973–1976)",
@@ -201114,7 +201146,7 @@
   {
     "id": "f85473f3-f42d-4426-b353-4e8635ecee83",
     "imagen": "https://coverartarchive.org/release-group/f85473f3-f42d-4426-b353-4e8635ecee83/front-250",
-    "titulo": "Drama Y Luz",
+    "titulo": "Drama y luz",
     "fecha": "2011-03-10",
     "artista": "Maná",
     "tipo": "Album"
@@ -201645,6 +201677,14 @@
     "titulo": "E.T.",
     "fecha": "2011-02-11",
     "artista": "Katy Perry",
+    "tipo": "Single"
+  },
+  {
+    "id": "5c1ca6d8-6d5f-4366-a832-7c97a5d5df3b",
+    "imagen": "https://coverartarchive.org/release-group/5c1ca6d8-6d5f-4366-a832-7c97a5d5df3b/front-250",
+    "titulo": "Born This Way",
+    "fecha": "2011-02-11",
+    "artista": "Lady Gaga",
     "tipo": "Single"
   },
   {
@@ -202374,14 +202414,6 @@
     "fecha": "2011-01-01",
     "artista": "Jessie J",
     "tipo": "EP"
-  },
-  {
-    "id": "5c1ca6d8-6d5f-4366-a832-7c97a5d5df3b",
-    "imagen": "https://coverartarchive.org/release-group/5c1ca6d8-6d5f-4366-a832-7c97a5d5df3b/front-250",
-    "titulo": "Born This Way",
-    "fecha": "2011-01-01",
-    "artista": "Lady Gaga",
-    "tipo": "Single"
   },
   {
     "id": "7ecd1d13-496c-4f06-9109-20a2644d52e1",
@@ -203800,6 +203832,14 @@
     "tipo": "Album"
   },
   {
+    "id": "35aff19d-b192-48b5-8ab0-6486c1145749",
+    "imagen": "https://coverartarchive.org/release-group/35aff19d-b192-48b5-8ab0-6486c1145749/front-250",
+    "titulo": "The Lady Is a Tramp",
+    "fecha": "2011",
+    "artista": "Lady Gaga",
+    "tipo": "Single"
+  },
+  {
     "id": "44a47389-d621-473b-98b2-e847b80da558",
     "imagen": "https://coverartarchive.org/release-group/44a47389-d621-473b-98b2-e847b80da558/front-250",
     "titulo": "V Festival Girls: England 2009",
@@ -203808,9 +203848,9 @@
     "tipo": "Broadcast"
   },
   {
-    "id": "a694b7c2-6eb4-4972-97b6-d936f86c5d2b",
-    "imagen": "https://coverartarchive.org/release-group/a694b7c2-6eb4-4972-97b6-d936f86c5d2b/front-250",
-    "titulo": "Yoü and I (The Remixes)",
+    "id": "739042f6-7a63-44b7-9618-d3c50a8fec2e",
+    "imagen": "https://coverartarchive.org/release-group/739042f6-7a63-44b7-9618-d3c50a8fec2e/front-250",
+    "titulo": "Born This Way (The Country Road version)",
     "fecha": "2011",
     "artista": "Lady Gaga",
     "tipo": "Single"
@@ -205240,14 +205280,6 @@
     "tipo": "Album"
   },
   {
-    "id": "c69f24e6-8473-45e7-8b5b-0f34852de290",
-    "imagen": "https://coverartarchive.org/release-group/c69f24e6-8473-45e7-8b5b-0f34852de290/front-250",
-    "titulo": "Party All Night (Sleep All Day) - Single",
-    "fecha": "2010-12-21",
-    "artista": "Sean Kingston",
-    "tipo": "Single"
-  },
-  {
     "id": "05ab8581-8ef4-4fcb-8cdc-b5d39ae635a4",
     "imagen": "https://coverartarchive.org/release-group/05ab8581-8ef4-4fcb-8cdc-b5d39ae635a4/front-250",
     "titulo": "Girl's File",
@@ -206093,6 +206125,14 @@
     "titulo": "Desayuno continental",
     "fecha": "2010-11-16",
     "artista": "Hombres G",
+    "tipo": "Album"
+  },
+  {
+    "id": "7f375a51-4a07-455b-9e5f-6bca67225ae6",
+    "imagen": "https://coverartarchive.org/release-group/7f375a51-4a07-455b-9e5f-6bca67225ae6/front-250",
+    "titulo": "Anthology Collection",
+    "fecha": "2010-11-16",
+    "artista": "The Beatles",
     "tipo": "Album"
   },
   {
@@ -217936,14 +217976,6 @@
     "tipo": "EP"
   },
   {
-    "id": "c38e7c23-ef6c-47ec-8d10-04a5ba314ec7",
-    "imagen": "https://coverartarchive.org/release-group/c38e7c23-ef6c-47ec-8d10-04a5ba314ec7/front-250",
-    "titulo": "Forever",
-    "fecha": "2009-09-15",
-    "artista": "Drake",
-    "tipo": "Single"
-  },
-  {
     "id": "c6309959-a304-48a6-be6c-b41c8fff1271",
     "imagen": "https://coverartarchive.org/release-group/c6309959-a304-48a6-be6c-b41c8fff1271/front-250",
     "titulo": "I’m Goin In",
@@ -219046,6 +219078,14 @@
     "fecha": "2009-07-05",
     "artista": "Bob Dylan",
     "tipo": "Album"
+  },
+  {
+    "id": "0eb7c437-f358-471d-9c0b-91e07e93853f",
+    "imagen": "https://coverartarchive.org/release-group/0eb7c437-f358-471d-9c0b-91e07e93853f/front-250",
+    "titulo": "Paparazzi",
+    "fecha": "2009-07-05",
+    "artista": "Lady Gaga",
+    "tipo": "EP"
   },
   {
     "id": "81332d61-5917-4cc2-a22f-7c7606d9d88d",
@@ -221694,6 +221734,14 @@
     "fecha": "2009-01-01",
     "artista": "Chicago",
     "tipo": "Album"
+  },
+  {
+    "id": "c38e7c23-ef6c-47ec-8d10-04a5ba314ec7",
+    "imagen": "https://coverartarchive.org/release-group/c38e7c23-ef6c-47ec-8d10-04a5ba314ec7/front-250",
+    "titulo": "Forever",
+    "fecha": "2009-01-01",
+    "artista": "Drake",
+    "tipo": "Single"
   },
   {
     "id": "b936ccf2-f353-41da-8d8d-e95cd9819126",
@@ -233920,6 +233968,14 @@
     "tipo": "Album"
   },
   {
+    "id": "625e8502-b30f-4b40-b545-f57e07005362",
+    "imagen": "https://coverartarchive.org/release-group/625e8502-b30f-4b40-b545-f57e07005362/front-250",
+    "titulo": "The Shadow Of Ray Charles",
+    "fecha": "2008",
+    "artista": "Ray Charles",
+    "tipo": "Album"
+  },
+  {
     "id": "1e4c7bec-99cb-4650-8e06-1a6011967161",
     "imagen": "https://coverartarchive.org/release-group/1e4c7bec-99cb-4650-8e06-1a6011967161/front-250",
     "titulo": "Black Jack",
@@ -235813,6 +235869,14 @@
     "titulo": "Mothership",
     "fecha": "2007-11-09",
     "artista": "Led Zeppelin",
+    "tipo": "Album"
+  },
+  {
+    "id": "a84293d0-9be2-356d-aea7-e960cb754436",
+    "imagen": "https://coverartarchive.org/release-group/a84293d0-9be2-356d-aea7-e960cb754436/front-250",
+    "titulo": "Greatest Hits",
+    "fecha": "2007-11-09",
+    "artista": "Spice Girls",
     "tipo": "Album"
   },
   {
@@ -240264,14 +240328,6 @@
     "tipo": "Album"
   },
   {
-    "id": "a84293d0-9be2-356d-aea7-e960cb754436",
-    "imagen": "https://coverartarchive.org/release-group/a84293d0-9be2-356d-aea7-e960cb754436/front-250",
-    "titulo": "Greatest Hits",
-    "fecha": "2007-01-01",
-    "artista": "Spice Girls",
-    "tipo": "Album"
-  },
-  {
     "id": "83328584-fe88-397d-ad9d-130db5ed8e49",
     "imagen": "https://coverartarchive.org/release-group/83328584-fe88-397d-ad9d-130db5ed8e49/front-250",
     "titulo": "Window in the Skies",
@@ -240770,7 +240826,7 @@
   {
     "id": "4c3c1463-5695-416d-abc3-36b3444c5ec9",
     "imagen": "https://coverartarchive.org/release-group/4c3c1463-5695-416d-abc3-36b3444c5ec9/front-250",
-    "titulo": "Hood In The USA / Disco Club (Remix)",
+    "titulo": "Hood in the USA / Disco Club (remix)",
     "fecha": "2007",
     "artista": "Black Eyed Peas",
     "tipo": "Single"
@@ -247378,7 +247434,7 @@
   {
     "id": "eabc50b5-5a8e-3435-ad8e-ccf668015f5d",
     "imagen": "https://coverartarchive.org/release-group/eabc50b5-5a8e-3435-ad8e-ccf668015f5d/front-250",
-    "titulo": "Amar Es Combatir",
+    "titulo": "Amar es combatir",
     "fecha": "2006-05-09",
     "artista": "Maná",
     "tipo": "Album"
@@ -251688,14 +251744,6 @@
     "tipo": "Album"
   },
   {
-    "id": "0aabc3ae-9547-4ccb-93ed-0f2c4ecc2f18",
-    "imagen": "https://coverartarchive.org/release-group/0aabc3ae-9547-4ccb-93ed-0f2c4ecc2f18/front-250",
-    "titulo": "Earl's Court 1976",
-    "fecha": "2006",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
     "id": "204c574e-3579-424c-8021-89d750a96073",
     "imagen": "https://coverartarchive.org/release-group/204c574e-3579-424c-8021-89d750a96073/front-250",
     "titulo": "Bang In Nagoya",
@@ -251736,25 +251784,17 @@
     "tipo": "Album"
   },
   {
-    "id": "a3ce4c49-a0ea-4709-b845-2d5b132a301f",
-    "imagen": "https://coverartarchive.org/release-group/a3ce4c49-a0ea-4709-b845-2d5b132a301f/front-250",
-    "titulo": "Bang In Sapporo",
-    "fecha": "2006",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
-    "id": "bea7af38-98da-426a-8840-594032f41b96",
-    "imagen": "https://coverartarchive.org/release-group/bea7af38-98da-426a-8840-594032f41b96/front-250",
-    "titulo": "Der Weltmeister Im Baumklettern",
-    "fecha": "2006",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
     "id": "beab72ef-aba0-4889-9c6a-8068a7201f68",
     "imagen": "https://coverartarchive.org/release-group/beab72ef-aba0-4889-9c6a-8068a7201f68/front-250",
     "titulo": "Bang In Saitama",
+    "fecha": "2006",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
+    "id": "0aabc3ae-9547-4ccb-93ed-0f2c4ecc2f18",
+    "imagen": "https://coverartarchive.org/release-group/0aabc3ae-9547-4ccb-93ed-0f2c4ecc2f18/front-250",
+    "titulo": "Earl's Court 1976",
     "fecha": "2006",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -251795,6 +251835,22 @@
     "id": "8db5d0f9-c528-4ad9-b9a0-c0ed06ecf684",
     "imagen": "https://coverartarchive.org/release-group/8db5d0f9-c528-4ad9-b9a0-c0ed06ecf684/front-250",
     "titulo": "First Bang In Tokyo",
+    "fecha": "2006",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
+    "id": "a3ce4c49-a0ea-4709-b845-2d5b132a301f",
+    "imagen": "https://coverartarchive.org/release-group/a3ce4c49-a0ea-4709-b845-2d5b132a301f/front-250",
+    "titulo": "Bang In Sapporo",
+    "fecha": "2006",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
+    "id": "bea7af38-98da-426a-8840-594032f41b96",
+    "imagen": "https://coverartarchive.org/release-group/bea7af38-98da-426a-8840-594032f41b96/front-250",
+    "titulo": "Der Weltmeister Im Baumklettern",
     "fecha": "2006",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -259584,14 +259640,6 @@
     "tipo": "Album"
   },
   {
-    "id": "31dae0eb-0587-40aa-aac9-e75800ea37ea",
-    "imagen": "https://coverartarchive.org/release-group/31dae0eb-0587-40aa-aac9-e75800ea37ea/front-250",
-    "titulo": "The Genius Anthology",
-    "fecha": "2005",
-    "artista": "Ray Charles",
-    "tipo": "Album"
-  },
-  {
     "id": "40076582-0fc6-4e8b-88bc-82aa1e31fe37",
     "imagen": "https://coverartarchive.org/release-group/40076582-0fc6-4e8b-88bc-82aa1e31fe37/front-250",
     "titulo": "Blues & Rhythm Series: The Chronological Ray Charles 1953-1954",
@@ -259715,6 +259763,14 @@
     "id": "f2b24ad4-1aa9-44b8-a9cd-cf17c795f2ab",
     "imagen": "https://coverartarchive.org/release-group/f2b24ad4-1aa9-44b8-a9cd-cf17c795f2ab/front-250",
     "titulo": "Ray",
+    "fecha": "2005",
+    "artista": "Ray Charles",
+    "tipo": "Album"
+  },
+  {
+    "id": "31dae0eb-0587-40aa-aac9-e75800ea37ea",
+    "imagen": "https://coverartarchive.org/release-group/31dae0eb-0587-40aa-aac9-e75800ea37ea/front-250",
+    "titulo": "The Genius Anthology",
     "fecha": "2005",
     "artista": "Ray Charles",
     "tipo": "Album"
@@ -275584,6 +275640,14 @@
     "tipo": "Album"
   },
   {
+    "id": "248080eb-453a-4b4d-a9a4-b0d9b3166118",
+    "imagen": "https://coverartarchive.org/release-group/248080eb-453a-4b4d-a9a4-b0d9b3166118/front-250",
+    "titulo": "Definitive Beach Party",
+    "fecha": "2003",
+    "artista": "Led Zeppelin",
+    "tipo": "Album"
+  },
+  {
     "id": "8d8fc9cc-3763-34db-88ac-5c620ad001e7",
     "imagen": "https://coverartarchive.org/release-group/8d8fc9cc-3763-34db-88ac-5c620ad001e7/front-250",
     "titulo": "Cryin’ Won’t Help You",
@@ -275611,14 +275675,6 @@
     "id": "10f09eb9-662b-474e-8e89-10cd36d2f231",
     "imagen": "https://coverartarchive.org/release-group/10f09eb9-662b-474e-8e89-10cd36d2f231/front-250",
     "titulo": "Orlando Magic",
-    "fecha": "2003",
-    "artista": "Led Zeppelin",
-    "tipo": "Album"
-  },
-  {
-    "id": "248080eb-453a-4b4d-a9a4-b0d9b3166118",
-    "imagen": "https://coverartarchive.org/release-group/248080eb-453a-4b4d-a9a4-b0d9b3166118/front-250",
-    "titulo": "Definitive Beach Party",
     "fecha": "2003",
     "artista": "Led Zeppelin",
     "tipo": "Album"
@@ -281154,7 +281210,7 @@
   {
     "id": "6ce47113-25c3-4717-8d4a-cd876e464987",
     "imagen": "https://coverartarchive.org/release-group/6ce47113-25c3-4717-8d4a-cd876e464987/front-250",
-    "titulo": "Scream Vol.5",
+    "titulo": "Scream, Vol.5",
     "fecha": "2002-01",
     "artista": "David Guetta",
     "tipo": "Album"
@@ -284307,6 +284363,14 @@
     "id": "13a178b2-7554-3686-963b-d02282f6e9e7",
     "imagen": "https://coverartarchive.org/release-group/13a178b2-7554-3686-963b-d02282f6e9e7/front-250",
     "titulo": "We Will Rock You",
+    "fecha": "2002",
+    "artista": "Queen",
+    "tipo": "Album"
+  },
+  {
+    "id": "1477accd-a229-304d-a18c-f890a8b39049",
+    "imagen": "https://coverartarchive.org/release-group/1477accd-a229-304d-a18c-f890a8b39049/front-250",
+    "titulo": "Queen Gold",
     "fecha": "2002",
     "artista": "Queen",
     "tipo": "Album"
@@ -288358,6 +288422,14 @@
     "fecha": "2001-04-17",
     "artista": "Toto",
     "tipo": "Album"
+  },
+  {
+    "id": "e21d4000-c562-44e8-90ac-741c3e7249f0",
+    "imagen": "https://coverartarchive.org/release-group/e21d4000-c562-44e8-90ac-741c3e7249f0/front-250",
+    "titulo": "Play",
+    "fecha": "2001-04-16",
+    "artista": "Jennifer Lopez",
+    "tipo": "Single"
   },
   {
     "id": "62e07cc2-712c-4fc8-865a-172d780ebfd3",
@@ -302336,25 +302408,9 @@
     "tipo": "Album"
   },
   {
-    "id": "0b38d2ba-1ccd-4903-899d-b64b628c5be1",
-    "imagen": "https://coverartarchive.org/release-group/0b38d2ba-1ccd-4903-899d-b64b628c5be1/front-250",
-    "titulo": "Garden State 78",
-    "fecha": "2000",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
     "id": "3122dcb2-6b90-33b4-acca-f8f02d010141",
     "imagen": "https://coverartarchive.org/release-group/3122dcb2-6b90-33b4-acca-f8f02d010141/front-250",
     "titulo": "Brussels Affair Definitive Edition",
-    "fecha": "2000",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
-    "id": "55ce0a26-ce06-4a5b-b166-aa3008a515ba",
-    "imagen": "https://coverartarchive.org/release-group/55ce0a26-ce06-4a5b-b166-aa3008a515ba/front-250",
-    "titulo": "Down In The Court",
     "fecha": "2000",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -302384,14 +302440,6 @@
     "tipo": "Album"
   },
   {
-    "id": "b5e75fc8-6d7d-4710-b267-8e5acdc7b8e8",
-    "imagen": "https://coverartarchive.org/release-group/b5e75fc8-6d7d-4710-b267-8e5acdc7b8e8/front-250",
-    "titulo": "Get Your Rocks Off",
-    "fecha": "2000",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
     "id": "c68fec99-0d8d-493a-9c35-899db8dd650a",
     "imagen": "https://coverartarchive.org/release-group/c68fec99-0d8d-493a-9c35-899db8dd650a/front-250",
     "titulo": "Chantilly Lace",
@@ -302408,9 +302456,25 @@
     "tipo": "Album"
   },
   {
+    "id": "0b38d2ba-1ccd-4903-899d-b64b628c5be1",
+    "imagen": "https://coverartarchive.org/release-group/0b38d2ba-1ccd-4903-899d-b64b628c5be1/front-250",
+    "titulo": "Garden State 78",
+    "fecha": "2000",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
     "id": "2925907f-af0b-4ce3-8988-82028c57a5b9",
     "imagen": "https://coverartarchive.org/release-group/2925907f-af0b-4ce3-8988-82028c57a5b9/front-250",
     "titulo": "Sweet Home Chicago",
+    "fecha": "2000",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
+    "id": "55ce0a26-ce06-4a5b-b166-aa3008a515ba",
+    "imagen": "https://coverartarchive.org/release-group/55ce0a26-ce06-4a5b-b166-aa3008a515ba/front-250",
+    "titulo": "Down In The Court",
     "fecha": "2000",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -302443,6 +302507,14 @@
     "id": "8873486e-d290-4369-aeeb-a6870c353233",
     "imagen": "https://coverartarchive.org/release-group/8873486e-d290-4369-aeeb-a6870c353233/front-250",
     "titulo": "Keep Your Motor Runnin'",
+    "fecha": "2000",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
+    "id": "b5e75fc8-6d7d-4710-b267-8e5acdc7b8e8",
+    "imagen": "https://coverartarchive.org/release-group/b5e75fc8-6d7d-4710-b267-8e5acdc7b8e8/front-250",
+    "titulo": "Get Your Rocks Off",
     "fecha": "2000",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -303554,7 +303626,7 @@
   {
     "id": "4a27addb-6f0e-3d37-b285-29cbe4814fe8",
     "imagen": "https://coverartarchive.org/release-group/4a27addb-6f0e-3d37-b285-29cbe4814fe8/front-250",
-    "titulo": "Todo Maná: Grandes Éxitos",
+    "titulo": "Todo Maná: Grandes éxitos",
     "fecha": "1999-11-16",
     "artista": "Maná",
     "tipo": "Album"
@@ -308520,17 +308592,17 @@
     "tipo": "Album"
   },
   {
-    "id": "cfb2e09c-2480-462b-968b-0935f03489e9",
-    "imagen": "https://coverartarchive.org/release-group/cfb2e09c-2480-462b-968b-0935f03489e9/front-250",
-    "titulo": "Rock of Ages",
+    "id": "dc365a67-d439-4727-8cd1-9a390eeb2e2a",
+    "imagen": "https://coverartarchive.org/release-group/dc365a67-d439-4727-8cd1-9a390eeb2e2a/front-250",
+    "titulo": "Live in Japan 1972",
     "fecha": "1999",
     "artista": "Led Zeppelin",
     "tipo": "Album"
   },
   {
-    "id": "dc365a67-d439-4727-8cd1-9a390eeb2e2a",
-    "imagen": "https://coverartarchive.org/release-group/dc365a67-d439-4727-8cd1-9a390eeb2e2a/front-250",
-    "titulo": "Live in Japan 1972",
+    "id": "cfb2e09c-2480-462b-968b-0935f03489e9",
+    "imagen": "https://coverartarchive.org/release-group/cfb2e09c-2480-462b-968b-0935f03489e9/front-250",
+    "titulo": "Rock of Ages",
     "fecha": "1999",
     "artista": "Led Zeppelin",
     "tipo": "Album"
@@ -325384,6 +325456,14 @@
     "tipo": "Single"
   },
   {
+    "id": "1585a0e7-a23f-4ff3-a5f0-15e2ca801339",
+    "imagen": "https://coverartarchive.org/release-group/1585a0e7-a23f-4ff3-a5f0-15e2ca801339/front-250",
+    "titulo": "Physically Present",
+    "fecha": "1997",
+    "artista": "Led Zeppelin",
+    "tipo": "Album"
+  },
+  {
     "id": "79a074e3-b71e-3cc9-b775-f4b8b21f5f85",
     "imagen": "https://coverartarchive.org/release-group/79a074e3-b71e-3cc9-b775-f4b8b21f5f85/front-250",
     "titulo": "Brutal Artistry",
@@ -325395,14 +325475,6 @@
     "id": "e8767d47-36b5-30c5-8d91-b9e243c0acc3",
     "imagen": "https://coverartarchive.org/release-group/e8767d47-36b5-30c5-8d91-b9e243c0acc3/front-250",
     "titulo": "Brutal Artistry 2",
-    "fecha": "1997",
-    "artista": "Led Zeppelin",
-    "tipo": "Album"
-  },
-  {
-    "id": "1585a0e7-a23f-4ff3-a5f0-15e2ca801339",
-    "imagen": "https://coverartarchive.org/release-group/1585a0e7-a23f-4ff3-a5f0-15e2ca801339/front-250",
-    "titulo": "Physically Present",
     "fecha": "1997",
     "artista": "Led Zeppelin",
     "tipo": "Album"
@@ -326384,14 +326456,6 @@
     "tipo": "Album"
   },
   {
-    "id": "a725b086-de41-36dc-b772-15d269ca3be9",
-    "imagen": "https://coverartarchive.org/release-group/a725b086-de41-36dc-b772-15d269ca3be9/front-250",
-    "titulo": "Genius & Soul: The 50th Anniversary Collection",
-    "fecha": "1997",
-    "artista": "Ray Charles",
-    "tipo": "Album"
-  },
-  {
     "id": "047bd257-5bcf-4b35-90c8-a90f91b0355a",
     "imagen": "https://coverartarchive.org/release-group/047bd257-5bcf-4b35-90c8-a90f91b0355a/front-250",
     "titulo": "Le “Genius of Soul”",
@@ -326427,6 +326491,14 @@
     "id": "8b39b686-846c-437c-8d1c-fbe6e42e67d9",
     "imagen": "https://coverartarchive.org/release-group/8b39b686-846c-437c-8d1c-fbe6e42e67d9/front-250",
     "titulo": "Let’s Have a Ball",
+    "fecha": "1997",
+    "artista": "Ray Charles",
+    "tipo": "Album"
+  },
+  {
+    "id": "a725b086-de41-36dc-b772-15d269ca3be9",
+    "imagen": "https://coverartarchive.org/release-group/a725b086-de41-36dc-b772-15d269ca3be9/front-250",
+    "titulo": "Genius & Soul: The 50th Anniversary Collection",
     "fecha": "1997",
     "artista": "Ray Charles",
     "tipo": "Album"
@@ -327288,14 +327360,6 @@
     "tipo": "Album"
   },
   {
-    "id": "3809d26c-13e5-4e59-8585-7f48a1c93c38",
-    "imagen": "https://coverartarchive.org/release-group/3809d26c-13e5-4e59-8585-7f48a1c93c38/front-250",
-    "titulo": "The Last Incarnation",
-    "fecha": "1997",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
     "id": "392a67d9-4cbe-41ec-9c0a-da9da29d55da",
     "imagen": "https://coverartarchive.org/release-group/392a67d9-4cbe-41ec-9c0a-da9da29d55da/front-250",
     "titulo": "Chicago We Wanna Hold You",
@@ -327496,14 +327560,6 @@
     "tipo": "Album"
   },
   {
-    "id": "bcd76341-baac-43b1-8bfc-074f8d57cbdb",
-    "imagen": "https://coverartarchive.org/release-group/bcd76341-baac-43b1-8bfc-074f8d57cbdb/front-250",
-    "titulo": "The Rolling Stones",
-    "fecha": "1997",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
     "id": "c05b777b-bdac-45ac-bf7c-cb162b02ef79",
     "imagen": "https://coverartarchive.org/release-group/c05b777b-bdac-45ac-bf7c-cb162b02ef79/front-250",
     "titulo": "Europe ’73",
@@ -327640,9 +327696,9 @@
     "tipo": "Album"
   },
   {
-    "id": "ffde2379-ebd0-49bb-8596-fba4e6c5911f",
-    "imagen": "https://coverartarchive.org/release-group/ffde2379-ebd0-49bb-8596-fba4e6c5911f/front-250",
-    "titulo": "The Killer Festival: Altamont 1969",
+    "id": "3809d26c-13e5-4e59-8585-7f48a1c93c38",
+    "imagen": "https://coverartarchive.org/release-group/3809d26c-13e5-4e59-8585-7f48a1c93c38/front-250",
+    "titulo": "The Last Incarnation",
     "fecha": "1997",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -327712,9 +327768,25 @@
     "tipo": "Album"
   },
   {
+    "id": "bcd76341-baac-43b1-8bfc-074f8d57cbdb",
+    "imagen": "https://coverartarchive.org/release-group/bcd76341-baac-43b1-8bfc-074f8d57cbdb/front-250",
+    "titulo": "The Rolling Stones",
+    "fecha": "1997",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
     "id": "fadcd1dd-d29e-4615-98c0-7be3e2b07116",
     "imagen": "https://coverartarchive.org/release-group/fadcd1dd-d29e-4615-98c0-7be3e2b07116/front-250",
     "titulo": "Through the Secret Nights",
+    "fecha": "1997",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
+    "id": "ffde2379-ebd0-49bb-8596-fba4e6c5911f",
+    "imagen": "https://coverartarchive.org/release-group/ffde2379-ebd0-49bb-8596-fba4e6c5911f/front-250",
+    "titulo": "The Killer Festival: Altamont 1969",
     "fecha": "1997",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -343744,25 +343816,9 @@
     "tipo": "Album"
   },
   {
-    "id": "4d9c06d5-32ac-423c-9564-5ac6a92f6376",
-    "imagen": "https://coverartarchive.org/release-group/4d9c06d5-32ac-423c-9564-5ac6a92f6376/front-250",
-    "titulo": "Houston Can You Sing!",
-    "fecha": "1995",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
     "id": "56c67e01-702f-48a7-a3b6-06590e910bc5",
     "imagen": "https://coverartarchive.org/release-group/56c67e01-702f-48a7-a3b6-06590e910bc5/front-250",
     "titulo": "Brixton",
-    "fecha": "1995",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
-    "id": "5948a87b-db6e-46d5-a543-30188508c357",
-    "imagen": "https://coverartarchive.org/release-group/5948a87b-db6e-46d5-a543-30188508c357/front-250",
-    "titulo": "Hot August Night With Lenny 94",
     "fecha": "1995",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -343795,14 +343851,6 @@
     "id": "79b23a6e-824b-4780-8c4f-45b9209f11e8",
     "imagen": "https://coverartarchive.org/release-group/79b23a6e-824b-4780-8c4f-45b9209f11e8/front-250",
     "titulo": "Everything but the Cobra",
-    "fecha": "1995",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
-    "id": "7da9e8f1-5d81-4e06-b31d-1d52a12a968f",
-    "imagen": "https://coverartarchive.org/release-group/7da9e8f1-5d81-4e06-b31d-1d52a12a968f/front-250",
-    "titulo": "Imperial Heartbreakers",
     "fecha": "1995",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -343928,9 +343976,25 @@
     "tipo": "Album"
   },
   {
+    "id": "4d9c06d5-32ac-423c-9564-5ac6a92f6376",
+    "imagen": "https://coverartarchive.org/release-group/4d9c06d5-32ac-423c-9564-5ac6a92f6376/front-250",
+    "titulo": "Houston Can You Sing!",
+    "fecha": "1995",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
     "id": "54aa1683-2493-4240-b08f-595749848578",
     "imagen": "https://coverartarchive.org/release-group/54aa1683-2493-4240-b08f-595749848578/front-250",
     "titulo": "Reflections of a Stone Alone",
+    "fecha": "1995",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
+    "id": "5948a87b-db6e-46d5-a543-30188508c357",
+    "imagen": "https://coverartarchive.org/release-group/5948a87b-db6e-46d5-a543-30188508c357/front-250",
+    "titulo": "Hot August Night With Lenny 94",
     "fecha": "1995",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -343955,6 +344019,14 @@
     "id": "7c3d64b7-9217-427b-8d90-e246e64e413b",
     "imagen": "https://coverartarchive.org/release-group/7c3d64b7-9217-427b-8d90-e246e64e413b/front-250",
     "titulo": "Olympia",
+    "fecha": "1995",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
+    "id": "7da9e8f1-5d81-4e06-b31d-1d52a12a968f",
+    "imagen": "https://coverartarchive.org/release-group/7da9e8f1-5d81-4e06-b31d-1d52a12a968f/front-250",
+    "titulo": "Imperial Heartbreakers",
     "fecha": "1995",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -361496,6 +361568,14 @@
     "tipo": "Album"
   },
   {
+    "id": "76cf37c1-01b7-36e1-ae0c-6716969a8970",
+    "imagen": "https://coverartarchive.org/release-group/76cf37c1-01b7-36e1-ae0c-6716969a8970/front-250",
+    "titulo": "Classics",
+    "fecha": "1992-07-25",
+    "artista": "Don McLean",
+    "tipo": "Album"
+  },
+  {
     "id": "c8488068-e6e4-4b06-84ab-82a9d2b044c4",
     "imagen": "https://coverartarchive.org/release-group/c8488068-e6e4-4b06-84ab-82a9d2b044c4/front-250",
     "titulo": "USA 1988/92",
@@ -362278,14 +362358,6 @@
     "fecha": "1992-02-06",
     "artista": "Chic",
     "tipo": "Single"
-  },
-  {
-    "id": "76cf37c1-01b7-36e1-ae0c-6716969a8970",
-    "imagen": "https://coverartarchive.org/release-group/76cf37c1-01b7-36e1-ae0c-6716969a8970/front-250",
-    "titulo": "Classics",
-    "fecha": "1992-02-03",
-    "artista": "Don McLean",
-    "tipo": "Album"
   },
   {
     "id": "63ee8bec-13a5-4b3a-92ad-dac3e9f034ca",
@@ -373440,14 +373512,6 @@
     "tipo": "Single"
   },
   {
-    "id": "a6ea7c24-384b-4d87-83ba-83b7221f0cad",
-    "imagen": "https://coverartarchive.org/release-group/a6ea7c24-384b-4d87-83ba-83b7221f0cad/front-250",
-    "titulo": "Special Audio Buyway: featuring excerpts from Bob Dylan and Rolling Stones",
-    "fecha": "1991",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
     "id": "c144cfff-6de1-4c53-a974-6ca1b2e15da3",
     "imagen": "https://coverartarchive.org/release-group/c144cfff-6de1-4c53-a974-6ca1b2e15da3/front-250",
     "titulo": "Paris Results",
@@ -373459,6 +373523,14 @@
     "id": "1c23b770-99aa-3b18-b077-7392ebf5d313",
     "imagen": "https://coverartarchive.org/release-group/1c23b770-99aa-3b18-b077-7392ebf5d313/front-250",
     "titulo": "Sympathy for the Devil",
+    "fecha": "1991",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
+    "id": "a6ea7c24-384b-4d87-83ba-83b7221f0cad",
+    "imagen": "https://coverartarchive.org/release-group/a6ea7c24-384b-4d87-83ba-83b7221f0cad/front-250",
+    "titulo": "Special Audio Buyway: featuring excerpts from Bob Dylan and Rolling Stones",
     "fecha": "1991",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -376928,14 +377000,6 @@
     "tipo": "Album"
   },
   {
-    "id": "a8d1a687-e323-42cc-8f6f-17f9661b03c2",
-    "imagen": "https://coverartarchive.org/release-group/a8d1a687-e323-42cc-8f6f-17f9661b03c2/front-250",
-    "titulo": "Led Zeppelin",
-    "fecha": "1990",
-    "artista": "Led Zeppelin",
-    "tipo": "Album"
-  },
-  {
     "id": "b2ce0ce2-e0ed-44df-8a8a-1ef0a4d1b54a",
     "imagen": "https://coverartarchive.org/release-group/b2ce0ce2-e0ed-44df-8a8a-1ef0a4d1b54a/front-250",
     "titulo": "Best Selection",
@@ -378720,14 +378784,6 @@
     "tipo": "Album"
   },
   {
-    "id": "b049c211-3514-450a-be15-94828fa707cc",
-    "imagen": "https://coverartarchive.org/release-group/b049c211-3514-450a-be15-94828fa707cc/front-250",
-    "titulo": "The Rolling Stones",
-    "fecha": "1990",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
     "id": "bdfe51db-2de8-346d-974e-5a51ef887ede",
     "imagen": "https://coverartarchive.org/release-group/bdfe51db-2de8-346d-974e-5a51ef887ede/front-250",
     "titulo": "Limited Edition, Volume 1",
@@ -378763,6 +378819,14 @@
     "id": "7d712b46-620b-3930-a136-6103dabef8b9",
     "imagen": "https://coverartarchive.org/release-group/7d712b46-620b-3930-a136-6103dabef8b9/front-250",
     "titulo": "The Singer Not the Song",
+    "fecha": "1990",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
+    "id": "b049c211-3514-450a-be15-94828fa707cc",
+    "imagen": "https://coverartarchive.org/release-group/b049c211-3514-450a-be15-94828fa707cc/front-250",
+    "titulo": "The Rolling Stones",
     "fecha": "1990",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -382168,6 +382232,14 @@
     "tipo": "Album"
   },
   {
+    "id": "8705f567-8cc6-4d5b-a092-b7fab5918bff",
+    "imagen": "https://coverartarchive.org/release-group/8705f567-8cc6-4d5b-a092-b7fab5918bff/front-250",
+    "titulo": "Live at Fillmore West",
+    "fecha": "1989",
+    "artista": "Led Zeppelin",
+    "tipo": "Album"
+  },
+  {
     "id": "e45fb9c0-3edb-340f-a696-79e233f41727",
     "imagen": "https://coverartarchive.org/release-group/e45fb9c0-3edb-340f-a696-79e233f41727/front-250",
     "titulo": "Hotter Than the Hindenburg",
@@ -382179,14 +382251,6 @@
     "id": "0c15e4e4-69f2-3381-8f1c-dc81484d8652",
     "imagen": "https://coverartarchive.org/release-group/0c15e4e4-69f2-3381-8f1c-dc81484d8652/front-250",
     "titulo": "Rotterdam 1980",
-    "fecha": "1989",
-    "artista": "Led Zeppelin",
-    "tipo": "Album"
-  },
-  {
-    "id": "8705f567-8cc6-4d5b-a092-b7fab5918bff",
-    "imagen": "https://coverartarchive.org/release-group/8705f567-8cc6-4d5b-a092-b7fab5918bff/front-250",
-    "titulo": "Live at Fillmore West",
     "fecha": "1989",
     "artista": "Led Zeppelin",
     "tipo": "Album"
@@ -405392,14 +405456,6 @@
     "tipo": "Single"
   },
   {
-    "id": "fb977727-8b41-48f6-a953-9b808d27bd06",
-    "imagen": "https://coverartarchive.org/release-group/fb977727-8b41-48f6-a953-9b808d27bd06/front-250",
-    "titulo": "Paint It Black / Let's Spend the Night Together",
-    "fecha": "1983",
-    "artista": "The Rolling Stones",
-    "tipo": "Single"
-  },
-  {
     "id": "33945ad1-b86e-4de1-ac43-bd5bfd54ff5d",
     "imagen": "https://coverartarchive.org/release-group/33945ad1-b86e-4de1-ac43-bd5bfd54ff5d/front-250",
     "titulo": "The Rolling Stones 20th Anniversary Collector's Kit",
@@ -405427,6 +405483,14 @@
     "id": "f6811af9-45ff-4115-bf60-d787c2ba2a84",
     "imagen": "https://coverartarchive.org/release-group/f6811af9-45ff-4115-bf60-d787c2ba2a84/front-250",
     "titulo": "Too Much Blood / Undercover",
+    "fecha": "1983",
+    "artista": "The Rolling Stones",
+    "tipo": "Single"
+  },
+  {
+    "id": "fb977727-8b41-48f6-a953-9b808d27bd06",
+    "imagen": "https://coverartarchive.org/release-group/fb977727-8b41-48f6-a953-9b808d27bd06/front-250",
+    "titulo": "Paint It Black / Let's Spend the Night Together",
     "fecha": "1983",
     "artista": "The Rolling Stones",
     "tipo": "Single"
@@ -415744,14 +415808,6 @@
     "tipo": "Single"
   },
   {
-    "id": "24a08f61-7ae5-446d-8ca0-7d3c69c56454",
-    "imagen": "https://coverartarchive.org/release-group/24a08f61-7ae5-446d-8ca0-7d3c69c56454/front-250",
-    "titulo": "Gold Superdisc",
-    "fecha": "1979",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
     "id": "808f0d3c-d052-45e7-866a-07bff1a71b64",
     "imagen": "https://coverartarchive.org/release-group/808f0d3c-d052-45e7-866a-07bff1a71b64/front-250",
     "titulo": "Get More... Satisfaction",
@@ -415779,6 +415835,14 @@
     "id": "0eb26dc4-c3d9-46ed-a200-e79e7121ccb5",
     "imagen": "https://coverartarchive.org/release-group/0eb26dc4-c3d9-46ed-a200-e79e7121ccb5/front-250",
     "titulo": "The Rolling Stones",
+    "fecha": "1979",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
+    "id": "24a08f61-7ae5-446d-8ca0-7d3c69c56454",
+    "imagen": "https://coverartarchive.org/release-group/24a08f61-7ae5-446d-8ca0-7d3c69c56454/front-250",
+    "titulo": "Gold Superdisc",
     "fecha": "1979",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -425352,6 +425416,14 @@
     "tipo": "Single"
   },
   {
+    "id": "4f89d204-bdc1-4fed-92d0-93f5f1a875d5",
+    "imagen": "https://coverartarchive.org/release-group/4f89d204-bdc1-4fed-92d0-93f5f1a875d5/front-250",
+    "titulo": "+’Justments",
+    "fecha": "1974-08-08",
+    "artista": "Bill Withers",
+    "tipo": "Album"
+  },
+  {
     "id": "f804e084-b282-333a-a4cd-288df8c299b0",
     "imagen": "https://coverartarchive.org/release-group/f804e084-b282-333a-a4cd-288df8c299b0/front-250",
     "titulo": "Can’t Get Enough",
@@ -425896,14 +425968,6 @@
     "tipo": "EP"
   },
   {
-    "id": "4f89d204-bdc1-4fed-92d0-93f5f1a875d5",
-    "imagen": "https://coverartarchive.org/release-group/4f89d204-bdc1-4fed-92d0-93f5f1a875d5/front-250",
-    "titulo": "+’Justments",
-    "fecha": "1974",
-    "artista": "Bill Withers",
-    "tipo": "Album"
-  },
-  {
     "id": "0778fe05-cb23-46c3-bd77-494cab8842ca",
     "imagen": "https://coverartarchive.org/release-group/0778fe05-cb23-46c3-bd77-494cab8842ca/front-250",
     "titulo": "Now Your Mouth Cries Wolf",
@@ -426440,17 +426504,17 @@
     "tipo": "Album"
   },
   {
-    "id": "d4837eb1-a051-376f-ab4e-12c1e7102c22",
-    "imagen": "https://coverartarchive.org/release-group/d4837eb1-a051-376f-ab4e-12c1e7102c22/front-250",
-    "titulo": "Ray Charles, Volume II",
+    "id": "7eca2a18-0086-42e1-a5a2-2524278519f8",
+    "imagen": "https://coverartarchive.org/release-group/7eca2a18-0086-42e1-a5a2-2524278519f8/front-250",
+    "titulo": "The World of Ray Charles",
     "fecha": "1974",
     "artista": "Ray Charles",
     "tipo": "Album"
   },
   {
-    "id": "7eca2a18-0086-42e1-a5a2-2524278519f8",
-    "imagen": "https://coverartarchive.org/release-group/7eca2a18-0086-42e1-a5a2-2524278519f8/front-250",
-    "titulo": "The World of Ray Charles",
+    "id": "d4837eb1-a051-376f-ab4e-12c1e7102c22",
+    "imagen": "https://coverartarchive.org/release-group/d4837eb1-a051-376f-ab4e-12c1e7102c22/front-250",
+    "titulo": "Ray Charles, Volume II",
     "fecha": "1974",
     "artista": "Ray Charles",
     "tipo": "Album"
@@ -427619,14 +427683,6 @@
     "id": "5f197702-112d-3e12-98f7-d3397edee8b3",
     "imagen": "https://coverartarchive.org/release-group/5f197702-112d-3e12-98f7-d3397edee8b3/front-250",
     "titulo": "Best of Bee Gees, Volume 2",
-    "fecha": "1973",
-    "artista": "Bee Gees",
-    "tipo": "Album"
-  },
-  {
-    "id": "9c870e86-6fec-4944-a7c5-863b6013da9a",
-    "imagen": "https://coverartarchive.org/release-group/9c870e86-6fec-4944-a7c5-863b6013da9a/front-250",
-    "titulo": "Best",
     "fecha": "1973",
     "artista": "Bee Gees",
     "tipo": "Album"
@@ -431120,6 +431176,14 @@
     "tipo": "Album"
   },
   {
+    "id": "9c870e86-6fec-4944-a7c5-863b6013da9a",
+    "imagen": "https://coverartarchive.org/release-group/9c870e86-6fec-4944-a7c5-863b6013da9a/front-250",
+    "titulo": "Best",
+    "fecha": "1971",
+    "artista": "Bee Gees",
+    "tipo": "Album"
+  },
+  {
     "id": "30292462-8a9e-419e-bf21-edf7866a142c",
     "imagen": "https://coverartarchive.org/release-group/30292462-8a9e-419e-bf21-edf7866a142c/front-250",
     "titulo": "Melody",
@@ -431736,14 +431800,6 @@
     "tipo": "Single"
   },
   {
-    "id": "a6e0d171-ea98-4e9c-a3f2-e91d992c6285",
-    "imagen": "https://coverartarchive.org/release-group/a6e0d171-ea98-4e9c-a3f2-e91d992c6285/front-250",
-    "titulo": "Street Fighting Man / Surprise Surprise",
-    "fecha": "1971",
-    "artista": "The Rolling Stones",
-    "tipo": "Single"
-  },
-  {
     "id": "d9f6e943-ef39-4664-8b49-fa54c1653c4c",
     "imagen": "https://coverartarchive.org/release-group/d9f6e943-ef39-4664-8b49-fa54c1653c4c/front-250",
     "titulo": "All’Ombra / Brown Sugar",
@@ -431787,6 +431843,14 @@
     "id": "70132477-cc48-48f0-9f7c-d0d2d928a8b1",
     "imagen": "https://coverartarchive.org/release-group/70132477-cc48-48f0-9f7c-d0d2d928a8b1/front-250",
     "titulo": "Tell Me / Paint It Black",
+    "fecha": "1971",
+    "artista": "The Rolling Stones",
+    "tipo": "Single"
+  },
+  {
+    "id": "a6e0d171-ea98-4e9c-a3f2-e91d992c6285",
+    "imagen": "https://coverartarchive.org/release-group/a6e0d171-ea98-4e9c-a3f2-e91d992c6285/front-250",
+    "titulo": "Street Fighting Man / Surprise Surprise",
     "fecha": "1971",
     "artista": "The Rolling Stones",
     "tipo": "Single"
@@ -435280,14 +435344,6 @@
     "tipo": "EP"
   },
   {
-    "id": "f5996575-4acb-4336-8d37-de6f7440da74",
-    "imagen": "https://coverartarchive.org/release-group/f5996575-4acb-4336-8d37-de6f7440da74/front-250",
-    "titulo": "Ruby Tuesday / She Smiled Sweetly / Let’s Spend the Night Together / Connection",
-    "fecha": "1969",
-    "artista": "The Rolling Stones",
-    "tipo": "EP"
-  },
-  {
     "id": "f75c7614-d7d2-4cdb-8a8d-0736ae32e1fc",
     "imagen": "https://coverartarchive.org/release-group/f75c7614-d7d2-4cdb-8a8d-0736ae32e1fc/front-250",
     "titulo": "Honky Tonk Women",
@@ -435315,6 +435371,14 @@
     "id": "919ea088-7ae3-4b88-a0e3-405e81947b79",
     "imagen": "https://coverartarchive.org/release-group/919ea088-7ae3-4b88-a0e3-405e81947b79/front-250",
     "titulo": "Satisfaction",
+    "fecha": "1969",
+    "artista": "The Rolling Stones",
+    "tipo": "EP"
+  },
+  {
+    "id": "f5996575-4acb-4336-8d37-de6f7440da74",
+    "imagen": "https://coverartarchive.org/release-group/f5996575-4acb-4336-8d37-de6f7440da74/front-250",
+    "titulo": "Ruby Tuesday / She Smiled Sweetly / Let’s Spend the Night Together / Connection",
     "fecha": "1969",
     "artista": "The Rolling Stones",
     "tipo": "EP"
@@ -466672,14 +466736,6 @@
     "tipo": "Single"
   },
   {
-    "id": "d068f762-93ad-40db-9afa-75d001cd878f",
-    "imagen": "https://coverartarchive.org/release-group/d068f762-93ad-40db-9afa-75d001cd878f/front-250",
-    "titulo": "Machika",
-    "fecha": "",
-    "artista": "J Balvin",
-    "tipo": "Single"
-  },
-  {
     "id": "1bc1bb48-11a0-457d-ac60-a9a6ee8fd749",
     "imagen": "https://coverartarchive.org/release-group/1bc1bb48-11a0-457d-ac60-a9a6ee8fd749/front-250",
     "titulo": "Ok (Tom Socked Bootleg)",
@@ -467944,33 +468000,9 @@
     "tipo": "Publicación"
   },
   {
-    "id": "0eb7c437-f358-471d-9c0b-91e07e93853f",
-    "imagen": "https://coverartarchive.org/release-group/0eb7c437-f358-471d-9c0b-91e07e93853f/front-250",
-    "titulo": "Paparazzi",
-    "fecha": "",
-    "artista": "Lady Gaga",
-    "tipo": "EP"
-  },
-  {
-    "id": "44a9b217-bc04-4009-a55f-20413879f62c",
-    "imagen": "https://coverartarchive.org/release-group/44a9b217-bc04-4009-a55f-20413879f62c/front-250",
-    "titulo": "Born This Way (The Remixes) Pt. 2",
-    "fecha": "",
-    "artista": "Lady Gaga",
-    "tipo": "Single"
-  },
-  {
-    "id": "739042f6-7a63-44b7-9618-d3c50a8fec2e",
-    "imagen": "https://coverartarchive.org/release-group/739042f6-7a63-44b7-9618-d3c50a8fec2e/front-250",
-    "titulo": "Born This Way (The Country Road version)",
-    "fecha": "",
-    "artista": "Lady Gaga",
-    "tipo": "Single"
-  },
-  {
-    "id": "954cf716-32e2-4b8d-86df-437559c8dfd2",
-    "imagen": "https://coverartarchive.org/release-group/954cf716-32e2-4b8d-86df-437559c8dfd2/front-250",
-    "titulo": "Yoü and I (The Remixes)",
+    "id": "06fcb3f4-3bb3-4f0c-b150-81a5ee0c1901",
+    "imagen": "https://coverartarchive.org/release-group/06fcb3f4-3bb3-4f0c-b150-81a5ee0c1901/front-250",
+    "titulo": "Heavy Metal Lover",
     "fecha": "",
     "artista": "Lady Gaga",
     "tipo": "Single"
@@ -467990,14 +468022,6 @@
     "fecha": "",
     "artista": "Lady Gaga",
     "tipo": "Album"
-  },
-  {
-    "id": "c9964c13-fdde-4809-b484-c75dce898f7a",
-    "imagen": "https://coverartarchive.org/release-group/c9964c13-fdde-4809-b484-c75dce898f7a/front-250",
-    "titulo": "Born This Way (The Remixes Pt. 1)",
-    "fecha": "",
-    "artista": "Lady Gaga",
-    "tipo": "Single"
   },
   {
     "id": "10eee50a-e605-4cf8-8d02-3ae6e8108850",
@@ -468512,6 +468536,14 @@
     "tipo": "Album"
   },
   {
+    "id": "ee29db06-a0cd-33fb-be52-e5cfec15b0e3",
+    "imagen": "https://coverartarchive.org/release-group/ee29db06-a0cd-33fb-be52-e5cfec15b0e3/front-250",
+    "titulo": "The Conversation Disc Series",
+    "fecha": "",
+    "artista": "Led Zeppelin",
+    "tipo": "Other"
+  },
+  {
     "id": "f9ddab1e-cc00-351b-97e2-68e28fb393a0",
     "imagen": "https://coverartarchive.org/release-group/f9ddab1e-cc00-351b-97e2-68e28fb393a0/front-250",
     "titulo": "Headley Grange 1971",
@@ -468539,14 +468571,6 @@
     "id": "56e70b69-0f89-4de4-9f86-46b7d8612431",
     "imagen": "https://coverartarchive.org/release-group/56e70b69-0f89-4de4-9f86-46b7d8612431/front-250",
     "titulo": "Seattle 1977",
-    "fecha": "",
-    "artista": "Led Zeppelin",
-    "tipo": "Other"
-  },
-  {
-    "id": "ee29db06-a0cd-33fb-be52-e5cfec15b0e3",
-    "imagen": "https://coverartarchive.org/release-group/ee29db06-a0cd-33fb-be52-e5cfec15b0e3/front-250",
-    "titulo": "The Conversation Disc Series",
     "fecha": "",
     "artista": "Led Zeppelin",
     "tipo": "Other"
@@ -469467,14 +469491,6 @@
     "id": "aa05f832-6ccb-4e37-93f0-edb9ea5a8ae0",
     "imagen": "https://coverartarchive.org/release-group/aa05f832-6ccb-4e37-93f0-edb9ea5a8ae0/front-250",
     "titulo": "The Essential Louis Armstrong",
-    "fecha": "",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "ac92127a-e0ae-438f-abf4-10244af92635",
-    "imagen": "https://coverartarchive.org/release-group/ac92127a-e0ae-438f-abf4-10244af92635/front-250",
-    "titulo": "The Complete 1951 Pasadena Concerts",
     "fecha": "",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -474928,14 +474944,6 @@
     "tipo": "Album"
   },
   {
-    "id": "1477accd-a229-304d-a18c-f890a8b39049",
-    "imagen": "https://coverartarchive.org/release-group/1477accd-a229-304d-a18c-f890a8b39049/front-250",
-    "titulo": "Queen Gold",
-    "fecha": "",
-    "artista": "Queen",
-    "tipo": "Album"
-  },
-  {
     "id": "439511f8-eb74-4434-bc6b-112f986824e4",
     "imagen": "https://coverartarchive.org/release-group/439511f8-eb74-4434-bc6b-112f986824e4/front-250",
     "titulo": "Golden Ballads",
@@ -477659,6 +477667,14 @@
     "id": "6b81f1b9-15a2-4781-bda3-203a1d389cc5",
     "imagen": "https://coverartarchive.org/release-group/6b81f1b9-15a2-4781-bda3-203a1d389cc5/front-250",
     "titulo": "On Ya",
+    "fecha": "",
+    "artista": "Sean Kingston",
+    "tipo": "Single"
+  },
+  {
+    "id": "c69f24e6-8473-45e7-8b5b-0f34852de290",
+    "imagen": "https://coverartarchive.org/release-group/c69f24e6-8473-45e7-8b5b-0f34852de290/front-250",
+    "titulo": "Party All Night (Sleep All Day) - Single",
     "fecha": "",
     "artista": "Sean Kingston",
     "tipo": "Single"
@@ -481648,6 +481664,14 @@
     "tipo": "Publicación"
   },
   {
+    "id": "99157461-2f2f-4c48-b62f-9b8e59a94f29",
+    "imagen": "https://coverartarchive.org/release-group/99157461-2f2f-4c48-b62f-9b8e59a94f29/front-250",
+    "titulo": "The Rolling Stones, Now!",
+    "fecha": "",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
     "id": "07f454bb-b7c6-4106-9f9b-8c05e612fbd6",
     "imagen": "https://coverartarchive.org/release-group/07f454bb-b7c6-4106-9f9b-8c05e612fbd6/front-250",
     "titulo": "Who Are The Stones?",
@@ -481936,6 +481960,14 @@
     "tipo": "Album"
   },
   {
+    "id": "7356f006-4c29-4d49-b52e-690eb565a397",
+    "imagen": "https://coverartarchive.org/release-group/7356f006-4c29-4d49-b52e-690eb565a397/front-250",
+    "titulo": "En Cuba Ciudad Deportiva De La Habana 25 Marzo 2016",
+    "fecha": "",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
     "id": "91c789f6-32b3-43aa-a64e-7886a6bedc30",
     "imagen": "https://coverartarchive.org/release-group/91c789f6-32b3-43aa-a64e-7886a6bedc30/front-250",
     "titulo": "Rare & Unreleased (CD 02 1970–1973)",
@@ -481963,6 +481995,14 @@
     "id": "d7a0d0fd-b7f4-4989-ad2f-9a9810f899f4",
     "imagen": "https://coverartarchive.org/release-group/d7a0d0fd-b7f4-4989-ad2f-9a9810f899f4/front-250",
     "titulo": "Gals*Gags*Pin‐Ups",
+    "fecha": "",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
+    "id": "d8609040-694e-458f-9d72-d6443ecbcca0",
+    "imagen": "https://coverartarchive.org/release-group/d8609040-694e-458f-9d72-d6443ecbcca0/front-250",
+    "titulo": "En Cuba :The Historic Concert 2016",
     "fecha": "",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -492574,6 +492614,14 @@
     "fecha": "",
     "artista": "Justin Bieber",
     "tipo": "Other"
+  },
+  {
+    "id": "af77a98a-cea8-4a52-b66c-828a3e6c1ce0",
+    "imagen": "https://coverartarchive.org/release-group/af77a98a-cea8-4a52-b66c-828a3e6c1ce0/front-250",
+    "titulo": "Where Are Ü Now",
+    "fecha": "",
+    "artista": "Justin Bieber",
+    "tipo": "Single"
   },
   {
     "id": "348ac03a-f07a-4bc4-b590-5a0c0e6a67ea",
