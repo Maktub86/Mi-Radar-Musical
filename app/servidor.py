@@ -274,7 +274,7 @@ header p{
 })();
 </script>
 """
-        if "</body>" in html and "mr-guardadas-global" not in html:
+        if request.path != "/login" and "</body>" in html and "mr-guardadas-global" not in html:
             html = html.replace("</body>", script_guardadas_global + "</body>", 1)
         if "</body>" in html and "visibilidad-resumenes-cache" not in html:
             html = html.replace("</body>", script_resumenes + "</body>", 1)
