@@ -1,33 +1,33 @@
 {
   "canciones": [
     {
-      "titulo": "Daddy Yankee and Diljit Dosanjh - POKITO (Official Music Video)",
+      "titulo": "POKITO",
       "artista": "Daddy Yankee",
       "url": "https://www.youtube.com/watch?v=XO1h5G6xytU",
       "puesto": 1
     },
     {
-      "titulo": "DOGGY",
-      "artista": "La Pantera, Quevedo",
-      "url": "https://www.youtube.com/watch?v=Mj5UX4xb0sU",
+      "titulo": "2.0 #2 | l0rna",
+      "artista": "l0rna",
+      "url": "https://www.youtube.com/watch?v=nnd9d5Aj4qI",
       "puesto": 2
-    },
-    {
-      "titulo": "Happy Monday (W Sound 10)",
-      "artista": "Ovy On The Drums, W Sound, Hades66",
-      "url": "https://www.youtube.com/watch?v=LYn4w3m3Pjo",
-      "puesto": 3
     },
     {
       "titulo": "Lejos de Mi (Video Oficial)",
       "artista": "Josue Rarujo",
       "url": "https://www.youtube.com/watch?v=tA1QNxP5f_w",
+      "puesto": 3
+    },
+    {
+      "titulo": "Happy Monday (W Sound 10)",
+      "artista": "Ovy On The Drums, W Sound, Hades66",
+      "url": "https://www.youtube.com/watch?v=LYn4w3m3Pjo",
       "puesto": 4
     },
     {
-      "titulo": "2.0 #2 | l0rna",
-      "artista": "l0rna",
-      "url": "https://www.youtube.com/watch?v=nnd9d5Aj4qI",
+      "titulo": "DOGGY",
+      "artista": "La Pantera, Quevedo",
+      "url": "https://www.youtube.com/watch?v=Mj5UX4xb0sU",
       "puesto": 5
     },
     {
@@ -43,8 +43,8 @@
       "puesto": 7
     },
     {
-      "titulo": "Galvan Real - Mi Rompecabezas (Videoclip Oficial)",
-      "artista": "GALVAN REAL",
+      "titulo": "Mi Rompecabezas",
+      "artista": "Galvan Real",
       "url": "https://www.youtube.com/watch?v=mZm0CZlc9so",
       "puesto": 8
     },
@@ -55,15 +55,15 @@
       "puesto": 9
     },
     {
-      "titulo": "Relicario",
-      "artista": "El Barrio",
-      "url": "https://www.youtube.com/watch?v=o0pX-KObmvs",
-      "puesto": 10
-    },
-    {
       "titulo": "Me Encanta",
       "artista": "Cyril Kamer",
       "url": "https://www.youtube.com/watch?v=GwyF-niH3Ew",
+      "puesto": 10
+    },
+    {
+      "titulo": "Relicario",
+      "artista": "El Barrio",
+      "url": "https://www.youtube.com/watch?v=o0pX-KObmvs",
       "puesto": 11
     },
     {
@@ -73,93 +73,93 @@
       "puesto": 12
     },
     {
+      "titulo": "La Canción de las Frutas 2 🍐🍒🥥 Frutas Talent ✨ Adivinanzas para Niños",
+      "artista": "El Jardín de la Fantasía",
+      "url": "https://www.youtube.com/watch?v=R7njZ8aGtBE",
+      "puesto": 13
+    },
+    {
       "titulo": "La Gerencia [Remix]",
       "artista": "Tito \"El Bambino\", Eladio Carrion, Ozuna, Ñengo Flow",
       "url": "https://www.youtube.com/watch?v=J3jyzFP9vog",
-      "puesto": 13
+      "puesto": 14
     },
     {
       "titulo": "Querencia",
       "artista": "El Barrio",
       "url": "https://www.youtube.com/watch?v=PG7S8mt5isk",
-      "puesto": 14
+      "puesto": 15
+    },
+    {
+      "titulo": "PARADIXE (REMIX)",
+      "artista": "Feid, El Americano 4KT, Omar Courtz, Pirlo",
+      "url": "https://www.youtube.com/watch?v=YXvFLBjTCQA",
+      "puesto": 16
     },
     {
       "titulo": "Vulnerable",
       "artista": "Jory Boy, Ozuna, Ñengo Flow",
       "url": "https://www.youtube.com/watch?v=OWbhwq9fecg",
-      "puesto": 15
-    },
-    {
-      "titulo": "La Canción de las Frutas 2 🍐🍒🥥 Frutas Talent ✨ Adivinanzas para Niños",
-      "artista": "El Jardín de la Fantasía",
-      "url": "https://www.youtube.com/watch?v=R7njZ8aGtBE",
-      "puesto": 16
+      "puesto": 17
     },
     {
       "titulo": "Eladio Carrión, Rauw Alejandro, De La Rose - Body Remix (Visualizer)",
       "artista": "Eladio Carrion",
       "url": "https://www.youtube.com/watch?v=Zq_bsX3i5c8",
-      "puesto": 17
+      "puesto": 18
     },
     {
       "titulo": "El Pastor De Mareas",
       "artista": "El Barrio",
       "url": "https://www.youtube.com/watch?v=j68DbvilXrw",
-      "puesto": 18
-    },
-    {
-      "titulo": "K/DA - FIRESTARTER ft. MIYEON and SOYEON of i-dle, Sophie Powers, Mimi Webb (Official Music Video)",
-      "artista": "League of Legends",
-      "url": "https://www.youtube.com/watch?v=Mmw-PpWhKFg",
       "puesto": 19
-    },
-    {
-      "titulo": "El Problema Fue La Solución",
-      "artista": "Antonio Orozco",
-      "url": "https://www.youtube.com/watch?v=jevtWW_3Jwk",
-      "puesto": 20
-    },
-    {
-      "titulo": "Dame Hombro",
-      "artista": "Kevin Wai, Breyco En Producidera, Bulin 47",
-      "url": "https://www.youtube.com/watch?v=VUIgT-E4IS0",
-      "puesto": 21
-    },
-    {
-      "titulo": "FAMA",
-      "artista": "YOLAMASCARA",
-      "url": "https://www.youtube.com/watch?v=NUzyKrRvwRk",
-      "puesto": 22
-    },
-    {
-      "titulo": "2001 x BOUZA - LA ZONA",
-      "artista": "2001-DZ",
-      "url": "https://www.youtube.com/watch?v=K8gIIHD3Cks",
-      "puesto": 23
-    },
-    {
-      "titulo": "Coming Up Roses (Official Video)",
-      "artista": "Harry Styles",
-      "url": "https://www.youtube.com/watch?v=M4qX5wzx-wY",
-      "puesto": 24
-    },
-    {
-      "titulo": "Muñequitas Remix 2",
-      "artista": "Mr. Plata, El Americano 4KT, Arcángel, Luar La L",
-      "url": "https://www.youtube.com/watch?v=iH9jODrRm_k",
-      "puesto": 25
     },
     {
       "titulo": "Lento",
       "artista": "1cewayz, Køddy G, THE FAVORITES",
       "url": "https://www.youtube.com/watch?v=6bijgU88-vk",
+      "puesto": 20
+    },
+    {
+      "titulo": "K/DA - FIRESTARTER ft. MIYEON and SOYEON of i-dle, Sophie Powers, Mimi Webb (Official Music Video)",
+      "artista": "League of Legends",
+      "url": "https://www.youtube.com/watch?v=Mmw-PpWhKFg",
+      "puesto": 21
+    },
+    {
+      "titulo": "Muñequitas Remix 2",
+      "artista": "Mr. Plata, El Americano 4KT, Arcángel, Luar La L",
+      "url": "https://www.youtube.com/watch?v=iH9jODrRm_k",
+      "puesto": 22
+    },
+    {
+      "titulo": "El Problema Fue La Solución",
+      "artista": "Antonio Orozco, Niña Pastori",
+      "url": "https://www.youtube.com/watch?v=jevtWW_3Jwk",
+      "puesto": 23
+    },
+    {
+      "titulo": "FAMA",
+      "artista": "YOLAMASCARA",
+      "url": "https://www.youtube.com/watch?v=NUzyKrRvwRk",
+      "puesto": 24
+    },
+    {
+      "titulo": "Dame Hombro",
+      "artista": "Kevin Wai, Breyco En Producidera, Bulin 47",
+      "url": "https://www.youtube.com/watch?v=VUIgT-E4IS0",
+      "puesto": 25
+    },
+    {
+      "titulo": "2001 x BOUZA - LA ZONA",
+      "artista": "2001-DZ",
+      "url": "https://www.youtube.com/watch?v=K8gIIHD3Cks",
       "puesto": 26
     },
     {
-      "titulo": "ADDICTED",
-      "artista": "JISOO",
-      "url": "https://www.youtube.com/watch?v=Pksr9T8m_aA",
+      "titulo": "Coming Up Roses (Official Video)",
+      "artista": "Harry Styles",
+      "url": "https://www.youtube.com/watch?v=M4qX5wzx-wY",
       "puesto": 27
     },
     {
@@ -169,22 +169,22 @@
       "puesto": 28
     },
     {
-      "titulo": "Sarà perché ti amo – AFRO CODE 🔥| Afro House Extended Mix",
-      "artista": "AFRO CODE",
-      "url": "https://www.youtube.com/watch?v=AAZpeg19RWw",
+      "titulo": "ADDICTED",
+      "artista": "JISOO",
+      "url": "https://www.youtube.com/watch?v=Pksr9T8m_aA",
       "puesto": 29
     },
     {
-      "titulo": "You’re Under Arrest",
-      "artista": "ILLIT",
-      "url": "https://www.youtube.com/watch?v=V2V9-9VhYJo",
+      "titulo": "EN FOUR",
+      "artista": "Yeri Mua, METRIKA, D.Basto",
+      "url": "https://www.youtube.com/watch?v=RcnjTCRXT40",
       "puesto": 30
     }
   ],
   "fuente": "https://charts.youtube.com/charts/TrendingVideos/es",
   "nombre": "Tendencias musicales de YouTube",
   "tipo": "youtube",
-  "actualizado": "2026-11-02T05:04+00:00",
+  "actualizado": "2026-11-03T04:51+00:00",
   "en_curso": false,
   "mensaje": "Lista actualizada: 30 canciones."
 }
