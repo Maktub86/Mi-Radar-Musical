@@ -1,86 +1,86 @@
 {
   "canciones": [
     {
-      "titulo": "Bby wow",
-      "artista": "Karol G feat. Rusowsky & Judeline",
+      "titulo": "So easy (to fall in love)",
+      "artista": "Olivia Dean",
       "url": "https://los40.com/lista40/",
       "puesto": 1
     },
     {
-      "titulo": "Pa ti toa <3",
-      "artista": "Ana Mena & Lola Índigo",
+      "titulo": "Bby wow",
+      "artista": "Rusowsky, Karol G & Judeline",
       "url": "https://los40.com/lista40/",
       "puesto": 2
-    },
-    {
-      "titulo": "So easy (to fall in love)",
-      "artista": "Olivia Dean",
-      "url": "https://los40.com/lista40/",
-      "puesto": 3
-    },
-    {
-      "titulo": "La Graciosa",
-      "artista": "Quevedo feat. Elvis Crespo",
-      "url": "https://los40.com/lista40/",
-      "puesto": 4
     },
     {
       "titulo": "Love me not",
       "artista": "Ravyn Lenae",
       "url": "https://los40.com/lista40/",
-      "puesto": 5
+      "puesto": 3
     },
     {
-      "titulo": "Agua",
-      "artista": "Maluma & Shakira",
+      "titulo": "Pa ti toa <3",
+      "artista": "Ana Mena & Lola Índigo",
       "url": "https://los40.com/lista40/",
-      "puesto": 6
+      "puesto": 4
+    },
+    {
+      "titulo": "La Graciosa",
+      "artista": "Quevedo feat. Elvis Crespo",
+      "url": "https://los40.com/lista40/",
+      "puesto": 5
     },
     {
       "titulo": "Bass persuades",
       "artista": "Miley Cyrus",
       "url": "https://los40.com/lista40/",
-      "puesto": 7
+      "puesto": 6
     },
     {
       "titulo": "Mr. Know it all",
       "artista": "Teddy Swims",
       "url": "https://los40.com/lista40/",
-      "puesto": 8
-    },
-    {
-      "titulo": "Hate that I made you love me",
-      "artista": "Ariana Grande",
-      "url": "https://los40.com/lista40/",
-      "puesto": 9
+      "puesto": 7
     },
     {
       "titulo": "Dai dai",
       "artista": "Shakira & Burna Boy",
       "url": "https://los40.com/lista40/",
-      "puesto": 10
+      "puesto": 8
     },
     {
-      "titulo": "El bachatón de la l",
-      "artista": "Lola Índigo & Lucho RK",
+      "titulo": "Agua",
+      "artista": "Maluma & Shakira",
       "url": "https://los40.com/lista40/",
-      "puesto": 11
-    },
-    {
-      "titulo": "Jamaican (Bam bam)",
-      "artista": "Hugel & Solto",
-      "url": "https://los40.com/lista40/",
-      "puesto": 12
+      "puesto": 9
     },
     {
       "titulo": "Superestrella",
       "artista": "Aitana",
       "url": "https://los40.com/lista40/",
+      "puesto": 10
+    },
+    {
+      "titulo": "Hate that I made you love me",
+      "artista": "Ariana Grande",
+      "url": "https://los40.com/lista40/",
+      "puesto": 11
+    },
+    {
+      "titulo": "El bachatón de la l",
+      "artista": "Lola Índigo & Lucho RK",
+      "url": "https://los40.com/lista40/",
+      "puesto": 12
+    },
+    {
+      "titulo": "Choosin Texas",
+      "artista": "Ella Langley",
+      "url": "https://los40.com/lista40/",
       "puesto": 13
     },
     {
-      "titulo": "End of beginning",
-      "artista": "Djo",
+      "titulo": "Jamaican (Bam bam)",
+      "artista": "Hugel & Solto",
       "url": "https://los40.com/lista40/",
       "puesto": 14
     },
@@ -91,50 +91,50 @@
       "puesto": 15
     },
     {
-      "titulo": "El árbol",
-      "artista": "Camilo",
+      "titulo": "Conexión psíquica",
+      "artista": "Aitana",
       "url": "https://los40.com/lista40/",
       "puesto": 16
     },
     {
-      "titulo": "Conexión psíquica",
-      "artista": "Aitana",
+      "titulo": "End of beginning",
+      "artista": "Djo",
       "url": "https://los40.com/lista40/",
       "puesto": 17
     },
     {
-      "titulo": "Choosin Texas",
-      "artista": "Ella Langley",
+      "titulo": "El árbol",
+      "artista": "Camilo",
       "url": "https://los40.com/lista40/",
       "puesto": 18
-    },
-    {
-      "titulo": "¿Dime dónde estás?",
-      "artista": "Álvaro de Luna",
-      "url": "https://los40.com/lista40/",
-      "puesto": 19
     },
     {
       "titulo": "Dracula (Jennie remix)",
       "artista": "Jennie & Tame Impala",
       "url": "https://los40.com/lista40/",
-      "puesto": 20
+      "puesto": 19
     },
     {
-      "titulo": "Ayer la vi (BPA26)",
-      "artista": "Juan Magán & Omar Montes",
+      "titulo": "¿Dime dónde estás?",
+      "artista": "Álvaro de Luna",
       "url": "https://los40.com/lista40/",
-      "puesto": 21
+      "puesto": 20
     },
     {
       "titulo": "Ain't in LA",
       "artista": "Adéla",
       "url": "https://los40.com/lista40/",
+      "puesto": 21
+    },
+    {
+      "titulo": "Ayer la vi (BPA26)",
+      "artista": "Juan Magán & Omar Montes",
+      "url": "https://los40.com/lista40/",
       "puesto": 22
     },
     {
-      "titulo": "La mitad de la mitad",
-      "artista": "La La Love You",
+      "titulo": "Me mata",
+      "artista": "Morat",
       "url": "https://los40.com/lista40/",
       "puesto": 23
     },
@@ -145,98 +145,98 @@
       "puesto": 24
     },
     {
-      "titulo": "Me mata",
-      "artista": "Morat",
+      "titulo": "Drop dead",
+      "artista": "Olivia Rodrigo",
       "url": "https://los40.com/lista40/",
       "puesto": 25
     },
     {
-      "titulo": "En unos años",
-      "artista": "DePol",
+      "titulo": "La mitad de la mitad",
+      "artista": "La La Love You",
       "url": "https://los40.com/lista40/",
       "puesto": 26
-    },
-    {
-      "titulo": "Daddy Yankee: Bzrp music sessions Vol. 0/66",
-      "artista": "Daddy Yankee & Bizarrap",
-      "url": "https://los40.com/lista40/",
-      "puesto": 27
-    },
-    {
-      "titulo": "Quién te ve",
-      "artista": "Rels B",
-      "url": "https://los40.com/lista40/",
-      "puesto": 28
-    },
-    {
-      "titulo": "Drop dead",
-      "artista": "Olivia Rodrigo",
-      "url": "https://los40.com/lista40/",
-      "puesto": 29
     },
     {
       "titulo": "Reliquia",
       "artista": "Rosalía",
       "url": "https://los40.com/lista40/",
-      "puesto": 30
-    },
-    {
-      "titulo": "Bring your love",
-      "artista": "Sabrina Carpenter & Madonna",
-      "url": "https://los40.com/lista40/",
-      "puesto": 31
-    },
-    {
-      "titulo": "Pistoletazo de salida",
-      "artista": "Lola Tuduri",
-      "url": "https://los40.com/lista40/",
-      "puesto": 32
+      "puesto": 27
     },
     {
       "titulo": "Music I love",
       "artista": "Rosa Linn",
       "url": "https://los40.com/lista40/",
-      "puesto": 33
+      "puesto": 28
     },
     {
-      "titulo": "Cabeza de ratón",
-      "artista": "Leire Martínez",
+      "titulo": "En unos años",
+      "artista": "DePol",
       "url": "https://los40.com/lista40/",
-      "puesto": 34
+      "puesto": 29
+    },
+    {
+      "titulo": "Quién te ve",
+      "artista": "Rels B",
+      "url": "https://los40.com/lista40/",
+      "puesto": 30
     },
     {
       "titulo": "I just might",
       "artista": "Bruno Mars",
       "url": "https://los40.com/lista40/",
-      "puesto": 35
+      "puesto": 31
+    },
+    {
+      "titulo": "Daddy Yankee: Bzrp music sessions Vol. 0/66",
+      "artista": "Daddy Yankee & Bizarrap",
+      "url": "https://los40.com/lista40/",
+      "puesto": 32
+    },
+    {
+      "titulo": "Pistoletazo de salida",
+      "artista": "Lola Tuduri",
+      "url": "https://los40.com/lista40/",
+      "puesto": 33
+    },
+    {
+      "titulo": "Bring your love",
+      "artista": "Sabrina Carpenter & Madonna",
+      "url": "https://los40.com/lista40/",
+      "puesto": 34
     },
     {
       "titulo": "La perla",
       "artista": "Rosalía feat. Yahritza y su Esencia",
       "url": "https://los40.com/lista40/",
+      "puesto": 35
+    },
+    {
+      "titulo": "Opalite",
+      "artista": "Taylor Swift",
+      "url": "https://los40.com/lista40/",
       "puesto": 36
+    },
+    {
+      "titulo": "Cabeza de ratón",
+      "artista": "Leire Martínez",
+      "url": "https://los40.com/lista40/",
+      "puesto": 37
+    },
+    {
+      "titulo": "Una más",
+      "artista": "Chiara Oliver",
+      "url": "https://los40.com/lista40/",
+      "puesto": 38
     },
     {
       "titulo": "Tiramisú",
       "artista": "Vicco",
       "url": "https://los40.com/lista40/",
-      "puesto": 37
+      "puesto": 39
     },
     {
       "titulo": "La culpa",
       "artista": "La Beba",
-      "url": "https://los40.com/lista40/",
-      "puesto": 38
-    },
-    {
-      "titulo": "Mentira",
-      "artista": "Daniela Blasco",
-      "url": "https://los40.com/lista40/",
-      "puesto": 39
-    },
-    {
-      "titulo": "Opalite",
-      "artista": "Taylor Swift",
       "url": "https://los40.com/lista40/",
       "puesto": 40
     }
@@ -244,7 +244,7 @@
   "fuente": "https://los40.com/lista40/",
   "nombre": "LOS40",
   "tipo": "los40",
-  "actualizado": "2026-10-31T05:03+00:00",
+  "actualizado": "2026-11-04T04:56+00:00",
   "en_curso": false,
   "mensaje": "Lista actualizada: 40 canciones."
 }

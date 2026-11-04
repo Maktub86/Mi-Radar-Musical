@@ -7,13 +7,13 @@
       "puesto": 1
     },
     {
-      "titulo": "2.0 #2 | l0rna",
+      "titulo": "2.0 #2",
       "artista": "l0rna",
       "url": "https://www.youtube.com/watch?v=nnd9d5Aj4qI",
       "puesto": 2
     },
     {
-      "titulo": "Lejos de Mi (Video Oficial)",
+      "titulo": "Lejos de Mi (Official Music Video)",
       "artista": "Josue Rarujo",
       "url": "https://www.youtube.com/watch?v=tA1QNxP5f_w",
       "puesto": 3
@@ -49,33 +49,33 @@
       "puesto": 8
     },
     {
-      "titulo": "Hello Toto",
-      "artista": "TeykBeats, Poleg",
-      "url": "https://www.youtube.com/watch?v=D-lICRbsXW4",
-      "puesto": 9
-    },
-    {
       "titulo": "Me Encanta",
       "artista": "Cyril Kamer",
       "url": "https://www.youtube.com/watch?v=GwyF-niH3Ew",
+      "puesto": 9
+    },
+    {
+      "titulo": "Hello Toto",
+      "artista": "TeykBeats, Poleg",
+      "url": "https://www.youtube.com/watch?v=D-lICRbsXW4",
       "puesto": 10
     },
     {
-      "titulo": "Relicario",
-      "artista": "El Barrio",
-      "url": "https://www.youtube.com/watch?v=o0pX-KObmvs",
+      "titulo": "PARADIXE (REMIX)",
+      "artista": "Feid, El Americano 4KT, Omar Courtz, Pirlo",
+      "url": "https://www.youtube.com/watch?v=YXvFLBjTCQA",
       "puesto": 11
-    },
-    {
-      "titulo": "Te Imagino",
-      "artista": "Myke Towers",
-      "url": "https://www.youtube.com/watch?v=5j8fIDh1V0A",
-      "puesto": 12
     },
     {
       "titulo": "La Canción de las Frutas 2 🍐🍒🥥 Frutas Talent ✨ Adivinanzas para Niños",
       "artista": "El Jardín de la Fantasía",
       "url": "https://www.youtube.com/watch?v=R7njZ8aGtBE",
+      "puesto": 12
+    },
+    {
+      "titulo": "Relicario",
+      "artista": "El Barrio",
+      "url": "https://www.youtube.com/watch?v=o0pX-KObmvs",
       "puesto": 13
     },
     {
@@ -85,45 +85,45 @@
       "puesto": 14
     },
     {
-      "titulo": "Querencia",
-      "artista": "El Barrio",
-      "url": "https://www.youtube.com/watch?v=PG7S8mt5isk",
+      "titulo": "Te Imagino",
+      "artista": "Myke Towers",
+      "url": "https://www.youtube.com/watch?v=5j8fIDh1V0A",
       "puesto": 15
     },
     {
-      "titulo": "PARADIXE (REMIX)",
-      "artista": "Feid, El Americano 4KT, Omar Courtz, Pirlo",
-      "url": "https://www.youtube.com/watch?v=YXvFLBjTCQA",
+      "titulo": "Querencia",
+      "artista": "El Barrio",
+      "url": "https://www.youtube.com/watch?v=PG7S8mt5isk",
       "puesto": 16
-    },
-    {
-      "titulo": "Vulnerable",
-      "artista": "Jory Boy, Ozuna, Ñengo Flow",
-      "url": "https://www.youtube.com/watch?v=OWbhwq9fecg",
-      "puesto": 17
     },
     {
       "titulo": "Eladio Carrión, Rauw Alejandro, De La Rose - Body Remix (Visualizer)",
       "artista": "Eladio Carrion",
       "url": "https://www.youtube.com/watch?v=Zq_bsX3i5c8",
-      "puesto": 18
+      "puesto": 17
     },
     {
-      "titulo": "El Pastor De Mareas",
-      "artista": "El Barrio",
-      "url": "https://www.youtube.com/watch?v=j68DbvilXrw",
-      "puesto": 19
+      "titulo": "Vulnerable",
+      "artista": "Jory Boy, Ozuna, Ñengo Flow",
+      "url": "https://www.youtube.com/watch?v=OWbhwq9fecg",
+      "puesto": 18
     },
     {
       "titulo": "Lento",
       "artista": "1cewayz, Køddy G, THE FAVORITES",
       "url": "https://www.youtube.com/watch?v=6bijgU88-vk",
+      "puesto": 19
+    },
+    {
+      "titulo": "TERROR EN LA DISCO",
+      "artista": "METRIKA, D.Basto",
+      "url": "https://www.youtube.com/watch?v=Qva-bF5yMwc",
       "puesto": 20
     },
     {
-      "titulo": "K/DA - FIRESTARTER ft. MIYEON and SOYEON of i-dle, Sophie Powers, Mimi Webb (Official Music Video)",
-      "artista": "League of Legends",
-      "url": "https://www.youtube.com/watch?v=Mmw-PpWhKFg",
+      "titulo": "El Pastor De Mareas",
+      "artista": "El Barrio",
+      "url": "https://www.youtube.com/watch?v=j68DbvilXrw",
       "puesto": 21
     },
     {
@@ -133,58 +133,58 @@
       "puesto": 22
     },
     {
-      "titulo": "El Problema Fue La Solución",
-      "artista": "Antonio Orozco, Niña Pastori",
-      "url": "https://www.youtube.com/watch?v=jevtWW_3Jwk",
+      "titulo": "Yami Safdie, Maluma - Felicidades (Video Oficial)",
+      "artista": "Yami Safdie",
+      "url": "https://www.youtube.com/watch?v=1ZogzdKgtOA",
       "puesto": 23
     },
     {
-      "titulo": "FAMA",
-      "artista": "YOLAMASCARA",
-      "url": "https://www.youtube.com/watch?v=NUzyKrRvwRk",
+      "titulo": "K/DA - FIRESTARTER ft. MIYEON and SOYEON of i-dle, Sophie Powers, Mimi Webb (Official Music Video)",
+      "artista": "League of Legends",
+      "url": "https://www.youtube.com/watch?v=Mmw-PpWhKFg",
       "puesto": 24
-    },
-    {
-      "titulo": "Dame Hombro",
-      "artista": "Kevin Wai, Breyco En Producidera, Bulin 47",
-      "url": "https://www.youtube.com/watch?v=VUIgT-E4IS0",
-      "puesto": 25
     },
     {
       "titulo": "2001 x BOUZA - LA ZONA",
       "artista": "2001-DZ",
       "url": "https://www.youtube.com/watch?v=K8gIIHD3Cks",
+      "puesto": 25
+    },
+    {
+      "titulo": "CACTUS cap. 8 - YOLAMASCARA",
+      "artista": "YOLAMASCARA",
+      "url": "https://www.youtube.com/watch?v=LXyw-4eZdVE",
       "puesto": 26
     },
     {
-      "titulo": "Coming Up Roses (Official Video)",
-      "artista": "Harry Styles",
-      "url": "https://www.youtube.com/watch?v=M4qX5wzx-wY",
+      "titulo": "FAMA",
+      "artista": "YOLAMASCARA",
+      "url": "https://www.youtube.com/watch?v=NUzyKrRvwRk",
       "puesto": 27
     },
     {
-      "titulo": "Yami Safdie, Maluma - Felicidades (Video Oficial)",
-      "artista": "Yami Safdie",
-      "url": "https://www.youtube.com/watch?v=1ZogzdKgtOA",
+      "titulo": "El Problema Fue La Solución",
+      "artista": "Antonio Orozco, Niña Pastori",
+      "url": "https://www.youtube.com/watch?v=jevtWW_3Jwk",
       "puesto": 28
-    },
-    {
-      "titulo": "ADDICTED",
-      "artista": "JISOO",
-      "url": "https://www.youtube.com/watch?v=Pksr9T8m_aA",
-      "puesto": 29
     },
     {
       "titulo": "EN FOUR",
       "artista": "Yeri Mua, METRIKA, D.Basto",
       "url": "https://www.youtube.com/watch?v=RcnjTCRXT40",
+      "puesto": 29
+    },
+    {
+      "titulo": "Coming Up Roses (Official Video)",
+      "artista": "Harry Styles",
+      "url": "https://www.youtube.com/watch?v=M4qX5wzx-wY",
       "puesto": 30
     }
   ],
   "fuente": "https://charts.youtube.com/charts/TrendingVideos/es",
   "nombre": "Tendencias musicales de YouTube",
   "tipo": "youtube",
-  "actualizado": "2026-11-03T04:51+00:00",
+  "actualizado": "2026-11-04T04:56+00:00",
   "en_curso": false,
   "mensaje": "Lista actualizada: 30 canciones."
 }
