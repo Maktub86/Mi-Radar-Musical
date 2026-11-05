@@ -1,33 +1,33 @@
 {
   "canciones": [
     {
+      "titulo": "Milko Freestyle (Video Oficial)",
+      "artista": "C. Tangana, Agorazein",
+      "url": "https://www.youtube.com/watch?v=DttlD1UaJu0",
+      "puesto": 1
+    },
+    {
       "titulo": "POKITO",
       "artista": "Daddy Yankee",
       "url": "https://www.youtube.com/watch?v=XO1h5G6xytU",
-      "puesto": 1
+      "puesto": 2
     },
     {
       "titulo": "2.0 #2",
       "artista": "l0rna",
       "url": "https://www.youtube.com/watch?v=nnd9d5Aj4qI",
-      "puesto": 2
+      "puesto": 3
     },
     {
       "titulo": "Lejos de Mi (Official Music Video)",
       "artista": "Josue Rarujo",
       "url": "https://www.youtube.com/watch?v=tA1QNxP5f_w",
-      "puesto": 3
+      "puesto": 4
     },
     {
       "titulo": "Happy Monday (W Sound 10)",
       "artista": "Ovy On The Drums, W Sound, Hades66",
       "url": "https://www.youtube.com/watch?v=LYn4w3m3Pjo",
-      "puesto": 4
-    },
-    {
-      "titulo": "DOGGY",
-      "artista": "La Pantera, Quevedo",
-      "url": "https://www.youtube.com/watch?v=Mj5UX4xb0sU",
       "puesto": 5
     },
     {
@@ -37,27 +37,27 @@
       "puesto": 6
     },
     {
+      "titulo": "DOGGY",
+      "artista": "La Pantera, Quevedo",
+      "url": "https://www.youtube.com/watch?v=Mj5UX4xb0sU",
+      "puesto": 7
+    },
+    {
       "titulo": "BODYPAINTING (Official Video)",
       "artista": "Emilia",
       "url": "https://www.youtube.com/watch?v=Whne2kfTjCk",
-      "puesto": 7
+      "puesto": 8
     },
     {
       "titulo": "Mi Rompecabezas",
       "artista": "Galvan Real",
       "url": "https://www.youtube.com/watch?v=mZm0CZlc9so",
-      "puesto": 8
+      "puesto": 9
     },
     {
       "titulo": "Me Encanta",
       "artista": "Cyril Kamer",
       "url": "https://www.youtube.com/watch?v=GwyF-niH3Ew",
-      "puesto": 9
-    },
-    {
-      "titulo": "Hello Toto",
-      "artista": "TeykBeats, Poleg",
-      "url": "https://www.youtube.com/watch?v=D-lICRbsXW4",
       "puesto": 10
     },
     {
@@ -73,99 +73,99 @@
       "puesto": 12
     },
     {
-      "titulo": "Relicario",
-      "artista": "El Barrio",
-      "url": "https://www.youtube.com/watch?v=o0pX-KObmvs",
+      "titulo": "DONDE ESTAN? cap. 11 - YOLAMASCARA FT 50 CENT",
+      "artista": "YOLAMASCARA",
+      "url": "https://www.youtube.com/watch?v=3ZPHmzC7F9Q",
       "puesto": 13
+    },
+    {
+      "titulo": "Hello Toto",
+      "artista": "TeykBeats, Poleg",
+      "url": "https://www.youtube.com/watch?v=D-lICRbsXW4",
+      "puesto": 14
     },
     {
       "titulo": "La Gerencia [Remix]",
       "artista": "Tito \"El Bambino\", Eladio Carrion, Ozuna, Ñengo Flow",
       "url": "https://www.youtube.com/watch?v=J3jyzFP9vog",
-      "puesto": 14
+      "puesto": 15
     },
     {
       "titulo": "Te Imagino",
       "artista": "Myke Towers",
       "url": "https://www.youtube.com/watch?v=5j8fIDh1V0A",
-      "puesto": 15
+      "puesto": 16
+    },
+    {
+      "titulo": "Relicario",
+      "artista": "El Barrio",
+      "url": "https://www.youtube.com/watch?v=o0pX-KObmvs",
+      "puesto": 17
+    },
+    {
+      "titulo": "Lento",
+      "artista": "1cewayz, THE FAVORITES, Køddy G",
+      "url": "https://www.youtube.com/watch?v=6bijgU88-vk",
+      "puesto": 18
     },
     {
       "titulo": "Querencia",
       "artista": "El Barrio",
       "url": "https://www.youtube.com/watch?v=PG7S8mt5isk",
-      "puesto": 16
+      "puesto": 19
     },
     {
-      "titulo": "Eladio Carrión, Rauw Alejandro, De La Rose - Body Remix (Visualizer)",
-      "artista": "Eladio Carrion",
+      "titulo": "Body (Remix)",
+      "artista": "Eladio Carrion, Delarose, Rauw Alejandro",
       "url": "https://www.youtube.com/watch?v=Zq_bsX3i5c8",
-      "puesto": 17
+      "puesto": 20
     },
     {
       "titulo": "Vulnerable",
       "artista": "Jory Boy, Ozuna, Ñengo Flow",
       "url": "https://www.youtube.com/watch?v=OWbhwq9fecg",
-      "puesto": 18
+      "puesto": 21
     },
     {
-      "titulo": "Lento",
-      "artista": "1cewayz, Køddy G, THE FAVORITES",
-      "url": "https://www.youtube.com/watch?v=6bijgU88-vk",
-      "puesto": 19
+      "titulo": "Gonzy, Sech - Conquistador",
+      "artista": "Gonzy",
+      "url": "https://www.youtube.com/watch?v=h-hYRw1Llg4",
+      "puesto": 22
     },
     {
       "titulo": "TERROR EN LA DISCO",
       "artista": "METRIKA, D.Basto",
       "url": "https://www.youtube.com/watch?v=Qva-bF5yMwc",
-      "puesto": 20
-    },
-    {
-      "titulo": "El Pastor De Mareas",
-      "artista": "El Barrio",
-      "url": "https://www.youtube.com/watch?v=j68DbvilXrw",
-      "puesto": 21
+      "puesto": 23
     },
     {
       "titulo": "Muñequitas Remix 2",
       "artista": "Mr. Plata, El Americano 4KT, Arcángel, Luar La L",
       "url": "https://www.youtube.com/watch?v=iH9jODrRm_k",
-      "puesto": 22
-    },
-    {
-      "titulo": "Yami Safdie, Maluma - Felicidades (Video Oficial)",
-      "artista": "Yami Safdie",
-      "url": "https://www.youtube.com/watch?v=1ZogzdKgtOA",
-      "puesto": 23
-    },
-    {
-      "titulo": "K/DA - FIRESTARTER ft. MIYEON and SOYEON of i-dle, Sophie Powers, Mimi Webb (Official Music Video)",
-      "artista": "League of Legends",
-      "url": "https://www.youtube.com/watch?v=Mmw-PpWhKFg",
       "puesto": 24
     },
     {
-      "titulo": "2001 x BOUZA - LA ZONA",
-      "artista": "2001-DZ",
-      "url": "https://www.youtube.com/watch?v=K8gIIHD3Cks",
+      "titulo": "Laberintos",
+      "artista": "El Barrio",
+      "url": "https://www.youtube.com/watch?v=4FmEIZEXgHI",
       "puesto": 25
+    },
+    {
+      "titulo": "Felicidades",
+      "artista": "Yami Safdie",
+      "url": "https://www.youtube.com/watch?v=1ZogzdKgtOA",
+      "puesto": 26
+    },
+    {
+      "titulo": "BOOGEYMAN cap. 9 - YOLAMASCARA",
+      "artista": "YOLAMASCARA",
+      "url": "https://www.youtube.com/watch?v=w9ewWIsn14A",
+      "puesto": 27
     },
     {
       "titulo": "CACTUS cap. 8 - YOLAMASCARA",
       "artista": "YOLAMASCARA",
       "url": "https://www.youtube.com/watch?v=LXyw-4eZdVE",
-      "puesto": 26
-    },
-    {
-      "titulo": "FAMA",
-      "artista": "YOLAMASCARA",
-      "url": "https://www.youtube.com/watch?v=NUzyKrRvwRk",
-      "puesto": 27
-    },
-    {
-      "titulo": "El Problema Fue La Solución",
-      "artista": "Antonio Orozco, Niña Pastori",
-      "url": "https://www.youtube.com/watch?v=jevtWW_3Jwk",
       "puesto": 28
     },
     {
@@ -175,16 +175,16 @@
       "puesto": 29
     },
     {
-      "titulo": "Coming Up Roses (Official Video)",
-      "artista": "Harry Styles",
-      "url": "https://www.youtube.com/watch?v=M4qX5wzx-wY",
+      "titulo": "2001 x BOUZA - LA ZONA",
+      "artista": "2001-DZ",
+      "url": "https://www.youtube.com/watch?v=K8gIIHD3Cks",
       "puesto": 30
     }
   ],
   "fuente": "https://charts.youtube.com/charts/TrendingVideos/es",
   "nombre": "Tendencias musicales de YouTube",
   "tipo": "youtube",
-  "actualizado": "2026-11-04T04:56+00:00",
+  "actualizado": "2026-11-05T04:59+00:00",
   "en_curso": false,
   "mensaje": "Lista actualizada: 30 canciones."
 }
