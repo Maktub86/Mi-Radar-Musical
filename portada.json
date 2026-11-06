@@ -1,5 +1,221 @@
 [
   {
+    "id": "12112c56-66ed-42b2-9254-258ca718df95",
+    "imagen": "https://coverartarchive.org/release-group/12112c56-66ed-42b2-9254-258ca718df95/front-250",
+    "titulo": "Christmas Wonderland",
+    "fecha": "2026-11-06",
+    "artista": "Ava Max",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6826049588",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d6/24/75/d6247549-9818-86d8-9006-72c8ec8faf93/840471830122.png/100x100bb.jpg",
+    "titulo": "Christmas Wonderland - Single",
+    "fecha": "2026-11-06",
+    "artista": "Ava Max",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6825736610",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a6/20/78/a62078be-5e70-44d5-d18f-242fecfd2fc0/1575285.jpg/100x100bb.jpg",
+    "titulo": "Not my type - Single",
+    "fecha": "2026-11-06",
+    "artista": "Axel",
+    "tipo": "Single"
+  },
+  {
+    "id": "a2bc6b54-cedc-47dd-82f1-32d71c4f0e5a",
+    "imagen": "https://coverartarchive.org/release-group/a2bc6b54-cedc-47dd-82f1-32d71c4f0e5a/front-250",
+    "titulo": "The Rolling Thunder Revue: Fort Worth Texas 1976",
+    "fecha": "2026-11-06",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
+    "id": "a85455aa-76c1-4755-95b2-66c3ffd57619",
+    "imagen": "https://coverartarchive.org/release-group/a85455aa-76c1-4755-95b2-66c3ffd57619/front-250",
+    "titulo": "The Rolling Thunder Revue: The 1976 Live Recordings (volume 3)",
+    "fecha": "2026-11-06",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6810863405",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/29/a6/2e/29a62e3a-daa9-9546-8cd8-b231645617c6/196874750681.jpg/100x100bb.jpg",
+    "titulo": "The Rolling Thunder Revue 1976: Fort Worth Texas, May 16th",
+    "fecha": "2026-11-06",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6818422876",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3d/61/0f/3d610fd5-e074-45bb-1f0e-5a9bac6ac74d/196874836071.jpg/100x100bb.jpg",
+    "titulo": "Britney (25th Anniversary Edition)",
+    "fecha": "2026-11-06",
+    "artista": "Britney Spears",
+    "tipo": "Album"
+  },
+  {
+    "id": "d074a4ee-8394-4cda-baa5-2cf948b82d7a",
+    "imagen": "https://coverartarchive.org/release-group/d074a4ee-8394-4cda-baa5-2cf948b82d7a/front-250",
+    "titulo": "How's It Goin'",
+    "fecha": "2026-11-06",
+    "artista": "Bryan Adams",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6805191987",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/17/a3/17/17a317ab-cdf6-9c1a-b9ca-b822f3942931/26CRGIM55187.rgb.jpg/100x100bb.jpg",
+    "titulo": "The Open Door (Deluxe Edition)",
+    "fecha": "2026-11-06",
+    "artista": "Evanescence",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6801587846",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/94/0c/8a/940c8ac1-82b5-368d-4585-6a3149d99643/196874120323.jpg/100x100bb.jpg",
+    "titulo": "The Faith Tour",
+    "fecha": "2026-11-06",
+    "artista": "George Michael",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6827991620",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/7f/a1/df/7fa1df8e-6ac9-6bb3-c718-bebebec99163/196874945841.jpg/100x100bb.jpg",
+    "titulo": "Waste My Tears - Single",
+    "fecha": "2026-11-06",
+    "artista": "James Arthur",
+    "tipo": "Single"
+  },
+  {
+    "id": "c26441e9-a6f3-4efa-ace2-4a03b1493d75",
+    "imagen": "https://coverartarchive.org/release-group/c26441e9-a6f3-4efa-ace2-4a03b1493d75/front-250",
+    "titulo": "Airplane Mode",
+    "fecha": "2026-11-06",
+    "artista": "James Blunt",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6817113908",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/67/c8/78/67c87886-fa8c-f7d1-8be5-1ad90ac23fb0/8721639102393.png/100x100bb.jpg",
+    "titulo": "Snow in San Diego - Single",
+    "fecha": "2026-11-06",
+    "artista": "Jason Mraz",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6819847840",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ce/b2/fd/ceb2fd03-fa1d-61cc-9002-6a554d43522f/8445775414010.png/100x100bb.jpg",
+    "titulo": "Dejar Ir - Single",
+    "fecha": "2026-11-06",
+    "artista": "Los Caños",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6827628908",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ff/94/0d/ff940d86-6600-a190-7689-e69753160162/711641119388.jpg/100x100bb.jpg",
+    "titulo": "As Long As We're Together - Single",
+    "fecha": "2026-11-06",
+    "artista": "MAGIC!",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6820958887",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ed/27/ce/ed27ce18-e4be-df63-e535-3a3755cefb4d/1200220283279.jpg/100x100bb.jpg",
+    "titulo": "MI UNIVERSO - Single",
+    "fecha": "2026-11-06",
+    "artista": "María Artés",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6823231273",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/76/8f/ba/768fba82-b677-69b8-ec71-99bbfc3faa7b/1200220317110.jpg/100x100bb.jpg",
+    "titulo": "Río - Single",
+    "fecha": "2026-11-06",
+    "artista": "Marta Santos",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6789444108",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1b/d0/04/1bd00499-92ae-244c-6e73-02d669db062e/067003029230.png/100x100bb.jpg",
+    "titulo": "Wild Love",
+    "fecha": "2026-11-06",
+    "artista": "Passenger",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6792889537",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/51/50/2c/51502c9e-de70-1100-569e-6b50cec92150/196874612422.jpg/100x100bb.jpg",
+    "titulo": "Queen Budapest (Live)",
+    "fecha": "2026-11-06",
+    "artista": "Queen",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6824486189",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/2f/94/42/2f9442ed-da37-5f58-23d9-30a078c7a8f2/8445775417875.png/100x100bb.jpg",
+    "titulo": "Mi Universo - Single",
+    "fecha": "2026-11-06",
+    "artista": "Shakira Martínez",
+    "tipo": "Single"
+  },
+  {
+    "id": "0a73a49a-87fd-469b-abf9-71b5e144207a",
+    "imagen": "https://coverartarchive.org/release-group/0a73a49a-87fd-469b-abf9-71b5e144207a/front-250",
+    "titulo": "Tell Me Why",
+    "fecha": "2026-11-06",
+    "artista": "Spice Girls",
+    "tipo": "Single"
+  },
+  {
+    "id": "507693db-90f1-4e57-86ce-c7fe6ebd4422",
+    "imagen": "https://coverartarchive.org/release-group/507693db-90f1-4e57-86ce-c7fe6ebd4422/front-250",
+    "titulo": "The Singles Collection",
+    "fecha": "2026-11-06",
+    "artista": "Spice Girls",
+    "tipo": "Single"
+  },
+  {
+    "id": "f1517929-8979-45cb-a24f-942e44d780b2",
+    "imagen": "https://coverartarchive.org/release-group/f1517929-8979-45cb-a24f-942e44d780b2/front-250",
+    "titulo": "The Demos",
+    "fecha": "2026-11-06",
+    "artista": "Spice Girls",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6827100789",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/91/46/85/914685b2-171b-b602-84cb-2040e1038c68/8445775419244.png/100x100bb.jpg",
+    "titulo": "Loba - EP",
+    "fecha": "2026-11-06",
+    "artista": "Tu Otra Bonita",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6827070722",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c3/a1/1a/c3a11a09-21c0-2183-1e6d-12b4fb76166b/26UM1IM37417.rgb.jpg/100x100bb.jpg",
+    "titulo": "Inevitable (Live) [feat. RUSLANA] - Single",
+    "fecha": "2026-11-05",
+    "artista": "Antonio José",
+    "tipo": "Single"
+  },
+  {
+    "id": "dc2c60a4-646a-40b9-93c3-b18a0dedbb54",
+    "imagen": "https://coverartarchive.org/release-group/dc2c60a4-646a-40b9-93c3-b18a0dedbb54/front-250",
+    "titulo": "Step Into Christmas",
+    "fecha": "2026-11-05",
+    "artista": "Elton John",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6830369573",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b9/fb/ce/b9fbced5-3c8d-4226-5096-002a61e49914/196874964019.jpg/100x100bb.jpg",
+    "titulo": "Sálvame Otra Vez (5020 RCRDS Sessions) - Single",
+    "fecha": "2026-11-05",
+    "artista": "Kany García",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6823586692",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c5/d2/fc/c5d2fc16-5a88-8700-cc3e-b8a7ccfb2393/196874867181.jpg/100x100bb.jpg",
     "titulo": "Memoria - Single",
@@ -24,11 +240,35 @@
     "tipo": "Single"
   },
   {
+    "id": "3a842d70-fe50-43aa-b2a4-5b701c700210",
+    "imagen": "https://coverartarchive.org/release-group/3a842d70-fe50-43aa-b2a4-5b701c700210/front-250",
+    "titulo": "take me home (4 christmas)",
+    "fecha": "2026-11-05",
+    "artista": "Olivia Rodrigo",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6829976175",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4f/a6/39/4fa63976-a53a-0084-ef73-b49bc2d8c29e/26UM1IM40331.rgb.jpg/100x100bb.jpg",
+    "titulo": "take me home (4 christmas) - Single",
+    "fecha": "2026-11-05",
+    "artista": "Olivia Rodrigo",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6829355789",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5d/3e/dd/5d3edd95-36ff-63d3-0a0d-ee2d677d65df/859750000293_cover.jpg/100x100bb.jpg",
     "titulo": "Fácil Me Olvide - Single",
     "fecha": "2026-11-05",
     "artista": "OnMusic",
+    "tipo": "Single"
+  },
+  {
+    "id": "8ed9dec6-7f82-4e67-81b7-2c1e071ea9b8",
+    "imagen": "https://coverartarchive.org/release-group/8ed9dec6-7f82-4e67-81b7-2c1e071ea9b8/front-250",
+    "titulo": "Milko Freestyle",
+    "fecha": "2026-11-04",
+    "artista": "C. Tangana",
     "tipo": "Single"
   },
   {
@@ -150,6 +390,14 @@
     "fecha": "2026-10-30",
     "artista": "Daddy Yankee",
     "tipo": "Album"
+  },
+  {
+    "id": "2c9d33a5-2ab9-4ce1-a627-149da2b8185d",
+    "imagen": "https://coverartarchive.org/release-group/2c9d33a5-2ab9-4ce1-a627-149da2b8185d/front-250",
+    "titulo": "PA' QUE LLORAR",
+    "fecha": "2026-10-30",
+    "artista": "Daddy Yankee",
+    "tipo": "Single"
   },
   {
     "id": "apple-6826230338",
@@ -288,6 +536,14 @@
     "tipo": "Single"
   },
   {
+    "id": "2c9d33a5-2ab9-4ce1-a627-149da2b8185d",
+    "imagen": "https://coverartarchive.org/release-group/2c9d33a5-2ab9-4ce1-a627-149da2b8185d/front-250",
+    "titulo": "PA' QUE LLORAR",
+    "fecha": "2026-10-30",
+    "artista": "Bizarrap",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6826741510",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d3/97/e9/d397e902-08a1-261a-80f3-2ab03d9c4acc/196874862568.jpg/100x100bb.jpg",
     "titulo": "Ojalá Que Llueva Café (Cafecito Navideño) - Single",
@@ -317,6 +573,14 @@
     "titulo": "Felicidades",
     "fecha": "2026-10-29",
     "artista": "Maluma",
+    "tipo": "Single"
+  },
+  {
+    "id": "a7f36bf8-102a-44c2-818b-0c80a47fcf24",
+    "imagen": "https://coverartarchive.org/release-group/a7f36bf8-102a-44c2-818b-0c80a47fcf24/front-250",
+    "titulo": "Body (Remix)",
+    "fecha": "2026-10-29",
+    "artista": "Rauw Alejandro",
     "tipo": "Single"
   },
   {
@@ -421,6 +685,14 @@
     "titulo": "En Directo - 50 Aniversario",
     "fecha": "2026-10-23",
     "artista": "Burning",
+    "tipo": "Album"
+  },
+  {
+    "id": "1e62d49b-93f5-44e7-942d-ffefb8c0cbe4",
+    "imagen": "https://coverartarchive.org/release-group/1e62d49b-93f5-44e7-942d-ffefb8c0cbe4/front-250",
+    "titulo": "Camilo: El setlist 2026",
+    "fecha": "2026-10-23",
+    "artista": "Camilo",
     "tipo": "Album"
   },
   {
@@ -1872,14 +2144,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6803599568",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/80/7e/28/807e28ea-ca6e-6e7b-e3ee-b43a7c64adc7/196874718995.jpg/100x100bb.jpg",
-    "titulo": "Waste My Tears - Single",
-    "fecha": "2026-09-18",
-    "artista": "James Arthur",
-    "tipo": "Single"
-  },
-  {
     "id": "apple-6808041178",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b3/53/a1/b353a1e3-d51a-c220-9de2-efcb1a0058fa/1200220049455.jpg/100x100bb.jpg",
     "titulo": "Whisper (unfazed Remix) - Single",
@@ -1923,14 +2187,6 @@
     "id": "ada2df72-5436-4f2e-a979-2c97d89aa11d",
     "imagen": "https://coverartarchive.org/release-group/ada2df72-5436-4f2e-a979-2c97d89aa11d/front-250",
     "titulo": "Beauty in Us",
-    "fecha": "2026-09-18",
-    "artista": "Robbie Williams",
-    "tipo": "Single"
-  },
-  {
-    "id": "eb7c4332-b557-42a7-a602-bb2b812fce33",
-    "imagen": "https://coverartarchive.org/release-group/eb7c4332-b557-42a7-a602-bb2b812fce33/front-250",
-    "titulo": "Beauty in Us (club mix)",
     "fecha": "2026-09-18",
     "artista": "Robbie Williams",
     "tipo": "Single"
@@ -3784,6 +4040,14 @@
     "tipo": "Single"
   },
   {
+    "id": "apple-6786156635",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/42/3d/ec/423dec1c-d941-5cf2-ce84-41a90e85c39b/820233843690.jpg/100x100bb.jpg",
+    "titulo": "luck (feat. James Reid) - Single",
+    "fecha": "2026-07-30",
+    "artista": "MAKI",
+    "tipo": "Single"
+  },
+  {
     "id": "b01c28a7-2b67-4ccf-a7e4-1140f6df1ca4",
     "imagen": "https://coverartarchive.org/release-group/b01c28a7-2b67-4ccf-a7e4-1140f6df1ca4/front-250",
     "titulo": "Michelle (take 1)",
@@ -4078,14 +4342,6 @@
     "fecha": "2026-07-17",
     "artista": "Gracie Abrams",
     "tipo": "Album"
-  },
-  {
-    "id": "apple-6790879564",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/46/49/02/46490231-1aee-94f5-f595-f625922791e9/artwork.jpg/100x100bb.jpg",
-    "titulo": "GRiFF (BURN.) - Single",
-    "fecha": "2026-07-17",
-    "artista": "Griff",
-    "tipo": "Single"
   },
   {
     "id": "ca59a312-bad2-473b-b955-aea8248c1fdd",
@@ -5083,6 +5339,14 @@
     "id": "apple-6775618499",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e2/eb/06/e2eb06d7-2c29-c29a-46e3-6afe225b5128/5026854921648.jpg/100x100bb.jpg",
     "titulo": "Wildest Dreams (30th Anniversary Edition) [2026 Remaster]",
+    "fecha": "2026-06-26",
+    "artista": "Tina Turner",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-1887809912",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b0/9c/1a/b09c1a19-8f92-8074-9891-9862fb1d8a6b/5021732842268.jpg/100x100bb.jpg",
+    "titulo": "Wildest Dreams (30th Anniversary Edition)",
     "fecha": "2026-06-26",
     "artista": "Tina Turner",
     "tipo": "Album"
@@ -6960,6 +7224,14 @@
     "tipo": "Single"
   },
   {
+    "id": "apple-1896393953",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/34/33/11/34331151-418e-050e-81e5-7c5aef3beeb8/820233334037.jpg/100x100bb.jpg",
+    "titulo": "habangbuhay pansamantala - Single",
+    "fecha": "2026-05-24",
+    "artista": "MAKI",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6770378736",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/71/70/50/7170508f-f98e-3674-0959-63a596a72f62/0.jpg/100x100bb.jpg",
     "titulo": "Intenso - Single",
@@ -8120,17 +8392,17 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1896059642",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a4/7c/cc/a47ccc36-ea90-43ac-bf86-f26527199617/196874318393.jpg/100x100bb.jpg",
-    "titulo": "top diesel (bundle) - Single",
+    "id": "apple-1896059616",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/27/bc/1c/27bc1c16-01f7-91c7-c957-00ea4de7da3b/196874319659.jpg/100x100bb.jpg",
+    "titulo": "una curita por favor (bundle) - Single",
     "fecha": "2026-05-05",
     "artista": "Beéle",
     "tipo": "Single"
   },
   {
-    "id": "apple-1896059616",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/27/bc/1c/27bc1c16-01f7-91c7-c957-00ea4de7da3b/196874319659.jpg/100x100bb.jpg",
-    "titulo": "una curita por favor (bundle) - Single",
+    "id": "apple-1896059642",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a4/7c/cc/a47ccc36-ea90-43ac-bf86-f26527199617/196874318393.jpg/100x100bb.jpg",
+    "titulo": "top diesel (bundle) - Single",
     "fecha": "2026-05-05",
     "artista": "Beéle",
     "tipo": "Single"
@@ -10475,14 +10747,6 @@
     "id": "apple-6781081338",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ed/0c/89/ed0c89b1-bb54-7933-f93a-4ba8d625fc10/602478438561.jpg/100x100bb.jpg",
     "titulo": "Queen II (2026 Mix)",
-    "fecha": "2026-03-27",
-    "artista": "Queen",
-    "tipo": "Album"
-  },
-  {
-    "id": "apple-6799160177",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f7/a5/65/f7a56513-1ef7-8703-b39d-d638a8745cb0/0602478438615.jpg/100x100bb.jpg",
-    "titulo": "Queen II (Collector's Edition)",
     "fecha": "2026-03-27",
     "artista": "Queen",
     "tipo": "Album"
@@ -14432,17 +14696,17 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1869157136",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1c/14/0e/1c140ef6-b94a-1207-77d8-f0c94075bd8e/075679591296.jpg/100x100bb.jpg",
-    "titulo": "I Just Might - Single",
+    "id": "apple-1869157390",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/52/4f/57/524f5727-564d-1a73-05a5-e21ac405ee22/075679591319.jpg/100x100bb.jpg",
+    "titulo": "I Just Might (Instrumental) - Single",
     "fecha": "2026-01-14",
     "artista": "Bruno Mars",
     "tipo": "Single"
   },
   {
-    "id": "apple-1869157390",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/52/4f/57/524f5727-564d-1a73-05a5-e21ac405ee22/075679591319.jpg/100x100bb.jpg",
-    "titulo": "I Just Might (Instrumental) - Single",
+    "id": "apple-1869157136",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1c/14/0e/1c140ef6-b94a-1207-77d8-f0c94075bd8e/075679591296.jpg/100x100bb.jpg",
+    "titulo": "I Just Might - Single",
     "fecha": "2026-01-14",
     "artista": "Bruno Mars",
     "tipo": "Single"
@@ -14925,14 +15189,6 @@
     "titulo": "Zurich, Switzerland May 27, 2026",
     "fecha": "2026",
     "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
-    "id": "b17bc59f-3852-4b25-967f-e72fcbcd7dd2",
-    "imagen": "https://coverartarchive.org/release-group/b17bc59f-3852-4b25-967f-e72fcbcd7dd2/front-250",
-    "titulo": "Wildest Dreams (30th Anniversary Edition)",
-    "fecha": "2026",
-    "artista": "Tina Turner",
     "tipo": "Album"
   },
   {
@@ -25128,17 +25384,17 @@
     "tipo": "Album"
   },
   {
-    "id": "c950c35b-7b10-4bb7-89b8-d3f26c31f738",
-    "imagen": "https://coverartarchive.org/release-group/c950c35b-7b10-4bb7-89b8-d3f26c31f738/front-250",
-    "titulo": "Defying Gravity",
+    "id": "5a4bd8b6-1fc9-469f-9b6c-7eb572877366",
+    "imagen": "https://coverartarchive.org/release-group/5a4bd8b6-1fc9-469f-9b6c-7eb572877366/front-250",
+    "titulo": "Popular",
     "fecha": "2025-03-21",
     "artista": "Ariana Grande",
     "tipo": "Single"
   },
   {
-    "id": "5a4bd8b6-1fc9-469f-9b6c-7eb572877366",
-    "imagen": "https://coverartarchive.org/release-group/5a4bd8b6-1fc9-469f-9b6c-7eb572877366/front-250",
-    "titulo": "Popular",
+    "id": "c950c35b-7b10-4bb7-89b8-d3f26c31f738",
+    "imagen": "https://coverartarchive.org/release-group/c950c35b-7b10-4bb7-89b8-d3f26c31f738/front-250",
+    "titulo": "Defying Gravity",
     "fecha": "2025-03-21",
     "artista": "Ariana Grande",
     "tipo": "Single"
@@ -27397,6 +27653,14 @@
     "titulo": "El Evangelio",
     "fecha": "2025",
     "artista": "María Peláe",
+    "tipo": "Album"
+  },
+  {
+    "id": "d51c29f0-278a-4811-a176-e8658fa704c5",
+    "imagen": "https://coverartarchive.org/release-group/d51c29f0-278a-4811-a176-e8658fa704c5/front-250",
+    "titulo": "Aquí no sobra nadie",
+    "fecha": "2025",
+    "artista": "Marta Santos",
     "tipo": "Album"
   },
   {
@@ -55462,6 +55726,14 @@
     "fecha": "2023",
     "artista": "Los Caligaris",
     "tipo": "Album"
+  },
+  {
+    "id": "2537f6ed-ae08-4197-bd5b-f425faa2da4c",
+    "imagen": "https://coverartarchive.org/release-group/2537f6ed-ae08-4197-bd5b-f425faa2da4c/front-250",
+    "titulo": "Poquito a poquito",
+    "fecha": "2023",
+    "artista": "Marta Santos",
+    "tipo": "Publicación"
   },
   {
     "id": "c8d6e513-5a24-4aba-bf38-e852cf40e18e",
@@ -91704,6 +91976,14 @@
     "tipo": "Single"
   },
   {
+    "id": "ae6c41e1-a597-4708-a5de-2a3204538100",
+    "imagen": "https://coverartarchive.org/release-group/ae6c41e1-a597-4708-a5de-2a3204538100/front-250",
+    "titulo": "Zombie (Remastered 2020)",
+    "fecha": "2020-07-31",
+    "artista": "The Cranberries",
+    "tipo": "Single"
+  },
+  {
     "id": "4ee2d36f-a029-48bb-92a8-b58b2a143dd6",
     "imagen": "https://coverartarchive.org/release-group/4ee2d36f-a029-48bb-92a8-b58b2a143dd6/front-250",
     "titulo": "Hello Young Lovers (live on the Ed Sullivan Show, November 19, 1967)",
@@ -114568,22 +114848,6 @@
     "tipo": "Album"
   },
   {
-    "id": "afbe4e04-292a-4983-a96e-62eae66b17fb",
-    "imagen": "https://coverartarchive.org/release-group/afbe4e04-292a-4983-a96e-62eae66b17fb/front-250",
-    "titulo": "Satisfied",
-    "fecha": "2019",
-    "artista": "Shawn Mendes",
-    "tipo": "Single"
-  },
-  {
-    "id": "d5b3be61-5ebd-41eb-866a-80908eb4ff1a",
-    "imagen": "https://coverartarchive.org/release-group/d5b3be61-5ebd-41eb-866a-80908eb4ff1a/front-250",
-    "titulo": "Easy",
-    "fecha": "2019",
-    "artista": "Shawn Mendes",
-    "tipo": "Single"
-  },
-  {
     "id": "717787d2-0d3a-4947-8f17-da81075b51b6",
     "imagen": "https://coverartarchive.org/release-group/717787d2-0d3a-4947-8f17-da81075b51b6/front-250",
     "titulo": "Buffalo Wings",
@@ -127750,6 +128014,14 @@
     "fecha": "2018",
     "artista": "Lenny Kravitz",
     "tipo": "Single"
+  },
+  {
+    "id": "e398ddae-3936-4bea-ba27-8a4d3fc91e01",
+    "imagen": "https://coverartarchive.org/release-group/e398ddae-3936-4bea-ba27-8a4d3fc91e01/front-250",
+    "titulo": "9+1",
+    "fecha": "2018",
+    "artista": "Los Rebujitos",
+    "tipo": "Album"
   },
   {
     "id": "58eee347-cb0d-4e60-802e-c0d32944a914",
@@ -157720,6 +157992,14 @@
     "tipo": "Single"
   },
   {
+    "id": "753849bd-da4f-4631-a7b3-2c8e27b1ce11",
+    "imagen": "https://coverartarchive.org/release-group/753849bd-da4f-4631-a7b3-2c8e27b1ce11/front-250",
+    "titulo": "Back To Back",
+    "fecha": "2015-07-31",
+    "artista": "Drake",
+    "tipo": "Single"
+  },
+  {
     "id": "93e7b393-7b75-4a42-9626-01b499fd9523",
     "imagen": "https://coverartarchive.org/release-group/93e7b393-7b75-4a42-9626-01b499fd9523/front-250",
     "titulo": "Hotline Bling",
@@ -162192,6 +162472,14 @@
     "tipo": "Single"
   },
   {
+    "id": "cc24e2d1-1678-441e-85fd-cb112c0b6277",
+    "imagen": "https://coverartarchive.org/release-group/cc24e2d1-1678-441e-85fd-cb112c0b6277/front-250",
+    "titulo": "Energy",
+    "fecha": "2015-01-01",
+    "artista": "Drake",
+    "tipo": "Single"
+  },
+  {
     "id": "83efc514-db96-4030-9a2b-647382eaad05",
     "imagen": "https://coverartarchive.org/release-group/83efc514-db96-4030-9a2b-647382eaad05/front-250",
     "titulo": "Unbelievable",
@@ -163061,6 +163349,14 @@
     "titulo": "1972 Charlotte",
     "fecha": "2015",
     "artista": "Led Zeppelin",
+    "tipo": "Album"
+  },
+  {
+    "id": "9f912af7-2fa1-44c9-81c6-2265fd2e0725",
+    "imagen": "https://coverartarchive.org/release-group/9f912af7-2fa1-44c9-81c6-2265fd2e0725/front-250",
+    "titulo": "Sin Colorantes Ni Conservantes",
+    "fecha": "2015",
+    "artista": "Los Rebujitos",
     "tipo": "Album"
   },
   {
@@ -164302,14 +164598,6 @@
     "fecha": "2014-12-10",
     "artista": "Carly Rae Jepsen",
     "tipo": "Single"
-  },
-  {
-    "id": "88d21ee3-f144-475d-9ded-6399916884b8",
-    "imagen": "https://coverartarchive.org/release-group/88d21ee3-f144-475d-9ded-6399916884b8/front-250",
-    "titulo": "Confidencias Reales",
-    "fecha": "2014-12-09",
-    "artista": "Alejandro Fernández",
-    "tipo": "Album"
   },
   {
     "id": "cf328990-2276-46bc-8050-590ec5b415c9",
@@ -182485,14 +182773,6 @@
     "titulo": "U.S.A. 1993",
     "fecha": "2013",
     "artista": "Aerosmith",
-    "tipo": "Album"
-  },
-  {
-    "id": "c79c9c2c-db5d-4a6a-9bb0-ad00ca4d6d82",
-    "imagen": "https://coverartarchive.org/release-group/c79c9c2c-db5d-4a6a-9bb0-ad00ca4d6d82/front-250",
-    "titulo": "Confidencias",
-    "fecha": "2013",
-    "artista": "Alejandro Fernández",
     "tipo": "Album"
   },
   {
@@ -290664,20 +290944,20 @@
     "tipo": "Album"
   },
   {
-    "id": "6f1eb18a-cdc7-4cf1-b280-a58d50b502a2",
-    "imagen": "https://coverartarchive.org/release-group/6f1eb18a-cdc7-4cf1-b280-a58d50b502a2/front-250",
-    "titulo": "Goodbye Yellow Brick Road",
-    "fecha": "2001",
-    "artista": "Elton John",
-    "tipo": "Other"
-  },
-  {
     "id": "0538f087-780c-490a-b531-5e03f87e61b4",
     "imagen": "https://coverartarchive.org/release-group/0538f087-780c-490a-b531-5e03f87e61b4/front-250",
     "titulo": "Golden Ballads",
     "fecha": "2001",
     "artista": "Elton John",
     "tipo": "Album"
+  },
+  {
+    "id": "6f1eb18a-cdc7-4cf1-b280-a58d50b502a2",
+    "imagen": "https://coverartarchive.org/release-group/6f1eb18a-cdc7-4cf1-b280-a58d50b502a2/front-250",
+    "titulo": "Goodbye Yellow Brick Road",
+    "fecha": "2001",
+    "artista": "Elton John",
+    "tipo": "Other"
   },
   {
     "id": "85e3d105-9400-40f2-82e7-df1d3bce2e72",
@@ -305352,6 +305632,14 @@
     "tipo": "Album"
   },
   {
+    "id": "b49f2176-899b-3262-9b08-0a2aa0f5fbd6",
+    "imagen": "https://coverartarchive.org/release-group/b49f2176-899b-3262-9b08-0a2aa0f5fbd6/front-250",
+    "titulo": "On the 6",
+    "fecha": "1999-06-01",
+    "artista": "Jennifer Lopez",
+    "tipo": "Album"
+  },
+  {
     "id": "5e701d08-bbd0-304f-abe3-46910492146a",
     "imagen": "https://coverartarchive.org/release-group/5e701d08-bbd0-304f-abe3-46910492146a/front-250",
     "titulo": "Here Comes the Bride",
@@ -305685,14 +305973,6 @@
     "titulo": "Back to Back Hits",
     "fecha": "1999-04-20",
     "artista": "Cutting Crew",
-    "tipo": "Album"
-  },
-  {
-    "id": "b49f2176-899b-3262-9b08-0a2aa0f5fbd6",
-    "imagen": "https://coverartarchive.org/release-group/b49f2176-899b-3262-9b08-0a2aa0f5fbd6/front-250",
-    "titulo": "On the 6",
-    "fecha": "1999-04-20",
-    "artista": "Jennifer Lopez",
     "tipo": "Album"
   },
   {
@@ -308720,14 +309000,6 @@
     "tipo": "Album"
   },
   {
-    "id": "cfb2e09c-2480-462b-968b-0935f03489e9",
-    "imagen": "https://coverartarchive.org/release-group/cfb2e09c-2480-462b-968b-0935f03489e9/front-250",
-    "titulo": "Rock of Ages",
-    "fecha": "1999",
-    "artista": "Led Zeppelin",
-    "tipo": "Album"
-  },
-  {
     "id": "d3425ff7-fa62-4c77-a917-6f2e52d27df0",
     "imagen": "https://coverartarchive.org/release-group/d3425ff7-fa62-4c77-a917-6f2e52d27df0/front-250",
     "titulo": "Live in Japan 1971",
@@ -308739,6 +309011,14 @@
     "id": "dc365a67-d439-4727-8cd1-9a390eeb2e2a",
     "imagen": "https://coverartarchive.org/release-group/dc365a67-d439-4727-8cd1-9a390eeb2e2a/front-250",
     "titulo": "Live in Japan 1972",
+    "fecha": "1999",
+    "artista": "Led Zeppelin",
+    "tipo": "Album"
+  },
+  {
+    "id": "cfb2e09c-2480-462b-968b-0935f03489e9",
+    "imagen": "https://coverartarchive.org/release-group/cfb2e09c-2480-462b-968b-0935f03489e9/front-250",
+    "titulo": "Rock of Ages",
     "fecha": "1999",
     "artista": "Led Zeppelin",
     "tipo": "Album"
@@ -325592,9 +325872,9 @@
     "tipo": "Single"
   },
   {
-    "id": "1afb8e4e-e0e3-4beb-a26d-e6597eb97535",
-    "imagen": "https://coverartarchive.org/release-group/1afb8e4e-e0e3-4beb-a26d-e6597eb97535/front-250",
-    "titulo": "Complete Performance In Minnesota",
+    "id": "1585a0e7-a23f-4ff3-a5f0-15e2ca801339",
+    "imagen": "https://coverartarchive.org/release-group/1585a0e7-a23f-4ff3-a5f0-15e2ca801339/front-250",
+    "titulo": "Physically Present",
     "fecha": "1997",
     "artista": "Led Zeppelin",
     "tipo": "Album"
@@ -325608,17 +325888,9 @@
     "tipo": "Album"
   },
   {
-    "id": "ae8fce98-3e5e-4a60-81a1-6eedafb8eee4",
-    "imagen": "https://coverartarchive.org/release-group/ae8fce98-3e5e-4a60-81a1-6eedafb8eee4/front-250",
-    "titulo": "Scat",
-    "fecha": "1997",
-    "artista": "Led Zeppelin",
-    "tipo": "Album"
-  },
-  {
-    "id": "1585a0e7-a23f-4ff3-a5f0-15e2ca801339",
-    "imagen": "https://coverartarchive.org/release-group/1585a0e7-a23f-4ff3-a5f0-15e2ca801339/front-250",
-    "titulo": "Physically Present",
+    "id": "e8767d47-36b5-30c5-8d91-b9e243c0acc3",
+    "imagen": "https://coverartarchive.org/release-group/e8767d47-36b5-30c5-8d91-b9e243c0acc3/front-250",
+    "titulo": "Brutal Artistry 2",
     "fecha": "1997",
     "artista": "Led Zeppelin",
     "tipo": "Album"
@@ -325627,14 +325899,6 @@
     "id": "d10bdb7b-29cf-4bce-b9e8-571c962a3d0c",
     "imagen": "https://coverartarchive.org/release-group/d10bdb7b-29cf-4bce-b9e8-571c962a3d0c/front-250",
     "titulo": "Pre‐Flight",
-    "fecha": "1997",
-    "artista": "Led Zeppelin",
-    "tipo": "Album"
-  },
-  {
-    "id": "e8767d47-36b5-30c5-8d91-b9e243c0acc3",
-    "imagen": "https://coverartarchive.org/release-group/e8767d47-36b5-30c5-8d91-b9e243c0acc3/front-250",
-    "titulo": "Brutal Artistry 2",
     "fecha": "1997",
     "artista": "Led Zeppelin",
     "tipo": "Album"
@@ -325651,6 +325915,14 @@
     "id": "0bcbb3f1-dac4-3cfe-ade5-a4c34aed7711",
     "imagen": "https://coverartarchive.org/release-group/0bcbb3f1-dac4-3cfe-ade5-a4c34aed7711/front-250",
     "titulo": "Thunderous Break",
+    "fecha": "1997",
+    "artista": "Led Zeppelin",
+    "tipo": "Album"
+  },
+  {
+    "id": "1afb8e4e-e0e3-4beb-a26d-e6597eb97535",
+    "imagen": "https://coverartarchive.org/release-group/1afb8e4e-e0e3-4beb-a26d-e6597eb97535/front-250",
+    "titulo": "Complete Performance in Minnesota",
     "fecha": "1997",
     "artista": "Led Zeppelin",
     "tipo": "Album"
@@ -325699,6 +325971,14 @@
     "id": "854b6736-dcd1-4c21-ab17-2ac010e8187a",
     "imagen": "https://coverartarchive.org/release-group/854b6736-dcd1-4c21-ab17-2ac010e8187a/front-250",
     "titulo": "Pb: Pure Blues",
+    "fecha": "1997",
+    "artista": "Led Zeppelin",
+    "tipo": "Album"
+  },
+  {
+    "id": "ae8fce98-3e5e-4a60-81a1-6eedafb8eee4",
+    "imagen": "https://coverartarchive.org/release-group/ae8fce98-3e5e-4a60-81a1-6eedafb8eee4/front-250",
+    "titulo": "Scat",
     "fecha": "1997",
     "artista": "Led Zeppelin",
     "tipo": "Album"
@@ -327240,14 +327520,6 @@
     "tipo": "EP"
   },
   {
-    "id": "c8afe571-04e6-33c2-a65f-b3a72f7ed8ed",
-    "imagen": "https://coverartarchive.org/release-group/c8afe571-04e6-33c2-a65f-b3a72f7ed8ed/front-250",
-    "titulo": "Argue This",
-    "fecha": "1997",
-    "artista": "The Cranberries",
-    "tipo": "Album"
-  },
-  {
     "id": "48836902-36d6-4815-b480-8c99a865b13e",
     "imagen": "https://coverartarchive.org/release-group/48836902-36d6-4815-b480-8c99a865b13e/front-250",
     "titulo": "Free to Decide Tour",
@@ -327259,6 +327531,14 @@
     "id": "984eed8d-c170-3b52-86cd-59108630ab83",
     "imagen": "https://coverartarchive.org/release-group/984eed8d-c170-3b52-86cd-59108630ab83/front-250",
     "titulo": "Forever Live",
+    "fecha": "1997",
+    "artista": "The Cranberries",
+    "tipo": "Album"
+  },
+  {
+    "id": "c8afe571-04e6-33c2-a65f-b3a72f7ed8ed",
+    "imagen": "https://coverartarchive.org/release-group/c8afe571-04e6-33c2-a65f-b3a72f7ed8ed/front-250",
+    "titulo": "Argue This",
     "fecha": "1997",
     "artista": "The Cranberries",
     "tipo": "Album"
@@ -336312,6 +336592,14 @@
     "tipo": "Album"
   },
   {
+    "id": "850b7564-8be5-4fe9-9c45-229b76092bc6",
+    "imagen": "https://coverartarchive.org/release-group/850b7564-8be5-4fe9-9c45-229b76092bc6/front-250",
+    "titulo": "Hot Legs",
+    "fecha": "1996",
+    "artista": "Tina Turner",
+    "tipo": "Single"
+  },
+  {
     "id": "166905f6-32d4-4e6d-8c25-7dd91f101c31",
     "imagen": "https://coverartarchive.org/release-group/166905f6-32d4-4e6d-8c25-7dd91f101c31/front-250",
     "titulo": "Best Ballads",
@@ -336326,14 +336614,6 @@
     "fecha": "1996",
     "artista": "Tina Turner",
     "tipo": "EP"
-  },
-  {
-    "id": "850b7564-8be5-4fe9-9c45-229b76092bc6",
-    "imagen": "https://coverartarchive.org/release-group/850b7564-8be5-4fe9-9c45-229b76092bc6/front-250",
-    "titulo": "Hot Legs",
-    "fecha": "1996",
-    "artista": "Tina Turner",
-    "tipo": "Single"
   },
   {
     "id": "06e6d96f-1ecd-4e2a-a8f6-9372c10fe7e0",
@@ -372360,6 +372640,14 @@
     "tipo": "Single"
   },
   {
+    "id": "a8e38849-c47b-4e64-b83b-bacacc11fede",
+    "imagen": "https://coverartarchive.org/release-group/a8e38849-c47b-4e64-b83b-bacacc11fede/front-250",
+    "titulo": "No Doubt",
+    "fecha": "1991",
+    "artista": "No Doubt",
+    "tipo": "Album"
+  },
+  {
     "id": "11cfe9e1-ba0f-49bd-8264-dc52b0244919",
     "imagen": "https://coverartarchive.org/release-group/11cfe9e1-ba0f-49bd-8264-dc52b0244919/front-250",
     "titulo": "Out of the Blue",
@@ -382400,14 +382688,6 @@
     "tipo": "Album"
   },
   {
-    "id": "0c15e4e4-69f2-3381-8f1c-dc81484d8652",
-    "imagen": "https://coverartarchive.org/release-group/0c15e4e4-69f2-3381-8f1c-dc81484d8652/front-250",
-    "titulo": "Rotterdam 1980",
-    "fecha": "1989",
-    "artista": "Led Zeppelin",
-    "tipo": "Album"
-  },
-  {
     "id": "8705f567-8cc6-4d5b-a092-b7fab5918bff",
     "imagen": "https://coverartarchive.org/release-group/8705f567-8cc6-4d5b-a092-b7fab5918bff/front-250",
     "titulo": "Live at Fillmore West",
@@ -382416,17 +382696,25 @@
     "tipo": "Album"
   },
   {
-    "id": "e406e842-9b9e-3ca4-a304-d2dfd763aa0f",
-    "imagen": "https://coverartarchive.org/release-group/e406e842-9b9e-3ca4-a304-d2dfd763aa0f/front-250",
-    "titulo": "White Summer",
+    "id": "e45fb9c0-3edb-340f-a696-79e233f41727",
+    "imagen": "https://coverartarchive.org/release-group/e45fb9c0-3edb-340f-a696-79e233f41727/front-250",
+    "titulo": "Hotter Than the Hindenburg",
     "fecha": "1989",
     "artista": "Led Zeppelin",
     "tipo": "Album"
   },
   {
-    "id": "e45fb9c0-3edb-340f-a696-79e233f41727",
-    "imagen": "https://coverartarchive.org/release-group/e45fb9c0-3edb-340f-a696-79e233f41727/front-250",
-    "titulo": "Hotter Than the Hindenburg",
+    "id": "0c15e4e4-69f2-3381-8f1c-dc81484d8652",
+    "imagen": "https://coverartarchive.org/release-group/0c15e4e4-69f2-3381-8f1c-dc81484d8652/front-250",
+    "titulo": "Rotterdam 1980",
+    "fecha": "1989",
+    "artista": "Led Zeppelin",
+    "tipo": "Album"
+  },
+  {
+    "id": "e406e842-9b9e-3ca4-a304-d2dfd763aa0f",
+    "imagen": "https://coverartarchive.org/release-group/e406e842-9b9e-3ca4-a304-d2dfd763aa0f/front-250",
+    "titulo": "White Summer",
     "fecha": "1989",
     "artista": "Led Zeppelin",
     "tipo": "Album"
@@ -407446,6 +407734,14 @@
     "fecha": "1982",
     "artista": "Culture Club",
     "tipo": "Single"
+  },
+  {
+    "id": "5178d1c3-c6b5-4004-a626-838c7fb2386b",
+    "imagen": "https://coverartarchive.org/release-group/5178d1c3-c6b5-4004-a626-838c7fb2386b/front-250",
+    "titulo": "Kissing to Be Clever",
+    "fecha": "1982",
+    "artista": "Culture Club",
+    "tipo": "Album"
   },
   {
     "id": "731e9d7e-0a8e-3bd9-9421-fb6f6deba113",
@@ -438376,6 +438672,14 @@
     "tipo": "Album"
   },
   {
+    "id": "24fe88ed-06d3-4052-9230-13df46b69256",
+    "imagen": "https://coverartarchive.org/release-group/24fe88ed-06d3-4052-9230-13df46b69256/front-250",
+    "titulo": "Llora en silencio / Pistolero / Memorias / Tan bueno",
+    "fecha": "1967",
+    "artista": "Roy Orbison",
+    "tipo": "EP"
+  },
+  {
     "id": "83e73b3d-d280-3aaf-8ff5-cea5add57626",
     "imagen": "https://coverartarchive.org/release-group/83e73b3d-d280-3aaf-8ff5-cea5add57626/front-250",
     "titulo": "Here Comes My Baby / The 59th Street Bridge Song",
@@ -450944,14 +451248,6 @@
     "tipo": "Album"
   },
   {
-    "id": "2b5d65b6-7ba8-496b-8962-1c67656690ba",
-    "imagen": "https://coverartarchive.org/release-group/2b5d65b6-7ba8-496b-8962-1c67656690ba/front-250",
-    "titulo": "eternal sunshine deluxe: brighter days ahead (a cappella version)",
-    "fecha": "",
-    "artista": "Ariana Grande",
-    "tipo": "Publicación"
-  },
-  {
     "id": "01d78669-a926-4946-894c-4a3fd219c48c",
     "imagen": "https://coverartarchive.org/release-group/01d78669-a926-4946-894c-4a3fd219c48c/front-250",
     "titulo": "Mashups",
@@ -460696,14 +460992,6 @@
     "tipo": "Album"
   },
   {
-    "id": "f438556c-fb06-4303-b69b-e9cc3047fa2d",
-    "imagen": "https://coverartarchive.org/release-group/f438556c-fb06-4303-b69b-e9cc3047fa2d/front-250",
-    "titulo": "1970-07-21: Tanglewood Music Center, Lenox, MA, USA",
-    "fecha": "",
-    "artista": "Chicago",
-    "tipo": "Album"
-  },
-  {
     "id": "2d224f31-9827-4968-bb2b-29b72823a5f5",
     "imagen": "https://coverartarchive.org/release-group/2d224f31-9827-4968-bb2b-29b72823a5f5/front-250",
     "titulo": "The Road to Freedom: Live",
@@ -462624,14 +462912,6 @@
     "tipo": "Album"
   },
   {
-    "id": "8c034257-cdfc-4a52-9dc4-13bf38480b3b",
-    "imagen": "https://coverartarchive.org/release-group/8c034257-cdfc-4a52-9dc4-13bf38480b3b/front-250",
-    "titulo": "1988-09-16: Poplar Creek Music Theater, Hoffman Estates, IL",
-    "fecha": "",
-    "artista": "Elton John",
-    "tipo": "Broadcast"
-  },
-  {
     "id": "8fd1e220-80d6-30cb-a16d-56623e92ef2b",
     "imagen": "https://coverartarchive.org/release-group/8fd1e220-80d6-30cb-a16d-56623e92ef2b/front-250",
     "titulo": "Live in Las Vegas 1999",
@@ -462710,6 +462990,14 @@
     "fecha": "",
     "artista": "Elton John",
     "tipo": "Album"
+  },
+  {
+    "id": "8c034257-cdfc-4a52-9dc4-13bf38480b3b",
+    "imagen": "https://coverartarchive.org/release-group/8c034257-cdfc-4a52-9dc4-13bf38480b3b/front-250",
+    "titulo": "1988-09-16: Poplar Creek Music Theater, Hoffman Estates, IL",
+    "fecha": "",
+    "artista": "Elton John",
+    "tipo": "Broadcast"
   },
   {
     "id": "7134f1ec-9a9d-4966-a2cb-e0d3911e265e",
@@ -468934,22 +469222,6 @@
     "fecha": "",
     "artista": "Los Rebujitos",
     "tipo": "Publicación"
-  },
-  {
-    "id": "9f912af7-2fa1-44c9-81c6-2265fd2e0725",
-    "imagen": "https://coverartarchive.org/release-group/9f912af7-2fa1-44c9-81c6-2265fd2e0725/front-250",
-    "titulo": "Sin Colorantes Ni Conservantes",
-    "fecha": "",
-    "artista": "Los Rebujitos",
-    "tipo": "Album"
-  },
-  {
-    "id": "e398ddae-3936-4bea-ba27-8a4d3fc91e01",
-    "imagen": "https://coverartarchive.org/release-group/e398ddae-3936-4bea-ba27-8a4d3fc91e01/front-250",
-    "titulo": "9+1",
-    "fecha": "",
-    "artista": "Los Rebujitos",
-    "tipo": "Album"
   },
   {
     "id": "21c0414a-c7ca-4166-9abd-93add1e76c0f",
