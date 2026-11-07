@@ -1,5 +1,13 @@
 [
   {
+    "id": "apple-6829356003",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/9c/e9/95/9ce99515-f7df-fde2-1bdb-f63f6b2d9a88/859750000279_cover.jpg/100x100bb.jpg",
+    "titulo": "Passion - Single",
+    "fecha": "2026-11-07",
+    "artista": "OnMusic",
+    "tipo": "Single"
+  },
+  {
     "id": "12112c56-66ed-42b2-9254-258ca718df95",
     "imagen": "https://coverartarchive.org/release-group/12112c56-66ed-42b2-9254-258ca718df95/front-250",
     "titulo": "Christmas Wonderland",
@@ -58,10 +66,26 @@
   {
     "id": "d074a4ee-8394-4cda-baa5-2cf948b82d7a",
     "imagen": "https://coverartarchive.org/release-group/d074a4ee-8394-4cda-baa5-2cf948b82d7a/front-250",
+    "titulo": "How’s It Goin’",
+    "fecha": "2026-11-06",
+    "artista": "Bryan Adams",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6809936545",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/de/9f/f5/de9ff595-ff1c-e4ab-e5ca-09e43f57386c/5059449450919.png/100x100bb.jpg",
     "titulo": "How's It Goin'",
     "fecha": "2026-11-06",
     "artista": "Bryan Adams",
     "tipo": "Album"
+  },
+  {
+    "id": "a6fffe16-26b8-459c-8fcb-2bfcd66a9fe6",
+    "imagen": "https://coverartarchive.org/release-group/a6fffe16-26b8-459c-8fcb-2bfcd66a9fe6/front-250",
+    "titulo": "Ya Hit",
+    "fecha": "2026-11-06",
+    "artista": "Drake",
+    "tipo": "Single"
   },
   {
     "id": "apple-6805191987",
@@ -104,6 +128,22 @@
     "tipo": "Single"
   },
   {
+    "id": "apple-6825044183",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/04/d5/16/04d51686-2aab-e65f-5e41-b8129fbda852/26UM1IM00479.rgb.jpg/100x100bb.jpg",
+    "titulo": "25 Aniversario",
+    "fecha": "2026-11-06",
+    "artista": "Juanes",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6823214008",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/04/94/ea/0494eaef-fa76-1976-7389-a17347ae9094/711641053781.jpg/100x100bb.jpg",
+    "titulo": "He vuelto a nacer - Single",
+    "fecha": "2026-11-06",
+    "artista": "Kiko Rivera",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6819847840",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ce/b2/fd/ceb2fd03-fa1d-61cc-9002-6a554d43522f/8445775414010.png/100x100bb.jpg",
     "titulo": "Dejar Ir - Single",
@@ -136,8 +176,8 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6789444108",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1b/d0/04/1bd00499-92ae-244c-6e73-02d669db062e/067003029230.png/100x100bb.jpg",
+    "id": "2210df4d-5ebf-4372-af5e-bf189e021bf6",
+    "imagen": "https://coverartarchive.org/release-group/2210df4d-5ebf-4372-af5e-bf189e021bf6/front-250",
     "titulo": "Wild Love",
     "fecha": "2026-11-06",
     "artista": "Passenger",
@@ -264,6 +304,14 @@
     "tipo": "Single"
   },
   {
+    "id": "fd6054f7-d749-446c-8230-9d3caecd1c78",
+    "imagen": "https://coverartarchive.org/release-group/fd6054f7-d749-446c-8230-9d3caecd1c78/front-250",
+    "titulo": "Sheep (original radio edit)",
+    "fecha": "2026-11-05",
+    "artista": "Pink Floyd",
+    "tipo": "Single"
+  },
+  {
     "id": "8ed9dec6-7f82-4e67-81b7-2c1e071ea9b8",
     "imagen": "https://coverartarchive.org/release-group/8ed9dec6-7f82-4e67-81b7-2c1e071ea9b8/front-250",
     "titulo": "Milko Freestyle",
@@ -302,6 +350,14 @@
     "fecha": "2026-11-03",
     "artista": "OnMusic",
     "tipo": "Single"
+  },
+  {
+    "id": "apple-6824984388",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/6b/3e/03/6b3e0309-a9b8-b59c-543c-1e3d61e3c74c/196874849941.jpg/100x100bb.jpg",
+    "titulo": "Navidad Melancólica Deluxe",
+    "fecha": "2026-11-03",
+    "artista": "Thalía",
+    "tipo": "Album"
   },
   {
     "id": "apple-6829352450",
@@ -446,6 +502,14 @@
     "fecha": "2026-10-30",
     "artista": "KISS",
     "tipo": "Single"
+  },
+  {
+    "id": "apple-6823406252",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/fa/a8/9f/faa89f48-a3cc-ea94-2630-c52012110c69/06UMGIM02301.rgb.jpg/100x100bb.jpg",
+    "titulo": "Rock And Roll Over (2026 Remaster)",
+    "fecha": "2026-10-30",
+    "artista": "KISS",
+    "tipo": "Album"
   },
   {
     "id": "apple-6817875716",
@@ -928,6 +992,14 @@
     "tipo": "Single"
   },
   {
+    "id": "apple-6819838383",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/52/c7/97/52c79749-bb01-c71b-847f-cd3acd1883e3/7900279976705.jpg/100x100bb.jpg",
+    "titulo": "The House Still Knows - Single",
+    "fecha": "2026-10-16",
+    "artista": "Alex Warren",
+    "tipo": "Single"
+  },
+  {
     "id": "9d50225b-cd36-4b6e-9f58-c30064a782af",
     "imagen": "https://coverartarchive.org/release-group/9d50225b-cd36-4b6e-9f58-c30064a782af/front-250",
     "titulo": "Before You Know It",
@@ -1390,14 +1462,6 @@
     "fecha": "2026-10-09",
     "artista": "Taylor Swift",
     "tipo": "Single"
-  },
-  {
-    "id": "8c3ce9f2-c6f8-4997-a346-39aa3eeeb517",
-    "imagen": "https://coverartarchive.org/release-group/8c3ce9f2-c6f8-4997-a346-39aa3eeeb517/front-250",
-    "titulo": "Woman in Chains",
-    "fecha": "2026-10-09",
-    "artista": "Tears for Fears",
-    "tipo": "Publicación"
   },
   {
     "id": "178ad8d0-4c47-4930-9cca-5c874b360d28",
@@ -2139,6 +2203,14 @@
     "id": "c6e5b9cd-fac2-4f95-94e9-a19887a2f59f",
     "imagen": "https://coverartarchive.org/release-group/c6e5b9cd-fac2-4f95-94e9-a19887a2f59f/front-250",
     "titulo": "Called it Love (Serena X FIFTY FIFTY) (Original Webtoon Soundtrack)",
+    "fecha": "2026-09-18",
+    "artista": "FIFTY FIFTY",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6812138566",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5d/2e/1b/5d2e1b2c-21f5-52bc-56d0-638824bdf599/8800366472570.jpg/100x100bb.jpg",
+    "titulo": "Called it Love (Serena X FIFTY FIFTY) (Original Webtoon Soundtrack) - Single",
     "fecha": "2026-09-18",
     "artista": "FIFTY FIFTY",
     "tipo": "Single"
@@ -3393,7 +3465,7 @@
   },
   {
     "id": "apple-6801238685",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/92/0d/05/920d0584-cc86-f96c-924d-17272e802067/1200214841782.jpg/100x100bb.jpg",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/75/2f/71/752f71ad-51c4-b860-efc9-d4fd3f375691/1200214841782.jpg/100x100bb.jpg",
     "titulo": "Oye Mi Amor (Live From Apple Music Studios) - Single",
     "fecha": "2026-08-17",
     "artista": "Maná",
@@ -4077,14 +4149,6 @@
     "titulo": "Radio Ga Ga (Live in Budapest)",
     "fecha": "2026-07-27",
     "artista": "Queen",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6798354210",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0c/b4/a9/0cb4a955-2e6f-7a20-9ec9-23cd00b15cd8/885000145308.png/100x100bb.jpg",
-    "titulo": "Seasons - Single",
-    "fecha": "2026-07-25",
-    "artista": "Anastacia",
     "tipo": "Single"
   },
   {
@@ -8344,14 +8408,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1896059556",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/99/da/bf/99dabfa4-9bf9-69c8-16b5-10f8fd8094cb/196874319550.jpg/100x100bb.jpg",
-    "titulo": "bye (bundle) - Single",
-    "fecha": "2026-05-05",
-    "artista": "Beéle",
-    "tipo": "Single"
-  },
-  {
     "id": "apple-1896059534",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d2/78/09/d2780920-c0f9-f609-0ca6-035871ce8fbd/196874318416.jpg/100x100bb.jpg",
     "titulo": "si te pillara (bundle) - Single",
@@ -8360,9 +8416,9 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1896059532",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/36/81/39/368139d5-2edb-4d3e-38fd-5e24131fa944/196874319567.jpg/100x100bb.jpg",
-    "titulo": "sobelove (bundle) - Single",
+    "id": "apple-1896059556",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/99/da/bf/99dabfa4-9bf9-69c8-16b5-10f8fd8094cb/196874319550.jpg/100x100bb.jpg",
+    "titulo": "bye (bundle) - Single",
     "fecha": "2026-05-05",
     "artista": "Beéle",
     "tipo": "Single"
@@ -8371,6 +8427,14 @@
     "id": "apple-1896059558",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4c/9a/6d/4c9a6d58-01f2-3ead-b5cb-d6a7d42a8a83/196874319468.jpg/100x100bb.jpg",
     "titulo": "en la mía (bundle) - Single",
+    "fecha": "2026-05-05",
+    "artista": "Beéle",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-1896059532",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/36/81/39/368139d5-2edb-4d3e-38fd-5e24131fa944/196874319567.jpg/100x100bb.jpg",
+    "titulo": "sobelove (bundle) - Single",
     "fecha": "2026-05-05",
     "artista": "Beéle",
     "tipo": "Single"
@@ -23488,6 +23552,14 @@
     "tipo": "Album"
   },
   {
+    "id": "80f8d790-4132-4699-8cf9-13153d31b3e3",
+    "imagen": "https://coverartarchive.org/release-group/80f8d790-4132-4699-8cf9-13153d31b3e3/front-250",
+    "titulo": "BRITNEY4EVER (BFRND remixes)",
+    "fecha": "2025-05-15",
+    "artista": "Britney Spears",
+    "tipo": "Single"
+  },
+  {
     "id": "1b8c7fb8-97d2-4a28-aeac-bbf1845ee8d5",
     "imagen": "https://coverartarchive.org/release-group/1b8c7fb8-97d2-4a28-aeac-bbf1845ee8d5/front-250",
     "titulo": "The First Time",
@@ -30213,7 +30285,7 @@
     "titulo": "Tiny Desk Concert",
     "fecha": "2024-10-24",
     "artista": "Dua Lipa",
-    "tipo": "Album"
+    "tipo": "Broadcast"
   },
   {
     "id": "b40a4b8f-40e6-47c0-b029-e5f75238f502",
@@ -73702,14 +73774,6 @@
     "fecha": "2021-09-21",
     "artista": "Teddy Swims",
     "tipo": "EP"
-  },
-  {
-    "id": "f5040ecf-a706-45f6-856d-b0ea1abeb1b0",
-    "imagen": "https://coverartarchive.org/release-group/f5040ecf-a706-45f6-856d-b0ea1abeb1b0/front-250",
-    "titulo": "Metro, Chicago, IL 9-20-2021",
-    "fecha": "2021-09-20",
-    "artista": "Metallica",
-    "tipo": "Broadcast"
   },
   {
     "id": "60a1334b-319a-4ff1-bebf-5795e1130259",
@@ -117272,14 +117336,6 @@
     "tipo": "Single"
   },
   {
-    "id": "0f64e8ba-5133-4d81-bb98-cfa931ffcd92",
-    "imagen": "https://coverartarchive.org/release-group/0f64e8ba-5133-4d81-bb98-cfa931ffcd92/front-250",
-    "titulo": "2018/10/27 Buffalo, NY",
-    "fecha": "2018-10-27",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "cee077da-be83-4da9-a6b4-c3e65c8db58d",
     "imagen": "https://coverartarchive.org/release-group/cee077da-be83-4da9-a6b4-c3e65c8db58d/front-250",
     "titulo": "Triple J Like a Version",
@@ -126098,7 +126154,7 @@
   {
     "id": "6b27e131-c946-43aa-b5d2-e8f8d9a7ae50",
     "imagen": "https://coverartarchive.org/release-group/6b27e131-c946-43aa-b5d2-e8f8d9a7ae50/front-250",
-    "titulo": "Para Sacarte de Mi Vida",
+    "titulo": "Para sacarte de mi vida",
     "fecha": "2018-02-22",
     "artista": "Alejandro Fernández",
     "tipo": "Single"
@@ -143128,14 +143184,6 @@
     "tipo": "Album"
   },
   {
-    "id": "ee5be844-8916-4600-b73c-1580311e5e4c",
-    "imagen": "https://coverartarchive.org/release-group/ee5be844-8916-4600-b73c-1580311e5e4c/front-250",
-    "titulo": "2016-11-29: Live at Opera House in Toronto, Canada",
-    "fecha": "2016-11-29",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "cd0c0942-0612-4073-920e-9008f8700739",
     "imagen": "https://coverartarchive.org/release-group/cd0c0942-0612-4073-920e-9008f8700739/front-250",
     "titulo": "1975‐10‐18: The Roxy Theatre, West Hollywood, CA, USA",
@@ -149754,7 +149802,7 @@
   {
     "id": "689007f0-a930-4c36-bf0e-ba7cb65bb7d8",
     "imagen": "https://coverartarchive.org/release-group/689007f0-a930-4c36-bf0e-ba7cb65bb7d8/front-250",
-    "titulo": "Cuando Seas Grande",
+    "titulo": "Cuando seas grande",
     "fecha": "2016-04-24",
     "artista": "Alejandro Sanz",
     "tipo": "Single"
@@ -149762,7 +149810,7 @@
   {
     "id": "689007f0-a930-4c36-bf0e-ba7cb65bb7d8",
     "imagen": "https://coverartarchive.org/release-group/689007f0-a930-4c36-bf0e-ba7cb65bb7d8/front-250",
-    "titulo": "Cuando Seas Grande",
+    "titulo": "Cuando seas grande",
     "fecha": "2016-04-24",
     "artista": "J Balvin",
     "tipo": "Single"
@@ -151542,14 +151590,6 @@
     "fecha": "2016-02-06",
     "artista": "Beyoncé",
     "tipo": "Single"
-  },
-  {
-    "id": "567a6706-aadf-4735-9bc7-5c8faf90f58e",
-    "imagen": "https://coverartarchive.org/release-group/567a6706-aadf-4735-9bc7-5c8faf90f58e/front-250",
-    "titulo": "2016-02-06: AT&T Park, San Francisco, CA",
-    "fecha": "2016-02-06",
-    "artista": "Metallica",
-    "tipo": "Album"
   },
   {
     "id": "610c49b0-7cf6-4f6a-a744-2902727d4d93",
@@ -175944,6 +175984,14 @@
     "tipo": "Single"
   },
   {
+    "id": "1891372b-9ad5-4acc-9486-a84cbe62589b",
+    "imagen": "https://coverartarchive.org/release-group/1891372b-9ad5-4acc-9486-a84cbe62589b/front-250",
+    "titulo": "La foto de los dos (remix)",
+    "fecha": "2013-11-02",
+    "artista": "Carlos Vives",
+    "tipo": "Single"
+  },
+  {
     "id": "f8c7022d-2cb2-4e19-bd46-b0e9460347a5",
     "imagen": "https://coverartarchive.org/release-group/f8c7022d-2cb2-4e19-bd46-b0e9460347a5/front-250",
     "titulo": "Avril Lavigne",
@@ -198000,6 +198048,14 @@
     "tipo": "Album"
   },
   {
+    "id": "32780bcf-94d2-4e45-8710-625fdfd3221d",
+    "imagen": "https://coverartarchive.org/release-group/32780bcf-94d2-4e45-8710-625fdfd3221d/front-250",
+    "titulo": "Live at Montreux 2010",
+    "fecha": "2011-09-19",
+    "artista": "Gary Moore",
+    "tipo": "Album"
+  },
+  {
     "id": "69fed512-343b-42a7-875a-c0f09cbef2a6",
     "imagen": "https://coverartarchive.org/release-group/69fed512-343b-42a7-875a-c0f09cbef2a6/front-250",
     "titulo": "Live at Montreux 2010",
@@ -199357,14 +199413,6 @@
     "titulo": "Rock Werchter Festival 2011",
     "fecha": "2011-07-02",
     "artista": "Coldplay",
-    "tipo": "Album"
-  },
-  {
-    "id": "f088f52f-12a2-4457-b558-37e161098e77",
-    "imagen": "https://coverartarchive.org/release-group/f088f52f-12a2-4457-b558-37e161098e77/front-250",
-    "titulo": "2011-07-02: The Big Four: Gelsenkirchen, Germany",
-    "fecha": "2011-07-02",
-    "artista": "Metallica",
     "tipo": "Album"
   },
   {
@@ -210632,28 +210680,12 @@
     "tipo": "Single"
   },
   {
-    "id": "5022a6d2-f782-4db7-8d5d-c6db18e5ad45",
-    "imagen": "https://coverartarchive.org/release-group/5022a6d2-f782-4db7-8d5d-c6db18e5ad45/front-250",
-    "titulo": "Moscow Magnetic: SK Olimpiisky, Moscow, Russia Apr 25, 2010",
-    "fecha": "2010-04-25",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "a44a3162-e717-4466-9759-cbb65feeb096",
     "imagen": "https://coverartarchive.org/release-group/a44a3162-e717-4466-9759-cbb65feeb096/front-250",
     "titulo": "Con la duda",
     "fecha": "2010-04-25",
     "artista": "Thalía",
     "tipo": "Single"
-  },
-  {
-    "id": "cbdb680a-3600-4b1d-8d6d-7b3c04698642",
-    "imagen": "https://coverartarchive.org/release-group/cbdb680a-3600-4b1d-8d6d-7b3c04698642/front-250",
-    "titulo": "Moscow Magnetic: SK Olimpiisky, Moscow, Russia Apr 24, 2010",
-    "fecha": "2010-04-24",
-    "artista": "Metallica",
-    "tipo": "Album"
   },
   {
     "id": "ae5ef82c-f749-4955-8c6a-9007b321a42e",
@@ -215888,14 +215920,6 @@
     "tipo": "Single"
   },
   {
-    "id": "ad610ea3-a057-444c-80cc-863883d3fa3a",
-    "imagen": "https://coverartarchive.org/release-group/ad610ea3-a057-444c-80cc-863883d3fa3a/front-250",
-    "titulo": "2009-12-12: HP Pavilion, San Jose, CA, USA",
-    "fecha": "2009-12-12",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "b58413e7-9167-4edb-9584-6bcf33b7d5e4",
     "imagen": "https://coverartarchive.org/release-group/b58413e7-9167-4edb-9584-6bcf33b7d5e4/front-250",
     "titulo": "KISS Alive 35: Live at Mid‐America Center, Council Bluffs, IA Dec 11, 2009",
@@ -218270,14 +218294,6 @@
     "fecha": "2009-09-21",
     "artista": "Wiz Khalifa",
     "tipo": "Single"
-  },
-  {
-    "id": "11bd0e7a-ce47-413b-a2a9-8707280ef7db",
-    "imagen": "https://coverartarchive.org/release-group/11bd0e7a-ce47-413b-a2a9-8707280ef7db/front-250",
-    "titulo": "2009-09-20: Bell Centre, Montreal, QC, Canada",
-    "fecha": "2009-09-20",
-    "artista": "Metallica",
-    "tipo": "Album"
   },
   {
     "id": "1a0a4d5e-e90a-4a7c-8e89-cbbc1e2e8a65",
@@ -222706,7 +222722,7 @@
   {
     "id": "6ff1c9ef-9be7-44a2-9d31-051700aa78f9",
     "imagen": "https://coverartarchive.org/release-group/6ff1c9ef-9be7-44a2-9d31-051700aa78f9/front-250",
-    "titulo": "Circus In The Mix IV (Remixes)",
+    "titulo": "Circus in the Mix IV (Remixes)",
     "fecha": "2009",
     "artista": "Britney Spears",
     "tipo": "Album"
@@ -225678,14 +225694,6 @@
     "fecha": "2008-12-21",
     "artista": "Keane",
     "tipo": "Single"
-  },
-  {
-    "id": "ee9cf354-1da7-4590-8f03-0b3f493db0e9",
-    "imagen": "https://coverartarchive.org/release-group/ee9cf354-1da7-4590-8f03-0b3f493db0e9/front-250",
-    "titulo": "2008-12-20: Oracle Arena, Oakland, CA, USA",
-    "fecha": "2008-12-20",
-    "artista": "Metallica",
-    "tipo": "Album"
   },
   {
     "id": "0213b8c6-fa4d-40d4-a30a-a4a74598d40a",
@@ -276008,6 +276016,14 @@
     "tipo": "Album"
   },
   {
+    "id": "de3030b9-820b-47f1-b44c-a0297f2fe158",
+    "imagen": "https://coverartarchive.org/release-group/de3030b9-820b-47f1-b44c-a0297f2fe158/front-250",
+    "titulo": "Physical Rarities",
+    "fecha": "2003",
+    "artista": "Led Zeppelin",
+    "tipo": "Album"
+  },
+  {
     "id": "4d759948-884f-41aa-a52e-c9e5485a743d",
     "imagen": "https://coverartarchive.org/release-group/4d759948-884f-41aa-a52e-c9e5485a743d/front-250",
     "titulo": "The Belgian Triple",
@@ -276027,14 +276043,6 @@
     "id": "c4019a35-8e85-4a64-a259-80262b37d6ac",
     "imagen": "https://coverartarchive.org/release-group/c4019a35-8e85-4a64-a259-80262b37d6ac/front-250",
     "titulo": "Black Country Woman",
-    "fecha": "2003",
-    "artista": "Led Zeppelin",
-    "tipo": "Album"
-  },
-  {
-    "id": "c5e83e1f-93dc-4e55-a7e2-5ed6be11f5a6",
-    "imagen": "https://coverartarchive.org/release-group/c5e83e1f-93dc-4e55-a7e2-5ed6be11f5a6/front-250",
-    "titulo": "Chasing the Dragon",
     "fecha": "2003",
     "artista": "Led Zeppelin",
     "tipo": "Album"
@@ -276115,6 +276123,14 @@
     "id": "abfbe19f-7991-3681-a501-c195118f283d",
     "imagen": "https://coverartarchive.org/release-group/abfbe19f-7991-3681-a501-c195118f283d/front-250",
     "titulo": "Riot in Thunderstorm",
+    "fecha": "2003",
+    "artista": "Led Zeppelin",
+    "tipo": "Album"
+  },
+  {
+    "id": "c5e83e1f-93dc-4e55-a7e2-5ed6be11f5a6",
+    "imagen": "https://coverartarchive.org/release-group/c5e83e1f-93dc-4e55-a7e2-5ed6be11f5a6/front-250",
+    "titulo": "Chasing the Dragon",
     "fecha": "2003",
     "artista": "Led Zeppelin",
     "tipo": "Album"
@@ -276350,6 +276366,14 @@
     "fecha": "2003",
     "artista": "Luther Vandross",
     "tipo": "Publicación"
+  },
+  {
+    "id": "f4cb6a3d-7db1-4bcd-b265-6ea7f5b9af62",
+    "imagen": "https://coverartarchive.org/release-group/f4cb6a3d-7db1-4bcd-b265-6ea7f5b9af62/front-250",
+    "titulo": "Dance With My Father",
+    "fecha": "2003",
+    "artista": "Luther Vandross",
+    "tipo": "Album"
   },
   {
     "id": "0a18cbff-23eb-376a-ad67-d85b0fddaaa9",
@@ -284696,17 +284720,17 @@
     "tipo": "Album"
   },
   {
-    "id": "83d337c6-8d23-3030-ba43-632b4cc96fd7",
-    "imagen": "https://coverartarchive.org/release-group/83d337c6-8d23-3030-ba43-632b4cc96fd7/front-250",
-    "titulo": "Ultimate Zabriskie Point",
+    "id": "8ec16cfe-d19a-47fc-9d0c-e177b97a523c",
+    "imagen": "https://coverartarchive.org/release-group/8ec16cfe-d19a-47fc-9d0c-e177b97a523c/front-250",
+    "titulo": "Archives, 1966–1972 – Ultra Rare Trax, Volume 3",
     "fecha": "2002",
     "artista": "Pink Floyd",
     "tipo": "Album"
   },
   {
-    "id": "8ec16cfe-d19a-47fc-9d0c-e177b97a523c",
-    "imagen": "https://coverartarchive.org/release-group/8ec16cfe-d19a-47fc-9d0c-e177b97a523c/front-250",
-    "titulo": "Archives, 1966–1972 – Ultra Rare Trax, Volume 3",
+    "id": "83d337c6-8d23-3030-ba43-632b4cc96fd7",
+    "imagen": "https://coverartarchive.org/release-group/83d337c6-8d23-3030-ba43-632b4cc96fd7/front-250",
+    "titulo": "Ultimate Zabriskie Point",
     "fecha": "2002",
     "artista": "Pink Floyd",
     "tipo": "Album"
@@ -289016,14 +289040,6 @@
     "tipo": "Album"
   },
   {
-    "id": "8cf13751-390c-3dbe-8997-6d65dd7c0aed",
-    "imagen": "https://coverartarchive.org/release-group/8cf13751-390c-3dbe-8997-6d65dd7c0aed/front-250",
-    "titulo": "Back to the Blues",
-    "fecha": "2001-03-20",
-    "artista": "Gary Moore",
-    "tipo": "Album"
-  },
-  {
     "id": "50c66680-d179-431c-a67d-72f6960c40ec",
     "imagen": "https://coverartarchive.org/release-group/50c66680-d179-431c-a67d-72f6960c40ec/front-250",
     "titulo": "100th Birthday Anniversary Anthology",
@@ -289102,6 +289118,14 @@
     "fecha": "2001-03-12",
     "artista": "Britney Spears",
     "tipo": "Single"
+  },
+  {
+    "id": "8cf13751-390c-3dbe-8997-6d65dd7c0aed",
+    "imagen": "https://coverartarchive.org/release-group/8cf13751-390c-3dbe-8997-6d65dd7c0aed/front-250",
+    "titulo": "Back to the Blues",
+    "fecha": "2001-03-12",
+    "artista": "Gary Moore",
+    "tipo": "Album"
   },
   {
     "id": "49962e59-770e-414f-bb54-9a1161895e65",
@@ -298005,6 +298029,14 @@
     "titulo": "I Was Born to Love You",
     "fecha": "2000-01-29",
     "artista": "Eric Carmen",
+    "tipo": "Album"
+  },
+  {
+    "id": "bd7afa54-7188-4c03-b681-adea263a2854",
+    "imagen": "https://coverartarchive.org/release-group/bd7afa54-7188-4c03-b681-adea263a2854/front-250",
+    "titulo": "Back to the Egg",
+    "fecha": "2000-01-26",
+    "artista": "Wings",
     "tipo": "Album"
   },
   {
@@ -309008,17 +309040,17 @@
     "tipo": "Album"
   },
   {
-    "id": "dc365a67-d439-4727-8cd1-9a390eeb2e2a",
-    "imagen": "https://coverartarchive.org/release-group/dc365a67-d439-4727-8cd1-9a390eeb2e2a/front-250",
-    "titulo": "Live in Japan 1972",
+    "id": "cfb2e09c-2480-462b-968b-0935f03489e9",
+    "imagen": "https://coverartarchive.org/release-group/cfb2e09c-2480-462b-968b-0935f03489e9/front-250",
+    "titulo": "Rock of Ages",
     "fecha": "1999",
     "artista": "Led Zeppelin",
     "tipo": "Album"
   },
   {
-    "id": "cfb2e09c-2480-462b-968b-0935f03489e9",
-    "imagen": "https://coverartarchive.org/release-group/cfb2e09c-2480-462b-968b-0935f03489e9/front-250",
-    "titulo": "Rock of Ages",
+    "id": "dc365a67-d439-4727-8cd1-9a390eeb2e2a",
+    "imagen": "https://coverartarchive.org/release-group/dc365a67-d439-4727-8cd1-9a390eeb2e2a/front-250",
+    "titulo": "Live in Japan 1972",
     "fecha": "1999",
     "artista": "Led Zeppelin",
     "tipo": "Album"
@@ -324136,6 +324168,14 @@
     "tipo": "Album"
   },
   {
+    "id": "e0e69f2d-923b-40ff-b31c-f4c0188aef3c",
+    "imagen": "https://coverartarchive.org/release-group/e0e69f2d-923b-40ff-b31c-f4c0188aef3c/front-250",
+    "titulo": "Don't Worry Be Happy!",
+    "fecha": "1997",
+    "artista": "Bobby McFerrin",
+    "tipo": "Album"
+  },
+  {
     "id": "05966305-984a-3597-93ed-98049a6978f6",
     "imagen": "https://coverartarchive.org/release-group/05966305-984a-3597-93ed-98049a6978f6/front-250",
     "titulo": "Fields of Fire",
@@ -326155,6 +326195,14 @@
     "id": "7fe6e6ec-dcf3-4e26-a5dd-e19ab6947870",
     "imagen": "https://coverartarchive.org/release-group/7fe6e6ec-dcf3-4e26-a5dd-e19ab6947870/front-250",
     "titulo": "Best of Ella Fitzgerald & Louis Armstrong",
+    "fecha": "1997",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "87e698a7-8b2e-380d-8769-fa4b8785ffc8",
+    "imagen": "https://coverartarchive.org/release-group/87e698a7-8b2e-380d-8769-fa4b8785ffc8/front-250",
+    "titulo": "Selection",
     "fecha": "1997",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -336304,14 +336352,6 @@
     "tipo": "Other"
   },
   {
-    "id": "f0701494-34e1-4003-ab24-1b217613f409",
-    "imagen": "https://coverartarchive.org/release-group/f0701494-34e1-4003-ab24-1b217613f409/front-250",
-    "titulo": "Mellon Collie Disc Three",
-    "fecha": "1996",
-    "artista": "The Smashing Pumpkins",
-    "tipo": "Album"
-  },
-  {
     "id": "03ce656b-4713-4815-b6ca-83265d328db2",
     "imagen": "https://coverartarchive.org/release-group/03ce656b-4713-4815-b6ca-83265d328db2/front-250",
     "titulo": "The Mellon Collie Demos",
@@ -336331,6 +336371,14 @@
     "id": "c2862c79-f04d-4502-bf24-823d44ac71f9",
     "imagen": "https://coverartarchive.org/release-group/c2862c79-f04d-4502-bf24-823d44ac71f9/front-250",
     "titulo": "Tune In, Turn On, Rawk Out",
+    "fecha": "1996",
+    "artista": "The Smashing Pumpkins",
+    "tipo": "Album"
+  },
+  {
+    "id": "f0701494-34e1-4003-ab24-1b217613f409",
+    "imagen": "https://coverartarchive.org/release-group/f0701494-34e1-4003-ab24-1b217613f409/front-250",
+    "titulo": "Mellon Collie Disc Three",
     "fecha": "1996",
     "artista": "The Smashing Pumpkins",
     "tipo": "Album"
@@ -344568,6 +344616,14 @@
     "tipo": "Other"
   },
   {
+    "id": "86ff3a66-d263-45b5-8d13-003300326734",
+    "imagen": "https://coverartarchive.org/release-group/86ff3a66-d263-45b5-8d13-003300326734/front-250",
+    "titulo": "Chicago Tapes and Unreleased Demos",
+    "fecha": "1995",
+    "artista": "The Smashing Pumpkins",
+    "tipo": "Album"
+  },
+  {
     "id": "c16becbc-d9e8-3f90-bc6b-24d1f8668d8a",
     "imagen": "https://coverartarchive.org/release-group/c16becbc-d9e8-3f90-bc6b-24d1f8668d8a/front-250",
     "titulo": "The Great Pumpkin That Never Arrived",
@@ -352568,14 +352624,6 @@
     "tipo": "Album"
   },
   {
-    "id": "5ad3a21e-85ca-4403-be87-2340e2e06f51",
-    "imagen": "https://coverartarchive.org/release-group/5ad3a21e-85ca-4403-be87-2340e2e06f51/front-250",
-    "titulo": "Spaceboy",
-    "fecha": "1994",
-    "artista": "The Smashing Pumpkins",
-    "tipo": "Album"
-  },
-  {
     "id": "a0a2b09f-c314-34ba-a0c9-7e43529135f8",
     "imagen": "https://coverartarchive.org/release-group/a0a2b09f-c314-34ba-a0c9-7e43529135f8/front-250",
     "titulo": "1993‐08‐14: 3 Feet High: Metro, Chicago, IL, USA",
@@ -352699,6 +352747,14 @@
     "id": "5352c1f3-be4f-4a1c-b4a6-5b3aed84a513",
     "imagen": "https://coverartarchive.org/release-group/5352c1f3-be4f-4a1c-b4a6-5b3aed84a513/front-250",
     "titulo": "The Greatest Day",
+    "fecha": "1994",
+    "artista": "The Smashing Pumpkins",
+    "tipo": "Album"
+  },
+  {
+    "id": "5ad3a21e-85ca-4403-be87-2340e2e06f51",
+    "imagen": "https://coverartarchive.org/release-group/5ad3a21e-85ca-4403-be87-2340e2e06f51/front-250",
+    "titulo": "Spaceboy",
     "fecha": "1994",
     "artista": "The Smashing Pumpkins",
     "tipo": "Album"
@@ -359104,14 +359160,6 @@
     "tipo": "Album"
   },
   {
-    "id": "edfd4a82-ea55-4c95-ac3b-b0ea20d18ecd",
-    "imagen": "https://coverartarchive.org/release-group/edfd4a82-ea55-4c95-ac3b-b0ea20d18ecd/front-250",
-    "titulo": "Archives: Live Through the Years 1970–90",
-    "fecha": "1993",
-    "artista": "Pink Floyd",
-    "tipo": "Album"
-  },
-  {
     "id": "0e062215-5cdf-3807-9e44-d5738b3b570b",
     "imagen": "https://coverartarchive.org/release-group/0e062215-5cdf-3807-9e44-d5738b3b570b/front-250",
     "titulo": "One of Those Days",
@@ -359131,6 +359179,14 @@
     "id": "c4edc6ac-2e47-4ef9-ae83-7f2ef37f3f20",
     "imagen": "https://coverartarchive.org/release-group/c4edc6ac-2e47-4ef9-ae83-7f2ef37f3f20/front-250",
     "titulo": "Behind The Wall",
+    "fecha": "1993",
+    "artista": "Pink Floyd",
+    "tipo": "Album"
+  },
+  {
+    "id": "edfd4a82-ea55-4c95-ac3b-b0ea20d18ecd",
+    "imagen": "https://coverartarchive.org/release-group/edfd4a82-ea55-4c95-ac3b-b0ea20d18ecd/front-250",
+    "titulo": "Archives: Live Through the Years 1970–90",
     "fecha": "1993",
     "artista": "Pink Floyd",
     "tipo": "Album"
@@ -371112,6 +371168,14 @@
     "tipo": "EP"
   },
   {
+    "id": "5fba8e76-5464-3050-bf9f-eb8725dc10cb",
+    "imagen": "https://coverartarchive.org/release-group/5fba8e76-5464-3050-bf9f-eb8725dc10cb/front-250",
+    "titulo": "1985-08-05: American Tour 1985: Blossom Music Center, Cuyahoga Falls, OH, USA",
+    "fecha": "1991",
+    "artista": "Dire Straits",
+    "tipo": "Album"
+  },
+  {
     "id": "6793d93c-52b4-442e-8470-4bc2fd88dbc1",
     "imagen": "https://coverartarchive.org/release-group/6793d93c-52b4-442e-8470-4bc2fd88dbc1/front-250",
     "titulo": "Live USA, Vol. 2",
@@ -374666,7 +374730,7 @@
   {
     "id": "6c8d2d73-f8ae-4b0a-b2f7-5b256b0979e5",
     "imagen": "https://coverartarchive.org/release-group/6c8d2d73-f8ae-4b0a-b2f7-5b256b0979e5/front-250",
-    "titulo": "Bee Gees",
+    "titulo": "THE BEST!",
     "fecha": "1990-11-25",
     "artista": "Bee Gees",
     "tipo": "Album"
@@ -377088,14 +377152,6 @@
     "tipo": "Album"
   },
   {
-    "id": "20a0fb05-447b-30b5-98a2-b8b8c551607c",
-    "imagen": "https://coverartarchive.org/release-group/20a0fb05-447b-30b5-98a2-b8b8c551607c/front-250",
-    "titulo": "Oh Pretty Woman",
-    "fecha": "1990",
-    "artista": "Gary Moore",
-    "tipo": "Single"
-  },
-  {
     "id": "5f77c066-161b-41a7-bd9f-0d49f2088917",
     "imagen": "https://coverartarchive.org/release-group/5f77c066-161b-41a7-bd9f-0d49f2088917/front-250",
     "titulo": "Greatest Hits",
@@ -377110,6 +377166,14 @@
     "fecha": "1990",
     "artista": "Gary Moore",
     "tipo": "Album"
+  },
+  {
+    "id": "20a0fb05-447b-30b5-98a2-b8b8c551607c",
+    "imagen": "https://coverartarchive.org/release-group/20a0fb05-447b-30b5-98a2-b8b8c551607c/front-250",
+    "titulo": "Oh Pretty Woman",
+    "fecha": "1990",
+    "artista": "Gary Moore",
+    "tipo": "Single"
   },
   {
     "id": "700c6b6d-dc45-4f83-90fb-a8bc2812e310",
@@ -378786,14 +378850,6 @@
   {
     "id": "d2ae864a-feda-4904-9b72-fc379bd6c5b9",
     "imagen": "https://coverartarchive.org/release-group/d2ae864a-feda-4904-9b72-fc379bd6c5b9/front-250",
-    "titulo": "Advice for the Young at Heart",
-    "fecha": "1990",
-    "artista": "Tears for Fears",
-    "tipo": "Single"
-  },
-  {
-    "id": "6bccab8a-6226-4ed4-8459-f983730d3e71",
-    "imagen": "https://coverartarchive.org/release-group/6bccab8a-6226-4ed4-8459-f983730d3e71/front-250",
     "titulo": "Advice for the Young at Heart",
     "fecha": "1990",
     "artista": "Tears for Fears",
@@ -382688,14 +382744,6 @@
     "tipo": "Album"
   },
   {
-    "id": "8705f567-8cc6-4d5b-a092-b7fab5918bff",
-    "imagen": "https://coverartarchive.org/release-group/8705f567-8cc6-4d5b-a092-b7fab5918bff/front-250",
-    "titulo": "Live at Fillmore West",
-    "fecha": "1989",
-    "artista": "Led Zeppelin",
-    "tipo": "Album"
-  },
-  {
     "id": "e45fb9c0-3edb-340f-a696-79e233f41727",
     "imagen": "https://coverartarchive.org/release-group/e45fb9c0-3edb-340f-a696-79e233f41727/front-250",
     "titulo": "Hotter Than the Hindenburg",
@@ -382707,6 +382755,14 @@
     "id": "0c15e4e4-69f2-3381-8f1c-dc81484d8652",
     "imagen": "https://coverartarchive.org/release-group/0c15e4e4-69f2-3381-8f1c-dc81484d8652/front-250",
     "titulo": "Rotterdam 1980",
+    "fecha": "1989",
+    "artista": "Led Zeppelin",
+    "tipo": "Album"
+  },
+  {
+    "id": "8705f567-8cc6-4d5b-a092-b7fab5918bff",
+    "imagen": "https://coverartarchive.org/release-group/8705f567-8cc6-4d5b-a092-b7fab5918bff/front-250",
+    "titulo": "Live at Fillmore West",
     "fecha": "1989",
     "artista": "Led Zeppelin",
     "tipo": "Album"
@@ -392184,14 +392240,6 @@
     "tipo": "Single"
   },
   {
-    "id": "c7dfcda6-ad80-477f-898b-10ca88938e9a",
-    "imagen": "https://coverartarchive.org/release-group/c7dfcda6-ad80-477f-898b-10ca88938e9a/front-250",
-    "titulo": "Stop to Love",
-    "fecha": "1987",
-    "artista": "Luther Vandross",
-    "tipo": "Single"
-  },
-  {
     "id": "e53fbe19-375f-4dbe-82e8-d6d82b4aa966",
     "imagen": "https://coverartarchive.org/release-group/e53fbe19-375f-4dbe-82e8-d6d82b4aa966/front-250",
     "titulo": "I Really Didn't Mean It",
@@ -392219,6 +392267,14 @@
     "id": "0fd950ea-58c5-49ba-ad10-630e1eadf49e",
     "imagen": "https://coverartarchive.org/release-group/0fd950ea-58c5-49ba-ad10-630e1eadf49e/front-250",
     "titulo": "There's Nothing Better Than Love",
+    "fecha": "1987",
+    "artista": "Luther Vandross",
+    "tipo": "Single"
+  },
+  {
+    "id": "c7dfcda6-ad80-477f-898b-10ca88938e9a",
+    "imagen": "https://coverartarchive.org/release-group/c7dfcda6-ad80-477f-898b-10ca88938e9a/front-250",
+    "titulo": "Stop to Love",
     "fecha": "1987",
     "artista": "Luther Vandross",
     "tipo": "Single"
@@ -427224,20 +427280,20 @@
     "tipo": "Single"
   },
   {
-    "id": "6d0ed1f2-a009-42ac-81de-dfcbbc296bb4",
-    "imagen": "https://coverartarchive.org/release-group/6d0ed1f2-a009-42ac-81de-dfcbbc296bb4/front-250",
-    "titulo": "One Hand Clapping",
-    "fecha": "1974",
-    "artista": "Wings",
-    "tipo": "Other"
-  },
-  {
     "id": "f00f6a97-4ddf-4731-a688-515283744dd1",
     "imagen": "https://coverartarchive.org/release-group/f00f6a97-4ddf-4731-a688-515283744dd1/front-250",
     "titulo": "Band on the Run / Nineteen Hundred and Eighty Five",
     "fecha": "1974",
     "artista": "Wings",
     "tipo": "Single"
+  },
+  {
+    "id": "6d0ed1f2-a009-42ac-81de-dfcbbc296bb4",
+    "imagen": "https://coverartarchive.org/release-group/6d0ed1f2-a009-42ac-81de-dfcbbc296bb4/front-250",
+    "titulo": "One Hand Clapping",
+    "fecha": "1974",
+    "artista": "Wings",
+    "tipo": "Other"
   },
   {
     "id": "de9dd14c-a30f-4422-a5a8-8d38da288e37",
@@ -456160,14 +456216,6 @@
     "tipo": "Other"
   },
   {
-    "id": "e0e69f2d-923b-40ff-b31c-f4c0188aef3c",
-    "imagen": "https://coverartarchive.org/release-group/e0e69f2d-923b-40ff-b31c-f4c0188aef3c/front-250",
-    "titulo": "Don't Worry Be Happy!",
-    "fecha": "",
-    "artista": "Bobby McFerrin",
-    "tipo": "Album"
-  },
-  {
     "id": "0a2fc0c8-e470-43d3-9396-ba14623e948d",
     "imagen": "https://coverartarchive.org/release-group/0a2fc0c8-e470-43d3-9396-ba14623e948d/front-250",
     "titulo": "Bon Jovi: Interview Disc & Fully Illustrated Book",
@@ -462147,14 +462195,6 @@
     "id": "344b2a22-fef1-42d5-88fd-5c16e0f0e28c",
     "imagen": "https://coverartarchive.org/release-group/344b2a22-fef1-42d5-88fd-5c16e0f0e28c/front-250",
     "titulo": "Dallas 1979",
-    "fecha": "",
-    "artista": "Dire Straits",
-    "tipo": "Album"
-  },
-  {
-    "id": "5fba8e76-5464-3050-bf9f-eb8725dc10cb",
-    "imagen": "https://coverartarchive.org/release-group/5fba8e76-5464-3050-bf9f-eb8725dc10cb/front-250",
-    "titulo": "1985-08-05: American Tour 1985: Blossom Music Center, Cuyahoga Falls, OH, USA",
     "fecha": "",
     "artista": "Dire Straits",
     "tipo": "Album"
@@ -468992,6 +469032,14 @@
     "tipo": "Album"
   },
   {
+    "id": "da85b4c6-2a57-4334-bcc9-b2cdd7ef21bc",
+    "imagen": "https://coverartarchive.org/release-group/da85b4c6-2a57-4334-bcc9-b2cdd7ef21bc/front-250",
+    "titulo": "Uncensored",
+    "fecha": "",
+    "artista": "Led Zeppelin",
+    "tipo": "Album"
+  },
+  {
     "id": "dd36eefb-301d-444e-9b5b-623840c8bfbc",
     "imagen": "https://coverartarchive.org/release-group/dd36eefb-301d-444e-9b5b-623840c8bfbc/front-250",
     "titulo": "1969‐04‐25: Winterland Ballroom, San Francisco, CA, USA",
@@ -469523,14 +469571,6 @@
     "id": "87c62f45-5eb5-47c7-9a2e-88b560d3f04b",
     "imagen": "https://coverartarchive.org/release-group/87c62f45-5eb5-47c7-9a2e-88b560d3f04b/front-250",
     "titulo": "Armstrong Louis!",
-    "fecha": "",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "87e698a7-8b2e-380d-8769-fa4b8785ffc8",
-    "imagen": "https://coverartarchive.org/release-group/87e698a7-8b2e-380d-8769-fa4b8785ffc8/front-250",
-    "titulo": "Selection",
     "fecha": "",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -470648,6 +470688,22 @@
     "tipo": "Album"
   },
   {
+    "id": "0f64e8ba-5133-4d81-bb98-cfa931ffcd92",
+    "imagen": "https://coverartarchive.org/release-group/0f64e8ba-5133-4d81-bb98-cfa931ffcd92/front-250",
+    "titulo": "2018/10/27 Buffalo, NY",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "11bd0e7a-ce47-413b-a2a9-8707280ef7db",
+    "imagen": "https://coverartarchive.org/release-group/11bd0e7a-ce47-413b-a2a9-8707280ef7db/front-250",
+    "titulo": "2009-09-20: Bell Centre, Montreal, QC, Canada",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
     "id": "366c19d4-25e2-4c1d-8906-c7cbb6c420d8",
     "imagen": "https://coverartarchive.org/release-group/366c19d4-25e2-4c1d-8906-c7cbb6c420d8/front-250",
     "titulo": "1984‐12‐20: Lyceum Ballroom, London, England, UK",
@@ -470683,6 +470739,22 @@
     "id": "4c4477ba-06cd-439c-b4c5-c8e757cf1ce5",
     "imagen": "https://coverartarchive.org/release-group/4c4477ba-06cd-439c-b4c5-c8e757cf1ce5/front-250",
     "titulo": "1999-05-02: Parque Simón Bolívar, Bogotá, Colombia",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "5022a6d2-f782-4db7-8d5d-c6db18e5ad45",
+    "imagen": "https://coverartarchive.org/release-group/5022a6d2-f782-4db7-8d5d-c6db18e5ad45/front-250",
+    "titulo": "Moscow Magnetic: SK Olimpiisky, Moscow, Russia Apr 25, 2010",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "567a6706-aadf-4735-9bc7-5c8faf90f58e",
+    "imagen": "https://coverartarchive.org/release-group/567a6706-aadf-4735-9bc7-5c8faf90f58e/front-250",
+    "titulo": "2016-02-06: AT&T Park, San Francisco, CA",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -470824,6 +470896,14 @@
     "tipo": "Album"
   },
   {
+    "id": "ad610ea3-a057-444c-80cc-863883d3fa3a",
+    "imagen": "https://coverartarchive.org/release-group/ad610ea3-a057-444c-80cc-863883d3fa3a/front-250",
+    "titulo": "2009-12-12: HP Pavilion, San Jose, CA, USA",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
     "id": "b6723f87-420c-48c6-b8cf-00f3b3a203ac",
     "imagen": "https://coverartarchive.org/release-group/b6723f87-420c-48c6-b8cf-00f3b3a203ac/front-250",
     "titulo": "2011-04-23: The Big Four, Empire Polo Club, Indio, CA, USA",
@@ -470864,6 +470944,14 @@
     "tipo": "Album"
   },
   {
+    "id": "cbdb680a-3600-4b1d-8d6d-7b3c04698642",
+    "imagen": "https://coverartarchive.org/release-group/cbdb680a-3600-4b1d-8d6d-7b3c04698642/front-250",
+    "titulo": "Moscow Magnetic: SK Olimpiisky, Moscow, Russia Apr 24, 2010",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
     "id": "d1984bf3-e751-31d6-9751-59d7d8fda607",
     "imagen": "https://coverartarchive.org/release-group/d1984bf3-e751-31d6-9751-59d7d8fda607/front-250",
     "titulo": "1992‐12‐07: Brabanthallen, Den Bosche, The Netherlands",
@@ -470899,6 +470987,30 @@
     "id": "eb88dde6-2690-4677-8278-d3089f0e5f0c",
     "imagen": "https://coverartarchive.org/release-group/eb88dde6-2690-4677-8278-d3089f0e5f0c/front-250",
     "titulo": "1984-11-22: Le Riff, Toulouse, France",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "ee5be844-8916-4600-b73c-1580311e5e4c",
+    "imagen": "https://coverartarchive.org/release-group/ee5be844-8916-4600-b73c-1580311e5e4c/front-250",
+    "titulo": "2016-11-29: Live at Opera House in Toronto, Canada",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "ee9cf354-1da7-4590-8f03-0b3f493db0e9",
+    "imagen": "https://coverartarchive.org/release-group/ee9cf354-1da7-4590-8f03-0b3f493db0e9/front-250",
+    "titulo": "2008-12-20: Oracle Arena, Oakland, CA, USA",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "f088f52f-12a2-4457-b558-37e161098e77",
+    "imagen": "https://coverartarchive.org/release-group/f088f52f-12a2-4457-b558-37e161098e77/front-250",
+    "titulo": "2011-07-02: The Big Four: Gelsenkirchen, Germany",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -472662,6 +472774,14 @@
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
+  },
+  {
+    "id": "f5040ecf-a706-45f6-856d-b0ea1abeb1b0",
+    "imagen": "https://coverartarchive.org/release-group/f5040ecf-a706-45f6-856d-b0ea1abeb1b0/front-250",
+    "titulo": "Metro, Chicago, IL 9-20-2021",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Broadcast"
   },
   {
     "id": "86169238-83ab-389c-a71f-4286403972b6",
@@ -479016,6 +479136,14 @@
     "tipo": "Album"
   },
   {
+    "id": "42b20fda-98b0-4d9b-a7c4-570c562c879f",
+    "imagen": "https://coverartarchive.org/release-group/42b20fda-98b0-4d9b-a7c4-570c562c879f/front-250",
+    "titulo": "Live in Santiago 1996",
+    "fecha": "",
+    "artista": "Tears for Fears",
+    "tipo": "Album"
+  },
+  {
     "id": "464c38ae-8acb-33ec-8623-46b82a520fcd",
     "imagen": "https://coverartarchive.org/release-group/464c38ae-8acb-33ec-8623-46b82a520fcd/front-250",
     "titulo": "1985-04-24: Ahoy, Rotterdam, The Netherlands",
@@ -479067,14 +479195,6 @@
     "id": "ee6037d3-69c0-4971-b54f-2febd9c11785",
     "imagen": "https://coverartarchive.org/release-group/ee6037d3-69c0-4971-b54f-2febd9c11785/front-250",
     "titulo": "1983-05-08: Zeche, Bochum, Germany",
-    "fecha": "",
-    "artista": "Tears for Fears",
-    "tipo": "Album"
-  },
-  {
-    "id": "42b20fda-98b0-4d9b-a7c4-570c562c879f",
-    "imagen": "https://coverartarchive.org/release-group/42b20fda-98b0-4d9b-a7c4-570c562c879f/front-250",
-    "titulo": "Live in Santiago 1996",
     "fecha": "",
     "artista": "Tears for Fears",
     "tipo": "Album"
@@ -484032,14 +484152,6 @@
     "tipo": "Album"
   },
   {
-    "id": "e888f171-e09f-456f-a28b-906ae81520af",
-    "imagen": "https://coverartarchive.org/release-group/e888f171-e09f-456f-a28b-906ae81520af/front-250",
-    "titulo": "1992‐08‐10: 328 Performance Hall, Nashville, TN, USA",
-    "fecha": "",
-    "artista": "The Smashing Pumpkins",
-    "tipo": "Album"
-  },
-  {
     "id": "f30162b4-88c4-4b6f-96b5-bc7b98ba5ba0",
     "imagen": "https://coverartarchive.org/release-group/f30162b4-88c4-4b6f-96b5-bc7b98ba5ba0/front-250",
     "titulo": "1992‐02‐24: CLUB CITTA’, Kawasaki, Japan",
@@ -484291,14 +484403,6 @@
     "id": "49acaff7-1eb8-4cca-9759-8fbef88a7b67",
     "imagen": "https://coverartarchive.org/release-group/49acaff7-1eb8-4cca-9759-8fbef88a7b67/front-250",
     "titulo": "2000‐05‐06: Sunrise Theater, Sunrise, FL, USA",
-    "fecha": "",
-    "artista": "The Smashing Pumpkins",
-    "tipo": "Album"
-  },
-  {
-    "id": "4a34d04e-565b-4ebb-a750-54c0c640333d",
-    "imagen": "https://coverartarchive.org/release-group/4a34d04e-565b-4ebb-a750-54c0c640333d/front-250",
-    "titulo": "2011‐10‐11: Slowdown, Omaha, NE, USA",
     "fecha": "",
     "artista": "The Smashing Pumpkins",
     "tipo": "Album"
@@ -484744,6 +484848,14 @@
     "tipo": "Album"
   },
   {
+    "id": "e888f171-e09f-456f-a28b-906ae81520af",
+    "imagen": "https://coverartarchive.org/release-group/e888f171-e09f-456f-a28b-906ae81520af/front-250",
+    "titulo": "1992‐08‐10: 328 Performance Hall, Nashville, TN, USA",
+    "fecha": "",
+    "artista": "The Smashing Pumpkins",
+    "tipo": "Album"
+  },
+  {
     "id": "e8a24461-042a-34be-b85e-4026136e2e55",
     "imagen": "https://coverartarchive.org/release-group/e8a24461-042a-34be-b85e-4026136e2e55/front-250",
     "titulo": "2007-05-28: Pinkpop: Megaland, Landgraff, Netherlands",
@@ -484987,6 +485099,14 @@
     "id": "4951e9fb-fbe6-4014-867f-94a105773b18",
     "imagen": "https://coverartarchive.org/release-group/4951e9fb-fbe6-4014-867f-94a105773b18/front-250",
     "titulo": "TV Appearances 1993-2005",
+    "fecha": "",
+    "artista": "The Smashing Pumpkins",
+    "tipo": "Album"
+  },
+  {
+    "id": "4a34d04e-565b-4ebb-a750-54c0c640333d",
+    "imagen": "https://coverartarchive.org/release-group/4a34d04e-565b-4ebb-a750-54c0c640333d/front-250",
+    "titulo": "2011‐10‐11: Slowdown, Omaha, NE, USA",
     "fecha": "",
     "artista": "The Smashing Pumpkins",
     "tipo": "Album"
@@ -485256,14 +485376,6 @@
     "tipo": "Album"
   },
   {
-    "id": "bed6cdd8-9f37-4b11-909d-865e74fbe6fa",
-    "imagen": "https://coverartarchive.org/release-group/bed6cdd8-9f37-4b11-909d-865e74fbe6fa/front-250",
-    "titulo": "Tonight, Tonight At BBC",
-    "fecha": "",
-    "artista": "The Smashing Pumpkins",
-    "tipo": "Single"
-  },
-  {
     "id": "cd170059-ea49-3a6c-9f15-7e55ff3cd1ca",
     "imagen": "https://coverartarchive.org/release-group/cd170059-ea49-3a6c-9f15-7e55ff3cd1ca/front-250",
     "titulo": "MCIS Demos III: Demos for D’arcy",
@@ -485358,6 +485470,14 @@
     "fecha": "",
     "artista": "The Smashing Pumpkins",
     "tipo": "Broadcast"
+  },
+  {
+    "id": "bed6cdd8-9f37-4b11-909d-865e74fbe6fa",
+    "imagen": "https://coverartarchive.org/release-group/bed6cdd8-9f37-4b11-909d-865e74fbe6fa/front-250",
+    "titulo": "Tonight, Tonight At BBC",
+    "fecha": "",
+    "artista": "The Smashing Pumpkins",
+    "tipo": "Single"
   },
   {
     "id": "eae8f4b7-6366-4bc4-94cc-16f051580574",
