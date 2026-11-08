@@ -98,7 +98,10 @@ button:focus-visible,a:focus-visible{outline:2px solid #c9a5ff;outline-offset:3p
 .boton-mediahuman:focus-visible,.boton-descarga-radar:focus-visible,.descarga:focus-visible,
 .boton-youtube:focus-visible,.youtube:focus-visible{outline:2px solid #f0d7ff!important;outline-offset:3px!important}
 
-#modal-info-musical[hidden]{display:none!important}\n.wiki-icon,.boton-wikipedia,.wiki{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:30px!important;height:30px!important;min-width:30px!important;padding:0!important;border-radius:50%!important;border:1px solid #ffffffa8!important;background:linear-gradient(145deg,#b58aff,#7440b8 65%,#54258c)!important;color:#fff!important;font-size:16px!important;font-family:Segoe UI,Arial,sans-serif!important;font-weight:900!important;line-height:1!important;text-align:center!important;box-shadow:0 3px 10px #0004,inset 0 1px 0 #ffffff55!important;cursor:pointer!important;vertical-align:middle!important;transition:transform .15s ease,filter .15s ease!important}\n.wiki-icon:hover,.boton-wikipedia:hover,.wiki:hover{transform:translateY(-1px) scale(1.06);filter:brightness(1.12)}\n.wiki-icon:focus-visible,.boton-wikipedia:focus-visible,.wiki:focus-visible{outline:2px solid #e8d4ff;outline-offset:3px}
+#modal-info-musical[hidden]{display:none!important}
+.wiki-icon,.boton-wikipedia,.wiki{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:30px!important;height:30px!important;min-width:30px!important;padding:0!important;border-radius:50%!important;border:1px solid #ffffffa8!important;background:linear-gradient(145deg,#b58aff,#7440b8 65%,#54258c)!important;color:#fff!important;font-size:16px!important;font-family:Segoe UI,Arial,sans-serif!important;font-weight:900!important;line-height:1!important;text-align:center!important;box-shadow:0 3px 10px #0004,inset 0 1px 0 #ffffff55!important;cursor:pointer!important;vertical-align:middle!important;transition:transform .15s ease,filter .15s ease!important}
+.wiki-icon:hover,.boton-wikipedia:hover,.wiki:hover{transform:translateY(-1px) scale(1.06);filter:brightness(1.12)}
+.wiki-icon:focus-visible,.boton-wikipedia:focus-visible,.wiki:focus-visible{outline:2px solid #e8d4ff;outline-offset:3px}
 @media(max-width:760px){nav.navegacion-comun{gap:6px;padding:8px 5%}nav.navegacion-comun a{font-size:14px;padding:8px 10px}}
 </style>
 """
@@ -278,8 +281,88 @@ header p{
             html = html.replace("</body>", script_guardadas_global + "</body>", 1)
         if "</body>" in html and "visibilidad-resumenes-cache" not in html:
             html = html.replace("</body>", script_resumenes + "</body>", 1)
+        if request.path != "/login" and "</body>" in html and "mr-iconos-unificados-js" not in html:
+            html = html.replace("</body>", ICONOS_UNIFICADOS_HTML + "</body>", 1)
         response.set_data(html)
     return response
+
+
+ICONOS_UNIFICADOS_HTML = r"""
+<style id="mr-iconos-unificados-css">
+/* Todos los botones de acción comparten forma, tamaño y estilo de icono. */
+html body :is(.boton-30,.boton-muestra,.b30,.mr-b30,.boton-mediahuman,.boton-descarga-radar,.descarga,.mr-descarga,.boton-youtube,.youtube,.mr-youtube,.boton-wikipedia,.wiki-icon,.wiki,.info-btn,.mr-agregar,.guardar-btn,.mr-quitar):is(button,a){
+  box-sizing:border-box!important;height:42px!important;min-height:42px!important;border-radius:12px!important;
+  align-items:center!important;justify-content:center!important;gap:6px!important;line-height:1!important;
+  font-size:14px!important;font-weight:800!important;margin-top:0!important;margin-bottom:0!important;
+  vertical-align:middle!important;
+}
+html body :is(.boton-mediahuman,.boton-descarga-radar,.descarga,.mr-descarga,.boton-youtube,.youtube,.mr-youtube,.boton-wikipedia,.wiki-icon,.wiki,.info-btn,.mr-agregar,.guardar-btn,.mr-quitar):is(button,a){
+  width:42px!important;min-width:42px!important;max-width:42px!important;padding:0!important;
+}
+html body :is(.boton-30,.boton-muestra,.b30,.mr-b30):is(button,a){padding:0 12px!important}
+html body :is(.boton-30,.boton-muestra,.b30,.mr-b30,.boton-mediahuman,.boton-descarga-radar,.descarga,.mr-descarga,.boton-youtube,.youtube,.mr-youtube,.boton-wikipedia,.wiki-icon,.wiki,.info-btn,.mr-agregar,.guardar-btn,.mr-quitar) svg{
+  width:20px!important;height:20px!important;flex:none!important;display:block!important;
+}
+/* Información: círculo morado como en el resto, pero del mismo tamaño que los demás */
+html body :is(.boton-wikipedia,.wiki-icon,.wiki,.info-btn):is(button,a){
+  background:linear-gradient(135deg,#9b6bff,#6a35b5)!important;border:1px solid #ffffff70!important;color:#fff!important;margin-left:8px!important;
+  box-shadow:0 4px 12px #6a35b544,inset 0 1px 0 #ffffff35!important;
+}
+/* Guardar / quitar */
+html body :is(.mr-agregar,.guardar-btn,.mr-quitar):is(button,a){
+  background:linear-gradient(135deg,#3b82f6,#1d4ed8)!important;border:1px solid #9cc2ff!important;color:#fff!important;margin-left:6px!important;
+  box-shadow:0 4px 12px #1d4ed844,inset 0 1px 0 #ffffff35!important;
+}
+html body :is(.mr-agregar,.guardar-btn):is(button,a)[data-mr-estado="si"]{background:linear-gradient(135deg,#168653,#20ad70)!important;border-color:#69e5a4!important}
+html body :is(.mr-quitar):is(button,a){background:linear-gradient(135deg,#59627a,#3b4256)!important;border-color:#b9c0d4!important}
+html body .mr-agregar:not(.mr-visible),html body .guardar-btn:not(.mr-visible){display:none!important}
+html body[data-wikipedia-off="1"] :is(.boton-wikipedia,.wiki-icon,.wiki,.info-btn){display:none!important}
+/* Sitios donde los iconos van en rejilla: cabe uno más ancho */
+html body .acciones-radar,html body .acciones-cancion{grid-template-columns:42px 42px 42px!important;min-width:132px!important}
+html body .acciones-pista{grid-template-columns:82px 42px 42px 42px 42px!important;grid-template-rows:42px!important;min-width:300px!important}
+html body .mr-cancion-guardada .mr-acciones{gap:7px!important}
+/* Insignia «ya la tienes» */
+.mr-ya-tengo{display:inline-flex;align-items:center;gap:5px;margin-left:10px;padding:3px 10px 3px 8px;border-radius:999px;background:#0f3a28;border:1px solid #3ddc84;color:#8bf5b9;font-size:12px;font-weight:800;vertical-align:middle;white-space:nowrap}
+.mr-ya-tengo svg{flex:none;color:#3ddc84}
+</style>
+<script id="mr-iconos-unificados-js">
+(function(){
+ const S=(p)=>'<svg data-mr="1" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';
+ const ICONOS={
+  play:S('<path d="M8 5.5v13l10-6.5z" fill="currentColor" stroke="none"/>'),
+  download:S('<path d="M12 3.5v11M7 10l5 5 5-5M4.5 18v2.5h15V18"/>'),
+  youtube:S('<rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.3v5.4l4.8-2.7z" fill="currentColor" stroke="none"/>'),
+  info:S('<circle cx="12" cy="12" r="9"/><path d="M12 11v5.2"/><circle cx="12" cy="7.9" r="1.1" fill="currentColor" stroke="none"/>'),
+  plus:S('<path d="M12 5v14M5 12h14"/>'),
+  check:S('<path d="M5 12.5l4.5 4.5L19 7.5"/>'),
+  minus:S('<path d="M5 12h14"/>')
+ };
+ const SEL='.boton-30,.boton-muestra,.b30,.mr-b30,.boton-mediahuman,.boton-descarga-radar,.descarga,.mr-descarga,.boton-youtube,.youtube,.mr-youtube,.boton-wikipedia,.wiki-icon,.wiki,.info-btn,.mr-agregar,.guardar-btn,.mr-quitar';
+ const glifo=b=>(b.textContent||'').replace(/\s+/g,' ').trim();
+ const nuestro=b=>!!b.querySelector('svg[data-mr]');
+ function iconizar(b){
+  const c=b.classList,g=glifo(b);
+  if(c.contains('boton-wikipedia')||c.contains('wiki-icon')||c.contains('wiki')||c.contains('info-btn')){
+   if(!nuestro(b)&&['I','G','i','ℹ','ⓘ'].includes(g))b.innerHTML=ICONOS.info;return;}
+  if(c.contains('mr-agregar')||c.contains('guardar-btn')){
+   if(g==='+'){b.innerHTML=ICONOS.plus;b.dataset.mrEstado='no';}
+   else if(g==='✓'){b.innerHTML=ICONOS.check;b.dataset.mrEstado='si';}
+   return;}
+  if(c.contains('mr-quitar')){if(g==='−'||g==='-')b.innerHTML=ICONOS.minus;return;}
+  if(c.contains('boton-youtube')||c.contains('youtube')||c.contains('mr-youtube')){
+   if(!nuestro(b)&&(g===''||g==='Y'||g==='▶'))b.innerHTML=ICONOS.youtube;return;}
+  if(c.contains('boton-mediahuman')||c.contains('descarga')||c.contains('mr-descarga')||c.contains('boton-descarga-radar')){
+   if(!nuestro(b)&&(g===''||g==='⬇'||g==='↓'||g==='⇩'))b.innerHTML=ICONOS.download;return;}
+  if(c.contains('boton-30')||c.contains('boton-muestra')||c.contains('b30')||c.contains('mr-b30')){
+   if(!nuestro(b)&&(g===''||/^(▶\s*)?30(\s*s)?$/i.test(g)))b.innerHTML=ICONOS.play+'<span>30 s</span>';return;}
+ }
+ let pendiente=false;
+ function pasar(){pendiente=false;document.querySelectorAll(SEL).forEach(iconizar);}
+ new MutationObserver(function(){if(!pendiente){pendiente=true;requestAnimationFrame(pasar);}}).observe(document.documentElement,{childList:true,subtree:true});
+ pasar();
+})();
+</script>
+"""
 
 
 BOTON_HTML = ''
@@ -828,6 +911,7 @@ function mostrarInfoWikipedia(contenedor,info,tipo){
 }
 let audioActivo=null;
 let temporizador=null;
+function insigniaYaTengo(){const s=nodo('span','mr-ya-tengo');s.title='Esta canción ya está en Mi música';s.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ya la tienes</span>';return s;}
 function nodo(tag,clase,texto){const n=document.createElement(tag);if(clase)n.className=clase;if(texto!==undefined)n.textContent=texto;return n;}
 function mostrarArtistas(){
  const q=buscar.value.trim().toLocaleLowerCase('es');
@@ -859,7 +943,7 @@ function mostrarArtistas(){
   boton.addEventListener('click',()=>cargarTop(nombre,caja,boton,'populares'));
   const botonRecientes=nodo('button','boton-recientes','🆕 Éxitos recientes (5)');
   botonRecientes.addEventListener('click',()=>cargarTop(nombre,caja,botonRecientes,'recientes'));
-  const botonPublicaciones=nodo('button','boton-publicaciones','💿 Últimas publicaciones');
+  const botonPublicaciones=nodo('button','boton-publicaciones','💿 Últimas publicaciones (singles)');
   botonPublicaciones.addEventListener('click',()=>cargarPublicacionesLoMejor(nombre,caja,botonPublicaciones));
   botonesRanking.append(boton,botonRecientes,botonPublicaciones);
   cabecera.appendChild(botonesRanking);
@@ -880,17 +964,17 @@ function mostrarArtistas(){
 async function cargarPublicacionesLoMejor(nombre,caja,boton){
  const zona=caja.querySelector('.canciones-publicaciones');
  if(!zona)return;
- if(!zona.hidden&&zona.dataset.cargado==='1'){zona.hidden=true;boton.textContent='💿 Últimas publicaciones';return;}
+ if(!zona.hidden&&zona.dataset.cargado==='1'){zona.hidden=true;boton.textContent='💿 Últimas publicaciones (singles)';return;}
  zona.hidden=false;
- if(zona.dataset.cargado==='1'){boton.textContent='Ocultar últimas publicaciones';return;}
+ if(zona.dataset.cargado==='1'){boton.textContent='Ocultar últimos singles';return;}
  zona.replaceChildren();boton.disabled=true;boton.textContent='Consultando publicaciones…';
  try{
-  const r=await fetch('/api/publicaciones/'+encodeURIComponent(nombre),{cache:'no-store'});
+  const r=await fetch('/api/publicaciones/'+encodeURIComponent(nombre)+'?solo_singles=1',{cache:'no-store'});
   const datos=await r.json();
   if(!r.ok)throw new Error(datos.error||'No se han podido cargar las publicaciones.');
-  zona.appendChild(nodo('h3','','Últimas publicaciones de '+(datos.artista||nombre)+' ('+(datos.total||0)+' registradas)'));
+  zona.appendChild(nodo('h3','','Últimos singles de '+(datos.artista||nombre)+' ('+(datos.total||0)+' registrados)'));
   const publicaciones=Array.isArray(datos.publicaciones)?datos.publicaciones:[];
-  if(!publicaciones.length)zona.appendChild(nodo('p','mensaje-pista','No hay publicaciones registradas para este artista.'));
+  if(!publicaciones.length)zona.appendChild(nodo('p','mensaje-pista','No hay singles registrados para este artista.'));
   for(const p of publicaciones){
    const item=nodo('div','publicacion-mejor');
    const fila=nodo('div','pista');
@@ -909,7 +993,7 @@ async function cargarPublicacionesLoMejor(nombre,caja,boton){
      else{const aviso=nodo('div','info-wikipedia',resumen.mensaje||'No se ha encontrado información sobre esta publicación.');fila.insertAdjacentElement('afterend',aviso);}
     }finally{info.disabled=false;info.textContent='I';}
    });
-   tituloLinea.appendChild(info);detalle.appendChild(tituloLinea);
+   tituloLinea.appendChild(info);if(p.ya_tengo)tituloLinea.appendChild(insigniaYaTengo());detalle.appendChild(tituloLinea);
    const meta=[p.fecha,p.tipo].filter(Boolean).join(' · ');
    if(meta)detalle.appendChild(nodo('div','pista-meta',meta+' · Publicación de '+nombre));
    const acciones=nodo('div','acciones-pista');
@@ -932,10 +1016,10 @@ async function cargarPublicacionesLoMejor(nombre,caja,boton){
    youtube.addEventListener('click',()=>buscarYouTube({titulo:p.titulo||'',artista:nombre},'youtube'));
    acciones.append(muestra,mediahuman,youtube);fila.append(detalle,acciones);item.appendChild(fila);zona.appendChild(item);
   }
-  zona.dataset.cargado='1';boton.textContent='Ocultar últimas publicaciones';
+  zona.dataset.cargado='1';boton.textContent='Ocultar últimos singles';
  }catch(e){
   zona.appendChild(nodo('p','mensaje-pista',e.message||'No se han podido cargar las publicaciones.'));
-  boton.textContent='Reintentar últimas publicaciones';
+  boton.textContent='Reintentar últimos singles';
  }finally{boton.disabled=false;}
 }
 async function cargarTop(nombre,caja,boton,tipo='populares'){
@@ -978,7 +1062,7 @@ async function cargarTop(nombre,caja,boton,tipo='populares'){
      else fila.insertAdjacentElement('afterend',nodo('div','info-wikipedia',info.mensaje||'No se ha encontrado información sobre esta canción.'));
     }finally{wiki.disabled=false;wiki.textContent='I';}
    });
-   tituloLinea.appendChild(wiki);
+   tituloLinea.appendChild(wiki);if(pista.ya_tengo)tituloLinea.appendChild(insigniaYaTengo());
    const descripcion=recientes?'Lanzamiento reciente (Deezer + Apple/iTunes)':'Popularidad según '+(d.fuente||'Deezer');
    detalle.appendChild(nodo('div','pista-meta',(pista.fecha||pista.anio||'Fecha no disponible')+' · '+pista.artista+' · '+descripcion+(pista.album?' · '+pista.album:'')));
    const acciones=nodo('div','acciones-pista');
@@ -1401,6 +1485,9 @@ def api_lo_mejor():
         for cancion in canciones:
             for clave_interna in ("_pos_deezer", "_pos_lastfm", "_puntuacion_fuentes"):
                 cancion.pop(clave_interna, None)
+            cancion["ya_tengo"] = ya_en_coleccion(
+                cancion.get("titulo"), nombre_solicitado, nombre_deezer, cancion.get("artista")
+            )
         fuente_resultado = (
             "Deezer + Last.fm (ranking combinado) + Apple/iTunes (fechas cuando están disponibles)"
             if lastfm_usado else
@@ -2302,6 +2389,60 @@ def normalizar_texto(valor):
     ).split())
 
 
+_cache_coleccion = {"mtime": None, "indice": {}}
+
+
+def _clave_titulo_coleccion(titulo):
+    """Título normalizado y sin lo que va entre paréntesis/corchetes ni tras « - » (remaster, version...)."""
+    texto = str(titulo or "")
+    texto = re.sub(r"\s*[\(\[][^\)\]]*[\)\]]", " ", texto)
+    texto = re.split(r"\s+-\s+", texto)[0]
+    return normalizar_texto(texto)
+
+
+def _indice_coleccion():
+    """Índice {título normalizado: {artistas normalizados}} de mi_musica.json (se recarga si el archivo cambia)."""
+    ruta = BASE / "mi_musica.json"
+    try:
+        mtime = ruta.stat().st_mtime
+    except OSError:
+        return {}
+    if _cache_coleccion["mtime"] == mtime:
+        return _cache_coleccion["indice"]
+    indice = {}
+    try:
+        with ruta.open("r", encoding="utf-8") as archivo:
+            biblioteca = json.load(archivo)
+    except (OSError, json.JSONDecodeError):
+        return {}
+    for pista in biblioteca if isinstance(biblioteca, list) else []:
+        artista = normalizar_texto(pista.get("artista"))
+        if not artista:
+            continue
+        for clave in {normalizar_texto(pista.get("titulo")), _clave_titulo_coleccion(pista.get("titulo"))}:
+            if clave:
+                indice.setdefault(clave, set()).add(artista)
+    _cache_coleccion["mtime"] = mtime
+    _cache_coleccion["indice"] = indice
+    return indice
+
+
+def ya_en_coleccion(titulo, *artistas):
+    """True si la canción (título + alguno de los artistas dados) ya está en Mi música."""
+    indice = _indice_coleccion()
+    if not indice:
+        return False
+    objetivos = [a for a in (normalizar_texto(x) for x in artistas) if a]
+    if not objetivos:
+        return False
+    for clave in {normalizar_texto(titulo), _clave_titulo_coleccion(titulo)}:
+        for artista_local in indice.get(clave, ()):
+            for objetivo in objetivos:
+                if artista_local == objetivo or objetivo in artista_local or artista_local in objetivo:
+                    return True
+    return False
+
+
 @app.get("/api/audius/buscar")
 def buscar_audio_audius():
     titulo = (request.args.get("titulo") or "").strip()
@@ -2719,6 +2860,9 @@ def publicaciones(nombre):
         return jsonify({"error": "Artista todavía no consultado"}), 404
 
     lista = list(artista.get("publicaciones", {}).values())
+    solo_singles = (request.args.get("solo_singles") or "").strip().lower() in ("1", "true", "si", "sí")
+    if solo_singles:
+        lista = [p for p in lista if str(p.get("tipo") or "").strip().casefold() == "single"]
 
     # MusicBrainz puede devolver fechas con precisión distinta: YYYY, YYYY-MM
     # o YYYY-MM-DD. Comparamos sus componentes numéricos para que el orden
@@ -2733,10 +2877,17 @@ def publicaciones(nombre):
 
     lista.sort(key=clave_fecha_publicacion, reverse=True)
 
+    nombre_artista = artista.get("nombre_musicbrainz", nombre)
+    recorte = [dict(p) for p in lista[:20]]
+    for publicacion in recorte:
+        publicacion["ya_tengo"] = ya_en_coleccion(
+            publicacion.get("titulo"), nombre, nombre_artista, publicacion.get("artista")
+        )
     return jsonify({
-        "artista": artista.get("nombre_musicbrainz", nombre),
+        "artista": nombre_artista,
         "total": len(lista),
-        "publicaciones": lista[:20]
+        "solo_singles": solo_singles,
+        "publicaciones": recorte
     })
 
 
