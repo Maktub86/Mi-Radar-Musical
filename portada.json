@@ -32,6 +32,14 @@
     "tipo": "Single"
   },
   {
+    "id": "05cde05a-a0ee-4aa8-b2f7-359a12e7fadb",
+    "imagen": "https://coverartarchive.org/release-group/05cde05a-a0ee-4aa8-b2f7-359a12e7fadb/front-250",
+    "titulo": "The Rolling Thunder Revue: The 1976 Live Recordings",
+    "fecha": "2026-11-06",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
     "id": "a2bc6b54-cedc-47dd-82f1-32d71c4f0e5a",
     "imagen": "https://coverartarchive.org/release-group/a2bc6b54-cedc-47dd-82f1-32d71c4f0e5a/front-250",
     "titulo": "The Rolling Thunder Revue: Fort Worth Texas 1976",
@@ -96,8 +104,8 @@
     "tipo": "Album"
   },
   {
-    "id": "apple-6801587846",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/94/0c/8a/940c8ac1-82b5-368d-4585-6a3149d99643/196874120323.jpg/100x100bb.jpg",
+    "id": "f9f7e17e-f597-4a92-bb67-33476dc88764",
+    "imagen": "https://coverartarchive.org/release-group/f9f7e17e-f597-4a92-bb67-33476dc88764/front-250",
     "titulo": "The Faith Tour",
     "fecha": "2026-11-06",
     "artista": "George Michael",
@@ -1072,14 +1080,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6807782139",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/56/49/13/564913f3-2173-f56e-aa57-9474f5455490/196874626436.jpg/100x100bb.jpg",
-    "titulo": "belonia",
-    "fecha": "2026-10-16",
-    "artista": "Mafalda Cardenal",
-    "tipo": "Album"
-  },
-  {
     "id": "524c9f06-1907-40ec-bc3d-5e38c62948e5",
     "imagen": "https://coverartarchive.org/release-group/524c9f06-1907-40ec-bc3d-5e38c62948e5/front-250",
     "titulo": "Tengo Ganas 2.0",
@@ -1249,7 +1249,7 @@
   },
   {
     "id": "apple-6819861177",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2f/be/ab/2fbeabb6-c1bd-8685-5cff-8ba36612704a/792755030721_Cover.jpg/100x100bb.jpg",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b9/06/34/b906342b-b2c1-cb47-c94c-a3ba2997d1ac/792755030721_Cover.jpg/100x100bb.jpg",
     "titulo": "Reflections: Heartbreak and Harmony - EP",
     "fecha": "2026-10-12",
     "artista": "Boyz II Men",
@@ -4152,6 +4152,14 @@
     "tipo": "Single"
   },
   {
+    "id": "apple-6798354210",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0c/b4/a9/0cb4a955-2e6f-7a20-9ec9-23cd00b15cd8/885000145308.png/100x100bb.jpg",
+    "titulo": "Seasons - Single",
+    "fecha": "2026-07-25",
+    "artista": "Anastacia",
+    "tipo": "Single"
+  },
+  {
     "id": "81dd94c3-eaf0-4603-8c01-8fa3e42e4ed9",
     "imagen": "https://coverartarchive.org/release-group/81dd94c3-eaf0-4603-8c01-8fa3e42e4ed9/front-250",
     "titulo": "Feel It (Oh My Days)",
@@ -4918,14 +4926,6 @@
     "fecha": "2026-07-07",
     "artista": "U2",
     "tipo": "Single"
-  },
-  {
-    "id": "apple-6783466119",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a9/31/0a/a9310ad3-6c94-ffe5-f8de-d84b2341ba78/881453026140_cover.jpg/100x100bb.jpg",
-    "titulo": "Land of Light",
-    "fecha": "2026-07-04",
-    "artista": "Anastacia",
-    "tipo": "Album"
   },
   {
     "id": "3c739ab6-095d-40a9-9ec3-67a7f1e565b8",
@@ -5781,14 +5781,6 @@
     "titulo": "Carta Blanca - Single",
     "fecha": "2026-06-19",
     "artista": "Taburete",
-    "tipo": "Single"
-  },
-  {
-    "id": "b0eb1029-e836-405e-9e41-110de1a49ce2",
-    "imagen": "https://coverartarchive.org/release-group/b0eb1029-e836-405e-9e41-110de1a49ce2/front-250",
-    "titulo": "Sad Girls (Remix)",
-    "fecha": "2026-06-19",
-    "artista": "Bebe Rexha",
     "tipo": "Single"
   },
   {
@@ -8392,17 +8384,17 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1896059458",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/60/48/3a/60483a07-e533-99bc-162e-ba388019026e/196874319536.jpg/100x100bb.jpg",
-    "titulo": "estrella fugaz (bundle) - Single",
+    "id": "apple-1896062328",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d9/a2/f0/d9a2f04d-56ed-ca3c-8ef3-e07c04bcdcf9/196874319451.jpg/100x100bb.jpg",
+    "titulo": "quédate (bundle) - Single",
     "fecha": "2026-05-05",
     "artista": "Beéle",
     "tipo": "Single"
   },
   {
-    "id": "apple-1896062328",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d9/a2/f0/d9a2f04d-56ed-ca3c-8ef3-e07c04bcdcf9/196874319451.jpg/100x100bb.jpg",
-    "titulo": "quédate (bundle) - Single",
+    "id": "apple-1896059458",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/60/48/3a/60483a07-e533-99bc-162e-ba388019026e/196874319536.jpg/100x100bb.jpg",
+    "titulo": "estrella fugaz (bundle) - Single",
     "fecha": "2026-05-05",
     "artista": "Beéle",
     "tipo": "Single"
@@ -8432,17 +8424,17 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1896059532",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/36/81/39/368139d5-2edb-4d3e-38fd-5e24131fa944/196874319567.jpg/100x100bb.jpg",
-    "titulo": "sobelove (bundle) - Single",
+    "id": "apple-1896059423",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ab/c3/a8/abc3a86d-2159-53ca-2205-217576c4e813/196874319604.jpg/100x100bb.jpg",
+    "titulo": "mad koknut (bundle) - Single",
     "fecha": "2026-05-05",
     "artista": "Beéle",
     "tipo": "Single"
   },
   {
-    "id": "apple-1896059423",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ab/c3/a8/abc3a86d-2159-53ca-2205-217576c4e813/196874319604.jpg/100x100bb.jpg",
-    "titulo": "mad koknut (bundle) - Single",
+    "id": "apple-1896059532",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/36/81/39/368139d5-2edb-4d3e-38fd-5e24131fa944/196874319567.jpg/100x100bb.jpg",
+    "titulo": "sobelove (bundle) - Single",
     "fecha": "2026-05-05",
     "artista": "Beéle",
     "tipo": "Single"
@@ -8456,17 +8448,17 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1896059616",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/27/bc/1c/27bc1c16-01f7-91c7-c957-00ea4de7da3b/196874319659.jpg/100x100bb.jpg",
-    "titulo": "una curita por favor (bundle) - Single",
+    "id": "apple-1896059642",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a4/7c/cc/a47ccc36-ea90-43ac-bf86-f26527199617/196874318393.jpg/100x100bb.jpg",
+    "titulo": "top diesel (bundle) - Single",
     "fecha": "2026-05-05",
     "artista": "Beéle",
     "tipo": "Single"
   },
   {
-    "id": "apple-1896059642",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a4/7c/cc/a47ccc36-ea90-43ac-bf86-f26527199617/196874318393.jpg/100x100bb.jpg",
-    "titulo": "top diesel (bundle) - Single",
+    "id": "apple-1896059616",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/27/bc/1c/27bc1c16-01f7-91c7-c957-00ea4de7da3b/196874319659.jpg/100x100bb.jpg",
+    "titulo": "una curita por favor (bundle) - Single",
     "fecha": "2026-05-05",
     "artista": "Beéle",
     "tipo": "Single"
@@ -10811,6 +10803,14 @@
     "id": "apple-6781081338",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ed/0c/89/ed0c89b1-bb54-7933-f93a-4ba8d625fc10/602478438561.jpg/100x100bb.jpg",
     "titulo": "Queen II (2026 Mix)",
+    "fecha": "2026-03-27",
+    "artista": "Queen",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6799160177",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f7/a5/65/f7a56513-1ef7-8703-b39d-d638a8745cb0/0602478438615.jpg/100x100bb.jpg",
+    "titulo": "Queen II (Collector's Edition)",
     "fecha": "2026-03-27",
     "artista": "Queen",
     "tipo": "Album"
@@ -14760,17 +14760,17 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1869157390",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/52/4f/57/524f5727-564d-1a73-05a5-e21ac405ee22/075679591319.jpg/100x100bb.jpg",
-    "titulo": "I Just Might (Instrumental) - Single",
+    "id": "apple-1869157136",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1c/14/0e/1c140ef6-b94a-1207-77d8-f0c94075bd8e/075679591296.jpg/100x100bb.jpg",
+    "titulo": "I Just Might - Single",
     "fecha": "2026-01-14",
     "artista": "Bruno Mars",
     "tipo": "Single"
   },
   {
-    "id": "apple-1869157136",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1c/14/0e/1c140ef6-b94a-1207-77d8-f0c94075bd8e/075679591296.jpg/100x100bb.jpg",
-    "titulo": "I Just Might - Single",
+    "id": "apple-1869157390",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/52/4f/57/524f5727-564d-1a73-05a5-e21ac405ee22/075679591319.jpg/100x100bb.jpg",
+    "titulo": "I Just Might (Instrumental) - Single",
     "fecha": "2026-01-14",
     "artista": "Bruno Mars",
     "tipo": "Single"
@@ -15248,6 +15248,14 @@
     "tipo": "Album"
   },
   {
+    "id": "3fb71000-d91e-484d-b1e0-f3e96a302be7",
+    "imagen": "https://coverartarchive.org/release-group/3fb71000-d91e-484d-b1e0-f3e96a302be7/front-250",
+    "titulo": "Belonia",
+    "fecha": "2026",
+    "artista": "Mafalda Cardenal",
+    "tipo": "Album"
+  },
+  {
     "id": "73d2c8f2-e2b4-4ed8-baed-e023d1c654c3",
     "imagen": "https://coverartarchive.org/release-group/73d2c8f2-e2b4-4ed8-baed-e023d1c654c3/front-250",
     "titulo": "Zurich, Switzerland May 27, 2026",
@@ -15285,14 +15293,6 @@
     "titulo": "Todos estamos bailando la misma canción",
     "fecha": "2025-12-31",
     "artista": "La Oreja de Van Gogh",
-    "tipo": "Single"
-  },
-  {
-    "id": "17028922-bbdd-46bc-b354-83b6dc9a30a0",
-    "imagen": "https://coverartarchive.org/release-group/17028922-bbdd-46bc-b354-83b6dc9a30a0/front-250",
-    "titulo": "Silhouettes (Gemi Edit)",
-    "fecha": "2025-12-29",
-    "artista": "Avicii",
     "tipo": "Single"
   },
   {
@@ -25258,7 +25258,7 @@
   {
     "id": "b8e3e502-5f2a-4555-9cb1-e94be66b516b",
     "imagen": "https://coverartarchive.org/release-group/b8e3e502-5f2a-4555-9cb1-e94be66b516b/front-250",
-    "titulo": "Beautiful People (Justus Remix)",
+    "titulo": "Beautiful People (Justus remix)",
     "fecha": "2025-03-28",
     "artista": "David Guetta",
     "tipo": "Single"
@@ -46384,14 +46384,6 @@
     "tipo": "Single"
   },
   {
-    "id": "115804a6-cc22-4fb6-9701-b0f19dedfc3a",
-    "imagen": "https://coverartarchive.org/release-group/115804a6-cc22-4fb6-9701-b0f19dedfc3a/front-250",
-    "titulo": "Drinkin’ (extended)",
-    "fecha": "2023-08-25",
-    "artista": "Joel Corry",
-    "tipo": "Single"
-  },
-  {
     "id": "8a5364b2-f3cb-4349-8c27-d6191c6efe31",
     "imagen": "https://coverartarchive.org/release-group/8a5364b2-f3cb-4349-8c27-d6191c6efe31/front-250",
     "titulo": "Drinkin’",
@@ -55568,6 +55560,14 @@
     "tipo": "Album"
   },
   {
+    "id": "de06cfc1-f365-4f1b-9f0f-a7913255aa12",
+    "imagen": "https://coverartarchive.org/release-group/de06cfc1-f365-4f1b-9f0f-a7913255aa12/front-250",
+    "titulo": "New Orleans 1976 Soundboard",
+    "fecha": "2023",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
     "id": "aa52ad93-f8ed-4a19-9baf-f3e4c53cc063",
     "imagen": "https://coverartarchive.org/release-group/aa52ad93-f8ed-4a19-9baf-f3e4c53cc063/front-250",
     "titulo": "What You Won't Do For Love",
@@ -60051,14 +60051,6 @@
     "id": "0031b45b-fa36-41e7-8fdc-7a4f929cdf34",
     "imagen": "https://coverartarchive.org/release-group/0031b45b-fa36-41e7-8fdc-7a4f929cdf34/front-250",
     "titulo": "DON'T YOU WORRY (Farruko remix)",
-    "fecha": "2022-09-02",
-    "artista": "Black Eyed Peas",
-    "tipo": "Single"
-  },
-  {
-    "id": "14913586-f426-4700-977f-1236eb1d0e77",
-    "imagen": "https://coverartarchive.org/release-group/14913586-f426-4700-977f-1236eb1d0e77/front-250",
-    "titulo": "DON'T YOU WORRY (Farruko Remix) (with Farruko, David Guetta & Shakira)",
     "fecha": "2022-09-02",
     "artista": "Black Eyed Peas",
     "tipo": "Single"
@@ -108600,17 +108592,17 @@
     "tipo": "Single"
   },
   {
-    "id": "aeed5491-c2a9-4f78-9a10-1f7799e1d62e",
-    "imagen": "https://coverartarchive.org/release-group/aeed5491-c2a9-4f78-9a10-1f7799e1d62e/front-250",
-    "titulo": "Stay (Don’t Go Away) (David Guetta & R3HAB remix)",
+    "id": "85686a6d-8572-49a6-a498-f70e3d3125bc",
+    "imagen": "https://coverartarchive.org/release-group/85686a6d-8572-49a6-a498-f70e3d3125bc/front-250",
+    "titulo": "Stay (Don’t Go Away) (Nicky Romero remix)",
     "fecha": "2019-06-14",
     "artista": "David Guetta",
     "tipo": "Single"
   },
   {
-    "id": "85686a6d-8572-49a6-a498-f70e3d3125bc",
-    "imagen": "https://coverartarchive.org/release-group/85686a6d-8572-49a6-a498-f70e3d3125bc/front-250",
-    "titulo": "Stay (Don’t Go Away) (Nicky Romero remix)",
+    "id": "aeed5491-c2a9-4f78-9a10-1f7799e1d62e",
+    "imagen": "https://coverartarchive.org/release-group/aeed5491-c2a9-4f78-9a10-1f7799e1d62e/front-250",
+    "titulo": "Stay (Don’t Go Away) (David Guetta & R3HAB remix)",
     "fecha": "2019-06-14",
     "artista": "David Guetta",
     "tipo": "Single"
@@ -112328,14 +112320,6 @@
     "tipo": "Single"
   },
   {
-    "id": "376ddb39-e7ef-4fe7-b52a-a44a709ec2cb",
-    "imagen": "https://coverartarchive.org/release-group/376ddb39-e7ef-4fe7-b52a-a44a709ec2cb/front-250",
-    "titulo": "Giant (with Rag'n'Bone Man) [Audien Remix]",
-    "fecha": "2019-03-01",
-    "artista": "Calvin Harris",
-    "tipo": "Single"
-  },
-  {
     "id": "ba348ca2-3d4d-4a33-a1b4-a9b85078f9c2",
     "imagen": "https://coverartarchive.org/release-group/ba348ca2-3d4d-4a33-a1b4-a9b85078f9c2/front-250",
     "titulo": "Giant (Audien remix)",
@@ -112592,14 +112576,6 @@
     "tipo": "Album"
   },
   {
-    "id": "0cd55c1d-9cc3-4f6c-a16b-3f0abc195c45",
-    "imagen": "https://coverartarchive.org/release-group/0cd55c1d-9cc3-4f6c-a16b-3f0abc195c45/front-250",
-    "titulo": "Giant (with Rag'n'Bone Man) [Purple Disco Machine Remix]",
-    "fecha": "2019-02-22",
-    "artista": "Calvin Harris",
-    "tipo": "Single"
-  },
-  {
     "id": "e86aa6d6-634a-4e37-996a-e37c5fdd5fac",
     "imagen": "https://coverartarchive.org/release-group/e86aa6d6-634a-4e37-996a-e37c5fdd5fac/front-250",
     "titulo": "Giant (Purple Disco Machine remix)",
@@ -112747,14 +112723,6 @@
     "id": "1785f0f8-2a42-4c8a-bb16-663b65d29520",
     "imagen": "https://coverartarchive.org/release-group/1785f0f8-2a42-4c8a-bb16-663b65d29520/front-250",
     "titulo": "Giant (Robin Schulz remix)",
-    "fecha": "2019-02-15",
-    "artista": "Calvin Harris",
-    "tipo": "Single"
-  },
-  {
-    "id": "4b2c33b7-7691-4ce9-8adf-c37f02f9e0d1",
-    "imagen": "https://coverartarchive.org/release-group/4b2c33b7-7691-4ce9-8adf-c37f02f9e0d1/front-250",
-    "titulo": "Giant (with Rag'n'Bone Man) [Robin Schulz Remix]",
     "fecha": "2019-02-15",
     "artista": "Calvin Harris",
     "tipo": "Single"
@@ -142024,17 +141992,17 @@
     "tipo": "Album"
   },
   {
-    "id": "93183034-572c-434c-836a-06c0a5597340",
-    "imagen": "https://coverartarchive.org/release-group/93183034-572c-434c-836a-06c0a5597340/front-250",
-    "titulo": "Ladies and Gentlemen... The Rolling Stones",
+    "id": "9e7c8063-baa8-4e6b-8774-185467047ab9",
+    "imagen": "https://coverartarchive.org/release-group/9e7c8063-baa8-4e6b-8774-185467047ab9/front-250",
+    "titulo": "The Platinum Collection",
     "fecha": "2017",
     "artista": "The Rolling Stones",
     "tipo": "Album"
   },
   {
-    "id": "9e7c8063-baa8-4e6b-8774-185467047ab9",
-    "imagen": "https://coverartarchive.org/release-group/9e7c8063-baa8-4e6b-8774-185467047ab9/front-250",
-    "titulo": "The Platinum Collection",
+    "id": "93183034-572c-434c-836a-06c0a5597340",
+    "imagen": "https://coverartarchive.org/release-group/93183034-572c-434c-836a-06c0a5597340/front-250",
+    "titulo": "Ladies and Gentlemen... The Rolling Stones",
     "fecha": "2017",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -161528,8 +161496,8 @@
     "tipo": "Single"
   },
   {
-    "id": "e15d2df2-262e-4436-866c-59a7d4af0d28",
-    "imagen": "https://coverartarchive.org/release-group/e15d2df2-262e-4436-866c-59a7d4af0d28/front-250",
+    "id": "af77a98a-cea8-4a52-b66c-828a3e6c1ce0",
+    "imagen": "https://coverartarchive.org/release-group/af77a98a-cea8-4a52-b66c-828a3e6c1ce0/front-250",
     "titulo": "Where Are Ü Now",
     "fecha": "2015-02-27",
     "artista": "Justin Bieber",
@@ -172317,6 +172285,14 @@
     "titulo": "Tendre rêve",
     "fecha": "2014-01-01",
     "artista": "Alizée",
+    "tipo": "Single"
+  },
+  {
+    "id": "bc4ff544-90c3-4dea-a6aa-ba3d4d1604ad",
+    "imagen": "https://coverartarchive.org/release-group/bc4ff544-90c3-4dea-a6aa-ba3d4d1604ad/front-250",
+    "titulo": "Who Do You Love?",
+    "fecha": "2014-01-01",
+    "artista": "Drake",
     "tipo": "Single"
   },
   {
@@ -186512,14 +186488,6 @@
     "tipo": "Single"
   },
   {
-    "id": "eedd66e9-320a-4520-bd7d-8401176f2830",
-    "imagen": "https://coverartarchive.org/release-group/eedd66e9-320a-4520-bd7d-8401176f2830/front-250",
-    "titulo": "Just One Last Time (Hard Rock Sofa Big Room mix]",
-    "fecha": "2012-11-05",
-    "artista": "David Guetta",
-    "tipo": "Single"
-  },
-  {
     "id": "c4ad68e3-4540-4fdd-8dfe-4e1f9a0cc4a0",
     "imagen": "https://coverartarchive.org/release-group/c4ad68e3-4540-4fdd-8dfe-4e1f9a0cc4a0/front-250",
     "titulo": "Serrat & Sabina en el Luna Park",
@@ -200232,6 +200200,14 @@
     "tipo": "Single"
   },
   {
+    "id": "2c71d180-f9fb-4070-974c-e1a700560ea1",
+    "imagen": "https://coverartarchive.org/release-group/2c71d180-f9fb-4070-974c-e1a700560ea1/front-250",
+    "titulo": "Out on the Road",
+    "fecha": "2011-05-26",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
     "id": "048b5223-b0e8-4334-b860-cb90415eb003",
     "imagen": "https://coverartarchive.org/release-group/048b5223-b0e8-4334-b860-cb90415eb003/front-250",
     "titulo": "Chicago XXXIV: Live in ’75",
@@ -202848,17 +202824,17 @@
     "tipo": "Album"
   },
   {
-    "id": "22402408-b3da-4c77-ae90-2ca5f6dfd57e",
-    "imagen": "https://coverartarchive.org/release-group/22402408-b3da-4c77-ae90-2ca5f6dfd57e/front-250",
-    "titulo": "Live at Wembley Stadium",
+    "id": "356bb224-dee9-45c8-a7a4-f75f1944c441",
+    "imagen": "https://coverartarchive.org/release-group/356bb224-dee9-45c8-a7a4-f75f1944c441/front-250",
+    "titulo": "Queen 40 Limited Edition Collector's Box Set Vol. 2",
     "fecha": "2011-01-01",
     "artista": "Queen",
     "tipo": "Album"
   },
   {
-    "id": "356bb224-dee9-45c8-a7a4-f75f1944c441",
-    "imagen": "https://coverartarchive.org/release-group/356bb224-dee9-45c8-a7a4-f75f1944c441/front-250",
-    "titulo": "Queen 40 Limited Edition Collector's Box Set Vol. 2",
+    "id": "22402408-b3da-4c77-ae90-2ca5f6dfd57e",
+    "imagen": "https://coverartarchive.org/release-group/22402408-b3da-4c77-ae90-2ca5f6dfd57e/front-250",
+    "titulo": "Live at Wembley Stadium",
     "fecha": "2011-01-01",
     "artista": "Queen",
     "tipo": "Album"
@@ -203179,6 +203155,14 @@
     "id": "aa141d70-2696-4c26-97fe-e4b8c4c4a08b",
     "imagen": "https://coverartarchive.org/release-group/aa141d70-2696-4c26-97fe-e4b8c4c4a08b/front-250",
     "titulo": "Party",
+    "fecha": "2011",
+    "artista": "Beyoncé",
+    "tipo": "Single"
+  },
+  {
+    "id": "5a080c11-3d8b-4b28-aa92-e32ae9b146d0",
+    "imagen": "https://coverartarchive.org/release-group/5a080c11-3d8b-4b28-aa92-e32ae9b146d0/front-250",
+    "titulo": "Party (Sir Classic Remix)",
     "fecha": "2011",
     "artista": "Beyoncé",
     "tipo": "Single"
@@ -203872,22 +203856,6 @@
     "tipo": "Publicación"
   },
   {
-    "id": "1f480563-02fb-4c5d-9a9a-c0e2f6c113ec",
-    "imagen": "https://coverartarchive.org/release-group/1f480563-02fb-4c5d-9a9a-c0e2f6c113ec/front-250",
-    "titulo": "Sinatra's Swingin' Session!!! + Come Swing With Me",
-    "fecha": "2011",
-    "artista": "Frank Sinatra",
-    "tipo": "Publicación"
-  },
-  {
-    "id": "329bc4f8-67b9-49e5-b261-21eaeb7bd967",
-    "imagen": "https://coverartarchive.org/release-group/329bc4f8-67b9-49e5-b261-21eaeb7bd967/front-250",
-    "titulo": "Love Songs & More",
-    "fecha": "2011",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "426c8e77-8f9a-4899-84cd-9d4fb1349072",
     "imagen": "https://coverartarchive.org/release-group/426c8e77-8f9a-4899-84cd-9d4fb1349072/front-250",
     "titulo": "Frank Sinatra Christmas Songs",
@@ -203899,6 +203867,22 @@
     "id": "47196a60-0bd6-49cb-8425-99bf203ed840",
     "imagen": "https://coverartarchive.org/release-group/47196a60-0bd6-49cb-8425-99bf203ed840/front-250",
     "titulo": "Christmas Treasures",
+    "fecha": "2011",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "1f480563-02fb-4c5d-9a9a-c0e2f6c113ec",
+    "imagen": "https://coverartarchive.org/release-group/1f480563-02fb-4c5d-9a9a-c0e2f6c113ec/front-250",
+    "titulo": "Sinatra's Swingin' Session!!! + Come Swing With Me",
+    "fecha": "2011",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "329bc4f8-67b9-49e5-b261-21eaeb7bd967",
+    "imagen": "https://coverartarchive.org/release-group/329bc4f8-67b9-49e5-b261-21eaeb7bd967/front-250",
+    "titulo": "Love Songs & More",
     "fecha": "2011",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -211144,8 +211128,8 @@
     "tipo": "Album"
   },
   {
-    "id": "33ee9475-53dc-4a24-ae48-44b7c4a41e23",
-    "imagen": "https://coverartarchive.org/release-group/33ee9475-53dc-4a24-ae48-44b7c4a41e23/front-250",
+    "id": "e6bc18b1-e970-4b43-b706-7c3d5e4bc7e5",
+    "imagen": "https://coverartarchive.org/release-group/e6bc18b1-e970-4b43-b706-7c3d5e4bc7e5/front-250",
     "titulo": "Eenie Meenie",
     "fecha": "2010-03-22",
     "artista": "Sean Kingston",
@@ -211158,6 +211142,14 @@
     "fecha": "2010-03-22",
     "artista": "The Cranberries",
     "tipo": "Album"
+  },
+  {
+    "id": "e6bc18b1-e970-4b43-b706-7c3d5e4bc7e5",
+    "imagen": "https://coverartarchive.org/release-group/e6bc18b1-e970-4b43-b706-7c3d5e4bc7e5/front-250",
+    "titulo": "Eenie Meenie",
+    "fecha": "2010-03-22",
+    "artista": "Justin Bieber",
+    "tipo": "Single"
   },
   {
     "id": "56b096dd-796a-4b30-989c-d3e32feceaa4",
@@ -213576,14 +213568,6 @@
     "tipo": "Album"
   },
   {
-    "id": "21555bcd-1e86-47c8-907a-50068984800f",
-    "imagen": "https://coverartarchive.org/release-group/21555bcd-1e86-47c8-907a-50068984800f/front-250",
-    "titulo": "High Sierra",
-    "fecha": "2010",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "6397ffc1-5674-4bdf-a5fe-4c8cfb835011",
     "imagen": "https://coverartarchive.org/release-group/6397ffc1-5674-4bdf-a5fe-4c8cfb835011/front-250",
     "titulo": "A Minnesota Moment",
@@ -213595,6 +213579,14 @@
     "id": "ea8154c5-180f-4e8e-9713-a1673dcb0f1e",
     "imagen": "https://coverartarchive.org/release-group/ea8154c5-180f-4e8e-9713-a1673dcb0f1e/front-250",
     "titulo": "As Recorded at Boston Garden ’71",
+    "fecha": "2010",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "21555bcd-1e86-47c8-907a-50068984800f",
+    "imagen": "https://coverartarchive.org/release-group/21555bcd-1e86-47c8-907a-50068984800f/front-250",
+    "titulo": "High Sierra",
     "fecha": "2010",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -214912,14 +214904,6 @@
     "tipo": "Single"
   },
   {
-    "id": "e6bc18b1-e970-4b43-b706-7c3d5e4bc7e5",
-    "imagen": "https://coverartarchive.org/release-group/e6bc18b1-e970-4b43-b706-7c3d5e4bc7e5/front-250",
-    "titulo": "Eenie Meenie",
-    "fecha": "2010",
-    "artista": "Sean Kingston",
-    "tipo": "Single"
-  },
-  {
     "id": "c1422ed3-632f-48eb-b364-a41669d843b6",
     "imagen": "https://coverartarchive.org/release-group/c1422ed3-632f-48eb-b364-a41669d843b6/front-250",
     "titulo": "Maxis y no editados",
@@ -215622,14 +215606,6 @@
     "fecha": "2010",
     "artista": "Wiz Khalifa",
     "tipo": "Album"
-  },
-  {
-    "id": "e6bc18b1-e970-4b43-b706-7c3d5e4bc7e5",
-    "imagen": "https://coverartarchive.org/release-group/e6bc18b1-e970-4b43-b706-7c3d5e4bc7e5/front-250",
-    "titulo": "Eenie Meenie",
-    "fecha": "2010",
-    "artista": "Justin Bieber",
-    "tipo": "Single"
   },
   {
     "id": "6f23c9b2-cd3c-4261-9198-1bc1f838f3cf",
@@ -220736,14 +220712,6 @@
     "tipo": "Album"
   },
   {
-    "id": "657f6b7b-3265-4ee9-8670-8eeb2ed4b0b5",
-    "imagen": "https://coverartarchive.org/release-group/657f6b7b-3265-4ee9-8670-8eeb2ed4b0b5/front-250",
-    "titulo": "I'm Not Alone (Radio Edit)",
-    "fecha": "2009-04-06",
-    "artista": "Calvin Harris",
-    "tipo": "Single"
-  },
-  {
     "id": "8385ef07-fb95-4713-a863-210e249f5558",
     "imagen": "https://coverartarchive.org/release-group/8385ef07-fb95-4713-a863-210e249f5558/front-250",
     "titulo": "Akordeón de la vida",
@@ -221501,14 +221469,6 @@
     "titulo": "Si yo fuera un chico",
     "fecha": "2009-02-13",
     "artista": "Beyoncé",
-    "tipo": "Single"
-  },
-  {
-    "id": "b5819422-ec64-4f1d-867d-5c3fbe52a24b",
-    "imagen": "https://coverartarchive.org/release-group/b5819422-ec64-4f1d-867d-5c3fbe52a24b/front-250",
-    "titulo": "Dance Wiv Me (Special Version)",
-    "fecha": "2009-02-13",
-    "artista": "Calvin Harris",
     "tipo": "Single"
   },
   {
@@ -223200,14 +223160,6 @@
     "tipo": "Album"
   },
   {
-    "id": "dec3c59c-4815-4dd8-bfac-82760d892340",
-    "imagen": "https://coverartarchive.org/release-group/dec3c59c-4815-4dd8-bfac-82760d892340/front-250",
-    "titulo": "Elvis & Friends Christmas Album",
-    "fecha": "2009",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "2f07824a-6812-4d61-82b9-56ea2284fa65",
     "imagen": "https://coverartarchive.org/release-group/2f07824a-6812-4d61-82b9-56ea2284fa65/front-250",
     "titulo": "The Best of Elvis Presley",
@@ -223259,6 +223211,14 @@
     "id": "ce9ef019-f65d-472b-a641-76afaefbaba2",
     "imagen": "https://coverartarchive.org/release-group/ce9ef019-f65d-472b-a641-76afaefbaba2/front-250",
     "titulo": "Jailhouse Rock",
+    "fecha": "2009",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "dec3c59c-4815-4dd8-bfac-82760d892340",
+    "imagen": "https://coverartarchive.org/release-group/dec3c59c-4815-4dd8-bfac-82760d892340/front-250",
+    "titulo": "Elvis & Friends Christmas Album",
     "fecha": "2009",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -229504,14 +229464,6 @@
     "tipo": "Album"
   },
   {
-    "id": "33190a65-48ca-45dc-b9a0-b8f1c5ccf913",
-    "imagen": "https://coverartarchive.org/release-group/33190a65-48ca-45dc-b9a0-b8f1c5ccf913/front-250",
-    "titulo": "Viva La Vida (Prospekt’s March Edition)",
-    "fecha": "2008-05-26",
-    "artista": "Coldplay",
-    "tipo": "Album"
-  },
-  {
     "id": "a1084754-8bb5-3ebc-bbd2-6a27d48e798a",
     "imagen": "https://coverartarchive.org/release-group/a1084754-8bb5-3ebc-bbd2-6a27d48e798a/front-250",
     "titulo": "Viva la Vida or Death and All His Friends",
@@ -233624,14 +233576,6 @@
     "tipo": "Album"
   },
   {
-    "id": "84f70849-bdd6-474f-b75b-3d4fba9eaa4b",
-    "imagen": "https://coverartarchive.org/release-group/84f70849-bdd6-474f-b75b-3d4fba9eaa4b/front-250",
-    "titulo": "Ella & Louis (and Oscar Too)",
-    "fecha": "2008",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "1ff5d513-8b58-4058-9450-2ec08768e477",
     "imagen": "https://coverartarchive.org/release-group/1ff5d513-8b58-4058-9450-2ec08768e477/front-250",
     "titulo": "Gut Bucket Blues",
@@ -233683,6 +233627,14 @@
     "id": "72d279ff-5b76-475e-91b4-6cc513935a0a",
     "imagen": "https://coverartarchive.org/release-group/72d279ff-5b76-475e-91b4-6cc513935a0a/front-250",
     "titulo": "New Orleans in Chicago",
+    "fecha": "2008",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "84f70849-bdd6-474f-b75b-3d4fba9eaa4b",
+    "imagen": "https://coverartarchive.org/release-group/84f70849-bdd6-474f-b75b-3d4fba9eaa4b/front-250",
+    "titulo": "Ella & Louis (and Oscar Too)",
     "fecha": "2008",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -242200,14 +242152,6 @@
     "tipo": "Album"
   },
   {
-    "id": "4830d330-dd65-4811-83ed-1f1c8baf73b6",
-    "imagen": "https://coverartarchive.org/release-group/4830d330-dd65-4811-83ed-1f1c8baf73b6/front-250",
-    "titulo": "Elvis Birth of a Legend",
-    "fecha": "2007",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "49928785-fc76-4447-ba43-a8a5505370d4",
     "imagen": "https://coverartarchive.org/release-group/49928785-fc76-4447-ba43-a8a5505370d4/front-250",
     "titulo": "Elvis & Friends (2007)",
@@ -242259,6 +242203,14 @@
     "id": "cd497550-ffd1-4d14-a088-783be1e91935",
     "imagen": "https://coverartarchive.org/release-group/cd497550-ffd1-4d14-a088-783be1e91935/front-250",
     "titulo": "A Legendary Performer Vol. 12",
+    "fecha": "2007",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "4830d330-dd65-4811-83ed-1f1c8baf73b6",
+    "imagen": "https://coverartarchive.org/release-group/4830d330-dd65-4811-83ed-1f1c8baf73b6/front-250",
+    "titulo": "Elvis Birth of a Legend",
     "fecha": "2007",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -242984,17 +242936,25 @@
     "tipo": "Album"
   },
   {
-    "id": "162346df-76e5-4cd7-9169-f047b61421d6",
-    "imagen": "https://coverartarchive.org/release-group/162346df-76e5-4cd7-9169-f047b61421d6/front-250",
-    "titulo": "Ella & Louis",
+    "id": "2d466e68-14d5-4bc3-aa90-fba6ceec3c3b",
+    "imagen": "https://coverartarchive.org/release-group/2d466e68-14d5-4bc3-aa90-fba6ceec3c3b/front-250",
+    "titulo": "20 Super Sucessos",
     "fecha": "2007",
     "artista": "Louis Armstrong",
     "tipo": "Album"
   },
   {
-    "id": "2d466e68-14d5-4bc3-aa90-fba6ceec3c3b",
-    "imagen": "https://coverartarchive.org/release-group/2d466e68-14d5-4bc3-aa90-fba6ceec3c3b/front-250",
-    "titulo": "20 Super Sucessos",
+    "id": "8352b244-2ab2-45d5-af7f-374456ffe0d3",
+    "imagen": "https://coverartarchive.org/release-group/8352b244-2ab2-45d5-af7f-374456ffe0d3/front-250",
+    "titulo": "100 Classic Tracks",
+    "fecha": "2007",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "162346df-76e5-4cd7-9169-f047b61421d6",
+    "imagen": "https://coverartarchive.org/release-group/162346df-76e5-4cd7-9169-f047b61421d6/front-250",
+    "titulo": "Ella & Louis",
     "fecha": "2007",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -243019,14 +242979,6 @@
     "id": "68ad4ed7-15e2-4d68-adce-a6e42d5a7922",
     "imagen": "https://coverartarchive.org/release-group/68ad4ed7-15e2-4d68-adce-a6e42d5a7922/front-250",
     "titulo": "Cheek to Cheek-Legends in Duet",
-    "fecha": "2007",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "8352b244-2ab2-45d5-af7f-374456ffe0d3",
-    "imagen": "https://coverartarchive.org/release-group/8352b244-2ab2-45d5-af7f-374456ffe0d3/front-250",
-    "titulo": "100 Classic Tracks",
     "fecha": "2007",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -258544,6 +258496,54 @@
     "tipo": "Album"
   },
   {
+    "id": "00f59645-2e3e-4b46-98de-91fbe0e2e1b8",
+    "imagen": "https://coverartarchive.org/release-group/00f59645-2e3e-4b46-98de-91fbe0e2e1b8/front-250",
+    "titulo": "American Songbook",
+    "fecha": "2005",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "24f0b894-331b-43c1-bce7-bac24f1fbb1a",
+    "imagen": "https://coverartarchive.org/release-group/24f0b894-331b-43c1-bce7-bac24f1fbb1a/front-250",
+    "titulo": "Everybody Loves Somebody",
+    "fecha": "2005",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "405464f5-a165-476e-ba63-d3441bd82992",
+    "imagen": "https://coverartarchive.org/release-group/405464f5-a165-476e-ba63-d3441bd82992/front-250",
+    "titulo": "Everybody Loves Somebody",
+    "fecha": "2005",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "531abc72-49ee-398e-91d7-096e03c34f2c",
+    "imagen": "https://coverartarchive.org/release-group/531abc72-49ee-398e-91d7-096e03c34f2c/front-250",
+    "titulo": "Frank Sinatra",
+    "fecha": "2005",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "a3f5542a-2465-4d87-9a9b-27ab485d8acd",
+    "imagen": "https://coverartarchive.org/release-group/a3f5542a-2465-4d87-9a9b-27ab485d8acd/front-250",
+    "titulo": "Embraceable You",
+    "fecha": "2005",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "af1caf57-2852-4b2b-a46d-5c416641ed7e",
+    "imagen": "https://coverartarchive.org/release-group/af1caf57-2852-4b2b-a46d-5c416641ed7e/front-250",
+    "titulo": "Christmas With Frank Sinatra",
+    "fecha": "2005",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
     "id": "bff1c585-7f36-49b3-b0cb-2920b7bc77d5",
     "imagen": "https://coverartarchive.org/release-group/bff1c585-7f36-49b3-b0cb-2920b7bc77d5/front-250",
     "titulo": "Collections",
@@ -258552,9 +258552,9 @@
     "tipo": "Album"
   },
   {
-    "id": "00f59645-2e3e-4b46-98de-91fbe0e2e1b8",
-    "imagen": "https://coverartarchive.org/release-group/00f59645-2e3e-4b46-98de-91fbe0e2e1b8/front-250",
-    "titulo": "American Songbook",
+    "id": "df49867d-239e-45ab-9a50-2ad75ec1c56c",
+    "imagen": "https://coverartarchive.org/release-group/df49867d-239e-45ab-9a50-2ad75ec1c56c/front-250",
+    "titulo": "Fly Me to the Moon",
     "fecha": "2005",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -258584,33 +258584,9 @@
     "tipo": "Album"
   },
   {
-    "id": "24f0b894-331b-43c1-bce7-bac24f1fbb1a",
-    "imagen": "https://coverartarchive.org/release-group/24f0b894-331b-43c1-bce7-bac24f1fbb1a/front-250",
-    "titulo": "Everybody Loves Somebody",
-    "fecha": "2005",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "405464f5-a165-476e-ba63-d3441bd82992",
-    "imagen": "https://coverartarchive.org/release-group/405464f5-a165-476e-ba63-d3441bd82992/front-250",
-    "titulo": "Everybody Loves Somebody",
-    "fecha": "2005",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "506875ba-f7b2-46a3-a4e0-3539d0c90787",
     "imagen": "https://coverartarchive.org/release-group/506875ba-f7b2-46a3-a4e0-3539d0c90787/front-250",
     "titulo": "The Great American Songbook",
-    "fecha": "2005",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "531abc72-49ee-398e-91d7-096e03c34f2c",
-    "imagen": "https://coverartarchive.org/release-group/531abc72-49ee-398e-91d7-096e03c34f2c/front-250",
-    "titulo": "Frank Sinatra",
     "fecha": "2005",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -258627,22 +258603,6 @@
     "id": "97e85b61-2b0f-42a7-a81b-eef29ae67e1e",
     "imagen": "https://coverartarchive.org/release-group/97e85b61-2b0f-42a7-a81b-eef29ae67e1e/front-250",
     "titulo": "Young At Heart",
-    "fecha": "2005",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "a3f5542a-2465-4d87-9a9b-27ab485d8acd",
-    "imagen": "https://coverartarchive.org/release-group/a3f5542a-2465-4d87-9a9b-27ab485d8acd/front-250",
-    "titulo": "Embraceable You",
-    "fecha": "2005",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "af1caf57-2852-4b2b-a46d-5c416641ed7e",
-    "imagen": "https://coverartarchive.org/release-group/af1caf57-2852-4b2b-a46d-5c416641ed7e/front-250",
-    "titulo": "Christmas With Frank Sinatra",
     "fecha": "2005",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -258675,14 +258635,6 @@
     "id": "dafef866-7329-4cde-b231-b013b1f19777",
     "imagen": "https://coverartarchive.org/release-group/dafef866-7329-4cde-b231-b013b1f19777/front-250",
     "titulo": "Young at Heart",
-    "fecha": "2005",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "df49867d-239e-45ab-9a50-2ad75ec1c56c",
-    "imagen": "https://coverartarchive.org/release-group/df49867d-239e-45ab-9a50-2ad75ec1c56c/front-250",
-    "titulo": "Fly Me to the Moon",
     "fecha": "2005",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -259248,14 +259200,6 @@
     "tipo": "Album"
   },
   {
-    "id": "841cbd80-042f-47ea-9337-ef6477ea19a6",
-    "imagen": "https://coverartarchive.org/release-group/841cbd80-042f-47ea-9337-ef6477ea19a6/front-250",
-    "titulo": "Louis Armstrong - Great Moments 8",
-    "fecha": "2005",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "1aaa3337-9d4c-438d-84f8-7aa765f5b1f4",
     "imagen": "https://coverartarchive.org/release-group/1aaa3337-9d4c-438d-84f8-7aa765f5b1f4/front-250",
     "titulo": "Golden Hits",
@@ -259291,6 +259235,14 @@
     "id": "7dd59bc7-a68f-44a4-90a8-8e647219444a",
     "imagen": "https://coverartarchive.org/release-group/7dd59bc7-a68f-44a4-90a8-8e647219444a/front-250",
     "titulo": "Hello Dolly",
+    "fecha": "2005",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "841cbd80-042f-47ea-9337-ef6477ea19a6",
+    "imagen": "https://coverartarchive.org/release-group/841cbd80-042f-47ea-9337-ef6477ea19a6/front-250",
+    "titulo": "Louis Armstrong - Great Moments 8",
     "fecha": "2005",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -266992,14 +266944,6 @@
     "tipo": "Album"
   },
   {
-    "id": "6378df47-1899-42ed-8941-45769dd3c838",
-    "imagen": "https://coverartarchive.org/release-group/6378df47-1899-42ed-8941-45769dd3c838/front-250",
-    "titulo": "Time After Time",
-    "fecha": "2004",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "0d5d47a8-ff74-450f-b5ae-b4a45b9df45d",
     "imagen": "https://coverartarchive.org/release-group/0d5d47a8-ff74-450f-b5ae-b4a45b9df45d/front-250",
     "titulo": "Jazz Giants Vol. 2: Frank Sinatra",
@@ -267051,6 +266995,14 @@
     "id": "39c00a47-19f6-4bc7-bda6-0bd1c74650d1",
     "imagen": "https://coverartarchive.org/release-group/39c00a47-19f6-4bc7-bda6-0bd1c74650d1/front-250",
     "titulo": "The Discovery of Jazz",
+    "fecha": "2004",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "6378df47-1899-42ed-8941-45769dd3c838",
+    "imagen": "https://coverartarchive.org/release-group/6378df47-1899-42ed-8941-45769dd3c838/front-250",
+    "titulo": "Time After Time",
     "fecha": "2004",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -267816,22 +267768,6 @@
     "tipo": "Album"
   },
   {
-    "id": "d89bc121-f5eb-4b13-b11f-534bac2576a7",
-    "imagen": "https://coverartarchive.org/release-group/d89bc121-f5eb-4b13-b11f-534bac2576a7/front-250",
-    "titulo": "American Music Legends",
-    "fecha": "2004",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "eb025f07-f037-41d4-a175-ec79e7c093ea",
-    "imagen": "https://coverartarchive.org/release-group/eb025f07-f037-41d4-a175-ec79e7c093ea/front-250",
-    "titulo": "Ultimate Jazz & Blues",
-    "fecha": "2004",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "1e348262-82e6-3ca3-9089-634e66b517c1",
     "imagen": "https://coverartarchive.org/release-group/1e348262-82e6-3ca3-9089-634e66b517c1/front-250",
     "titulo": "Ella & Louis Together",
@@ -267947,6 +267883,22 @@
     "id": "d5cf26c4-69a2-41ca-a152-094b43a63ad4",
     "imagen": "https://coverartarchive.org/release-group/d5cf26c4-69a2-41ca-a152-094b43a63ad4/front-250",
     "titulo": "20 Best of Louis Armstrong",
+    "fecha": "2004",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "d89bc121-f5eb-4b13-b11f-534bac2576a7",
+    "imagen": "https://coverartarchive.org/release-group/d89bc121-f5eb-4b13-b11f-534bac2576a7/front-250",
+    "titulo": "American Music Legends",
+    "fecha": "2004",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "eb025f07-f037-41d4-a175-ec79e7c093ea",
+    "imagen": "https://coverartarchive.org/release-group/eb025f07-f037-41d4-a175-ec79e7c093ea/front-250",
+    "titulo": "Ultimate Jazz & Blues",
     "fecha": "2004",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -283952,14 +283904,6 @@
     "tipo": "Album"
   },
   {
-    "id": "dd582eaa-c727-4247-a563-372eeeaae247",
-    "imagen": "https://coverartarchive.org/release-group/dd582eaa-c727-4247-a563-372eeeaae247/front-250",
-    "titulo": "Bunk & Louis",
-    "fecha": "2002",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "0951e826-a537-3ae9-a600-374a8f83db56",
     "imagen": "https://coverartarchive.org/release-group/0951e826-a537-3ae9-a600-374a8f83db56/front-250",
     "titulo": "Hot Fives and Hot Sevens",
@@ -284067,6 +284011,14 @@
     "id": "fb0df892-5ed7-34f2-9d90-9b6d80d685a4",
     "imagen": "https://coverartarchive.org/release-group/fb0df892-5ed7-34f2-9d90-9b6d80d685a4/front-250",
     "titulo": "The Wonderful Duets",
+    "fecha": "2002",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "dd582eaa-c727-4247-a563-372eeeaae247",
+    "imagen": "https://coverartarchive.org/release-group/dd582eaa-c727-4247-a563-372eeeaae247/front-250",
+    "titulo": "Bunk & Louis",
     "fecha": "2002",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -285907,14 +285859,6 @@
     "id": "7719e018-254d-436a-bdeb-5fedf11f0c60",
     "imagen": "https://coverartarchive.org/release-group/7719e018-254d-436a-bdeb-5fedf11f0c60/front-250",
     "titulo": "Once In A Lifetime (Today And Never Again)",
-    "fecha": "2002",
-    "artista": "The Smashing Pumpkins",
-    "tipo": "Album"
-  },
-  {
-    "id": "8771c8bf-1602-3b60-aa4f-044565f60312",
-    "imagen": "https://coverartarchive.org/release-group/8771c8bf-1602-3b60-aa4f-044565f60312/front-250",
-    "titulo": "2000-08-24: VH1 Storytellers: Hammerstein Ballroom, New York City, NY, USA",
     "fecha": "2002",
     "artista": "The Smashing Pumpkins",
     "tipo": "Album"
@@ -291344,6 +291288,30 @@
     "tipo": "Album"
   },
   {
+    "id": "3d0e771e-2926-43bc-9972-08acb03ec03e",
+    "imagen": "https://coverartarchive.org/release-group/3d0e771e-2926-43bc-9972-08acb03ec03e/front-250",
+    "titulo": "45 Original Recordings: The Golden Voice / All of Me",
+    "fecha": "2001",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "bdcc6964-90a5-4849-a11f-282133805442",
+    "imagen": "https://coverartarchive.org/release-group/bdcc6964-90a5-4849-a11f-282133805442/front-250",
+    "titulo": "1940-1950",
+    "fecha": "2001",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "f17f6030-6982-4561-b1c2-606e016f2faa",
+    "imagen": "https://coverartarchive.org/release-group/f17f6030-6982-4561-b1c2-606e016f2faa/front-250",
+    "titulo": "As Time Goes By",
+    "fecha": "2001",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
     "id": "043bd715-9f26-3a3f-8d41-5c4438dfde1c",
     "imagen": "https://coverartarchive.org/release-group/043bd715-9f26-3a3f-8d41-5c4438dfde1c/front-250",
     "titulo": "Sinatra",
@@ -291355,14 +291323,6 @@
     "id": "1790b494-a79b-4c02-9146-2a66b1162903",
     "imagen": "https://coverartarchive.org/release-group/1790b494-a79b-4c02-9146-2a66b1162903/front-250",
     "titulo": "On the Sendemintal Side",
-    "fecha": "2001",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "3d0e771e-2926-43bc-9972-08acb03ec03e",
-    "imagen": "https://coverartarchive.org/release-group/3d0e771e-2926-43bc-9972-08acb03ec03e/front-250",
-    "titulo": "45 Original Recordings: The Golden Voice / All of Me",
     "fecha": "2001",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -291432,25 +291392,9 @@
     "tipo": "Album"
   },
   {
-    "id": "bdcc6964-90a5-4849-a11f-282133805442",
-    "imagen": "https://coverartarchive.org/release-group/bdcc6964-90a5-4849-a11f-282133805442/front-250",
-    "titulo": "1940-1950",
-    "fecha": "2001",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "d51b07c7-2374-31ae-bb8d-2d07731afc4b",
     "imagen": "https://coverartarchive.org/release-group/d51b07c7-2374-31ae-bb8d-2d07731afc4b/front-250",
     "titulo": "Strangers in the Night",
-    "fecha": "2001",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "f17f6030-6982-4561-b1c2-606e016f2faa",
-    "imagen": "https://coverartarchive.org/release-group/f17f6030-6982-4561-b1c2-606e016f2faa/front-250",
-    "titulo": "As Time Goes By",
     "fecha": "2001",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -300080,14 +300024,6 @@
     "tipo": "Album"
   },
   {
-    "id": "7a845e07-b038-4fcc-a6c1-b921ca19e75f",
-    "imagen": "https://coverartarchive.org/release-group/7a845e07-b038-4fcc-a6c1-b921ca19e75f/front-250",
-    "titulo": "The Unique",
-    "fecha": "2000",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "31662fb6-dacf-4660-a638-636af70779b9",
     "imagen": "https://coverartarchive.org/release-group/31662fb6-dacf-4660-a638-636af70779b9/front-250",
     "titulo": "Frank Sinatra The Early Years: 54 Vintage Recordings",
@@ -300120,6 +300056,14 @@
     "tipo": "Album"
   },
   {
+    "id": "5e2695be-51a5-4282-a8a5-148c2960d5fc",
+    "imagen": "https://coverartarchive.org/release-group/5e2695be-51a5-4282-a8a5-148c2960d5fc/front-250",
+    "titulo": "The Classic Frank Sinatra Collection",
+    "fecha": "2000",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
     "id": "64ffebbc-e9c1-4b9e-b646-011b2ef3c631",
     "imagen": "https://coverartarchive.org/release-group/64ffebbc-e9c1-4b9e-b646-011b2ef3c631/front-250",
     "titulo": "Frank Sinatra",
@@ -300136,9 +300080,33 @@
     "tipo": "Album"
   },
   {
+    "id": "7a845e07-b038-4fcc-a6c1-b921ca19e75f",
+    "imagen": "https://coverartarchive.org/release-group/7a845e07-b038-4fcc-a6c1-b921ca19e75f/front-250",
+    "titulo": "The Unique",
+    "fecha": "2000",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "87a43f86-bdc6-4699-92d6-35d6fbefc481",
+    "imagen": "https://coverartarchive.org/release-group/87a43f86-bdc6-4699-92d6-35d6fbefc481/front-250",
+    "titulo": "The Dorsey Sinatra Sessions 1940–1942",
+    "fecha": "2000",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
     "id": "8cd99a16-e148-470c-aea4-50247c1355c8",
     "imagen": "https://coverartarchive.org/release-group/8cd99a16-e148-470c-aea4-50247c1355c8/front-250",
     "titulo": "Frank Sinatra",
+    "fecha": "2000",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "a9af3477-6d7e-4a3b-ada4-3ee943491c2c",
+    "imagen": "https://coverartarchive.org/release-group/a9af3477-6d7e-4a3b-ada4-3ee943491c2c/front-250",
+    "titulo": "The Early Years",
     "fecha": "2000",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -300171,30 +300139,6 @@
     "id": "f045940e-1987-454d-964e-4f25d399acca",
     "imagen": "https://coverartarchive.org/release-group/f045940e-1987-454d-964e-4f25d399acca/front-250",
     "titulo": "Falling in Love",
-    "fecha": "2000",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "5e2695be-51a5-4282-a8a5-148c2960d5fc",
-    "imagen": "https://coverartarchive.org/release-group/5e2695be-51a5-4282-a8a5-148c2960d5fc/front-250",
-    "titulo": "The Classic Frank Sinatra Collection",
-    "fecha": "2000",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "87a43f86-bdc6-4699-92d6-35d6fbefc481",
-    "imagen": "https://coverartarchive.org/release-group/87a43f86-bdc6-4699-92d6-35d6fbefc481/front-250",
-    "titulo": "The Dorsey Sinatra Sessions 1940–1942",
-    "fecha": "2000",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "a9af3477-6d7e-4a3b-ada4-3ee943491c2c",
-    "imagen": "https://coverartarchive.org/release-group/a9af3477-6d7e-4a3b-ada4-3ee943491c2c/front-250",
-    "titulo": "The Early Years",
     "fecha": "2000",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -300896,6 +300840,30 @@
     "tipo": "Single"
   },
   {
+    "id": "23a50397-d59c-4604-b92c-89e82d4f8622",
+    "imagen": "https://coverartarchive.org/release-group/23a50397-d59c-4604-b92c-89e82d4f8622/front-250",
+    "titulo": "Ain't Misbehavin'",
+    "fecha": "2000",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "a37e19ef-5413-4604-a731-627b42c911f6",
+    "imagen": "https://coverartarchive.org/release-group/a37e19ef-5413-4604-a731-627b42c911f6/front-250",
+    "titulo": "A Portrait",
+    "fecha": "2000",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "c0a67f18-cdcf-362e-81b7-5dd20f852049",
+    "imagen": "https://coverartarchive.org/release-group/c0a67f18-cdcf-362e-81b7-5dd20f852049/front-250",
+    "titulo": "A 100th Birthday Celebration",
+    "fecha": "2000",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
     "id": "02a33a9e-303a-49ee-83b6-f3d9908f1fc7",
     "imagen": "https://coverartarchive.org/release-group/02a33a9e-303a-49ee-83b6-f3d9908f1fc7/front-250",
     "titulo": "I Got the Rhythm",
@@ -300955,14 +300923,6 @@
     "id": "1f991a36-7ccc-4967-bcd0-da457d1e8197",
     "imagen": "https://coverartarchive.org/release-group/1f991a36-7ccc-4967-bcd0-da457d1e8197/front-250",
     "titulo": "Never Heard Before",
-    "fecha": "2000",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "23a50397-d59c-4604-b92c-89e82d4f8622",
-    "imagen": "https://coverartarchive.org/release-group/23a50397-d59c-4604-b92c-89e82d4f8622/front-250",
-    "titulo": "Ain't Misbehavin'",
     "fecha": "2000",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -301040,14 +301000,6 @@
     "tipo": "Album"
   },
   {
-    "id": "a37e19ef-5413-4604-a731-627b42c911f6",
-    "imagen": "https://coverartarchive.org/release-group/a37e19ef-5413-4604-a731-627b42c911f6/front-250",
-    "titulo": "A Portrait",
-    "fecha": "2000",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "abeee33d-6ca8-4383-8abb-ba81eab98e60",
     "imagen": "https://coverartarchive.org/release-group/abeee33d-6ca8-4383-8abb-ba81eab98e60/front-250",
     "titulo": "The Complete Decca Studio Master Takes 1935-1939",
@@ -301083,14 +301035,6 @@
     "id": "be5b43d4-0f0d-3d93-9c92-8b31f0f80a56",
     "imagen": "https://coverartarchive.org/release-group/be5b43d4-0f0d-3d93-9c92-8b31f0f80a56/front-250",
     "titulo": "Midnite Jazz & Blues: Satchmo the Greatest",
-    "fecha": "2000",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "c0a67f18-cdcf-362e-81b7-5dd20f852049",
-    "imagen": "https://coverartarchive.org/release-group/c0a67f18-cdcf-362e-81b7-5dd20f852049/front-250",
-    "titulo": "A 100th Birthday Celebration",
     "fecha": "2000",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -303035,6 +302979,14 @@
     "id": "47e87573-a351-3346-af1f-3b1d88ddf409",
     "imagen": "https://coverartarchive.org/release-group/47e87573-a351-3346-af1f-3b1d88ddf409/front-250",
     "titulo": "2000-01-24: Vredenburg 2000: Muziekcentrum Vredenburg, Utrecht, Netherlands",
+    "fecha": "2000",
+    "artista": "The Smashing Pumpkins",
+    "tipo": "Album"
+  },
+  {
+    "id": "8771c8bf-1602-3b60-aa4f-044565f60312",
+    "imagen": "https://coverartarchive.org/release-group/8771c8bf-1602-3b60-aa4f-044565f60312/front-250",
+    "titulo": "2000-08-24: VH1 Storytellers: Hammerstein Ballroom, New York City, NY, USA",
     "fecha": "2000",
     "artista": "The Smashing Pumpkins",
     "tipo": "Album"
@@ -316872,14 +316824,6 @@
     "tipo": "Album"
   },
   {
-    "id": "c04c7cd7-e4c9-40d8-8e85-4321c917ca73",
-    "imagen": "https://coverartarchive.org/release-group/c04c7cd7-e4c9-40d8-8e85-4321c917ca73/front-250",
-    "titulo": "Unplugged",
-    "fecha": "1998",
-    "artista": "Eric Clapton",
-    "tipo": "Album"
-  },
-  {
     "id": "8a6dfe15-cc00-4f5e-a850-61d4ce7d7ed7",
     "imagen": "https://coverartarchive.org/release-group/8a6dfe15-cc00-4f5e-a850-61d4ce7d7ed7/front-250",
     "titulo": "Circus",
@@ -317000,14 +316944,6 @@
     "tipo": "Album"
   },
   {
-    "id": "62bfcdd2-1111-4151-8151-1b01fc20bc88",
-    "imagen": "https://coverartarchive.org/release-group/62bfcdd2-1111-4151-8151-1b01fc20bc88/front-250",
-    "titulo": "Frank Sinatra - Legend Vocal Gold Series",
-    "fecha": "1998",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "08b28637-422c-37f5-afda-ade160400fb5",
     "imagen": "https://coverartarchive.org/release-group/08b28637-422c-37f5-afda-ade160400fb5/front-250",
     "titulo": "The Popular Sinatra, Vol. 3",
@@ -317123,6 +317059,14 @@
     "id": "5db384c1-fb23-4bad-9454-61bde3202e9e",
     "imagen": "https://coverartarchive.org/release-group/5db384c1-fb23-4bad-9454-61bde3202e9e/front-250",
     "titulo": "Frank Sinatra at Christmas",
+    "fecha": "1998",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "62bfcdd2-1111-4151-8151-1b01fc20bc88",
+    "imagen": "https://coverartarchive.org/release-group/62bfcdd2-1111-4151-8151-1b01fc20bc88/front-250",
+    "titulo": "Frank Sinatra - Legend Vocal Gold Series",
     "fecha": "1998",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -325264,62 +325208,6 @@
     "tipo": "Album"
   },
   {
-    "id": "63a67a0b-f02c-455b-b4fc-a341f1012223",
-    "imagen": "https://coverartarchive.org/release-group/63a67a0b-f02c-455b-b4fc-a341f1012223/front-250",
-    "titulo": "Clássicos Estado de Minas: Frank Sinatra",
-    "fecha": "1997",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "756d80f5-d154-42b7-a133-a9a15b8171d5",
-    "imagen": "https://coverartarchive.org/release-group/756d80f5-d154-42b7-a133-a9a15b8171d5/front-250",
-    "titulo": "Legendary Radio Recordings",
-    "fecha": "1997",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "9f675dee-7b5f-44c0-99c6-c0cd4c15cceb",
-    "imagen": "https://coverartarchive.org/release-group/9f675dee-7b5f-44c0-99c6-c0cd4c15cceb/front-250",
-    "titulo": "Blue Heaven",
-    "fecha": "1997",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "c79c507d-485b-40f3-9375-0644ae861f90",
-    "imagen": "https://coverartarchive.org/release-group/c79c507d-485b-40f3-9375-0644ae861f90/front-250",
-    "titulo": "Frank Sinatra Sings His Greatest Hits",
-    "fecha": "1997",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "d6d7eec7-bd98-3440-8a91-5420621c5821",
-    "imagen": "https://coverartarchive.org/release-group/d6d7eec7-bd98-3440-8a91-5420621c5821/front-250",
-    "titulo": "A Touch of Class",
-    "fecha": "1997",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "111b5884-3619-3856-b575-ed21f2a0eb00",
-    "imagen": "https://coverartarchive.org/release-group/111b5884-3619-3856-b575-ed21f2a0eb00/front-250",
-    "titulo": "The Legend",
-    "fecha": "1997",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "4a536e19-2fa1-433f-a833-1299460b931f",
-    "imagen": "https://coverartarchive.org/release-group/4a536e19-2fa1-433f-a833-1299460b931f/front-250",
-    "titulo": "The Masters",
-    "fecha": "1997",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "53b33800-32f5-4d33-ad26-36bd309aa2ba",
     "imagen": "https://coverartarchive.org/release-group/53b33800-32f5-4d33-ad26-36bd309aa2ba/front-250",
     "titulo": "On The Air! - Love Me Or Leave Me",
@@ -325344,9 +325232,25 @@
     "tipo": "Album"
   },
   {
+    "id": "63a67a0b-f02c-455b-b4fc-a341f1012223",
+    "imagen": "https://coverartarchive.org/release-group/63a67a0b-f02c-455b-b4fc-a341f1012223/front-250",
+    "titulo": "Clássicos Estado de Minas: Frank Sinatra",
+    "fecha": "1997",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
     "id": "67fee186-7d2d-34cc-b0e3-cde2d54e7d67",
     "imagen": "https://coverartarchive.org/release-group/67fee186-7d2d-34cc-b0e3-cde2d54e7d67/front-250",
     "titulo": "The Frank Sinatra Collection, Volume 1: Sensational Sinatra",
+    "fecha": "1997",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "756d80f5-d154-42b7-a133-a9a15b8171d5",
+    "imagen": "https://coverartarchive.org/release-group/756d80f5-d154-42b7-a133-a9a15b8171d5/front-250",
+    "titulo": "Legendary Radio Recordings",
     "fecha": "1997",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -325376,9 +325280,9 @@
     "tipo": "Album"
   },
   {
-    "id": "9e41b20d-6d3a-410e-aa92-551c1d545d00",
-    "imagen": "https://coverartarchive.org/release-group/9e41b20d-6d3a-410e-aa92-551c1d545d00/front-250",
-    "titulo": "Volume 2 – A Lovely Way to Spend the Evening",
+    "id": "9f675dee-7b5f-44c0-99c6-c0cd4c15cceb",
+    "imagen": "https://coverartarchive.org/release-group/9f675dee-7b5f-44c0-99c6-c0cd4c15cceb/front-250",
+    "titulo": "Blue Heaven",
     "fecha": "1997",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -325392,14 +325296,6 @@
     "tipo": "Album"
   },
   {
-    "id": "a95e820b-384a-3ee6-97b2-714dfd032e3c",
-    "imagen": "https://coverartarchive.org/release-group/a95e820b-384a-3ee6-97b2-714dfd032e3c/front-250",
-    "titulo": "Yesterday",
-    "fecha": "1997",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "c4233c34-4e9f-4e97-a56c-d18fd8c3e08c",
     "imagen": "https://coverartarchive.org/release-group/c4233c34-4e9f-4e97-a56c-d18fd8c3e08c/front-250",
     "titulo": "Love Songs",
@@ -325408,9 +325304,9 @@
     "tipo": "Album"
   },
   {
-    "id": "ceaa8def-b79e-4556-ae66-4cabc70a221a",
-    "imagen": "https://coverartarchive.org/release-group/ceaa8def-b79e-4556-ae66-4cabc70a221a/front-250",
-    "titulo": "Volume 1",
+    "id": "c79c507d-485b-40f3-9375-0644ae861f90",
+    "imagen": "https://coverartarchive.org/release-group/c79c507d-485b-40f3-9375-0644ae861f90/front-250",
+    "titulo": "Frank Sinatra Sings His Greatest Hits",
     "fecha": "1997",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -325424,9 +325320,9 @@
     "tipo": "Album"
   },
   {
-    "id": "dad97032-0c80-4e07-b8f0-e5c747a13d67",
-    "imagen": "https://coverartarchive.org/release-group/dad97032-0c80-4e07-b8f0-e5c747a13d67/front-250",
-    "titulo": "White Christmas",
+    "id": "d6d7eec7-bd98-3440-8a91-5420621c5821",
+    "imagen": "https://coverartarchive.org/release-group/d6d7eec7-bd98-3440-8a91-5420621c5821/front-250",
+    "titulo": "A Touch of Class",
     "fecha": "1997",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -325435,6 +325331,54 @@
     "id": "ecf4aed9-7ed5-3d5f-97d0-913262a0c1dc",
     "imagen": "https://coverartarchive.org/release-group/ecf4aed9-7ed5-3d5f-97d0-913262a0c1dc/front-250",
     "titulo": "Love Collection",
+    "fecha": "1997",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "111b5884-3619-3856-b575-ed21f2a0eb00",
+    "imagen": "https://coverartarchive.org/release-group/111b5884-3619-3856-b575-ed21f2a0eb00/front-250",
+    "titulo": "The Legend",
+    "fecha": "1997",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "4a536e19-2fa1-433f-a833-1299460b931f",
+    "imagen": "https://coverartarchive.org/release-group/4a536e19-2fa1-433f-a833-1299460b931f/front-250",
+    "titulo": "The Masters",
+    "fecha": "1997",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "9e41b20d-6d3a-410e-aa92-551c1d545d00",
+    "imagen": "https://coverartarchive.org/release-group/9e41b20d-6d3a-410e-aa92-551c1d545d00/front-250",
+    "titulo": "Volume 2 – A Lovely Way to Spend the Evening",
+    "fecha": "1997",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "a95e820b-384a-3ee6-97b2-714dfd032e3c",
+    "imagen": "https://coverartarchive.org/release-group/a95e820b-384a-3ee6-97b2-714dfd032e3c/front-250",
+    "titulo": "Yesterday",
+    "fecha": "1997",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "ceaa8def-b79e-4556-ae66-4cabc70a221a",
+    "imagen": "https://coverartarchive.org/release-group/ceaa8def-b79e-4556-ae66-4cabc70a221a/front-250",
+    "titulo": "Volume 1",
+    "fecha": "1997",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "dad97032-0c80-4e07-b8f0-e5c747a13d67",
+    "imagen": "https://coverartarchive.org/release-group/dad97032-0c80-4e07-b8f0-e5c747a13d67/front-250",
+    "titulo": "White Christmas",
     "fecha": "1997",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -333224,14 +333168,6 @@
     "tipo": "Album"
   },
   {
-    "id": "9ec179b2-eeeb-4af1-9c43-5f31663b01cd",
-    "imagen": "https://coverartarchive.org/release-group/9ec179b2-eeeb-4af1-9c43-5f31663b01cd/front-250",
-    "titulo": "Selection of Frank Sinatra",
-    "fecha": "1996",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "1df237cd-0288-430b-8ca6-8f8167f0a700",
     "imagen": "https://coverartarchive.org/release-group/1df237cd-0288-430b-8ca6-8f8167f0a700/front-250",
     "titulo": "Night And Day",
@@ -333299,6 +333235,14 @@
     "id": "8adf8d0f-2603-3cf8-96b2-bd6332be36b8",
     "imagen": "https://coverartarchive.org/release-group/8adf8d0f-2603-3cf8-96b2-bd6332be36b8/front-250",
     "titulo": "Christmas Sing with Frank and Bing",
+    "fecha": "1996",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "9ec179b2-eeeb-4af1-9c43-5f31663b01cd",
+    "imagen": "https://coverartarchive.org/release-group/9ec179b2-eeeb-4af1-9c43-5f31663b01cd/front-250",
+    "titulo": "Selection of Frank Sinatra",
     "fecha": "1996",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -334208,6 +334152,14 @@
     "tipo": "Album"
   },
   {
+    "id": "2a34c761-89e7-4440-84ef-25ce42b6f3b1",
+    "imagen": "https://coverartarchive.org/release-group/2a34c761-89e7-4440-84ef-25ce42b6f3b1/front-250",
+    "titulo": "Louis Armstrong: The Vocalist",
+    "fecha": "1996",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
     "id": "2ed629e4-35a3-4d09-a5dc-71b5a75680fc",
     "imagen": "https://coverartarchive.org/release-group/2ed629e4-35a3-4d09-a5dc-71b5a75680fc/front-250",
     "titulo": "Cheek to Cheek",
@@ -334219,6 +334171,22 @@
     "id": "54f40fde-115e-32ef-9483-d30e16427816",
     "imagen": "https://coverartarchive.org/release-group/54f40fde-115e-32ef-9483-d30e16427816/front-250",
     "titulo": "C'est si bon",
+    "fecha": "1996",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "668e7f6b-5177-4b39-a257-bc12a6b6574c",
+    "imagen": "https://coverartarchive.org/release-group/668e7f6b-5177-4b39-a257-bc12a6b6574c/front-250",
+    "titulo": "Jazz Giants",
+    "fecha": "1996",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "7e559508-e02a-4953-a8e7-63a81fc69ac9",
+    "imagen": "https://coverartarchive.org/release-group/7e559508-e02a-4953-a8e7-63a81fc69ac9/front-250",
+    "titulo": "Hotter Than That",
     "fecha": "1996",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -334240,6 +334208,14 @@
     "tipo": "Album"
   },
   {
+    "id": "b0542af1-1d89-32f9-91a7-953dc51248a1",
+    "imagen": "https://coverartarchive.org/release-group/b0542af1-1d89-32f9-91a7-953dc51248a1/front-250",
+    "titulo": "Jazz Greats, Volume 3: Louis Armstrong: Hotter Than That",
+    "fecha": "1996",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
     "id": "b8e638c0-dc74-348c-b218-a1f9f7d56035",
     "imagen": "https://coverartarchive.org/release-group/b8e638c0-dc74-348c-b218-a1f9f7d56035/front-250",
     "titulo": "Greatest Hits",
@@ -334248,17 +334224,41 @@
     "tipo": "Album"
   },
   {
-    "id": "fedfda63-4621-337c-b2f3-0af9b4ff4909",
-    "imagen": "https://coverartarchive.org/release-group/fedfda63-4621-337c-b2f3-0af9b4ff4909/front-250",
-    "titulo": "Christmas Through the Years",
+    "id": "c31bbfb3-1982-4dba-b119-95a8cab62950",
+    "imagen": "https://coverartarchive.org/release-group/c31bbfb3-1982-4dba-b119-95a8cab62950/front-250",
+    "titulo": "Louis Armstrong meets Duke Ellington",
     "fecha": "1996",
     "artista": "Louis Armstrong",
     "tipo": "Album"
   },
   {
-    "id": "2a34c761-89e7-4440-84ef-25ce42b6f3b1",
-    "imagen": "https://coverartarchive.org/release-group/2a34c761-89e7-4440-84ef-25ce42b6f3b1/front-250",
-    "titulo": "Louis Armstrong: The Vocalist",
+    "id": "e80b2c76-bb7b-3952-b3ab-873fa91b9a9b",
+    "imagen": "https://coverartarchive.org/release-group/e80b2c76-bb7b-3952-b3ab-873fa91b9a9b/front-250",
+    "titulo": "Jeepers Creepers",
+    "fecha": "1996",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "ea31b01a-72e8-34da-b81a-618d3614379f",
+    "imagen": "https://coverartarchive.org/release-group/ea31b01a-72e8-34da-b81a-618d3614379f/front-250",
+    "titulo": "Louis Armstrong: American Legends",
+    "fecha": "1996",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "f9c3e14a-09c1-43d6-bbc3-7bebe5412ece",
+    "imagen": "https://coverartarchive.org/release-group/f9c3e14a-09c1-43d6-bbc3-7bebe5412ece/front-250",
+    "titulo": "Heebie Jeebies",
+    "fecha": "1996",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "fedfda63-4621-337c-b2f3-0af9b4ff4909",
+    "imagen": "https://coverartarchive.org/release-group/fedfda63-4621-337c-b2f3-0af9b4ff4909/front-250",
+    "titulo": "Christmas Through the Years",
     "fecha": "1996",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -334296,22 +334296,6 @@
     "tipo": "Album"
   },
   {
-    "id": "668e7f6b-5177-4b39-a257-bc12a6b6574c",
-    "imagen": "https://coverartarchive.org/release-group/668e7f6b-5177-4b39-a257-bc12a6b6574c/front-250",
-    "titulo": "Jazz Giants",
-    "fecha": "1996",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "7e559508-e02a-4953-a8e7-63a81fc69ac9",
-    "imagen": "https://coverartarchive.org/release-group/7e559508-e02a-4953-a8e7-63a81fc69ac9/front-250",
-    "titulo": "Hotter Than That",
-    "fecha": "1996",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "8156445d-1087-3fde-993e-b63339ff8d55",
     "imagen": "https://coverartarchive.org/release-group/8156445d-1087-3fde-993e-b63339ff8d55/front-250",
     "titulo": "St. Louis Blues",
@@ -334344,22 +334328,6 @@
     "tipo": "Album"
   },
   {
-    "id": "b0542af1-1d89-32f9-91a7-953dc51248a1",
-    "imagen": "https://coverartarchive.org/release-group/b0542af1-1d89-32f9-91a7-953dc51248a1/front-250",
-    "titulo": "Jazz Greats, Volume 3: Louis Armstrong: Hotter Than That",
-    "fecha": "1996",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "c31bbfb3-1982-4dba-b119-95a8cab62950",
-    "imagen": "https://coverartarchive.org/release-group/c31bbfb3-1982-4dba-b119-95a8cab62950/front-250",
-    "titulo": "Louis Armstrong meets Duke Ellington",
-    "fecha": "1996",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "c6ee92b4-9369-39ed-abbe-edfc5e3cb01f",
     "imagen": "https://coverartarchive.org/release-group/c6ee92b4-9369-39ed-abbe-edfc5e3cb01f/front-250",
     "titulo": "This Is Jazz 1",
@@ -334376,33 +334344,9 @@
     "tipo": "Album"
   },
   {
-    "id": "e80b2c76-bb7b-3952-b3ab-873fa91b9a9b",
-    "imagen": "https://coverartarchive.org/release-group/e80b2c76-bb7b-3952-b3ab-873fa91b9a9b/front-250",
-    "titulo": "Jeepers Creepers",
-    "fecha": "1996",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "ea31b01a-72e8-34da-b81a-618d3614379f",
-    "imagen": "https://coverartarchive.org/release-group/ea31b01a-72e8-34da-b81a-618d3614379f/front-250",
-    "titulo": "Louis Armstrong: American Legends",
-    "fecha": "1996",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "f72d0226-c622-480c-989b-71c2f5c77dcb",
     "imagen": "https://coverartarchive.org/release-group/f72d0226-c622-480c-989b-71c2f5c77dcb/front-250",
     "titulo": "What a Wonderful World",
-    "fecha": "1996",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "f9c3e14a-09c1-43d6-bbc3-7bebe5412ece",
-    "imagen": "https://coverartarchive.org/release-group/f9c3e14a-09c1-43d6-bbc3-7bebe5412ece/front-250",
-    "titulo": "Heebie Jeebies",
     "fecha": "1996",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -334488,14 +334432,6 @@
     "tipo": "Album"
   },
   {
-    "id": "62f3ebd3-5aba-35cd-a7d3-75fd9b966eb6",
-    "imagen": "https://coverartarchive.org/release-group/62f3ebd3-5aba-35cd-a7d3-75fd9b966eb6/front-250",
-    "titulo": "Garage Days 3",
-    "fecha": "1996",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "7ca4c233-11cb-3a4a-bb84-388d6c0ccac9",
     "imagen": "https://coverartarchive.org/release-group/7ca4c233-11cb-3a4a-bb84-388d6c0ccac9/front-250",
     "titulo": "Devil's Dance",
@@ -334507,6 +334443,14 @@
     "id": "4c05fe77-d5bd-40f8-aa91-0514aa333b25",
     "imagen": "https://coverartarchive.org/release-group/4c05fe77-d5bd-40f8-aa91-0514aa333b25/front-250",
     "titulo": "Jump in the Fire / Creeping Death / Garage Days Re‐Revisited",
+    "fecha": "1996",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "62f3ebd3-5aba-35cd-a7d3-75fd9b966eb6",
+    "imagen": "https://coverartarchive.org/release-group/62f3ebd3-5aba-35cd-a7d3-75fd9b966eb6/front-250",
+    "titulo": "Garage Days 3",
     "fecha": "1996",
     "artista": "Metallica",
     "tipo": "Album"
@@ -349224,14 +349168,6 @@
     "tipo": "Album"
   },
   {
-    "id": "386db7e7-7135-4748-ab71-29b1726fd252",
-    "imagen": "https://coverartarchive.org/release-group/386db7e7-7135-4748-ab71-29b1726fd252/front-250",
-    "titulo": "Doing It His Way",
-    "fecha": "1994",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "11072440-27d3-407a-b344-8090ecde1d9a",
     "imagen": "https://coverartarchive.org/release-group/11072440-27d3-407a-b344-8090ecde1d9a/front-250",
     "titulo": "Grandes éxitos de siempre",
@@ -349251,6 +349187,14 @@
     "id": "31cea2db-eb58-387a-9435-59ad8e8e440f",
     "imagen": "https://coverartarchive.org/release-group/31cea2db-eb58-387a-9435-59ad8e8e440f/front-250",
     "titulo": "This Is Frank Sinatra 1953-1957",
+    "fecha": "1994",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "386db7e7-7135-4748-ab71-29b1726fd252",
+    "imagen": "https://coverartarchive.org/release-group/386db7e7-7135-4748-ab71-29b1726fd252/front-250",
+    "titulo": "Doing It His Way",
     "fecha": "1994",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -357368,6 +357312,46 @@
     "tipo": "Album"
   },
   {
+    "id": "77da1554-bd40-42eb-8ce1-163e71c30dc6",
+    "imagen": "https://coverartarchive.org/release-group/77da1554-bd40-42eb-8ce1-163e71c30dc6/front-250",
+    "titulo": "16 Classic Performances",
+    "fecha": "1993",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "78331233-e05e-4aea-b054-61c19b22a4a1",
+    "imagen": "https://coverartarchive.org/release-group/78331233-e05e-4aea-b054-61c19b22a4a1/front-250",
+    "titulo": "Anthology",
+    "fecha": "1993",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "94797512-5ffd-3799-9530-3937be44be04",
+    "imagen": "https://coverartarchive.org/release-group/94797512-5ffd-3799-9530-3937be44be04/front-250",
+    "titulo": "On the Sunny Side of the Street",
+    "fecha": "1993",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "b2442f9e-da96-42cc-a40f-3d75f27184f1",
+    "imagen": "https://coverartarchive.org/release-group/b2442f9e-da96-42cc-a40f-3d75f27184f1/front-250",
+    "titulo": "1949 Lite Up Time Shows",
+    "fecha": "1993",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "be9d3da8-6022-38a0-9a71-e68e6631b9f4",
+    "imagen": "https://coverartarchive.org/release-group/be9d3da8-6022-38a0-9a71-e68e6631b9f4/front-250",
+    "titulo": "Christmas With Frank Sinatra and Bing Crosby",
+    "fecha": "1993",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
     "id": "4f935b42-0ed4-3436-b504-7edb52d6774b",
     "imagen": "https://coverartarchive.org/release-group/4f935b42-0ed4-3436-b504-7edb52d6774b/front-250",
     "titulo": "The Radio Years",
@@ -357392,22 +357376,6 @@
     "tipo": "Album"
   },
   {
-    "id": "77da1554-bd40-42eb-8ce1-163e71c30dc6",
-    "imagen": "https://coverartarchive.org/release-group/77da1554-bd40-42eb-8ce1-163e71c30dc6/front-250",
-    "titulo": "16 Classic Performances",
-    "fecha": "1993",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "78331233-e05e-4aea-b054-61c19b22a4a1",
-    "imagen": "https://coverartarchive.org/release-group/78331233-e05e-4aea-b054-61c19b22a4a1/front-250",
-    "titulo": "Anthology",
-    "fecha": "1993",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "8c9a9a13-ca82-4d37-8a65-057bf3230e17",
     "imagen": "https://coverartarchive.org/release-group/8c9a9a13-ca82-4d37-8a65-057bf3230e17/front-250",
     "titulo": "The Radio Years",
@@ -357416,33 +357384,9 @@
     "tipo": "Album"
   },
   {
-    "id": "94797512-5ffd-3799-9530-3937be44be04",
-    "imagen": "https://coverartarchive.org/release-group/94797512-5ffd-3799-9530-3937be44be04/front-250",
-    "titulo": "On the Sunny Side of the Street",
-    "fecha": "1993",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "a5919813-b56e-36ce-99a4-f12dce43161e",
     "imagen": "https://coverartarchive.org/release-group/a5919813-b56e-36ce-99a4-f12dce43161e/front-250",
     "titulo": "The Classic Collection",
-    "fecha": "1993",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "b2442f9e-da96-42cc-a40f-3d75f27184f1",
-    "imagen": "https://coverartarchive.org/release-group/b2442f9e-da96-42cc-a40f-3d75f27184f1/front-250",
-    "titulo": "1949 Lite Up Time Shows",
-    "fecha": "1993",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "be9d3da8-6022-38a0-9a71-e68e6631b9f4",
-    "imagen": "https://coverartarchive.org/release-group/be9d3da8-6022-38a0-9a71-e68e6631b9f4/front-250",
-    "titulo": "Christmas With Frank Sinatra and Bing Crosby",
     "fecha": "1993",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -358624,14 +358568,6 @@
     "tipo": "Album"
   },
   {
-    "id": "47eec25e-da1c-441b-858a-995455df58f9",
-    "imagen": "https://coverartarchive.org/release-group/47eec25e-da1c-441b-858a-995455df58f9/front-250",
-    "titulo": "Creeping Death",
-    "fecha": "1993",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "a0a52bd1-4b19-488c-a5b3-907e966823c9",
     "imagen": "https://coverartarchive.org/release-group/a0a52bd1-4b19-488c-a5b3-907e966823c9/front-250",
     "titulo": "15 Pieces of Live Shit: Binge & Purge",
@@ -358659,6 +358595,14 @@
     "id": "10e12c9f-b5e9-408e-bd61-8d9770e9d739",
     "imagen": "https://coverartarchive.org/release-group/10e12c9f-b5e9-408e-bd61-8d9770e9d739/front-250",
     "titulo": "Skull And Snake",
+    "fecha": "1993",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "47eec25e-da1c-441b-858a-995455df58f9",
+    "imagen": "https://coverartarchive.org/release-group/47eec25e-da1c-441b-858a-995455df58f9/front-250",
+    "titulo": "Creeping Death",
     "fecha": "1993",
     "artista": "Metallica",
     "tipo": "Album"
@@ -364944,6 +364888,14 @@
     "tipo": "Album"
   },
   {
+    "id": "42711a83-bb17-4324-bd64-0efcb9d8ca60",
+    "imagen": "https://coverartarchive.org/release-group/42711a83-bb17-4324-bd64-0efcb9d8ca60/front-250",
+    "titulo": "The Most Of Frank Sinatra",
+    "fecha": "1992",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
     "id": "44bf017b-36f5-4da1-b2d0-92f392ff7d95",
     "imagen": "https://coverartarchive.org/release-group/44bf017b-36f5-4da1-b2d0-92f392ff7d95/front-250",
     "titulo": "Frank Sinatra at the Movies",
@@ -364960,9 +364912,25 @@
     "tipo": "Album"
   },
   {
+    "id": "734872cf-e6d1-4454-be32-18e0179b7c0e",
+    "imagen": "https://coverartarchive.org/release-group/734872cf-e6d1-4454-be32-18e0179b7c0e/front-250",
+    "titulo": "Volume 1 1935-1940 Complete Edition",
+    "fecha": "1992",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
     "id": "991503cb-2699-3bd8-a401-94a401e437d4",
     "imagen": "https://coverartarchive.org/release-group/991503cb-2699-3bd8-a401-94a401e437d4/front-250",
     "titulo": "Gold Collection",
+    "fecha": "1992",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "bffea259-4619-4031-af3f-7a3d2078b1da",
+    "imagen": "https://coverartarchive.org/release-group/bffea259-4619-4031-af3f-7a3d2078b1da/front-250",
+    "titulo": "The Sinatra Saga",
     "fecha": "1992",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -364979,30 +364947,6 @@
     "id": "ffd69385-fe05-4e9a-b8ee-b9795deb1a9d",
     "imagen": "https://coverartarchive.org/release-group/ffd69385-fe05-4e9a-b8ee-b9795deb1a9d/front-250",
     "titulo": "The Essential",
-    "fecha": "1992",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "42711a83-bb17-4324-bd64-0efcb9d8ca60",
-    "imagen": "https://coverartarchive.org/release-group/42711a83-bb17-4324-bd64-0efcb9d8ca60/front-250",
-    "titulo": "The Most Of Frank Sinatra",
-    "fecha": "1992",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "734872cf-e6d1-4454-be32-18e0179b7c0e",
-    "imagen": "https://coverartarchive.org/release-group/734872cf-e6d1-4454-be32-18e0179b7c0e/front-250",
-    "titulo": "Volume 1 1935-1940 Complete Edition",
-    "fecha": "1992",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "bffea259-4619-4031-af3f-7a3d2078b1da",
-    "imagen": "https://coverartarchive.org/release-group/bffea259-4619-4031-af3f-7a3d2078b1da/front-250",
-    "titulo": "The Sinatra Saga",
     "fecha": "1992",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -365728,6 +365672,14 @@
     "tipo": "Album"
   },
   {
+    "id": "0152c9dd-90ec-3792-8cba-9b6c6a7bf48d",
+    "imagen": "https://coverartarchive.org/release-group/0152c9dd-90ec-3792-8cba-9b6c6a7bf48d/front-250",
+    "titulo": "The Gold Collection",
+    "fecha": "1992",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
     "id": "0427f34b-c85b-4d5f-ac07-9dd57edd9953",
     "imagen": "https://coverartarchive.org/release-group/0427f34b-c85b-4d5f-ac07-9dd57edd9953/front-250",
     "titulo": "Double Exposure",
@@ -365744,6 +365696,14 @@
     "tipo": "Album"
   },
   {
+    "id": "11492eef-a74b-4d70-bb56-8211b6ace8b1",
+    "imagen": "https://coverartarchive.org/release-group/11492eef-a74b-4d70-bb56-8211b6ace8b1/front-250",
+    "titulo": "The World of Louis Armstrong: St. Louis Blues",
+    "fecha": "1992",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
     "id": "118914c0-56c3-4828-bc1b-51ef05489fbe",
     "imagen": "https://coverartarchive.org/release-group/118914c0-56c3-4828-bc1b-51ef05489fbe/front-250",
     "titulo": "Saint Louis Blues",
@@ -365755,6 +365715,22 @@
     "id": "1c60eae4-9ea3-4bb8-b4b7-6edc3b5a5c80",
     "imagen": "https://coverartarchive.org/release-group/1c60eae4-9ea3-4bb8-b4b7-6edc3b5a5c80/front-250",
     "titulo": "Sugar",
+    "fecha": "1992",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "1cd24244-01ef-4383-ace3-00cee0d7286d",
+    "imagen": "https://coverartarchive.org/release-group/1cd24244-01ef-4383-ace3-00cee0d7286d/front-250",
+    "titulo": "Volume 4: 1924-1925",
+    "fecha": "1992",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "31a8a454-a9bb-4e6c-a0dc-b1b8ae5d902a",
+    "imagen": "https://coverartarchive.org/release-group/31a8a454-a9bb-4e6c-a0dc-b1b8ae5d902a/front-250",
+    "titulo": "The Hit Collection",
     "fecha": "1992",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -365800,6 +365776,22 @@
     "tipo": "Album"
   },
   {
+    "id": "68f369f3-9e2a-4e78-9276-94564d7720ac",
+    "imagen": "https://coverartarchive.org/release-group/68f369f3-9e2a-4e78-9276-94564d7720ac/front-250",
+    "titulo": "The World of Louis Armstrong: Mack the Knife",
+    "fecha": "1992",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "78840314-3fd8-4185-b212-26d65ce07537",
+    "imagen": "https://coverartarchive.org/release-group/78840314-3fd8-4185-b212-26d65ce07537/front-250",
+    "titulo": "The Very Best of Louis Armstrong",
+    "fecha": "1992",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
     "id": "78a375f5-68bc-4a82-91a6-94cc49c77e97",
     "imagen": "https://coverartarchive.org/release-group/78a375f5-68bc-4a82-91a6-94cc49c77e97/front-250",
     "titulo": "Louis Armstrong",
@@ -365832,6 +365824,14 @@
     "tipo": "Album"
   },
   {
+    "id": "90bfe094-ea4b-428d-9c9c-a2699e771b1d",
+    "imagen": "https://coverartarchive.org/release-group/90bfe094-ea4b-428d-9c9c-a2699e771b1d/front-250",
+    "titulo": "Volume 3: 1924",
+    "fecha": "1992",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
     "id": "92a6f298-529b-3e9a-be69-b29ddf775cc7",
     "imagen": "https://coverartarchive.org/release-group/92a6f298-529b-3e9a-be69-b29ddf775cc7/front-250",
     "titulo": "Louis Armstrong and King Oliver",
@@ -365856,41 +365856,17 @@
     "tipo": "Album"
   },
   {
-    "id": "d5edc050-1253-33e4-a544-a613d51fdb94",
-    "imagen": "https://coverartarchive.org/release-group/d5edc050-1253-33e4-a544-a613d51fdb94/front-250",
-    "titulo": "The Essential Louis Armstrong",
-    "fecha": "1992",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "0152c9dd-90ec-3792-8cba-9b6c6a7bf48d",
-    "imagen": "https://coverartarchive.org/release-group/0152c9dd-90ec-3792-8cba-9b6c6a7bf48d/front-250",
+    "id": "c5c43f3c-d371-4ccd-a71a-2d6da4608c48",
+    "imagen": "https://coverartarchive.org/release-group/c5c43f3c-d371-4ccd-a71a-2d6da4608c48/front-250",
     "titulo": "The Gold Collection",
     "fecha": "1992",
     "artista": "Louis Armstrong",
     "tipo": "Album"
   },
   {
-    "id": "11492eef-a74b-4d70-bb56-8211b6ace8b1",
-    "imagen": "https://coverartarchive.org/release-group/11492eef-a74b-4d70-bb56-8211b6ace8b1/front-250",
-    "titulo": "The World of Louis Armstrong: St. Louis Blues",
-    "fecha": "1992",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "1cd24244-01ef-4383-ace3-00cee0d7286d",
-    "imagen": "https://coverartarchive.org/release-group/1cd24244-01ef-4383-ace3-00cee0d7286d/front-250",
-    "titulo": "Volume 4: 1924-1925",
-    "fecha": "1992",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "31a8a454-a9bb-4e6c-a0dc-b1b8ae5d902a",
-    "imagen": "https://coverartarchive.org/release-group/31a8a454-a9bb-4e6c-a0dc-b1b8ae5d902a/front-250",
-    "titulo": "The Hit Collection",
+    "id": "d5edc050-1253-33e4-a544-a613d51fdb94",
+    "imagen": "https://coverartarchive.org/release-group/d5edc050-1253-33e4-a544-a613d51fdb94/front-250",
+    "titulo": "The Essential Louis Armstrong",
     "fecha": "1992",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -365904,41 +365880,9 @@
     "tipo": "Album"
   },
   {
-    "id": "68f369f3-9e2a-4e78-9276-94564d7720ac",
-    "imagen": "https://coverartarchive.org/release-group/68f369f3-9e2a-4e78-9276-94564d7720ac/front-250",
-    "titulo": "The World of Louis Armstrong: Mack the Knife",
-    "fecha": "1992",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "78840314-3fd8-4185-b212-26d65ce07537",
-    "imagen": "https://coverartarchive.org/release-group/78840314-3fd8-4185-b212-26d65ce07537/front-250",
-    "titulo": "The Very Best of Louis Armstrong",
-    "fecha": "1992",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "7f84e503-590b-41b8-8b97-575d9a22eb5f",
     "imagen": "https://coverartarchive.org/release-group/7f84e503-590b-41b8-8b97-575d9a22eb5f/front-250",
     "titulo": "West End Blues",
-    "fecha": "1992",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "90bfe094-ea4b-428d-9c9c-a2699e771b1d",
-    "imagen": "https://coverartarchive.org/release-group/90bfe094-ea4b-428d-9c9c-a2699e771b1d/front-250",
-    "titulo": "Volume 3: 1924",
-    "fecha": "1992",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "c5c43f3c-d371-4ccd-a71a-2d6da4608c48",
-    "imagen": "https://coverartarchive.org/release-group/c5c43f3c-d371-4ccd-a71a-2d6da4608c48/front-250",
-    "titulo": "The Gold Collection",
     "fecha": "1992",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -366040,14 +365984,6 @@
     "tipo": "Album"
   },
   {
-    "id": "99dad07d-7d20-3c43-b188-d8e3976f14d4",
-    "imagen": "https://coverartarchive.org/release-group/99dad07d-7d20-3c43-b188-d8e3976f14d4/front-250",
-    "titulo": "Nothing Else Matters",
-    "fecha": "1992",
-    "artista": "Metallica",
-    "tipo": "Single"
-  },
-  {
     "id": "b9d02c6d-5a90-3b54-995b-17f9e8b23a68",
     "imagen": "https://coverartarchive.org/release-group/b9d02c6d-5a90-3b54-995b-17f9e8b23a68/front-250",
     "titulo": "Live at Wembley Stadium",
@@ -366070,6 +366006,14 @@
     "fecha": "1992",
     "artista": "Metallica",
     "tipo": "Album"
+  },
+  {
+    "id": "99dad07d-7d20-3c43-b188-d8e3976f14d4",
+    "imagen": "https://coverartarchive.org/release-group/99dad07d-7d20-3c43-b188-d8e3976f14d4/front-250",
+    "titulo": "Nothing Else Matters",
+    "fecha": "1992",
+    "artista": "Metallica",
+    "tipo": "Single"
   },
   {
     "id": "df8e32f0-e205-4f6e-897b-e9c2fe4d2e9d",
@@ -371360,14 +371304,6 @@
     "tipo": "Album"
   },
   {
-    "id": "240cb86f-4b2e-4c29-9ae7-f8a957a38d7b",
-    "imagen": "https://coverartarchive.org/release-group/240cb86f-4b2e-4c29-9ae7-f8a957a38d7b/front-250",
-    "titulo": "Elvis Through the Years, Volume 08: Are You Lonesome Tonight",
-    "fecha": "1991",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "7f683675-083e-34cb-a139-4be738bc5ba2",
     "imagen": "https://coverartarchive.org/release-group/7f683675-083e-34cb-a139-4be738bc5ba2/front-250",
     "titulo": "Christmas Favorites",
@@ -371427,6 +371363,14 @@
     "id": "16655595-4ebe-32ef-8359-1d21586f29dd",
     "imagen": "https://coverartarchive.org/release-group/16655595-4ebe-32ef-8359-1d21586f29dd/front-250",
     "titulo": "Greatest Rock & Roll Hits",
+    "fecha": "1991",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "240cb86f-4b2e-4c29-9ae7-f8a957a38d7b",
+    "imagen": "https://coverartarchive.org/release-group/240cb86f-4b2e-4c29-9ae7-f8a957a38d7b/front-250",
+    "titulo": "Elvis Through the Years, Volume 08: Are You Lonesome Tonight",
     "fecha": "1991",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -377632,14 +377576,6 @@
     "tipo": "Single"
   },
   {
-    "id": "ed9be1e7-dcd1-4a0d-ad87-84f46c835cfd",
-    "imagen": "https://coverartarchive.org/release-group/ed9be1e7-dcd1-4a0d-ad87-84f46c835cfd/front-250",
-    "titulo": "Satchmo",
-    "fecha": "1990",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "0ab6e030-3aad-4b6d-8caa-e64bbac70be0",
     "imagen": "https://coverartarchive.org/release-group/0ab6e030-3aad-4b6d-8caa-e64bbac70be0/front-250",
     "titulo": "The All-Stars Collection 1950-1956",
@@ -377787,6 +377723,14 @@
     "id": "def0fa97-dab9-45b3-8ce2-e1523650d5cb",
     "imagen": "https://coverartarchive.org/release-group/def0fa97-dab9-45b3-8ce2-e1523650d5cb/front-250",
     "titulo": "Volume V: Louis in New York",
+    "fecha": "1990",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "ed9be1e7-dcd1-4a0d-ad87-84f46c835cfd",
+    "imagen": "https://coverartarchive.org/release-group/ed9be1e7-dcd1-4a0d-ad87-84f46c835cfd/front-250",
+    "titulo": "Satchmo",
     "fecha": "1990",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -379256,6 +379200,14 @@
     "tipo": "Album"
   },
   {
+    "id": "6b3c7634-6c10-4efd-a3a0-9c5ffa5ef391",
+    "imagen": "https://coverartarchive.org/release-group/6b3c7634-6c10-4efd-a3a0-9c5ffa5ef391/front-250",
+    "titulo": "Volume 3",
+    "fecha": "1990",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
     "id": "6d8274a7-3bed-3e5c-9842-b0a6936e4318",
     "imagen": "https://coverartarchive.org/release-group/6d8274a7-3bed-3e5c-9842-b0a6936e4318/front-250",
     "titulo": "The Rolling Stones",
@@ -379331,14 +379283,6 @@
     "id": "fcb722b3-260d-4670-93dd-74ce7cfcc24f",
     "imagen": "https://coverartarchive.org/release-group/fcb722b3-260d-4670-93dd-74ce7cfcc24f/front-250",
     "titulo": "Rolling Stones",
-    "fecha": "1990",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
-    "id": "6b3c7634-6c10-4efd-a3a0-9c5ffa5ef391",
-    "imagen": "https://coverartarchive.org/release-group/6b3c7634-6c10-4efd-a3a0-9c5ffa5ef391/front-250",
-    "titulo": "Volume 3",
     "fecha": "1990",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -382907,6 +382851,14 @@
     "id": "8f8aff53-7f0a-4c84-a136-232e26d346f5",
     "imagen": "https://coverartarchive.org/release-group/8f8aff53-7f0a-4c84-a136-232e26d346f5/front-250",
     "titulo": "A Jazz Hour With Louis Armstrong",
+    "fecha": "1989",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "9cac841f-e8fb-48e1-be7d-784ae48ff9b0",
+    "imagen": "https://coverartarchive.org/release-group/9cac841f-e8fb-48e1-be7d-784ae48ff9b0/front-250",
+    "titulo": "L'Album Di Louis Armstrong",
     "fecha": "1989",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -388000,9 +387952,17 @@
     "tipo": "Album"
   },
   {
-    "id": "964e520a-3b51-382e-9eed-b9360f521e93",
-    "imagen": "https://coverartarchive.org/release-group/964e520a-3b51-382e-9eed-b9360f521e93/front-250",
-    "titulo": "Satchmo and the Dukes of Dixieland",
+    "id": "678f1666-61d7-3e84-a6cb-811d6604df79",
+    "imagen": "https://coverartarchive.org/release-group/678f1666-61d7-3e84-a6cb-811d6604df79/front-250",
+    "titulo": "20 Unforgettable Hits",
+    "fecha": "1988",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "a462ec2f-ad5c-4106-9752-29edf9c2e173",
+    "imagen": "https://coverartarchive.org/release-group/a462ec2f-ad5c-4106-9752-29edf9c2e173/front-250",
+    "titulo": "Big Bands, Volume Two 1931–32",
     "fecha": "1988",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -388072,14 +388032,6 @@
     "tipo": "Album"
   },
   {
-    "id": "678f1666-61d7-3e84-a6cb-811d6604df79",
-    "imagen": "https://coverartarchive.org/release-group/678f1666-61d7-3e84-a6cb-811d6604df79/front-250",
-    "titulo": "20 Unforgettable Hits",
-    "fecha": "1988",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "6e2a53d3-133d-481e-beda-541471cf70cd",
     "imagen": "https://coverartarchive.org/release-group/6e2a53d3-133d-481e-beda-541471cf70cd/front-250",
     "titulo": "The Hot Fives and Hot Sevens, Volume 2",
@@ -388096,17 +388048,17 @@
     "tipo": "Album"
   },
   {
-    "id": "a07e1905-3d93-4bc5-881a-271b77c2e3ab",
-    "imagen": "https://coverartarchive.org/release-group/a07e1905-3d93-4bc5-881a-271b77c2e3ab/front-250",
-    "titulo": "What A Wonderful World",
+    "id": "964e520a-3b51-382e-9eed-b9360f521e93",
+    "imagen": "https://coverartarchive.org/release-group/964e520a-3b51-382e-9eed-b9360f521e93/front-250",
+    "titulo": "Satchmo and the Dukes of Dixieland",
     "fecha": "1988",
     "artista": "Louis Armstrong",
     "tipo": "Album"
   },
   {
-    "id": "a462ec2f-ad5c-4106-9752-29edf9c2e173",
-    "imagen": "https://coverartarchive.org/release-group/a462ec2f-ad5c-4106-9752-29edf9c2e173/front-250",
-    "titulo": "Big Bands, Volume Two 1931–32",
+    "id": "a07e1905-3d93-4bc5-881a-271b77c2e3ab",
+    "imagen": "https://coverartarchive.org/release-group/a07e1905-3d93-4bc5-881a-271b77c2e3ab/front-250",
+    "titulo": "What A Wonderful World",
     "fecha": "1988",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -391808,14 +391760,6 @@
     "tipo": "Single"
   },
   {
-    "id": "a0ddfcd7-5b0c-41fa-b01d-8c9bf370fb48",
-    "imagen": "https://coverartarchive.org/release-group/a0ddfcd7-5b0c-41fa-b01d-8c9bf370fb48/front-250",
-    "titulo": "Hello Young Lovers",
-    "fecha": "1987",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "1b6aad32-39a1-477e-8816-673ec4c8740c",
     "imagen": "https://coverartarchive.org/release-group/1b6aad32-39a1-477e-8816-673ec4c8740c/front-250",
     "titulo": "The Radio Years 1939–1955",
@@ -391867,6 +391811,14 @@
     "id": "9b645a3b-0e94-3eca-b58c-71e79953cc40",
     "imagen": "https://coverartarchive.org/release-group/9b645a3b-0e94-3eca-b58c-71e79953cc40/front-250",
     "titulo": "The Frank Sinatra Duets",
+    "fecha": "1987",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "a0ddfcd7-5b0c-41fa-b01d-8c9bf370fb48",
+    "imagen": "https://coverartarchive.org/release-group/a0ddfcd7-5b0c-41fa-b01d-8c9bf370fb48/front-250",
+    "titulo": "Hello Young Lovers",
     "fecha": "1987",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -392136,6 +392088,14 @@
     "tipo": "Album"
   },
   {
+    "id": "0f76238e-efdb-3f60-af83-367fe8571198",
+    "imagen": "https://coverartarchive.org/release-group/0f76238e-efdb-3f60-af83-367fe8571198/front-250",
+    "titulo": "Satchmo",
+    "fecha": "1987",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
     "id": "1a45ea14-65c8-4cb8-bf3b-85d0c680bf3f",
     "imagen": "https://coverartarchive.org/release-group/1a45ea14-65c8-4cb8-bf3b-85d0c680bf3f/front-250",
     "titulo": "All Stars",
@@ -392147,30 +392107,6 @@
     "id": "6d31f8f4-a8d9-3254-aaaf-98bde2865166",
     "imagen": "https://coverartarchive.org/release-group/6d31f8f4-a8d9-3254-aaaf-98bde2865166/front-250",
     "titulo": "Cheek to Cheek",
-    "fecha": "1987",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "9c9d527e-5e61-432d-a5cf-2d677bc80e8e",
-    "imagen": "https://coverartarchive.org/release-group/9c9d527e-5e61-432d-a5cf-2d677bc80e8e/front-250",
-    "titulo": "Cabaret",
-    "fecha": "1987",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "dde6b5d9-17a8-3579-b3d4-7193da75dc0b",
-    "imagen": "https://coverartarchive.org/release-group/dde6b5d9-17a8-3579-b3d4-7193da75dc0b/front-250",
-    "titulo": "1928–1931",
-    "fecha": "1987",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "0f76238e-efdb-3f60-af83-367fe8571198",
-    "imagen": "https://coverartarchive.org/release-group/0f76238e-efdb-3f60-af83-367fe8571198/front-250",
-    "titulo": "Satchmo",
     "fecha": "1987",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -392192,9 +392128,25 @@
     "tipo": "Album"
   },
   {
+    "id": "9c9d527e-5e61-432d-a5cf-2d677bc80e8e",
+    "imagen": "https://coverartarchive.org/release-group/9c9d527e-5e61-432d-a5cf-2d677bc80e8e/front-250",
+    "titulo": "Cabaret",
+    "fecha": "1987",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
     "id": "b92bf641-ff17-31cd-97ef-9dae0880558b",
     "imagen": "https://coverartarchive.org/release-group/b92bf641-ff17-31cd-97ef-9dae0880558b/front-250",
     "titulo": "Pops: The 1940s Small-Band Sides",
+    "fecha": "1987",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "dde6b5d9-17a8-3579-b3d4-7193da75dc0b",
+    "imagen": "https://coverartarchive.org/release-group/dde6b5d9-17a8-3579-b3d4-7193da75dc0b/front-250",
+    "titulo": "1928–1931",
     "fecha": "1987",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -404792,14 +404744,6 @@
     "tipo": "Album"
   },
   {
-    "id": "d98e4b3b-6cc9-3ab1-94ff-12e119434d62",
-    "imagen": "https://coverartarchive.org/release-group/d98e4b3b-6cc9-3ab1-94ff-12e119434d62/front-250",
-    "titulo": "Elvis Forever: 32 Hits",
-    "fecha": "1983",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "28b7a89e-0c8a-488c-938f-b7ac0d420f6f",
     "imagen": "https://coverartarchive.org/release-group/28b7a89e-0c8a-488c-938f-b7ac0d420f6f/front-250",
     "titulo": "His Greatest Hits",
@@ -404827,6 +404771,14 @@
     "id": "bd770851-e98f-3f4d-b6e1-6a21cc0fb407",
     "imagen": "https://coverartarchive.org/release-group/bd770851-e98f-3f4d-b6e1-6a21cc0fb407/front-250",
     "titulo": "The Complete Bonus Songs",
+    "fecha": "1983",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "d98e4b3b-6cc9-3ab1-94ff-12e119434d62",
+    "imagen": "https://coverartarchive.org/release-group/d98e4b3b-6cc9-3ab1-94ff-12e119434d62/front-250",
+    "titulo": "Elvis Forever: 32 Hits",
     "fecha": "1983",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -416360,6 +416312,14 @@
     "tipo": "Album"
   },
   {
+    "id": "4203fccf-118d-4ec6-98c1-c72a68aee7e5",
+    "imagen": "https://coverartarchive.org/release-group/4203fccf-118d-4ec6-98c1-c72a68aee7e5/front-250",
+    "titulo": "Profile",
+    "fecha": "1979",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
     "id": "808f0d3c-d052-45e7-866a-07bff1a71b64",
     "imagen": "https://coverartarchive.org/release-group/808f0d3c-d052-45e7-866a-07bff1a71b64/front-250",
     "titulo": "Get More... Satisfaction",
@@ -416387,14 +416347,6 @@
     "id": "0eb26dc4-c3d9-46ed-a200-e79e7121ccb5",
     "imagen": "https://coverartarchive.org/release-group/0eb26dc4-c3d9-46ed-a200-e79e7121ccb5/front-250",
     "titulo": "The Rolling Stones",
-    "fecha": "1979",
-    "artista": "The Rolling Stones",
-    "tipo": "Album"
-  },
-  {
-    "id": "4203fccf-118d-4ec6-98c1-c72a68aee7e5",
-    "imagen": "https://coverartarchive.org/release-group/4203fccf-118d-4ec6-98c1-c72a68aee7e5/front-250",
-    "titulo": "Profile",
     "fecha": "1979",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -417421,7 +417373,7 @@
     "titulo": "The All Time Greatest",
     "fecha": "1978-04",
     "artista": "Frank Sinatra",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "83946933-8806-39e8-ba01-b868abc3f0bc",
@@ -422664,14 +422616,6 @@
     "tipo": "Single"
   },
   {
-    "id": "937abc71-07b4-4613-8631-2bfc6fcdfc41",
-    "imagen": "https://coverartarchive.org/release-group/937abc71-07b4-4613-8631-2bfc6fcdfc41/front-250",
-    "titulo": "Frank Sinatra",
-    "fecha": "1976",
-    "artista": "Frank Sinatra",
-    "tipo": "Publicación"
-  },
-  {
     "id": "10ae2ebb-8220-499a-8b48-6f93dc84f323",
     "imagen": "https://coverartarchive.org/release-group/10ae2ebb-8220-499a-8b48-6f93dc84f323/front-250",
     "titulo": "2 Originals of Frank Sinatra",
@@ -422683,6 +422627,14 @@
     "id": "280b86f2-b6a7-44c1-964e-e38bc625d91f",
     "imagen": "https://coverartarchive.org/release-group/280b86f2-b6a7-44c1-964e-e38bc625d91f/front-250",
     "titulo": "The Young Harry James",
+    "fecha": "1976",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "937abc71-07b4-4613-8631-2bfc6fcdfc41",
+    "imagen": "https://coverartarchive.org/release-group/937abc71-07b4-4613-8631-2bfc6fcdfc41/front-250",
+    "titulo": "Frank Sinatra",
     "fecha": "1976",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -431419,7 +431371,7 @@
     "id": "a72ee504-15b5-343c-bfd7-e71f9272e0e5",
     "imagen": "https://coverartarchive.org/release-group/a72ee504-15b5-343c-bfd7-e71f9272e0e5/front-250",
     "titulo": "Just As I Am",
-    "fecha": "1971-05",
+    "fecha": "1971-05-01",
     "artista": "Bill Withers",
     "tipo": "Album"
   },
@@ -438408,6 +438360,14 @@
     "tipo": "Single"
   },
   {
+    "id": "0fdbd0fc-60a0-44de-89ed-c9e4f9b5c71e",
+    "imagen": "https://coverartarchive.org/release-group/0fdbd0fc-60a0-44de-89ed-c9e4f9b5c71e/front-250",
+    "titulo": "Nevertheless I’m In Love With You",
+    "fecha": "1967",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
     "id": "2d4661a6-11cc-4fc0-9569-547e141be9f7",
     "imagen": "https://coverartarchive.org/release-group/2d4661a6-11cc-4fc0-9569-547e141be9f7/front-250",
     "titulo": "Francis A. & Edward K.",
@@ -438419,14 +438379,6 @@
     "id": "44dffb7c-2efe-3631-a2c5-0f32d2c7498b",
     "imagen": "https://coverartarchive.org/release-group/44dffb7c-2efe-3631-a2c5-0f32d2c7498b/front-250",
     "titulo": "The World We Knew",
-    "fecha": "1967",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "0fdbd0fc-60a0-44de-89ed-c9e4f9b5c71e",
-    "imagen": "https://coverartarchive.org/release-group/0fdbd0fc-60a0-44de-89ed-c9e4f9b5c71e/front-250",
-    "titulo": "Nevertheless I’m In Love With You",
     "fecha": "1967",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -440072,22 +440024,6 @@
     "tipo": "Single"
   },
   {
-    "id": "37102462-0941-38c3-9f7f-14188efd0ff1",
-    "imagen": "https://coverartarchive.org/release-group/37102462-0941-38c3-9f7f-14188efd0ff1/front-250",
-    "titulo": "Strangers in the Night",
-    "fecha": "1966",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "4151757f-4352-3188-abc7-905c126a0a86",
-    "imagen": "https://coverartarchive.org/release-group/4151757f-4352-3188-abc7-905c126a0a86/front-250",
-    "titulo": "Moonlight Sinatra",
-    "fecha": "1966",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "2adfec3d-d24f-449f-9e91-2c044d9732e1",
     "imagen": "https://coverartarchive.org/release-group/2adfec3d-d24f-449f-9e91-2c044d9732e1/front-250",
     "titulo": "Frank Sinatra’s Greatest Hits – The Early Years, Volume 2",
@@ -440099,6 +440035,22 @@
     "id": "3188b9f3-9924-4e63-b637-6611d91899b5",
     "imagen": "https://coverartarchive.org/release-group/3188b9f3-9924-4e63-b637-6611d91899b5/front-250",
     "titulo": "The Romantic Sinatra",
+    "fecha": "1966",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "37102462-0941-38c3-9f7f-14188efd0ff1",
+    "imagen": "https://coverartarchive.org/release-group/37102462-0941-38c3-9f7f-14188efd0ff1/front-250",
+    "titulo": "Strangers in the Night",
+    "fecha": "1966",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "4151757f-4352-3188-abc7-905c126a0a86",
+    "imagen": "https://coverartarchive.org/release-group/4151757f-4352-3188-abc7-905c126a0a86/front-250",
+    "titulo": "Moonlight Sinatra",
     "fecha": "1966",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -441928,6 +441880,14 @@
     "tipo": "Album"
   },
   {
+    "id": "3da1687c-d6bf-49dd-b940-bec22b1eccf4",
+    "imagen": "https://coverartarchive.org/release-group/3da1687c-d6bf-49dd-b940-bec22b1eccf4/front-250",
+    "titulo": "Sings the Select Cole Porter",
+    "fecha": "1965",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
     "id": "6dda357c-ac07-3d48-95ed-4b2589aac626",
     "imagen": "https://coverartarchive.org/release-group/6dda357c-ac07-3d48-95ed-4b2589aac626/front-250",
     "titulo": "A Man and His Music",
@@ -441939,14 +441899,6 @@
     "id": "f8190018-b343-4d3e-8aba-cb44d13f47af",
     "imagen": "https://coverartarchive.org/release-group/f8190018-b343-4d3e-8aba-cb44d13f47af/front-250",
     "titulo": "Sinatra ’65",
-    "fecha": "1965",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "3da1687c-d6bf-49dd-b940-bec22b1eccf4",
-    "imagen": "https://coverartarchive.org/release-group/3da1687c-d6bf-49dd-b940-bec22b1eccf4/front-250",
-    "titulo": "Sings the Select Cole Porter",
     "fecha": "1965",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -448568,14 +448520,6 @@
     "tipo": "Album"
   },
   {
-    "id": "81e67993-5ee8-432d-b6fd-2f38a108f25d",
-    "imagen": "https://coverartarchive.org/release-group/81e67993-5ee8-432d-b6fd-2f38a108f25d/front-250",
-    "titulo": "Louis Armstrong Plays W.C. Handy, Volume 1",
-    "fecha": "1954",
-    "artista": "Louis Armstrong",
-    "tipo": "EP"
-  },
-  {
     "id": "a2ce76d4-70b5-4453-8678-9e1c721ffdc6",
     "imagen": "https://coverartarchive.org/release-group/a2ce76d4-70b5-4453-8678-9e1c721ffdc6/front-250",
     "titulo": "Louis Armstrong and the Mills Brothers",
@@ -448595,6 +448539,14 @@
     "id": "0158c1b2-8b4e-4159-8393-aa73298c7796",
     "imagen": "https://coverartarchive.org/release-group/0158c1b2-8b4e-4159-8393-aa73298c7796/front-250",
     "titulo": "Skookian / Otchi-Tchor-Ni-Ya",
+    "fecha": "1954",
+    "artista": "Louis Armstrong",
+    "tipo": "EP"
+  },
+  {
+    "id": "81e67993-5ee8-432d-b6fd-2f38a108f25d",
+    "imagen": "https://coverartarchive.org/release-group/81e67993-5ee8-432d-b6fd-2f38a108f25d/front-250",
+    "titulo": "Louis Armstrong Plays W.C. Handy, Volume 1",
     "fecha": "1954",
     "artista": "Louis Armstrong",
     "tipo": "EP"
@@ -453576,14 +453528,6 @@
     "tipo": "Album"
   },
   {
-    "id": "05cde05a-a0ee-4aa8-b2f7-359a12e7fadb",
-    "imagen": "https://coverartarchive.org/release-group/05cde05a-a0ee-4aa8-b2f7-359a12e7fadb/front-250",
-    "titulo": "The Rolling Thunder Revue: The 1976 Live Recordings",
-    "fecha": "",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
     "id": "6f7082b4-6f70-4338-a211-29898e19d366",
     "imagen": "https://coverartarchive.org/release-group/6f7082b4-6f70-4338-a211-29898e19d366/front-250",
     "titulo": "Greatest Songs",
@@ -454056,14 +454000,6 @@
     "tipo": "Album"
   },
   {
-    "id": "5d88994e-5be0-4237-b06e-71903089e6fa",
-    "imagen": "https://coverartarchive.org/release-group/5d88994e-5be0-4237-b06e-71903089e6fa/front-250",
-    "titulo": "1976-05-11: Municipal Auditorium, San Antonio, TX, USA",
-    "fecha": "",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
     "id": "7547baad-13c0-4850-b4a2-1541ef2a6142",
     "imagen": "https://coverartarchive.org/release-group/7547baad-13c0-4850-b4a2-1541ef2a6142/front-250",
     "titulo": "1974-01-11: Forum de Montreal, Montreal, QC, Canada",
@@ -454075,14 +454011,6 @@
     "id": "77d798ec-1bef-40bf-98fb-4f802e16aef8",
     "imagen": "https://coverartarchive.org/release-group/77d798ec-1bef-40bf-98fb-4f802e16aef8/front-250",
     "titulo": "1974-01-19, evening show: Hollywood Sportatorium, Hollywood, FL, USA",
-    "fecha": "",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
-    "id": "8bbd5cf6-4d62-4378-8cbb-99c4678968a4",
-    "imagen": "https://coverartarchive.org/release-group/8bbd5cf6-4d62-4378-8cbb-99c4678968a4/front-250",
-    "titulo": "1978-06-26: Westfalenhalle, Dortmund, West Germany",
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -454464,6 +454392,14 @@
     "tipo": "Album"
   },
   {
+    "id": "5d88994e-5be0-4237-b06e-71903089e6fa",
+    "imagen": "https://coverartarchive.org/release-group/5d88994e-5be0-4237-b06e-71903089e6fa/front-250",
+    "titulo": "1976-05-11: Municipal Auditorium, San Antonio, TX, USA",
+    "fecha": "",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
     "id": "5dc3a6fc-0d23-459a-b662-04cff160eb65",
     "imagen": "https://coverartarchive.org/release-group/5dc3a6fc-0d23-459a-b662-04cff160eb65/front-250",
     "titulo": "1997-12-09: Avalon, Boston, MA, USA",
@@ -454475,14 +454411,6 @@
     "id": "5ebb4e8c-23da-428c-8b2c-187808b5d38b",
     "imagen": "https://coverartarchive.org/release-group/5ebb4e8c-23da-428c-8b2c-187808b5d38b/front-250",
     "titulo": "1988-07-18: Meadowbrook Music Theatre, Oakland University, Rochester Hills, MI, USA",
-    "fecha": "",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
-    "id": "60ebc918-2d87-3107-bb29-bdb9c1886eb0",
-    "imagen": "https://coverartarchive.org/release-group/60ebc918-2d87-3107-bb29-bdb9c1886eb0/front-250",
-    "titulo": "2000-09-24: Guildhall, Portsmouth, England, UK",
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -454627,6 +454555,14 @@
     "id": "8ae871a7-8391-4317-a2ed-c1658ca019db",
     "imagen": "https://coverartarchive.org/release-group/8ae871a7-8391-4317-a2ed-c1658ca019db/front-250",
     "titulo": "1994-05-01: Jesse Auditorium, Columbia, MO, USA",
+    "fecha": "",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
+    "id": "8bbd5cf6-4d62-4378-8cbb-99c4678968a4",
+    "imagen": "https://coverartarchive.org/release-group/8bbd5cf6-4d62-4378-8cbb-99c4678968a4/front-250",
+    "titulo": "1978-06-26: Westfalenhalle, Dortmund, West Germany",
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -454787,14 +454723,6 @@
     "id": "c386e9a6-4daf-4ca5-884d-cf1a045e9273",
     "imagen": "https://coverartarchive.org/release-group/c386e9a6-4daf-4ca5-884d-cf1a045e9273/front-250",
     "titulo": "1980-11-11: Fox Warfield Theatre, San Francisco, CA, USA",
-    "fecha": "",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
-    "id": "c9f3ade6-85f5-4ec6-bbf2-c678d2acb9bc",
-    "imagen": "https://coverartarchive.org/release-group/c9f3ade6-85f5-4ec6-bbf2-c678d2acb9bc/front-250",
-    "titulo": "2000-10-01: Halle Munsterland, Muster, Germany",
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -455272,6 +455200,14 @@
     "tipo": "Album"
   },
   {
+    "id": "60ebc918-2d87-3107-bb29-bdb9c1886eb0",
+    "imagen": "https://coverartarchive.org/release-group/60ebc918-2d87-3107-bb29-bdb9c1886eb0/front-250",
+    "titulo": "2000-09-24: Guildhall, Portsmouth, England, UK",
+    "fecha": "",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
     "id": "61b56eb4-c27d-473d-aabb-e1ce8534ef26",
     "imagen": "https://coverartarchive.org/release-group/61b56eb4-c27d-473d-aabb-e1ce8534ef26/front-250",
     "titulo": "2009-03-25: Oslo Spektrum, Oslo, Norway",
@@ -455408,14 +455344,6 @@
     "tipo": "Album"
   },
   {
-    "id": "921a1631-5bd9-4a0e-998e-3c565bcf854a",
-    "imagen": "https://coverartarchive.org/release-group/921a1631-5bd9-4a0e-998e-3c565bcf854a/front-250",
-    "titulo": "2009-10-29: Aragon Ballroom, Chicago, IL, USA",
-    "fecha": "",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
     "id": "94b079e8-cc0e-43c3-a8a2-5f5ead72f5fe",
     "imagen": "https://coverartarchive.org/release-group/94b079e8-cc0e-43c3-a8a2-5f5ead72f5fe/front-250",
     "titulo": "2008-06-23: Feria de Muestras, Zaragoza, Spain",
@@ -455475,14 +455403,6 @@
     "id": "a5d84448-5858-454f-a192-0cacc3cff7d1",
     "imagen": "https://coverartarchive.org/release-group/a5d84448-5858-454f-a192-0cacc3cff7d1/front-250",
     "titulo": "2009-03-28: Malmö Arena, Malmö, Sweden",
-    "fecha": "",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
-    "id": "a6492545-6df1-4a61-a29a-1d6796d6c12e",
-    "imagen": "https://coverartarchive.org/release-group/a6492545-6df1-4a61-a29a-1d6796d6c12e/front-250",
-    "titulo": "2009-10-31: Aragon Ballroom, Chicago, IL, USA",
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -455635,6 +455555,14 @@
     "id": "c8b0fe42-7c30-4081-884b-2ee55619dfe8",
     "imagen": "https://coverartarchive.org/release-group/c8b0fe42-7c30-4081-884b-2ee55619dfe8/front-250",
     "titulo": "2008-07-10: Plaza de Toros, Mérida, Spain",
+    "fecha": "",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
+    "id": "c9f3ade6-85f5-4ec6-bbf2-c678d2acb9bc",
+    "imagen": "https://coverartarchive.org/release-group/c9f3ade6-85f5-4ec6-bbf2-c678d2acb9bc/front-250",
+    "titulo": "2000-10-01: Halle Munsterland, Muster, Germany",
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -455896,14 +455824,6 @@
     "tipo": "Album"
   },
   {
-    "id": "42c5f25e-0bf8-3bb7-be6b-23fb7af9502e",
-    "imagen": "https://coverartarchive.org/release-group/42c5f25e-0bf8-3bb7-be6b-23fb7af9502e/front-250",
-    "titulo": "Blonde on Blonde Outtakes",
-    "fecha": "",
-    "artista": "Bob Dylan",
-    "tipo": "Other"
-  },
-  {
     "id": "5a897ef3-1e38-4364-8c39-5ebc6abf401d",
     "imagen": "https://coverartarchive.org/release-group/5a897ef3-1e38-4364-8c39-5ebc6abf401d/front-250",
     "titulo": "In Concert 1999: Eugene (2022 Remix)",
@@ -456008,20 +455928,20 @@
     "tipo": "Album"
   },
   {
+    "id": "921a1631-5bd9-4a0e-998e-3c565bcf854a",
+    "imagen": "https://coverartarchive.org/release-group/921a1631-5bd9-4a0e-998e-3c565bcf854a/front-250",
+    "titulo": "2009-10-29: Aragon Ballroom, Chicago, IL, USA",
+    "fecha": "",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
     "id": "925293ba-1bcd-41b9-beab-e5b41319397f",
     "imagen": "https://coverartarchive.org/release-group/925293ba-1bcd-41b9-beab-e5b41319397f/front-250",
     "titulo": "Live Tramps 1999",
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Album"
-  },
-  {
-    "id": "99e817d6-b7ae-421a-8776-edaa73141b9b",
-    "imagen": "https://coverartarchive.org/release-group/99e817d6-b7ae-421a-8776-edaa73141b9b/front-250",
-    "titulo": "1987-06-xx: The Complete Rehearsals (So Far…): Club Front, San Rafael, CA, USA",
-    "fecha": "",
-    "artista": "Bob Dylan",
-    "tipo": "Other"
   },
   {
     "id": "a227f100-f0f7-4e9a-9388-f479ace61869",
@@ -456035,6 +455955,14 @@
     "id": "a57872c4-bc64-3ed1-bf47-188f016a45f2",
     "imagen": "https://coverartarchive.org/release-group/a57872c4-bc64-3ed1-bf47-188f016a45f2/front-250",
     "titulo": "Tall Grass & Ones I Love",
+    "fecha": "",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
+    "id": "a6492545-6df1-4a61-a29a-1d6796d6c12e",
+    "imagen": "https://coverartarchive.org/release-group/a6492545-6df1-4a61-a29a-1d6796d6c12e/front-250",
+    "titulo": "2009-10-31: Aragon Ballroom, Chicago, IL, USA",
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -456192,6 +456120,14 @@
     "tipo": "Other"
   },
   {
+    "id": "42c5f25e-0bf8-3bb7-be6b-23fb7af9502e",
+    "imagen": "https://coverartarchive.org/release-group/42c5f25e-0bf8-3bb7-be6b-23fb7af9502e/front-250",
+    "titulo": "Blonde on Blonde Outtakes",
+    "fecha": "",
+    "artista": "Bob Dylan",
+    "tipo": "Other"
+  },
+  {
     "id": "49ae40c4-3df5-4852-8457-090d7a46ab1e",
     "imagen": "https://coverartarchive.org/release-group/49ae40c4-3df5-4852-8457-090d7a46ab1e/front-250",
     "titulo": "Electric Gashcat (The Nite Crash Ballads), Volume Two",
@@ -456211,6 +456147,14 @@
     "id": "96286567-64c1-3555-aa33-fbdbda674b5a",
     "imagen": "https://coverartarchive.org/release-group/96286567-64c1-3555-aa33-fbdbda674b5a/front-250",
     "titulo": "The Witmark Demos",
+    "fecha": "",
+    "artista": "Bob Dylan",
+    "tipo": "Other"
+  },
+  {
+    "id": "99e817d6-b7ae-421a-8776-edaa73141b9b",
+    "imagen": "https://coverartarchive.org/release-group/99e817d6-b7ae-421a-8776-edaa73141b9b/front-250",
+    "titulo": "1987-06-xx: The Complete Rehearsals (So Far…): Club Front, San Rafael, CA, USA",
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Other"
@@ -456963,6 +456907,14 @@
     "id": "ba68328b-f482-49d1-a1bb-4df1dd4dacad",
     "imagen": "https://coverartarchive.org/release-group/ba68328b-f482-49d1-a1bb-4df1dd4dacad/front-250",
     "titulo": "Lullaby",
+    "fecha": "",
+    "artista": "Britney Spears",
+    "tipo": "Single"
+  },
+  {
+    "id": "bd8be567-05c6-4671-a2ea-9e46cbc98234",
+    "imagen": "https://coverartarchive.org/release-group/bd8be567-05c6-4671-a2ea-9e46cbc98234/front-250",
+    "titulo": "Oops!...I Did It Again (Remixes And B-Sides)",
     "fecha": "",
     "artista": "Britney Spears",
     "tipo": "Single"
@@ -463048,6 +463000,14 @@
     "tipo": "Publicación"
   },
   {
+    "id": "a04befe7-8049-48ce-9b1c-b16ca80a0dee",
+    "imagen": "https://coverartarchive.org/release-group/a04befe7-8049-48ce-9b1c-b16ca80a0dee/front-250",
+    "titulo": "Rock'n Roll Legend",
+    "fecha": "",
+    "artista": "Elvis Presley",
+    "tipo": "Publicación"
+  },
+  {
     "id": "019fce9f-80ff-35d8-b273-9c91a0815f1f",
     "imagen": "https://coverartarchive.org/release-group/019fce9f-80ff-35d8-b273-9c91a0815f1f/front-250",
     "titulo": "The Golden Years, Volume 2",
@@ -463904,6 +463864,14 @@
     "tipo": "Album"
   },
   {
+    "id": "a5c31007-f21c-4554-9894-3089af6573bf",
+    "imagen": "https://coverartarchive.org/release-group/a5c31007-f21c-4554-9894-3089af6573bf/front-250",
+    "titulo": "Road Test",
+    "fecha": "",
+    "artista": "Eric Clapton",
+    "tipo": "Album"
+  },
+  {
     "id": "b6ac30cb-c8f5-428a-9636-96b4f10f8150",
     "imagen": "https://coverartarchive.org/release-group/b6ac30cb-c8f5-428a-9636-96b4f10f8150/front-250",
     "titulo": "The Best Cream of Clapton",
@@ -463952,9 +463920,9 @@
     "tipo": "Publicación"
   },
   {
-    "id": "a5c31007-f21c-4554-9894-3089af6573bf",
-    "imagen": "https://coverartarchive.org/release-group/a5c31007-f21c-4554-9894-3089af6573bf/front-250",
-    "titulo": "Road Test",
+    "id": "91088962-8a7d-376d-bffd-7dd721e94a2d",
+    "imagen": "https://coverartarchive.org/release-group/91088962-8a7d-376d-bffd-7dd721e94a2d/front-250",
+    "titulo": "24 Carat Blues Band",
     "fecha": "",
     "artista": "Eric Clapton",
     "tipo": "Album"
@@ -464003,6 +463971,14 @@
     "id": "10726ead-6322-47b6-a8f8-3cce0b5e4db6",
     "imagen": "https://coverartarchive.org/release-group/10726ead-6322-47b6-a8f8-3cce0b5e4db6/front-250",
     "titulo": "1975‐06‐14: Tampa Stadium, Tampa, FL, USA",
+    "fecha": "",
+    "artista": "Eric Clapton",
+    "tipo": "Album"
+  },
+  {
+    "id": "1180cf7d-b807-4e28-9232-33f3698920a8",
+    "imagen": "https://coverartarchive.org/release-group/1180cf7d-b807-4e28-9232-33f3698920a8/front-250",
+    "titulo": "1996‐01‐13: Soho Serenade: Ronnie Scott’s Club, London, England, UK",
     "fecha": "",
     "artista": "Eric Clapton",
     "tipo": "Album"
@@ -464363,14 +464339,6 @@
     "id": "8f3c9316-856d-3cd2-9774-6ed29aa75bc4",
     "imagen": "https://coverartarchive.org/release-group/8f3c9316-856d-3cd2-9774-6ed29aa75bc4/front-250",
     "titulo": "1984-06-17: Thanks for the Ride: Isstadion, Stockholm, Sweden",
-    "fecha": "",
-    "artista": "Eric Clapton",
-    "tipo": "Album"
-  },
-  {
-    "id": "91088962-8a7d-376d-bffd-7dd721e94a2d",
-    "imagen": "https://coverartarchive.org/release-group/91088962-8a7d-376d-bffd-7dd721e94a2d/front-250",
-    "titulo": "24 Carat Blues Band",
     "fecha": "",
     "artista": "Eric Clapton",
     "tipo": "Album"
@@ -464811,14 +464779,6 @@
     "id": "0ef5ca9b-1b3f-4292-98e6-90c1b9c048ec",
     "imagen": "https://coverartarchive.org/release-group/0ef5ca9b-1b3f-4292-98e6-90c1b9c048ec/front-250",
     "titulo": "EC – The Pavilion 07‐29‐1976 Hemel Hempstead UK",
-    "fecha": "",
-    "artista": "Eric Clapton",
-    "tipo": "Album"
-  },
-  {
-    "id": "1180cf7d-b807-4e28-9232-33f3698920a8",
-    "imagen": "https://coverartarchive.org/release-group/1180cf7d-b807-4e28-9232-33f3698920a8/front-250",
-    "titulo": "1996‐01‐13: Soho Serenade: Ronnie Scott’s Club, London, England, UK",
     "fecha": "",
     "artista": "Eric Clapton",
     "tipo": "Album"
@@ -465592,17 +465552,9 @@
     "tipo": "Album"
   },
   {
-    "id": "8e10df0f-b0c5-43e0-99e0-26f937a0f612",
-    "imagen": "https://coverartarchive.org/release-group/8e10df0f-b0c5-43e0-99e0-26f937a0f612/front-250",
-    "titulo": "Young at Heart",
-    "fecha": "",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "fa67d382-f6be-4953-a6cc-9b142340e0fc",
-    "imagen": "https://coverartarchive.org/release-group/fa67d382-f6be-4953-a6cc-9b142340e0fc/front-250",
-    "titulo": "Side by Side",
+    "id": "29d55cf9-8c31-40e6-9c0f-52106fc89d37",
+    "imagen": "https://coverartarchive.org/release-group/29d55cf9-8c31-40e6-9c0f-52106fc89d37/front-250",
+    "titulo": "Classic Sinatra Volume 1",
     "fecha": "",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -465659,6 +465611,14 @@
     "id": "b5308aba-6a13-37d1-b843-ba5d5edf36db",
     "imagen": "https://coverartarchive.org/release-group/b5308aba-6a13-37d1-b843-ba5d5edf36db/front-250",
     "titulo": "Christmas With Bing Crosby and Frank Sinatra",
+    "fecha": "",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "e6564288-ac5c-47fe-8a4f-4a8d4f384448",
+    "imagen": "https://coverartarchive.org/release-group/e6564288-ac5c-47fe-8a4f-4a8d4f384448/front-250",
+    "titulo": "Classic Sinatra Volume 2",
     "fecha": "",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -465771,14 +465731,6 @@
     "id": "29343033-4cb1-4a16-b8e4-3042cbe0f8e4",
     "imagen": "https://coverartarchive.org/release-group/29343033-4cb1-4a16-b8e4-3042cbe0f8e4/front-250",
     "titulo": "Rare & Early Tracks",
-    "fecha": "",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
-    "id": "29d55cf9-8c31-40e6-9c0f-52106fc89d37",
-    "imagen": "https://coverartarchive.org/release-group/29d55cf9-8c31-40e6-9c0f-52106fc89d37/front-250",
-    "titulo": "Classic Sinatra Volume 1",
     "fecha": "",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -465944,6 +465896,14 @@
     "tipo": "Album"
   },
   {
+    "id": "8e10df0f-b0c5-43e0-99e0-26f937a0f612",
+    "imagen": "https://coverartarchive.org/release-group/8e10df0f-b0c5-43e0-99e0-26f937a0f612/front-250",
+    "titulo": "Young at Heart",
+    "fecha": "",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
     "id": "97e752b3-e05f-316a-8e2e-93c3eba93edd",
     "imagen": "https://coverartarchive.org/release-group/97e752b3-e05f-316a-8e2e-93c3eba93edd/front-250",
     "titulo": "Frank Sinatra: Volume III: My Heart Tells Me",
@@ -466080,17 +466040,17 @@
     "tipo": "Album"
   },
   {
-    "id": "e6564288-ac5c-47fe-8a4f-4a8d4f384448",
-    "imagen": "https://coverartarchive.org/release-group/e6564288-ac5c-47fe-8a4f-4a8d4f384448/front-250",
-    "titulo": "Classic Sinatra Volume 2",
+    "id": "ec24ea95-fe37-4b4e-9fab-f052cbcbbfeb",
+    "imagen": "https://coverartarchive.org/release-group/ec24ea95-fe37-4b4e-9fab-f052cbcbbfeb/front-250",
+    "titulo": "The Voice, Frank Sinatra, The Columbia Years 1943-1952",
     "fecha": "",
     "artista": "Frank Sinatra",
     "tipo": "Album"
   },
   {
-    "id": "ec24ea95-fe37-4b4e-9fab-f052cbcbbfeb",
-    "imagen": "https://coverartarchive.org/release-group/ec24ea95-fe37-4b4e-9fab-f052cbcbbfeb/front-250",
-    "titulo": "The Voice, Frank Sinatra, The Columbia Years 1943-1952",
+    "id": "fa67d382-f6be-4953-a6cc-9b142340e0fc",
+    "imagen": "https://coverartarchive.org/release-group/fa67d382-f6be-4953-a6cc-9b142340e0fc/front-250",
+    "titulo": "Side by Side",
     "fecha": "",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -469272,36 +469232,12 @@
     "tipo": "Publicación"
   },
   {
-    "id": "21c0414a-c7ca-4166-9abd-93add1e76c0f",
-    "imagen": "https://coverartarchive.org/release-group/21c0414a-c7ca-4166-9abd-93add1e76c0f/front-250",
-    "titulo": "classic satch",
-    "fecha": "",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "5fc76b75-9839-4b05-bb47-4ce300e288df",
     "imagen": "https://coverartarchive.org/release-group/5fc76b75-9839-4b05-bb47-4ce300e288df/front-250",
     "titulo": "Memorial",
     "fecha": "",
     "artista": "Louis Armstrong",
     "tipo": "Publicación"
-  },
-  {
-    "id": "d79d9675-d58b-4c1d-bcbb-1cbe51310b02",
-    "imagen": "https://coverartarchive.org/release-group/d79d9675-d58b-4c1d-bcbb-1cbe51310b02/front-250",
-    "titulo": "Louis Armstrong",
-    "fecha": "",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "df345556-73fb-48a3-ac46-d0acec1fde24",
-    "imagen": "https://coverartarchive.org/release-group/df345556-73fb-48a3-ac46-d0acec1fde24/front-250",
-    "titulo": "Ella Et Louis",
-    "fecha": "",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
   },
   {
     "id": "003d047f-cbe9-3497-8d1f-98f0ce39cc24",
@@ -469371,6 +469307,14 @@
     "id": "1f256894-97eb-323f-8852-2812beefc0f6",
     "imagen": "https://coverartarchive.org/release-group/1f256894-97eb-323f-8852-2812beefc0f6/front-250",
     "titulo": "Cool Breeze",
+    "fecha": "",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "21c0414a-c7ca-4166-9abd-93add1e76c0f",
+    "imagen": "https://coverartarchive.org/release-group/21c0414a-c7ca-4166-9abd-93add1e76c0f/front-250",
+    "titulo": "classic satch",
     "fecha": "",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -469728,9 +469672,25 @@
     "tipo": "Album"
   },
   {
+    "id": "d79d9675-d58b-4c1d-bcbb-1cbe51310b02",
+    "imagen": "https://coverartarchive.org/release-group/d79d9675-d58b-4c1d-bcbb-1cbe51310b02/front-250",
+    "titulo": "Louis Armstrong",
+    "fecha": "",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
     "id": "d9c89328-a2e2-4f7f-8a1b-bdb5b73b314f",
     "imagen": "https://coverartarchive.org/release-group/d9c89328-a2e2-4f7f-8a1b-bdb5b73b314f/front-250",
     "titulo": "Special Collection",
+    "fecha": "",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "df345556-73fb-48a3-ac46-d0acec1fde24",
+    "imagen": "https://coverartarchive.org/release-group/df345556-73fb-48a3-ac46-d0acec1fde24/front-250",
+    "titulo": "Ella Et Louis",
     "fecha": "",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -470704,6 +470664,14 @@
     "tipo": "Album"
   },
   {
+    "id": "217fcac1-f6a1-4b36-85e4-c3f4d290d9ad",
+    "imagen": "https://coverartarchive.org/release-group/217fcac1-f6a1-4b36-85e4-c3f4d290d9ad/front-250",
+    "titulo": "Live Metallica: Lincoln, NE – September 06, 2018",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
     "id": "366c19d4-25e2-4c1d-8906-c7cbb6c420d8",
     "imagen": "https://coverartarchive.org/release-group/366c19d4-25e2-4c1d-8906-c7cbb6c420d8/front-250",
     "titulo": "1984‐12‐20: Lyceum Ballroom, London, England, UK",
@@ -471192,14 +471160,6 @@
     "tipo": "Album"
   },
   {
-    "id": "356c589f-e03c-3ea7-8191-9965ec7daf37",
-    "imagen": "https://coverartarchive.org/release-group/356c589f-e03c-3ea7-8191-9965ec7daf37/front-250",
-    "titulo": "1984-08-03: Roseland Ballroom, New York, NY, USA",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "59147605-c213-333d-9f83-3882c4ee7876",
     "imagen": "https://coverartarchive.org/release-group/59147605-c213-333d-9f83-3882c4ee7876/front-250",
     "titulo": "1983-08-28: Las Cruces, NM, USA",
@@ -471419,6 +471379,14 @@
     "id": "33a2ab66-22f1-37a4-ba81-9a995ef83218",
     "imagen": "https://coverartarchive.org/release-group/33a2ab66-22f1-37a4-ba81-9a995ef83218/front-250",
     "titulo": "1988‐09‐26: Bradford, UK",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "356c589f-e03c-3ea7-8191-9965ec7daf37",
+    "imagen": "https://coverartarchive.org/release-group/356c589f-e03c-3ea7-8191-9965ec7daf37/front-250",
+    "titulo": "1984-08-03: Roseland Ballroom, New York, NY, USA",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -471683,14 +471651,6 @@
     "id": "8e50e6ad-96c9-37cc-932c-ecd44048b7db",
     "imagen": "https://coverartarchive.org/release-group/8e50e6ad-96c9-37cc-932c-ecd44048b7db/front-250",
     "titulo": "1988-05-24: Troubadour, Los Angeles, CA, USA",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
-    "id": "94576e27-c7c8-3d7a-b2ab-bcd49814653f",
-    "imagen": "https://coverartarchive.org/release-group/94576e27-c7c8-3d7a-b2ab-bcd49814653f/front-250",
-    "titulo": "1994-05-30: Buffalo, NY, USA",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -472424,6 +472384,14 @@
     "tipo": "Album"
   },
   {
+    "id": "94576e27-c7c8-3d7a-b2ab-bcd49814653f",
+    "imagen": "https://coverartarchive.org/release-group/94576e27-c7c8-3d7a-b2ab-bcd49814653f/front-250",
+    "titulo": "1994-05-30: Buffalo, NY, USA",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
     "id": "98f4c378-8101-3c99-a83b-dacc429458f3",
     "imagen": "https://coverartarchive.org/release-group/98f4c378-8101-3c99-a83b-dacc429458f3/front-250",
     "titulo": "1997-08-24: Reading, UK",
@@ -472494,14 +472462,6 @@
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
-  },
-  {
-    "id": "b2f32543-c99e-3827-b5ea-baeda81af93b",
-    "imagen": "https://coverartarchive.org/release-group/b2f32543-c99e-3827-b5ea-baeda81af93b/front-250",
-    "titulo": "2009-04-04: Rock & Roll Hall of Fame Induction Ceremony, Cleveland, OH, USA",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "EP"
   },
   {
     "id": "b2fcc465-fd3c-3823-9762-a979f41c554a",
@@ -472774,6 +472734,14 @@
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
+  },
+  {
+    "id": "b2f32543-c99e-3827-b5ea-baeda81af93b",
+    "imagen": "https://coverartarchive.org/release-group/b2f32543-c99e-3827-b5ea-baeda81af93b/front-250",
+    "titulo": "2009-04-04: Rock & Roll Hall of Fame Induction Ceremony, Cleveland, OH, USA",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "EP"
   },
   {
     "id": "f5040ecf-a706-45f6-856d-b0ea1abeb1b0",
@@ -477720,6 +477688,14 @@
     "tipo": "Single"
   },
   {
+    "id": "1ef637c2-4b79-4361-b5fc-32de35a8a3b2",
+    "imagen": "https://coverartarchive.org/release-group/1ef637c2-4b79-4361-b5fc-32de35a8a3b2/front-250",
+    "titulo": "All The Hits / Live USA",
+    "fecha": "",
+    "artista": "Roxette",
+    "tipo": "Album"
+  },
+  {
     "id": "222a548c-a595-4c3c-8ad7-b4a74f9315cf",
     "imagen": "https://coverartarchive.org/release-group/222a548c-a595-4c3c-8ad7-b4a74f9315cf/front-250",
     "titulo": "Live",
@@ -478251,14 +478227,6 @@
     "id": "6b81f1b9-15a2-4781-bda3-203a1d389cc5",
     "imagen": "https://coverartarchive.org/release-group/6b81f1b9-15a2-4781-bda3-203a1d389cc5/front-250",
     "titulo": "On Ya",
-    "fecha": "",
-    "artista": "Sean Kingston",
-    "tipo": "Single"
-  },
-  {
-    "id": "c69f24e6-8473-45e7-8b5b-0f34852de290",
-    "imagen": "https://coverartarchive.org/release-group/c69f24e6-8473-45e7-8b5b-0f34852de290/front-250",
-    "titulo": "Party All Night (Sleep All Day) - Single",
     "fecha": "",
     "artista": "Sean Kingston",
     "tipo": "Single"
@@ -482240,14 +482208,6 @@
     "tipo": "Album"
   },
   {
-    "id": "6ed89576-ecb2-4b92-bb7a-0f26e2a69286",
-    "imagen": "https://coverartarchive.org/release-group/6ed89576-ecb2-4b92-bb7a-0f26e2a69286/front-250",
-    "titulo": "Greatest Hits",
-    "fecha": "",
-    "artista": "The Rolling Stones",
-    "tipo": "Publicación"
-  },
-  {
     "id": "07f454bb-b7c6-4106-9f9b-8c05e612fbd6",
     "imagen": "https://coverartarchive.org/release-group/07f454bb-b7c6-4106-9f9b-8c05e612fbd6/front-250",
     "titulo": "Who Are The Stones?",
@@ -482291,6 +482251,14 @@
     "id": "598d42c1-6af3-3ac5-b6bf-33278dbc1d42",
     "imagen": "https://coverartarchive.org/release-group/598d42c1-6af3-3ac5-b6bf-33278dbc1d42/front-250",
     "titulo": "Best Of",
+    "fecha": "",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
+    "id": "6ed89576-ecb2-4b92-bb7a-0f26e2a69286",
+    "imagen": "https://coverartarchive.org/release-group/6ed89576-ecb2-4b92-bb7a-0f26e2a69286/front-250",
+    "titulo": "Greatest Hits",
     "fecha": "",
     "artista": "The Rolling Stones",
     "tipo": "Album"
@@ -493190,14 +493158,6 @@
     "fecha": "",
     "artista": "Justin Bieber",
     "tipo": "Other"
-  },
-  {
-    "id": "af77a98a-cea8-4a52-b66c-828a3e6c1ce0",
-    "imagen": "https://coverartarchive.org/release-group/af77a98a-cea8-4a52-b66c-828a3e6c1ce0/front-250",
-    "titulo": "Where Are Ü Now",
-    "fecha": "",
-    "artista": "Justin Bieber",
-    "tipo": "Single"
   },
   {
     "id": "348ac03a-f07a-4bc4-b590-5a0c0e6a67ea",
