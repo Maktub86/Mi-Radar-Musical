@@ -1660,6 +1660,27 @@ def api_leer_guardadas_recomendaciones():
     return jsonify(estado)
 
 
+@app.get("/api/guardadas-diagnostico")
+def api_diagnostico_guardadas():
+    """Dice dónde se guardan las canciones guardadas (sin mostrar ninguna clave ni dirección)."""
+    info = {"bd_configurada": bool(_url_bd_recomendaciones())}
+    try:
+        with _CANDADO_GUARDADAS_RECOMENDACIONES:
+            estado = _leer_guardadas_recomendaciones()
+        info["total_guardadas"] = len(estado.get("canciones", []))
+        info["almacenamiento"] = (
+            "base de datos (se conserva y se comparte entre móvil y ordenador)"
+            if info["bd_configurada"] else
+            "archivo en el disco del servidor (en Render gratuito se BORRA al reiniciar o redesplegar)"
+        )
+        info["estado"] = "correcto"
+    except Exception as error:
+        info["estado"] = "error"
+        info["error"] = type(error).__name__ + ": " + str(error)[:200].replace(_url_bd_recomendaciones() or "\u0000", "***")
+        info["almacenamiento"] = "base de datos (no responde)" if info["bd_configurada"] else "archivo del servidor (no se puede leer)"
+    return jsonify(info)
+
+
 @app.post("/api/recomendaciones/guardadas")
 def api_anadir_guardadas_recomendaciones():
     cuerpo = request.get_json(silent=True) or {}
