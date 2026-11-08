@@ -362,6 +362,246 @@ html body .mr-cancion-guardada .mr-acciones{gap:7px!important}
  pasar();
 })();
 </script>
+<style id="mr-extras-css">
+.mr-artista-deezer{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:2px 0 10px;font-size:13px;color:#cdbbf0}
+.mr-artista-cambiar{border:1px solid #ffffff55;background:#ffffff14;color:#fff;border-radius:999px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.mr-artista-candidatos{flex:1 0 100%;display:grid;gap:8px}
+.mr-cand-msg{font-size:12px;color:#cdbbf0}
+.mr-cand{display:grid;gap:3px;text-align:left;border:1px solid #ffffff40;background:#ffffff10;color:#fff;border-radius:12px;padding:9px 12px;cursor:pointer}
+.mr-cand small{color:#cdbbf0;font-weight:400}
+.mr-cand:hover{background:#ffffff22}
+.mr-cand-actual{border-color:#3ddc84;background:#0f3a2833}
+.mr-cand-auto{text-align:center;color:#cdbbf0}
+.mr-exportar{display:inline-flex;margin:0 0 10px;padding:6px 12px;border-radius:999px;border:1px solid #ffffff55;color:#fff;background:#ffffff14;font-size:12px;font-weight:700;text-decoration:none}
+#mr-aviso-lento{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:99999;max-width:92vw;padding:10px 16px;border-radius:12px;background:#2a1b4d;border:1px solid #9b6bff;color:#fff;font-size:13px;box-shadow:0 8px 24px #0008;text-align:center}
+#mr-aviso-lento[hidden]{display:none}
+
+/* ===== Retoque visual general ===== */
+html{scroll-behavior:smooth}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:#9b6bff88;color:#fff}
+*{scrollbar-width:thin;scrollbar-color:#ffffff40 transparent}
+html body :is(.pista,.cancion,.fila-cancion,.publicacion-mejor,.tarjeta){transition:border-color .18s ease,box-shadow .18s ease,background-color .18s ease}
+html body :is(.pista,.cancion,.fila-cancion,.publicacion-mejor):hover{border-color:#ffffff42!important;box-shadow:0 8px 22px #0006}
+html body :is(button,nav a){transition:filter .15s ease,transform .15s ease,box-shadow .15s ease,background-color .15s ease}
+html body button:not(:disabled):active{transform:scale(.97)}
+html body :is(button,a,input,select,textarea):focus-visible{outline:2px solid #fff;outline-offset:2px}
+.mr-pos{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;margin-right:9px;padding:0 7px;border-radius:999px;background:linear-gradient(135deg,#8a4dff,#5b2fc4);color:#fff;font-size:12px;font-weight:900;vertical-align:middle;box-shadow:0 2px 8px #0005}
+.mr-pos-top{background:linear-gradient(135deg,#ffcf4d,#ff8a2b);color:#2a1700}
+.mr-minimizar{display:flex;align-items:center;gap:6px;margin:14px auto 4px;padding:9px 20px;border-radius:999px;border:1px solid #ffffff48;background:#ffffff14;color:#fff;font-size:13px;font-weight:800;cursor:pointer}
+.mr-minimizar:hover{background:#ffffff28}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media (max-width:560px){html body .acciones-pista{min-width:0!important;grid-template-columns:82px repeat(4,minmax(0,1fr))!important}}
+/* ===== Reproductor flotante ===== */
+body.mr-con-reproductor{padding-bottom:96px!important}
+body.mr-con-reproductor #mr-aviso-lento{bottom:100px}
+#mr-reproductor{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:99998;width:min(740px,calc(100vw - 20px));display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:18px;background:rgba(20,13,42,.93);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid #ffffff30;box-shadow:0 14px 44px #000b;color:#fff;box-sizing:border-box}
+#mr-reproductor[hidden]{display:none}
+.mr-rep-img{width:44px;height:44px;border-radius:10px;object-fit:cover;flex:none}
+.mr-rep-info{display:flex;flex-direction:column;min-width:0;flex:1 1 150px}
+.mr-rep-titulo{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mr-rep-artista{font-size:12px;color:#cdbbf0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mr-rep-play,.mr-rep-cerrar{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid #ffffff55;color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.mr-rep-play{background:linear-gradient(135deg,#ff4fa3,#8a4dff)}
+.mr-rep-cerrar{background:#ffffff18;font-size:16px}
+.mr-rep-play svg{width:18px;height:18px}
+.mr-rep-acciones{display:flex;gap:6px;flex:none}
+.mr-rep-accion{width:36px;height:36px;border-radius:10px;border:1px solid #ffffff55;color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;background:#ffffff18}
+.mr-rep-accion[hidden]{display:none}
+.mr-rep-accion svg{width:18px;height:18px;display:block}
+.mr-rep-accion[data-acc="dl"]{background:linear-gradient(135deg,#168653,#20ad70)}
+.mr-rep-accion[data-acc="yt"]{background:linear-gradient(135deg,#d92d3a,#a31622)}
+.mr-rep-accion[data-acc="info"]{background:linear-gradient(135deg,#9b6bff,#6a35b5)}
+.mr-rep-accion[data-acc="save"]{background:linear-gradient(135deg,#3b82f6,#1d4ed8)}
+.mr-rep-accion[data-acc="save"][data-si="1"]{background:linear-gradient(135deg,#168653,#20ad70)}
+.mr-rep-barra{flex:2 1 130px;min-width:80px;accent-color:#b58aff;cursor:pointer}
+.mr-rep-tiempo{flex:none;font-size:12px;color:#cdbbf0;font-variant-numeric:tabular-nums;min-width:74px;text-align:right}
+@media (max-width:560px){#mr-reproductor{flex-wrap:wrap;gap:8px 10px}.mr-rep-barra{order:5;flex:1 1 100%}.mr-rep-tiempo{order:4}.mr-rep-acciones{order:4}}
+</style>
+<script id="mr-extras-js">
+(function(){
+ /* 1) Aviso cuando el servidor tarda (Render gratuito se «duerme» y tarda en despertar) */
+ let lentas=0,aviso=null;
+ function mostrar(){if(!aviso){aviso=document.createElement('div');aviso.id='mr-aviso-lento';aviso.textContent='⏳ Esto puede tardar unos segundos: el servidor está arrancando o consultando fuentes musicales…';document.body.appendChild(aviso);}aviso.hidden=false;}
+ function ocultar(){if(aviso&&lentas<=0)aviso.hidden=true;}
+ const original=window.fetch.bind(window);
+ window.fetch=function(entrada,opciones){
+  const url=typeof entrada==='string'?entrada:((entrada&&entrada.url)||'');
+  if(url.indexOf('/api/')===-1||url.indexOf('/api/recomendaciones/guardadas')!==-1)return original(entrada,opciones);
+  let marcado=false;const t=setTimeout(function(){marcado=true;lentas++;mostrar();},6000);
+  const fin=function(){clearTimeout(t);if(marcado){marcado=false;lentas--;ocultar();}};
+  const p=original(entrada,opciones);p.then(fin,fin);return p;
+ };
+ /* 2) Check verde «Ya la tienes» también fuera de Cantantes */
+ const EXCLUIR=['/mi-musica','/mimusica','/login'];
+ if(!EXCLUIR.some(function(p){return location.pathname.indexOf(p)===0;})){
+  const memo=new Map();let espera=null;
+  const SELT='.tarjeta,.pista,.fila-cancion,.publicacion-mejor,.cancion';
+  function leer(n){
+   const w=n.querySelector('[data-wiki-tipo="cancion"]'),info=n.querySelector('[data-resumen-tipo="cancion"]');
+   const titulo=n.dataset.titulo||(w&&w.dataset.wikiNombre)||(info&&info.dataset.resumenNombre)||((n.querySelector('.pista-titulo,.titulo-cancion,.titulo')||{}).textContent||'').trim();
+   const meta=((n.querySelector('.pista-meta,.meta')||{}).textContent)||'',partes=meta.split(' · ');
+   const bruto=n.dataset.artista||(w&&w.dataset.wikiArtista)||(info&&info.dataset.resumenArtista)||((n.querySelector('.artista-cancion,.artista')||{}).textContent||'').trim()||(partes.length>1?partes[1]:partes[0])||'';
+   return {titulo:String(titulo).replace(/^[+ℹ]\s*/,'').trim(),artista:String(bruto).replace(/[ℹ]+$/,'').trim()};
+  }
+  function insignia(){const s=document.createElement('span');s.className='mr-ya-tengo';s.title='Esta canción ya está en Mi música';s.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ya la tienes</span>';return s;}
+  function poner(n){const c=n.querySelector('.pista-titulo,.titulo-cancion,.titulo,.mr-titulo');if(!c)return;const d=c.parentElement||c;if(!d.querySelector('.mr-ya-tengo'))d.appendChild(insignia());}
+  async function revisar(){
+   const pend=[];
+   document.querySelectorAll(SELT).forEach(function(n){
+    if(n.closest('.mr-panel-guardadas')||n.querySelector('.mr-ya-tengo')||n.dataset.mrRev==='1')return;
+    const c=leer(n);if(!c.titulo||!c.artista)return;
+    const k=(c.artista+'|'+c.titulo).toLowerCase();
+    if(memo.has(k)){if(memo.get(k))poner(n);n.dataset.mrRev='1';return;}
+    pend.push({n:n,c:c,k:k});
+   });
+   if(!pend.length)return;
+   const unicos=Array.from(new Map(pend.map(function(p){return [p.k,p.c];})).entries()).slice(0,150);
+   try{
+    const r=await fetch('/api/ya-tengo',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({canciones:unicos.map(function(e){return {titulo:e[1].titulo,artista:e[1].artista};})})});
+    if(!r.ok)return;const d=await r.json();
+    unicos.forEach(function(e,i){memo.set(e[0],!!((d.resultados||[])[i]));});
+    pend.forEach(function(p){if(memo.has(p.k)){if(memo.get(p.k))poner(p.n);p.n.dataset.mrRev='1';}});
+   }catch(_){}
+  }
+  new MutationObserver(function(){clearTimeout(espera);espera=setTimeout(revisar,900);}).observe(document.body,{childList:true,subtree:true});
+  revisar();
+ }
+
+ /* 4) Reproductor flotante para las muestras de 30 s: sigue visible mientras navegas */
+ (function(){
+  const SEL30='.boton-30,.boton-muestra,.b30,.mr-b30';
+  const TARJ='.pista,.tarjeta,.fila-cancion,.publicacion-mejor,.cancion,.mr-cancion-guardada,.item-cancion';
+  const PLAY='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg>';
+  const PAUSE='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/></svg>';
+  let ultimo=null,actual=null,barra=null,q={},tarjetaActual=null;
+  const IC={
+   dl:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5v11M7 10l5 5 5-5M4.5 18v2.5h15V18"/></svg>',
+   yt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.3v5.4l4.8-2.7z" fill="currentColor" stroke="none"/></svg>',
+   info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.2"/><circle cx="12" cy="7.9" r="1.1" fill="currentColor" stroke="none"/></svg>',
+   plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
+   check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>'
+  };
+  const SELACC={dl:'.boton-mediahuman,.boton-descarga-radar,.descarga,.mr-descarga',yt:'.boton-youtube,.youtube,.mr-youtube',info:'.boton-wikipedia,.wiki-icon,.wiki,.info-btn',save:'.mr-agregar,.guardar-btn'};
+  function origen(acc){
+   const n=tarjetaActual;if(!n||!n.isConnected)return null;
+   const b=n.querySelector(SELACC[acc]);
+   if(!b)return null;
+   try{if(getComputedStyle(b).display==='none')return null;}catch(_){}
+   return b;
+  }
+  function actualizarAcciones(){
+   if(!barra)return;
+   ['dl','yt','info','save'].forEach(function(a){
+    const b=origen(a),el=q.acc[a];
+    el.hidden=!b;
+    if(a==='save'&&b){const si=(b.dataset.mrEstado==='si')||(b.textContent||'').trim()==='✓';el.dataset.si=si?'1':'0';el.innerHTML=si?IC.check:IC.plus;el.title=si?'Ya está guardada':'Guardar canción';}
+   });
+  }
+  function tarjeta(n){
+   const w=n.querySelector('[data-wiki-tipo="cancion"]'),info=n.querySelector('[data-resumen-tipo="cancion"]');
+   const titulo=n.dataset.titulo||(w&&w.dataset.wikiNombre)||(info&&info.dataset.resumenNombre)||((n.querySelector('.pista-titulo,.titulo-cancion,.titulo,.mr-titulo')||{}).textContent||'').trim();
+   const meta=((n.querySelector('.pista-meta,.meta')||{}).textContent)||'',partes=meta.split(' · ');
+   const bruto=n.dataset.artista||(w&&w.dataset.wikiArtista)||(info&&info.dataset.resumenArtista)||((n.querySelector('.artista-cancion,.artista,.mr-artista')||{}).textContent||'').trim()||(partes.length>1?partes[1]:partes[0])||'';
+   const img=n.querySelector('img');
+   return {titulo:String(titulo).replace(/^\d+\s+/,'').replace(/^[+ℹ]\s*/,'').trim(),artista:String(bruto).replace(/[ℹ]+$/,'').trim(),img:(img&&(img.currentSrc||img.src))||''};
+  }
+  document.addEventListener('click',function(e){
+   const b=e.target.closest&&e.target.closest(SEL30);if(!b)return;
+   const n=b.closest(TARJ);
+   ultimo=n?Object.assign({t:Date.now(),nodo:n},tarjeta(n)):{t:Date.now(),nodo:null,titulo:'',artista:'',img:''};
+  },true);
+  function fmt(s){s=Math.max(0,Math.floor(s||0));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
+  function crear(){
+   barra=document.createElement('div');barra.id='mr-reproductor';barra.hidden=true;barra.setAttribute('role','region');barra.setAttribute('aria-label','Reproductor de muestras');
+   barra.innerHTML='<img class="mr-rep-img" alt="" hidden><div class="mr-rep-info"><strong class="mr-rep-titulo"></strong><span class="mr-rep-artista"></span></div><button type="button" class="mr-rep-play" aria-label="Pausar o reanudar"></button><input class="mr-rep-barra" type="range" min="0" max="1000" value="0" aria-label="Progreso de la muestra"><span class="mr-rep-tiempo">0:00 / 0:30</span><span class="mr-rep-acciones"><button type="button" class="mr-rep-accion" data-acc="dl" title="Buscar enlace para descargar (MediaHuman)" aria-label="Descargar con MediaHuman" hidden></button><button type="button" class="mr-rep-accion" data-acc="yt" title="Buscar en YouTube" aria-label="YouTube" hidden></button><button type="button" class="mr-rep-accion" data-acc="info" title="Información de la canción" aria-label="Información" hidden></button><button type="button" class="mr-rep-accion" data-acc="save" title="Guardar canción" aria-label="Guardar" hidden></button></span><button type="button" class="mr-rep-cerrar" aria-label="Cerrar reproductor" title="Cerrar">✕</button>';
+   document.body.appendChild(barra);
+   q={img:barra.querySelector('.mr-rep-img'),tit:barra.querySelector('.mr-rep-titulo'),art:barra.querySelector('.mr-rep-artista'),play:barra.querySelector('.mr-rep-play'),rango:barra.querySelector('.mr-rep-barra'),tiempo:barra.querySelector('.mr-rep-tiempo'),cerrar:barra.querySelector('.mr-rep-cerrar')};
+   q.acc={};
+   barra.querySelectorAll('.mr-rep-accion').forEach(function(el){
+    const a=el.dataset.acc;q.acc[a]=el;
+    if(a!=='save')el.innerHTML=IC[a];
+    el.addEventListener('click',function(){const b=origen(a);if(b&&!b.disabled){b.click();setTimeout(actualizarAcciones,400);}});
+   });
+   q.play.addEventListener('click',function(){if(!actual)return;if(actual.paused){actual.play();}else{actual.pause();}});
+   q.rango.addEventListener('input',function(){if(!actual)return;const d=isFinite(actual.duration)&&actual.duration>0?actual.duration:30;actual.currentTime=q.rango.value/1000*d;});
+   q.cerrar.addEventListener('click',cerrar);
+  }
+  function pintar(){
+   if(!actual||!barra)return;
+   const d=isFinite(actual.duration)&&actual.duration>0?actual.duration:30;
+   q.rango.value=Math.min(1000,Math.round(actual.currentTime/d*1000));
+   q.tiempo.textContent=fmt(actual.currentTime)+' / '+fmt(d);
+   q.play.innerHTML=actual.paused?PLAY:PAUSE;
+   q.play.setAttribute('aria-label',actual.paused?'Reanudar':'Pausar');
+   actualizarAcciones();
+  }
+  function alTerminar(){pintar();const a=actual;setTimeout(function(){if(actual===a&&a.paused)cerrar();},5000);}
+  const EVENTOS=['timeupdate','play','pause','loadedmetadata'];
+  function desligar(){if(!actual)return;EVENTOS.forEach(function(ev){actual.removeEventListener(ev,pintar);});actual.removeEventListener('ended',alTerminar);actual=null;}
+  function ligar(a){
+   if(!barra)crear();
+   if(actual===a){pintar();return;}
+   desligar();actual=a;
+   const i=(ultimo&&Date.now()-ultimo.t<20000)?ultimo:null;
+   q.tit.textContent=(i&&i.titulo)||'Muestra de 30 segundos';
+   q.art.textContent=(i&&i.artista)||'';
+   if(i&&i.img){q.img.src=i.img;q.img.hidden=false;}else{q.img.hidden=true;}
+   tarjetaActual=(i&&i.nodo)||null;
+   barra.hidden=false;document.body.classList.add('mr-con-reproductor');
+   EVENTOS.forEach(function(ev){a.addEventListener(ev,pintar);});a.addEventListener('ended',alTerminar);
+   pintar();
+  }
+  function cerrar(){
+   if(actual){try{actual.pause();actual.currentTime=0;}catch(_){}}
+   desligar();if(barra)barra.hidden=true;document.body.classList.remove('mr-con-reproductor');
+  }
+  const original=HTMLMediaElement.prototype.play;
+  HTMLMediaElement.prototype.play=function(){
+   const r=original.apply(this,arguments);
+   try{
+    if(this instanceof HTMLAudioElement&&!this.controls){
+     ligar(this);
+     if(r&&r.catch){const a=this;r.catch(function(){if(actual===a)cerrar();});}
+    }
+   }catch(_){}
+   return r;
+  };
+ })();
+ /* 5) Mismo menú, mismo orden y mismos nombres en todas las páginas */
+ (function(){
+  const MENU=[['/','🏠 Portada'],['/listas/youtube','▶ YouTube'],['/listas/los40','🎵 Los 40'],['/listas/canal-fiesta','📻 Canal Fiesta'],['/lo-mejor','🎤 Cantantes'],['/mi-musica','🎧 Mi música'],['/programas','🧰 Programas']];
+  const ruta=(location.pathname.replace(/\/+$/,'')||'/');
+  function actual(href){return href==='/'?ruta==='/':(ruta===href||ruta.indexOf(href+'/')===0);}
+  function normalizar(nav){
+   if(nav.dataset.mrMenu==='1')return;
+   const enlaces=Array.prototype.filter.call(nav.children,function(x){return x.tagName==='A';});
+   const hrefs=enlaces.map(function(a){return a.getAttribute('href')||'';});
+   if(hrefs.indexOf('/')===-1||!hrefs.some(function(h){return h.indexOf('/listas/')===0;}))return;
+   const plantilla=enlaces[0];
+   MENU.forEach(function(par){
+    const href=par[0],texto=par[1];
+    let a=enlaces.find(function(x){return x.getAttribute('href')===href;});
+    if(!a){a=plantilla.cloneNode(false);a.setAttribute('href',href);a.removeAttribute('style');a.classList.remove('activo');}
+    a.textContent=texto;
+    a.classList.toggle('activo',actual(href));
+    if(href==='/programas')a.style.marginLeft='auto';else if(a.style.marginLeft)a.style.marginLeft='';
+    nav.appendChild(a);
+   });
+   nav.dataset.mrMenu='1';
+  }
+  document.querySelectorAll('nav').forEach(normalizar);
+ })();
+ /* 3) Copia de seguridad de las canciones guardadas */
+ function exportar(){
+  const p=document.querySelector('.mr-panel-guardadas');
+  if(!p||p.querySelector('.mr-exportar'))return;
+  const a=document.createElement('a');a.className='mr-exportar';a.href='/api/recomendaciones/guardadas/exportar';a.setAttribute('download','');a.textContent='⬇ Copia de seguridad de mis guardadas';
+  p.insertBefore(a,p.firstChild);
+ }
+ new MutationObserver(exportar).observe(document.body,{childList:true,subtree:true});exportar();
+})();
+</script>
 """
 
 
@@ -911,6 +1151,46 @@ function mostrarInfoWikipedia(contenedor,info,tipo){
 }
 let audioActivo=null;
 let temporizador=null;
+function botonMinimizar(zona,boton,etiqueta,caja){
+ const b=nodo('button','mr-minimizar','▲ Minimizar');b.type='button';b.title='Ocultar esta lista';
+ b.addEventListener('click',()=>{zona.hidden=true;boton.textContent=etiqueta;boton.dataset.error='';try{caja.scrollIntoView({behavior:'smooth',block:'nearest'});}catch(_){}});
+ return b;
+}
+function selectorArtista(nombre,d,caja,tipo,boton){
+ const linea=nodo('div','mr-artista-deezer');
+ const info=nodo('span','mr-artista-info','Artista en Deezer: '+(d.artista||nombre)+(d.seguidores?' ('+Number(d.seguidores).toLocaleString('es-ES')+' seguidores)':''));
+ const cambiar=nodo('button','mr-artista-cambiar','¿No es este artista?');cambiar.type='button';
+ const lista=nodo('div','mr-artista-candidatos');lista.hidden=true;
+ async function elegir(id){
+  lista.replaceChildren(nodo('div','mr-cand-msg','Guardando tu elección…'));
+  try{
+   const r=await fetch('/api/lo-mejor/artista-correcto',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({artista:nombre,deezer_id:id})});
+   const j=await r.json();if(!r.ok)throw new Error(j.error||'No se ha podido guardar.');
+   caja.querySelectorAll('.canciones-populares,.canciones-recientes').forEach(z=>{z.dataset.cargado='';z.replaceChildren();z.hidden=true;});
+   const botones=caja.querySelectorAll('.boton-populares,.boton-recientes');botones.forEach(b=>{b.dataset.error='';});
+   await cargarTop(nombre,caja,boton,tipo);
+  }catch(e){lista.replaceChildren(nodo('div','mr-cand-msg',e.message||'Error'));}
+ }
+ cambiar.addEventListener('click',async()=>{
+  if(!lista.hidden){lista.hidden=true;return;}
+  lista.hidden=false;lista.replaceChildren(nodo('div','mr-cand-msg','Buscando artistas con ese nombre…'));
+  try{
+   const r=await fetch('/api/lo-mejor/candidatos?artista='+encodeURIComponent(nombre),{cache:'no-store'});
+   const c=await r.json();if(!r.ok)throw new Error(c.error||'No se han podido buscar artistas.');
+   lista.replaceChildren(nodo('div','mr-cand-msg','Elige el artista correcto (se recordará):'));
+   for(const a of c.candidatos||[]){
+    const b=nodo('button','mr-cand','');b.type='button';
+    b.appendChild(nodo('strong','',a.nombre+(a.seguidores?' · '+Number(a.seguidores).toLocaleString('es-ES')+' seguidores':'')));
+    b.appendChild(nodo('small','',(a.canciones&&a.canciones.length)?'Canciones: '+a.canciones.join(' · '):'Sin canciones destacadas'));
+    if(String(a.id)===String(d.deezer_id))b.classList.add('mr-cand-actual');
+    b.addEventListener('click',()=>elegir(String(a.id)));
+    lista.appendChild(b);
+   }
+   if(c.fijado){const auto=nodo('button','mr-cand mr-cand-auto','Volver a elegir automáticamente');auto.type='button';auto.addEventListener('click',()=>elegir(''));lista.appendChild(auto);}
+  }catch(e){lista.replaceChildren(nodo('div','mr-cand-msg',e.message||'Error'));}
+ });
+ linea.append(info,cambiar,lista);return linea;
+}
 function insigniaYaTengo(){const s=nodo('span','mr-ya-tengo');s.title='Esta canción ya está en Mi música';s.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ya la tienes</span>';return s;}
 function nodo(tag,clase,texto){const n=document.createElement(tag);if(clase)n.className=clase;if(texto!==undefined)n.textContent=texto;return n;}
 function mostrarArtistas(){
@@ -1016,6 +1296,7 @@ async function cargarPublicacionesLoMejor(nombre,caja,boton){
    youtube.addEventListener('click',()=>buscarYouTube({titulo:p.titulo||'',artista:nombre},'youtube'));
    acciones.append(muestra,mediahuman,youtube);fila.append(detalle,acciones);item.appendChild(fila);zona.appendChild(item);
   }
+  zona.appendChild(botonMinimizar(zona,boton,'💿 Últimas publicaciones (singles)',caja));
   zona.dataset.cargado='1';boton.textContent='Ocultar últimos singles';
  }catch(e){
   zona.appendChild(nodo('p','mensaje-pista',e.message||'No se han podido cargar las publicaciones.'));
@@ -1042,11 +1323,15 @@ async function cargarTop(nombre,caja,boton,tipo='populares'){
   try{d=await r.json();}catch(_){throw new Error('La consulta musical ha devuelto una respuesta no válida. Inténtalo de nuevo.');}
   if(!r.ok)throw new Error(d.error||'No se ha podido cargar el ranking.');
   if(!Array.isArray(d.canciones)||!d.canciones.length)throw new Error('Deezer no ha devuelto canciones para este artista.');
+  zona.appendChild(selectorArtista(nombre,d,caja,tipo,boton));
+  let posicion=0;
   for(const pista of d.canciones){
+   posicion++;
    const fila=nodo('div','pista');
    const detalle=nodo('div','');
    const tituloPista=nodo('span','pista-titulo',pista.titulo);
    const tituloLinea=nodo('div','');tituloLinea.appendChild(tituloPista);detalle.appendChild(tituloLinea);
+   if(!recientes){const num=nodo('span','mr-pos'+(posicion<=3?' mr-pos-top':''),String(posicion));num.title='Puesto '+posicion+' por popularidad';tituloLinea.insertBefore(num,tituloPista);}
    const wiki=nodo('button','boton-wikipedia','G');wiki.type='button';
    wiki.dataset.resumenTipo='cancion';wiki.dataset.resumenNombre=pista.titulo;wiki.dataset.resumenArtista=pista.artista;
    wiki.title='Consultar información de '+pista.titulo+' de '+pista.artista;
@@ -1080,6 +1365,7 @@ async function cargarTop(nombre,caja,boton,tipo='populares'){
    youtube.addEventListener('click',()=>buscarYouTube(pista,'youtube'));
    acciones.append(muestra,mediahuman,youtube);fila.append(detalle,acciones);zona.appendChild(fila);
   }
+  zona.appendChild(botonMinimizar(zona,boton,etiqueta,caja));
   zona.dataset.cargado='1';
   zona.dataset.error='0';
   correcto=true;
@@ -1199,8 +1485,95 @@ def api_lo_mejor_artistas():
     return jsonify(top)
 
 
-@app.get("/api/lo-mejor")
-def api_lo_mejor():
+
+# ---------- Ajustes pequeños (p. ej. qué artista de Deezer es el correcto) ----------
+_RUTA_AJUSTES = BASE / "mr_ajustes.json"
+_CANDADO_AJUSTES = threading.Lock()
+_cache_ajustes = {"t": 0.0, "datos": None}
+
+
+def _ajustes_todos():
+    """Devuelve el diccionario de ajustes (se guarda en la base de datos si existe; si no, en un archivo)."""
+    ahora = time.time()
+    if _cache_ajustes["datos"] is not None and ahora - _cache_ajustes["t"] < 60:
+        return _cache_ajustes["datos"]
+    datos = {}
+    try:
+        if _url_bd_recomendaciones():
+            import psycopg
+            with psycopg.connect(_url_bd_recomendaciones(), connect_timeout=10) as conexion:
+                with conexion.cursor() as cursor:
+                    cursor.execute("CREATE TABLE IF NOT EXISTS mr_ajustes (clave TEXT PRIMARY KEY, valor JSONB NOT NULL, actualizado TIMESTAMPTZ NOT NULL DEFAULT NOW())")
+                    cursor.execute("SELECT clave, valor FROM mr_ajustes")
+                    for clave, valor in cursor.fetchall():
+                        if isinstance(valor, str):
+                            try:
+                                valor = json.loads(valor)
+                            except json.JSONDecodeError:
+                                continue
+                        datos[clave] = valor
+        else:
+            leido = json.loads(_RUTA_AJUSTES.read_text(encoding="utf-8"))
+            datos = leido if isinstance(leido, dict) else {}
+    except Exception:
+        datos = _cache_ajustes["datos"] if _cache_ajustes["datos"] is not None else {}
+    _cache_ajustes["t"] = ahora
+    _cache_ajustes["datos"] = datos
+    return datos
+
+
+def _ajuste_leer(clave, defecto=None):
+    with _CANDADO_AJUSTES:
+        return _ajustes_todos().get(clave, defecto)
+
+
+def _ajuste_escribir(clave, valor):
+    """Guarda un ajuste; con valor None lo borra."""
+    with _CANDADO_AJUSTES:
+        if _url_bd_recomendaciones():
+            import psycopg
+            with psycopg.connect(_url_bd_recomendaciones(), connect_timeout=10) as conexion:
+                with conexion.cursor() as cursor:
+                    cursor.execute("CREATE TABLE IF NOT EXISTS mr_ajustes (clave TEXT PRIMARY KEY, valor JSONB NOT NULL, actualizado TIMESTAMPTZ NOT NULL DEFAULT NOW())")
+                    if valor is None:
+                        cursor.execute("DELETE FROM mr_ajustes WHERE clave = %s", (clave,))
+                    else:
+                        cursor.execute(
+                            "INSERT INTO mr_ajustes (clave, valor) VALUES (%s, %s::jsonb) "
+                            "ON CONFLICT (clave) DO UPDATE SET valor = EXCLUDED.valor, actualizado = NOW()",
+                            (clave, json.dumps(valor, ensure_ascii=False)))
+        else:
+            try:
+                actuales = json.loads(_RUTA_AJUSTES.read_text(encoding="utf-8"))
+                if not isinstance(actuales, dict):
+                    actuales = {}
+            except (OSError, json.JSONDecodeError):
+                actuales = {}
+            if valor is None:
+                actuales.pop(clave, None)
+            else:
+                actuales[clave] = valor
+            temporal = _RUTA_AJUSTES.with_suffix(".tmp")
+            temporal.write_text(json.dumps(actuales, ensure_ascii=False, indent=2), encoding="utf-8")
+            temporal.replace(_RUTA_AJUSTES)
+        _cache_ajustes["datos"] = None
+        _cache_ajustes["t"] = 0.0
+
+
+# Memoria de los rankings de Cantantes: evita preguntar a Deezer/iTunes/Last.fm cada vez.
+_CACHE_LO_MEJOR = {}
+_CACHE_LO_MEJOR_SEGUNDOS = 6 * 3600
+_CANDADO_CACHE_LO_MEJOR = threading.Lock()
+
+
+def _vaciar_cache_lo_mejor(nombre):
+    clave_nombre = normalizar_texto(nombre)
+    with _CANDADO_CACHE_LO_MEJOR:
+        for clave in [k for k in _CACHE_LO_MEJOR if k[0] == clave_nombre]:
+            _CACHE_LO_MEJOR.pop(clave, None)
+
+
+def _calcular_lo_mejor(forzado_id=""):
     nombre_solicitado = (request.args.get("artista") or "").strip()
     tipo = (request.args.get("tipo") or "populares").strip().lower()
     if not nombre_solicitado:
@@ -1209,41 +1582,53 @@ def api_lo_mejor():
         return jsonify({"error": "Tipo de ranking no válido."}), 400
 
     try:
-        parametros = urlencode({"q": nombre_solicitado, "limit": 10})
-        peticion = Request(
-            "https://api.deezer.com/search/artist?" + parametros,
-            headers={"User-Agent": "MiRadarMusical/1.0"}
-        )
-        with urlopen(peticion, timeout=4) as respuesta:
-            datos = json.loads(respuesta.read().decode("utf-8"))
-        if datos.get("error"):
-            raise ValueError("Deezer no ha permitido consultar su catálogo.")
+        if forzado_id:
+            # El usuario ha indicado a mano qué artista de Deezer es el correcto.
+            peticion_artista = Request(
+                "https://api.deezer.com/artist/" + str(int(forzado_id)),
+                headers={"User-Agent": "MiRadarMusical/1.0"}
+            )
+            with urlopen(peticion_artista, timeout=4) as respuesta:
+                mejor = json.loads(respuesta.read().decode("utf-8"))
+            if mejor.get("error") or not mejor.get("id"):
+                raise ValueError("Deezer no reconoce el artista elegido.")
+            objetivo = normalizar_texto(nombre_solicitado)
+        else:
+            parametros = urlencode({"q": nombre_solicitado, "limit": 10})
+            peticion = Request(
+                "https://api.deezer.com/search/artist?" + parametros,
+                headers={"User-Agent": "MiRadarMusical/1.0"}
+            )
+            with urlopen(peticion, timeout=4) as respuesta:
+                datos = json.loads(respuesta.read().decode("utf-8"))
+            if datos.get("error"):
+                raise ValueError("Deezer no ha permitido consultar su catálogo.")
 
-        candidatos = datos.get("data", [])
-        objetivo = normalizar_texto(nombre_solicitado)
-        mejor = None
-        puntuacion_mejor = 0.0
-        for candidato in candidatos:
-            nombre = candidato.get("name") or ""
-            puntuacion = difflib.SequenceMatcher(
-                None, objetivo, normalizar_texto(nombre)
-            ).ratio()
-            if puntuacion > puntuacion_mejor:
-                puntuacion_mejor = puntuacion
-                mejor = candidato
+            candidatos = datos.get("data", [])
+            objetivo = normalizar_texto(nombre_solicitado)
+            mejor = None
+            puntuacion_mejor = 0.0
+            for candidato in candidatos:
+                nombre = candidato.get("name") or ""
+                puntuacion = difflib.SequenceMatcher(
+                    None, objetivo, normalizar_texto(nombre)
+                ).ratio()
+                if puntuacion > puntuacion_mejor:
+                    puntuacion_mejor = puntuacion
+                    mejor = candidato
 
-        if not mejor or puntuacion_mejor < 0.86:
-            return jsonify({
-                "error": "No he encontrado una coincidencia suficientemente segura para este artista en Deezer."
-            }), 404
+            if not mejor or puntuacion_mejor < 0.86:
+                return jsonify({
+                    "error": "No he encontrado una coincidencia suficientemente segura para este artista en Deezer."
+                }), 404
 
-        # Preferir coincidencia exacta del artista al resolver el nombre solicitado.
-        # Si hay varios artistas con exactamente el mismo nombre (p. ej. «El Barrio»),
-        # elegir el que más seguidores tiene en Deezer, no simplemente el primero de la lista.
-        iguales = [c for c in candidatos if normalizar_texto(c.get("name", "")) == objetivo]
-        coincidencia_exacta = max(iguales, key=lambda c: int(c.get("nb_fan") or 0)) if iguales else None
-        if coincidencia_exacta:
-            mejor = coincidencia_exacta
+            # Preferir coincidencia exacta del artista al resolver el nombre solicitado.
+            # Si hay varios artistas con exactamente el mismo nombre (p. ej. «El Barrio»),
+            # elegir el que más seguidores tiene en Deezer, no simplemente el primero de la lista.
+            iguales = [c for c in candidatos if normalizar_texto(c.get("name", "")) == objetivo]
+            coincidencia_exacta = max(iguales, key=lambda c: int(c.get("nb_fan") or 0)) if iguales else None
+            if coincidencia_exacta:
+                mejor = coincidencia_exacta
 
         nombre_deezer = mejor.get("name", nombre_solicitado)
         pistas_top = []
@@ -1501,6 +1886,8 @@ def api_lo_mejor():
         )
         return jsonify({
             "artista": mejor.get("name", nombre_solicitado),
+            "deezer_id": mejor.get("id"),
+            "seguidores": mejor.get("nb_fan"),
             "fuente": fuente_resultado,
             "tipo": tipo,
             "canciones": canciones
@@ -1510,6 +1897,128 @@ def api_lo_mejor():
             "error": "No se ha podido consultar Deezer ahora mismo. Inténtalo de nuevo más tarde."
         }), 502
 
+
+@app.get("/api/lo-mejor")
+def api_lo_mejor():
+    nombre_solicitado = (request.args.get("artista") or "").strip()
+    tipo = (request.args.get("tipo") or "populares").strip().lower()
+    if not nombre_solicitado or tipo not in ("populares", "recientes"):
+        return _calcular_lo_mejor("")
+    forzado = (request.args.get("deezer_id") or "").strip()
+    if not forzado.isdigit():
+        forzado = str(_ajuste_leer("artista_deezer:" + normalizar_texto(nombre_solicitado), "") or "")
+        if not forzado.isdigit():
+            forzado = ""
+    clave = (normalizar_texto(nombre_solicitado), tipo, forzado)
+    ahora = time.time()
+    if request.args.get("refrescar") != "1":
+        with _CANDADO_CACHE_LO_MEJOR:
+            guardado = _CACHE_LO_MEJOR.get(clave)
+        if guardado and ahora - guardado[0] < _CACHE_LO_MEJOR_SEGUNDOS:
+            datos = json.loads(json.dumps(guardado[1]))
+            for cancion in datos.get("canciones", []):
+                cancion["ya_tengo"] = ya_en_coleccion(
+                    cancion.get("titulo"), nombre_solicitado, datos.get("artista"), cancion.get("artista")
+                )
+            return jsonify(datos)
+    respuesta = _calcular_lo_mejor(forzado)
+    objeto, estado = (respuesta if isinstance(respuesta, tuple) else (respuesta, 200))
+    if estado == 200:
+        datos = objeto.get_json(silent=True)
+        if isinstance(datos, dict) and datos.get("canciones"):
+            with _CANDADO_CACHE_LO_MEJOR:
+                if len(_CACHE_LO_MEJOR) > 300:
+                    _CACHE_LO_MEJOR.clear()
+                _CACHE_LO_MEJOR[clave] = (ahora, datos)
+    return respuesta
+
+
+@app.get("/api/lo-mejor/candidatos")
+def api_lo_mejor_candidatos():
+    """Artistas de Deezer con nombre parecido, con sus canciones destacadas, para elegir el correcto."""
+    nombre = (request.args.get("artista") or "").strip()
+    if not nombre:
+        return jsonify({"error": "Falta el nombre del artista."}), 400
+    try:
+        peticion = Request(
+            "https://api.deezer.com/search/artist?" + urlencode({"q": nombre, "limit": 15}),
+            headers={"User-Agent": "MiRadarMusical/1.0"}
+        )
+        with urlopen(peticion, timeout=4) as respuesta:
+            datos = json.loads(respuesta.read().decode("utf-8"))
+        if datos.get("error"):
+            raise ValueError("Deezer no responde.")
+        objetivo = normalizar_texto(nombre)
+        candidatos = [
+            c for c in datos.get("data", [])
+            if c.get("id") and difflib.SequenceMatcher(None, objetivo, normalizar_texto(c.get("name"))).ratio() >= 0.7
+        ]
+        candidatos.sort(key=lambda c: int(c.get("nb_fan") or 0), reverse=True)
+        candidatos = candidatos[:6]
+
+        def canciones_de(candidato):
+            try:
+                req = Request(
+                    "https://api.deezer.com/artist/" + str(int(candidato["id"])) + "/top?limit=3",
+                    headers={"User-Agent": "MiRadarMusical/1.0"}
+                )
+                with urlopen(req, timeout=3) as r:
+                    top = json.loads(r.read().decode("utf-8"))
+                return [str(p.get("title") or "") for p in (top.get("data") or [])][:3]
+            except Exception:
+                return []
+
+        with ThreadPoolExecutor(max_workers=6) as ejecutor:
+            tops = list(ejecutor.map(canciones_de, candidatos))
+        fijado = str(_ajuste_leer("artista_deezer:" + objetivo, "") or "")
+        return jsonify({
+            "fijado": fijado if fijado.isdigit() else None,
+            "candidatos": [
+                {"id": c["id"], "nombre": c.get("name") or "", "seguidores": c.get("nb_fan"), "canciones": tops[i]}
+                for i, c in enumerate(candidatos)
+            ]
+        })
+    except Exception:
+        return jsonify({"error": "No se ha podido consultar Deezer ahora mismo."}), 502
+
+
+@app.post("/api/lo-mejor/artista-correcto")
+def api_lo_mejor_artista_correcto():
+    cuerpo = request.get_json(silent=True) or {}
+    nombre = str(cuerpo.get("artista") or "").strip()[:200]
+    identificador = str(cuerpo.get("deezer_id") or "").strip()
+    if not nombre or (identificador and not identificador.isdigit()):
+        return jsonify({"error": "Datos no válidos."}), 400
+    try:
+        _ajuste_escribir("artista_deezer:" + normalizar_texto(nombre), int(identificador) if identificador else None)
+    except Exception:
+        return jsonify({"error": "No se ha podido guardar la elección."}), 500
+    _vaciar_cache_lo_mejor(nombre)
+    return jsonify({"ok": True, "fijado": identificador or None})
+
+
+@app.post("/api/ya-tengo")
+def api_ya_tengo_lote():
+    """Para un lote de canciones {titulo, artista}, dice cuáles ya están en Mi música."""
+    cuerpo = request.get_json(silent=True) or {}
+    lista = cuerpo.get("canciones")
+    if not isinstance(lista, list) or len(lista) > 300:
+        return jsonify({"error": "Lista no válida."}), 400
+    return jsonify({"resultados": [
+        bool(isinstance(c, dict) and ya_en_coleccion(c.get("titulo"), c.get("artista"))) for c in lista
+    ]})
+
+
+@app.get("/api/recomendaciones/guardadas/exportar")
+def api_exportar_guardadas():
+    """Descarga una copia de seguridad de las canciones guardadas."""
+    with _CANDADO_GUARDADAS_RECOMENDACIONES:
+        estado = _leer_guardadas_recomendaciones()
+    cuerpo = json.dumps({"exportado": datetime.now().isoformat(timespec="seconds"),
+                         "canciones": estado.get("canciones", [])}, ensure_ascii=False, indent=2)
+    respuesta = app.response_class(cuerpo, mimetype="application/json")
+    respuesta.headers["Content-Disposition"] = "attachment; filename=mi-radar-guardadas-" + date.today().isoformat() + ".json"
+    return respuesta
 
 
 @app.get("/recomendaciones")
