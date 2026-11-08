@@ -1238,11 +1238,10 @@ def api_lo_mejor():
             }), 404
 
         # Preferir coincidencia exacta del artista al resolver el nombre solicitado.
-        coincidencia_exacta = next(
-            (c for c in candidatos
-             if normalizar_texto(c.get("name", "")) == objetivo),
-            None
-        )
+        # Si hay varios artistas con exactamente el mismo nombre (p. ej. «El Barrio»),
+        # elegir el que más seguidores tiene en Deezer, no simplemente el primero de la lista.
+        iguales = [c for c in candidatos if normalizar_texto(c.get("name", "")) == objetivo]
+        coincidencia_exacta = max(iguales, key=lambda c: int(c.get("nb_fan") or 0)) if iguales else None
         if coincidencia_exacta:
             mejor = coincidencia_exacta
 
@@ -1261,29 +1260,36 @@ def api_lo_mejor():
             # El fallback de búsqueda libre puede seguir funcionando aunque falle /top.
             pistas_top = []
 
-        if not pistas_top:
+        if len(pistas_top) < 10:
+            # /top a veces devuelve muy pocas canciones; se completa con la búsqueda libre.
             # No usar el filtro avanzado artist:"...": puede devolver falsos vacíos.
             consulta_pistas = urlencode({"q": nombre_deezer, "limit": 100})
             peticion_pistas = Request(
                 "https://api.deezer.com/search/track?" + consulta_pistas,
                 headers={"User-Agent": "MiRadarMusical/1.0"}
             )
-            with urlopen(peticion_pistas, timeout=3) as respuesta:
-                datos_pistas = json.loads(respuesta.read().decode("utf-8"))
-            if datos_pistas.get("error"):
-                raise ValueError("Deezer no ha permitido buscar canciones de este artista.")
+            try:
+                with urlopen(peticion_pistas, timeout=3) as respuesta:
+                    datos_pistas = json.loads(respuesta.read().decode("utf-8"))
+                if datos_pistas.get("error"):
+                    raise ValueError("Deezer no ha permitido buscar canciones de este artista.")
+            except Exception:
+                if not pistas_top:
+                    raise
+                datos_pistas = {"data": []}
 
             pistas_busqueda = datos_pistas.get("data") or []
             objetivo_artista = normalizar_texto(nombre_deezer)
             id_artista = str(mejor.get("id", ""))
-            pistas_top = [
-                pista for pista in pistas_busqueda
-                if (
-                    id_artista and str((pista.get("artist") or {}).get("id", "")) == id_artista
-                ) or (
-                    normalizar_texto((pista.get("artist") or {}).get("name", "")) == objetivo_artista
-                )
-            ]
+            def _es_del_artista(pista):
+                # Si Deezer da el id del artista, manda el id (varios artistas pueden llamarse igual).
+                id_pista = str((pista.get("artist") or {}).get("id", ""))
+                if id_artista and id_pista:
+                    return id_pista == id_artista
+                return normalizar_texto((pista.get("artist") or {}).get("name", "")) == objetivo_artista
+            propias = [pista for pista in pistas_busqueda if _es_del_artista(pista)]
+            ids_ya = {str(p.get("id")) for p in pistas_top}
+            pistas_top = list(pistas_top) + [p for p in propias if str(p.get("id")) not in ids_ya]
             pistas_top.sort(key=lambda pista: int(pista.get("rank") or 0), reverse=True)
             pistas_top = pistas_top[:50]
 
