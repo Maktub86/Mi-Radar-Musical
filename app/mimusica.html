@@ -10,8 +10,9 @@ header{box-sizing:border-box;height:152px;min-height:152px;display:flex;flex-dir
 .marca{font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#d7fffb}h1{font-size:clamp(30px,5vw,46px);line-height:1.1;margin:8px 0}header p{margin:0;color:#e3fffc;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 nav{display:flex;flex-wrap:wrap;gap:9px;padding:16px 6%;border-bottom:1px solid var(--borde)}nav a{padding:10px 14px;border-radius:22px;text-decoration:none;color:#e5f6fa;background:#ffffff12;font-size:14px}nav a:hover,nav a.activo{background:var(--acento);color:#062629;font-weight:800}
 main{max-width:1200px;margin:auto;padding:26px 5%}.intro{color:var(--suave);margin-top:0}
-.controles{display:grid;grid-template-columns:minmax(220px,2fr) minmax(150px,1fr) minmax(180px,1.2fr);gap:9px;padding:15px;background:#ffffff08;border:1px solid var(--borde);border-radius:16px}
+.controles{display:grid;grid-template-columns:minmax(220px,2fr) minmax(150px,1fr) minmax(180px,1.2fr) auto;gap:9px;align-items:center;padding:15px;background:#ffffff08;border:1px solid var(--borde);border-radius:16px}
 input,select{width:100%;min-width:0;padding:12px;border:1px solid #ffffff2a;border-radius:10px;background:#10232c;color:#f3fdff;font:inherit}
+#mostrar-filtro{justify-self:end;min-width:128px;padding:12px 22px}
 #resumen{color:var(--suave);font-size:14px;margin:15px 2px}
 .cancion{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px;margin:9px 0;background:linear-gradient(120deg,#132d37,#152631);border:1px solid var(--borde);border-radius:14px}.miniatura-musica{width:64px;height:64px;border-radius:9px;object-fit:cover;background:#ffffff12;display:flex;align-items:center;justify-content:center;overflow:hidden}.miniatura-musica img{width:100%;height:100%;object-fit:cover;display:block}.miniatura-musica .fallback{font-size:25px;color:var(--suave)}
 .titulo{font-weight:800;font-size:16px;line-height:1.4;overflow-wrap:anywhere}.artista{margin-top:5px;color:#c1dce2;font-size:14px;overflow-wrap:anywhere}.meta{margin-top:6px;color:#91b0ba;font-size:12px}
