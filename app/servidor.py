@@ -17,6 +17,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import unicodedata
 import difflib
 import random
+import math
 import os
 import secrets
 from listas_musicales import cargar as cargar_lista, actualizar as actualizar_lista
@@ -392,10 +393,24 @@ html body :is(button,a,input,select,textarea):focus-visible{outline:2px solid #f
 .mr-minimizar:hover{background:#ffffff28}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 @media (max-width:560px){html body .acciones-pista{min-width:0!important;grid-template-columns:82px repeat(4,minmax(0,1fr))!important}}
+/* ===== Móvil ===== */
+html{-webkit-text-size-adjust:100%}
+@media (max-width:700px){
+ html body nav{flex-wrap:nowrap!important;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:8px!important;padding-left:4%!important;padding-right:4%!important}
+ html body nav::-webkit-scrollbar{display:none}
+ html body nav a{flex:none!important;white-space:nowrap!important;padding:11px 15px!important}
+}
+@media (max-width:560px){
+ html body .pista{grid-template-columns:minmax(0,1fr)!important;gap:8px!important}
+ html body .pista .acciones-pista{width:100%!important;min-width:0!important;justify-self:stretch!important}
+ html body .acciones-pista > :not(.boton-30){justify-self:center}
+ html body .pista-titulo{overflow-wrap:anywhere}
+ .mr-artista-deezer{font-size:12px}
+}
 /* ===== Reproductor flotante ===== */
 body.mr-con-reproductor{padding-bottom:96px!important}
 body.mr-con-reproductor #mr-aviso-lento{bottom:100px}
-#mr-reproductor{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:99998;width:min(740px,calc(100vw - 20px));display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:18px;background:rgba(20,13,42,.93);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid #ffffff30;box-shadow:0 14px 44px #000b;color:#fff;box-sizing:border-box}
+#mr-reproductor{position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:99998;width:min(740px,calc(100vw - 20px));display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:18px;background:rgba(20,13,42,.93);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid #ffffff30;box-shadow:0 14px 44px #000b;color:#fff;box-sizing:border-box}
 #mr-reproductor[hidden]{display:none}
 .mr-rep-img{width:44px;height:44px;border-radius:10px;object-fit:cover;flex:none}
 .mr-rep-info{display:flex;flex-direction:column;min-width:0;flex:1 1 150px}
@@ -2266,6 +2281,14 @@ def api_quitar_guardada_recomendacion():
     return jsonify(estado)
 
 
+def _orden_ponderado(elementos, pesos, semilla):
+    """Ordena al azar pero favoreciendo a los de más peso (misma semilla = mismo orden)."""
+    generador = random.Random(semilla)
+    clave_azar = [generador.random() ** (1.0 / max(0.01, float(peso))) for peso in pesos]
+    indices = sorted(range(len(elementos)), key=lambda i: -clave_azar[i])
+    return [elementos[i] for i in indices]
+
+
 @app.get("/api/recomendaciones")
 def api_recomendaciones():
     """Recomienda temas ajenos a la biblioteca usando una muestra aleatoria de toda la colección."""
@@ -2462,7 +2485,12 @@ def api_recomendaciones():
     # de esa época presentes en la biblioteca. En la búsqueda general se mantiene
     # la selección aleatoria de toda la colección.
     # La semilla del navegador hace que las páginas siguientes mantengan la misma selección.
-    random.Random(semilla_azar).shuffle(semillas_pistas)
+    if decada_solicitada or not semillas_pistas:
+        random.Random(semilla_azar).shuffle(semillas_pistas)
+    else:
+        # Más probabilidad para los artistas de los que tienes más canciones (sin dejar fuera al resto).
+        pesos_semilla = [max(1, artistas.get(clave(s["nombre"]), {}).get("total", 1)) ** 0.5 for s in semillas_pistas]
+        semillas_pistas = _orden_ponderado(semillas_pistas, pesos_semilla, semilla_azar)
     semillas_lastfm = []
     artistas_semilla = set()
     # Ampliar las referencias por década para que la personalización no dependa
@@ -2781,8 +2809,21 @@ def api_recomendaciones():
         ordenadas = list(unicas.values())
         random.Random(semilla_azar).shuffle(ordenadas)
     else:
+        total_biblioteca_pistas = max(1, len(biblioteca))
+        conteo_generos = {}
+        for datos_artista in artistas.values():
+            for nombre_genero, cantidad in datos_artista["generos"].items():
+                conteo_generos[nombre_genero.casefold()] = conteo_generos.get(nombre_genero.casefold(), 0) + cantidad
         ordenadas.sort(key=lambda p: (-p["puntuacion"], clave(p["artista"]), clave(p["titulo"])))
-        random.Random(semilla_azar).shuffle(ordenadas)
+        pesos_finales = []
+        for pista in ordenadas:
+            # Bonus si es de un artista que ya escuchas y si encaja con tus géneros más frecuentes.
+            canciones_del_artista = artistas.get(clave(pista.get("artista") or ""), {}).get("total", 0)
+            bonus_artista = 25 * min(1.0, math.log1p(canciones_del_artista) / math.log1p(30)) if canciones_del_artista else 0
+            afinidad = conteo_generos.get(str(pista.get("genero") or "").casefold(), 0) / total_biblioteca_pistas
+            bonus_genero = 30 * min(1.0, afinidad * 4)
+            pesos_finales.append(max(1.0, float(pista.get("puntuacion") or 0) + bonus_artista + bonus_genero))
+        ordenadas = _orden_ponderado(ordenadas, pesos_finales, semilla_azar)
     return jsonify({"canciones": ordenadas[inicio:inicio + 10], "generos": generos,
                     "total_candidatas": len(ordenadas), "total_biblioteca": len(biblioteca),
                     "inicio": inicio, "decada": decada_solicitada, "fuente": fuente_final,
