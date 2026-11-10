@@ -1,5 +1,21 @@
 [
   {
+    "id": "apple-6825757387",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3a/fa/09/3afa09c7-c782-6df5-6be7-2499ed94392b/1575293.jpg/100x100bb.jpg",
+    "titulo": "The cycle bends - Single",
+    "fecha": "2026-11-10",
+    "artista": "Axel",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6831062149",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/6c/be/96/6cbe969b-8602-2325-e559-b34f69935f91/1200220436934.jpg/100x100bb.jpg",
+    "titulo": "Salvajes - Single",
+    "fecha": "2026-11-10",
+    "artista": "Coque Malla",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6831706802",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e1/c9/f0/e1c9f026-5cdf-07b6-9137-2a2e38f9c952/1200220451432.jpg/100x100bb.jpg",
     "titulo": "Airplane Mode: The Red Eye Edition",
@@ -14,6 +30,14 @@
     "fecha": "2026-11-09",
     "artista": "Minnie Riperton",
     "tipo": "Album"
+  },
+  {
+    "id": "apple-6826179783",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/49/b1/bd/49b1bdf2-83b1-7018-1780-a71115de4b2d/1200220356799.jpg/100x100bb.jpg",
+    "titulo": "Me Reconstruí (Parlez Moi de Lui) - Single",
+    "fecha": "2026-11-09",
+    "artista": "Mónica Naranjo",
+    "tipo": "Single"
   },
   {
     "id": "apple-6829356003",
@@ -109,6 +133,14 @@
     "titulo": "Ya Hit",
     "fecha": "2026-11-06",
     "artista": "Drake",
+    "tipo": "Single"
+  },
+  {
+    "id": "dd2b0409-bbf6-4ede-8267-efdfe67c57c9",
+    "imagen": "https://coverartarchive.org/release-group/dd2b0409-bbf6-4ede-8267-efdfe67c57c9/front-250",
+    "titulo": "Morena",
+    "fecha": "2026-11-06",
+    "artista": "Edward Maya",
     "tipo": "Single"
   },
   {
@@ -501,6 +533,14 @@
     "titulo": "Bocados en el alma - Single",
     "fecha": "2026-10-30",
     "artista": "Diego Martín",
+    "tipo": "Single"
+  },
+  {
+    "id": "e4a8c380-8dd7-4c7b-9a6b-b201bee63fcb",
+    "imagen": "https://coverartarchive.org/release-group/e4a8c380-8dd7-4c7b-9a6b-b201bee63fcb/front-250",
+    "titulo": "DALE",
+    "fecha": "2026-10-30",
+    "artista": "Edward Maya",
     "tipo": "Single"
   },
   {
@@ -1056,6 +1096,14 @@
     "tipo": "Single"
   },
   {
+    "id": "0efcda5c-0d66-49c2-8ac0-15c9dcccb2d9",
+    "imagen": "https://coverartarchive.org/release-group/0efcda5c-0d66-49c2-8ac0-15c9dcccb2d9/front-250",
+    "titulo": "Feona",
+    "fecha": "2026-10-16",
+    "artista": "Edward Maya",
+    "tipo": "Single"
+  },
+  {
     "id": "04e3ff1d-22a7-4f93-899e-de4c4b6006c1",
     "imagen": "https://coverartarchive.org/release-group/04e3ff1d-22a7-4f93-899e-de4c4b6006c1/front-250",
     "titulo": "EG.0",
@@ -1416,6 +1464,22 @@
     "tipo": "Single"
   },
   {
+    "id": "605cfff3-e012-4ef6-a4c1-cd70f22ad5b9",
+    "imagen": "https://coverartarchive.org/release-group/605cfff3-e012-4ef6-a4c1-cd70f22ad5b9/front-250",
+    "titulo": "Hearts",
+    "fecha": "2026-10-09",
+    "artista": "Edward Maya",
+    "tipo": "Single"
+  },
+  {
+    "id": "d53ceef4-d232-4d68-b77d-8558a633a87e",
+    "imagen": "https://coverartarchive.org/release-group/d53ceef4-d232-4d68-b77d-8558a633a87e/front-250",
+    "titulo": "De Parche",
+    "fecha": "2026-10-09",
+    "artista": "Edward Maya",
+    "tipo": "Single"
+  },
+  {
     "id": "f5352940-4d07-49aa-b241-0428b8124adb",
     "imagen": "https://coverartarchive.org/release-group/f5352940-4d07-49aa-b241-0428b8124adb/front-250",
     "titulo": "Close to Me (solo)",
@@ -1534,6 +1598,14 @@
     "fecha": "2026-10-08",
     "artista": "Annalisa",
     "tipo": "Album"
+  },
+  {
+    "id": "10df3737-fb81-4612-ac63-c19102b4591e",
+    "imagen": "https://coverartarchive.org/release-group/10df3737-fb81-4612-ac63-c19102b4591e/front-250",
+    "titulo": "Aquí Seguiré",
+    "fecha": "2026-10-08",
+    "artista": "Carlos Vives",
+    "tipo": "Single"
   },
   {
     "id": "apple-6817435300",
@@ -1678,6 +1750,14 @@
     "fecha": "2026-10-02",
     "artista": "Drake",
     "tipo": "EP"
+  },
+  {
+    "id": "cc0078b6-be1e-43fc-a11d-4550df8131cf",
+    "imagen": "https://coverartarchive.org/release-group/cc0078b6-be1e-43fc-a11d-4550df8131cf/front-250",
+    "titulo": "Soul",
+    "fecha": "2026-10-02",
+    "artista": "Edward Maya",
+    "tipo": "Single"
   },
   {
     "id": "f02433c9-0d23-4577-a62f-4e032f5aca91",
@@ -1973,6 +2053,14 @@
     "titulo": "SOLSTICIO - Single",
     "fecha": "2026-09-25",
     "artista": "Coti",
+    "tipo": "Single"
+  },
+  {
+    "id": "c37b461d-3cdf-47d2-a9ed-3e16613593f2",
+    "imagen": "https://coverartarchive.org/release-group/c37b461d-3cdf-47d2-a9ed-3e16613593f2/front-250",
+    "titulo": "Under The Moonlight",
+    "fecha": "2026-09-25",
+    "artista": "Edward Maya",
     "tipo": "Single"
   },
   {
@@ -2568,6 +2656,14 @@
     "tipo": "Single"
   },
   {
+    "id": "2830e791-7074-421d-820b-5635e06b6e41",
+    "imagen": "https://coverartarchive.org/release-group/2830e791-7074-421d-820b-5635e06b6e41/front-250",
+    "titulo": "why you mad",
+    "fecha": "2026-09-11",
+    "artista": "Felix Jaehn",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6805605272",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ef/43/2d/ef432dc3-ac31-5042-66bc-6824b77b91ad/823375404385_Cover.jpg/100x100bb.jpg",
     "titulo": "Si Tú Te Vas - Single",
@@ -3152,6 +3248,14 @@
     "tipo": "Album"
   },
   {
+    "id": "e172a10c-1f01-4689-944b-1c4f0bb282d2",
+    "imagen": "https://coverartarchive.org/release-group/e172a10c-1f01-4689-944b-1c4f0bb282d2/front-250",
+    "titulo": "Offline Mode",
+    "fecha": "2026-08-28",
+    "artista": "Edward Maya",
+    "tipo": "Single"
+  },
+  {
     "id": "09780118-e368-4de4-bbca-1b3fefe79f4d",
     "imagen": "https://coverartarchive.org/release-group/09780118-e368-4de4-bbca-1b3fefe79f4d/front-250",
     "titulo": "Gracie Abrams (Amazon Music Songline)",
@@ -3280,6 +3384,14 @@
     "tipo": "Single"
   },
   {
+    "id": "69e12f41-c624-46c5-b077-95144d11e4c0",
+    "imagen": "https://coverartarchive.org/release-group/69e12f41-c624-46c5-b077-95144d11e4c0/front-250",
+    "titulo": "Eres Tu",
+    "fecha": "2026-08-27",
+    "artista": "Edward Maya",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6805353794",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cf/9e/d2/cf9ed289-17ae-4291-593b-cec54ad0d219/7333595272693.jpg/100x100bb.jpg",
     "titulo": "Keepers of the Gate - Single",
@@ -3360,9 +3472,25 @@
     "tipo": "Single"
   },
   {
+    "id": "0d2c21d1-8f26-4be8-bfd1-de7584e1e0a7",
+    "imagen": "https://coverartarchive.org/release-group/0d2c21d1-8f26-4be8-bfd1-de7584e1e0a7/front-250",
+    "titulo": "Good Vibes",
+    "fecha": "2026-08-21",
+    "artista": "Edward Maya",
+    "tipo": "Single"
+  },
+  {
     "id": "7c85caca-8f3a-4c35-a821-5f34d744abfb",
     "imagen": "https://coverartarchive.org/release-group/7c85caca-8f3a-4c35-a821-5f34d744abfb/front-250",
     "titulo": "KISS Destroys Anaheim ’76",
+    "fecha": "2026-08-21",
+    "artista": "KISS",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-1895747566",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c5/50/05/c55005a0-8e48-cb9c-1475-861333559ae9/26UMGIM48143.rgb.jpg/100x100bb.jpg",
+    "titulo": "Destroys Anaheim '76 (Live At Anaheim Stadium, Anaheim, California - August 20, 1976)",
     "fecha": "2026-08-21",
     "artista": "KISS",
     "tipo": "Album"
@@ -7317,14 +7445,6 @@
     "titulo": "habangbuhay pansamantala - Single",
     "fecha": "2026-05-24",
     "artista": "MAKI",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6770378736",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/71/70/50/7170508f-f98e-3674-0959-63a596a72f62/0.jpg/100x100bb.jpg",
-    "titulo": "Intenso - Single",
-    "fecha": "2026-05-24",
-    "artista": "Naim",
     "tipo": "Single"
   },
   {
@@ -14776,17 +14896,17 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1869157136",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1c/14/0e/1c140ef6-b94a-1207-77d8-f0c94075bd8e/075679591296.jpg/100x100bb.jpg",
-    "titulo": "I Just Might - Single",
+    "id": "apple-1869157390",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/52/4f/57/524f5727-564d-1a73-05a5-e21ac405ee22/075679591319.jpg/100x100bb.jpg",
+    "titulo": "I Just Might (Instrumental) - Single",
     "fecha": "2026-01-14",
     "artista": "Bruno Mars",
     "tipo": "Single"
   },
   {
-    "id": "apple-1869157390",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/52/4f/57/524f5727-564d-1a73-05a5-e21ac405ee22/075679591319.jpg/100x100bb.jpg",
-    "titulo": "I Just Might (Instrumental) - Single",
+    "id": "apple-1869157136",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1c/14/0e/1c140ef6-b94a-1207-77d8-f0c94075bd8e/075679591296.jpg/100x100bb.jpg",
+    "titulo": "I Just Might - Single",
     "fecha": "2026-01-14",
     "artista": "Bruno Mars",
     "tipo": "Single"
@@ -72946,7 +73066,7 @@
   {
     "id": "503baf39-ffa2-4deb-86b4-3291559e8033",
     "imagen": "https://coverartarchive.org/release-group/503baf39-ffa2-4deb-86b4-3291559e8033/front-250",
-    "titulo": "Hard to Handle (DJ Spinna Remixes)",
+    "titulo": "Hard to Handle (DJ Spinna remixes)",
     "fecha": "2021-10-08",
     "artista": "Otis Redding",
     "tipo": "Single"
@@ -94546,7 +94666,7 @@
   {
     "id": "6698312f-a262-40ce-9ac6-f58008d58aa2",
     "imagen": "https://coverartarchive.org/release-group/6698312f-a262-40ce-9ac6-f58008d58aa2/front-250",
-    "titulo": "You Know I'm No Good (Deezer Home Sessions)",
+    "titulo": "You Know I’m No Good (Deezer Home Sessions)",
     "fecha": "2020-05-26",
     "artista": "Ava Max",
     "tipo": "Single"
@@ -100104,6 +100224,14 @@
     "tipo": "Album"
   },
   {
+    "id": "ea23f464-7662-4784-ac38-129d3f8107a4",
+    "imagen": "https://coverartarchive.org/release-group/ea23f464-7662-4784-ac38-129d3f8107a4/front-250",
+    "titulo": "Christmas in L.A.",
+    "fecha": "2020",
+    "artista": "Chicago",
+    "tipo": "Album"
+  },
+  {
     "id": "2e84277e-4274-4851-8596-c78adb0989fb",
     "imagen": "https://coverartarchive.org/release-group/2e84277e-4274-4851-8596-c78adb0989fb/front-250",
     "titulo": "1968-09-18: Itchy Foot Mose, Los Angeles, CA, USA",
@@ -100123,14 +100251,6 @@
     "id": "40213d79-e100-463a-891b-285fd4f4f9eb",
     "imagen": "https://coverartarchive.org/release-group/40213d79-e100-463a-891b-285fd4f4f9eb/front-250",
     "titulo": "The Big Thing",
-    "fecha": "2020",
-    "artista": "Chicago",
-    "tipo": "Album"
-  },
-  {
-    "id": "ea23f464-7662-4784-ac38-129d3f8107a4",
-    "imagen": "https://coverartarchive.org/release-group/ea23f464-7662-4784-ac38-129d3f8107a4/front-250",
-    "titulo": "Christmas in L.A.",
     "fecha": "2020",
     "artista": "Chicago",
     "tipo": "Album"
@@ -202514,7 +202634,7 @@
   {
     "id": "a2187a98-0dfb-4bad-88ac-47a8523f3e95",
     "imagen": "https://coverartarchive.org/release-group/a2187a98-0dfb-4bad-88ac-47a8523f3e95/front-250",
-    "titulo": "Monkey Business / Elephunk / Bridging The Gap",
+    "titulo": "Monkey Business / Elephunk / Bridging the Gap",
     "fecha": "2011-01-07",
     "artista": "Black Eyed Peas",
     "tipo": "Album"
@@ -250912,6 +251032,14 @@
     "tipo": "Album"
   },
   {
+    "id": "4a48ffc2-0581-46e0-a78e-2d70d3ff2ac6",
+    "imagen": "https://coverartarchive.org/release-group/4a48ffc2-0581-46e0-a78e-2d70d3ff2ac6/front-250",
+    "titulo": "Tell Me Why",
+    "fecha": "2006",
+    "artista": "Limahl",
+    "tipo": "Single"
+  },
+  {
     "id": "85f09ad6-8326-4d56-becf-c9364ff3db91",
     "imagen": "https://coverartarchive.org/release-group/85f09ad6-8326-4d56-becf-c9364ff3db91/front-250",
     "titulo": "Never Ending Story",
@@ -259968,14 +260096,6 @@
     "tipo": "Album"
   },
   {
-    "id": "31dae0eb-0587-40aa-aac9-e75800ea37ea",
-    "imagen": "https://coverartarchive.org/release-group/31dae0eb-0587-40aa-aac9-e75800ea37ea/front-250",
-    "titulo": "The Genius Anthology",
-    "fecha": "2005",
-    "artista": "Ray Charles",
-    "tipo": "Album"
-  },
-  {
     "id": "40076582-0fc6-4e8b-88bc-82aa1e31fe37",
     "imagen": "https://coverartarchive.org/release-group/40076582-0fc6-4e8b-88bc-82aa1e31fe37/front-250",
     "titulo": "Blues & Rhythm Series: The Chronological Ray Charles 1953-1954",
@@ -260099,6 +260219,14 @@
     "id": "f2b24ad4-1aa9-44b8-a9cd-cf17c795f2ab",
     "imagen": "https://coverartarchive.org/release-group/f2b24ad4-1aa9-44b8-a9cd-cf17c795f2ab/front-250",
     "titulo": "Ray",
+    "fecha": "2005",
+    "artista": "Ray Charles",
+    "tipo": "Album"
+  },
+  {
+    "id": "31dae0eb-0587-40aa-aac9-e75800ea37ea",
+    "imagen": "https://coverartarchive.org/release-group/31dae0eb-0587-40aa-aac9-e75800ea37ea/front-250",
+    "titulo": "The Genius Anthology",
     "fecha": "2005",
     "artista": "Ray Charles",
     "tipo": "Album"
@@ -299352,14 +299480,6 @@
     "tipo": "Single"
   },
   {
-    "id": "035080d3-be01-4c16-bad4-531eb0828437",
-    "imagen": "https://coverartarchive.org/release-group/035080d3-be01-4c16-bad4-531eb0828437/front-250",
-    "titulo": "1968",
-    "fecha": "2000",
-    "artista": "Chicago",
-    "tipo": "Album"
-  },
-  {
     "id": "5564c943-949e-4706-a503-4802f4be34ea",
     "imagen": "https://coverartarchive.org/release-group/5564c943-949e-4706-a503-4802f4be34ea/front-250",
     "titulo": "a sampler of chicago's songs & recordings",
@@ -326920,14 +327040,6 @@
     "tipo": "Album"
   },
   {
-    "id": "a725b086-de41-36dc-b772-15d269ca3be9",
-    "imagen": "https://coverartarchive.org/release-group/a725b086-de41-36dc-b772-15d269ca3be9/front-250",
-    "titulo": "Genius & Soul: The 50th Anniversary Collection",
-    "fecha": "1997",
-    "artista": "Ray Charles",
-    "tipo": "Album"
-  },
-  {
     "id": "047bd257-5bcf-4b35-90c8-a90f91b0355a",
     "imagen": "https://coverartarchive.org/release-group/047bd257-5bcf-4b35-90c8-a90f91b0355a/front-250",
     "titulo": "Le “Genius of Soul”",
@@ -326963,6 +327075,14 @@
     "id": "8b39b686-846c-437c-8d1c-fbe6e42e67d9",
     "imagen": "https://coverartarchive.org/release-group/8b39b686-846c-437c-8d1c-fbe6e42e67d9/front-250",
     "titulo": "Let’s Have a Ball",
+    "fecha": "1997",
+    "artista": "Ray Charles",
+    "tipo": "Album"
+  },
+  {
+    "id": "a725b086-de41-36dc-b772-15d269ca3be9",
+    "imagen": "https://coverartarchive.org/release-group/a725b086-de41-36dc-b772-15d269ca3be9/front-250",
+    "titulo": "Genius & Soul: The 50th Anniversary Collection",
     "fecha": "1997",
     "artista": "Ray Charles",
     "tipo": "Album"
@@ -334488,6 +334608,14 @@
     "tipo": "Album"
   },
   {
+    "id": "62f3ebd3-5aba-35cd-a7d3-75fd9b966eb6",
+    "imagen": "https://coverartarchive.org/release-group/62f3ebd3-5aba-35cd-a7d3-75fd9b966eb6/front-250",
+    "titulo": "Garage Days 3",
+    "fecha": "1996",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
     "id": "7ca4c233-11cb-3a4a-bb84-388d6c0ccac9",
     "imagen": "https://coverartarchive.org/release-group/7ca4c233-11cb-3a4a-bb84-388d6c0ccac9/front-250",
     "titulo": "Devil's Dance",
@@ -334499,14 +334627,6 @@
     "id": "4c05fe77-d5bd-40f8-aa91-0514aa333b25",
     "imagen": "https://coverartarchive.org/release-group/4c05fe77-d5bd-40f8-aa91-0514aa333b25/front-250",
     "titulo": "Jump in the Fire / Creeping Death / Garage Days Re‐Revisited",
-    "fecha": "1996",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
-    "id": "62f3ebd3-5aba-35cd-a7d3-75fd9b966eb6",
-    "imagen": "https://coverartarchive.org/release-group/62f3ebd3-5aba-35cd-a7d3-75fd9b966eb6/front-250",
-    "titulo": "Garage Days 3",
     "fecha": "1996",
     "artista": "Metallica",
     "tipo": "Album"
@@ -348416,14 +348536,6 @@
     "tipo": "Album"
   },
   {
-    "id": "a1bc99d2-3158-4549-8337-cca2eceaaab3",
-    "imagen": "https://coverartarchive.org/release-group/a1bc99d2-3158-4549-8337-cca2eceaaab3/front-250",
-    "titulo": "Chicago Legends",
-    "fecha": "1994",
-    "artista": "Chicago",
-    "tipo": "Album"
-  },
-  {
     "id": "46ac98cd-4004-49bf-aa3d-53f600460f42",
     "imagen": "https://coverartarchive.org/release-group/46ac98cd-4004-49bf-aa3d-53f600460f42/front-250",
     "titulo": "Best of Romantics",
@@ -358640,6 +358752,14 @@
     "tipo": "Album"
   },
   {
+    "id": "47eec25e-da1c-441b-858a-995455df58f9",
+    "imagen": "https://coverartarchive.org/release-group/47eec25e-da1c-441b-858a-995455df58f9/front-250",
+    "titulo": "Creeping Death",
+    "fecha": "1993",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
     "id": "a0a52bd1-4b19-488c-a5b3-907e966823c9",
     "imagen": "https://coverartarchive.org/release-group/a0a52bd1-4b19-488c-a5b3-907e966823c9/front-250",
     "titulo": "15 Pieces of Live Shit: Binge & Purge",
@@ -358667,14 +358787,6 @@
     "id": "10e12c9f-b5e9-408e-bd61-8d9770e9d739",
     "imagen": "https://coverartarchive.org/release-group/10e12c9f-b5e9-408e-bd61-8d9770e9d739/front-250",
     "titulo": "Skull And Snake",
-    "fecha": "1993",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
-    "id": "47eec25e-da1c-441b-858a-995455df58f9",
-    "imagen": "https://coverartarchive.org/release-group/47eec25e-da1c-441b-858a-995455df58f9/front-250",
-    "titulo": "Creeping Death",
     "fecha": "1993",
     "artista": "Metallica",
     "tipo": "Album"
@@ -365680,6 +365792,14 @@
     "tipo": "Album"
   },
   {
+    "id": "2443a740-170f-472f-849b-a279b8c6910b",
+    "imagen": "https://coverartarchive.org/release-group/2443a740-170f-472f-849b-a279b8c6910b/front-250",
+    "titulo": "Love Is Blind",
+    "fecha": "1992",
+    "artista": "Limahl",
+    "tipo": "Single"
+  },
+  {
     "id": "8bb5d5b5-b29c-4fad-98f6-4a3385c136b8",
     "imagen": "https://coverartarchive.org/release-group/8bb5d5b5-b29c-4fad-98f6-4a3385c136b8/front-250",
     "titulo": "Too Shy ('92 remix)",
@@ -366064,6 +366184,14 @@
     "tipo": "Album"
   },
   {
+    "id": "99dad07d-7d20-3c43-b188-d8e3976f14d4",
+    "imagen": "https://coverartarchive.org/release-group/99dad07d-7d20-3c43-b188-d8e3976f14d4/front-250",
+    "titulo": "Nothing Else Matters",
+    "fecha": "1992",
+    "artista": "Metallica",
+    "tipo": "Single"
+  },
+  {
     "id": "b9d02c6d-5a90-3b54-995b-17f9e8b23a68",
     "imagen": "https://coverartarchive.org/release-group/b9d02c6d-5a90-3b54-995b-17f9e8b23a68/front-250",
     "titulo": "Live at Wembley Stadium",
@@ -366086,14 +366214,6 @@
     "fecha": "1992",
     "artista": "Metallica",
     "tipo": "Album"
-  },
-  {
-    "id": "99dad07d-7d20-3c43-b188-d8e3976f14d4",
-    "imagen": "https://coverartarchive.org/release-group/99dad07d-7d20-3c43-b188-d8e3976f14d4/front-250",
-    "titulo": "Nothing Else Matters",
-    "fecha": "1992",
-    "artista": "Metallica",
-    "tipo": "Single"
   },
   {
     "id": "df8e32f0-e205-4f6e-897b-e9c2fe4d2e9d",
@@ -392144,6 +392264,14 @@
     "tipo": "Other"
   },
   {
+    "id": "76de94a8-b15a-41bd-be79-424e6bacf754",
+    "imagen": "https://coverartarchive.org/release-group/76de94a8-b15a-41bd-be79-424e6bacf754/front-250",
+    "titulo": "Se la",
+    "fecha": "1987",
+    "artista": "Lionel Richie",
+    "tipo": "Single"
+  },
+  {
     "id": "6ce7e72e-d18a-36d0-8003-f572d1b160e0",
     "imagen": "https://coverartarchive.org/release-group/6ce7e72e-d18a-36d0-8003-f572d1b160e0/front-250",
     "titulo": "Highlights From the Carnegie Hall Concerts",
@@ -395402,7 +395530,7 @@
   {
     "id": "836f1be6-463b-417d-9157-c278692c645d",
     "imagen": "https://coverartarchive.org/release-group/836f1be6-463b-417d-9157-c278692c645d/front-250",
-    "titulo": "25 Or 6 To 4",
+    "titulo": "25 or 6 to 4",
     "fecha": "1986",
     "artista": "Chicago",
     "tipo": "Single"
@@ -413720,6 +413848,14 @@
     "tipo": "Album"
   },
   {
+    "id": "19eaa286-8c45-4e4b-9337-42a36cfa3f48",
+    "imagen": "https://coverartarchive.org/release-group/19eaa286-8c45-4e4b-9337-42a36cfa3f48/front-250",
+    "titulo": "Heart to Heart: His 20 Hottest Hits",
+    "fecha": "1980",
+    "artista": "Ray Charles",
+    "tipo": "Album"
+  },
+  {
     "id": "a49de6d9-4a81-4645-a981-ae88dee8252d",
     "imagen": "https://coverartarchive.org/release-group/a49de6d9-4a81-4645-a981-ae88dee8252d/front-250",
     "titulo": "I giganti del jazz, vol. 1",
@@ -415882,7 +416018,7 @@
   {
     "id": "7269afc9-c5d9-3040-99bc-382cae70e215",
     "imagen": "https://coverartarchive.org/release-group/7269afc9-c5d9-3040-99bc-382cae70e215/front-250",
-    "titulo": "Head Games",
+    "titulo": "Head Games [Deluxe Edition]",
     "fecha": "1979",
     "artista": "Foreigner",
     "tipo": "Album"
@@ -429536,6 +429672,14 @@
     "tipo": "Single"
   },
   {
+    "id": "9df75ca4-ce88-3845-9d45-48004018328f",
+    "imagen": "https://coverartarchive.org/release-group/9df75ca4-ce88-3845-9d45-48004018328f/front-250",
+    "titulo": "Music Is the Message",
+    "fecha": "1972-07",
+    "artista": "Kool & the Gang",
+    "tipo": "Album"
+  },
+  {
     "id": "ded1a032-410a-3441-b6fd-35d6944cd01b",
     "imagen": "https://coverartarchive.org/release-group/ded1a032-410a-3441-b6fd-35d6944cd01b/front-250",
     "titulo": "Marcella",
@@ -430288,14 +430432,6 @@
     "tipo": "Album"
   },
   {
-    "id": "9df75ca4-ce88-3845-9d45-48004018328f",
-    "imagen": "https://coverartarchive.org/release-group/9df75ca4-ce88-3845-9d45-48004018328f/front-250",
-    "titulo": "Music Is the Message",
-    "fecha": "1972",
-    "artista": "Kool & the Gang",
-    "tipo": "Album"
-  },
-  {
     "id": "8a6ff02c-e8e0-4b81-a8a6-6bb4b4ed5976",
     "imagen": "https://coverartarchive.org/release-group/8a6ff02c-e8e0-4b81-a8a6-6bb4b4ed5976/front-250",
     "titulo": "Whole Lotta Love / Immigrant Song",
@@ -430827,6 +430963,14 @@
     "id": "03bc845c-6d50-4071-a6fa-614e0afa1795",
     "imagen": "https://coverartarchive.org/release-group/03bc845c-6d50-4071-a6fa-614e0afa1795/front-250",
     "titulo": "Hits",
+    "fecha": "1972",
+    "artista": "Tom Jones",
+    "tipo": "EP"
+  },
+  {
+    "id": "5dad9bb1-8e09-48e5-8865-7240cca63edc",
+    "imagen": "https://coverartarchive.org/release-group/5dad9bb1-8e09-48e5-8865-7240cca63edc/front-250",
+    "titulo": "Till",
     "fecha": "1972",
     "artista": "Tom Jones",
     "tipo": "EP"
@@ -434360,6 +434504,14 @@
     "tipo": "Album"
   },
   {
+    "id": "090c1f81-2e2d-4c18-b1f4-03830acae323",
+    "imagen": "https://coverartarchive.org/release-group/090c1f81-2e2d-4c18-b1f4-03830acae323/front-250",
+    "titulo": "Sin amor",
+    "fecha": "1970",
+    "artista": "Tom Jones",
+    "tipo": "EP"
+  },
+  {
     "id": "292daa70-bd9e-4532-b889-92157095a1cf",
     "imagen": "https://coverartarchive.org/release-group/292daa70-bd9e-4532-b889-92157095a1cf/front-250",
     "titulo": "Tema del Show de Tom Jones / Enciende la luz de tu amor",
@@ -434371,6 +434523,14 @@
     "id": "42a788de-07cc-4551-bc23-1d4335ed93b3",
     "imagen": "https://coverartarchive.org/release-group/42a788de-07cc-4551-bc23-1d4335ed93b3/front-250",
     "titulo": "Tema del Show de Tom Jones",
+    "fecha": "1970",
+    "artista": "Tom Jones",
+    "tipo": "EP"
+  },
+  {
+    "id": "f8ceb488-ce2d-4b29-99f7-fd928dcb9222",
+    "imagen": "https://coverartarchive.org/release-group/f8ceb488-ce2d-4b29-99f7-fd928dcb9222/front-250",
+    "titulo": "Hija de la oscuridad",
     "fecha": "1970",
     "artista": "Tom Jones",
     "tipo": "EP"
@@ -434421,6 +434581,14 @@
     "titulo": "Greatest Hits, Volume 3",
     "fecha": "1969-12-18",
     "artista": "The Supremes",
+    "tipo": "Album"
+  },
+  {
+    "id": "0931b359-fc39-33b2-b52e-a9aaf103e33a",
+    "imagen": "https://coverartarchive.org/release-group/0931b359-fc39-33b2-b52e-a9aaf103e33a/front-250",
+    "titulo": "Kool and the Gang",
+    "fecha": "1969-12",
+    "artista": "Kool & the Gang",
     "tipo": "Album"
   },
   {
@@ -435485,14 +435653,6 @@
     "titulo": "Dedicado a Antonio Machado, poeta",
     "fecha": "1969",
     "artista": "Joan Manuel Serrat",
-    "tipo": "Album"
-  },
-  {
-    "id": "0931b359-fc39-33b2-b52e-a9aaf103e33a",
-    "imagen": "https://coverartarchive.org/release-group/0931b359-fc39-33b2-b52e-a9aaf103e33a/front-250",
-    "titulo": "Kool and the Gang",
-    "fecha": "1969",
-    "artista": "Kool & the Gang",
     "tipo": "Album"
   },
   {
@@ -470936,14 +471096,6 @@
     "tipo": "Album"
   },
   {
-    "id": "9853c360-5fcf-4098-9b59-1540082e6aae",
-    "imagen": "https://coverartarchive.org/release-group/9853c360-5fcf-4098-9b59-1540082e6aae/front-250",
-    "titulo": "Language of the Mad",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "EP"
-  },
-  {
     "id": "997a1018-928a-47dd-b0f8-359dc1b2f937",
     "imagen": "https://coverartarchive.org/release-group/997a1018-928a-47dd-b0f8-359dc1b2f937/front-250",
     "titulo": "1993-06-20: St. Jakob's Stadion, Basel, Switzerland",
@@ -471280,6 +471432,14 @@
     "tipo": "Album"
   },
   {
+    "id": "356c589f-e03c-3ea7-8191-9965ec7daf37",
+    "imagen": "https://coverartarchive.org/release-group/356c589f-e03c-3ea7-8191-9965ec7daf37/front-250",
+    "titulo": "1984-08-03: Roseland Ballroom, New York, NY, USA",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
     "id": "59147605-c213-333d-9f83-3882c4ee7876",
     "imagen": "https://coverartarchive.org/release-group/59147605-c213-333d-9f83-3882c4ee7876/front-250",
     "titulo": "1983-08-28: Las Cruces, NM, USA",
@@ -471499,14 +471659,6 @@
     "id": "33a2ab66-22f1-37a4-ba81-9a995ef83218",
     "imagen": "https://coverartarchive.org/release-group/33a2ab66-22f1-37a4-ba81-9a995ef83218/front-250",
     "titulo": "1988‐09‐26: Bradford, UK",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
-    "id": "356c589f-e03c-3ea7-8191-9965ec7daf37",
-    "imagen": "https://coverartarchive.org/release-group/356c589f-e03c-3ea7-8191-9965ec7daf37/front-250",
-    "titulo": "1984-08-03: Roseland Ballroom, New York, NY, USA",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -471771,6 +471923,14 @@
     "id": "8e50e6ad-96c9-37cc-932c-ecd44048b7db",
     "imagen": "https://coverartarchive.org/release-group/8e50e6ad-96c9-37cc-932c-ecd44048b7db/front-250",
     "titulo": "1988-05-24: Troubadour, Los Angeles, CA, USA",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "94576e27-c7c8-3d7a-b2ab-bcd49814653f",
+    "imagen": "https://coverartarchive.org/release-group/94576e27-c7c8-3d7a-b2ab-bcd49814653f/front-250",
+    "titulo": "1994-05-30: Buffalo, NY, USA",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -472504,14 +472664,6 @@
     "tipo": "Album"
   },
   {
-    "id": "94576e27-c7c8-3d7a-b2ab-bcd49814653f",
-    "imagen": "https://coverartarchive.org/release-group/94576e27-c7c8-3d7a-b2ab-bcd49814653f/front-250",
-    "titulo": "1994-05-30: Buffalo, NY, USA",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "98f4c378-8101-3c99-a83b-dacc429458f3",
     "imagen": "https://coverartarchive.org/release-group/98f4c378-8101-3c99-a83b-dacc429458f3/front-250",
     "titulo": "1997-08-24: Reading, UK",
@@ -472582,6 +472734,14 @@
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
+  },
+  {
+    "id": "b2f32543-c99e-3827-b5ea-baeda81af93b",
+    "imagen": "https://coverartarchive.org/release-group/b2f32543-c99e-3827-b5ea-baeda81af93b/front-250",
+    "titulo": "2009-04-04: Rock & Roll Hall of Fame Induction Ceremony, Cleveland, OH, USA",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "EP"
   },
   {
     "id": "b2fcc465-fd3c-3823-9762-a979f41c554a",
@@ -472854,14 +473014,6 @@
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
-  },
-  {
-    "id": "b2f32543-c99e-3827-b5ea-baeda81af93b",
-    "imagen": "https://coverartarchive.org/release-group/b2f32543-c99e-3827-b5ea-baeda81af93b/front-250",
-    "titulo": "2009-04-04: Rock & Roll Hall of Fame Induction Ceremony, Cleveland, OH, USA",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "EP"
   },
   {
     "id": "f5040ecf-a706-45f6-856d-b0ea1abeb1b0",
@@ -473947,14 +474099,6 @@
     "id": "02f27ee5-bcac-43b7-be23-e81a6f468f56",
     "imagen": "https://coverartarchive.org/release-group/02f27ee5-bcac-43b7-be23-e81a6f468f56/front-250",
     "titulo": "Love",
-    "fecha": "",
-    "artista": "Olivia Rodrigo",
-    "tipo": "Single"
-  },
-  {
-    "id": "78c7875e-f1b3-41e2-9f22-b9eb2e68f9a4",
-    "imagen": "https://coverartarchive.org/release-group/78c7875e-f1b3-41e2-9f22-b9eb2e68f9a4/front-250",
-    "titulo": "expectations (feat. Chappell Roan)",
     "fecha": "",
     "artista": "Olivia Rodrigo",
     "tipo": "Single"
@@ -486104,20 +486248,20 @@
     "tipo": "Album"
   },
   {
-    "id": "e3a49659-2adc-4250-ae84-f7e6729d3272",
-    "imagen": "https://coverartarchive.org/release-group/e3a49659-2adc-4250-ae84-f7e6729d3272/front-250",
-    "titulo": "The Great Love Songs",
-    "fecha": "",
-    "artista": "Tom Jones",
-    "tipo": "Other"
-  },
-  {
     "id": "eab39cc3-e610-4bec-bbb0-d6d918fcb9d3",
     "imagen": "https://coverartarchive.org/release-group/eab39cc3-e610-4bec-bbb0-d6d918fcb9d3/front-250",
     "titulo": "The Tom Jones Album",
     "fecha": "",
     "artista": "Tom Jones",
     "tipo": "Album"
+  },
+  {
+    "id": "e3a49659-2adc-4250-ae84-f7e6729d3272",
+    "imagen": "https://coverartarchive.org/release-group/e3a49659-2adc-4250-ae84-f7e6729d3272/front-250",
+    "titulo": "The Great Love Songs",
+    "fecha": "",
+    "artista": "Tom Jones",
+    "tipo": "Other"
   },
   {
     "id": "88cb66cf-665a-3d62-9619-43a51c17c3f3",

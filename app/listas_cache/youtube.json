@@ -19,33 +19,33 @@
       "puesto": 3
     },
     {
-      "titulo": "POKITO",
-      "artista": "Diljit Dosanjh, Daddy Yankee",
-      "url": "https://www.youtube.com/watch?v=XO1h5G6xytU",
-      "puesto": 4
-    },
-    {
       "titulo": "Lejos de Mi (Official Music Video)",
       "artista": "Josue Rarujo",
       "url": "https://www.youtube.com/watch?v=tA1QNxP5f_w",
+      "puesto": 4
+    },
+    {
+      "titulo": "POKITO",
+      "artista": "Diljit Dosanjh, Daddy Yankee",
+      "url": "https://www.youtube.com/watch?v=XO1h5G6xytU",
       "puesto": 5
-    },
-    {
-      "titulo": "SHARINGAN",
-      "artista": "La Pantera",
-      "url": "https://www.youtube.com/watch?v=ExX--k9PqxY",
-      "puesto": 6
-    },
-    {
-      "titulo": "2.0 #2",
-      "artista": "l0rna",
-      "url": "https://www.youtube.com/watch?v=nnd9d5Aj4qI",
-      "puesto": 7
     },
     {
       "titulo": "La Pantera - COLOREAME (Visualizer) | FILIPENSES",
       "artista": "La Pantera",
       "url": "https://www.youtube.com/watch?v=3saw7VbTe_w",
+      "puesto": 6
+    },
+    {
+      "titulo": "SHARINGAN",
+      "artista": "La Pantera",
+      "url": "https://www.youtube.com/watch?v=ExX--k9PqxY",
+      "puesto": 7
+    },
+    {
+      "titulo": "2.0 #2",
+      "artista": "l0rna",
+      "url": "https://www.youtube.com/watch?v=nnd9d5Aj4qI",
       "puesto": 8
     },
     {
@@ -67,21 +67,21 @@
       "puesto": 11
     },
     {
+      "titulo": "Promesas",
+      "artista": "Marina, Moncho Chavea",
+      "url": "https://www.youtube.com/watch?v=wDdHQ8lRZNY",
+      "puesto": 12
+    },
+    {
       "titulo": "Cartier Remix",
       "artista": "El Americano 4KT, Lil Naay",
       "url": "https://www.youtube.com/watch?v=gMWW4zJhfA8",
-      "puesto": 12
+      "puesto": 13
     },
     {
       "titulo": "CONQUISTADOR",
       "artista": "Gonzy, Sech",
       "url": "https://www.youtube.com/watch?v=h-hYRw1Llg4",
-      "puesto": 13
-    },
-    {
-      "titulo": "Happy Monday (W Sound 10)",
-      "artista": "Ovy On The Drums, W Sound, Hades66",
-      "url": "https://www.youtube.com/watch?v=LYn4w3m3Pjo",
       "puesto": 14
     },
     {
@@ -91,15 +91,15 @@
       "puesto": 15
     },
     {
-      "titulo": "NO se XQ",
-      "artista": "La Pantera",
-      "url": "https://www.youtube.com/watch?v=F9eF6zPGaKo",
+      "titulo": "Happy Monday (W Sound 10)",
+      "artista": "Ovy On The Drums, W Sound, Hades66",
+      "url": "https://www.youtube.com/watch?v=LYn4w3m3Pjo",
       "puesto": 16
     },
     {
-      "titulo": "Promesas",
-      "artista": "Marina, Moncho Chavea",
-      "url": "https://www.youtube.com/watch?v=wDdHQ8lRZNY",
+      "titulo": "NO se XQ",
+      "artista": "La Pantera",
+      "url": "https://www.youtube.com/watch?v=F9eF6zPGaKo",
       "puesto": 17
     },
     {
@@ -109,15 +109,15 @@
       "puesto": 18
     },
     {
-      "titulo": "BODYPAINTING (Official Video)",
-      "artista": "Emilia",
-      "url": "https://www.youtube.com/watch?v=Whne2kfTjCk",
+      "titulo": "Matfahmnach",
+      "artista": "Douzi",
+      "url": "https://www.youtube.com/watch?v=Ryh8hyh8wkc",
       "puesto": 19
     },
     {
-      "titulo": "SHIPEO",
-      "artista": "La Pantera",
-      "url": "https://www.youtube.com/watch?v=FotrTBeC5aw",
+      "titulo": "BODYPAINTING (Official Video)",
+      "artista": "Emilia",
+      "url": "https://www.youtube.com/watch?v=Whne2kfTjCk",
       "puesto": 20
     },
     {
@@ -127,15 +127,15 @@
       "puesto": 21
     },
     {
-      "titulo": "Lento",
-      "artista": "1cewayz, THE FAVORITES, Køddy G",
-      "url": "https://www.youtube.com/watch?v=6bijgU88-vk",
+      "titulo": "SHIPEO",
+      "artista": "La Pantera",
+      "url": "https://www.youtube.com/watch?v=FotrTBeC5aw",
       "puesto": 22
     },
     {
-      "titulo": "Mi Rompecabezas",
-      "artista": "Galvan Real",
-      "url": "https://www.youtube.com/watch?v=mZm0CZlc9so",
+      "titulo": "Lento - Køddy G (Video Oficial)",
+      "artista": "KØDDY-G",
+      "url": "https://www.youtube.com/watch?v=6bijgU88-vk",
       "puesto": 23
     },
     {
@@ -145,9 +145,9 @@
       "puesto": 24
     },
     {
-      "titulo": "Ten Cuidao",
-      "artista": "Sanson, Raggio, EAZYBOI, Saske, J.Moods, Delaossa, Kas Rules, Space Hammu, Carrion GodBle$$",
-      "url": "https://www.youtube.com/watch?v=zwhzcnKyou0",
+      "titulo": "Debes Saber Rmx Ft. La Cebolla, Negro Jari [Prod. By Yoseik] (Videoclip Oficial)",
+      "artista": "Taranto",
+      "url": "https://www.youtube.com/watch?v=aBUvA6imvtE",
       "puesto": 25
     },
     {
@@ -157,34 +157,34 @@
       "puesto": 26
     },
     {
-      "titulo": "Ultraligera - MOSQUITO (Videoclip Oficial)",
-      "artista": "Ultraligera",
-      "url": "https://www.youtube.com/watch?v=BOFM---_5oM",
+      "titulo": "Ten Cuidao",
+      "artista": "Sanson, Raggio, EAZYBOI, Saske, J.Moods, Delaossa, Kas Rules, Space Hammu, Carrion GodBle$$",
+      "url": "https://www.youtube.com/watch?v=zwhzcnKyou0",
       "puesto": 27
     },
     {
-      "titulo": "Matfahmnach",
-      "artista": "Douzi",
-      "url": "https://www.youtube.com/watch?v=Ryh8hyh8wkc",
+      "titulo": "Traigo (Video Oficial)",
+      "artista": "La Plazuela, DeLasRosas",
+      "url": "https://www.youtube.com/watch?v=p5P49yT8RKQ",
       "puesto": 28
     },
     {
-      "titulo": "BOOGEYMAN cap. 9 - YOLAMASCARA",
-      "artista": "YOLAMASCARA",
-      "url": "https://www.youtube.com/watch?v=w9ewWIsn14A",
+      "titulo": "Mi Rompecabezas",
+      "artista": "Galvan Real",
+      "url": "https://www.youtube.com/watch?v=mZm0CZlc9so",
       "puesto": 29
     },
     {
-      "titulo": "Debes Saber Rmx Ft. La Cebolla, Negro Jari [Prod. By Yoseik] (Videoclip Oficial)",
-      "artista": "Taranto",
-      "url": "https://www.youtube.com/watch?v=aBUvA6imvtE",
+      "titulo": "Ultraligera - MOSQUITO (Videoclip Oficial)",
+      "artista": "Ultraligera",
+      "url": "https://www.youtube.com/watch?v=BOFM---_5oM",
       "puesto": 30
     }
   ],
   "fuente": "https://charts.youtube.com/charts/TrendingVideos/es",
   "nombre": "Tendencias musicales de YouTube",
   "tipo": "youtube",
-  "actualizado": "2026-11-09T05:02+00:00",
+  "actualizado": "2026-11-10T04:50+00:00",
   "en_curso": false,
   "mensaje": "Lista actualizada: 30 canciones."
 }
