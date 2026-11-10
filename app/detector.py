@@ -5,12 +5,50 @@ import time
 import urllib.parse
 import urllib.error
 import urllib.request
+import unicodedata
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent.parent
 CSV = BASE / "mi_radar_musical.csv"
 DATOS = BASE / "lanzamientos.json"
 ULTIMA_CONSULTA = 0
+BIBLIOTECA = Path(__file__).resolve().parent / "mi_musica.json"
+_titulos_cache = None
+
+
+def _norm(texto):
+    t = unicodedata.normalize("NFKD", str(texto or ""))
+    t = "".join(c for c in t if not unicodedata.combining(c))
+    return " ".join("".join(c.lower() if c.isalnum() else " " for c in t).split())
+
+
+def _variantes_titulo(titulo):
+    """Título normalizado y, además, sin lo que va entre paréntesis/corchetes ni tras « - »."""
+    base = str(titulo or "")
+    sin = base
+    for abre, cierra in (("(", ")"), ("[", "]")):
+        while abre in sin and cierra in sin[sin.index(abre):]:
+            i = sin.index(abre)
+            j = sin.index(cierra, i)
+            sin = sin[:i] + " " + sin[j + 1:]
+    sin = sin.split(" - ")[0]
+    return {v for v in (_norm(base), _norm(sin)) if v}
+
+
+def titulos_de_biblioteca(nombre):
+    """Títulos que tienes de este artista en Mi música (vacío si no está)."""
+    global _titulos_cache
+    if _titulos_cache is None:
+        _titulos_cache = {}
+        try:
+            for pista in json.loads(BIBLIOTECA.read_text(encoding="utf-8")):
+                artista = _norm(pista.get("artista"))
+                if artista:
+                    _titulos_cache.setdefault(artista, set()).update(_variantes_titulo(pista.get("titulo")))
+        except (OSError, ValueError, AttributeError):
+            pass
+    return _titulos_cache.get(_norm(nombre), set())
+
 
 def consultar(url):
     global ULTIMA_CONSULTA
@@ -60,7 +98,37 @@ def buscar_artista(nombre):
     if not coincidencias:
         print("No hay coincidencia exacta en MusicBrainz:", nombre)
         return None
+    if len(coincidencias) > 1:
+        titulos = titulos_de_biblioteca(nombre)
+        if titulos:
+            elegido = elegir_artista_musicbrainz(coincidencias[:4], titulos)
+            if elegido:
+                return elegido
     return coincidencias[0]
+
+
+def elegir_artista_musicbrainz(candidatos, titulos):
+    """Entre artistas con el mismo nombre, el que tiene canciones que tú ya tienes."""
+    mejor, puntos = None, 0
+    for candidato in candidatos:
+        try:
+            url = "https://musicbrainz.org/ws/2/recording/?" + urllib.parse.urlencode({
+                "artist": candidato["id"], "fmt": "json", "limit": 100
+            })
+            grabaciones = consultar(url).get("recordings", [])
+        except Exception as error:
+            print("  Aviso: no se pudo comprobar un artista homónimo:", error, flush=True)
+            continue
+        propios = set()
+        for grabacion in grabaciones:
+            propios |= _variantes_titulo(grabacion.get("title"))
+        coincidencias = len(propios & titulos)
+        if coincidencias > puntos:
+            mejor, puntos = candidato, coincidencias
+    if mejor:
+        print(f"  Varios artistas llamados igual: se elige el que coincide con tu música ({puntos} canciones).", flush=True)
+    return mejor
+
 
 def publicaciones(artista):
     todas = []
@@ -98,6 +166,31 @@ def publicaciones(artista):
     }
 
 
+def elegir_artista_apple(ids, titulos):
+    """Entre varios artistas de Apple con el mismo nombre, el que tiene canciones que tú ya tienes."""
+    mejor, puntos = None, 0
+    for identificador in sorted(ids):
+        url = "https://itunes.apple.com/lookup?" + urllib.parse.urlencode({
+            "id": identificador, "entity": "song", "limit": 200, "country": "ES"
+        })
+        try:
+            peticion = urllib.request.Request(url, headers={"User-Agent": "MiRadarMusical/1.0"})
+            with urllib.request.urlopen(peticion, timeout=12) as respuesta:
+                resultados = json.loads(respuesta.read().decode("utf-8")).get("results", [])
+        except Exception as error:
+            print("  Aviso: no se pudo comprobar un artista homónimo de Apple:", error, flush=True)
+            continue
+        propios = set()
+        for resultado in resultados:
+            if resultado.get("wrapperType") == "track":
+                propios |= _variantes_titulo(resultado.get("trackName"))
+        coincidencias = len(propios & titulos)
+        if coincidencias > puntos:
+            mejor, puntos = identificador, coincidencias
+        time.sleep(0.4)
+    return mejor
+
+
 def publicaciones_apple(artista):
     """Completa con singles/álbumes recientes de Apple cuando MusicBrainz va retrasado."""
     nombre = artista.get("name", "").strip()
@@ -123,10 +216,26 @@ def publicaciones_apple(artista):
     def normalizar(texto):
         return " ".join(str(texto or "").casefold().split())
 
+    ids_apple = {
+        resultado.get("artistId") for resultado in resultados
+        if normalizar(resultado.get("artistName")) == normalizar(nombre) and resultado.get("artistId")
+    }
+    id_elegido = None
+    if len(ids_apple) > 1:
+        titulos = titulos_de_biblioteca(nombre)
+        if titulos:
+            id_elegido = elegir_artista_apple(ids_apple, titulos)
+            if id_elegido is None:
+                print("  Varios artistas con ese nombre en Apple y ninguno coincide con tu música: no se añade nada.", flush=True)
+                return {}
+            print("  Varios artistas con ese nombre en Apple: se usa el que coincide con tu música.", flush=True)
+
     encontrados = {}
     for resultado in resultados:
         artista_resultado = normalizar(resultado.get("artistName"))
         if artista_resultado != normalizar(nombre):
+            continue
+        if id_elegido is not None and resultado.get("artistId") != id_elegido:
             continue
 
         titulo = str(resultado.get("collectionName") or "").strip()

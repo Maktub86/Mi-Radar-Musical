@@ -583,30 +583,6 @@ body.mr-con-reproductor #mr-aviso-lento{bottom:100px}
    return r;
   };
  })();
- /* 5) Mismo menú, mismo orden y mismos nombres en todas las páginas */
- (function(){
-  const MENU=[['/','🏠 Portada'],['/listas/youtube','▶ YouTube'],['/listas/los40','🎵 Los 40'],['/listas/canal-fiesta','📻 Canal Fiesta'],['/lo-mejor','🎤 Cantantes'],['/mi-musica','🎧 Mi música'],['/programas','🧰 Programas']];
-  const ruta=(location.pathname.replace(/\/+$/,'')||'/');
-  function actual(href){return href==='/'?ruta==='/':(ruta===href||ruta.indexOf(href+'/')===0);}
-  function normalizar(nav){
-   if(nav.dataset.mrMenu==='1')return;
-   const enlaces=Array.prototype.filter.call(nav.children,function(x){return x.tagName==='A';});
-   const hrefs=enlaces.map(function(a){return a.getAttribute('href')||'';});
-   if(hrefs.indexOf('/')===-1||!hrefs.some(function(h){return h.indexOf('/listas/')===0;}))return;
-   const plantilla=enlaces[0];
-   MENU.forEach(function(par){
-    const href=par[0],texto=par[1];
-    let a=enlaces.find(function(x){return x.getAttribute('href')===href;});
-    if(!a){a=plantilla.cloneNode(false);a.setAttribute('href',href);a.removeAttribute('style');a.classList.remove('activo');}
-    a.textContent=texto;
-    a.classList.toggle('activo',actual(href));
-    if(href==='/programas')a.style.marginLeft='auto';else if(a.style.marginLeft)a.style.marginLeft='';
-    nav.appendChild(a);
-   });
-   nav.dataset.mrMenu='1';
-  }
-  document.querySelectorAll('nav').forEach(normalizar);
- })();
  /* 3) Copia de seguridad de las canciones guardadas */
  function exportar(){
   const p=document.querySelector('.mr-panel-guardadas');
