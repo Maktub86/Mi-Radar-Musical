@@ -407,6 +407,19 @@ html{-webkit-text-size-adjust:100%}
  html body .pista-titulo{overflow-wrap:anywhere}
  .mr-artista-deezer{font-size:12px}
 }
+/* ===== Ocultar lo que ya tengo / votos ===== */
+.mr-oculta-tengo{display:none!important}
+#mr-barra-tengo{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 4% 0}
+.mr-ocultar-tengo{border:1px solid #ffffff55;background:#ffffff14;color:#fff;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:800;cursor:pointer}
+.mr-ocultar-tengo[aria-pressed="true"]{background:linear-gradient(135deg,#168653,#20ad70);border-color:#69e5a4}
+.mr-ocultar-cuenta{font-size:12px;color:#cdbbf0}
+.boton-falta{margin-left:8px;border:1px solid #ffffff55;background:linear-gradient(135deg,#168653,#20ad70);color:#fff;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:800;cursor:pointer}
+.boton-falta:disabled{opacity:.7;cursor:wait}
+.mr-voto{width:42px;height:42px;border-radius:12px;border:1px solid #ffffff55;background:#ffffff14;font-size:18px;line-height:1;cursor:pointer;padding:0;display:inline-flex;align-items:center;justify-content:center;margin-left:6px}
+.mr-voto-si.activo{background:linear-gradient(135deg,#168653,#20ad70);border-color:#69e5a4}
+.mr-voto:disabled{opacity:.6;cursor:wait}
+.mr-descartada-nota{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0;padding:10px 14px;border-radius:12px;border:1px dashed #ffffff55;color:#cdbbf0;font-size:13px}
+.mr-descartada-nota button{border:1px solid #ffffff55;background:#ffffff14;color:#fff;border-radius:999px;padding:5px 12px;font-weight:700;cursor:pointer}
 /* ===== Reproductor flotante ===== */
 body.mr-con-reproductor{padding-bottom:96px!important}
 body.mr-con-reproductor #mr-aviso-lento{bottom:100px}
@@ -582,6 +595,81 @@ body.mr-con-reproductor #mr-aviso-lento{bottom:100px}
    }catch(_){}
    return r;
   };
+ })();
+ /* 6) Interruptor «Ocultar lo que ya tengo» */
+ (function(){
+  const EXC=['/mi-musica','/mimusica','/login','/programas','/recomendaciones'];
+  if(EXC.some(function(p){return location.pathname.indexOf(p)===0;}))return;
+  const SONG='.pista,.fila-cancion,.publicacion-mejor,.cancion';
+  let activo=false;try{activo=localStorage.getItem('mr_ocultar_tengo')==='1';}catch(_){}
+  let boton=null,cuenta=null;
+  function poner(v){activo=!!v;try{localStorage.setItem('mr_ocultar_tengo',activo?'1':'0');}catch(_){}aplicar();}
+  function texto(el,v){if(el.textContent!==v)el.textContent=v;}
+  function crear(){
+   if(boton&&boton.isConnected)return;
+   const nav=document.querySelector('nav');if(!nav)return;
+   const barra=document.createElement('div');barra.id='mr-barra-tengo';
+   boton=document.createElement('button');boton.type='button';boton.className='mr-ocultar-tengo';
+   cuenta=document.createElement('span');cuenta.className='mr-ocultar-cuenta';
+   barra.appendChild(boton);barra.appendChild(cuenta);nav.insertAdjacentElement('afterend',barra);
+   boton.addEventListener('click',function(){poner(!activo);});
+  }
+  function aplicar(){
+   crear();if(!boton)return;
+   let ocultas=0;
+   document.querySelectorAll(SONG).forEach(function(n){
+    const ocultar=activo&&!n.querySelector(SONG)&&!!n.querySelector('.mr-ya-tengo');
+    n.classList.toggle('mr-oculta-tengo',ocultar);if(ocultar)ocultas++;
+   });
+   boton.setAttribute('aria-pressed',activo?'true':'false');
+   texto(boton,activo?'✓ Ocultando lo que ya tengo':'Ocultar lo que ya tengo');
+   texto(cuenta,(activo&&ocultas)?(ocultas+' canciones ocultas'):'');
+  }
+  window.mrOcultarTengo=poner;
+  let espera=null;
+  new MutationObserver(function(){clearTimeout(espera);espera=setTimeout(aplicar,300);}).observe(document.body,{childList:true,subtree:true});
+  aplicar();
+ })();
+ /* 7) «Me gusta» y «No me interesa» en Recomendaciones */
+ (function(){
+  if(location.pathname.indexOf('/recomendaciones')!==0)return;
+  async function votar(titulo,artista,voto){
+   try{
+    const r=await fetch('/api/recomendaciones/votos',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({titulo:titulo,artista:artista,voto:voto})});
+    return r.ok;
+   }catch(_){return false;}
+  }
+  function boton(simbolo,clase,titulo){const b=document.createElement('button');b.type='button';b.className='mr-voto '+clase;b.textContent=simbolo;b.title=titulo;b.setAttribute('aria-label',titulo);return b;}
+  function preparar(art){
+   if(art.dataset.mrVoto==='1'||!art.closest('#resultados'))return;
+   const acciones=art.querySelector('.acciones'),titulo=art.dataset.titulo,artista=art.dataset.artista;
+   if(!acciones||!titulo||!artista)return;
+   art.dataset.mrVoto='1';
+   const si=boton('👍','mr-voto-si','Me gusta: buscaré canciones parecidas a esta'),no=boton('👎','mr-voto-no','No me interesa: no volverá a salir');
+   si.addEventListener('click',async function(){
+    si.disabled=true;
+    const nuevo=!si.classList.contains('activo');
+    if(await votar(titulo,artista,nuevo?1:0)){si.classList.toggle('activo',nuevo);si.title=nuevo?'Marcada como «me gusta»':'Me gusta: buscaré canciones parecidas a esta';}
+    si.disabled=false;
+   });
+   no.addEventListener('click',async function(){
+    no.disabled=true;
+    if(await votar(titulo,artista,-1)){
+     const nota=document.createElement('div');nota.className='mr-descartada-nota';
+     const msg=document.createElement('span');msg.textContent='«'+titulo+'» descartada: no volverá a salir.';
+     const deshacer=document.createElement('button');deshacer.type='button';deshacer.textContent='Deshacer';
+     deshacer.addEventListener('click',async function(){deshacer.disabled=true;if(await votar(titulo,artista,0)){nota.remove();art.style.display='';}else{deshacer.disabled=false;}});
+     nota.appendChild(msg);nota.appendChild(deshacer);
+     art.style.display='none';art.insertAdjacentElement('beforebegin',nota);
+    }
+    no.disabled=false;
+   });
+   acciones.appendChild(si);acciones.appendChild(no);
+  }
+  function revisar(){document.querySelectorAll('#resultados article.cancion').forEach(preparar);}
+  let espera=null;
+  new MutationObserver(function(){clearTimeout(espera);espera=setTimeout(revisar,200);}).observe(document.body,{childList:true,subtree:true});
+  revisar();
  })();
  /* 3) Copia de seguridad de las canciones guardadas */
  function exportar(){
@@ -1081,6 +1169,31 @@ botonEstrella.addEventListener('click',async()=>{
  mostrarArtistas();
 });
 alfabetoLoMejor.appendChild(botonEstrella);
+const botonFalta=nodo('button','boton-falta','🔎 Lo que me falta');
+botonFalta.type='button';botonFalta.title='Abre las canciones populares que aún no tienes de tus artistas más escuchados';
+botonFalta.addEventListener('click',async()=>{
+ if(botonFalta.disabled)return;
+ botonFalta.disabled=true;const textoOriginal=botonFalta.textContent;botonFalta.textContent='Buscando…';
+ try{
+  if(!topArtistasColeccion.length){const r=await fetch('/api/lo-mejor/artistas',{cache:'no-store'});if(!r.ok)throw new Error();topArtistasColeccion=await r.json();}
+  if(!mostrandoFavoritos){mostrandoFavoritos=true;artistasBase=topArtistasColeccion;inicialSeleccionada='';botonEstrella.classList.add('activa');botonEstrella.title='Volver a todos los artistas';mostrarArtistas();}
+  if(window.mrOcultarTengo)window.mrOcultarTengo(true);
+  const cajas=Array.from(contenedor.querySelectorAll('.artista-mejor')).slice(0,8);
+  let siguiente=0;
+  const esperar=(zona)=>new Promise(res=>{let n=0;const t=setInterval(()=>{n++;if(zona.dataset.cargado==='1'||zona.dataset.error==='1'||n>40){clearInterval(t);res();}},400);});
+  async function trabajador(){
+   while(siguiente<cajas.length){
+    const caja=cajas[siguiente++];
+    const b=caja.querySelector('.boton-populares'),z=caja.querySelector('.canciones-populares');
+    if(b&&z&&z.hidden){b.click();await esperar(z);}
+   }
+  }
+  await Promise.all([trabajador(),trabajador()]);
+  estado.textContent='Estas son las canciones populares que aún no tienes de tus artistas más escuchados. Las que ya tienes están ocultas.';
+ }catch(e){estado.textContent='No se ha podido preparar «Lo que me falta» ahora mismo.';}
+ finally{botonFalta.disabled=false;botonFalta.textContent=textoOriginal;}
+});
+alfabetoLoMejor.appendChild(botonFalta);
 function normalizarNombre(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleUpperCase('es');}
 for(const letra of letrasAlfabeto){const b=nodo('button','',letra);b.type='button';b.dataset.letra=letra;b.addEventListener('click',()=>{inicialSeleccionada=inicialSeleccionada===letra?'':letra;mostrarArtistas();if(inicialSeleccionada&&inicialSeleccionada!=='#'){const caja=[...contenedor.querySelectorAll('.artista-mejor')].find(x=>normalizarNombre(x.querySelector('h2')?.textContent).startsWith(inicialSeleccionada));if(caja)caja.scrollIntoView({behavior:'smooth',block:'start'});}});alfabetoLoMejor.appendChild(b);}
 window.addEventListener('scroll',()=>{const cajas=[...contenedor.querySelectorAll('.artista-mejor')];let actual='';for(const caja of cajas){if(caja.getBoundingClientRect().top<=180)actual=normalizarNombre(caja.querySelector('h2')?.textContent).charAt(0)||'';else break;}if(!actual&&cajas.length)actual=normalizarNombre(cajas[0].querySelector('h2')?.textContent).charAt(0)||'';letraActual.hidden=!actual;if(actual){letraActual.textContent=actual;for(const b of alfabetoLoMejor.querySelectorAll('button'))b.classList.toggle('activa',b.dataset.letra===actual);}});
@@ -1549,6 +1662,20 @@ def _ajuste_escribir(clave, valor):
             temporal.replace(_RUTA_AJUSTES)
         _cache_ajustes["datos"] = None
         _cache_ajustes["t"] = 0.0
+
+
+def _ajustes_con_prefijo(prefijo):
+    with _CANDADO_AJUSTES:
+        return {k[len(prefijo):]: v for k, v in _ajustes_todos().items() if k.startswith(prefijo) and isinstance(v, dict)}
+
+
+def _llave_voto(artista, titulo):
+    return normalizar_texto(artista) + "|" + normalizar_texto(titulo)
+
+
+def _votos_recomendaciones():
+    """{llave artista|título: {"v": 1 o -1, "artista":..., "titulo":...}}"""
+    return _ajustes_con_prefijo("voto:")
 
 
 # Memoria de los rankings de Cantantes: evita preguntar a Deezer/iTunes/Last.fm cada vez.
@@ -2265,6 +2392,33 @@ def _orden_ponderado(elementos, pesos, semilla):
     return [elementos[i] for i in indices]
 
 
+@app.get("/api/recomendaciones/votos")
+def api_votos_recomendaciones():
+    votos = _votos_recomendaciones()
+    return jsonify({"votos": [
+        {"artista": v.get("artista"), "titulo": v.get("titulo"), "voto": v.get("v")} for v in votos.values()
+    ]})
+
+
+@app.post("/api/recomendaciones/votos")
+def api_votar_recomendacion():
+    cuerpo = request.get_json(silent=True) or {}
+    titulo = str(cuerpo.get("titulo") or "").strip()[:200]
+    artista = str(cuerpo.get("artista") or "").strip()[:200]
+    voto = cuerpo.get("voto")
+    if not titulo or not artista or voto not in (1, -1, 0):
+        return jsonify({"error": "Datos no válidos."}), 400
+    clave_voto = "voto:" + _llave_voto(artista, titulo)
+    try:
+        if voto == 0:
+            _ajuste_escribir(clave_voto, None)
+        else:
+            _ajuste_escribir(clave_voto, {"v": voto, "artista": artista, "titulo": titulo})
+    except Exception:
+        return jsonify({"error": "No se ha podido guardar tu voto."}), 500
+    return jsonify({"ok": True})
+
+
 @app.get("/api/recomendaciones")
 def api_recomendaciones():
     """Recomienda temas ajenos a la biblioteca usando una muestra aleatoria de toda la colección."""
@@ -2467,6 +2621,15 @@ def api_recomendaciones():
         # Más probabilidad para los artistas de los que tienes más canciones (sin dejar fuera al resto).
         pesos_semilla = [max(1, artistas.get(clave(s["nombre"]), {}).get("total", 1)) ** 0.5 for s in semillas_pistas]
         semillas_pistas = _orden_ponderado(semillas_pistas, pesos_semilla, semilla_azar)
+    votos_usuario = _votos_recomendaciones()
+    if not decada_solicitada and not genero_solicitado:
+        # Las canciones que has marcado con «me gusta» pasan a ser puntos de partida (máx. 2).
+        gustadas = [
+            {"nombre": v.get("artista") or "", "titulo": v.get("titulo") or "", "genero": "", "anio": ""}
+            for v in votos_usuario.values() if v.get("v") == 1 and v.get("artista") and v.get("titulo")
+        ]
+        if gustadas:
+            semillas_pistas = _orden_ponderado(gustadas, [1] * len(gustadas), semilla_azar)[:2] + semillas_pistas
     semillas_lastfm = []
     artistas_semilla = set()
     # Ampliar las referencias por década para que la personalización no dependa
@@ -2773,6 +2936,19 @@ def api_recomendaciones():
         semilla_azar = int(request.args.get("azar") or "0")
     except (TypeError, ValueError):
         semilla_azar = 0
+    me_gusta_artista, no_gusta_artista = {}, {}
+    for voto_guardado in votos_usuario.values():
+        clave_artista_voto = normalizar_texto(voto_guardado.get("artista"))
+        destino_voto = me_gusta_artista if voto_guardado.get("v") == 1 else no_gusta_artista
+        destino_voto[clave_artista_voto] = destino_voto.get(clave_artista_voto, 0) + 1
+
+    def _descartada_por_voto(pista):
+        artista_pista = normalizar_texto(pista.get("artista"))
+        if _llave_voto(pista.get("artista"), pista.get("titulo")) in votos_usuario:
+            return True  # ya la has valorado (gustada o descartada): no se repite
+        return no_gusta_artista.get(artista_pista, 0) >= 2 and me_gusta_artista.get(artista_pista, 0) == 0
+
+    ordenadas = [p for p in ordenadas if not _descartada_por_voto(p)]
     if decada_solicitada:
         # Deduplicar por pareja artista+título, nunca por artista solamente:
         # se permiten varios temas del mismo artista si son canciones distintas.
@@ -2798,7 +2974,8 @@ def api_recomendaciones():
             bonus_artista = 25 * min(1.0, math.log1p(canciones_del_artista) / math.log1p(30)) if canciones_del_artista else 0
             afinidad = conteo_generos.get(str(pista.get("genero") or "").casefold(), 0) / total_biblioteca_pistas
             bonus_genero = 30 * min(1.0, afinidad * 4)
-            pesos_finales.append(max(1.0, float(pista.get("puntuacion") or 0) + bonus_artista + bonus_genero))
+            bonus_votos = 20 * min(3, me_gusta_artista.get(normalizar_texto(pista.get("artista")), 0))
+            pesos_finales.append(max(1.0, float(pista.get("puntuacion") or 0) + bonus_artista + bonus_genero + bonus_votos))
         ordenadas = _orden_ponderado(ordenadas, pesos_finales, semilla_azar)
     return jsonify({"canciones": ordenadas[inicio:inicio + 10], "generos": generos,
                     "total_candidatas": len(ordenadas), "total_biblioteca": len(biblioteca),
