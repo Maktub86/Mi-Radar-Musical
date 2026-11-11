@@ -224,6 +224,14 @@
     "tipo": "Single"
   },
   {
+    "id": "9a424ac4-10d1-4c8a-9184-423ee28d0809",
+    "imagen": "https://coverartarchive.org/release-group/9a424ac4-10d1-4c8a-9184-423ee28d0809/front-250",
+    "titulo": "Apambichao, Vol. 2",
+    "fecha": "2026-11-06",
+    "artista": "Manuel Turizo",
+    "tipo": "Album"
+  },
+  {
     "id": "apple-6820958887",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ed/27/ce/ed27ce18-e4be-df63-e535-3a3755cefb4d/1200220283279.jpg/100x100bb.jpg",
     "titulo": "MI UNIVERSO - Single",
@@ -328,14 +336,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6820603530",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/15/48/eb/1548eb40-689d-e8b9-c15f-07e96286ccfc/196874823736.jpg/100x100bb.jpg",
-    "titulo": "Apambichao, Vol. 2",
-    "fecha": "2026-11-05",
-    "artista": "Manuel Turizo",
-    "tipo": "Album"
-  },
-  {
     "id": "3926d117-b9e1-4e49-bbea-ece4f374aded",
     "imagen": "https://coverartarchive.org/release-group/3926d117-b9e1-4e49-bbea-ece4f374aded/front-250",
     "titulo": "What More Can I Give / Todo Para Ti",
@@ -418,26 +418,10 @@
   {
     "id": "apple-6824984388",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/6b/3e/03/6b3e0309-a9b8-b59c-543c-1e3d61e3c74c/196874849941.jpg/100x100bb.jpg",
-    "titulo": "Navidad Melancólica Deluxe",
+    "titulo": "Navidad Melancólica (Deluxe)",
     "fecha": "2026-11-03",
     "artista": "Thalía",
     "tipo": "Album"
-  },
-  {
-    "id": "apple-6829352450",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/2b/85/1d/2b851dae-58f1-0c54-ed7e-50439811ed94/859749999676_cover.jpg/100x100bb.jpg",
-    "titulo": "Peligroso Ando - Single",
-    "fecha": "2026-11-02",
-    "artista": "OnMusic",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6829352107",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/12/fe/54/12fe544c-4844-033f-8e29-f8e8f12b20dc/859749999034_cover.jpg/100x100bb.jpg",
-    "titulo": "Ven Dámelo - Single",
-    "fecha": "2026-11-01",
-    "artista": "OnMusic",
-    "tipo": "Single"
   },
   {
     "id": "79cecb98-510a-4ff7-a066-92d68dacfcfc",
@@ -446,22 +430,6 @@
     "fecha": "2026-11",
     "artista": "Kesha",
     "tipo": "Other"
-  },
-  {
-    "id": "apple-6829535860",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/20/34/c8/2034c84c-8e3c-2963-78b5-8e7732e891d6/artwork.jpg/100x100bb.jpg",
-    "titulo": "Small Worlds - Single",
-    "fecha": "2026-10-31",
-    "artista": "Fergie",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6829366029",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8b/ac/4b/8bac4b7d-789c-7de6-fb68-3404283b8339/859750005755_cover.jpg/100x100bb.jpg",
-    "titulo": "Ahora No - Single",
-    "fecha": "2026-10-31",
-    "artista": "OnMusic",
-    "tipo": "Single"
   },
   {
     "id": "b109222a-f012-426f-8d2e-7b31e2f35ce6",
@@ -776,22 +744,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6828999972",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7a/a4/cf/7aa4cf74-f590-6dcc-eeee-9d9b0dd8eed9/artwork.jpg/100x100bb.jpg",
-    "titulo": "En Tu Corazón - Single",
-    "fecha": "2026-10-28",
-    "artista": "Luis Enrique",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6825689288",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ee/01/2b/ee012b91-2ee8-ff2f-9f85-5644d4af00ca/7909977013798.png/100x100bb.jpg",
-    "titulo": "MOVE LIKE THAT - Single",
-    "fecha": "2026-10-27",
-    "artista": "Jason Derulo",
-    "tipo": "Single"
-  },
-  {
     "id": "apple-6826391577",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ec/94/38/ec943829-59b3-be83-d47a-f5be39d2dd42/196874876022.jpg/100x100bb.jpg",
     "titulo": "Confieso - EP",
@@ -837,14 +789,6 @@
     "titulo": "Camilo: El setlist 2026",
     "fecha": "2026-10-23",
     "artista": "Camilo",
-    "tipo": "Album"
-  },
-  {
-    "id": "apple-6818676636",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/43/97/14/4397140d-db1b-301b-361a-6d7ea448d127/0.jpg/100x100bb.jpg",
-    "titulo": "Baila Baila Minha Júlia",
-    "fecha": "2026-10-23",
-    "artista": "Carlos Rivera",
     "tipo": "Album"
   },
   {
@@ -1040,6 +984,22 @@
     "tipo": "Album"
   },
   {
+    "id": "28f80f63-4347-49e8-85ca-d1e185b04032",
+    "imagen": "https://coverartarchive.org/release-group/28f80f63-4347-49e8-85ca-d1e185b04032/front-250",
+    "titulo": "EL HURACÁN",
+    "fecha": "2026-10-22",
+    "artista": "Melody",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6822672729",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/47/03/cf/4703cf83-e53e-1615-2325-5439f3eda43b/26UM1IM31808.rgb.jpg/100x100bb.jpg",
+    "titulo": "EL HURACÁN - Single",
+    "fecha": "2026-10-22",
+    "artista": "Melody",
+    "tipo": "Single"
+  },
+  {
     "id": "51943e51-b738-463f-8222-57b9eff3a231",
     "imagen": "https://coverartarchive.org/release-group/51943e51-b738-463f-8222-57b9eff3a231/front-250",
     "titulo": "Vulnerable",
@@ -1061,22 +1021,6 @@
     "titulo": "Who You Callin' Crazy",
     "fecha": "2026-10-20",
     "artista": "The Rolling Stones",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6821675311",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6d/f7/14/6df714b2-3066-eb59-d253-ebb0cb14fe5d/artwork.jpg/100x100bb.jpg",
-    "titulo": "Where we begin - Single",
-    "fecha": "2026-10-17",
-    "artista": "Oceana",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6819838383",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/52/c7/97/52c79749-bb01-c71b-847f-cd3acd1883e3/7900279976705.jpg/100x100bb.jpg",
-    "titulo": "The House Still Knows - Single",
-    "fecha": "2026-10-16",
-    "artista": "Alex Warren",
     "tipo": "Single"
   },
   {
@@ -1149,14 +1093,6 @@
     "titulo": "Vuelvo Para Decirte Adiós - Single",
     "fecha": "2026-10-16",
     "artista": "Los Rebujitos",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6827323149",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/7d/07/70/7d077092-1191-9931-cd91-f67f4df1fd5a/artwork.jpg/100x100bb.jpg",
-    "titulo": "QUE NO PARE LA FIESTA - Single",
-    "fecha": "2026-10-16",
-    "artista": "Luis Enrique",
     "tipo": "Single"
   },
   {
@@ -1317,14 +1253,6 @@
     "titulo": "The Greatest Show on Earth",
     "fecha": "2026-10-15",
     "artista": "U2",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6822439666",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ee/39/29/ee392925-28a9-330f-6166-e14b45530536/991061545343.png/100x100bb.jpg",
-    "titulo": "Still Holding Me - Single",
-    "fecha": "2026-10-13",
-    "artista": "Griff",
     "tipo": "Single"
   },
   {
@@ -1496,14 +1424,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6821118705",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/bb/a8/35/bba83528-96ba-c3b6-8562-482a6b610af7/991061503671.png/100x100bb.jpg",
-    "titulo": "Green Light - Single",
-    "fecha": "2026-10-09",
-    "artista": "Griff",
-    "tipo": "Single"
-  },
-  {
     "id": "caf06a22-bcb9-476b-b024-3cc61a850f3d",
     "imagen": "https://coverartarchive.org/release-group/caf06a22-bcb9-476b-b024-3cc61a850f3d/front-250",
     "titulo": "April’s Gone (with Chris Stapleton)",
@@ -1672,6 +1592,14 @@
     "tipo": "Album"
   },
   {
+    "id": "apple-6821148622",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/38/c2/fb/38c2fb5b-4af8-344a-af97-8f8e05567030/885288824254.jpg/100x100bb.jpg",
+    "titulo": "PITCOIN",
+    "fecha": "2026-10-08",
+    "artista": "Pitbull",
+    "tipo": "Album"
+  },
+  {
     "id": "apple-6819372877",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3f/bb/84/3fbb847d-34e3-fa3b-5a42-e1ff5a7b1075/26UM1IM21402.rgb.jpg/100x100bb.jpg",
     "titulo": "Oh My My (Deluxe Edition)",
@@ -1685,22 +1613,6 @@
     "titulo": "Torre De Voltios - Single",
     "fecha": "2026-10-05",
     "artista": "Diego Torres",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6819076377",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ca/fe/99/cafe99fc-c464-1f50-f0d0-e7d9cbee4fd5/991061432940.png/100x100bb.jpg",
-    "titulo": "Ridin High - Single",
-    "fecha": "2026-10-04",
-    "artista": "Griff",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6819076403",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fb/19/83/fb198329-5c34-adeb-bb00-1bf42c6dbafa/991061432865.png/100x100bb.jpg",
-    "titulo": "Donk - A - Billy - Single",
-    "fecha": "2026-10-04",
-    "artista": "Griff",
     "tipo": "Single"
   },
   {
@@ -1912,6 +1824,14 @@
     "tipo": "Single"
   },
   {
+    "id": "apple-6809552789",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/df/44/65/df446558-b5e4-bb47-6124-5003698cd0c7/26UM1IM15188.rgb.jpg/100x100bb.jpg",
+    "titulo": "Mr Charm - Single",
+    "fecha": "2026-10-01",
+    "artista": "The Rolling Stones",
+    "tipo": "Single"
+  },
+  {
     "id": "c92aa59b-dbd4-4b2c-93e6-e382a286c50c",
     "imagen": "https://coverartarchive.org/release-group/c92aa59b-dbd4-4b2c-93e6-e382a286c50c/front-250",
     "titulo": "Mientes",
@@ -2069,14 +1989,6 @@
     "titulo": "Come This Madness",
     "fecha": "2026-09-25",
     "artista": "Europe",
-    "tipo": "Album"
-  },
-  {
-    "id": "apple-6817080905",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/14/e9/24/14e9249b-925e-c47b-034a-2df5caac4586/885000538124.png/100x100bb.jpg",
-    "titulo": "Dark Romance",
-    "fecha": "2026-09-25",
-    "artista": "Griff",
     "tipo": "Album"
   },
   {
@@ -2312,14 +2224,6 @@
     "tipo": "Album"
   },
   {
-    "id": "apple-6804960358",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/18/c7/23/18c7234e-154d-f5db-8994-144cb275f3fa/4065328945767.png/100x100bb.jpg",
-    "titulo": "Desert Forest - Single",
-    "fecha": "2026-09-18",
-    "artista": "Danny Ocean",
-    "tipo": "Single"
-  },
-  {
     "id": "fe2dec3a-97fa-477c-902f-191ecb0a8a19",
     "imagen": "https://coverartarchive.org/release-group/fe2dec3a-97fa-477c-902f-191ecb0a8a19/front-250",
     "titulo": "RoTATe wiTh aMeRiCa FOsTeR, sKiLLiBeNg aNd bEAM (David Guetta Remix)",
@@ -2437,14 +2341,6 @@
     "titulo": "Mercy - Single",
     "fecha": "2026-09-18",
     "artista": "Tones and I",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6810998407",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ee/7f/4c/ee7f4c1f-4fba-18d2-a961-086191ac0ddb/8800366473829.jpg/100x100bb.jpg",
-    "titulo": "Natural High - Single",
-    "fecha": "2026-09-18",
-    "artista": "Yera",
     "tipo": "Single"
   },
   {
@@ -2624,14 +2520,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6811620233",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ce/dc/6e/cedc6e59-e418-d996-d64c-da91d5617ba1/artwork.jpg/100x100bb.jpg",
-    "titulo": "CRUCIFIX. - Single",
-    "fecha": "2026-09-13",
-    "artista": "Griff",
-    "tipo": "Single"
-  },
-  {
     "id": "apple-6803865942",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/43/bc/b4/43bcb447-959c-a0b2-71be-ea285e47b392/885288384116.jpg/100x100bb.jpg",
     "titulo": "Si Tú Quisieras - Single",
@@ -2733,6 +2621,14 @@
     "titulo": "Bonita - Single",
     "fecha": "2026-09-11",
     "artista": "Nyno Vargas",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6805605272",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ef/43/2d/ef432dc3-ac31-5042-66bc-6824b77b91ad/823375404385_Cover.jpg/100x100bb.jpg",
+    "titulo": "Si Tú Te Vas - Single",
+    "fecha": "2026-09-11",
+    "artista": "Luis Cortés",
     "tipo": "Single"
   },
   {
@@ -2968,14 +2864,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6812948309",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ee/cc/8b/eecc8b61-b079-bac1-fa64-85492f2c33cf/0.jpg/100x100bb.jpg",
-    "titulo": "Así Suena Con Acordeon",
-    "fecha": "2026-09-04",
-    "artista": "Juan Gabriel",
-    "tipo": "Album"
-  },
-  {
     "id": "11a8b27b-ed5f-40a7-a8a3-49fb029f7e89",
     "imagen": "https://coverartarchive.org/release-group/11a8b27b-ed5f-40a7-a8a3-49fb029f7e89/front-250",
     "titulo": "Take Me Back (Robin Schulz remix)",
@@ -3021,14 +2909,6 @@
     "titulo": "Amb qui estaràs?",
     "fecha": "2026-09-04",
     "artista": "Nil Moliner",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6808405081",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/e5/51/bbe551a4-ae35-b234-a473-9a06fd693417/artwork.jpg/100x100bb.jpg",
-    "titulo": "Sunshine (Remixes) - Single",
-    "fecha": "2026-09-04",
-    "artista": "Oceana",
     "tipo": "Single"
   },
   {
@@ -3392,14 +3272,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6805353794",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cf/9e/d2/cf9ed289-17ae-4291-593b-cec54ad0d219/7333595272693.jpg/100x100bb.jpg",
-    "titulo": "Keepers of the Gate - Single",
-    "fecha": "2026-08-26",
-    "artista": "Natalie Cole",
-    "tipo": "Single"
-  },
-  {
     "id": "347b622e-176b-4d6b-971a-bc45d4f8fc75",
     "imagen": "https://coverartarchive.org/release-group/347b622e-176b-4d6b-971a-bc45d4f8fc75/front-250",
     "titulo": "Day Tripper (Songwriting Work Tape)",
@@ -3536,14 +3408,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6807578531",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4c/1e/5d/4c1e5ddb-c74e-cbc4-e6ab-36daeeb8fc25/885000352768.png/100x100bb.jpg",
-    "titulo": "He Made a Way",
-    "fecha": "2026-08-21",
-    "artista": "The Foundations",
-    "tipo": "Album"
-  },
-  {
     "id": "apple-6798612614",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a0/7d/a4/a07da4b0-e0fd-5afc-a118-41be15230984/26UM1IM02085.rgb.jpg/100x100bb.jpg",
     "titulo": "No quedan ni palabras - Single",
@@ -3597,14 +3461,6 @@
     "titulo": "CHE MI AMOR",
     "fecha": "2026-08-20",
     "artista": "Yami Safdie",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6803019838",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d8/bb/e7/d8bbe72d-65ef-5baf-e4ae-18f5387f47aa/artwork.jpg/100x100bb.jpg",
-    "titulo": "LO VOY A INTENTAR - Single",
-    "fecha": "2026-08-18",
-    "artista": "Luis Enrique",
     "tipo": "Single"
   },
   {
@@ -3664,14 +3520,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6802119263",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/15/7b/37/157b3747-8b24-8219-7f9a-af8a61c5348d/artwork.jpg/100x100bb.jpg",
-    "titulo": "Nur ein Hund - Single",
-    "fecha": "2026-08-15",
-    "artista": "Loreen",
-    "tipo": "Single"
-  },
-  {
     "id": "ab94e263-43fe-4a1e-8325-03fcc07f1b6f",
     "imagen": "https://coverartarchive.org/release-group/ab94e263-43fe-4a1e-8325-03fcc07f1b6f/front-250",
     "titulo": "BARAJA BENDITA",
@@ -3685,14 +3533,6 @@
     "titulo": "Ain't no Sunshine (gk's remix)",
     "fecha": "2026-08-14",
     "artista": "Bill Withers",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6793075382",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/cf/01/56/cf015649-d914-3e73-16a2-5150e6ae1420/4065328928319.png/100x100bb.jpg",
-    "titulo": "Acrilium - Single",
-    "fecha": "2026-08-14",
-    "artista": "Danny Ocean",
     "tipo": "Single"
   },
   {
@@ -3832,6 +3672,14 @@
     "tipo": "Album"
   },
   {
+    "id": "d21e4c23-92a0-4341-8fa9-09e682f9baec",
+    "imagen": "https://coverartarchive.org/release-group/d21e4c23-92a0-4341-8fa9-09e682f9baec/front-250",
+    "titulo": "Miss Universe",
+    "fecha": "2026-08-14",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6795811632",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3b/8e/a2/3b8ea2d6-e00b-319b-7bfe-404dbc468352/885288157857.jpg/100x100bb.jpg",
     "titulo": "PECAS - Single",
@@ -3936,22 +3784,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6799838906",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/79/91/be/7991be24-5f09-e4ce-31d5-59ca5e6014e6/artwork.jpg/100x100bb.jpg",
-    "titulo": "Fellkinder - Single",
-    "fecha": "2026-08-07",
-    "artista": "Loreen",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6783966685",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/be/58/49/be5849fa-207d-b768-c172-02be16238f9c/196874525265.jpg/100x100bb.jpg",
-    "titulo": "Miss Me Much?",
-    "fecha": "2026-08-07",
-    "artista": "María Isabel",
-    "tipo": "Album"
-  },
-  {
     "id": "apple-6793036653",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/9f/9b/52/9f9b523b-04aa-4d51-8e01-da37fdda47fd/885288093988.jpg/100x100bb.jpg",
     "titulo": "LUCHANDO CADA DÍA - Single",
@@ -4045,14 +3877,6 @@
     "titulo": "Still",
     "fecha": "2026-08-04",
     "artista": "KAROL G",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6797766497",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/97/af/37/97af3712-61d8-db71-76d8-9ee07a80adcf/artwork.jpg/100x100bb.jpg",
-    "titulo": "Tu mi arte - Single",
-    "fecha": "2026-08-04",
-    "artista": "Luis Enrique",
     "tipo": "Single"
   },
   {
@@ -4168,14 +3992,6 @@
     "tipo": "Album"
   },
   {
-    "id": "apple-6827066409",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/55/f8/89/55f889dd-8fd9-864b-2c13-3802b4045868/881453347542_cover.jpg/100x100bb.jpg",
-    "titulo": "My True Existence (Live) - EP",
-    "fecha": "2026-07-31",
-    "artista": "Lukas Graham",
-    "tipo": "Single"
-  },
-  {
     "id": "apple-6786764719",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a9/f0/9f/a9f09f34-65a3-9a5a-0c55-701a4af330c6/cover.jpg/100x100bb.jpg",
     "titulo": "Como un Loco por Ti - Single",
@@ -4256,30 +4072,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6796632352",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f1/ab/e1/f1abe1a0-7e84-627b-3b15-9b50d2900274/artwork.jpg/100x100bb.jpg",
-    "titulo": "BOPHELO BO FETOGILE (feat. DE SMALLER PRODUCTION) - Single",
-    "fecha": "2026-07-30",
-    "artista": "FIFTY FIFTY",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6796288630",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6d/d7/3f/6dd73f58-5727-0ef9-3a6e-c90114b58cba/artwork.jpg/100x100bb.jpg",
-    "titulo": "ESTOY MEJOR - Single",
-    "fecha": "2026-07-30",
-    "artista": "Luis Enrique",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6786156635",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/42/3d/ec/423dec1c-d941-5cf2-ce84-41a90e85c39b/820233843690.jpg/100x100bb.jpg",
-    "titulo": "luck (feat. James Reid) - Single",
-    "fecha": "2026-07-30",
-    "artista": "MAKI",
-    "tipo": "Single"
-  },
-  {
     "id": "b01c28a7-2b67-4ccf-a7e4-1140f6df1ca4",
     "imagen": "https://coverartarchive.org/release-group/b01c28a7-2b67-4ccf-a7e4-1140f6df1ca4/front-250",
     "titulo": "Michelle (take 1)",
@@ -4309,14 +4101,6 @@
     "titulo": "Radio Ga Ga (Live in Budapest)",
     "fecha": "2026-07-27",
     "artista": "Queen",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6798354210",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0c/b4/a9/0cb4a955-2e6f-7a20-9ec9-23cd00b15cd8/885000145308.png/100x100bb.jpg",
-    "titulo": "Seasons - Single",
-    "fecha": "2026-07-25",
-    "artista": "Anastacia",
     "tipo": "Single"
   },
   {
@@ -4373,14 +4157,6 @@
     "titulo": "Planeta Azul - Single",
     "fecha": "2026-07-24",
     "artista": "Los Caños",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6794418127",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8b/28/5b/8b285baf-945d-844c-c2a5-775e8c36b2d6/artwork.jpg/100x100bb.jpg",
-    "titulo": "Shiloh's Steps - Single",
-    "fecha": "2026-07-24",
-    "artista": "Moloko",
     "tipo": "Single"
   },
   {
@@ -4728,22 +4504,6 @@
     "tipo": "Album"
   },
   {
-    "id": "apple-6789638211",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/07/c3/44/07c3447d-8a0f-48de-5d34-c71c84644518/artwork.jpg/100x100bb.jpg",
-    "titulo": "CRTL V - Single",
-    "fecha": "2026-07-12",
-    "artista": "Antonio Romero",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6786835196",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ab/c5/5f/abc55f5e-2971-6da3-5452-ef6aa0ce42f2/881453132667_cover.jpg/100x100bb.jpg",
-    "titulo": "Beautiful Disasters",
-    "fecha": "2026-07-11",
-    "artista": "Anastacia",
-    "tipo": "Album"
-  },
-  {
     "id": "apple-6786518969",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c5/9e/f6/c59ef69b-4aec-9f93-4791-e6d2747c7de6/888272184259.jpg/100x100bb.jpg",
     "titulo": "Silk Drop - Single",
@@ -4856,22 +4616,6 @@
     "tipo": "Album"
   },
   {
-    "id": "apple-6789580538",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ec/78/9a/ec789a7f-427f-1830-23a8-2238a5b60144/artwork.jpg/100x100bb.jpg",
-    "titulo": "Sensational - Single",
-    "fecha": "2026-07-10",
-    "artista": "Moloko",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6789784150",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/89/a2/4c/89a24c8a-d39e-6456-cac8-cb9994e6034c/artwork.jpg/100x100bb.jpg",
-    "titulo": "Spain",
-    "fecha": "2026-07-10",
-    "artista": "Moloko",
-    "tipo": "Album"
-  },
-  {
     "id": "apple-6781261282",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/31/00/ab/3100ab4f-e91b-82f4-1a2c-0ee5191c29ca/1200214386559.jpg/100x100bb.jpg",
     "titulo": "Sunshine - Single",
@@ -4976,6 +4720,14 @@
     "tipo": "Single"
   },
   {
+    "id": "apple-6788711232",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/5a/d5/b1/5ad5b194-b6e3-369f-1de6-f2e962582ad4/26UMGIM36901.rgb.jpg/100x100bb.jpg",
+    "titulo": "Foreign Tongues",
+    "fecha": "2026-07-10",
+    "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
     "id": "apple-6786782702",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ac/cc/9f/accc9f04-8350-d742-51b4-3f6873102d9e/196874528136.jpg/100x100bb.jpg",
     "titulo": "BORONDO (En Vivo Desde Bogotá)",
@@ -4992,35 +4744,11 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6784238351",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c0/52/e8/c052e815-df0f-e2a3-fe25-031a1d8f295b/823375262015_Cover.jpg/100x100bb.jpg",
-    "titulo": "THE AWARD GOES TO (Live From O2 Shepherd's Bush Empire) - Single",
-    "fecha": "2026-07-09",
-    "artista": "Jessie J",
-    "tipo": "Single"
-  },
-  {
     "id": "b0f6e2e5-c2e0-4ec6-9a6c-9e596b4d2132",
     "imagen": "https://coverartarchive.org/release-group/b0f6e2e5-c2e0-4ec6-9a6c-9e596b4d2132/front-250",
     "titulo": "Crystal Ball (live from Duisburg, Germany / 2006)",
     "fecha": "2026-07-09",
     "artista": "Keane",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6789508094",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a3/8d/37/a38d37a5-ed06-99fc-5548-48cf13b57746/artwork.jpg/100x100bb.jpg",
-    "titulo": "Spain - Single",
-    "fecha": "2026-07-09",
-    "artista": "Moloko",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6784714298",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/df/19/ed/df19ed01-d539-dbdd-5fb6-fdc8089d4a8f/1200214445522.jpg/100x100bb.jpg",
-    "titulo": "Tiempos bonitos - Single",
-    "fecha": "2026-07-09",
-    "artista": "Pablo Alborán",
     "tipo": "Single"
   },
   {
@@ -5030,14 +4758,6 @@
     "fecha": "2026-07-08",
     "artista": "Shawn Mendes",
     "tipo": "Single"
-  },
-  {
-    "id": "apple-6785683036",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b3/04/bd/b304bd92-7f74-3221-f915-f4c988a7c250/881453090776_cover.jpg/100x100bb.jpg",
-    "titulo": "Don’t Let Go",
-    "fecha": "2026-07-07",
-    "artista": "Anastacia",
-    "tipo": "Album"
   },
   {
     "id": "39550c28-7698-4344-9e94-52795eac638c",
@@ -5053,14 +4773,6 @@
     "titulo": "I'm Never Gonna R.I.P.",
     "fecha": "2026-07-07",
     "artista": "Green Day",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6785730108",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/58/02/6f/58026f7d-a428-54e4-eae6-a85e5ef85807/117180.jpg/100x100bb.jpg",
-    "titulo": "Tus Mentiras - Single",
-    "fecha": "2026-07-07",
-    "artista": "La Guardia",
     "tipo": "Single"
   },
   {
@@ -5216,6 +4928,22 @@
     "tipo": "Single"
   },
   {
+    "id": "06d4ccd1-482a-4f28-9c01-ef7d64dbb785",
+    "imagen": "https://coverartarchive.org/release-group/06d4ccd1-482a-4f28-9c01-ef7d64dbb785/front-250",
+    "titulo": "UNOxUNO",
+    "fecha": "2026-07-03",
+    "artista": "Chanel",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6782907300",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d1/13/36/d11336e9-81a9-f003-8595-9046dd9cfd56/0.jpg/100x100bb.jpg",
+    "titulo": "UNOxUNO - Single",
+    "fecha": "2026-07-03",
+    "artista": "Chanel",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6784288935",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/7d/73/3a7d7326-d969-96be-8162-f1b87c50937d/196874514818.jpg/100x100bb.jpg",
     "titulo": "BORONDO (En Vivo Desde Bogotá - Vol. 3)",
@@ -5246,14 +4974,6 @@
     "fecha": "2026-07-02",
     "artista": "El duende callejero",
     "tipo": "Single"
-  },
-  {
-    "id": "apple-6772179946",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1d/5b/a6/1d5ba6e7-a493-4aef-47a2-13174964db92/447263.jpg/100x100bb.jpg",
-    "titulo": "Cultivate",
-    "fecha": "2026-07-02",
-    "artista": "Naomi Scott",
-    "tipo": "Album"
   },
   {
     "id": "apple-6780570291",
@@ -5485,14 +5205,6 @@
     "titulo": "Deseos de Cosas Imposibles (Remasterizado 2024) - Single",
     "fecha": "2026-06-26",
     "artista": "La Oreja de Van Gogh",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6779681566",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/14/4e/86/144e86d4-5e7d-8ec5-d97c-cb64392cfb00/5064020141469_cover.jpg/100x100bb.jpg",
-    "titulo": "Te Adoraré - Single",
-    "fecha": "2026-06-26",
-    "artista": "Luis Enrique",
     "tipo": "Single"
   },
   {
@@ -5792,14 +5504,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6782575691",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/47/cf/80/47cf8060-6b7f-cfe5-b9c3-4a0c76953980/artwork.jpg/100x100bb.jpg",
-    "titulo": "EP - EP",
-    "fecha": "2026-06-21",
-    "artista": "Antonio Romero",
-    "tipo": "Album"
-  },
-  {
     "id": "03b95305-124e-42a0-8e2f-c111689a7d09",
     "imagen": "https://coverartarchive.org/release-group/03b95305-124e-42a0-8e2f-c111689a7d09/front-250",
     "titulo": "2026-06-17: Santa Barbara Bowl, Santa Barbara, CA, USA",
@@ -5813,14 +5517,6 @@
     "titulo": "Que No Se Acabe la Noche (En Directo - En el Gran Teatro Falla) - Single",
     "fecha": "2026-06-21",
     "artista": "Gonzalo Hermida",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6782912358",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b7/75/be/b775be00-dc31-578b-a8cb-c73acac1db83/artwork.jpg/100x100bb.jpg",
-    "titulo": "Mein Hund hat mich erzogen - Single",
-    "fecha": "2026-06-20",
-    "artista": "Loreen",
     "tipo": "Single"
   },
   {
@@ -5901,14 +5597,6 @@
     "titulo": "Con Todo - Single",
     "fecha": "2026-06-19",
     "artista": "Los Caños",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6827069260",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fd/d1/ce/fdd1ce65-88ea-e154-c740-1f23b71a611d/824296967614_cover.jpg/100x100bb.jpg",
-    "titulo": "TAKING CHARGE - EP",
-    "fecha": "2026-06-19",
-    "artista": "Lukas Graham",
     "tipo": "Single"
   },
   {
@@ -6040,14 +5728,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6776731953",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/23/18/7d/23187d3a-29a2-6498-d331-ac17061efb31/824296840917_cover.jpg/100x100bb.jpg",
-    "titulo": "Diorama - EP",
-    "fecha": "2026-06-15",
-    "artista": "Anastacia",
-    "tipo": "Album"
-  },
-  {
     "id": "7b9c658e-1190-4803-ae1a-a9787b708aa8",
     "imagen": "https://coverartarchive.org/release-group/7b9c658e-1190-4803-ae1a-a9787b708aa8/front-250",
     "titulo": "2026-06-14: Greek Theatre, Berkeley, CA, USA",
@@ -6080,6 +5760,14 @@
     "tipo": "Album"
   },
   {
+    "id": "apple-6779298588",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f4/c8/c3/f4c8c3d5-ebcf-ee58-2ef0-7e003bf246f7/4099964272932.jpg/100x100bb.jpg",
+    "titulo": "50 (10th Anniversary Deluxe Edition)",
+    "fecha": "2026-06-15",
+    "artista": "Rick Astley",
+    "tipo": "Album"
+  },
+  {
     "id": "11307dcf-1b56-45a7-b0e5-6f0e477db724",
     "imagen": "https://coverartarchive.org/release-group/11307dcf-1b56-45a7-b0e5-6f0e477db724/front-250",
     "titulo": "Si tu no vuelves",
@@ -6101,14 +5789,6 @@
     "titulo": "How Do You Sleep?",
     "fecha": "2026-06-14",
     "artista": "Hoobastank",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6781911506",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8a/6f/3e/8a6f3e6d-9b6d-149f-98c3-b643c458a248/artwork.jpg/100x100bb.jpg",
-    "titulo": "Dieses eine Leben - Single",
-    "fecha": "2026-06-14",
-    "artista": "Loreen",
     "tipo": "Single"
   },
   {
@@ -6149,14 +5829,6 @@
     "titulo": "Come Over - Single",
     "fecha": "2026-06-12",
     "artista": "BTS",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6771838670",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a1/b4/1d/a1b41d30-fe18-b994-e485-3ce61686e6cd/4065328896342.png/100x100bb.jpg",
-    "titulo": "Modula - Single",
-    "fecha": "2026-06-12",
-    "artista": "Danny Ocean",
     "tipo": "Single"
   },
   {
@@ -6496,14 +6168,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6772060086",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4c/77/bb/4c77bb43-2ed9-4d1c-ae44-2eeb50535cb0/446641.jpg/100x100bb.jpg",
-    "titulo": "Unchangeable - Single",
-    "fecha": "2026-06-11",
-    "artista": "Naomi Scott",
-    "tipo": "Single"
-  },
-  {
     "id": "b8b78642-b2d2-4191-80df-cb0fceea7989",
     "imagen": "https://coverartarchive.org/release-group/b8b78642-b2d2-4191-80df-cb0fceea7989/front-250",
     "titulo": "Contigo na más (remix)",
@@ -6581,14 +6245,6 @@
     "titulo": "El día que me quieras - Single",
     "fecha": "2026-06-10",
     "artista": "Seguridad Social",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6774249023",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/be/0d/c5/be0dc504-9f9b-2da2-03cf-aacbba7a6da4/cover.jpg/100x100bb.jpg",
-    "titulo": "N-AM RĂSPUNS - Single",
-    "fecha": "2026-06-09",
-    "artista": "Dara",
     "tipo": "Single"
   },
   {
@@ -6984,22 +6640,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6773516683",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/81/d5/c7/81d5c77e-f3af-286c-4bdd-4a5a1c17876f/115026.jpg/100x100bb.jpg",
-    "titulo": "AL MAYOR - Single",
-    "fecha": "2026-06-02",
-    "artista": "La Guardia",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6776414929",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b3/cc/fd/b3ccfd7f-dcb4-19eb-a92b-61da65d5110a/823000729500.png/100x100bb.jpg",
-    "titulo": "Greed - Single",
-    "fecha": "2026-06-02",
-    "artista": "Tom Jones",
-    "tipo": "Single"
-  },
-  {
     "id": "apple-6774398127",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/dc/97/01/dc9701ca-b443-2a84-1966-bccee0adf0e7/26UMGIM66898.rgb.jpg/100x100bb.jpg",
     "titulo": "hate that i made you love me - Single",
@@ -7013,14 +6653,6 @@
     "titulo": "Run Run River (Angels Above Me)",
     "fecha": "2026-06-01",
     "artista": "David Guetta",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1896150479",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/97/cb/39/97cb3929-8b38-b38e-688a-7ddcc11d0090/artwork.jpg/100x100bb.jpg",
-    "titulo": "Sorry for Seeking You Second - Single",
-    "fecha": "2026-06-01",
-    "artista": "Ewan McGregor",
     "tipo": "Single"
   },
   {
@@ -7224,6 +6856,14 @@
     "tipo": "Album"
   },
   {
+    "id": "apple-1895377046",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e7/31/68/e73168a1-e77b-f2b1-72c1-94d1da60ebc4/0.jpg/100x100bb.jpg",
+    "titulo": "Romería Negra - EP",
+    "fecha": "2026-05-29",
+    "artista": "NIA",
+    "tipo": "Album"
+  },
+  {
     "id": "3333f178-2ba4-4519-9306-1a00638dd430",
     "imagen": "https://coverartarchive.org/release-group/3333f178-2ba4-4519-9306-1a00638dd430/front-250",
     "titulo": "Mi Gran Amor",
@@ -7408,14 +7048,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6766532717",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ef/8d/1e/ef8d1e98-448d-4d7e-20a6-b35e496d1c31/820200821881.jpg/100x100bb.jpg",
-    "titulo": "Love Simulation (Bonus) - EP",
-    "fecha": "2026-05-25",
-    "artista": "Danny Ocean",
-    "tipo": "Album"
-  },
-  {
     "id": "e66db3b1-4243-4237-9f22-268028120f56",
     "imagen": "https://coverartarchive.org/release-group/e66db3b1-4243-4237-9f22-268028120f56/front-250",
     "titulo": "El Ritual",
@@ -7440,11 +7072,11 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1896393953",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/34/33/11/34331151-418e-050e-81e5-7c5aef3beeb8/820233334037.jpg/100x100bb.jpg",
-    "titulo": "habangbuhay pansamantala - Single",
+    "id": "apple-6770378736",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/71/70/50/7170508f-f98e-3674-0959-63a596a72f62/0.jpg/100x100bb.jpg",
+    "titulo": "Intenso - Single",
     "fecha": "2026-05-24",
-    "artista": "MAKI",
+    "artista": "Naim",
     "tipo": "Single"
   },
   {
@@ -7656,14 +7288,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6771020212",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/df/4e/62/df4e62d2-8c0d-71ed-052e-4975e37e5596/artwork.jpg/100x100bb.jpg",
-    "titulo": "corbeau - Single",
-    "fecha": "2026-05-22",
-    "artista": "Rosana",
-    "tipo": "Single"
-  },
-  {
     "id": "7ae9bd8c-8081-4b63-beea-880611a1b4e5",
     "imagen": "https://coverartarchive.org/release-group/7ae9bd8c-8081-4b63-beea-880611a1b4e5/front-250",
     "titulo": "La flor de la Vida",
@@ -7736,6 +7360,22 @@
     "tipo": "Single"
   },
   {
+    "id": "2cbbe1bc-4af8-45f4-a7b2-219c94dce240",
+    "imagen": "https://coverartarchive.org/release-group/2cbbe1bc-4af8-45f4-a7b2-219c94dce240/front-250",
+    "titulo": "ILARIE",
+    "fecha": "2026-05-21",
+    "artista": "Melody",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6770557413",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/02/91/160291b4-3215-0c12-a8c2-e4bb5fe5c218/26UMGIM64611.rgb.jpg/100x100bb.jpg",
+    "titulo": "ILARIE - Single",
+    "fecha": "2026-05-21",
+    "artista": "Melody",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6766968145",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c8/d1/6f/c8d16f56-5f9c-d975-0f47-4280a75feec6/196874363386.jpg/100x100bb.jpg",
     "titulo": "No Quiero Más Canciones Tristes - Single",
@@ -7774,14 +7414,6 @@
     "fecha": "2026-05-19",
     "artista": "Bruce Springsteen",
     "tipo": "Album"
-  },
-  {
-    "id": "apple-6773976287",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/14/17/d5/1417d574-e13a-4aaa-f51e-99c35111b4e0/823000589739.png/100x100bb.jpg",
-    "titulo": "Miles Away - Single",
-    "fecha": "2026-05-16",
-    "artista": "Tom Jones",
-    "tipo": "Single"
   },
   {
     "id": "apple-1895892933",
@@ -8136,14 +7768,6 @@
     "tipo": "Album"
   },
   {
-    "id": "apple-1896362040",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8e/d7/65/8ed76545-73ca-97dc-d1bc-e49041b384c6/113917.jpg/100x100bb.jpg",
-    "titulo": "Señora Señora - Single",
-    "fecha": "2026-05-13",
-    "artista": "La Guardia",
-    "tipo": "Single"
-  },
-  {
     "id": "627dfe6a-93af-4685-93e0-b51b37a97780",
     "imagen": "https://coverartarchive.org/release-group/627dfe6a-93af-4685-93e0-b51b37a97780/front-250",
     "titulo": "Dirty Rosie",
@@ -8168,19 +7792,19 @@
     "tipo": "Single"
   },
   {
+    "id": "b3762e66-a499-40b8-b6a7-71a4c38305e9",
+    "imagen": "https://coverartarchive.org/release-group/b3762e66-a499-40b8-b6a7-71a4c38305e9/front-250",
+    "titulo": "Boyband",
+    "fecha": "2026-05-11",
+    "artista": "Tommy Cash",
+    "tipo": "EP"
+  },
+  {
     "id": "apple-1892317526",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/32/8e/52/328e52db-72ff-4fee-e9b5-de857add9936/artwork.jpg/100x100bb.jpg",
     "titulo": "Solita Brillas - Single",
     "fecha": "2026-05-10",
     "artista": "OnMusic",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6773971463",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3f/c9/c3/3fc9c30c-a6bf-ea90-4a51-17682eb10f0c/823000540501.png/100x100bb.jpg",
-    "titulo": "The Struggle - Single",
-    "fecha": "2026-05-10",
-    "artista": "Tom Jones",
     "tipo": "Single"
   },
   {
@@ -8552,6 +8176,14 @@
     "tipo": "Single"
   },
   {
+    "id": "apple-1896059558",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4c/9a/6d/4c9a6d58-01f2-3ead-b5cb-d6a7d42a8a83/196874319468.jpg/100x100bb.jpg",
+    "titulo": "en la mía (bundle) - Single",
+    "fecha": "2026-05-05",
+    "artista": "Beéle",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-1896059534",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d2/78/09/d2780920-c0f9-f609-0ca6-035871ce8fbd/196874318416.jpg/100x100bb.jpg",
     "titulo": "si te pillara (bundle) - Single",
@@ -8563,14 +8195,6 @@
     "id": "apple-1896059556",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/99/da/bf/99dabfa4-9bf9-69c8-16b5-10f8fd8094cb/196874319550.jpg/100x100bb.jpg",
     "titulo": "bye (bundle) - Single",
-    "fecha": "2026-05-05",
-    "artista": "Beéle",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1896059558",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4c/9a/6d/4c9a6d58-01f2-3ead-b5cb-d6a7d42a8a83/196874319468.jpg/100x100bb.jpg",
-    "titulo": "en la mía (bundle) - Single",
     "fecha": "2026-05-05",
     "artista": "Beéle",
     "tipo": "Single"
@@ -8800,6 +8424,14 @@
     "tipo": "Single"
   },
   {
+    "id": "apple-1892987215",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/35/ff/41/35ff4114-2da4-ce86-a521-f45b34daaaca/0.jpg/100x100bb.jpg",
+    "titulo": "Tiene Que Ser Él - Single",
+    "fecha": "2026-05-01",
+    "artista": "NIA",
+    "tipo": "Single"
+  },
+  {
     "id": "9cfdd814-4327-4fc5-92cb-a55970e8f94c",
     "imagen": "https://coverartarchive.org/release-group/9cfdd814-4327-4fc5-92cb-a55970e8f94c/front-250",
     "titulo": "FINE PLACE TO DIE",
@@ -8965,14 +8597,6 @@
     "titulo": "Roofless Records for Drop Tops: Disc 2",
     "fecha": "2026-04-28",
     "artista": "Wiz Khalifa",
-    "tipo": "Album"
-  },
-  {
-    "id": "apple-1887865331",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/5f/28/66/5f2866a8-b2de-fc15-2953-088b5be59fc6/820200823724.jpg/100x100bb.jpg",
-    "titulo": "Love Simulation",
-    "fecha": "2026-04-27",
-    "artista": "Danny Ocean",
     "tipo": "Album"
   },
   {
@@ -9152,14 +8776,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6827072892",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/88/33/8d/88338dd2-db3d-ce8c-5a2e-c46aafc1856f/824296239575_cover.jpg/100x100bb.jpg",
-    "titulo": "Midnight Cry, Vol. 9: Emmanuel!!!",
-    "fecha": "2026-04-24",
-    "artista": "Lukas Graham",
-    "tipo": "Single"
-  },
-  {
     "id": "380ae97c-1f75-46d9-a69a-9bbef4e7e970",
     "imagen": "https://coverartarchive.org/release-group/380ae97c-1f75-46d9-a69a-9bbef4e7e970/front-250",
     "titulo": "Toy With Me",
@@ -9198,14 +8814,6 @@
     "fecha": "2026-04-24",
     "artista": "Quevedo",
     "tipo": "Album"
-  },
-  {
-    "id": "apple-6776888134",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/80/35/23/803523a9-1f6b-37d2-f9b2-8a40c7816d51/5063992874795_cover.jpg/100x100bb.jpg",
-    "titulo": "Mon Kade Nirobota e - Single",
-    "fecha": "2026-04-24",
-    "artista": "Rasel",
-    "tipo": "Single"
   },
   {
     "id": "7788cb12-fd07-4510-a350-2abbd4005c38",
@@ -9528,14 +9136,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1895680678",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b3/1a/ad/b31aad39-f415-a692-99a3-3b9aa513e03e/823000373062.png/100x100bb.jpg",
-    "titulo": "Between Love & Tomorrow - EP",
-    "fecha": "2026-04-20",
-    "artista": "Moloko",
-    "tipo": "Album"
-  },
-  {
     "id": "apple-1894962129",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/12/27/ec/1227ec4d-59ef-1a68-cb99-216fed0fba9c/26UMGIM48234.rgb.jpg/100x100bb.jpg",
     "titulo": "drop dead (the most alive i’ve ever been - sped up) - Single",
@@ -9629,14 +9229,6 @@
     "titulo": "Live at the BBC",
     "fecha": "2026-04-18",
     "artista": "Olivia Dean",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1893917282",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/04/07/a4/0407a435-1358-f9ce-517c-9e102db92e8f/5016123124856.png/100x100bb.jpg",
-    "titulo": "По дороге - Single",
-    "fecha": "2026-04-18",
-    "artista": "Ondina",
     "tipo": "Single"
   },
   {
@@ -9944,6 +9536,22 @@
     "tipo": "Album"
   },
   {
+    "id": "apple-1891123370",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/c4/6f/48c46f2e-d72c-bf0f-4dc2-abfb05e2803b/823375102847_Cover.jpg/100x100bb.jpg",
+    "titulo": "Componente de tus Sueños - Single",
+    "fecha": "2026-04-17",
+    "artista": "Luis Cortés",
+    "tipo": "Single"
+  },
+  {
+    "id": "c21a6314-b9e5-456d-9ad2-ffd4a2d06362",
+    "imagen": "https://coverartarchive.org/release-group/c21a6314-b9e5-456d-9ad2-ffd4a2d06362/front-250",
+    "titulo": "L'Ammor",
+    "fecha": "2026-04-17",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
+  },
+  {
     "id": "c920370d-b77c-461e-968e-c4e641d63444",
     "imagen": "https://coverartarchive.org/release-group/c920370d-b77c-461e-968e-c4e641d63444/front-250",
     "titulo": "2026‐04‐07: Kia Forum, Inglewood, CA, USA",
@@ -10070,14 +9678,6 @@
     "fecha": "2026-04-15",
     "artista": "LiSA",
     "tipo": "Album"
-  },
-  {
-    "id": "apple-1890209744",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/46/24/92/46249253-454d-34b6-177d-49315136fb38/859735355585_cover.jpg/100x100bb.jpg",
-    "titulo": "El Selah - Single",
-    "fecha": "2026-04-11",
-    "artista": "Annalisa",
-    "tipo": "Single"
   },
   {
     "id": "18e1fe65-e8c2-4a4e-9cd9-d39b4cff34fb",
@@ -10320,6 +9920,14 @@
     "tipo": "Single"
   },
   {
+    "id": "apple-1888238243",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/02/e3/92/02e39239-2d69-ae79-cc11-12ba6410df59/4099964253757.jpg/100x100bb.jpg",
+    "titulo": "Raindrops - Single",
+    "fecha": "2026-04-10",
+    "artista": "Rick Astley",
+    "tipo": "Single"
+  },
+  {
     "id": "05bf7fb1-45b4-4266-8ccb-8fc0c1c44741",
     "imagen": "https://coverartarchive.org/release-group/05bf7fb1-45b4-4266-8ccb-8fc0c1c44741/front-250",
     "titulo": "Apambichao",
@@ -10365,14 +9973,6 @@
     "titulo": "Mr. Know It All - Single",
     "fecha": "2026-04-09",
     "artista": "Teddy Swims",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1889063658",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/75/45/08/754508f0-52d7-6f2e-bf32-4b85702738a4/111554.jpg/100x100bb.jpg",
-    "titulo": "Tan Za Fau - Single",
-    "fecha": "2026-04-08",
-    "artista": "La Guardia",
     "tipo": "Single"
   },
   {
@@ -10472,14 +10072,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1891553919",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b6/a1/ba/b6a1ba7d-22c2-5db4-2181-e89abc0e4266/artwork.jpg/100x100bb.jpg",
-    "titulo": "Carry on the sound - Single",
-    "fecha": "2026-04-05",
-    "artista": "Oceana",
-    "tipo": "Single"
-  },
-  {
     "id": "76a537a4-7d00-4060-b0b0-2c52d5adfde0",
     "imagen": "https://coverartarchive.org/release-group/76a537a4-7d00-4060-b0b0-2c52d5adfde0/front-250",
     "titulo": "Quédate conmigo hasta el amanecer",
@@ -10534,14 +10126,6 @@
     "fecha": "2026-04-03",
     "artista": "Michael Jackson",
     "tipo": "Album"
-  },
-  {
-    "id": "apple-1892208378",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ee/d1/60/eed1602d-b6ae-7123-ea39-a5b1b7415679/823000233427.png/100x100bb.jpg",
-    "titulo": "Ngithole Ikhaya Kuwe - Single",
-    "fecha": "2026-04-03",
-    "artista": "Moloko",
-    "tipo": "Single"
   },
   {
     "id": "abe4081b-2b35-460b-a0fb-86781fe12abf",
@@ -10677,14 +10261,6 @@
     "titulo": "Hoy te lo voy a contar - Single",
     "fecha": "2026-03-31",
     "artista": "Gisela",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1885286969",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bd/98/ca/bd98ca7b-21d8-6f3b-02f8-c70b59828dc3/artwork.jpg/100x100bb.jpg",
-    "titulo": "Beauty is a Talent - Single",
-    "fecha": "2026-03-30",
-    "artista": "Naomi Scott",
     "tipo": "Single"
   },
   {
@@ -11000,6 +10576,14 @@
     "tipo": "Single"
   },
   {
+    "id": "apple-1884103188",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1f/41/60/1f4160d6-9d3c-81d5-9809-c04ca8ec4da3/0.jpg/100x100bb.jpg",
+    "titulo": "Que Pena - Single",
+    "fecha": "2026-03-27",
+    "artista": "NIA",
+    "tipo": "Single"
+  },
+  {
     "id": "2b15acb2-e3aa-448f-aad3-7277fe198dc9",
     "imagen": "https://coverartarchive.org/release-group/2b15acb2-e3aa-448f-aad3-7277fe198dc9/front-250",
     "titulo": "Cuéntame",
@@ -11176,14 +10760,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1888431371",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ed/92/13/ed921320-8385-9a63-4524-4a04eab9af79/artwork.jpg/100x100bb.jpg",
-    "titulo": "lovwe in a bad dream",
-    "fecha": "2026-03-22",
-    "artista": "Lewis Capaldi",
-    "tipo": "Album"
-  },
-  {
     "id": "bb4edf09-2372-44e7-8eca-aa6a7446bea3",
     "imagen": "https://coverartarchive.org/release-group/bb4edf09-2372-44e7-8eca-aa6a7446bea3/front-250",
     "titulo": "Only Love",
@@ -11197,14 +10773,6 @@
     "titulo": "Only Love - Single",
     "fecha": "2026-03-21",
     "artista": "Bonnie Tyler",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1883732204",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c8/9f/b1/c89fb10d-8c03-8790-f359-a2e9487fd8e9/0.jpg/100x100bb.jpg",
-    "titulo": "Não Vá - Single",
-    "fecha": "2026-03-21",
-    "artista": "Marta Santos",
     "tipo": "Single"
   },
   {
@@ -11222,14 +10790,6 @@
     "fecha": "2026-03-20",
     "artista": "Abraham Mateo",
     "tipo": "Single"
-  },
-  {
-    "id": "apple-1886801848",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/31/37/20/3137206a-2a6a-88f4-938a-84c0d56c9727/25UM2IM03120.rgb.jpg/100x100bb.jpg",
-    "titulo": "Aerosmith (Legendary Expanded Edition)",
-    "fecha": "2026-03-20",
-    "artista": "Aerosmith",
-    "tipo": "Album"
   },
   {
     "id": "a20ffaf1-796c-4ca0-bece-18b586abb31f",
@@ -11424,6 +10984,22 @@
     "tipo": "Single"
   },
   {
+    "id": "b02f5d8d-1272-4e38-9b67-8caa788d9132",
+    "imagen": "https://coverartarchive.org/release-group/b02f5d8d-1272-4e38-9b67-8caa788d9132/front-250",
+    "titulo": "Figaro",
+    "fecha": "2026-03-20",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-1881671762",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f0/26/ab/f026abb5-1fd4-70bf-2b86-2790e17bddd7/196874137024.jpg/100x100bb.jpg",
+    "titulo": "Figaro - Single",
+    "fecha": "2026-03-20",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-1877884643",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d1/86/7e/d1867eb4-b2f8-75bc-42cd-9e8802044248/25UM1IM84613.rgb.jpg/100x100bb.jpg",
     "titulo": "Baro Drom (Éxodo)",
@@ -11485,14 +11061,6 @@
     "titulo": "Cómo le explico - Single",
     "fecha": "2026-03-19",
     "artista": "María Artés",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1885623078",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/45/f3/19/45f31901-47d1-1842-554f-42c53ec28620/5026854914374.jpg/100x100bb.jpg",
-    "titulo": "SCANDIC - Single",
-    "fecha": "2026-03-19",
-    "artista": "Quevedo",
     "tipo": "Single"
   },
   {
@@ -11614,14 +11182,6 @@
     "fecha": "2026-03-13",
     "artista": "Isabel Aaiún",
     "tipo": "Single"
-  },
-  {
-    "id": "apple-1877022593",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/28/a2/33/28a23320-2e77-08cd-31a7-87e02db0306f/artwork.jpg/100x100bb.jpg",
-    "titulo": "Come Home",
-    "fecha": "2026-03-13",
-    "artista": "Jennifer Lopez",
-    "tipo": "Album"
   },
   {
     "id": "bcf94174-4a87-460f-86b7-8e37c05a1ae0",
@@ -11848,6 +11408,22 @@
     "tipo": "Single"
   },
   {
+    "id": "9da8f072-454a-4c5e-ab6c-30631b808a96",
+    "imagen": "https://coverartarchive.org/release-group/9da8f072-454a-4c5e-ab6c-30631b808a96/front-250",
+    "titulo": "Alarma",
+    "fecha": "2026-03-12",
+    "artista": "Melody",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-1882391614",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d6/64/aa/d664aade-e439-2352-4cf9-9c87c789c5e9/26UMGIM25774.rgb.jpg/100x100bb.jpg",
+    "titulo": "Alarma - Single",
+    "fecha": "2026-03-12",
+    "artista": "Melody",
+    "tipo": "Single"
+  },
+  {
     "id": "6566f68c-645f-4cb9-929e-72b89a258399",
     "imagen": "https://coverartarchive.org/release-group/6566f68c-645f-4cb9-929e-72b89a258399/front-250",
     "titulo": "Harry Potter and the Order of the Phoenix",
@@ -11885,14 +11461,6 @@
     "titulo": "¿PORQUÉ TE VAS? - Single",
     "fecha": "2026-03-09",
     "artista": "Laura Pausini",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1884009229",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/35/37/65/3537657f-db07-8b80-1a41-b840c0d29cb4/artwork.jpg/100x100bb.jpg",
-    "titulo": "A Song I Leave Behind - Single",
-    "fecha": "2026-03-08",
-    "artista": "Rasel",
     "tipo": "Single"
   },
   {
@@ -12072,14 +11640,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1879896530",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/bb/cf/53/bbcf531a-cc77-d834-dcce-49193550bab0/196874139684.jpg/100x100bb.jpg",
-    "titulo": "Suiza - Single",
-    "fecha": "2026-03-06",
-    "artista": "María Isabel",
-    "tipo": "Single"
-  },
-  {
     "id": "apple-1883192809",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/78/37/03/783703c9-a72a-ebc1-a8aa-6a15e7ccbcec/artwork.jpg/100x100bb.jpg",
     "titulo": "Mi Universo - Single",
@@ -12205,14 +11765,6 @@
     "titulo": "Acquiesce (live from Wembley Stadium, 28 September ’25)",
     "fecha": "2026-03-05",
     "artista": "Oasis",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1883241422",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1f/a0/90/1fa09011-7824-51cc-3c4d-8d7f9a9bc32f/artwork.jpg/100x100bb.jpg",
-    "titulo": "Where Are You Now - Single",
-    "fecha": "2026-03-05",
-    "artista": "Rasel",
     "tipo": "Single"
   },
   {
@@ -12349,14 +11901,6 @@
     "titulo": "Eres Mi Necesidad - Single",
     "fecha": "2026-03-02",
     "artista": "OnMusic",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1882036300",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8e/fd/12/8efd12e5-c4aa-0327-f8d0-0ecb71705344/artwork.jpg/100x100bb.jpg",
-    "titulo": "Let’s Just Be Friends - Single",
-    "fecha": "2026-03-02",
-    "artista": "Rasel",
     "tipo": "Single"
   },
   {
@@ -12584,14 +12128,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1881538184",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/63/9e/2a/639e2a50-7752-2f63-b2c6-9892f39e860c/artwork.jpg/100x100bb.jpg",
-    "titulo": "Where You Still Stay - Single",
-    "fecha": "2026-02-27",
-    "artista": "Rasel",
-    "tipo": "Single"
-  },
-  {
     "id": "apple-1876591841",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/93/0b/2b/930b2b8b-ddba-20f6-f745-1ca10482ec25/820200301017.jpg/100x100bb.jpg",
     "titulo": "Guaro - Single",
@@ -12653,6 +12189,14 @@
     "titulo": "Contigo me quedo - Single",
     "fecha": "2026-02-27",
     "artista": "Nyno Vargas",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-1860294678",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/47/b8/12/47b812f2-1658-8147-c7dc-ad729a78924b/0.jpg/100x100bb.jpg",
+    "titulo": "Titi Que Fluya - Single",
+    "fecha": "2026-02-27",
+    "artista": "NIA",
     "tipo": "Single"
   },
   {
@@ -12816,14 +12360,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1880719880",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bc/27/e1/bc27e14b-0697-6dfc-b651-f07518578a2c/artwork.jpg/100x100bb.jpg",
-    "titulo": "The One Who Stayed - Single",
-    "fecha": "2026-02-24",
-    "artista": "Rasel",
-    "tipo": "Single"
-  },
-  {
     "id": "apple-1876385746",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1b/ec/68/1bec688a-0db1-1585-4ecd-aeb87693072a/859731163887_cover.jpg/100x100bb.jpg",
     "titulo": "Great House - Single",
@@ -12853,14 +12389,6 @@
     "titulo": "You Give Love a Bad Name x Section (VRYBAD edit)",
     "fecha": "2026-02-21",
     "artista": "Bon Jovi",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1879955384",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/32/f9/cd/32f9cd84-e0ea-a2a6-e617-72acb2f7ea9f/artwork.jpg/100x100bb.jpg",
-    "titulo": "One Step Too Late - Single",
-    "fecha": "2026-02-21",
-    "artista": "Rasel",
     "tipo": "Single"
   },
   {
@@ -13088,14 +12616,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1879362474",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c6/05/88/c605884c-d229-e77d-7499-e3c63d8427f7/artwork.jpg/100x100bb.jpg",
-    "titulo": "Goodnight, My Past - Single",
-    "fecha": "2026-02-18",
-    "artista": "Rasel",
-    "tipo": "Single"
-  },
-  {
     "id": "18b82e5d-33b0-4baf-bb87-75c82db6d697",
     "imagen": "https://coverartarchive.org/release-group/18b82e5d-33b0-4baf-bb87-75c82db6d697/front-250",
     "titulo": "Days of Ash EP",
@@ -13168,14 +12688,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1879234728",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/18/43/01/1843017d-db0d-bf8a-1e05-a42514bac0c7/artwork.jpg/100x100bb.jpg",
-    "titulo": "I Lost Myself Loving You - Single",
-    "fecha": "2026-02-16",
-    "artista": "Rasel",
-    "tipo": "Single"
-  },
-  {
     "id": "2b2fd76f-02e5-43d6-ad62-d89cf1d269dc",
     "imagen": "https://coverartarchive.org/release-group/2b2fd76f-02e5-43d6-ad62-d89cf1d269dc/front-250",
     "titulo": "Opalite (Life Is a Song acoustic version)",
@@ -13197,14 +12709,6 @@
     "titulo": "Mis ganas de vivir - Single",
     "fecha": "2026-02-15",
     "artista": "Sandra Valero",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1871350712",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/96/26/c1/9626c162-c22d-4372-5538-419a6e611291/199900593313.jpg/100x100bb.jpg",
-    "titulo": "El Amor De Mi Vida - Single",
-    "fecha": "2026-02-14",
-    "artista": "George Michael",
     "tipo": "Single"
   },
   {
@@ -13384,6 +12888,22 @@
     "tipo": "Single"
   },
   {
+    "id": "e48717d1-207b-4620-b1c4-bf075a84cd43",
+    "imagen": "https://coverartarchive.org/release-group/e48717d1-207b-4620-b1c4-bf075a84cd43/front-250",
+    "titulo": "Es tan fácil",
+    "fecha": "2026-02-13",
+    "artista": "Chanel",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-1873067275",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c2/68/08/c2680878-795f-1433-0ed0-54bccd385836/0.jpg/100x100bb.jpg",
+    "titulo": "Es tan fácil - Single",
+    "fecha": "2026-02-13",
+    "artista": "Chanel",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-1876648467",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/04/e9/f7/04e9f71a-ccaa-d098-9e88-e2cce8fd3273/196874105405.jpg/100x100bb.jpg",
     "titulo": "i miss you (5020 RCRDS Sessions) - Single",
@@ -13429,22 +12949,6 @@
     "titulo": "Como Suena Tu Nombre - Single",
     "fecha": "2026-02-12",
     "artista": "OnMusic",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1875358089",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6c/9b/2a/6c9b2ad9-6e39-1c5d-486a-85de0a7f3f19/5026854667492.jpg/100x100bb.jpg",
-    "titulo": "NI BORRACHO - Single",
-    "fecha": "2026-02-12",
-    "artista": "Quevedo",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1878675803",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b0/b7/e6/b0b7e6cd-f3df-d884-b651-16eceb86c5f9/artwork.jpg/100x100bb.jpg",
-    "titulo": "A Name We Never Say - Single",
-    "fecha": "2026-02-12",
-    "artista": "Rasel",
     "tipo": "Single"
   },
   {
@@ -13504,14 +13008,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1876340563",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f6/5d/0e/f65d0e07-3e85-9935-fa9a-ac72e4d1c6af/199900743107.png/100x100bb.jpg",
-    "titulo": "Griff",
-    "fecha": "2026-02-10",
-    "artista": "Griff",
-    "tipo": "Album"
-  },
-  {
     "id": "5b4c4a2e-d00b-4c19-b403-8384d6fb8577",
     "imagen": "https://coverartarchive.org/release-group/5b4c4a2e-d00b-4c19-b403-8384d6fb8577/front-250",
     "titulo": "Sizin' Me Up (Spicy Hot)",
@@ -13525,14 +13021,6 @@
     "titulo": "Quédate Conmigo - Single",
     "fecha": "2026-02-09",
     "artista": "OnMusic",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1877403134",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/17/51/0f/17510fe2-e451-409c-81d8-e205c0ca3db2/artwork.jpg/100x100bb.jpg",
-    "titulo": "When Growing Up Didn’t Save Us - Single",
-    "fecha": "2026-02-09",
-    "artista": "Rasel",
     "tipo": "Single"
   },
   {
@@ -13573,14 +13061,6 @@
     "titulo": "Tus Latidos - Single",
     "fecha": "2026-02-08",
     "artista": "OnMusic",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1876171965",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e9/4e/4c/e94e4c9a-d271-c6fe-e7ba-492b332d1262/artwork.jpg/100x100bb.jpg",
-    "titulo": "The Quiet After the Rain - Single",
-    "fecha": "2026-02-08",
-    "artista": "Rasel",
     "tipo": "Single"
   },
   {
@@ -13760,14 +13240,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1876172217",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/7a/f4/3b/7af43b2b-66aa-d5e0-5b19-ebb88480f52a/artwork.jpg/100x100bb.jpg",
-    "titulo": "Safe From the Rain - Single",
-    "fecha": "2026-02-06",
-    "artista": "Rasel",
-    "tipo": "Single"
-  },
-  {
     "id": "apple-1872708371",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e9/bf/6f/e9bf6fde-4e2a-b01f-186f-0efbb1355819/820200146854.jpg/100x100bb.jpg",
     "titulo": "Pasajero Temporal - Single",
@@ -13838,6 +13310,14 @@
     "fecha": "2026-02-06",
     "artista": "El Kanka",
     "tipo": "Album"
+  },
+  {
+    "id": "apple-1870558641",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ea/26/c4/ea26c41e-d0db-f391-40c5-2796abd43ae8/4099964234817.jpg/100x100bb.jpg",
+    "titulo": "Waiting On You - Single",
+    "fecha": "2026-02-06",
+    "artista": "Rick Astley",
+    "tipo": "Single"
   },
   {
     "id": "3a9f11b0-1dfb-4640-8ee4-8a8996bb154b",
@@ -13912,14 +13392,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1876171606",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/2f/e3/ed/2fe3ed35-c9bd-707b-1e3f-c1ab8f9bc9b0/artwork.jpg/100x100bb.jpg",
-    "titulo": "After the Storm Leaves - Single",
-    "fecha": "2026-02-05",
-    "artista": "Rasel",
-    "tipo": "Single"
-  },
-  {
     "id": "464e9223-4cb4-4667-86fc-6f8e483ce59a",
     "imagen": "https://coverartarchive.org/release-group/464e9223-4cb4-4667-86fc-6f8e483ce59a/front-250",
     "titulo": "ESCENAS",
@@ -13984,27 +13456,11 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1876269018",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/47/40/d4/4740d4a4-5c51-1b47-c668-9d98e63b4e30/artwork.jpg/100x100bb.jpg",
-    "titulo": "Hopeless Romantic (Single) - Single",
-    "fecha": "2026-02-02",
-    "artista": "The Foundations",
-    "tipo": "Single"
-  },
-  {
     "id": "apple-1873853376",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f2/c2/2b/f2c22bc2-755c-7c53-5b05-5aa9ecfeee12/artwork.jpg/100x100bb.jpg",
     "titulo": "Se Cansó El Amor - Single",
     "fecha": "2026-02-01",
     "artista": "OnMusic",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1874937999",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/82/b8/99/82b8992d-04cd-bd47-12c8-127b711a5835/artwork.jpg/100x100bb.jpg",
-    "titulo": "I Was the Season Before - Single",
-    "fecha": "2026-02-01",
-    "artista": "Rasel",
     "tipo": "Single"
   },
   {
@@ -14136,14 +13592,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1873991480",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f0/a3/96/f0a3969d-8802-0f16-0569-6fb015cbf51d/artwork.jpg/100x100bb.jpg",
-    "titulo": "Loved to Death Yesterday - Single",
-    "fecha": "2026-01-30",
-    "artista": "Rasel",
-    "tipo": "Single"
-  },
-  {
     "id": "aa471141-0467-4bd9-8219-aef3f63bdaf6",
     "imagen": "https://coverartarchive.org/release-group/aa471141-0467-4bd9-8219-aef3f63bdaf6/front-250",
     "titulo": "Кто я для тебя",
@@ -14157,14 +13605,6 @@
     "titulo": "Кто я для тебя - Single",
     "fecha": "2026-01-30",
     "artista": "SEREBRO",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1872788539",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4f/f4/9d/4ff49d4a-5739-2343-6200-741aeedc343b/199891349951_cover.jpg/100x100bb.jpg",
-    "titulo": "Sorry Mama - Single",
-    "fecha": "2026-01-30",
-    "artista": "Survivor",
     "tipo": "Single"
   },
   {
@@ -14264,14 +13704,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1873790129",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/ce/93/41ce93f1-6fbb-ccee-b2c3-f9d3851fbe84/artwork.jpg/100x100bb.jpg",
-    "titulo": "So Close, So Far - Single",
-    "fecha": "2026-01-29",
-    "artista": "Rasel",
-    "tipo": "Single"
-  },
-  {
     "id": "c8e768c9-448b-4ebd-8e5e-4ae95609dd0b",
     "imagen": "https://coverartarchive.org/release-group/c8e768c9-448b-4ebd-8e5e-4ae95609dd0b/front-250",
     "titulo": "Streets of Minneapolis",
@@ -14336,14 +13768,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1873175475",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d8/58/50/d8585061-d536-c42b-d553-d01f25e7b459/artwork.jpg/100x100bb.jpg",
-    "titulo": "I Let the Picture Pass - Single",
-    "fecha": "2026-01-27",
-    "artista": "Rasel",
-    "tipo": "Single"
-  },
-  {
     "id": "apple-1872384652",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8a/42/e3/8a42e3c9-5412-90c7-2868-e2127ee27ea8/artwork.jpg/100x100bb.jpg",
     "titulo": "Dime Que Si - Single",
@@ -14357,14 +13781,6 @@
     "titulo": "Me Ganas - Single",
     "fecha": "2026-01-25",
     "artista": "OnMusic",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1872619944",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/80/2c/ab/802cab91-be82-72dc-869f-9421477679bb/artwork.jpg/100x100bb.jpg",
-    "titulo": "Letting Go Is Mercy - Single",
-    "fecha": "2026-01-25",
-    "artista": "Rasel",
     "tipo": "Single"
   },
   {
@@ -14480,14 +13896,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1856566680",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ac/f4/3a/acf43aaf-5e4c-88c5-adba-1f33488483b0/8721416924156.png/100x100bb.jpg",
-    "titulo": "Losing You - Single",
-    "fecha": "2026-01-23",
-    "artista": "Naomi Scott",
-    "tipo": "Single"
-  },
-  {
     "id": "a51c23a7-0a64-49f1-ac4d-a3360e02a14b",
     "imagen": "https://coverartarchive.org/release-group/a51c23a7-0a64-49f1-ac4d-a3360e02a14b/front-250",
     "titulo": "Only Human (MPH remix)",
@@ -14526,14 +13934,6 @@
     "fecha": "2026-01-23",
     "artista": "Rvssian",
     "tipo": "Single"
-  },
-  {
-    "id": "apple-1895089321",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/94/af/35/94af358c-6467-cfc7-ec79-c984cbd074e6/820200025777_cover.jpg/100x100bb.jpg",
-    "titulo": "Mi NuEvA ErA - EP",
-    "fecha": "2026-01-22",
-    "artista": "Aitana",
-    "tipo": "Album"
   },
   {
     "id": "apple-1863691808",
@@ -14576,27 +13976,11 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1871907717",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/97/2f/a0/972fa09d-d7c0-93a4-3116-dd008b3368eb/artwork.jpg/100x100bb.jpg",
-    "titulo": "Different Ways to Breathe - Single",
-    "fecha": "2026-01-22",
-    "artista": "Rasel",
-    "tipo": "Single"
-  },
-  {
     "id": "apple-1862505836",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e0/6f/f7/e06ff7f7-f007-b560-aea6-bba0fa14e807/199806699874.jpg/100x100bb.jpg",
     "titulo": "Pensando en ti - Single",
     "fecha": "2026-01-22",
     "artista": "El Kanka",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1872883333",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/75/60/90/7560904e-9501-63a4-f49d-0db2a88d5e30/artwork.jpg/100x100bb.jpg",
-    "titulo": "Kids Wait Till You Hear This - Single",
-    "fecha": "2026-01-21",
-    "artista": "Liza Minnelli",
     "tipo": "Single"
   },
   {
@@ -14624,27 +14008,11 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1877738935",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e1/85/ae/e185aed9-56d0-c357-5596-ac10157a6c7b/5063906444755_cover.jpg/100x100bb.jpg",
-    "titulo": "Ami Jajabor - Single",
-    "fecha": "2026-01-20",
-    "artista": "Rasel",
-    "tipo": "Single"
-  },
-  {
     "id": "apple-1870848485",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f2/ab/5d/f2ab5daa-ed02-89f4-3b13-a028d6a5125c/artwork.jpg/100x100bb.jpg",
     "titulo": "Tan Intocable - Single",
     "fecha": "2026-01-19",
     "artista": "OnMusic",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1870843108",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f3/04/57/f30457e3-86a9-07cf-0e59-e84cd680f97f/artwork.jpg/100x100bb.jpg",
-    "titulo": "Like Breathing - Single",
-    "fecha": "2026-01-19",
-    "artista": "Rasel",
     "tipo": "Single"
   },
   {
@@ -14800,14 +14168,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1876955172",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/25/68/bb/2568bb2a-efd4-ad6c-8d8d-bb54bfcdcd5c/5063907249007_cover.jpg/100x100bb.jpg",
-    "titulo": "Jibon Khatae Tomar Nam - Single",
-    "fecha": "2026-01-16",
-    "artista": "Rasel",
-    "tipo": "Single"
-  },
-  {
     "id": "83ba5823-4963-43ea-98cd-55d5cc0ab564",
     "imagen": "https://coverartarchive.org/release-group/83ba5823-4963-43ea-98cd-55d5cc0ab564/front-250",
     "titulo": "After Hours",
@@ -14845,6 +14205,14 @@
     "titulo": "Most Wanted",
     "fecha": "2026-01-16",
     "artista": "Rvssian",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-1863399742",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0f/9d/ef/0f9def72-dea6-ae4d-2343-972a7eb3a8ee/0.jpg/100x100bb.jpg",
+    "titulo": "Te Aconsejo Que Me Olvides - Single",
+    "fecha": "2026-01-16",
+    "artista": "NIA",
     "tipo": "Single"
   },
   {
@@ -14896,17 +14264,17 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1869157390",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/52/4f/57/524f5727-564d-1a73-05a5-e21ac405ee22/075679591319.jpg/100x100bb.jpg",
-    "titulo": "I Just Might (Instrumental) - Single",
+    "id": "apple-1869157136",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1c/14/0e/1c140ef6-b94a-1207-77d8-f0c94075bd8e/075679591296.jpg/100x100bb.jpg",
+    "titulo": "I Just Might - Single",
     "fecha": "2026-01-14",
     "artista": "Bruno Mars",
     "tipo": "Single"
   },
   {
-    "id": "apple-1869157136",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1c/14/0e/1c140ef6-b94a-1207-77d8-f0c94075bd8e/075679591296.jpg/100x100bb.jpg",
-    "titulo": "I Just Might - Single",
+    "id": "apple-1869157390",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/52/4f/57/524f5727-564d-1a73-05a5-e21ac405ee22/075679591319.jpg/100x100bb.jpg",
+    "titulo": "I Just Might (Instrumental) - Single",
     "fecha": "2026-01-14",
     "artista": "Bruno Mars",
     "tipo": "Single"
@@ -18512,6 +17880,14 @@
     "tipo": "Single"
   },
   {
+    "id": "710958c0-04e7-46aa-a774-b1058b884941",
+    "imagen": "https://coverartarchive.org/release-group/710958c0-04e7-46aa-a774-b1058b884941/front-250",
+    "titulo": "Matahari",
+    "fecha": "2025-09-26",
+    "artista": "Chanel",
+    "tipo": "Single"
+  },
+  {
     "id": "f625dc8e-7c3d-42ef-aaec-19a3e15eb709",
     "imagen": "https://coverartarchive.org/release-group/f625dc8e-7c3d-42ef-aaec-19a3e15eb709/front-250",
     "titulo": "Open All Night (Live at Count Basie Theatre, Red Bank, NJ)",
@@ -19872,6 +19248,14 @@
     "tipo": "Single"
   },
   {
+    "id": "9c729564-2f52-424f-8f5f-7b8869ddabc0",
+    "imagen": "https://coverartarchive.org/release-group/9c729564-2f52-424f-8f5f-7b8869ddabc0/front-250",
+    "titulo": "Ok",
+    "fecha": "2025-08-22",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
+  },
+  {
     "id": "b4380a28-f628-4418-81e4-1a15744f05c1",
     "imagen": "https://coverartarchive.org/release-group/b4380a28-f628-4418-81e4-1a15744f05c1/front-250",
     "titulo": "2025-06-29: BBC In Concert, Glastonbury Festival, Worthy Farm, Pilton, Britain",
@@ -20474,7 +19858,7 @@
   {
     "id": "670d1f76-aa84-4806-9aea-ad1e73d83d03",
     "imagen": "https://coverartarchive.org/release-group/670d1f76-aa84-4806-9aea-ad1e73d83d03/front-250",
-    "titulo": "Live in Europe 1992 Volumes 1-13",
+    "titulo": "Live in Europe 1992",
     "fecha": "2025-08",
     "artista": "The Smashing Pumpkins",
     "tipo": "Album"
@@ -21952,6 +21336,14 @@
     "tipo": "EP"
   },
   {
+    "id": "64510c99-e3a7-410b-94cf-8b6271ecff0f",
+    "imagen": "https://coverartarchive.org/release-group/64510c99-e3a7-410b-94cf-8b6271ecff0f/front-250",
+    "titulo": "Zakaza",
+    "fecha": "2025-06-27",
+    "artista": "Chanel",
+    "tipo": "Single"
+  },
+  {
     "id": "2350c54d-c0cc-44f7-87a4-f2fc1e122bc5",
     "imagen": "https://coverartarchive.org/release-group/2350c54d-c0cc-44f7-87a4-f2fc1e122bc5/front-250",
     "titulo": "BAI‐LALA",
@@ -22728,6 +22120,14 @@
     "tipo": "Album"
   },
   {
+    "id": "e1c3cce7-4f84-49a6-b1e6-67bac1545923",
+    "imagen": "https://coverartarchive.org/release-group/e1c3cce7-4f84-49a6-b1e6-67bac1545923/front-250",
+    "titulo": "Una bala",
+    "fecha": "2025-06-06",
+    "artista": "Chanel",
+    "tipo": "Single"
+  },
+  {
     "id": "e7131227-c85f-4420-83a2-8ba8bbeaebba",
     "imagen": "https://coverartarchive.org/release-group/e7131227-c85f-4420-83a2-8ba8bbeaebba/front-250",
     "titulo": "Patience",
@@ -23350,6 +22750,14 @@
     "fecha": "2025-05-23",
     "artista": "Rick Astley",
     "tipo": "EP"
+  },
+  {
+    "id": "719edf14-d42c-45cf-a3c1-d9280ed0144f",
+    "imagen": "https://coverartarchive.org/release-group/719edf14-d42c-45cf-a3c1-d9280ed0144f/front-250",
+    "titulo": "El Apagón",
+    "fecha": "2025-05-23",
+    "artista": "Melody",
+    "tipo": "Single"
   },
   {
     "id": "f26db6a0-73e3-411b-b566-521bb50b55aa",
@@ -23990,6 +23398,30 @@
     "fecha": "2025-05-09",
     "artista": "Mýa",
     "tipo": "EP"
+  },
+  {
+    "id": "8ca66b7b-519b-4c1f-9b71-ac8055ef43cb",
+    "imagen": "https://coverartarchive.org/release-group/8ca66b7b-519b-4c1f-9b71-ac8055ef43cb/front-250",
+    "titulo": "Antillas",
+    "fecha": "2025-05-09",
+    "artista": "Chanel",
+    "tipo": "Single"
+  },
+  {
+    "id": "5a62b428-6785-4ae7-8dfa-a8991cd939d3",
+    "imagen": "https://coverartarchive.org/release-group/5a62b428-6785-4ae7-8dfa-a8991cd939d3/front-250",
+    "titulo": "Desamarte",
+    "fecha": "2025-05-09",
+    "artista": "Luis Cortés",
+    "tipo": "Single"
+  },
+  {
+    "id": "81adb627-0687-4606-b854-6b8e8263e45a",
+    "imagen": "https://coverartarchive.org/release-group/81adb627-0687-4606-b854-6b8e8263e45a/front-250",
+    "titulo": "Espresso Macchiato (Remix)",
+    "fecha": "2025-05-09",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
   },
   {
     "id": "d5b47720-9eea-41c7-8059-fe748a1fe7bb",
@@ -25685,6 +25117,14 @@
     "titulo": "Nuestra canción",
     "fecha": "2025-03-20",
     "artista": "Elvis Crespo",
+    "tipo": "Single"
+  },
+  {
+    "id": "87a89422-2f68-404e-bc47-d3f1a8e8219e",
+    "imagen": "https://coverartarchive.org/release-group/87a89422-2f68-404e-bc47-d3f1a8e8219e/front-250",
+    "titulo": "Enseñame a volar",
+    "fecha": "2025-03-20",
+    "artista": "Luis Cortés",
     "tipo": "Single"
   },
   {
@@ -28384,6 +27824,14 @@
     "tipo": "Single"
   },
   {
+    "id": "64169c32-0520-4b10-8ac2-175b23e32e98",
+    "imagen": "https://coverartarchive.org/release-group/64169c32-0520-4b10-8ac2-175b23e32e98/front-250",
+    "titulo": "Esa Diva",
+    "fecha": "2024-12-20",
+    "artista": "Melody",
+    "tipo": "Single"
+  },
+  {
     "id": "d88dbd55-9ef2-44ff-ac33-e42003309b18",
     "imagen": "https://coverartarchive.org/release-group/d88dbd55-9ef2-44ff-ac33-e42003309b18/front-250",
     "titulo": "O Holy Night",
@@ -28680,6 +28128,14 @@
     "tipo": "Single"
   },
   {
+    "id": "542928ff-70f4-466a-ba04-cf8e77788b40",
+    "imagen": "https://coverartarchive.org/release-group/542928ff-70f4-466a-ba04-cf8e77788b40/front-250",
+    "titulo": "Espresso Macchiato",
+    "fecha": "2024-12-07",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
+  },
+  {
     "id": "600f79bd-478f-457d-a80e-845bcc0e8534",
     "imagen": "https://coverartarchive.org/release-group/600f79bd-478f-457d-a80e-845bcc0e8534/front-250",
     "titulo": "Burning Down",
@@ -28877,6 +28333,14 @@
     "titulo": "Welcome to Shepherd’s Bush",
     "fecha": "2024-12-06",
     "artista": "The Rolling Stones",
+    "tipo": "Album"
+  },
+  {
+    "id": "97af29c2-e3b5-417a-aac7-888fb2d5ff52",
+    "imagen": "https://coverartarchive.org/release-group/97af29c2-e3b5-417a-aac7-888fb2d5ff52/front-250",
+    "titulo": "Live at the BBC",
+    "fecha": "2024-12-06",
+    "artista": "Ace",
     "tipo": "Album"
   },
   {
@@ -29456,6 +28920,14 @@
     "tipo": "Single"
   },
   {
+    "id": "48bf53c4-bd40-4b7f-b783-37e3286551cb",
+    "imagen": "https://coverartarchive.org/release-group/48bf53c4-bd40-4b7f-b783-37e3286551cb/front-250",
+    "titulo": "HIGH FASHION",
+    "fecha": "2024-11-20",
+    "artista": "Tommy Cash",
+    "tipo": "EP"
+  },
+  {
     "id": "6892643a-4ae6-435c-9e2a-4ea759f38d95",
     "imagen": "https://coverartarchive.org/release-group/6892643a-4ae6-435c-9e2a-4ea759f38d95/front-250",
     "titulo": "Everybody Hurts",
@@ -29933,6 +29405,14 @@
     "titulo": "Bad Boys",
     "fecha": "2024-11-08",
     "artista": "Marshmello",
+    "tipo": "Single"
+  },
+  {
+    "id": "099575f5-b1ab-4db3-916d-79f9fb7b6c68",
+    "imagen": "https://coverartarchive.org/release-group/099575f5-b1ab-4db3-916d-79f9fb7b6c68/front-250",
+    "titulo": "Vamo' echando",
+    "fecha": "2024-11-08",
+    "artista": "NIA",
     "tipo": "Single"
   },
   {
@@ -33152,6 +32632,14 @@
     "tipo": "Single"
   },
   {
+    "id": "2adfa9bc-d719-48b3-b552-d60a6468ecdc",
+    "imagen": "https://coverartarchive.org/release-group/2adfa9bc-d719-48b3-b552-d60a6468ecdc/front-250",
+    "titulo": "UNTZ UNTZ",
+    "fecha": "2024-08-08",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
+  },
+  {
     "id": "07274d70-ecda-4e36-add7-21beed07f0c5",
     "imagen": "https://coverartarchive.org/release-group/07274d70-ecda-4e36-add7-21beed07f0c5/front-250",
     "titulo": "Por El Contrario",
@@ -34037,6 +33525,14 @@
     "titulo": "Smoke Too Soon",
     "fecha": "2024-07-12",
     "artista": "Wiz Khalifa",
+    "tipo": "Single"
+  },
+  {
+    "id": "939cf3c4-1780-4995-8ec2-680673316a21",
+    "imagen": "https://coverartarchive.org/release-group/939cf3c4-1780-4995-8ec2-680673316a21/front-250",
+    "titulo": "Ass & Titties",
+    "fecha": "2024-07-12",
+    "artista": "Tommy Cash",
     "tipo": "Single"
   },
   {
@@ -36421,6 +35917,14 @@
     "titulo": "Miles on It",
     "fecha": "2024-05-03",
     "artista": "Marshmello",
+    "tipo": "Single"
+  },
+  {
+    "id": "9dcb4ad1-271b-40e8-b950-d56b6e2be780",
+    "imagen": "https://coverartarchive.org/release-group/9dcb4ad1-271b-40e8-b950-d56b6e2be780/front-250",
+    "titulo": "Lágrimas negras",
+    "fecha": "2024-05-03",
+    "artista": "NIA",
     "tipo": "Single"
   },
   {
@@ -40848,6 +40352,22 @@
     "tipo": "Single"
   },
   {
+    "id": "42ee4211-18fb-4f65-8abd-d7cb68aa9845",
+    "imagen": "https://coverartarchive.org/release-group/42ee4211-18fb-4f65-8abd-d7cb68aa9845/front-250",
+    "titulo": "¡Agua!",
+    "fecha": "2024-01-12",
+    "artista": "Chanel",
+    "tipo": "Album"
+  },
+  {
+    "id": "aa13e572-c3a5-4074-bf3f-a4c910bd1eb2",
+    "imagen": "https://coverartarchive.org/release-group/aa13e572-c3a5-4074-bf3f-a4c910bd1eb2/front-250",
+    "titulo": "Tango",
+    "fecha": "2024-01-12",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
+  },
+  {
     "id": "f7daaced-e464-4f14-8632-5ab81d2bc9d4",
     "imagen": "https://coverartarchive.org/release-group/f7daaced-e464-4f14-8632-5ab81d2bc9d4/front-250",
     "titulo": "COMO YO TE QUIERO (DELUXE)",
@@ -40869,6 +40389,14 @@
     "titulo": "Young Miko: Bzrp Music Sessions, Vol. 58",
     "fecha": "2024-01-10",
     "artista": "Bizarrap",
+    "tipo": "Single"
+  },
+  {
+    "id": "4ca73dfe-0b0f-424c-9a67-e089f61143ab",
+    "imagen": "https://coverartarchive.org/release-group/4ca73dfe-0b0f-424c-9a67-e089f61143ab/front-250",
+    "titulo": "Ahora que no te tengo",
+    "fecha": "2024-01-09",
+    "artista": "Chanel",
     "tipo": "Single"
   },
   {
@@ -42432,6 +41960,14 @@
     "tipo": "Album"
   },
   {
+    "id": "547b1d44-e67b-403e-a83b-77e653077283",
+    "imagen": "https://coverartarchive.org/release-group/547b1d44-e67b-403e-a83b-77e653077283/front-250",
+    "titulo": "Donde digan las estrellas",
+    "fecha": "2023-12-01",
+    "artista": "Coti",
+    "tipo": "Single"
+  },
+  {
     "id": "73f33149-fd3c-4eaf-8d0c-7f185effa770",
     "imagen": "https://coverartarchive.org/release-group/73f33149-fd3c-4eaf-8d0c-7f185effa770/front-250",
     "titulo": "Summer of '76",
@@ -42477,6 +42013,14 @@
     "titulo": "Bailar contigo",
     "fecha": "2023-11-30",
     "artista": "Chenoa",
+    "tipo": "Single"
+  },
+  {
+    "id": "667bfc5a-6506-499f-aa0c-1df98f7fb564",
+    "imagen": "https://coverartarchive.org/release-group/667bfc5a-6506-499f-aa0c-1df98f7fb564/front-250",
+    "titulo": "Un año más",
+    "fecha": "2023-11-30",
+    "artista": "Chanel",
     "tipo": "Single"
   },
   {
@@ -43557,6 +43101,14 @@
     "titulo": "Ron con coca",
     "fecha": "2023-11-03",
     "artista": "Omar Montes",
+    "tipo": "Single"
+  },
+  {
+    "id": "b58c80b6-b9b2-4790-8b87-0ec66ad1b0b9",
+    "imagen": "https://coverartarchive.org/release-group/b58c80b6-b9b2-4790-8b87-0ec66ad1b0b9/front-250",
+    "titulo": "Loka",
+    "fecha": "2023-11-03",
+    "artista": "Chanel",
     "tipo": "Single"
   },
   {
@@ -44861,6 +44413,14 @@
     "titulo": "Khali Sober",
     "fecha": "2023-10-06",
     "artista": "Wiz Khalifa",
+    "tipo": "Album"
+  },
+  {
+    "id": "5992d626-120e-46f9-9a79-9a53e4c300dd",
+    "imagen": "https://coverartarchive.org/release-group/5992d626-120e-46f9-9a79-9a53e4c300dd/front-250",
+    "titulo": "PaloSanto",
+    "fecha": "2023-10-06",
+    "artista": "NIA",
     "tipo": "Album"
   },
   {
@@ -47048,6 +46608,14 @@
     "tipo": "Single"
   },
   {
+    "id": "945a2af9-1f9d-4fcd-9bcd-20b63de5da32",
+    "imagen": "https://coverartarchive.org/release-group/945a2af9-1f9d-4fcd-9bcd-20b63de5da32/front-250",
+    "titulo": "Sabor Guajiro",
+    "fecha": "2023-08-11",
+    "artista": "NIA",
+    "tipo": "Single"
+  },
+  {
     "id": "7a6f9fdd-6cb3-4bd4-825d-1a461302d5d9",
     "imagen": "https://coverartarchive.org/release-group/7a6f9fdd-6cb3-4bd4-825d-1a461302d5d9/front-250",
     "titulo": "2023‐07‐23: Olympiastadion, Munich, Germany",
@@ -47557,6 +47125,14 @@
     "titulo": "Esta vida (VINNE remix)",
     "fecha": "2023-07-28",
     "artista": "Marshmello",
+    "tipo": "Single"
+  },
+  {
+    "id": "c576f5f1-5102-4025-a7a5-8d1b459b73c6",
+    "imagen": "https://coverartarchive.org/release-group/c576f5f1-5102-4025-a7a5-8d1b459b73c6/front-250",
+    "titulo": "Ping Pong",
+    "fecha": "2023-07-28",
+    "artista": "Chanel",
     "tipo": "Single"
   },
   {
@@ -49632,6 +49208,14 @@
     "tipo": "Single"
   },
   {
+    "id": "40b483b6-debf-4c13-8433-fc64df86dcb2",
+    "imagen": "https://coverartarchive.org/release-group/40b483b6-debf-4c13-8433-fc64df86dcb2/front-250",
+    "titulo": "Madrid sin vos",
+    "fecha": "2023-06-09",
+    "artista": "Coti",
+    "tipo": "Single"
+  },
+  {
     "id": "c153294a-1fc7-4b21-a2ba-a5d4197c39de",
     "imagen": "https://coverartarchive.org/release-group/c153294a-1fc7-4b21-a2ba-a5d4197c39de/front-250",
     "titulo": "Give You Love",
@@ -50248,6 +49832,14 @@
     "tipo": "Single"
   },
   {
+    "id": "41c81bc0-478c-4671-918f-1f33c7b71c6d",
+    "imagen": "https://coverartarchive.org/release-group/41c81bc0-478c-4671-918f-1f33c7b71c6d/front-250",
+    "titulo": "Ferrari",
+    "fecha": "2023-05-26",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
+  },
+  {
     "id": "a7121741-6f58-4633-86f7-30b7cf37de9b",
     "imagen": "https://coverartarchive.org/release-group/a7121741-6f58-4633-86f7-30b7cf37de9b/front-250",
     "titulo": "La Noche Perfecta",
@@ -50581,6 +50173,14 @@
     "titulo": "El Merengue (HUGEL remix)",
     "fecha": "2023-05-19",
     "artista": "Marshmello",
+    "tipo": "Single"
+  },
+  {
+    "id": "3a7f8444-2815-4cfc-b79d-85f5bda4b727",
+    "imagen": "https://coverartarchive.org/release-group/3a7f8444-2815-4cfc-b79d-85f5bda4b727/front-250",
+    "titulo": "P.M.",
+    "fecha": "2023-05-19",
+    "artista": "Chanel",
     "tipo": "Single"
   },
   {
@@ -51557,6 +51157,14 @@
     "titulo": "Just Like You",
     "fecha": "2023-04-27",
     "artista": "Simply Red",
+    "tipo": "Single"
+  },
+  {
+    "id": "6cf93502-2cfa-43c9-84c7-a80de581a37f",
+    "imagen": "https://coverartarchive.org/release-group/6cf93502-2cfa-43c9-84c7-a80de581a37f/front-250",
+    "titulo": "Clavaito",
+    "fecha": "2023-04-27",
+    "artista": "Chanel",
     "tipo": "Single"
   },
   {
@@ -52926,6 +52534,14 @@
     "fecha": "2023-03-23",
     "artista": "Whitney Houston",
     "tipo": "Album"
+  },
+  {
+    "id": "c173004c-f893-49a4-be80-46634e49ea49",
+    "imagen": "https://coverartarchive.org/release-group/c173004c-f893-49a4-be80-46634e49ea49/front-250",
+    "titulo": "Porcelana china",
+    "fecha": "2023-03-23",
+    "artista": "Coti",
+    "tipo": "Single"
   },
   {
     "id": "198abc4d-9c7f-4341-a752-7047d225d5d6",
@@ -55222,6 +54838,14 @@
     "fecha": "2023-01-13",
     "artista": "David Bowie",
     "tipo": "Album"
+  },
+  {
+    "id": "15232b8b-2878-4cb8-bcea-04b6192d98be",
+    "imagen": "https://coverartarchive.org/release-group/15232b8b-2878-4cb8-bcea-04b6192d98be/front-250",
+    "titulo": "TOKE (Si t’es ok)",
+    "fecha": "2023-01-13",
+    "artista": "Chanel",
+    "tipo": "Single"
   },
   {
     "id": "a8bdcab1-7f05-4a1b-9ea2-c44dd0abffbb",
@@ -58341,6 +57965,14 @@
     "titulo": "Bejeweled",
     "fecha": "2022-10-25",
     "artista": "Taylor Swift",
+    "tipo": "Single"
+  },
+  {
+    "id": "5f4f725e-ac3a-4444-8fbe-4563cdf48fe2",
+    "imagen": "https://coverartarchive.org/release-group/5f4f725e-ac3a-4444-8fbe-4563cdf48fe2/front-250",
+    "titulo": "TOKE",
+    "fecha": "2022-10-25",
+    "artista": "Chanel",
     "tipo": "Single"
   },
   {
@@ -63976,6 +63608,14 @@
     "tipo": "Album"
   },
   {
+    "id": "72c4ab6d-546b-4aaa-98c8-6763f403f8fb",
+    "imagen": "https://coverartarchive.org/release-group/72c4ab6d-546b-4aaa-98c8-6763f403f8fb/front-250",
+    "titulo": "SloMo (Eurovision’s dancebreak edit)",
+    "fecha": "2022-05-15",
+    "artista": "Chanel",
+    "tipo": "Single"
+  },
+  {
     "id": "f86fad2d-f424-48b1-9372-e8a657f8f337",
     "imagen": "https://coverartarchive.org/release-group/f86fad2d-f424-48b1-9372-e8a657f8f337/front-250",
     "titulo": "ESQUEMAS",
@@ -66136,6 +65776,14 @@
     "tipo": "Single"
   },
   {
+    "id": "d14d3b9b-8248-4fa2-913f-678adad37517",
+    "imagen": "https://coverartarchive.org/release-group/d14d3b9b-8248-4fa2-913f-678adad37517/front-250",
+    "titulo": "Baby Shock",
+    "fecha": "2022-03-18",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
+  },
+  {
     "id": "308e324b-34d1-47ff-b19e-4ab0c15ac3c6",
     "imagen": "https://coverartarchive.org/release-group/308e324b-34d1-47ff-b19e-4ab0c15ac3c6/front-250",
     "titulo": "ARTE",
@@ -66869,6 +66517,14 @@
     "titulo": "TULUM",
     "fecha": "2022-02-20",
     "artista": "Gente de Zona",
+    "tipo": "Single"
+  },
+  {
+    "id": "698be0f6-fe89-4d67-98dd-0bf3a37368aa",
+    "imagen": "https://coverartarchive.org/release-group/698be0f6-fe89-4d67-98dd-0bf3a37368aa/front-250",
+    "titulo": "TULUM",
+    "fecha": "2022-02-20",
+    "artista": "NIA",
     "tipo": "Single"
   },
   {
@@ -69349,6 +69005,14 @@
     "titulo": "Qué locura",
     "fecha": "2021-12-24",
     "artista": "Gente de Zona",
+    "tipo": "Single"
+  },
+  {
+    "id": "278da35f-a794-4ae1-b2e6-97b234264871",
+    "imagen": "https://coverartarchive.org/release-group/278da35f-a794-4ae1-b2e6-97b234264871/front-250",
+    "titulo": "SloMo",
+    "fecha": "2021-12-24",
+    "artista": "Chanel",
     "tipo": "Single"
   },
   {
@@ -74528,6 +74192,14 @@
     "tipo": "Single"
   },
   {
+    "id": "2dffb6b8-476f-4870-bc00-fafcb2a401e1",
+    "imagen": "https://coverartarchive.org/release-group/2dffb6b8-476f-4870-bc00-fafcb2a401e1/front-250",
+    "titulo": "Turn It Up",
+    "fecha": "2021-09-02",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
+  },
+  {
     "id": "7efd928a-3ce0-4a0f-b890-f0f96a8a0442",
     "imagen": "https://coverartarchive.org/release-group/7efd928a-3ce0-4a0f-b890-f0f96a8a0442/front-250",
     "titulo": "Sad Boy",
@@ -75960,6 +75632,14 @@
     "tipo": "Single"
   },
   {
+    "id": "d3b0505d-775e-41b4-94a5-3c838bd81a24",
+    "imagen": "https://coverartarchive.org/release-group/d3b0505d-775e-41b4-94a5-3c838bd81a24/front-250",
+    "titulo": "Nude / Xpress Yourself",
+    "fecha": "2021-07-22",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
+  },
+  {
     "id": "1c401e03-717b-485f-9b5b-97984bfccf09",
     "imagen": "https://coverartarchive.org/release-group/1c401e03-717b-485f-9b5b-97984bfccf09/front-250",
     "titulo": "off the table",
@@ -76390,6 +76070,14 @@
     "fecha": "2021-07-09",
     "artista": "Omar Montes",
     "tipo": "Single"
+  },
+  {
+    "id": "569b0f91-b754-498c-a00f-c4b257dffa4b",
+    "imagen": "https://coverartarchive.org/release-group/569b0f91-b754-498c-a00f-c4b257dffa4b/front-250",
+    "titulo": "Cuídate",
+    "fecha": "2021-07-09",
+    "artista": "NIA",
+    "tipo": "EP"
   },
   {
     "id": "2731d99e-4de0-45ee-949d-749237d65ee0",
@@ -78528,6 +78216,14 @@
     "tipo": "Single"
   },
   {
+    "id": "40653ed5-1dee-49dc-a3f2-39b65995a7ed",
+    "imagen": "https://coverartarchive.org/release-group/40653ed5-1dee-49dc-a3f2-39b65995a7ed/front-250",
+    "titulo": "A tu lado",
+    "fecha": "2021-05-18",
+    "artista": "Coti",
+    "tipo": "Single"
+  },
+  {
     "id": "ae4dee52-0308-4c16-9643-312ee8cdd41f",
     "imagen": "https://coverartarchive.org/release-group/ae4dee52-0308-4c16-9643-312ee8cdd41f/front-250",
     "titulo": "Pollyanna",
@@ -80288,6 +79984,14 @@
     "tipo": "Single"
   },
   {
+    "id": "b9297915-7b63-4824-8060-627c9fe5cb9e",
+    "imagen": "https://coverartarchive.org/release-group/b9297915-7b63-4824-8060-627c9fe5cb9e/front-250",
+    "titulo": "MONEYSUTRA",
+    "fecha": "2021-04-09",
+    "artista": "Tommy Cash",
+    "tipo": "EP"
+  },
+  {
     "id": "c4ccd844-19d8-4b1e-928d-38b7d86ffc6a",
     "imagen": "https://coverartarchive.org/release-group/c4ccd844-19d8-4b1e-928d-38b7d86ffc6a/front-250",
     "titulo": "To the Island (Tame Impala remix)",
@@ -80534,6 +80238,14 @@
     "fecha": "2021-04-02",
     "artista": "David Bowie",
     "tipo": "Album"
+  },
+  {
+    "id": "c0e5ba33-7869-49d0-8b86-bbbaf49901df",
+    "imagen": "https://coverartarchive.org/release-group/c0e5ba33-7869-49d0-8b86-bbbaf49901df/front-250",
+    "titulo": "Zuccenberg",
+    "fecha": "2021-04-02",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
   },
   {
     "id": "c1284e91-6a33-4c14-b6c1-9c750bbd95b8",
@@ -83648,6 +83360,14 @@
     "tipo": "Single"
   },
   {
+    "id": "46c0d9b9-41bb-4e3f-ad85-e69a577bf3fc",
+    "imagen": "https://coverartarchive.org/release-group/46c0d9b9-41bb-4e3f-ad85-e69a577bf3fc/front-250",
+    "titulo": "Cúrame",
+    "fecha": "2021-01-09",
+    "artista": "NIA",
+    "tipo": "Single"
+  },
+  {
     "id": "c2564aca-86f3-477c-bba1-8edc40a6caa6",
     "imagen": "https://coverartarchive.org/release-group/c2564aca-86f3-477c-bba1-8edc40a6caa6/front-250",
     "titulo": "Flames",
@@ -84782,6 +84502,14 @@
     "fecha": "2020-12-22",
     "artista": "Stevie Wonder",
     "tipo": "Album"
+  },
+  {
+    "id": "87497aaf-981a-4427-968a-a5d7d852bc93",
+    "imagen": "https://coverartarchive.org/release-group/87497aaf-981a-4427-968a-a5d7d852bc93/front-250",
+    "titulo": "Días",
+    "fecha": "2020-12-22",
+    "artista": "Coti",
+    "tipo": "Single"
   },
   {
     "id": "ef7c37fb-8703-4098-8254-90592ef09c01",
@@ -87797,6 +87525,14 @@
     "titulo": "Don’t Change You",
     "fecha": "2020-10-30",
     "artista": "Wiz Khalifa",
+    "tipo": "Single"
+  },
+  {
+    "id": "72ae12ce-1277-45e9-8475-266e4ec9e228",
+    "imagen": "https://coverartarchive.org/release-group/72ae12ce-1277-45e9-8475-266e4ec9e228/front-250",
+    "titulo": "La chica de la esquina rosada",
+    "fecha": "2020-10-30",
+    "artista": "Coti",
     "tipo": "Single"
   },
   {
@@ -92848,6 +92584,14 @@
     "tipo": "Single"
   },
   {
+    "id": "c83f3153-25d1-42ae-984b-921a9dbefdad",
+    "imagen": "https://coverartarchive.org/release-group/c83f3153-25d1-42ae-984b-921a9dbefdad/front-250",
+    "titulo": "Heartbass (ATRIP remix)",
+    "fecha": "2020-07-17",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
+  },
+  {
     "id": "a4175f01-7fea-4c7e-9ff4-b54ca9e699ee",
     "imagen": "https://coverartarchive.org/release-group/a4175f01-7fea-4c7e-9ff4-b54ca9e699ee/front-250",
     "titulo": "Live Without Your Love",
@@ -93157,6 +92901,14 @@
     "titulo": "Come & Go",
     "fecha": "2020-07-09",
     "artista": "Marshmello",
+    "tipo": "Single"
+  },
+  {
+    "id": "70f94f38-146c-4f1b-b4ae-27583e24db27",
+    "imagen": "https://coverartarchive.org/release-group/70f94f38-146c-4f1b-b4ae-27583e24db27/front-250",
+    "titulo": "xXXi_wud_nvrstøp_ÜXXx (remix)",
+    "fecha": "2020-07-09",
+    "artista": "Tommy Cash",
     "tipo": "Single"
   },
   {
@@ -95366,6 +95118,14 @@
     "fecha": "2020-05-08",
     "artista": "Elvis Crespo",
     "tipo": "Album"
+  },
+  {
+    "id": "e467b8c9-ba7a-4033-ac22-a0681b31d830",
+    "imagen": "https://coverartarchive.org/release-group/e467b8c9-ba7a-4033-ac22-a0681b31d830/front-250",
+    "titulo": "Por ahí",
+    "fecha": "2020-05-08",
+    "artista": "Coti",
+    "tipo": "Single"
   },
   {
     "id": "8f9b327d-36fa-4892-b7ae-afd2c119f906",
@@ -99912,6 +99672,14 @@
     "tipo": "Single"
   },
   {
+    "id": "b0f997ed-cdb2-44d5-b895-c9cd9917c05e",
+    "imagen": "https://coverartarchive.org/release-group/b0f997ed-cdb2-44d5-b895-c9cd9917c05e/front-250",
+    "titulo": "Latin Trap Famele",
+    "fecha": "2020-01-10",
+    "artista": "Chanel",
+    "tipo": "Album"
+  },
+  {
     "id": "c3809056-796e-4e41-8430-f2f1449026bb",
     "imagen": "https://coverartarchive.org/release-group/c3809056-796e-4e41-8430-f2f1449026bb/front-250",
     "titulo": "Underdog",
@@ -101597,6 +101365,14 @@
     "titulo": "Don’t Waste My Time",
     "fecha": "2019-12-13",
     "artista": "Usher",
+    "tipo": "Single"
+  },
+  {
+    "id": "4e195b84-53be-4cc4-a36d-43971342c1cd",
+    "imagen": "https://coverartarchive.org/release-group/4e195b84-53be-4cc4-a36d-43971342c1cd/front-250",
+    "titulo": "Sdubid",
+    "fecha": "2019-12-13",
+    "artista": "Tommy Cash",
     "tipo": "Single"
   },
   {
@@ -105725,6 +105501,14 @@
     "titulo": "Liar",
     "fecha": "2019-09-04",
     "artista": "Camila Cabello",
+    "tipo": "Single"
+  },
+  {
+    "id": "4cff9ccb-6d2b-48ba-a487-acafc2d4c07b",
+    "imagen": "https://coverartarchive.org/release-group/4cff9ccb-6d2b-48ba-a487-acafc2d4c07b/front-250",
+    "titulo": "Impec",
+    "fecha": "2019-09-04",
+    "artista": "Tommy Cash",
     "tipo": "Single"
   },
   {
@@ -113000,6 +112784,14 @@
     "tipo": "Single"
   },
   {
+    "id": "d655c660-9882-4b12-a4dc-4b7f9bebb697",
+    "imagen": "https://coverartarchive.org/release-group/d655c660-9882-4b12-a4dc-4b7f9bebb697/front-250",
+    "titulo": "Who",
+    "fecha": "2019-02-13",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
+  },
+  {
     "id": "23b82912-5378-4fba-8a0c-eb545fed21b2",
     "imagen": "https://coverartarchive.org/release-group/23b82912-5378-4fba-8a0c-eb545fed21b2/front-250",
     "titulo": "Dumb Blonde",
@@ -116096,6 +115888,14 @@
     "tipo": "Single"
   },
   {
+    "id": "4c756d12-1756-4363-bde1-0c9cc16365e5",
+    "imagen": "https://coverartarchive.org/release-group/4c756d12-1756-4363-bde1-0c9cc16365e5/front-250",
+    "titulo": "¥€$",
+    "fecha": "2018-11-30",
+    "artista": "Tommy Cash",
+    "tipo": "Album"
+  },
+  {
     "id": "11b93944-5c78-4683-a42f-f8f37031e9fe",
     "imagen": "https://coverartarchive.org/release-group/11b93944-5c78-4683-a42f-f8f37031e9fe/front-250",
     "titulo": "Sweet but Psycho (Morgan Page remix)",
@@ -116341,6 +116141,14 @@
     "titulo": "Un veneno",
     "fecha": "2018-11-22",
     "artista": "C. Tangana",
+    "tipo": "Single"
+  },
+  {
+    "id": "c9e5a734-4b5f-4c8b-93e6-975e8c25c5ef",
+    "imagen": "https://coverartarchive.org/release-group/c9e5a734-4b5f-4c8b-93e6-975e8c25c5ef/front-250",
+    "titulo": "X-RAY",
+    "fecha": "2018-11-22",
+    "artista": "Tommy Cash",
     "tipo": "Single"
   },
   {
@@ -117262,6 +117070,14 @@
     "fecha": "2018-11-02",
     "artista": "Zaz",
     "tipo": "Single"
+  },
+  {
+    "id": "7abefa31-2101-48ae-8b89-56ee9bc29685",
+    "imagen": "https://coverartarchive.org/release-group/7abefa31-2101-48ae-8b89-56ee9bc29685/front-250",
+    "titulo": "Coti Sorokin y Los Brillantes en el Teatro Colón",
+    "fecha": "2018-11-02",
+    "artista": "Coti",
+    "tipo": "Album"
   },
   {
     "id": "9e1757e8-a244-425a-a403-917b41fa4f79",
@@ -122672,6 +122488,14 @@
     "tipo": "Single"
   },
   {
+    "id": "9a085d9d-3edc-4fea-b281-0d48f8720169",
+    "imagen": "https://coverartarchive.org/release-group/9a085d9d-3edc-4fea-b281-0d48f8720169/front-250",
+    "titulo": "Little Molly",
+    "fecha": "2018-05-30",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
+  },
+  {
     "id": "39217c42-7d89-4e6a-9fd7-5761c1ba4ea3",
     "imagen": "https://coverartarchive.org/release-group/39217c42-7d89-4e6a-9fd7-5761c1ba4ea3/front-250",
     "titulo": "Traicionero",
@@ -126957,6 +126781,14 @@
     "titulo": "No te pegas",
     "fecha": "2018-01-24",
     "artista": "C. Tangana",
+    "tipo": "Single"
+  },
+  {
+    "id": "a5f0cdea-8437-4a67-ad49-5e93d1bcb491",
+    "imagen": "https://coverartarchive.org/release-group/a5f0cdea-8437-4a67-ad49-5e93d1bcb491/front-250",
+    "titulo": "Pussy Money Weed",
+    "fecha": "2018-01-23",
+    "artista": "Tommy Cash",
     "tipo": "Single"
   },
   {
@@ -132213,6 +132045,14 @@
     "titulo": "A Lie",
     "fecha": "2017-09-28",
     "artista": "The Weeknd",
+    "tipo": "Single"
+  },
+  {
+    "id": "442ed986-df8c-42a3-9cbc-13ca8ee15907",
+    "imagen": "https://coverartarchive.org/release-group/442ed986-df8c-42a3-9cbc-13ca8ee15907/front-250",
+    "titulo": "Rawr",
+    "fecha": "2017-09-28",
+    "artista": "Tommy Cash",
     "tipo": "Single"
   },
   {
@@ -138390,6 +138230,14 @@
     "fecha": "2017-03-16",
     "artista": "Oasis",
     "tipo": "Album"
+  },
+  {
+    "id": "43088ea5-7351-4166-ac06-6ce0fdf356ea",
+    "imagen": "https://coverartarchive.org/release-group/43088ea5-7351-4166-ac06-6ce0fdf356ea/front-250",
+    "titulo": "Surf",
+    "fecha": "2017-03-16",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
   },
   {
     "id": "9e8a279e-a7ae-4b0c-bdf8-8c6820901c1e",
@@ -147512,6 +147360,14 @@
     "tipo": "Album"
   },
   {
+    "id": "570a1089-84c0-4d01-b1ae-55a56b19cf00",
+    "imagen": "https://coverartarchive.org/release-group/570a1089-84c0-4d01-b1ae-55a56b19cf00/front-250",
+    "titulo": "Winaloto",
+    "fecha": "2016-07-20",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
+  },
+  {
     "id": "2017c9c9-2b00-4d6f-a6fd-3de88b572a54",
     "imagen": "https://coverartarchive.org/release-group/2017c9c9-2b00-4d6f-a6fd-3de88b572a54/front-250",
     "titulo": "Better Be Home Soon",
@@ -147712,6 +147568,14 @@
     "tipo": "Album"
   },
   {
+    "id": "f639ad53-d6b4-45fd-b5ef-77f283ef5211",
+    "imagen": "https://coverartarchive.org/release-group/f639ad53-d6b4-45fd-b5ef-77f283ef5211/front-250",
+    "titulo": "We Don't Talk Anymore (Attom remix)",
+    "fecha": "2016-07-08",
+    "artista": "Charlie Puth",
+    "tipo": "Single"
+  },
+  {
     "id": "4d5747a5-efb4-40f6-91bd-39ff51c567e2",
     "imagen": "https://coverartarchive.org/release-group/4d5747a5-efb4-40f6-91bd-39ff51c567e2/front-250",
     "titulo": "We Don’t Talk Anymore (Mr. Collipark remix)",
@@ -147731,14 +147595,6 @@
     "id": "53be43aa-9512-4ac6-9a5e-ae4d3cde6043",
     "imagen": "https://coverartarchive.org/release-group/53be43aa-9512-4ac6-9a5e-ae4d3cde6043/front-250",
     "titulo": "We Don’t Talk Anymore (Lash remix)",
-    "fecha": "2016-07-08",
-    "artista": "Charlie Puth",
-    "tipo": "Single"
-  },
-  {
-    "id": "f639ad53-d6b4-45fd-b5ef-77f283ef5211",
-    "imagen": "https://coverartarchive.org/release-group/f639ad53-d6b4-45fd-b5ef-77f283ef5211/front-250",
-    "titulo": "We Don't Talk Anymore (Attom remix)",
     "fecha": "2016-07-08",
     "artista": "Charlie Puth",
     "tipo": "Single"
@@ -148598,6 +148454,14 @@
     "fecha": "2016-06-10",
     "artista": "Usher",
     "tipo": "Single"
+  },
+  {
+    "id": "1ab4f455-e85d-4822-b0ee-a002da71688f",
+    "imagen": "https://coverartarchive.org/release-group/1ab4f455-e85d-4822-b0ee-a002da71688f/front-250",
+    "titulo": "Tanta magia: En vivo en el Gran Rex",
+    "fecha": "2016-06-10",
+    "artista": "Coti",
+    "tipo": "Album"
   },
   {
     "id": "619502e6-42ba-48a6-b540-369e834108b8",
@@ -151766,14 +151630,6 @@
     "fecha": "2016-01-29",
     "artista": "Avicii",
     "tipo": "Single"
-  },
-  {
-    "id": "3c82ff29-b9f1-4348-b20e-11d24d295845",
-    "imagen": "https://coverartarchive.org/release-group/3c82ff29-b9f1-4348-b20e-11d24d295845/front-250",
-    "titulo": "Nine Track Mind",
-    "fecha": "2016-01-29",
-    "artista": "Charlie Puth",
-    "tipo": "Album"
   },
   {
     "id": "c3f3c8c4-4e46-4651-b04e-4d32a36e7700",
@@ -155400,9 +155256,9 @@
     "tipo": "Single"
   },
   {
-    "id": "bf2c0e5a-5fc8-4cb9-80cc-575e9733531d",
-    "imagen": "https://coverartarchive.org/release-group/bf2c0e5a-5fc8-4cb9-80cc-575e9733531d/front-250",
-    "titulo": "Nine Track Mind (Special Edition)",
+    "id": "3c82ff29-b9f1-4348-b20e-11d24d295845",
+    "imagen": "https://coverartarchive.org/release-group/3c82ff29-b9f1-4348-b20e-11d24d295845/front-250",
+    "titulo": "Nine Track Mind",
     "fecha": "2015-11-05",
     "artista": "Charlie Puth",
     "tipo": "Album"
@@ -157133,6 +156989,14 @@
     "titulo": "Same Old Love",
     "fecha": "2015-09-10",
     "artista": "Selena Gomez",
+    "tipo": "Single"
+  },
+  {
+    "id": "38037402-686b-44f9-861e-ecf0895b1e3f",
+    "imagen": "https://coverartarchive.org/release-group/38037402-686b-44f9-861e-ecf0895b1e3f/front-250",
+    "titulo": "Give Me Your Money",
+    "fecha": "2015-09-10",
+    "artista": "Tommy Cash",
     "tipo": "Single"
   },
   {
@@ -164344,6 +164208,14 @@
     "tipo": "Album"
   },
   {
+    "id": "67ff37a0-929e-4991-a064-3313b32567ca",
+    "imagen": "https://coverartarchive.org/release-group/67ff37a0-929e-4991-a064-3313b32567ca/front-250",
+    "titulo": "The Very Best of Ace",
+    "fecha": "2015",
+    "artista": "Ace",
+    "tipo": "Album"
+  },
+  {
     "id": "6241980b-75a8-4634-88f5-41a3f5079a08",
     "imagen": "https://coverartarchive.org/release-group/6241980b-75a8-4634-88f5-41a3f5079a08/front-250",
     "titulo": "The Nights (Avicii by Avicii)",
@@ -166078,6 +165950,14 @@
     "fecha": "2014-11-03",
     "artista": "Queen",
     "tipo": "Single"
+  },
+  {
+    "id": "f1185ec1-3895-434b-a11f-f0896a8e721b",
+    "imagen": "https://coverartarchive.org/release-group/f1185ec1-3895-434b-a11f-f0896a8e721b/front-250",
+    "titulo": "Euroz Dollaz Yeniz",
+    "fecha": "2014-11-01",
+    "artista": "Tommy Cash",
+    "tipo": "Album"
   },
   {
     "id": "b1b9c1db-1921-4bd0-8738-d12cc5682ff0",
@@ -170904,6 +170784,14 @@
     "tipo": "Album"
   },
   {
+    "id": "328fe3d0-ad01-4ac6-b58d-d5176b4b5f09",
+    "imagen": "https://coverartarchive.org/release-group/328fe3d0-ad01-4ac6-b58d-d5176b4b5f09/front-250",
+    "titulo": "Alien Tears",
+    "fecha": "2014-03-25",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
+  },
+  {
     "id": "40242227-7d98-485c-ba2f-bd87c1e00897",
     "imagen": "https://coverartarchive.org/release-group/40242227-7d98-485c-ba2f-bd87c1e00897/front-250",
     "titulo": "Decidiste dejarme",
@@ -173152,14 +173040,6 @@
     "tipo": "Album"
   },
   {
-    "id": "b12d91f6-e8e3-4690-9d33-51ea7561a7de",
-    "imagen": "https://coverartarchive.org/release-group/b12d91f6-e8e3-4690-9d33-51ea7561a7de/front-250",
-    "titulo": "The Real… Elvis 60’s Collection",
-    "fecha": "2014",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "c1f9011a-1e28-4f37-bef5-11047cf2e5e3",
     "imagen": "https://coverartarchive.org/release-group/c1f9011a-1e28-4f37-bef5-11047cf2e5e3/front-250",
     "titulo": "Christmas Gold Collection",
@@ -173179,6 +173059,14 @@
     "id": "fc2f8379-5af3-44d8-9255-db6ba5672f36",
     "imagen": "https://coverartarchive.org/release-group/fc2f8379-5af3-44d8-9255-db6ba5672f36/front-250",
     "titulo": "Memphis To Nashville '61",
+    "fecha": "2014",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "b12d91f6-e8e3-4690-9d33-51ea7561a7de",
+    "imagen": "https://coverartarchive.org/release-group/b12d91f6-e8e3-4690-9d33-51ea7561a7de/front-250",
+    "titulo": "The Real… Elvis 60’s Collection",
     "fecha": "2014",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -174550,6 +174438,14 @@
     "fecha": "2014",
     "artista": "Zendaya",
     "tipo": "Single"
+  },
+  {
+    "id": "8123317e-c32d-4d75-a925-8b819f532255",
+    "imagen": "https://coverartarchive.org/release-group/8123317e-c32d-4d75-a925-8b819f532255/front-250",
+    "titulo": "Mucho Camino Por Andar",
+    "fecha": "2014",
+    "artista": "Melody",
+    "tipo": "Album"
   },
   {
     "id": "d75e20e6-1239-4ba0-ba55-867f8495b59b",
@@ -176552,14 +176448,6 @@
     "tipo": "Single"
   },
   {
-    "id": "273b479b-1f03-4661-81ca-0a1df2518044",
-    "imagen": "https://coverartarchive.org/release-group/273b479b-1f03-4661-81ca-0a1df2518044/front-250",
-    "titulo": "Back To Black (Deluxe Edition)",
-    "fecha": "2013-10-14",
-    "artista": "Amy Winehouse",
-    "tipo": "Album"
-  },
-  {
     "id": "17efb56c-ead7-435c-a209-0b2a8c2348da",
     "imagen": "https://coverartarchive.org/release-group/17efb56c-ead7-435c-a209-0b2a8c2348da/front-250",
     "titulo": "Old School Love",
@@ -177070,6 +176958,14 @@
     "fecha": "2013-09-23",
     "artista": "The Smashing Pumpkins",
     "tipo": "Album"
+  },
+  {
+    "id": "75e4f910-4035-4beb-bdf3-617d4bcabb63",
+    "imagen": "https://coverartarchive.org/release-group/75e4f910-4035-4beb-bdf3-617d4bcabb63/front-250",
+    "titulo": "Guez Whoz Bak",
+    "fecha": "2013-09-22",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
   },
   {
     "id": "053c267d-7e6b-43ca-95de-b24c80ff2bf5",
@@ -181792,6 +181688,14 @@
     "tipo": "Single"
   },
   {
+    "id": "297a574e-99f5-4416-a4ac-7b6ce58c738c",
+    "imagen": "https://coverartarchive.org/release-group/297a574e-99f5-4416-a4ac-7b6ce58c738c/front-250",
+    "titulo": "Tras el horizonte",
+    "fecha": "2013-02-19",
+    "artista": "Taxi",
+    "tipo": "Album"
+  },
+  {
     "id": "956bbcc6-7417-47d5-b7ba-46903af5ea6c",
     "imagen": "https://coverartarchive.org/release-group/956bbcc6-7417-47d5-b7ba-46903af5ea6c/front-250",
     "titulo": "One Way or Another (Teenage Kicks)",
@@ -182501,6 +182405,14 @@
     "titulo": "Where Are We Now?",
     "fecha": "2013-01-08",
     "artista": "David Bowie",
+    "tipo": "Single"
+  },
+  {
+    "id": "06fbf33d-4079-4bc6-bdda-d385325cbbb0",
+    "imagen": "https://coverartarchive.org/release-group/06fbf33d-4079-4bc6-bdda-d385325cbbb0/front-250",
+    "titulo": "Siempre hay una estrella",
+    "fecha": "2013-01-08",
+    "artista": "Taxi",
     "tipo": "Single"
   },
   {
@@ -189784,6 +189696,14 @@
     "tipo": "Album"
   },
   {
+    "id": "872573b6-f2f2-4edd-b366-586d755dd774",
+    "imagen": "https://coverartarchive.org/release-group/872573b6-f2f2-4edd-b366-586d755dd774/front-250",
+    "titulo": "Lo dije por boca de otros",
+    "fecha": "2012-06-26",
+    "artista": "Coti",
+    "tipo": "Album"
+  },
+  {
     "id": "08d07f14-3a6d-450f-8323-ad1609b3c7e0",
     "imagen": "https://coverartarchive.org/release-group/08d07f14-3a6d-450f-8323-ad1609b3c7e0/front-250",
     "titulo": "Talk to Me",
@@ -190197,6 +190117,14 @@
     "titulo": "The Wind",
     "fecha": "2012-06-05",
     "artista": "Zac Brown Band",
+    "tipo": "Single"
+  },
+  {
+    "id": "7c1337bc-4e10-479e-83cc-3d8823cb27c7",
+    "imagen": "https://coverartarchive.org/release-group/7c1337bc-4e10-479e-83cc-3d8823cb27c7/front-250",
+    "titulo": "Te quise tanto",
+    "fecha": "2012-06-05",
+    "artista": "Coti",
     "tipo": "Single"
   },
   {
@@ -190838,6 +190766,14 @@
     "fecha": "2012-05-08",
     "artista": "Saratoga",
     "tipo": "Album"
+  },
+  {
+    "id": "29e8dc8a-c607-4e95-9751-85aa8497c7d3",
+    "imagen": "https://coverartarchive.org/release-group/29e8dc8a-c607-4e95-9751-85aa8497c7d3/front-250",
+    "titulo": "Color esperanza",
+    "fecha": "2012-05-08",
+    "artista": "Coti",
+    "tipo": "Single"
   },
   {
     "id": "189d6787-81b8-460e-a6ff-af5d62eb34a7",
@@ -199784,6 +199720,14 @@
     "tipo": "Album"
   },
   {
+    "id": "57be6965-4ea2-42db-abd2-80a327ac3a72",
+    "imagen": "https://coverartarchive.org/release-group/57be6965-4ea2-42db-abd2-80a327ac3a72/front-250",
+    "titulo": "Time for Another / No Strings / At the BBC",
+    "fecha": "2011-06-20",
+    "artista": "Ace",
+    "tipo": "Album"
+  },
+  {
     "id": "f12cb5e0-6cfe-4720-baf8-7d39bf59c89d",
     "imagen": "https://coverartarchive.org/release-group/f12cb5e0-6cfe-4720-baf8-7d39bf59c89d/front-250",
     "titulo": "Just Can't Get Enough (Remixes)",
@@ -201710,6 +201654,14 @@
     "fecha": "2011-03-07",
     "artista": "Marc Anthony",
     "tipo": "Album"
+  },
+  {
+    "id": "2e14ac1d-cd6e-42ec-ae24-629fea2fa3e2",
+    "imagen": "https://coverartarchive.org/release-group/2e14ac1d-cd6e-42ec-ae24-629fea2fa3e2/front-250",
+    "titulo": "Perdido en la calle (con Georgina)",
+    "fecha": "2011-03-07",
+    "artista": "Taxi",
+    "tipo": "Single"
   },
   {
     "id": "db6b66ac-2cfb-405f-afdb-085691355a91",
@@ -204835,6 +204787,14 @@
     "id": "d0e96a96-f801-4780-b041-25f73fc4e39c",
     "imagen": "https://coverartarchive.org/release-group/d0e96a96-f801-4780-b041-25f73fc4e39c/front-250",
     "titulo": "Singular Genius: The Complete ABC Singles",
+    "fecha": "2011",
+    "artista": "Ray Charles",
+    "tipo": "Album"
+  },
+  {
+    "id": "1622dcbb-39ce-40f3-b4b6-73965215e267",
+    "imagen": "https://coverartarchive.org/release-group/1622dcbb-39ce-40f3-b4b6-73965215e267/front-250",
+    "titulo": "Jazz + Genius",
     "fecha": "2011",
     "artista": "Ray Charles",
     "tipo": "Album"
@@ -209056,6 +209016,14 @@
     "tipo": "Single"
   },
   {
+    "id": "2e905c72-39f9-406d-86de-bb6d2923907c",
+    "imagen": "https://coverartarchive.org/release-group/2e905c72-39f9-406d-86de-bb6d2923907c/front-250",
+    "titulo": "Perdido en la calle",
+    "fecha": "2010-07-26",
+    "artista": "Taxi",
+    "tipo": "Single"
+  },
+  {
     "id": "1df66802-b061-4b6e-8f52-94c3d120d080",
     "imagen": "https://coverartarchive.org/release-group/1df66802-b061-4b6e-8f52-94c3d120d080/front-250",
     "titulo": "Teenage Dream",
@@ -210208,6 +210176,14 @@
     "tipo": "Album"
   },
   {
+    "id": "3d164964-d642-4cc5-a3d7-f120ad273e3c",
+    "imagen": "https://coverartarchive.org/release-group/3d164964-d642-4cc5-a3d7-f120ad273e3c/front-250",
+    "titulo": "Aquí y ahora",
+    "fecha": "2010-05-17",
+    "artista": "Taxi",
+    "tipo": "Album"
+  },
+  {
     "id": "e7e97360-d251-4b34-883d-1b505754151a",
     "imagen": "https://coverartarchive.org/release-group/e7e97360-d251-4b34-883d-1b505754151a/front-250",
     "titulo": "Commander",
@@ -211037,6 +211013,14 @@
     "titulo": "Dirty Picture",
     "fecha": "2010-04-05",
     "artista": "Kesha",
+    "tipo": "Single"
+  },
+  {
+    "id": "f05fd0b8-b43d-465e-9c6d-a97c6043a621",
+    "imagen": "https://coverartarchive.org/release-group/f05fd0b8-b43d-465e-9c6d-a97c6043a621/front-250",
+    "titulo": "Aunque me pidas perdón",
+    "fecha": "2010-04-05",
+    "artista": "Taxi",
     "tipo": "Single"
   },
   {
@@ -213648,14 +213632,6 @@
     "tipo": "Album"
   },
   {
-    "id": "ea8154c5-180f-4e8e-9713-a1673dcb0f1e",
-    "imagen": "https://coverartarchive.org/release-group/ea8154c5-180f-4e8e-9713-a1673dcb0f1e/front-250",
-    "titulo": "As Recorded at Boston Garden ’71",
-    "fecha": "2010",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "1809c022-5fc6-4277-ace2-3571576f7766",
     "imagen": "https://coverartarchive.org/release-group/1809c022-5fc6-4277-ace2-3571576f7766/front-250",
     "titulo": "Chicago Stadium",
@@ -213683,6 +213659,14 @@
     "id": "c5191f66-74e6-4a3a-a8d9-258bcde13c03",
     "imagen": "https://coverartarchive.org/release-group/c5191f66-74e6-4a3a-a8d9-258bcde13c03/front-250",
     "titulo": "Elvis Remix Collection",
+    "fecha": "2010",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "ea8154c5-180f-4e8e-9713-a1673dcb0f1e",
+    "imagen": "https://coverartarchive.org/release-group/ea8154c5-180f-4e8e-9713-a1673dcb0f1e/front-250",
+    "titulo": "As Recorded at Boston Garden ’71",
     "fecha": "2010",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -219016,6 +219000,14 @@
     "tipo": "Album"
   },
   {
+    "id": "ba4c20ef-e3be-4720-95fc-495855f1a324",
+    "imagen": "https://coverartarchive.org/release-group/ba4c20ef-e3be-4720-95fc-495855f1a324/front-250",
+    "titulo": "Hot",
+    "fecha": "2009-08-04",
+    "artista": "INNA",
+    "tipo": "Album"
+  },
+  {
     "id": "6b2c7181-c1be-47d5-b33b-e62bae32c9f3",
     "imagen": "https://coverartarchive.org/release-group/6b2c7181-c1be-47d5-b33b-e62bae32c9f3/front-250",
     "titulo": "Destroyer / Rock and Roll Over",
@@ -220222,6 +220214,14 @@
     "fecha": "2009-05-19",
     "artista": "Marta Sánchez",
     "tipo": "Single"
+  },
+  {
+    "id": "9ba11bff-953e-4817-9606-e35550e9b513",
+    "imagen": "https://coverartarchive.org/release-group/9ba11bff-953e-4817-9606-e35550e9b513/front-250",
+    "titulo": "Malditas canciones",
+    "fecha": "2009-05-19",
+    "artista": "Coti",
+    "tipo": "Album"
   },
   {
     "id": "d18ffb1b-87af-3dcd-801e-a6b648e211d3",
@@ -221488,6 +221488,14 @@
     "tipo": "Single"
   },
   {
+    "id": "c0bc0b1c-c9c2-4768-94cd-66426c57ae26",
+    "imagen": "https://coverartarchive.org/release-group/c0bc0b1c-c9c2-4768-94cd-66426c57ae26/front-250",
+    "titulo": "Nunca tendré",
+    "fecha": "2009-02-24",
+    "artista": "Coti",
+    "tipo": "Single"
+  },
+  {
     "id": "9624a23d-0f03-4fd3-8a5c-572431c78fad",
     "imagen": "https://coverartarchive.org/release-group/9624a23d-0f03-4fd3-8a5c-572431c78fad/front-250",
     "titulo": "Sunday Morning Classics",
@@ -222000,6 +222008,14 @@
     "tipo": "Single"
   },
   {
+    "id": "bb305f85-2af7-4caf-8371-6fa7dbdd1117",
+    "imagen": "https://coverartarchive.org/release-group/bb305f85-2af7-4caf-8371-6fa7dbdd1117/front-250",
+    "titulo": "Amante De La Luna",
+    "fecha": "2009-01-12",
+    "artista": "Melody",
+    "tipo": "Single"
+  },
+  {
     "id": "796beefc-072f-454a-a494-821e32c1e792",
     "imagen": "https://coverartarchive.org/release-group/796beefc-072f-454a-a494-821e32c1e792/front-250",
     "titulo": "Lucky",
@@ -222229,6 +222245,14 @@
     "titulo": "One Time (DJ Ironik Remix)",
     "fecha": "2009-01-01",
     "artista": "Justin Bieber",
+    "tipo": "Single"
+  },
+  {
+    "id": "ff1ff00e-7df9-45d1-b16e-e3dc5c9a981b",
+    "imagen": "https://coverartarchive.org/release-group/ff1ff00e-7df9-45d1-b16e-e3dc5c9a981b/front-250",
+    "titulo": "Perdoname (Nena Daconte Version)",
+    "fecha": "2009-01-01",
+    "artista": "Coti",
     "tipo": "Single"
   },
   {
@@ -223216,17 +223240,17 @@
     "tipo": "Album"
   },
   {
-    "id": "09f6cbf8-5e51-463f-9b2a-fa4004af31c8",
-    "imagen": "https://coverartarchive.org/release-group/09f6cbf8-5e51-463f-9b2a-fa4004af31c8/front-250",
-    "titulo": "75 years",
+    "id": "3719b0aa-2ff2-45a3-8cd4-48580f24f1ae",
+    "imagen": "https://coverartarchive.org/release-group/3719b0aa-2ff2-45a3-8cd4-48580f24f1ae/front-250",
+    "titulo": "75 Aniversário",
     "fecha": "2009",
     "artista": "Elvis Presley",
     "tipo": "Album"
   },
   {
-    "id": "3719b0aa-2ff2-45a3-8cd4-48580f24f1ae",
-    "imagen": "https://coverartarchive.org/release-group/3719b0aa-2ff2-45a3-8cd4-48580f24f1ae/front-250",
-    "titulo": "75 Aniversário",
+    "id": "09f6cbf8-5e51-463f-9b2a-fa4004af31c8",
+    "imagen": "https://coverartarchive.org/release-group/09f6cbf8-5e51-463f-9b2a-fa4004af31c8/front-250",
+    "titulo": "75 years",
     "fecha": "2009",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -228128,6 +228152,14 @@
     "tipo": "Album"
   },
   {
+    "id": "64a1f042-4cb2-33dc-98c2-c99260ec8b8d",
+    "imagen": "https://coverartarchive.org/release-group/64a1f042-4cb2-33dc-98c2-c99260ec8b8d/front-250",
+    "titulo": "Mirando atrás",
+    "fecha": "2008-08-26",
+    "artista": "Taxi",
+    "tipo": "Album"
+  },
+  {
     "id": "dbfa95b4-d142-4fb7-ad72-e842dbc312cb",
     "imagen": "https://coverartarchive.org/release-group/dbfa95b4-d142-4fb7-ad72-e842dbc312cb/front-250",
     "titulo": "Greenlight (remixes)",
@@ -228358,6 +228390,14 @@
     "fecha": "2008-08-05",
     "artista": "The Temptations",
     "tipo": "Album"
+  },
+  {
+    "id": "c14592a3-21b8-4939-ad4b-ac017cc0347e",
+    "imagen": "https://coverartarchive.org/release-group/c14592a3-21b8-4939-ad4b-ac017cc0347e/front-250",
+    "titulo": "Quiero un camino (con Álvaro Urquijo)",
+    "fecha": "2008-08-05",
+    "artista": "Taxi",
+    "tipo": "Single"
   },
   {
     "id": "d5e18344-6d57-38a9-931f-f55af0995177",
@@ -229670,6 +229710,14 @@
     "fecha": "2008-05-19",
     "artista": "Rihanna",
     "tipo": "Single"
+  },
+  {
+    "id": "1df8277b-73d1-4561-9c7d-efac85138cab",
+    "imagen": "https://coverartarchive.org/release-group/1df8277b-73d1-4561-9c7d-efac85138cab/front-250",
+    "titulo": "Los Buenos Días",
+    "fecha": "2008-05-19",
+    "artista": "Melody",
+    "tipo": "Album"
   },
   {
     "id": "ca4ba73e-541e-3b4f-9041-76c80f2b87ad",
@@ -232315,6 +232363,14 @@
     "id": "4b82189e-66f3-382d-a805-d7fcf09da9c4",
     "imagen": "https://coverartarchive.org/release-group/4b82189e-66f3-382d-a805-d7fcf09da9c4/front-250",
     "titulo": "Four Decades of Hits",
+    "fecha": "2008",
+    "artista": "Chicago",
+    "tipo": "Album"
+  },
+  {
+    "id": "5407967e-c389-46e5-9fd7-69fd56f86e54",
+    "imagen": "https://coverartarchive.org/release-group/5407967e-c389-46e5-9fd7-69fd56f86e54/front-250",
+    "titulo": "Live 1968",
     "fecha": "2008",
     "artista": "Chicago",
     "tipo": "Album"
@@ -239848,6 +239904,14 @@
     "tipo": "Album"
   },
   {
+    "id": "05f4a60b-6cf3-382a-979f-ef7e7e6c15f5",
+    "imagen": "https://coverartarchive.org/release-group/05f4a60b-6cf3-382a-979f-ef7e7e6c15f5/front-250",
+    "titulo": "Gatos y palomas",
+    "fecha": "2007-03-26",
+    "artista": "Coti",
+    "tipo": "Album"
+  },
+  {
     "id": "fff96d00-4615-41c1-97e2-ddb12b4c7c02",
     "imagen": "https://coverartarchive.org/release-group/fff96d00-4615-41c1-97e2-ddb12b4c7c02/front-250",
     "titulo": "Contigo donde estés",
@@ -242280,14 +242344,6 @@
     "tipo": "Publicación"
   },
   {
-    "id": "cd497550-ffd1-4d14-a088-783be1e91935",
-    "imagen": "https://coverartarchive.org/release-group/cd497550-ffd1-4d14-a088-783be1e91935/front-250",
-    "titulo": "A Legendary Performer Vol. 12",
-    "fecha": "2007",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "4830d330-dd65-4811-83ed-1f1c8baf73b6",
     "imagen": "https://coverartarchive.org/release-group/4830d330-dd65-4811-83ed-1f1c8baf73b6/front-250",
     "titulo": "Elvis Birth of a Legend",
@@ -242307,6 +242363,14 @@
     "id": "9bdaffcc-8818-40e1-9c42-1db88d12c9d7",
     "imagen": "https://coverartarchive.org/release-group/9bdaffcc-8818-40e1-9c42-1db88d12c9d7/front-250",
     "titulo": "A Legendary Performer Vol. 13",
+    "fecha": "2007",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "cd497550-ffd1-4d14-a088-783be1e91935",
+    "imagen": "https://coverartarchive.org/release-group/cd497550-ffd1-4d14-a088-783be1e91935/front-250",
+    "titulo": "A Legendary Performer Vol. 12",
     "fecha": "2007",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -247445,6 +247509,14 @@
     "titulo": "Agua",
     "fecha": "2006-06-13",
     "artista": "Vanesa Martín",
+    "tipo": "Album"
+  },
+  {
+    "id": "876d29ec-cd81-33ca-96dd-0021fa8fe2df",
+    "imagen": "https://coverartarchive.org/release-group/876d29ec-cd81-33ca-96dd-0021fa8fe2df/front-250",
+    "titulo": "Mil historias",
+    "fecha": "2006-06-12",
+    "artista": "Taxi",
     "tipo": "Album"
   },
   {
@@ -254904,14 +254976,6 @@
     "tipo": "Single"
   },
   {
-    "id": "ba4c20ef-e3be-4720-95fc-495855f1a324",
-    "imagen": "https://coverartarchive.org/release-group/ba4c20ef-e3be-4720-95fc-495855f1a324/front-250",
-    "titulo": "Hot",
-    "fecha": "2005-07-01",
-    "artista": "INNA",
-    "tipo": "Album"
-  },
-  {
     "id": "b9cfe1e6-2042-3bdb-8152-19b07ab6330a",
     "imagen": "https://coverartarchive.org/release-group/b9cfe1e6-2042-3bdb-8152-19b07ab6330a/front-250",
     "titulo": "Singles & Remixes",
@@ -256766,6 +256830,14 @@
     "fecha": "2005-02-08",
     "artista": "U2",
     "tipo": "Single"
+  },
+  {
+    "id": "4982b863-7e12-3cfa-8c97-2d46cbec10ed",
+    "imagen": "https://coverartarchive.org/release-group/4982b863-7e12-3cfa-8c97-2d46cbec10ed/front-250",
+    "titulo": "Canciones para llevar",
+    "fecha": "2005-02-08",
+    "artista": "Coti",
+    "tipo": "Album"
   },
   {
     "id": "23013745-34d3-4901-ac08-e8d7edf6b359",
@@ -261350,6 +261422,30 @@
     "fecha": "2005",
     "artista": "David Bowie",
     "tipo": "EP"
+  },
+  {
+    "id": "3858cb85-862f-395e-944a-39c1cc8f23d2",
+    "imagen": "https://coverartarchive.org/release-group/3858cb85-862f-395e-944a-39c1cc8f23d2/front-250",
+    "titulo": "Esta mañana y otros cuentos",
+    "fecha": "2005",
+    "artista": "Coti",
+    "tipo": "Album"
+  },
+  {
+    "id": "0a0d6853-aba3-4f04-a30d-78741c818f62",
+    "imagen": "https://coverartarchive.org/release-group/0a0d6853-aba3-4f04-a30d-78741c818f62/front-250",
+    "titulo": "Dance Mixes",
+    "fecha": "2005",
+    "artista": "Rick Astley",
+    "tipo": "EP"
+  },
+  {
+    "id": "a7b5ba15-9b90-304a-8147-c1c5b34d970c",
+    "imagen": "https://coverartarchive.org/release-group/a7b5ba15-9b90-304a-8147-c1c5b34d970c/front-250",
+    "titulo": "Libre",
+    "fecha": "2005",
+    "artista": "Taxi",
+    "tipo": "Album"
   },
   {
     "id": "06a2c6b8-edb2-470a-889d-dba7b3d04742",
@@ -272872,6 +272968,14 @@
     "tipo": "Single"
   },
   {
+    "id": "385f9a89-5fe7-3cb7-ab90-3478807506fb",
+    "imagen": "https://coverartarchive.org/release-group/385f9a89-5fe7-3cb7-ab90-3478807506fb/front-250",
+    "titulo": "Coti",
+    "fecha": "2003-04-27",
+    "artista": "Coti",
+    "tipo": "Album"
+  },
+  {
     "id": "72a2760b-c664-324e-8692-2293316e4168",
     "imagen": "https://coverartarchive.org/release-group/72a2760b-c664-324e-8692-2293316e4168/front-250",
     "titulo": "BD Jazz, Volume 2: Louis Armstrong / Camilo Sanin",
@@ -276656,6 +276760,14 @@
     "tipo": "Single"
   },
   {
+    "id": "784e1492-544d-4040-aa05-b9c9b6b7e45a",
+    "imagen": "https://coverartarchive.org/release-group/784e1492-544d-4040-aa05-b9c9b6b7e45a/front-250",
+    "titulo": "All About Love",
+    "fecha": "2003",
+    "artista": "Michael Bolton",
+    "tipo": "Publicación"
+  },
+  {
     "id": "fe9589fd-3764-445b-b9b0-b491c08bb66b",
     "imagen": "https://coverartarchive.org/release-group/fe9589fd-3764-445b-b9b0-b491c08bb66b/front-250",
     "titulo": "Said I Love You... - The Best Of",
@@ -278294,6 +278406,22 @@
     "fecha": "2003",
     "artista": "David Bowie",
     "tipo": "Broadcast"
+  },
+  {
+    "id": "5d62e706-f42e-4ed7-b5ff-5e459725e227",
+    "imagen": "https://coverartarchive.org/release-group/5d62e706-f42e-4ed7-b5ff-5e459725e227/front-250",
+    "titulo": "The Best of Ace",
+    "fecha": "2003",
+    "artista": "Ace",
+    "tipo": "Album"
+  },
+  {
+    "id": "df43035d-1eaf-479e-8946-deb3b7512a77",
+    "imagen": "https://coverartarchive.org/release-group/df43035d-1eaf-479e-8946-deb3b7512a77/front-250",
+    "titulo": "T.Q.M.",
+    "fecha": "2003",
+    "artista": "Melody",
+    "tipo": "Album"
   },
   {
     "id": "c56ecb3f-810b-3b9c-9ca3-f28f32228b85",
@@ -286632,6 +286760,14 @@
     "tipo": "Album"
   },
   {
+    "id": "63c5fbab-b4ec-414c-b790-b034ab8f6901",
+    "imagen": "https://coverartarchive.org/release-group/63c5fbab-b4ec-414c-b790-b034ab8f6901/front-250",
+    "titulo": "Muévete",
+    "fecha": "2002",
+    "artista": "Melody",
+    "tipo": "Album"
+  },
+  {
     "id": "d73d37e9-252c-33f8-b6d9-7b86b929dc59",
     "imagen": "https://coverartarchive.org/release-group/d73d37e9-252c-33f8-b6d9-7b86b929dc59/front-250",
     "titulo": "Whenever, Wherever",
@@ -294766,6 +294902,14 @@
     "fecha": "2001",
     "artista": "David Bowie",
     "tipo": "EP"
+  },
+  {
+    "id": "e390c050-af66-4386-9a16-30a250bb25ce",
+    "imagen": "https://coverartarchive.org/release-group/e390c050-af66-4386-9a16-30a250bb25ce/front-250",
+    "titulo": "De pata negra",
+    "fecha": "2001",
+    "artista": "Melody",
+    "tipo": "Album"
   },
   {
     "id": "d66639ee-f3f4-31ca-ab57-7c42d1abdf66",
@@ -337208,6 +337352,14 @@
     "tipo": "Album"
   },
   {
+    "id": "d8b420a3-3386-4629-800e-67133b46d5f2",
+    "imagen": "https://coverartarchive.org/release-group/d8b420a3-3386-4629-800e-67133b46d5f2/front-250",
+    "titulo": "King Of Bass",
+    "fecha": "1996",
+    "artista": "DJ Snake",
+    "tipo": "Publicación"
+  },
+  {
     "id": "58307570-7252-3f39-9648-42eb667bf536",
     "imagen": "https://coverartarchive.org/release-group/58307570-7252-3f39-9648-42eb667bf536/front-250",
     "titulo": "Stuck With Me",
@@ -354512,6 +354664,14 @@
     "tipo": "Single"
   },
   {
+    "id": "cf7f0c00-c848-39b0-affe-b4ffdf64b8ed",
+    "imagen": "https://coverartarchive.org/release-group/cf7f0c00-c848-39b0-affe-b4ffdf64b8ed/front-250",
+    "titulo": "How Long: The Best of Ace",
+    "fecha": "1993-08-03",
+    "artista": "Ace",
+    "tipo": "Album"
+  },
+  {
     "id": "c6dedea4-d71b-304e-878c-cdfe963f4e52",
     "imagen": "https://coverartarchive.org/release-group/c6dedea4-d71b-304e-878c-cdfe963f4e52/front-250",
     "titulo": "The Very Best of Gloria Gaynor",
@@ -371504,14 +371664,6 @@
     "tipo": "Album"
   },
   {
-    "id": "b6f8b7cf-996d-4e32-9af8-a1d71242998b",
-    "imagen": "https://coverartarchive.org/release-group/b6f8b7cf-996d-4e32-9af8-a1d71242998b/front-250",
-    "titulo": "Elvis Forever 30 Hits",
-    "fecha": "1991",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "b990f424-78df-47e0-9c2f-623edd88dbc3",
     "imagen": "https://coverartarchive.org/release-group/b990f424-78df-47e0-9c2f-623edd88dbc3/front-250",
     "titulo": "Christmas Favorites",
@@ -371587,6 +371739,14 @@
     "id": "76e2e9a5-aee9-4114-88d0-25b832b7a743",
     "imagen": "https://coverartarchive.org/release-group/76e2e9a5-aee9-4114-88d0-25b832b7a743/front-250",
     "titulo": "Grandes Del Rock’n’Roll",
+    "fecha": "1991",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "b6f8b7cf-996d-4e32-9af8-a1d71242998b",
+    "imagen": "https://coverartarchive.org/release-group/b6f8b7cf-996d-4e32-9af8-a1d71242998b/front-250",
+    "titulo": "Elvis Forever 30 Hits",
     "fecha": "1991",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -389904,6 +390064,14 @@
     "tipo": "Album"
   },
   {
+    "id": "120c21ff-d67d-442f-a31c-4d74bd20c932",
+    "imagen": "https://coverartarchive.org/release-group/120c21ff-d67d-442f-a31c-4d74bd20c932/front-250",
+    "titulo": "How Long / You're All I Need",
+    "fecha": "1987-11-21",
+    "artista": "Ace",
+    "tipo": "Single"
+  },
+  {
     "id": "068e7a5d-dabc-372a-8186-2a48ffccfaf5",
     "imagen": "https://coverartarchive.org/release-group/068e7a5d-dabc-372a-8186-2a48ffccfaf5/front-250",
     "titulo": "The Singles",
@@ -393758,6 +393926,14 @@
     "fecha": "1987",
     "artista": "David Bowie",
     "tipo": "Single"
+  },
+  {
+    "id": "38f8c8ea-7ca2-3a2e-915a-62f3cd3f3bac",
+    "imagen": "https://coverartarchive.org/release-group/38f8c8ea-7ca2-3a2e-915a-62f3cd3f3bac/front-250",
+    "titulo": "The Best of Ace",
+    "fecha": "1987",
+    "artista": "Ace",
+    "tipo": "Album"
   },
   {
     "id": "c59da6f6-779e-35ff-8828-7149f7bff411",
@@ -400069,6 +400245,14 @@
     "titulo": "Man in the Middle",
     "fecha": "1985",
     "artista": "David Bowie",
+    "tipo": "Single"
+  },
+  {
+    "id": "e1310024-3753-4c4f-a85a-7d68158e3a31",
+    "imagen": "https://coverartarchive.org/release-group/e1310024-3753-4c4f-a85a-7d68158e3a31/front-250",
+    "titulo": "Di mi quando",
+    "fecha": "1985",
+    "artista": "Aventura",
     "tipo": "Single"
   },
   {
@@ -407192,6 +407376,14 @@
     "tipo": "Album"
   },
   {
+    "id": "ff04183a-4801-3183-b959-f554a8ed7b0e",
+    "imagen": "https://coverartarchive.org/release-group/ff04183a-4801-3183-b959-f554a8ed7b0e/front-250",
+    "titulo": "Six‐A‐Side",
+    "fecha": "1982-06",
+    "artista": "Ace",
+    "tipo": "Album"
+  },
+  {
     "id": "b5a83d68-db7c-35ef-a1aa-363cc9b61f17",
     "imagen": "https://coverartarchive.org/release-group/b5a83d68-db7c-35ef-a1aa-363cc9b61f17/front-250",
     "titulo": "Family Man",
@@ -408072,14 +408264,6 @@
     "tipo": "Album"
   },
   {
-    "id": "5f710742-9301-4c80-8d22-bef536cd84b8",
-    "imagen": "https://coverartarchive.org/release-group/5f710742-9301-4c80-8d22-bef536cd84b8/front-250",
-    "titulo": "Suspicious Minds",
-    "fecha": "1982",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "a789fcd1-8e24-354b-b2a9-a44d789784f5",
     "imagen": "https://coverartarchive.org/release-group/a789fcd1-8e24-354b-b2a9-a44d789784f5/front-250",
     "titulo": "Memories of Christmas",
@@ -408107,6 +408291,14 @@
     "id": "f48b08be-c8be-45f5-9b37-be3a3ebd50cd",
     "imagen": "https://coverartarchive.org/release-group/f48b08be-c8be-45f5-9b37-be3a3ebd50cd/front-250",
     "titulo": "By Request",
+    "fecha": "1982",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "5f710742-9301-4c80-8d22-bef536cd84b8",
+    "imagen": "https://coverartarchive.org/release-group/5f710742-9301-4c80-8d22-bef536cd84b8/front-250",
+    "titulo": "Suspicious Minds",
     "fecha": "1982",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -414352,6 +414544,14 @@
     "tipo": "Album"
   },
   {
+    "id": "81523648-2468-4a4f-8d34-6cfa379986cb",
+    "imagen": "https://coverartarchive.org/release-group/81523648-2468-4a4f-8d34-6cfa379986cb/front-250",
+    "titulo": "Grandes Éxitos en Español",
+    "fecha": "1980",
+    "artista": "Umberto Tozzi",
+    "tipo": "Album"
+  },
+  {
     "id": "9b2a2139-fdb2-3c9a-9efa-6dc49805a27c",
     "imagen": "https://coverartarchive.org/release-group/9b2a2139-fdb2-3c9a-9efa-6dc49805a27c/front-250",
     "titulo": "Tozzi",
@@ -419760,6 +419960,14 @@
     "tipo": "Album"
   },
   {
+    "id": "6a2b6f01-9b43-4fee-a2b0-105162c49929",
+    "imagen": "https://coverartarchive.org/release-group/6a2b6f01-9b43-4fee-a2b0-105162c49929/front-250",
+    "titulo": "Found Out the Hard Way",
+    "fecha": "1977-05-13",
+    "artista": "Ace",
+    "tipo": "Single"
+  },
+  {
     "id": "eabb68b3-d57c-359a-8215-91f38d365da5",
     "imagen": "https://coverartarchive.org/release-group/eabb68b3-d57c-359a-8215-91f38d365da5/front-250",
     "titulo": "The Beatles at the Hollywood Bowl",
@@ -419952,6 +420160,14 @@
     "tipo": "Single"
   },
   {
+    "id": "004c966f-1d95-4e1e-827f-be15ddbc31b9",
+    "imagen": "https://coverartarchive.org/release-group/004c966f-1d95-4e1e-827f-be15ddbc31b9/front-250",
+    "titulo": "You're All That I Need",
+    "fecha": "1977-02-11",
+    "artista": "Ace",
+    "tipo": "Single"
+  },
+  {
     "id": "6c9381ab-6e9c-4352-b7af-8a893fbf232e",
     "imagen": "https://coverartarchive.org/release-group/6c9381ab-6e9c-4352-b7af-8a893fbf232e/front-250",
     "titulo": "Crazy Water",
@@ -420093,6 +420309,14 @@
     "titulo": "Jennifer Warnes",
     "fecha": "1977-01",
     "artista": "Jennifer Warnes",
+    "tipo": "Album"
+  },
+  {
+    "id": "bd846c36-7f45-3e41-9191-e6472b59d92e",
+    "imagen": "https://coverartarchive.org/release-group/bd846c36-7f45-3e41-9191-e6472b59d92e/front-250",
+    "titulo": "No Strings",
+    "fecha": "1977-01",
+    "artista": "Ace",
     "tipo": "Album"
   },
   {
@@ -423664,6 +423888,14 @@
     "tipo": "Single"
   },
   {
+    "id": "1258d7e3-2a03-47ed-949c-4413b4861fd4",
+    "imagen": "https://coverartarchive.org/release-group/1258d7e3-2a03-47ed-949c-4413b4861fd4/front-250",
+    "titulo": "No Future In Your Eyes",
+    "fecha": "1975-11-28",
+    "artista": "Ace",
+    "tipo": "Single"
+  },
+  {
     "id": "f7acf0bb-c590-4d51-bcb0-9820e7e478f3",
     "imagen": "https://coverartarchive.org/release-group/f7acf0bb-c590-4d51-bcb0-9820e7e478f3/front-250",
     "titulo": "Green Green Grass of Home",
@@ -425888,6 +426120,14 @@
     "tipo": "Single"
   },
   {
+    "id": "78c89a63-00a5-3fa6-af5b-bd50b32331b6",
+    "imagen": "https://coverartarchive.org/release-group/78c89a63-00a5-3fa6-af5b-bd50b32331b6/front-250",
+    "titulo": "Time for Another",
+    "fecha": "1975",
+    "artista": "Ace",
+    "tipo": "Album"
+  },
+  {
     "id": "7f6de217-7c31-4ac1-9195-5f506ec5ae79",
     "imagen": "https://coverartarchive.org/release-group/7f6de217-7c31-4ac1-9195-5f506ec5ae79/front-250",
     "titulo": "White Christmas",
@@ -426046,6 +426286,14 @@
     "fecha": "1974-10-04",
     "artista": "John Lennon",
     "tipo": "Album"
+  },
+  {
+    "id": "e5da29c6-e3da-43c0-9432-4ae370777d9a",
+    "imagen": "https://coverartarchive.org/release-group/e5da29c6-e3da-43c0-9432-4ae370777d9a/front-250",
+    "titulo": "How Long",
+    "fecha": "1974-10-04",
+    "artista": "Ace",
+    "tipo": "Single"
   },
   {
     "id": "ce3619a4-18a9-3dea-bc34-2e4cb9c8151d",
@@ -427501,6 +427749,14 @@
     "titulo": "1973-03-10: Long Beach Arena, Los Angeles, CA, USA",
     "fecha": "1974",
     "artista": "David Bowie",
+    "tipo": "Album"
+  },
+  {
+    "id": "0188ab18-e855-31da-aa97-f4e650a87bc9",
+    "imagen": "https://coverartarchive.org/release-group/0188ab18-e855-31da-aa97-f4e650a87bc9/front-250",
+    "titulo": "Five‐a‐Side",
+    "fecha": "1974",
+    "artista": "Ace",
     "tipo": "Album"
   },
   {
@@ -431054,6 +431310,14 @@
     "fecha": "1972",
     "artista": "David Bowie",
     "tipo": "EP"
+  },
+  {
+    "id": "0e1a55f5-3b8d-43ff-aaa3-403cb29d9e60",
+    "imagen": "https://coverartarchive.org/release-group/0e1a55f5-3b8d-43ff-aaa3-403cb29d9e60/front-250",
+    "titulo": "Johnny B. Goode",
+    "fecha": "1972",
+    "artista": "Starship",
+    "tipo": "Single"
   },
   {
     "id": "6e33402c-62db-3dc9-af86-2c1bef99ce2f",
@@ -442128,14 +442392,6 @@
     "tipo": "Single"
   },
   {
-    "id": "a643a6b0-75be-41fa-b354-f2a4050d3d91",
-    "imagen": "https://coverartarchive.org/release-group/a643a6b0-75be-41fa-b354-f2a4050d3d91/front-250",
-    "titulo": "(Such an) Easy Question / It Feels So Right",
-    "fecha": "1965",
-    "artista": "Elvis Presley",
-    "tipo": "Single"
-  },
-  {
     "id": "ec363af4-c121-4b29-ba70-7918c1cfbe04",
     "imagen": "https://coverartarchive.org/release-group/ec363af4-c121-4b29-ba70-7918c1cfbe04/front-250",
     "titulo": "Tell Me Why",
@@ -442147,6 +442403,14 @@
     "id": "30cdf9fa-08e8-48d1-bf98-82fa1f5d9745",
     "imagen": "https://coverartarchive.org/release-group/30cdf9fa-08e8-48d1-bf98-82fa1f5d9745/front-250",
     "titulo": "Crying In The Chapel",
+    "fecha": "1965",
+    "artista": "Elvis Presley",
+    "tipo": "Single"
+  },
+  {
+    "id": "a643a6b0-75be-41fa-b354-f2a4050d3d91",
+    "imagen": "https://coverartarchive.org/release-group/a643a6b0-75be-41fa-b354-f2a4050d3d91/front-250",
+    "titulo": "(Such an) Easy Question / It Feels So Right",
     "fecha": "1965",
     "artista": "Elvis Presley",
     "tipo": "Single"
@@ -452219,14 +452483,6 @@
     "id": "4d0660b6-3a72-48b2-b9f7-ad806980ef12",
     "imagen": "https://coverartarchive.org/release-group/4d0660b6-3a72-48b2-b9f7-ad806980ef12/front-250",
     "titulo": "Grandes Éxitos 91_96",
-    "fecha": "",
-    "artista": "Alejandro Sanz",
-    "tipo": "Album"
-  },
-  {
-    "id": "7884d422-7f1e-472e-8a36-4a8dc12b62b7",
-    "imagen": "https://coverartarchive.org/release-group/7884d422-7f1e-472e-8a36-4a8dc12b62b7/front-250",
-    "titulo": "Y si fueran ellas",
     "fecha": "",
     "artista": "Alejandro Sanz",
     "tipo": "Album"
@@ -463291,6 +463547,14 @@
     "id": "a04befe7-8049-48ce-9b1c-b16ca80a0dee",
     "imagen": "https://coverartarchive.org/release-group/a04befe7-8049-48ce-9b1c-b16ca80a0dee/front-250",
     "titulo": "Rock'n Roll Legend",
+    "fecha": "",
+    "artista": "Elvis Presley",
+    "tipo": "Publicación"
+  },
+  {
+    "id": "b4a64a57-6a36-4ebc-ba0c-4f90e86f07f8",
+    "imagen": "https://coverartarchive.org/release-group/b4a64a57-6a36-4ebc-ba0c-4f90e86f07f8/front-250",
+    "titulo": "he King and Friends Disc 2",
     "fecha": "",
     "artista": "Elvis Presley",
     "tipo": "Publicación"
@@ -478942,6 +479206,14 @@
     "fecha": "",
     "artista": "Spin Doctors",
     "tipo": "Album"
+  },
+  {
+    "id": "f55df63a-1164-4d33-bded-ad69b92664e3",
+    "imagen": "https://coverartarchive.org/release-group/f55df63a-1164-4d33-bded-ad69b92664e3/front-250",
+    "titulo": "Cleopatra's Cat",
+    "fecha": "",
+    "artista": "Spin Doctors",
+    "tipo": "Single"
   },
   {
     "id": "1572b055-79e5-446b-8354-142b85c8d47a",
@@ -494597,6 +494869,14 @@
     "titulo": "2004‐05‐10: Starlight Theatre, Kansas City, MO, USA",
     "fecha": "",
     "artista": "David Bowie",
+    "tipo": "Album"
+  },
+  {
+    "id": "7743cf6f-df51-35c2-9f7f-f7c6b7e4e24e",
+    "imagen": "https://coverartarchive.org/release-group/7743cf6f-df51-35c2-9f7f-f7c6b7e4e24e/front-250",
+    "titulo": "Melodía",
+    "fecha": "",
+    "artista": "Melody",
     "tipo": "Album"
   }
 ]
