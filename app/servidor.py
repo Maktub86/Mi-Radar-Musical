@@ -14,6 +14,7 @@ from urllib.parse import quote, urlencode
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 from concurrent.futures import ThreadPoolExecutor, as_completed
+EJECUTOR_HILOS = ThreadPoolExecutor  # alias: dentro de api_recomendaciones el nombre original queda como variable local
 import unicodedata
 import difflib
 import random
@@ -645,13 +646,7 @@ body.mr-con-reproductor #mr-aviso-lento{bottom:100px}
    const acciones=art.querySelector('.acciones'),titulo=art.dataset.titulo,artista=art.dataset.artista;
    if(!acciones||!titulo||!artista)return;
    art.dataset.mrVoto='1';
-   const si=boton('👍','mr-voto-si','Me gusta: buscaré canciones parecidas a esta'),no=boton('👎','mr-voto-no','No me interesa: no volverá a salir');
-   si.addEventListener('click',async function(){
-    si.disabled=true;
-    const nuevo=!si.classList.contains('activo');
-    if(await votar(titulo,artista,nuevo?1:0)){si.classList.toggle('activo',nuevo);si.title=nuevo?'Marcada como «me gusta»':'Me gusta: buscaré canciones parecidas a esta';}
-    si.disabled=false;
-   });
+   const no=boton('👎','mr-voto-no','No me interesa: no volverá a salir');
    no.addEventListener('click',async function(){
     no.disabled=true;
     if(await votar(titulo,artista,-1)){
@@ -664,7 +659,7 @@ body.mr-con-reproductor #mr-aviso-lento{bottom:100px}
     }
     no.disabled=false;
    });
-   acciones.appendChild(si);acciones.appendChild(no);
+   acciones.appendChild(no);
   }
   function revisar(){document.querySelectorAll('#resultados article.cancion').forEach(preparar);}
   let espera=null;
@@ -2622,12 +2617,23 @@ def api_recomendaciones():
         pesos_semilla = [max(1, artistas.get(clave(s["nombre"]), {}).get("total", 1)) ** 0.5 for s in semillas_pistas]
         semillas_pistas = _orden_ponderado(semillas_pistas, pesos_semilla, semilla_azar)
     votos_usuario = _votos_recomendaciones()
+    try:
+        with _CANDADO_GUARDADAS_RECOMENDACIONES:
+            guardadas_usuario = [g for g in _leer_guardadas_recomendaciones().get("canciones", []) if isinstance(g, dict)]
+    except Exception:
+        guardadas_usuario = []
     if not decada_solicitada and not genero_solicitado:
-        # Las canciones que has marcado con «me gusta» pasan a ser puntos de partida (máx. 2).
-        gustadas = [
-            {"nombre": v.get("artista") or "", "titulo": v.get("titulo") or "", "genero": "", "anio": ""}
-            for v in votos_usuario.values() if v.get("v") == 1 and v.get("artista") and v.get("titulo")
-        ]
+        # Guardar una canción significa que te gusta: las guardadas (y los «me gusta» antiguos)
+        # pasan a ser puntos de partida (máx. 2 por búsqueda).
+        gustadas = {}
+        for g in list(guardadas_usuario) + [
+            {"artista": v.get("artista"), "titulo": v.get("titulo")}
+            for v in votos_usuario.values() if v.get("v") == 1
+        ]:
+            if g.get("artista") and g.get("titulo"):
+                gustadas[_llave_voto(g["artista"], g["titulo"])] = {
+                    "nombre": str(g["artista"]), "titulo": str(g["titulo"]), "genero": "", "anio": ""}
+        gustadas = list(gustadas.values())
         if gustadas:
             semillas_pistas = _orden_ponderado(gustadas, [1] * len(gustadas), semilla_azar)[:2] + semillas_pistas
     semillas_lastfm = []
@@ -2719,6 +2725,91 @@ def api_recomendaciones():
 
     # Si Last.fm no está configurado o no devuelve suficientes temas, completar con el
     # sistema anterior de artistas relacionados de Deezer.
+    # Fuente nueva: artistas parecidos a todo tu gusto (lo guardado pesa más) y lo más popular
+    # que aún no tienes de tus artistas. Se limita en tiempo para no agotar la petición.
+    def recomendar_por_artistas_parecidos():
+        inicio_fuente = time.time()
+        pesos_artista = {}
+        for k, datos_a in artistas.items():
+            pesos_artista[k] = [datos_a["nombre"], max(1, datos_a["total"]) ** 0.5]
+        for g in guardadas_usuario:
+            nombre_g = str(g.get("artista") or "").strip()
+            if nombre_g:
+                entrada_g = pesos_artista.setdefault(clave(nombre_g), [nombre_g, 1.0])
+                entrada_g[1] += 3.0
+        if not pesos_artista:
+            return
+        claves = list(pesos_artista)
+        elegidos = _orden_ponderado(claves, [pesos_artista[k][1] for k in claves], semilla_azar ^ 0x2F1B)[:8]
+
+        def id_de_artista(k):
+            nombre_k = pesos_artista[k][0]
+            fijado = _ajuste_leer("artista_deezer:" + clave(nombre_k), "")
+            if str(fijado or "").isdigit():
+                return str(fijado)
+            datos_k = consultar("https://api.deezer.com/search/artist?" + urlencode({"q": nombre_k, "limit": 8})).get("data") or []
+            iguales_k = [a for a in datos_k if clave(a.get("name")) == k]
+            if not iguales_k:
+                return ""
+            return str(max(iguales_k, key=lambda a: int(a.get("nb_fan") or 0)).get("id") or "")
+
+        def trabajo(k):
+            try:
+                id_k = id_de_artista(k)
+                if not id_k:
+                    return k, "", []
+                relacionados_k = consultar("https://api.deezer.com/artist/" + id_k + "/related?" + urlencode({"limit": 12})).get("data") or []
+                return k, id_k, relacionados_k
+            except Exception:
+                return k, "", []
+
+        with EJECUTOR_HILOS(max_workers=4) as ejecutor:
+            resultados_k = list(ejecutor.map(trabajo, elegidos))
+        if time.time() - inicio_fuente > 6:
+            return
+
+        puntos = {}
+        for k, id_k, relacionados_k in resultados_k:
+            for posicion, rel in enumerate(relacionados_k):
+                id_rel = str(rel.get("id") or "")
+                if not id_rel or clave(rel.get("name")) in artistas:
+                    continue  # solo artistas nuevos para ti
+                entrada_rel = puntos.setdefault(id_rel, {"nombre": rel.get("name") or "", "fans": int(rel.get("nb_fan") or 0), "puntos": 0.0, "quien": []})
+                entrada_rel["puntos"] += pesos_artista[k][1] * max(0.2, 1.0 - posicion * 0.06)
+                if pesos_artista[k][0] not in entrada_rel["quien"]:
+                    entrada_rel["quien"].append(pesos_artista[k][0])
+        mejores = sorted(puntos.items(), key=lambda kv: (-kv[1]["puntos"], -kv[1]["fans"]))[:6]
+        maximo = mejores[0][1]["puntos"] if mejores else 1.0
+
+        def top_de(par):
+            id_rel, datos_rel = par
+            top_rel = consultar("https://api.deezer.com/artist/" + id_rel + "/top?" + urlencode({"limit": 5})).get("data") or []
+            return datos_rel, top_rel
+
+        def top_propio(par):
+            k, id_k = par
+            return k, consultar("https://api.deezer.com/artist/" + id_k + "/top?" + urlencode({"limit": 15})).get("data") or []
+
+        propios = [(k, id_k) for k, id_k, _ in resultados_k if id_k][:3]
+        with EJECUTOR_HILOS(max_workers=4) as ejecutor:
+            tops_nuevos = list(ejecutor.map(top_de, mejores))
+            tops_propios = list(ejecutor.map(top_propio, propios))
+        for datos_rel, top_rel in tops_nuevos:
+            semilla_rel = {"nombre": " + ".join(datos_rel["quien"][:3]), "generos": {}}
+            peso_rel = 0.55 + 0.45 * (datos_rel["puntos"] / maximo)
+            for pista in top_rel:
+                añadir_candidata(pista, semilla_rel, peso_rel, "Artistas parecidos", completar_datos=False)
+        for k, top_k in tops_propios:
+            semilla_k = {"nombre": pesos_artista[k][0], "generos": artistas.get(k, {}).get("generos", {})}
+            for pista in top_k:
+                añadir_candidata(pista, semilla_k, 0.9, "Tus artistas", completar_datos=False)
+
+    if not decada_solicitada and not genero_solicitado:
+        try:
+            recomendar_por_artistas_parecidos()
+        except Exception as error:
+            app.logger.info("Recomendaciones: fuente de artistas parecidos no disponible: %s", error)
+
     if len(candidatos) < 10 or decada_solicitada:
         semillas_artistas = list(artistas.values())
         if genero_solicitado:
@@ -2941,11 +3032,17 @@ def api_recomendaciones():
         clave_artista_voto = normalizar_texto(voto_guardado.get("artista"))
         destino_voto = me_gusta_artista if voto_guardado.get("v") == 1 else no_gusta_artista
         destino_voto[clave_artista_voto] = destino_voto.get(clave_artista_voto, 0) + 1
+    llaves_guardadas = set()
+    for g in guardadas_usuario:
+        clave_artista_guardada = normalizar_texto(g.get("artista"))
+        me_gusta_artista[clave_artista_guardada] = me_gusta_artista.get(clave_artista_guardada, 0) + 1
+        llaves_guardadas.add(_llave_voto(g.get("artista"), g.get("titulo")))
 
     def _descartada_por_voto(pista):
         artista_pista = normalizar_texto(pista.get("artista"))
-        if _llave_voto(pista.get("artista"), pista.get("titulo")) in votos_usuario:
-            return True  # ya la has valorado (gustada o descartada): no se repite
+        llave_pista = _llave_voto(pista.get("artista"), pista.get("titulo"))
+        if llave_pista in votos_usuario or llave_pista in llaves_guardadas:
+            return True  # ya la has guardado o descartado: no se repite
         return no_gusta_artista.get(artista_pista, 0) >= 2 and me_gusta_artista.get(artista_pista, 0) == 0
 
     ordenadas = [p for p in ordenadas if not _descartada_por_voto(p)]
