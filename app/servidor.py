@@ -1659,6 +1659,34 @@ def _ajuste_escribir(clave, valor):
         _cache_ajustes["t"] = 0.0
 
 
+_CACHE_EXTERNA = {}
+_CACHE_EXTERNA_SEGUNDOS = 12 * 3600
+_CANDADO_GUSTOS = threading.Lock()
+
+
+def _registrar_gustos(canciones):
+    """Guarda para siempre las canciones que guardas: siguen contando como gusto aunque luego las borres."""
+    nuevas = [
+        {"artista": str(c.get("artista") or "")[:200], "titulo": str(c.get("titulo") or "")[:200]}
+        for c in canciones if isinstance(c, dict) and c.get("artista") and c.get("titulo")
+    ]
+    if not nuevas:
+        return
+    with _CANDADO_GUSTOS:
+        actuales = _ajuste_leer("historial_gustos", [])
+        actuales = [g for g in actuales if isinstance(g, dict)] if isinstance(actuales, list) else []
+        vistas = {_llave_voto(g.get("artista"), g.get("titulo")) for g in actuales}
+        cambiado = False
+        for cancion in nuevas:
+            llave = _llave_voto(cancion["artista"], cancion["titulo"])
+            if llave not in vistas:
+                actuales.append(cancion)
+                vistas.add(llave)
+                cambiado = True
+        if cambiado:
+            _ajuste_escribir("historial_gustos", actuales[-3000:])
+
+
 def _ajustes_con_prefijo(prefijo):
     with _CANDADO_AJUSTES:
         return {k[len(prefijo):]: v for k, v in _ajustes_todos().items() if k.startswith(prefijo) and isinstance(v, dict)}
@@ -2333,6 +2361,10 @@ def api_anadir_guardadas_recomendaciones():
             "portada": str(cancion.get("portada") or "")[:2000],
             "preview": str(cancion.get("preview") or "")[:2000],
         })
+    try:
+        _registrar_gustos(nuevas)
+    except Exception:
+        pass
     with _CANDADO_GUARDADAS_RECOMENDACIONES:
         try:
             if _url_bd_recomendaciones():
@@ -2481,12 +2513,19 @@ def api_recomendaciones():
         timeout = min(timeout, 1.0 if decada_solicitada else 1.5)
         if url in cache_peticion:
             return cache_peticion[url]
+        guardado_global = _CACHE_EXTERNA.get(url)
+        if guardado_global and time.time() - guardado_global[0] < _CACHE_EXTERNA_SEGUNDOS:
+            cache_peticion[url] = guardado_global[1]
+            return guardado_global[1]
         try:
             pet = Request(url, headers={"User-Agent": "MiRadarMusical/1.0"})
             with urlopen(pet, timeout=timeout) as respuesta:
                 datos = json.loads(respuesta.read().decode("utf-8"))
             if isinstance(datos, dict) and not datos.get("error"):
                 cache_peticion[url] = datos
+                if len(_CACHE_EXTERNA) > 4000:
+                    _CACHE_EXTERNA.clear()
+                _CACHE_EXTERNA[url] = (time.time(), datos)
                 return datos
         except Exception as error:
             app.logger.info("Recomendaciones: fallo consultando catálogo: %s", error)
@@ -2622,6 +2661,20 @@ def api_recomendaciones():
             guardadas_usuario = [g for g in _leer_guardadas_recomendaciones().get("canciones", []) if isinstance(g, dict)]
     except Exception:
         guardadas_usuario = []
+    try:
+        # El historial recuerda todo lo que has guardado alguna vez, aunque luego lo borres.
+        historial_gustos = _ajuste_leer("historial_gustos", [])
+        historial_gustos = [g for g in historial_gustos if isinstance(g, dict)] if isinstance(historial_gustos, list) else []
+        llaves_actuales = {_llave_voto(g.get("artista"), g.get("titulo")) for g in guardadas_usuario}
+        llaves_historial = {_llave_voto(g.get("artista"), g.get("titulo")) for g in historial_gustos}
+        pendientes_historial = [g for g in guardadas_usuario if _llave_voto(g.get("artista"), g.get("titulo")) not in llaves_historial]
+        if pendientes_historial:
+            _registrar_gustos(pendientes_historial)
+        guardadas_usuario = guardadas_usuario + [
+            g for g in historial_gustos if _llave_voto(g.get("artista"), g.get("titulo")) not in llaves_actuales
+        ]
+    except Exception:
+        pass
     if not decada_solicitada and not genero_solicitado:
         # Guardar una canción significa que te gusta: las guardadas (y los «me gusta» antiguos)
         # pasan a ser puntos de partida (máx. 2 por búsqueda).
@@ -2650,6 +2703,31 @@ def api_recomendaciones():
         if len(semillas_lastfm) >= limite_semillas:
             break
 
+    if clave_lastfm and semillas_lastfm and not decada_solicitada:
+        try:
+            urls_lastfm = [
+                "https://ws.audioscrobbler.com/2.0/?" + urlencode({
+                    "method": "track.getSimilar", "artist": s_["nombre"], "track": s_["titulo"],
+                    "api_key": clave_lastfm, "format": "json", "autocorrect": 1, "limit": 12})
+                for s_ in semillas_lastfm
+            ]
+            with EJECUTOR_HILOS(max_workers=3) as ejecutor_pf:
+                list(ejecutor_pf.map(lambda u_: consultar(u_, timeout=6), urls_lastfm))
+            urls_deezer = []
+            for u_ in urls_lastfm:
+                similares_pf = ((cache_peticion.get(u_) or {}).get("similartracks") or {}).get("track") or []
+                if isinstance(similares_pf, dict):
+                    similares_pf = [similares_pf]
+                for similar_pf in similares_pf[:4]:
+                    titulo_pf = str(similar_pf.get("name") or "").strip()
+                    artista_pf = str((similar_pf.get("artist") or {}).get("name") or "").strip()
+                    if titulo_pf and artista_pf and (clave(artista_pf), clave(titulo_pf)) not in existentes:
+                        urls_deezer.append("https://api.deezer.com/search/track?" + urlencode({
+                            "q": 'artist:"' + artista_pf + '" track:"' + titulo_pf + '"', "limit": 8}))
+            with EJECUTOR_HILOS(max_workers=6) as ejecutor_pf:
+                list(ejecutor_pf.map(consultar, urls_deezer))
+        except Exception as error_pf:
+            app.logger.info("Recomendaciones: precarga en paralelo no disponible: %s", error_pf)
     if clave_lastfm:
         for indice, semilla in enumerate(semillas_lastfm):
             params = urlencode({
@@ -3043,6 +3121,8 @@ def api_recomendaciones():
         llave_pista = _llave_voto(pista.get("artista"), pista.get("titulo"))
         if llave_pista in votos_usuario or llave_pista in llaves_guardadas:
             return True  # ya la has guardado o descartado: no se repite
+        if ya_en_coleccion(pista.get("titulo"), pista.get("artista")):
+            return True  # ya está en Mi música (aunque cambie un paréntesis o « - Remastered »)
         return no_gusta_artista.get(artista_pista, 0) >= 2 and me_gusta_artista.get(artista_pista, 0) == 0
 
     ordenadas = [p for p in ordenadas if not _descartada_por_voto(p)]
