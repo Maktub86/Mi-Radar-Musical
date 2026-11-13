@@ -421,6 +421,14 @@ html{-webkit-text-size-adjust:100%}
 .mr-voto:disabled{opacity:.6;cursor:wait}
 .mr-descartada-nota{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0;padding:10px 14px;border-radius:12px;border:1px dashed #ffffff55;color:#cdbbf0;font-size:13px}
 .mr-descartada-nota button{border:1px solid #ffffff55;background:#ffffff14;color:#fff;border-radius:999px;padding:5px 12px;font-weight:700;cursor:pointer}
+.mr-generar-abajo{display:flex;justify-content:center;margin:20px 0 8px}
+.mr-generar-abajo[hidden]{display:none}
+.mr-generar-abajo button{min-width:min(320px,100%)}
+.mr-tengo-btn{width:42px;height:42px;border-radius:12px;border:1px solid #69e5a4;background:linear-gradient(135deg,#168653,#20ad70);display:inline-flex;align-items:center;justify-content:center;padding:0;cursor:pointer;margin-left:6px;box-shadow:0 4px 12px #16865344,inset 0 1px 0 #ffffff35}
+.mr-tengo-btn svg{width:20px;height:20px;display:block}
+.mr-tengo-btn:disabled{opacity:.6;cursor:wait}
+#mr-toast{position:fixed;left:50%;bottom:calc(86px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:99997;max-width:92vw;padding:10px 16px;border-radius:12px;background:#0f3a28;border:1px solid #3ddc84;color:#d8ffe8;font-size:13px;font-weight:700;box-shadow:0 8px 24px #0008;text-align:center}
+#mr-toast[hidden]{display:none}
 /* ===== Reproductor flotante ===== */
 body.mr-con-reproductor{padding-bottom:96px!important}
 body.mr-con-reproductor #mr-aviso-lento{bottom:100px}
@@ -465,12 +473,12 @@ body.mr-con-reproductor #mr-aviso-lento{bottom:100px}
  const EXCLUIR=['/mi-musica','/mimusica','/login'];
  if(!EXCLUIR.some(function(p){return location.pathname.indexOf(p)===0;})){
   const memo=new Map();let espera=null;
-  const SELT='.tarjeta,.pista,.fila-cancion,.publicacion-mejor,.cancion';
+  const SELT='.tarjeta,.pista,.fila-cancion,.publicacion-mejor,.cancion,.mr-cancion-guardada';
   function leer(n){
    const w=n.querySelector('[data-wiki-tipo="cancion"]'),info=n.querySelector('[data-resumen-tipo="cancion"]');
    const titulo=n.dataset.titulo||(w&&w.dataset.wikiNombre)||(info&&info.dataset.resumenNombre)||((n.querySelector('.pista-titulo,.titulo-cancion,.titulo')||{}).textContent||'').trim();
    const meta=((n.querySelector('.pista-meta,.meta')||{}).textContent)||'',partes=meta.split(' · ');
-   const bruto=n.dataset.artista||(w&&w.dataset.wikiArtista)||(info&&info.dataset.resumenArtista)||((n.querySelector('.artista-cancion,.artista')||{}).textContent||'').trim()||(partes.length>1?partes[1]:partes[0])||'';
+   const bruto=n.dataset.artista||(w&&w.dataset.wikiArtista)||(info&&info.dataset.resumenArtista)||((n.querySelector('.artista-cancion,.artista,.mr-artista')||{}).textContent||'').trim()||(partes.length>1?partes[1]:partes[0])||'';
    return {titulo:String(titulo).replace(/^[+ℹ]\s*/,'').trim(),artista:String(bruto).replace(/[ℹ]+$/,'').trim()};
   }
   function insignia(){const s=document.createElement('span');s.className='mr-ya-tengo';s.title='Esta canción ya está en Mi música';s.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ya la tienes</span>';return s;}
@@ -478,7 +486,7 @@ body.mr-con-reproductor #mr-aviso-lento{bottom:100px}
   async function revisar(){
    const pend=[];
    document.querySelectorAll(SELT).forEach(function(n){
-    if(n.closest('.mr-panel-guardadas')||n.querySelector('.mr-ya-tengo')||n.dataset.mrRev==='1')return;
+    if(n.querySelector('.mr-ya-tengo')||n.dataset.mrRev==='1')return;
     const c=leer(n);if(!c.titulo||!c.artista)return;
     const k=(c.artista+'|'+c.titulo).toLowerCase();
     if(memo.has(k)){if(memo.get(k))poner(n);n.dataset.mrRev='1';return;}
@@ -664,6 +672,75 @@ body.mr-con-reproductor #mr-aviso-lento{bottom:100px}
   function revisar(){document.querySelectorAll('#resultados article.cancion').forEach(preparar);}
   let espera=null;
   new MutationObserver(function(){clearTimeout(espera);espera=setTimeout(revisar,200);}).observe(document.body,{childList:true,subtree:true});
+  revisar();
+ })();
+ /* 8) El botón de buscar recomendaciones también debajo de los resultados */
+ (function(){
+  if(location.pathname.indexOf('/recomendaciones')!==0)return;
+  const arriba=document.getElementById('otras'),res=document.getElementById('resultados');
+  if(!arriba||!res)return;
+  const caja=document.createElement('div');caja.className='mr-generar-abajo';caja.hidden=true;
+  const b=document.createElement('button');b.type='button';b.className=arriba.className;
+  caja.appendChild(b);res.insertAdjacentElement('afterend',caja);
+  b.addEventListener('click',function(){
+   arriba.click();
+   try{res.scrollIntoView({behavior:'smooth',block:'start'});}catch(_){}
+  });
+  function sincronizar(){
+   const hay=res.children.length>0&&res.offsetParent!==null;
+   if(caja.hidden===hay)caja.hidden=!hay;
+   if(b.textContent!==arriba.textContent)b.textContent=arriba.textContent;
+   if(b.disabled!==arriba.disabled)b.disabled=arriba.disabled;
+  }
+  setInterval(sincronizar,500);sincronizar();
+ })();
+ /* 9) Botón «Ya la tengo» (cruz blanca sobre verde) en Recomendadas y Guardadas */
+ (function(){
+  if(location.pathname.indexOf('/login')===0||location.pathname.indexOf('/mi-musica')===0||location.pathname.indexOf('/mimusica')===0)return;
+  const SEL='article.cancion,article.mr-cancion-guardada';
+  const CRUZ='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';
+  let toast=null,toastT=null;
+  function aviso(txt){
+   if(!toast){toast=document.createElement('div');toast.id='mr-toast';toast.setAttribute('role','status');document.body.appendChild(toast);}
+   toast.textContent=txt;toast.hidden=false;clearTimeout(toastT);toastT=setTimeout(function(){toast.hidden=true;},4500);
+  }
+  function insignia(){const s=document.createElement('span');s.className='mr-ya-tengo';s.title='Esta canción ya está en Mi música';s.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ya la tienes</span>';return s;}
+  function leer(n){
+   const tEl=n.querySelector('.mr-titulo,.titulo'),mEl=n.querySelector('.mr-meta,.meta'),aEl=n.querySelector('.mr-artista,.artista');
+   const tituloBruto=(n.dataset.titulo||(tEl&&tEl.textContent)||'').trim();
+   const artista=(n.dataset.artista||(aEl&&aEl.textContent)||'').trim();
+   const meta=(mEl&&mEl.textContent)||'';
+   const m=/(?:Año\s+|\()((?:19|20)\d{2})/.exec(meta+' '+((tEl&&tEl.textContent)||''));
+   return {titulo:tituloBruto.replace(/\s*\((?:19|20)\d{2}\)\s*$/,'').replace(/\s*\(año no disponible\)\s*$/i,''),artista:artista,anio:m?Number(m[1]):0,genero:meta.split(' · ')[0].trim()};
+  }
+  function preparar(n){
+   const cont=n.querySelector('.acciones,.mr-acciones');if(!cont)return;
+   const marcada=n.querySelector('.mr-ya-tengo');
+   const actual=n.querySelector('.mr-tengo-btn');
+   if(marcada){if(actual)actual.remove();return;}
+   if(actual||n.dataset.mrTengo==='1')return;
+   const d=leer(n);if(!d.titulo||!d.artista)return;
+   n.dataset.mrTengo='1';
+   const b=document.createElement('button');b.type='button';b.className='mr-tengo-btn';
+   b.title='Ya la tengo: añadirla a Mi música';b.setAttribute('aria-label','Ya la tengo: añadirla a Mi música');b.innerHTML=CRUZ;
+   b.addEventListener('click',async function(){
+    if(!window.confirm('¿Añadir «'+d.titulo+'» de '+d.artista+' a Mi música como «ya la tengo»?'))return;
+    b.disabled=true;
+    try{
+     const r=await fetch('/api/mi-musica/ya-la-tengo',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
+     const j=await r.json();
+     if(!r.ok)throw new Error(j.error||'No se ha podido guardar.');
+     b.remove();
+     const donde=n.querySelector('.mr-info,.info');
+     if(donde&&!n.querySelector('.mr-ya-tengo'))donde.appendChild(insignia());
+     aviso(j.ya_estaba?'Esa canción ya estaba en Mi música.':('Añadida a Mi música'+(j.artista_nuevo?' · artista nuevo añadido a Cantantes':'')+'.'));
+    }catch(e){b.disabled=false;aviso(e.message||'No se ha podido guardar ahora mismo.');}
+   });
+   cont.appendChild(b);
+  }
+  function revisar(){document.querySelectorAll(SEL).forEach(preparar);}
+  let espera=null;
+  new MutationObserver(function(){clearTimeout(espera);espera=setTimeout(revisar,300);}).observe(document.body,{childList:true,subtree:true});
   revisar();
  })();
  /* 3) Copia de seguridad de las canciones guardadas */
@@ -888,8 +965,7 @@ def api_portada_recomendados():
 
     ruta_biblioteca = BASE / "mi_musica.json"
     try:
-        with ruta_biblioteca.open("r", encoding="utf-8") as archivo:
-            biblioteca = json.load(archivo)
+        biblioteca = _biblioteca_completa()
         if not isinstance(biblioteca, list):
             raise ValueError("La biblioteca no contiene una lista.")
     except (OSError, json.JSONDecodeError, ValueError):
@@ -1561,8 +1637,7 @@ def api_lo_mejor_artistas():
     """Devuelve los 20 artistas con más canciones distintas en la colección local."""
     ruta = BASE / "mi_musica.json"
     try:
-        with ruta.open("r", encoding="utf-8") as archivo:
-            biblioteca = json.load(archivo)
+        biblioteca = _biblioteca_completa()
     except (OSError, json.JSONDecodeError):
         return jsonify({"error": "No se ha podido leer tu colección musical."}), 500
     grupos = {}
@@ -1685,6 +1760,49 @@ def _registrar_gustos(canciones):
                 cambiado = True
         if cambiado:
             _ajuste_escribir("historial_gustos", actuales[-3000:])
+
+
+GENEROS_PERMITIDOS = [
+    "Pop", "Rock", "Pop Rock", "R&B", "Rumba / Flamenco", "Fusión / Mestizaje", "Urbana", "Dance",
+    "Musical / BSO", "Chill / Acústico", "Autor / Raíz", "Flamenco Pop", "Latina", "Disco",
+    "Flamenco de Autor", "Dance Pop", "Tropical",
+]
+_CANDADO_EXTRAS = threading.Lock()
+
+
+def _biblioteca_completa():
+    """mi_musica.json (la genera tu PC) + las canciones que has marcado a mano como «ya la tengo»."""
+    with (BASE / "mi_musica.json").open("r", encoding="utf-8") as archivo:
+        base = json.load(archivo)
+    if not isinstance(base, list):
+        return base
+    extras = _ajuste_leer("mi_musica_extra", [])
+    if isinstance(extras, list) and extras:
+        # Si la canción ya ha llegado al archivo de tu PC, no se duplica.
+        ya_en_archivo = {
+            (normalizar_texto(p.get("artista")), _clave_titulo_coleccion(p.get("titulo")))
+            for p in base if isinstance(p, dict)
+        }
+        base = list(base) + [
+            e for e in extras
+            if isinstance(e, dict) and e.get("artista") and e.get("titulo")
+            and (normalizar_texto(e["artista"]), _clave_titulo_coleccion(e["titulo"])) not in ya_en_archivo
+        ]
+    return base
+
+
+def _artistas_radar_completos():
+    """mi_radar_musical.csv + los artistas creados al marcar una canción como «ya la tengo»."""
+    with CSV_PATH.open("r", encoding="utf-8-sig", newline="") as archivo:
+        filas = list(csv.DictReader(archivo))
+    extras = _ajuste_leer("artistas_extra", [])
+    if isinstance(extras, list):
+        conocidos = {normalizar_texto(f.get("NombreOriginal")) for f in filas}
+        for extra in extras:
+            if isinstance(extra, dict) and extra.get("NombreOriginal") and normalizar_texto(extra["NombreOriginal"]) not in conocidos:
+                filas.append(dict(extra))
+                conocidos.add(normalizar_texto(extra["NombreOriginal"]))
+    return filas
 
 
 def _ajustes_con_prefijo(prefijo):
@@ -1821,8 +1939,7 @@ def _calcular_lo_mejor(forzado_id=""):
 
         biblioteca = []
         try:
-            with (BASE / "mi_musica.json").open("r", encoding="utf-8") as archivo:
-                biblioteca = json.load(archivo)
+            biblioteca = _biblioteca_completa()
         except (OSError, json.JSONDecodeError):
             biblioteca = []
         anios_locales = {}
@@ -2419,6 +2536,50 @@ def _orden_ponderado(elementos, pesos, semilla):
     return [elementos[i] for i in indices]
 
 
+@app.post("/api/mi-musica/ya-la-tengo")
+def api_ya_la_tengo():
+    """Marca a mano una canción como «ya la tengo»: entra en Mi música y, si hace falta, se crea el artista."""
+    cuerpo = request.get_json(silent=True) or {}
+    titulo = re.sub(r"\s*\((?:19|20)\d{2}\)\s*$", "", str(cuerpo.get("titulo") or "").strip())[:200].strip()
+    artista = str(cuerpo.get("artista") or "").strip()[:200]
+    if not titulo or not artista:
+        return jsonify({"error": "Faltan el título y el artista."}), 400
+    try:
+        anio = int(cuerpo.get("anio") or 0)
+    except (TypeError, ValueError):
+        anio = 0
+    if not 1900 <= anio <= 2100:
+        anio = 0
+    genero = str(cuerpo.get("genero") or "").strip()
+    if genero not in GENEROS_PERMITIDOS:
+        genero = ""
+    try:
+        if ya_en_coleccion(titulo, artista):
+            return jsonify({"ok": True, "ya_estaba": True, "artista_nuevo": False})
+        with _CANDADO_EXTRAS:
+            extras = _ajuste_leer("mi_musica_extra", [])
+            extras = [e for e in extras if isinstance(e, dict)] if isinstance(extras, list) else []
+            extras.append({"artista": artista, "titulo": titulo, "anio": anio, "genero": genero, "manual": True})
+            _ajuste_escribir("mi_musica_extra", extras[-3000:])
+            artista_nuevo = False
+            if normalizar_texto(artista) not in {normalizar_texto(f.get("NombreOriginal")) for f in _artistas_radar_completos()}:
+                artistas_extra = _ajuste_leer("artistas_extra", [])
+                artistas_extra = [a for a in artistas_extra if isinstance(a, dict)] if isinstance(artistas_extra, list) else []
+                artistas_extra.append({
+                    "NombreOriginal": artista, "NombreNormalizado": artista,
+                    "Estado": "Vigilancia activa", "Observaciones": "Añadido al marcar una canción como «ya la tengo»"})
+                _ajuste_escribir("artistas_extra", artistas_extra[-1000:])
+                artista_nuevo = True
+        try:
+            _registrar_gustos([{"artista": artista, "titulo": titulo}])
+        except Exception:
+            pass
+        _vaciar_cache_lo_mejor(artista)
+    except Exception:
+        return jsonify({"error": "No se ha podido guardar ahora mismo."}), 500
+    return jsonify({"ok": True, "ya_estaba": False, "artista_nuevo": artista_nuevo})
+
+
 @app.get("/api/recomendaciones/votos")
 def api_votos_recomendaciones():
     votos = _votos_recomendaciones()
@@ -2466,8 +2627,7 @@ def api_recomendaciones():
 
     ruta_biblioteca = BASE / "mi_musica.json"
     try:
-        with ruta_biblioteca.open("r", encoding="utf-8") as archivo:
-            biblioteca = json.load(archivo)
+        biblioteca = _biblioteca_completa()
     except (OSError, json.JSONDecodeError):
         return jsonify({"error": "No se ha podido leer tu biblioteca musical."}), 503
     if not isinstance(biblioteca, list) or not biblioteca:
@@ -3272,9 +3432,7 @@ def pagina_mi_musica():
 
 @app.get("/api/mi-musica")
 def api_mi_musica():
-    ruta = BASE / "mi_musica.json"
-    with ruta.open("r", encoding="utf-8") as archivo:
-        return jsonify(json.load(archivo))
+    return jsonify(_biblioteca_completa())
 
 
 @app.get("/artistas")
@@ -3284,8 +3442,7 @@ def pagina_artistas():
 
 @app.get("/api/artistas")
 def artistas():
-    with CSV_PATH.open("r", encoding="utf-8-sig", newline="") as archivo:
-        return jsonify(list(csv.DictReader(archivo)))
+    return jsonify(_artistas_radar_completos())
 
 
 def normalizar_texto(valor):
@@ -3314,12 +3471,13 @@ def _indice_coleccion():
         mtime = ruta.stat().st_mtime
     except OSError:
         return {}
-    if _cache_coleccion["mtime"] == mtime:
+    extras_guardados = _ajuste_leer("mi_musica_extra", [])
+    version = (mtime, len(extras_guardados) if isinstance(extras_guardados, list) else 0)
+    if _cache_coleccion["mtime"] == version:
         return _cache_coleccion["indice"]
     indice = {}
     try:
-        with ruta.open("r", encoding="utf-8") as archivo:
-            biblioteca = json.load(archivo)
+        biblioteca = _biblioteca_completa()
     except (OSError, json.JSONDecodeError):
         return {}
     for pista in biblioteca if isinstance(biblioteca, list) else []:
@@ -3329,7 +3487,7 @@ def _indice_coleccion():
         for clave in {normalizar_texto(pista.get("titulo")), _clave_titulo_coleccion(pista.get("titulo"))}:
             if clave:
                 indice.setdefault(clave, set()).add(artista)
-    _cache_coleccion["mtime"] = mtime
+    _cache_coleccion["mtime"] = version
     _cache_coleccion["indice"] = indice
     return indice
 
