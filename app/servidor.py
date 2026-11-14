@@ -3844,6 +3844,9 @@ def buscar_videos_youtube():
     consulta = " ".join(x for x in (artista, titulo) if x).strip()
     if not consulta:
         return jsonify({"error": "Falta el título o el artista."}), 400
+    # Se busca la versión con letra: «letra lyrics» (salvo que el título ya lo diga).
+    if not re.search(r"\b(letra|lyrics?)\b", consulta, re.IGNORECASE):
+        consulta += " letra lyrics"
 
     url = "https://www.youtube.com/results?" + urlencode({"search_query": consulta})
     try:
@@ -3926,6 +3929,8 @@ def buscar_videos_youtube():
         recorrer(datos)
         if not encontrados:
             return jsonify({"error": "YouTube no devolvió vídeos para esa búsqueda. Puedes probar otra vez más tarde."}), 502
+        # Los vídeos con letra primero (el resto mantiene el orden que da YouTube).
+        encontrados.sort(key=lambda v: 0 if re.search(r"\b(letra|lyrics?|lyric video)\b", v["titulo"], re.IGNORECASE) else 1)
         return jsonify({"consulta": consulta, "resultados": encontrados[:8]})
     except Exception:
         return jsonify({
