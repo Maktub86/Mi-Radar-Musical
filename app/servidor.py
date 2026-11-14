@@ -233,7 +233,7 @@ header p{
  async function guardar(c){try{const r=await fetch('/api/recomendaciones/guardadas',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({canciones:[c]})});if(!r.ok)throw new Error('El servidor ha respondido '+r.status+'.');const d=await r.json();if(!Array.isArray(d.canciones))throw new Error('El servidor no ha confirmado el guardado.');escribir(d.canciones)}catch(e){abrirModal('No se pudo guardar','La canción no se ha guardado en la lista compartida. '+(e.message||'Comprueba la conexión y vuelve a intentarlo.'))}dibujar();actualizarBotones()}
  async function quitar(c){try{const r=await fetch('/api/recomendaciones/guardadas',{method:'DELETE',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({titulo:c.titulo,artista:c.artista})});if(!r.ok)throw new Error('El servidor ha respondido '+r.status+'.');const d=await r.json();if(!Array.isArray(d.canciones))throw new Error('El servidor no ha confirmado el cambio.');escribir(d.canciones);dibujar();actualizarBotones()}catch(e){abrirModal('No se pudo eliminar','La canción sigue en la lista compartida porque el servidor no ha confirmado el cambio. '+(e.message||''));await refrescar();dibujar();actualizarBotones()}}
  async function buscarVideos(c,modo,b){if(b)b.disabled=true;abrirModal(modo==='youtube'?'Elegir versión de YouTube':'Descargar con MediaHuman','Buscando resultados para '+c.artista+' — '+c.titulo+'…');try{const q=new URLSearchParams({titulo:c.titulo,artista:c.artista});const r=await fetch('/api/youtube/buscar?'+q);const d=await r.json();if(!r.ok)throw new Error(d.error||'No se encontraron resultados.');resultadosModal.replaceChildren();if(!(d.resultados||[]).length)throw new Error('No se encontraron resultados.');estadoModal.textContent=modo==='youtube'?'Pulsa una versión para abrirla en YouTube.':'Elige una versión: se copiará su enlace para pegarlo en MediaHuman YouTube Downloader.';for(const v of d.resultados){const btn=document.createElement('button');btn.type='button';btn.className='mr-resultado';const t=document.createElement('strong');t.textContent=v.titulo||'Vídeo sin título';const sub=document.createElement('span');sub.textContent=v.canal||'Canal desconocido';btn.append(t,sub);btn.addEventListener('click',async()=>{if(modo==='youtube'){window.open(v.url,'_blank','noopener,noreferrer');return}try{await navigator.clipboard.writeText(v.url);estadoModal.textContent='Enlace copiado. Pégalo en MediaHuman YouTube Downloader.';btn.textContent='✓ Enlace copiado: '+(v.titulo||'canción')}catch(e){window.prompt('Copia el enlace para MediaHuman:',v.url)}});resultadosModal.appendChild(btn)}}catch(e){estadoModal.textContent=e.message||'No se pudo consultar YouTube.'}finally{if(b)b.disabled=false}}
- async function escuchar(c,b){if(b)b.disabled=true;const original=b?b.innerHTML:'';if(b)b.textContent='Buscando…';try{let url=c.preview||'',nota='';let artista=c.artista,titulo=c.titulo;if(!url){const q=new URLSearchParams({titulo,artista});const r=await fetch('/api/muestra?'+q);const d=await r.json();if(!r.ok)throw new Error(d.error||'No hay muestra disponible.');url=d.previewUrl;artista=d.artista||artista;titulo=d.titulo||titulo;nota=d.nota||''}if(!url)throw new Error('No hay muestra de 30 segundos disponible para esta canción.');abrirModal('Muestra de 30 segundos',artista+' — '+titulo);if(nota){const aviso=document.createElement('p');aviso.textContent=nota;aviso.style.margin='8px 0';aviso.style.color='#f0c878';resultadosModal.appendChild(aviso)}const audio=document.createElement('audio');audio.controls=true;audio.preload='none';audio.src=url;audio.style.width='100%';resultadosModal.appendChild(audio);await audio.play();setTimeout(()=>{audio.pause();audio.currentTime=0},30000)}catch(e){abrirModal('Muestra no disponible',e.message||'No se ha podido reproducir la muestra.')}finally{if(b){b.disabled=false;b.innerHTML=original}}}
+ async function escuchar(c,b){if(b)b.disabled=true;const original=b?b.innerHTML:'';if(b)b.textContent='Buscando…';try{let url=c.preview||'',nota='';let artista=c.artista,titulo=c.titulo;if(!url){const q=new URLSearchParams({titulo,artista});const r=await fetch('/api/muestra?'+q);const d=await r.json();if(!r.ok)throw new Error(d.error||'No hay muestra disponible.');url=d.previewUrl;artista=d.artista||artista;titulo=d.titulo||titulo;nota=d.nota||''}if(!url)throw new Error('No hay muestra de 30 segundos disponible para esta canción.');await window.mrMuestraEnLinea(b,url,{nota:nota})}catch(e){window.mrMuestraError(b,e.message||'No se ha podido reproducir la muestra.')}finally{if(b){b.disabled=false;b.innerHTML=original}}}
  async function informacion(c,b){if(b)b.disabled=true;abrirModal('Información sobre '+c.titulo,'Consultando información musical…');try{const q=new URLSearchParams({tipo:'cancion',nombre:c.titulo,artista:c.artista});const r=await fetch('/api/resumen-musical?'+q);const d=await r.json();estadoModal.textContent=d.resumen||d.informacion||d.error||'No se ha encontrado información.';for(const f of (d.fuentes||[])){if(!f.url||!f.url.startsWith('https://'))continue;const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=f.titulo||'Consultar fuente';a.style.display='block';a.style.color='#d2b8ff';resultadosModal.appendChild(a)}}catch(e){estadoModal.textContent='No se ha podido consultar la información ahora mismo.'}finally{if(b)b.disabled=false}}
  function crearTarjeta(c){
   const f=document.createElement('article');f.className='mr-cancion-guardada';
@@ -434,6 +434,12 @@ html{-webkit-text-size-adjust:100%}
 .mr-rep-barra{flex:1 1 120px;min-width:70px;accent-color:#b58aff;cursor:pointer}
 .mr-rep-tiempo{flex:none;font-size:12px;color:#cdbbf0;font-variant-numeric:tabular-nums;min-width:74px;text-align:right}
 .mr-rep-suelto{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:99998;width:min(520px,calc(100vw - 20px))}
+.mr-muestra-linea{grid-column:1 / -1;flex:1 1 100%;width:100%;box-sizing:border-box;display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:10px;padding:8px 12px;border-radius:14px;background:#ffffff12;border:1px solid #ffffff30}
+.mr-muestra-linea audio{flex:1 1 220px;min-width:0;height:40px}
+.mr-muestra-nota{flex:1 1 100%;font-size:12px;color:#f0c878}
+.mr-muestra-nota a{color:#cdbbf0}
+.mr-muestra-error{color:#ffb4b4;font-size:13px}
+.mr-muestra-suelta{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:99998;width:min(520px,calc(100vw - 20px));background:#1b1530}
 /* ===== Menos iconos: menú «⋯» ===== */
 html body button.mr-mas-oculto.mr-mas-oculto{display:none!important}
 .mr-mas-btn{width:42px;height:42px;border-radius:12px;border:1px solid #ffffff55;background:#ffffff18;color:#fff;display:inline-flex;align-items:center;justify-content:center;padding:0;cursor:pointer;margin-left:6px}
@@ -728,6 +734,50 @@ html body button.mr-mas-oculto.mr-mas-oculto{display:none!important}
   }
   new MutationObserver(texto).observe(gua,{attributes:true,attributeFilter:['class']});
   texto();
+ })();
+ /* 12) La muestra de 30 s se reproduce en línea, debajo de la canción (nunca en ventana emergente) */
+ (function(){
+  const TARJ='article.cancion,article.mr-cancion-guardada,.pista,.fila-cancion,.publicacion-mejor,.item-cancion,.tarjeta,article';
+  function quitarAnteriores(){
+   document.querySelectorAll('.mr-muestra-linea').forEach(function(x){
+    const a=x.querySelector('audio');if(a){try{a.pause();}catch(_){}}
+    x.remove();
+   });
+  }
+  function colocar(boton,linea){
+   const nodo=boton&&boton.closest?boton.closest(TARJ):null;
+   if(nodo){nodo.appendChild(linea);}
+   else{linea.classList.add('mr-muestra-suelta');document.body.appendChild(linea);}
+  }
+  function cerrarBoton(linea,audio){
+   const c=document.createElement('button');c.type='button';c.className='mr-rep-cerrar';c.textContent='✕';c.title='Cerrar';c.setAttribute('aria-label','Cerrar reproductor');
+   c.addEventListener('click',function(){if(audio){try{audio.pause();}catch(_){}}linea.remove();});
+   return c;
+  }
+  window.mrMuestraEnLinea=async function(boton,url,opciones){
+   quitarAnteriores();
+   const linea=document.createElement('div');linea.className='mr-muestra-linea';linea.setAttribute('role','group');linea.setAttribute('aria-label','Muestra de 30 segundos');
+   const audio=document.createElement('audio');audio.controls=true;audio.preload='none';audio.src=url;
+   linea.appendChild(audio);linea.appendChild(cerrarBoton(linea,audio));
+   if(opciones&&(opciones.nota||opciones.enlace)){
+    const n=document.createElement('div');n.className='mr-muestra-nota';
+    if(opciones.nota)n.appendChild(document.createTextNode(opciones.nota+(opciones.enlace?' · ':'')));
+    if(opciones.enlace){const a=document.createElement('a');a.href=opciones.enlace;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Ver canción en el catálogo';n.appendChild(a);}
+    linea.appendChild(n);
+   }
+   colocar(boton,linea);
+   audio.addEventListener('ended',function(){setTimeout(function(){linea.remove();},4000);});
+   await audio.play();
+   setTimeout(function(){try{audio.pause();audio.currentTime=0;}catch(_){}},30000);
+  };
+  window.mrMuestraError=function(boton,mensaje){
+   quitarAnteriores();
+   const linea=document.createElement('div');linea.className='mr-muestra-linea';
+   const m=document.createElement('span');m.className='mr-muestra-error';m.textContent=mensaje||'No se ha podido reproducir la muestra.';
+   linea.appendChild(m);linea.appendChild(cerrarBoton(linea,null));
+   colocar(boton,linea);
+   setTimeout(function(){linea.remove();},7000);
+  };
  })();
  /* 3) Copia de seguridad de las canciones guardadas */
  function exportar(){
@@ -2802,7 +2852,9 @@ def api_recomendaciones():
                 portada = ""
         else:
             portada = ""
-        puntaje = peso * 100 + min(int(pista.get("rank") or 0) / 100000, 30)
+        popularidad_deezer = int(pista.get("rank") or 0)
+        # Hasta 45 puntos según lo conocida que es la canción (raíz cuadrada: 1.000.000 = 45, 100.000 = 14, 10.000 = 4,5).
+        puntaje = peso * 100 + 45 * (min(1.0, popularidad_deezer / 1000000) ** 0.5)
         actual = candidatos.get(llave)
         if actual and actual["puntuacion"] >= puntaje:
             return
@@ -2820,6 +2872,7 @@ def api_recomendaciones():
             "genero": genero_solicitado or (max(semilla["generos"], key=semilla["generos"].get) if semilla.get("generos") else ""),
             "relacionado_con": semilla["nombre"],
             "puntuacion": puntaje,
+            "popularidad": popularidad_deezer,
             "fuente_recomendacion": fuente
         }
 
@@ -3350,7 +3403,8 @@ def api_recomendaciones():
             afinidad = conteo_generos.get(str(pista.get("genero") or "").casefold(), 0) / total_biblioteca_pistas
             bonus_genero = 30 * min(1.0, afinidad * 4)
             bonus_votos = 20 * min(3, me_gusta_artista.get(normalizar_texto(pista.get("artista")), 0))
-            pesos_finales.append(max(1.0, float(pista.get("puntuacion") or 0) + bonus_artista + bonus_genero + bonus_votos))
+            pesos_finales.append(max(1.0, float(pista.get("puntuacion") or 0) + bonus_artista + bonus_genero + bonus_votos) ** 1.6
+                                 * ((0.3 + min(1.0, int(pista.get("popularidad") or 0) / 1000000) ** 0.5) ** 3))  # las populares salen bastante más, con excepciones
         ordenadas = _orden_ponderado(ordenadas, pesos_finales, semilla_azar)
     return jsonify({"canciones": ordenadas[inicio:inicio + 10], "generos": generos,
                     "total_candidatas": len(ordenadas), "total_biblioteca": len(biblioteca),
