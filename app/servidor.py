@@ -477,6 +477,26 @@ html body button.mr-mas-oculto.mr-mas-oculto{display:none!important}
 .boton-falta.activa{background:linear-gradient(135deg,#59627a,#3b4256)}
 /* ===== Pestaña Guardadas ===== */
 #tab-recomendaciones{display:none!important}
+/* ===== Iconos: todos con la misma forma, el mismo tamaño y la misma separación ===== */
+html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones){
+  display:flex!important;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:8px!important;
+  grid-template-columns:none!important;min-width:0!important;width:auto;margin-top:10px}
+html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones) > :is(button,a){
+  box-sizing:border-box!important;flex:0 0 42px!important;width:42px!important;min-width:42px!important;max-width:42px!important;
+  height:42px!important;min-height:42px!important;margin:0!important;padding:0!important;border-radius:12px!important;
+  align-items:center;justify-content:center;grid-column:auto!important;order:9}
+html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones) > :is(.boton-30,.boton-muestra,.b30,.mr-b30) span{display:none!important}
+html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones) > :is(.boton-30,.boton-muestra,.b30,.mr-b30){order:1}
+html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones) > :is(.boton-mediahuman,.boton-descarga-radar,.descarga,.mr-descarga){order:2}
+html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones) > :is(.boton-youtube,.youtube,.mr-youtube){order:3}
+html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones) > :is(.mr-agregar,.guardar-btn){order:4}
+html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones) > :is(.boton-wikipedia,.wiki-icon,.wiki,.info-btn){order:5}
+html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones) > :is(.mr-voto-no){order:6}
+html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones) > :is(.mr-mas-btn){order:7}
+html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones) > :is(.mr-quitar){order:8}
+html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones) > :is(button,a) svg{width:20px!important;height:20px!important;flex:none}
+/* El icono de información junto al título: mismo tamaño y forma, separado del texto */
+html body :is(.titulo,.pista-titulo,.titulo-cancion,.mr-titulo) .wiki-icon{width:42px!important;height:42px!important;min-width:42px!important;border-radius:12px!important;margin-left:10px!important;vertical-align:middle}
 </style>
 <script id="mr-extras-js">
 (function(){
