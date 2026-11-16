@@ -440,6 +440,28 @@ html{-webkit-text-size-adjust:100%}
 .mr-muestra-nota a{color:#cdbbf0}
 .mr-muestra-error{color:#ffb4b4;font-size:13px}
 .mr-muestra-suelta{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:99998;width:min(520px,calc(100vw - 20px));background:#1b1530}
+/* ===== Carátula tocable ===== */
+.mr-cover-tocable{position:relative;cursor:pointer}
+.mr-cover-tocable img{cursor:pointer}
+.mr-cover-play{position:absolute;right:8px;bottom:8px;width:34px;height:34px;border-radius:50%;background:rgba(20,13,42,.78);border:1px solid #ffffffa0;color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1;pointer-events:none;box-shadow:0 3px 10px #0007}
+.mr-cover-tocable:hover .mr-cover-play,.mr-cover-tocable:focus-visible .mr-cover-play{background:linear-gradient(135deg,#ff4fa3,#8a4dff)}
+html body button.mr-30-oculto.mr-30-oculto{display:none!important}
+/* Recomendaciones y Guardadas: todos los iconos siempre a la vista */
+html body :is(article.cancion,article.mr-cancion-guardada) :is(.acciones,.mr-acciones){opacity:1!important;visibility:visible!important}
+/* ===== Álbum desplegable (portada) ===== */
+.boton-album-canciones{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:9px 14px;border-radius:12px;border:1px solid #ffffff55;background:#ffffff14;color:#fff;font-size:13px;font-weight:800;cursor:pointer}
+.boton-album-canciones:disabled{opacity:.7;cursor:wait}
+.canciones-album{margin-top:12px;border-top:1px solid #ffffff22}
+.canciones-album[hidden]{display:none}
+.canciones-album .mensaje-album{padding:12px 0;color:#cdbbf0;font-size:13px}
+html body .fila-album{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;align-items:center;padding:10px 4px;border-bottom:1px solid #ffffff18}
+html body .fila-album .info{padding:0}
+html body .fila-album .titulo{font-size:15px;margin:0 0 4px}
+html body .fila-album .acciones-radar{display:flex!important;flex-wrap:wrap;gap:7px;width:auto;min-width:0;margin-top:0}
+html body .fila-album .acciones-radar .boton-muestra{width:91px;min-width:91px}
+html body .fila-album .reproductor-muestra{grid-column:1 / -1}
+.mr-num{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;margin-right:8px;border-radius:999px;background:#ffffff1c;font-size:11px;font-weight:800;color:#dedaf8}
+@media (max-width:560px){html body .fila-album{grid-template-columns:minmax(0,1fr)}}
 /* ===== Menos iconos: menú «⋯» ===== */
 html body button.mr-mas-oculto.mr-mas-oculto{display:none!important}
 .mr-mas-btn{width:42px;height:42px;border-radius:12px;border:1px solid #ffffff55;background:#ffffff18;color:#fff;display:inline-flex;align-items:center;justify-content:center;padding:0;cursor:pointer;margin-left:6px}
@@ -658,7 +680,7 @@ html body button.mr-mas-oculto.mr-mas-oculto{display:none!important}
  })();
  /* 10) Menos iconos: lo secundario va en un menú «⋯» en cada canción */
  (function(){
-  const CARDS='article.cancion,article.mr-cancion-guardada,.pista,.fila-cancion,.publicacion-mejor';
+  const CARDS='.pista,.fila-cancion,.publicacion-mejor';
   const ACC='.acciones,.acciones-pista,.acciones-publicacion,.acciones-radar,.acciones-cancion,.mr-acciones';
   const SVG=function(c){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+c+'</svg>';};
   const SEC=[
@@ -702,7 +724,7 @@ html body button.mr-mas-oculto.mr-mas-oculto{display:none!important}
    kebab.setAttribute('aria-expanded','true');origen=kebab;
   }
   function preparar(card){
-   if(card.querySelector(CARDS))return;
+   if(card.querySelector(CARDS)||card.classList.contains('fila-album'))return;
    const acc=card.querySelector(ACC);if(!acc)return;
    const sec=secundarios(card);if(!sec.length)return;
    card.querySelectorAll(SEC.map(function(p){return p[0];}).join(',')).forEach(function(b){if(!b.closest('.mr-mas-menu'))b.classList.add('mr-mas-oculto');});
@@ -778,6 +800,35 @@ html body button.mr-mas-oculto.mr-mas-oculto{display:none!important}
    colocar(boton,linea);
    setTimeout(function(){linea.remove();},7000);
   };
+ })();
+ /* 13) Carátula tocable: un toque reproduce la muestra, otro toque la para (si hay carátula; si no, sigue el botón 30 s) */
+ (function(){
+  const CARDS='article.cancion,article.mr-cancion-guardada,.pista,.fila-cancion,.publicacion-mejor,.tarjeta,.item-cancion';
+  const B30='.boton-30,.boton-muestra,.b30,.mr-b30';
+  const COVER='.portada-disco img,.portada-contenedor img,.mr-portada-contenedor img,img.portada,img.mr-portada,.portada-lista img,img.portada-lista';
+  function preparar(card){
+   if(card.dataset.mrCover==='1'||card.classList.contains('fila-album'))return;
+   const b=card.querySelector(B30),img=card.querySelector(COVER);
+   if(!b||!img)return;
+   card.dataset.mrCover='1';
+   const cont=img.closest('.portada-disco,.portada-contenedor,.mr-portada-contenedor,.portada-lista')||img.parentElement;
+   cont.classList.add('mr-cover-tocable');cont.setAttribute('role','button');cont.tabIndex=0;
+   cont.setAttribute('aria-label','Escuchar la muestra de 30 segundos; tócala otra vez para pararla');cont.title='Toca para escuchar 30 s (otra vez para parar)';
+   const insignia=document.createElement('span');insignia.className='mr-cover-play';insignia.setAttribute('aria-hidden','true');insignia.textContent='▶';cont.appendChild(insignia);
+   b.classList.add('mr-30-oculto');
+   function accion(e){
+    e.preventDefault();e.stopPropagation();
+    const activo=card.querySelector('.mr-muestra-linea,.mr-rep-inline');
+    if(activo){const c=activo.querySelector('.mr-rep-cerrar');if(c){c.click();}else{activo.remove();}return;}
+    b.click();
+   }
+   cont.addEventListener('click',accion);
+   cont.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')accion(e);});
+  }
+  function revisar(){document.querySelectorAll(CARDS).forEach(preparar);}
+  let espera=null;
+  new MutationObserver(function(){clearTimeout(espera);espera=setTimeout(revisar,250);}).observe(document.body,{childList:true,subtree:true});
+  revisar();
  })();
  /* 3) Copia de seguridad de las canciones guardadas */
  function exportar(){
@@ -3836,106 +3887,216 @@ def muestra_musical():
         "error": "No he encontrado una muestra de 30 segundos que coincida con seguridad en Deezer ni en Apple Music/iTunes."
     }), 404
 
+def _vistas_a_numero(texto):
+    """«12.345.678 visualizaciones», «1,2 M de visualizaciones», «345 mil visualizaciones» -> número."""
+    t_ = str(texto or "").lower()
+    m = re.search(r"(\d[\d.,]*)\s*(millones|millón|mill|mil|m|k)?(?![a-z])", t_)
+    if not m:
+        return 0
+    numero, sufijo = m.group(1), (m.group(2) or "")
+    factor = 1000000 if sufijo in ("millones", "millón", "mill", "m") else (1000 if sufijo in ("mil", "k") else 1)
+    try:
+        if factor > 1:
+            return int(float(numero.replace(",", ".")) * factor)
+        return int(re.sub(r"[^\d]", "", numero) or 0)
+    except ValueError:
+        return 0
+
+
+def _formato_vistas(n):
+    if n >= 1000000:
+        return ("%.1f" % (n / 1000000)).replace(".", ",") + " M vis."
+    if n >= 1000:
+        return str(n // 1000) + " mil vis."
+    return str(n) + " vis." if n else ""
+
+
+def _youtube_resultados(consulta):
+    """Resultados de una búsqueda de YouTube: [{titulo, canal, url, vistas}]."""
+    url = "https://www.youtube.com/results?" + urlencode({"search_query": consulta})
+    peticion = Request(url, headers={
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+        "Accept-Language": "es-ES,es;q=0.9,en;q=0.7"
+    })
+    with urlopen(peticion, timeout=12) as respuesta:
+        pagina = respuesta.read().decode("utf-8", errors="replace")
+    pos = pagina.find("ytInitialData")
+    if pos < 0:
+        raise ValueError("YouTube no ha devuelto los resultados esperados.")
+    inicio = pagina.find("{", pos)
+    if inicio < 0:
+        raise ValueError("No se encontraron datos de búsqueda.")
+    profundidad = 0
+    dentro_cadena = False
+    escape = False
+    fin = None
+    for i in range(inicio, len(pagina)):
+        c = pagina[i]
+        if dentro_cadena:
+            if escape:
+                escape = False
+            elif c == "\\":
+                escape = True
+            elif c == '"':
+                dentro_cadena = False
+            continue
+        if c == '"':
+            dentro_cadena = True
+        elif c == "{":
+            profundidad += 1
+        elif c == "}":
+            profundidad -= 1
+            if profundidad == 0:
+                fin = i + 1
+                break
+    if fin is None:
+        raise ValueError("Los resultados de YouTube estaban incompletos.")
+    datos = json.loads(pagina[inicio:fin])
+
+    encontrados = []
+    vistos = set()
+
+    def texto_de(objeto):
+        if not isinstance(objeto, dict):
+            return ""
+        return objeto.get("simpleText") or "".join(tramo.get("text", "") for tramo in objeto.get("runs", []))
+
+    def recorrer(obj):
+        if isinstance(obj, dict):
+            video = obj.get("videoRenderer")
+            if isinstance(video, dict):
+                video_id = video.get("videoId")
+                if video_id and video_id not in vistos:
+                    titulo_texto = texto_de(video.get("title", {}))
+                    canal_texto = texto_de(video.get("ownerText") or video.get("longBylineText") or {})
+                    vistas = _vistas_a_numero(texto_de(video.get("viewCountText") or video.get("shortViewCountText") or {}))
+                    if titulo_texto:
+                        vistos.add(video_id)
+                        encontrados.append({
+                            "titulo": titulo_texto,
+                            "canal": canal_texto or "Canal desconocido",
+                            "url": "https://www.youtube.com/watch?v=" + video_id,
+                            "vistas": vistas
+                        })
+            for valor in obj.values():
+                recorrer(valor)
+        elif isinstance(obj, list):
+            for valor in obj:
+                recorrer(valor)
+
+    recorrer(datos)
+    return encontrados
+
+
 @app.get("/api/youtube/buscar")
 def buscar_videos_youtube():
-    """Busca candidatos en YouTube para que el usuario elija la versión correcta."""
+    """Candidatos de YouTube: primero los vídeos con letra, luego los oficiales y el resto, cada grupo por visualizaciones."""
     titulo = (request.args.get("titulo") or "").strip()
     artista = (request.args.get("artista") or "").strip()
-    consulta = " ".join(x for x in (artista, titulo) if x).strip()
-    if not consulta:
+    base = " ".join(x for x in (artista, titulo) if x).strip()
+    if not base:
         return jsonify({"error": "Falta el título o el artista."}), 400
-    # Se busca la versión con letra: «letra lyrics» (salvo que el título ya lo diga).
-    if not re.search(r"\b(letra|lyrics?)\b", consulta, re.IGNORECASE):
-        consulta += " letra lyrics"
+    consulta_letra = base if re.search(r"\b(letra|lyrics?)\b", base, re.IGNORECASE) else base + " letra lyrics"
+    consulta_oficial = base + " oficial official"
+    resultados_por_consulta = []
+    with EJECUTOR_HILOS(max_workers=2) as ejecutor:
+        futuros = [ejecutor.submit(_youtube_resultados, q_) for q_ in (consulta_letra, consulta_oficial)]
+        for futuro in futuros:
+            try:
+                resultados_por_consulta.append(futuro.result())
+            except Exception:
+                resultados_por_consulta.append([])
+    fusion = []
+    ids_vistos = set()
+    for lista in resultados_por_consulta:
+        for video in lista:
+            if video["url"] not in ids_vistos:
+                ids_vistos.add(video["url"])
+                fusion.append(video)
+    if not fusion:
+        return jsonify({"error": "YouTube no devolvió vídeos para esa búsqueda. Puedes probar otra vez más tarde."}), 502
 
-    url = "https://www.youtube.com/results?" + urlencode({"search_query": consulta})
+    def grupo(video):
+        if re.search(r"\b(letra|lyrics?|lyric video)\b", video["titulo"], re.IGNORECASE):
+            return 0
+        if re.search(r"\b(oficial|official|vevo|videoclip)\b", video["titulo"] + " " + video["canal"], re.IGNORECASE):
+            return 1
+        return 2
+
+    fusion.sort(key=lambda v: (grupo(v), -v["vistas"]))
+    salida = []
+    for v in fusion[:10]:
+        etiqueta = {0: "con letra", 1: "oficial"}.get(grupo(v), "")
+        extras = " · ".join(x for x in (v["canal"], _formato_vistas(v["vistas"]), etiqueta) if x)
+        salida.append({"titulo": v["titulo"], "canal": extras, "url": v["url"]})
+    return jsonify({"consulta": consulta_letra, "resultados": salida})
+
+
+def _json_externo(url, timeout=6):
+    ahora = time.time()
+    guardado = _CACHE_EXTERNA.get(url)
+    if guardado and ahora - guardado[0] < _CACHE_EXTERNA_SEGUNDOS:
+        return guardado[1]
+    with urlopen(Request(url, headers={"User-Agent": "MiRadarMusical/1.0"}), timeout=timeout) as respuesta:
+        datos = json.loads(respuesta.read().decode("utf-8"))
+    if isinstance(datos, dict) and not datos.get("error"):
+        if len(_CACHE_EXTERNA) > 4000:
+            _CACHE_EXTERNA.clear()
+        _CACHE_EXTERNA[url] = (ahora, datos)
+    return datos
+
+
+@app.get("/api/album/canciones")
+def api_album_canciones():
+    """Todas las canciones de un álbum (Apple Music/iTunes), con su muestra de 30 s."""
+    artista = (request.args.get("artista") or "").strip()
+    titulo = (request.args.get("titulo") or "").strip()
+    identificador = (request.args.get("id") or "").strip()
+    if not artista or not titulo:
+        return jsonify({"error": "Faltan el artista y el título del álbum."}), 400
+    titulo_limpio = re.sub(r"\s*-\s*(single|ep)\s*$", "", titulo, flags=re.IGNORECASE).strip()
+    objetivo_artista = normalizar_texto(artista)
+    objetivo_titulo = _clave_titulo_coleccion(titulo_limpio)
     try:
-        peticion = Request(url, headers={
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
-            "Accept-Language": "es-ES,es;q=0.9,en;q=0.7"
-        })
-        with urlopen(peticion, timeout=12) as respuesta:
-            pagina = respuesta.read().decode("utf-8", errors="replace")
-
-        # YouTube incluye los resultados en ytInitialData. Extraemos el JSON
-        # equilibrando llaves para no depender de un patrón que corte el objeto.
-        marcador = "ytInitialData"
-        pos = pagina.find(marcador)
-        if pos < 0:
-            raise ValueError("YouTube no ha devuelto los resultados esperados.")
-        inicio = pagina.find("{", pos)
-        if inicio < 0:
-            raise ValueError("No se encontraron datos de búsqueda.")
-        profundidad = 0
-        dentro_cadena = False
-        escape = False
-        fin = None
-        for i in range(inicio, len(pagina)):
-            c = pagina[i]
-            if dentro_cadena:
-                if escape:
-                    escape = False
-                elif c == "\\":
-                    escape = True
-                elif c == '"':
-                    dentro_cadena = False
-                continue
-            if c == '"':
-                dentro_cadena = True
-            elif c == "{":
-                profundidad += 1
-            elif c == "}":
-                profundidad -= 1
-                if profundidad == 0:
-                    fin = i + 1
+        coleccion = identificador[6:] if identificador.startswith("apple-") and identificador[6:].isdigit() else ""
+        if not coleccion:
+            for pais in ("es", "us"):
+                datos = _json_externo("https://itunes.apple.com/search?" + urlencode({
+                    "term": artista + " " + titulo_limpio, "media": "music", "entity": "album", "limit": 15, "country": pais}))
+                for r in datos.get("results") or []:
+                    nombre_album = _clave_titulo_coleccion(r.get("collectionName"))
+                    artista_album = normalizar_texto(r.get("artistName"))
+                    artista_ok = objetivo_artista in artista_album or artista_album in objetivo_artista
+                    titulo_ok = nombre_album == objetivo_titulo or (
+                        min(len(nombre_album), len(objetivo_titulo)) >= 4
+                        and (nombre_album in objetivo_titulo or objetivo_titulo in nombre_album))
+                    if r.get("collectionId") and artista_ok and titulo_ok:
+                        coleccion = str(r["collectionId"])
+                        break
+                if coleccion:
                     break
-        if fin is None:
-            raise ValueError("Los resultados de YouTube estaban incompletos.")
-        datos = json.loads(pagina[inicio:fin])
-
-        encontrados = []
-        vistos = set()
-        def recorrer(obj):
-            if isinstance(obj, dict):
-                video = obj.get("videoRenderer")
-                if isinstance(video, dict):
-                    video_id = video.get("videoId")
-                    if video_id and video_id not in vistos:
-                        titulo_video = video.get("title", {})
-                        titulo_texto = titulo_video.get("simpleText")
-                        if not titulo_texto:
-                            titulo_texto = "".join(
-                                tramo.get("text", "")
-                                for tramo in titulo_video.get("runs", [])
-                            )
-                        canal = video.get("ownerText") or video.get("longBylineText") or {}
-                        canal_texto = canal.get("simpleText")
-                        if not canal_texto:
-                            canal_texto = "".join(
-                                tramo.get("text", "") for tramo in canal.get("runs", [])
-                            )
-                        if titulo_texto:
-                            vistos.add(video_id)
-                            encontrados.append({
-                                "titulo": titulo_texto,
-                                "canal": canal_texto or "Canal desconocido",
-                                "url": "https://www.youtube.com/watch?v=" + video_id
-                            })
-                for valor in obj.values():
-                    recorrer(valor)
-            elif isinstance(obj, list):
-                for valor in obj:
-                    recorrer(valor)
-        recorrer(datos)
-        if not encontrados:
-            return jsonify({"error": "YouTube no devolvió vídeos para esa búsqueda. Puedes probar otra vez más tarde."}), 502
-        # Los vídeos con letra primero (el resto mantiene el orden que da YouTube).
-        encontrados.sort(key=lambda v: 0 if re.search(r"\b(letra|lyrics?|lyric video)\b", v["titulo"], re.IGNORECASE) else 1)
-        return jsonify({"consulta": consulta, "resultados": encontrados[:8]})
+        if not coleccion:
+            return jsonify({"error": "No he encontrado las canciones de este álbum en Apple Music."}), 404
+        datos = _json_externo("https://itunes.apple.com/lookup?" + urlencode({
+            "id": coleccion, "entity": "song", "limit": 200, "country": "es"}))
+        resultados = datos.get("results") or []
+        album_info = next((r for r in resultados if r.get("wrapperType") == "collection"), {})
+        canciones = []
+        for r in resultados:
+            if r.get("wrapperType") != "track" or not r.get("trackName"):
+                continue
+            canciones.append({
+                "numero": int(r.get("trackNumber") or 0), "disco": int(r.get("discNumber") or 1),
+                "titulo": r.get("trackName"), "artista": r.get("artistName") or artista,
+                "previewUrl": r.get("previewUrl") or "", "trackViewUrl": r.get("trackViewUrl") or "",
+                "anio": int(str(r.get("releaseDate") or "0000")[:4] or 0), "genero": r.get("primaryGenreName") or ""})
+        if not canciones:
+            return jsonify({"error": "Apple Music no devuelve canciones para este álbum."}), 404
+        canciones.sort(key=lambda c: (c["disco"], c["numero"]))
+        return jsonify({"album": album_info.get("collectionName") or titulo,
+                        "portada": album_info.get("artworkUrl100") or "", "canciones": canciones})
     except Exception:
-        return jsonify({
-            "error": "No he podido consultar los resultados de YouTube. Comprueba la conexión e inténtalo de nuevo."
-        }), 502
+        return jsonify({"error": "No se han podido consultar las canciones del álbum ahora mismo."}), 502
 
 
 @app.get("/api/publicaciones/preview")
@@ -4260,11 +4421,20 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
         respuesta = None
         for intento in range(3):
             try:
-                with urlopen(req, timeout=45) as resp:
+                req_intento = req
+                if intento == 2:
+                    # Último intento con una petición más simple (sin ajuste de razonamiento).
+                    cuerpo_simple = dict(cuerpo)
+                    cuerpo_simple["generation_config"] = {"max_output_tokens": 2500}
+                    req_intento = Request(
+                        url, data=json.dumps(cuerpo_simple, ensure_ascii=False).encode("utf-8"),
+                        headers={"Content-Type": "application/json", "x-goog-api-key": clave,
+                                 "User-Agent": "MiRadarMusical/1.0"}, method="POST")
+                with urlopen(req_intento, timeout=45) as resp:
                     respuesta = json.loads(resp.read().decode("utf-8"))
                 break
             except HTTPError as error:
-                if error.code != 503 or intento == 2:
+                if error.code not in (500, 502, 503, 504) or intento == 2:
                     raise
                 error.close()
                 time.sleep(1 + intento * 2)
@@ -4487,7 +4657,7 @@ def api_resumen_musical():
     resultado_final = resultado_gemini
     error_final = error_gemini
     # El cambio automático a Groq se activa cuando Gemini devuelve HTTP 429 (cuota/límite).
-    if not resultado_final and error_gemini and "HTTP 429" in error_gemini:
+    if not resultado_final and error_gemini and re.search(r"HTTP (429|5\d\d)", error_gemini):
         resultado_final, error_groq = _buscar_groq_musical(tipo, nombre, artista)
         if not resultado_final:
             error_final = (error_gemini + " " + (error_groq or "")).strip()
