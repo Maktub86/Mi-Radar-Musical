@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="192x192" href="/icono-mrm-192.png?v=9">
+<link rel="icon" type="image/svg+xml" href="/icono-mrm.svg?v=9">
+<link rel="apple-touch-icon" sizes="192x192" href="/icono-mrm-192.png?v=9">
+<link rel="manifest" href="/manifest.webmanifest?v=9">
+<meta name="theme-color" content="#6d28a8">
+<title>Mi Radar Musical</title>
+<style>
+:root{color-scheme:dark;--panel:#1b1b2d;--texto:#f7f5ff;--suave:#b8b6cf;--rosa:#ff4fa3;--azul:#706bff;--verde:#55e6bd}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(140deg,#17152d,#10101c 55%,#26152e);color:var(--texto);font-family:Segoe UI,Arial,sans-serif;min-height:100vh}
+ .control-cantidad{display:flex;align-items:center;gap:8px;margin:4px 0 14px}.control-cantidad span{display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:38px;padding:0 12px;border-radius:10px;background:#ffffff12;border:1px solid #ffffff30;font-weight:800;font-size:16px}.control-cantidad button{width:38px;height:38px;padding:0;border-radius:10px;font-size:24px;line-height:1;background:linear-gradient(120deg,#706bff,#b72d83)}.control-cantidad button:disabled{opacity:.45;cursor:default}
+.ajustes-portada{position:relative;display:flex;justify-content:flex-end;align-items:center;margin-left:auto}.ajustes-portada>button{display:flex;align-items:center;gap:8px;background:#281442;border:1px solid #a77be4;border-radius:13px;padding:10px 13px;font-size:18px;color:#f7efff;cursor:pointer}.panel-ajustes{position:absolute;right:0;bottom:52px;width:min(280px,82vw);padding:15px;background:#21172f;border:1px solid #a77be4;border-radius:14px;box-shadow:0 12px 32px #0008;z-index:30}.panel-ajustes label{display:flex;align-items:center;gap:10px;font-size:14px}.panel-ajustes input{width:18px;height:18px;accent-color:#9b5de5}.panel-ajustes p{font-size:12px;color:#c9bfd8;margin:10px 0 0}@media(max-width:520px){.ajustes-portada>button span{display:none}}
+header{position:relative;padding:32px 6%;background:linear-gradient(110deg,#5727a5,#b72d83 65%,#f06a76)}
+.marca{font-size:13px;font-weight:800;letter-spacing:3px;text-transform:uppercase}
+h1{font-size:clamp(32px,6vw,58px);margin:12px 0 8px}
+header p{margin:0;color:#fff0fa}
+nav{display:flex;gap:10px;flex-wrap:wrap;padding:18px 6%;border-bottom:1px solid #ffffff18}
+nav a{color:#e8e5ff;text-decoration:none;background:#ffffff12;padding:10px 15px;border-radius:22px;font-size:14px}
+nav a.activo{background:var(--rosa);color:#fff;font-weight:bold}
+nav a:hover{background:#ffffff25}
+main{max-width:1250px;margin:auto;padding:30px 6%}
+.cabecera{display:flex;align-items:end;justify-content:space-between;gap:15px;flex-wrap:wrap}
+h2{font-size:27px;margin:0 0 8px}
+.sub{color:var(--suave);margin:0 0 22px}
+.selector-lanzamientos{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:4px 0 16px}.selector-lanzamientos .botones{display:flex;gap:8px;flex-wrap:wrap;margin:0}.selector-lanzamientos .botones button{min-height:42px;border-radius:13px;padding:10px 17px;background:#ffffff0d;border:1px solid #ffffff26;transition:background .18s,border-color .18s,transform .18s}.selector-lanzamientos .botones button.activo{background:linear-gradient(120deg,#706bff,#b72d83);border-color:#c6a5ff;box-shadow:0 4px 14px #7d45cf40}.selector-lanzamientos .botones button:hover{transform:translateY(-1px);border-color:#bda4ff}.control-cantidad{display:flex;align-items:center;gap:9px;margin:0;padding-left:16px;border-left:1px solid #ffffff25}.control-cantidad span{display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:38px;padding:0 12px;border-radius:10px;background:#ffffff12;border:1px solid #ffffff30;font-weight:800;font-size:16px}.control-cantidad button{width:38px;height:38px;padding:0;border-radius:10px;font-size:24px;line-height:1;background:linear-gradient(120deg,#706bff,#b72d83)}.control-cantidad button:disabled{opacity:.45;cursor:default}@media(max-width:520px){.selector-lanzamientos{gap:12px}.control-cantidad{padding-left:12px;gap:7px}}
+button{border:1px solid #ffffff25;border-radius:22px;padding:10px 17px;background:var(--panel);color:white;cursor:pointer;font-weight:700}
+button.activo{background:var(--azul);border-color:var(--azul)}
+#estado{color:var(--suave);margin:10px 0 20px}
+#ultima-actualizacion{color:var(--suave);font-size:13px;margin:-10px 0 20px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.tarjeta{background:var(--panel);border:1px solid #ffffff12;border-radius:17px;overflow:hidden;min-width:0;transition:transform .15s}
+.tarjeta:hover{transform:translateY(-3px)}
+.portada-disco{height:210px;background:linear-gradient(135deg,#372d78,#b92f7f);display:flex;align-items:center;justify-content:center;font-size:42px;color:#ffffffc9;overflow:hidden}
+.portada-disco img{width:100%;height:100%;object-fit:cover;display:block}
+.info{padding:15px}
+.tipo{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--verde);font-weight:800}
+.titulo{font-size:17px;line-height:1.35;margin:8px 0;font-weight:750;overflow-wrap:anywhere}
+.artista{color:#dedaf8;font-size:14px;overflow-wrap:anywhere}.wiki-icon{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;min-width:30px;padding:0;margin-left:6px;border-radius:50%;background:linear-gradient(145deg,#b58aff,#7440b8 65%,#54258c);color:#fff;border:1px solid #ffffffa8;box-shadow:0 3px 10px #0004,inset 0 1px 0 #ffffff55;font-size:16px;font-weight:900;line-height:1;font-size:13px;font-weight:900;line-height:1;text-decoration:none;vertical-align:middle;border:1px solid #a8adb6}.wiki-icon:hover{background:#555d6b}.artista-cancion .wiki-icon{width:20px;height:20px;font-size:12px}
+.fecha{font-size:12px;color:var(--suave);margin-top:12px}
+.boton-muestra{margin-top:13px;width:100%;border:0;background:linear-gradient(100deg,#706bff,#b72d83);}
+.boton-muestra:disabled{opacity:.65;cursor:wait}
+.acciones-radar{display:grid;display:grid;grid-template-columns:42px 42px;grid-template-rows:42px 42px;gap:7px;margin-top:13px;align-items:stretch;align-content:start;justify-content:start;width:max-content;min-width:91px;flex-wrap:nowrap}
+.acciones-radar .boton-muestra{margin-top:0;grid-column:1 / 3;grid-row:1;display:flex;align-items:center;justify-content:center;gap:7px;box-sizing:border-box;flex:none;width:91px;min-width:91px;height:42px;padding:0 5px;border-radius:12px;font-size:13px;font-weight:800;letter-spacing:.15px;white-space:nowrap;overflow:hidden;background:linear-gradient(135deg,#7867ff 0%,#9b45cf 52%,#d43e8f 100%);border:1px solid #ffffff70;box-shadow:0 4px 12px #7c45d044,inset 0 1px 0 #ffffff30}
+.acciones-radar .boton-mediahuman{grid-column:1;grid-row:2;align-self:center}
+.acciones-radar .boton-youtube{grid-column:2;grid-row:2}
+
+.boton-descarga-radar{flex:0 0 46px;border:0;background:#2b765f;padding:8px;font-size:21px;border-radius:12px}
+.boton-descarga-radar:hover{background:#368f73}
+.boton-30,.boton-completa{background:#292d3b!important;border:1px solid #ffffff35!important;color:#fff!important}
+.boton-mediahuman{background:#fff!important;color:#222!important;border:1px solid #ddd!important}
+.boton-youtube{background:#e62129!important;color:#fff!important;border:1px solid #e62129!important}
+.acciones-radar .boton-30{flex:0 0 91px;width:91px!important;min-width:91px!important;grid-column:1 / 3;grid-row:1}.acciones-cancion .boton-30{flex:0 0 91px;width:91px!important;min-width:91px!important;grid-column:1 / 3;grid-row:1}.acciones-publicacion .boton-30{flex:0 0 82px;width:82px;min-width:82px;padding:9px 8px!important;border-radius:11px;font-size:15px!important;font-weight:800;letter-spacing:.2px;background:linear-gradient(135deg,#6e65ff,#b52f9b)!important;color:#fff!important;border:1px solid #ffffff50!important;box-shadow:0 3px 12px #8e42e833}
+.acciones-radar .boton-mediahuman,.acciones-radar .boton-youtube{flex:none;width:42px;min-width:42px;height:42px;padding:8px 3px;border-radius:10px;font-size:16px}
+.acciones-radar .boton-muestra{flex:none;width:91px;min-width:91px;height:42px;padding:0 5px;border-radius:12px;font-size:13px;font-weight:800;white-space:nowrap;overflow:hidden}
+.acciones-radar .boton-mediahuman,.acciones-cancion .boton-mediahuman,.acciones-publicacion .boton-mediahuman{background:#238b55!important;color:#fff!important;border:1px solid #55c783!important}
+/* Centra la flecha como icono, sin depender de la línea base del carácter */
+.acciones-radar .boton-youtube,.acciones-cancion .boton-youtube,.acciones-publicacion .boton-youtube{background:#e62129!important;color:#fff!important;border:1px solid #e62129!important}
+.acciones-radar .boton-completa,.acciones-cancion .boton-completa,.acciones-publicacion .boton-completa{background:#292d3b!important;color:#fff!important;border:1px solid #ffffff35!important}
+.acciones-cancion{display:grid;grid-template-columns:42px 42px;grid-template-rows:42px 42px;gap:7px;justify-content:start;align-content:start;align-items:stretch;width:max-content;min-width:91px;flex-wrap:nowrap}
+.acciones-cancion button,.acciones-radar button{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;line-height:1;vertical-align:middle;width:42px!important;height:42px;min-height:42px;min-width:42px;flex:none;margin:0!important;padding:8px 3px!important;font-size:16px!important;border-radius:10px;white-space:nowrap}
+.acciones-cancion .boton-30{grid-column:1 / 3;grid-row:1;width:91px!important;height:42px;min-width:91px;flex:none!important}
+.acciones-cancion .boton-mediahuman{grid-column:1;grid-row:2}
+.acciones-cancion .boton-youtube{grid-column:2;grid-row:2}
+
+.reproductor-completo{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin:12px 0;background:#000}
+.modal-mediahuman{position:fixed;inset:0;z-index:10000;background:#000b;display:flex;align-items:center;justify-content:center;padding:16px}
+.modal-mediahuman[hidden]{display:none}
+.caja-mediahuman{width:min(680px,100%);max-height:85vh;overflow:auto;background:#171b29;color:#fff;border:1px solid #ffffff24;border-radius:16px;padding:18px;box-shadow:0 10px 45px #0009}
+.cabecera-mediahuman{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.cabecera-mediahuman h2{font-size:18px;margin:0}
+.cerrar-mediahuman{border:0;border-radius:8px;background:#34394a;color:#fff;padding:8px 12px;cursor:pointer}
+.resultado-mediahuman{display:block;width:100%;text-align:left;margin:8px 0;padding:12px;border:1px solid #ffffff20;border-radius:10px;background:#22283a;color:#fff;cursor:pointer}
+.resultado-mediahuman:hover{background:#2d3650}
+.resultado-mediahuman strong{display:block;line-height:1.35}
+.resultado-mediahuman span{display:block;margin-top:4px;color:#b8bfd2;font-size:12px}
+.estado-mediahuman{font-size:13px;line-height:1.45;color:#c7d2e8;margin:8px 0}
+.reproductor-muestra{margin-top:12px;font-size:12px;color:var(--suave);overflow-wrap:anywhere}
+.reproductor-muestra audio{width:100%;height:36px;margin:7px 0}
+.reproductor-muestra a{color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+.reproductor-muestra img{width:115px;height:auto;vertical-align:middle;margin-top:7px}
+
+.vacio{padding:25px;background:var(--panel);border-radius:15px;color:var(--suave)}
+footer{text-align:center;color:var(--suave);font-size:12px;padding:35px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:500px){main{padding:24px 5%}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.portada-disco{height:auto;aspect-ratio:1}.info{padding:11px}.titulo{font-size:15px}}
+
+/* Listas musicales externas */
+.bloque-listas{margin:34px 0 10px;padding-top:28px;border-top:1px solid #ffffff20}
+.encabezado-lista{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.encabezado-lista h3{margin:0;font-size:22px}
+.encabezado-lista .botones-lista{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.actualizar-lista{background:linear-gradient(100deg,#706bff,#b72d83);border:0}
+.estado-lista{color:var(--suave);font-size:13px;margin:10px 0}
+.enlace-fuente{color:#bcb7ff;font-size:13px;text-decoration:none}
+.lista-canciones{display:flex;flex-direction:column;gap:7px;margin-top:12px}
+ .fila-cancion{display:grid;grid-template-columns:42px 52px minmax(0,1fr) minmax(110px,150px);gap:12px;align-items:center;padding:10px 12px;background:var(--panel);border:1px solid #ffffff12;border-radius:12px}
+ .miniatura-cancion{width:52px;height:52px;border-radius:8px;object-fit:cover;background:#ffffff12;display:flex;align-items:center;justify-content:center;overflow:hidden}.miniatura-cancion img{width:100%;height:100%;object-fit:cover;display:block}.miniatura-fallback{font-size:23px;color:var(--suave)}
+.puesto-cancion{font-size:18px;font-weight:800;color:var(--verde);text-align:center}
+.detalle-cancion{min-width:0}
+.titulo-cancion{font-weight:750;overflow-wrap:anywhere}
+.artista-cancion{font-size:13px;color:var(--suave);margin-top:3px;overflow-wrap:anywhere}.info-wikipedia{margin:9px 0;padding:11px;border-left:3px solid #aeb4c0;background:#ffffff0b;border-radius:7px;color:#e4e4ec;font-size:13px;line-height:1.5}.info-wikipedia a{color:#c9b0ff}.wiki-icon{cursor:pointer;padding:0}
+.acciones-cancion button{margin:0;width:100%;padding:8px 10px;font-size:12px}
+.boton-mediahuman{margin-top:6px;background:#2b765f;border-color:#2b765f}
+.boton-youtube-buscar{margin-top:6px;background:#45415f}
+.fila-cancion .reproductor-muestra{grid-column:2 / -1;margin-top:0}
+.fila-cancion .reproductor-muestra audio{max-width:100%}
+@media(max-width:560px){
+ .fila-cancion{grid-template-columns:32px 44px minmax(0,1fr);gap:8px}
+ .miniatura-cancion{width:44px;height:44px}
+ .acciones-cancion{grid-column:3}
+ .acciones-cancion .boton-muestra{width:auto}
+ .fila-cancion .reproductor-muestra{grid-column:2 / -1}
+}
+
+body[data-wikipedia-off="1"] .wiki-icon,body[data-wikipedia-off="1"] .boton-wikipedia,body[data-wikipedia-off="1"] .wiki{display:none!important}
+
+/* Ficha musical modal */
+.modal-info-musical{position:fixed;inset:0;z-index:10050;background:rgba(4,5,14,.78);display:flex;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(5px)}
+.modal-info-musical[hidden]{display:none}
+.modal-info-musical-panel{width:min(720px,100%);max-height:min(82vh,850px);overflow:auto;background:#171827;color:#f7f5ff;border:1px solid #ffffff26;border-radius:18px;box-shadow:0 20px 70px #0009;padding:24px}
+.modal-info-musical-cabecera{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.modal-info-musical-titulo{font-size:22px;font-weight:800;line-height:1.3;margin:0}
+.modal-info-musical-cerrar{flex:none;border-radius:50%;width:40px;height:40px;padding:0;font-size:23px;line-height:1}
+.modal-info-musical-texto{white-space:pre-line;line-height:1.7;font-size:15px}
+.modal-info-musical-fuentes{display:flex;flex-direction:column;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid #ffffff20}
+.modal-info-musical-fuentes a{color:#91d9ff;overflow-wrap:anywhere}
+.modal-info-musical-motor{font-size:12px;color:#9de8ca;margin-bottom:12px}
+.modal-info-musical-error{color:#ffb9c0;line-height:1.6}
+body.modal-info-musical-abierto{overflow:hidden}
+.wiki-icon{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;padding:0;margin-left:4px;border-radius:50%;font-size:13px;vertical-align:middle}
+
+</style>
+</head>
+<body>
+<script>try{if(localStorage.getItem('mrWikipediaEnabled')!=='1')document.body.dataset.wikipediaOff='1'}catch(e){document.body.dataset.wikipediaOff='1'}</script>
+<header>
+<div class="marca">Tu universo musical</div>
+  <h1>Mi Radar Musical 🎧</h1>
+  <p>Todo lo que suena en tu radar, en un solo lugar.</p>
+</header>
+<nav>
+  <a class="activo" href="/">🏠 Portada</a>
+  <a href="/listas/youtube">▶ YouTube</a>
+  <a href="/listas/los40">🎵 LOS40</a>
+  <a href="/listas/canal-fiesta">📻 Canal Fiesta</a>
+  <a href="/lo-mejor">⭐ Lo mejor</a>
+  <a href="/mi-musica">🎧 Mi música</a>
+  <a href="/programas" style="margin-left:auto">🧰 Programas</a>
+</nav>
+<main>
+
+  <div class="cabecera"><div>
+    <h2>Tu radar de lanzamientos</h2>
+    <p class="sub">Explora singles, álbumes y las novedades de los 50 artistas más presentes en tu colección.</p>
+  </div></div>
+  <div class="selector-lanzamientos" aria-label="Selector de lanzamientos">
+    <div class="botones" role="group" aria-label="Tipo de lanzamiento">
+      <button id="single" class="activo" onclick="elegirTipo('Single')">🎵 Singles</button>
+      <button id="album" onclick="elegirTipo('Album')">💿 Álbumes</button>
+      <button id="recomendados" onclick="elegirTipo('Recomendados')">⭐ Recomendados</button>
+    </div>
+    <div class="control-cantidad" aria-label="Cantidad de lanzamientos">
+      <span id="cantidad-visible" aria-live="polite">12</span>
+      <button id="expandir-lista" type="button" aria-label="Mostrar hasta 32 lanzamientos" title="Mostrar hasta 32 lanzamientos">+</button>
+    </div>
+  </div>
+  <div id="estado">Cargando publicaciones…</div>
+  <div id="ultima-actualizacion">Consultando última actualización…</div>
+  <section id="lista" class="grid"></section>
+
+<section class="bloque-listas" id="listas-musicales">
+  <h2>Listas musicales</h2>
+  <p class="sub">Consulta las listas y actualiza cada fuente por separado. Las muestras disponibles duran hasta 30 segundos.</p>
+
+  <section class="bloque-listas" id="lista-los40">
+    <div class="encabezado-lista">
+      <h3>🎵 LOS40 · Lista semanal</h3>
+      <div class="botones-lista">
+        <a class="enlace-fuente" href="https://los40.com/lista40/" target="_blank" rel="noopener">Ver lista oficial ↗</a>
+        <button class="actualizar-lista" type="button" data-lista="los40">↻ Actualizar LOS40</button>
+      </div>
+    </div>
+    <div class="estado-lista" id="estado-los40">Pulsa «Actualizar LOS40» para cargar la lista.</div>
+    <div class="lista-canciones" id="canciones-los40"></div>
+  </section>
+
+  <section class="bloque-listas" id="lista-canal-fiesta">
+    <div class="encabezado-lista">
+      <h3>📻 Canal Fiesta · Top 50</h3>
+      <div class="botones-lista">
+        <a class="enlace-fuente" href="https://www.canalsur.es/radio/canal-fiesta/top-50/" target="_blank" rel="noopener">Ver lista oficial ↗</a>
+        <button class="actualizar-lista" type="button" data-lista="canal-fiesta">↻ Actualizar Canal Fiesta</button>
+      </div>
+    </div>
+    <div class="estado-lista" id="estado-canal-fiesta">Pulsa «Actualizar Canal Fiesta» para cargar la lista.</div>
+    <div class="lista-canciones" id="canciones-canal-fiesta"></div>
+  </section>
+
+  <section class="bloque-listas" id="lista-youtube">
+    <div class="encabezado-lista">
+      <h3>▶ YouTube · Tendencias musicales</h3>
+      <div class="botones-lista">
+        <a class="enlace-fuente" href="https://charts.youtube.com/charts/TrendingVideos/es" target="_blank" rel="noopener">Ver tendencias oficiales ↗</a>
+        <button class="actualizar-lista" type="button" data-lista="youtube">↻ Actualizar YouTube</button>
+      </div>
+    </div>
+    <div class="estado-lista" id="estado-youtube">Pulsa «Actualizar YouTube» para cargar las tendencias.</div>
+    <div class="lista-canciones" id="canciones-youtube"></div>
+  </section>
+</section>
+
+</main>
+<footer style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap"><span>Mi Radar Musical · Datos de tu colección personal</span><div class="ajustes-portada"><button id="boton-ajustes" type="button" aria-expanded="false" aria-controls="panel-ajustes" title="Ajustes">⚙️ <span>Ajustes</span></button><div id="panel-ajustes" class="panel-ajustes" hidden><label><input id="activar-wikipedia" type="checkbox"> Mostrar iconos de información musical</label><p>Controla los iconos informativos de toda la web. Las fichas guardadas se conservan aunque los ocultes.</p><label style="display:flex;gap:8px;align-items:center;margin-top:12px"><input id="activar-guardar" type="checkbox"> Mostrar iconos de agregar canciones</label><p>Añade canciones a Guardadas desde todas las secciones, incluida Mi música.</p></div></div></footer>
+<script>
+const panelAjustes=document.getElementById('panel-ajustes');
+const botonAjustes=document.getElementById('boton-ajustes');
+const activarWikipedia=document.getElementById('activar-wikipedia');
+const activarGuardar=document.getElementById('activar-guardar');
+try{activarWikipedia.checked=localStorage.getItem('mrWikipediaEnabled')==='1'}catch(e){activarWikipedia.checked=false}
+try{activarGuardar.checked=localStorage.getItem('mrGuardarEnabled')==='1'}catch(e){activarGuardar.checked=false}
+document.body.dataset.wikipediaOff=activarWikipedia.checked?'0':'1';
+botonAjustes.addEventListener('click',()=>{panelAjustes.hidden=!panelAjustes.hidden;botonAjustes.setAttribute('aria-expanded',String(!panelAjustes.hidden))});
+activarWikipedia.addEventListener('change',()=>{document.body.dataset.wikipediaOff=activarWikipedia.checked?'0':'1';try{localStorage.setItem('mrWikipediaEnabled',activarWikipedia.checked?'1':'0')}catch(e){}});
+activarGuardar.addEventListener('change',()=>{try{localStorage.setItem('mrGuardarEnabled',activarGuardar.checked?'1':'0')}catch(e){};window.dispatchEvent(new Event('mrGuardarAjuste'));});
+let publicaciones = [];
+let tipoSeleccionado = "Single";
+let cantidadSeleccionada = 12;
+const controlCantidad=document.getElementById("cantidad-visible");
+const botonExpandir=document.getElementById("expandir-lista");
+botonExpandir.addEventListener("click",()=>mostrar(cantidadSeleccionada===12?32:12));
+let audioActual = null;
+let temporizadorMuestra = null;
+let tarjetaReproduciendo = null;
+
+function escapar(valor) {
+  return String(valor ?? "").replace(/[&<>"']/g, c => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[c]));
+}
+function tipoNormalizado(tipo) {
+  const t = String(tipo || "").trim().toLowerCase();
+  if (t === "single" || t === "singles") return "Single";
+  if (t === "album" || t === "álbum" || t === "albums" || t === "álbumes") return "Album";
+  return t;
+}
+function elegirTipo(tipo) {
+  tipoSeleccionado = tipo;
+  document.getElementById("single").classList.toggle("activo", tipo === "Single");
+  document.getElementById("album").classList.toggle("activo", tipo === "Album");
+  document.getElementById("recomendados").classList.toggle("activo", tipo === "Recomendados");
+  mostrar(cantidadSeleccionada);
+}
+let solicitudPortada = 0;
+async function mostrar(cantidad) {
+  cantidadSeleccionada = cantidad;
+  controlCantidad.textContent=String(cantidad);
+  botonExpandir.textContent=cantidad===12?"+":"−";
+  botonExpandir.setAttribute("aria-label",cantidad===12?"Mostrar hasta 32 lanzamientos":"Volver a mostrar 12 lanzamientos");
+  botonExpandir.title=cantidad===12?"Mostrar hasta 32 lanzamientos":"Volver a mostrar 12 lanzamientos";
+  const lista = document.getElementById("lista");
+  lista.innerHTML = "";
+  const idSolicitud = ++solicitudPortada;
+  document.getElementById("estado").textContent = "Cargando publicaciones…";
+  try {
+    const esRecomendados = tipoSeleccionado === "Recomendados";
+    const consulta = new URLSearchParams({cantidad: String(cantidad)});
+    if (!esRecomendados) consulta.set("tipo", tipoSeleccionado);
+    const endpoint = esRecomendados ? "/api/portada/recomendados?" : "/api/portada?";
+    const respuesta = await fetch(endpoint + consulta.toString());
+    const datos = await respuesta.json();
+    if (!respuesta.ok) throw new Error(datos.error || "No se han podido cargar las publicaciones.");
+    if (idSolicitud !== solicitudPortada) return;
+    publicaciones = Array.isArray(datos.publicaciones) ? datos.publicaciones : [];
+    const elementos = publicaciones;
+    document.getElementById("estado").textContent = esRecomendados
+      ? `${Number(datos.total || 0).toLocaleString("es-ES")} publicaciones recientes de tus ${Number(datos.total_artistas || 50)} artistas con más canciones`
+      : `${Number(datos.total || 0).toLocaleString("es-ES")} ${tipoSeleccionado === "Single" ? "singles" : "álbumes"} publicados`;
+    if (!elementos.length) {
+      lista.innerHTML = esRecomendados
+        ? '<div class="vacio">Todavía no hay publicaciones disponibles de tus 50 artistas más presentes en Mi música.</div>'
+        : '<div class="vacio">No hay lanzamientos publicados de este tipo en los datos disponibles.</div>';
+      return;
+    }
+    for (const p of elementos) {
+    const tarjeta = document.createElement("article");
+    tarjeta.className = "tarjeta";
+    const imagen = p.imagen || (p.id ? `https://coverartarchive.org/release-group/${encodeURIComponent(p.id)}/front-250` : "");
+    const tipoPublicacion = esRecomendados ? tipoNormalizado(p.tipo) : tipoSeleccionado;
+    const icono = tipoPublicacion === "Single" ? "🎵" : "💿";
+    const etiquetaTipo = tipoPublicacion === "Single" ? "Single" : "Álbum";
+    tarjeta.innerHTML = `
+      <div class="portada-disco"><span>${icono}</span></div>
+      <div class="info">
+        <div class="tipo">${etiquetaTipo}</div>
+        <div class="titulo">${escapar(p.titulo || "Sin título")} <button class="wiki-icon" data-wiki-tipo="cancion" data-wiki-nombre="${escapar(p.titulo || "")}" data-wiki-artista="${escapar(p.artista || "")}" title="Consultar información de la canción" aria-label="Consultar información de la canción">ℹ</button></div>
+        <div class="artista">${escapar(p.artista || "Artista desconocido")} <button class="wiki-icon" data-wiki-tipo="artista" data-wiki-nombre="${escapar(p.artista || "")}" title="Consultar biografía del artista" aria-label="Consultar biografía del artista">ℹ</button></div>
+        <div class="fecha">${escapar(p.fecha || "Fecha desconocida")}</div>
+        ${(tipoSeleccionado === "Single" || esRecomendados) ? `<div class="acciones-radar"><button class="boton-muestra boton-30" type="button" title="Escuchar muestra de 30 segundos"><svg aria-hidden="true" viewBox="0 0 24 24" width="17" height="17" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg><span>30 s</span></button><button class="boton-mediahuman" type="button" title="Buscar enlace para MediaHuman" aria-label="Descargar con MediaHuman"><svg aria-hidden="true" viewBox="0 0 24 24" width="21" height="21" focusable="false"><path d="M12 3v11m-5-5 5 5 5-5M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="boton-youtube" type="button" title="Abrir YouTube" aria-label="YouTube">Y</button></div><div class="reproductor-muestra" hidden></div>` : ""}
+      </div>`;
+    configurarIconosWiki(tarjeta);
+    if (tipoPublicacion !== "Single") agregarDesplegableAlbum(p, tarjeta);
+    const zonaImagen = tarjeta.querySelector(".portada-disco");
+    if (imagen) {
+      const img = document.createElement("img");
+      img.src = imagen;
+      img.alt = `Portada de ${p.titulo || "lanzamiento"}`;
+      img.loading = "lazy";
+      img.onerror = () => { img.remove(); zonaImagen.textContent = icono; };
+      zonaImagen.prepend(img);
+      zonaImagen.querySelector("span").style.display = "none";
+    }
+    if (tipoSeleccionado === "Single" || esRecomendados) {
+      const boton = tarjeta.querySelector(".boton-muestra");
+      boton.addEventListener("click", () => reproducirMuestra(p, tarjeta, boton));
+      tarjeta.querySelector(".boton-mediahuman").addEventListener("click", () => buscarCancionYouTube(p,"mediahuman"));
+      tarjeta.querySelector(".boton-youtube").addEventListener("click", () => buscarCancionYouTube(p,"youtube"));
+    }
+    lista.appendChild(tarjeta);
+    }
+  } catch (error) {
+    if (idSolicitud !== solicitudPortada) return;
+    document.getElementById("estado").textContent = error.message || "No se han podido cargar las publicaciones.";
+    lista.innerHTML = '<div class="vacio">No se han podido cargar las novedades. Inténtalo de nuevo más tarde.</div>';
+  }
+}
+
+function iconoBotonMuestra(boton, reproduciendo, texto='30 s') {
+  boton.innerHTML = reproduciendo
+    ? '<svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" focusable="false"><path d="M6 5h4v14H6zM14 5h4v14h-4z" fill="currentColor"/></svg><span>'+texto+'</span>'
+    : '<svg aria-hidden="true" viewBox="0 0 24 24" width="17" height="17" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg><span>'+texto+'</span>';
+}
+function limpiarTemporizadorMuestra() {
+  if (temporizadorMuestra) clearTimeout(temporizadorMuestra);
+  temporizadorMuestra = null;
+}
+function programarFinMuestra(audio, boton, milisegundos) {
+  limpiarTemporizadorMuestra();
+  audio._muestraFinEn = Date.now() + milisegundos;
+  temporizadorMuestra = setTimeout(() => {
+    if (audioActual !== audio) return;
+    audio.pause();
+    audio.currentTime = 0;
+    audioActual = null;
+    audio._muestraRestante = 30000;
+    iconoBotonMuestra(boton, false);
+  }, milisegundos);
+}
+async function reproducirMuestra(publicacion, tarjeta, boton) {
+  const zona = tarjeta.querySelector(".reproductor-muestra");
+  // El mismo botón pausa o reanuda la muestra ya cargada, sin volver a buscarla.
+  if (tarjetaReproduciendo === tarjeta && audioActual && zona.querySelector("audio")) {
+    const audio = audioActual;
+    if (!audio.paused) {
+      audio.pause();
+      if (audio._muestraFinEn) audio._muestraRestante = Math.max(0, audio._muestraFinEn - Date.now());
+      limpiarTemporizadorMuestra();
+      iconoBotonMuestra(boton, false);
+      boton.title = "Reanudar muestra de 30 segundos";
+    } else {
+      try {
+        await audio.play();
+        programarFinMuestra(audio, boton, audio._muestraRestante || 30000);
+        iconoBotonMuestra(boton, true);
+        boton.title = "Pausar muestra";
+      } catch (error) {
+        zona.textContent = "No se ha podido reanudar la muestra.";
+      }
+    }
+    return;
+  }
+  if (audioActual) {
+    audioActual.pause();
+    audioActual.currentTime = 0;
+    audioActual = null;
+  }
+  limpiarTemporizadorMuestra();
+  if (tarjetaReproduciendo) {
+    const anterior = tarjetaReproduciendo.querySelector(".reproductor-muestra");
+    if (anterior) { anterior.hidden = true; anterior.innerHTML = ""; }
+    const botonAnterior = tarjetaReproduciendo.querySelector(".boton-muestra");
+    if (botonAnterior) {
+      botonAnterior.disabled = false;
+      iconoBotonMuestra(botonAnterior, false);
+      botonAnterior.title = "Escuchar muestra de 30 segundos";
+    }
+  }
+  tarjetaReproduciendo = tarjeta;
+  boton.disabled = true;
+  boton.textContent = "Buscando…";
+  zona.hidden = false;
+  zona.textContent = "Buscando una coincidencia en el catálogo musical…";
+  try {
+    const consulta = new URLSearchParams({
+      titulo: publicacion.titulo || "",
+      artista: publicacion.artista || ""
+    });
+    let datos;
+    if (publicacion.previewUrl) {
+      datos = { previewUrl: publicacion.previewUrl, fuente: "Apple Music/iTunes", artista: publicacion.artista, titulo: publicacion.titulo, trackViewUrl: publicacion.trackViewUrl || "" };
+    } else {
+      const respuesta = await fetch(`/api/muestra?${consulta.toString()}`);
+      datos = await respuesta.json();
+      if (!respuesta.ok) throw new Error(datos.error || "No se ha encontrado una muestra.");
+    }
+    zona.innerHTML = "";
+    const audio = document.createElement("audio");
+    audio.controls = true;
+    audio.preload = "none";
+    audio.src = datos.previewUrl;
+    audio._muestraRestante = 30000;
+    audioActual = audio;
+    const atribucion = document.createElement("div");
+    atribucion.textContent = `Muestra proporcionada por ${datos.fuente || "el catálogo musical"}: ${datos.artista} — ${datos.titulo}`;
+    zona.append(atribucion, audio);
+    if (datos.trackViewUrl) {
+      const enlace = document.createElement("a");
+      enlace.href = datos.trackViewUrl;
+      enlace.target = "_blank";
+      enlace.rel = "noopener noreferrer";
+      enlace.textContent = datos.fuente === "Deezer"
+        ? "Ver esta canción en Deezer"
+        : "Ver esta canción en Apple Music/iTunes";
+      if (datos.fuente !== "Deezer") {
+        const insignia = document.createElement("img");
+        insignia.src = "https://tools.applemediaservices.com/api/badges/download-on-itunes/black/en-us?size=250x83";
+        insignia.alt = "Download on iTunes";
+        enlace.appendChild(insignia);
+      }
+      zona.appendChild(document.createElement("br"));
+      zona.appendChild(enlace);
+    }
+    audio.addEventListener("play", () => {
+      if (audioActual === audio) {
+        iconoBotonMuestra(boton, true);
+        boton.title = "Pausar muestra";
+      }
+    });
+    audio.addEventListener("pause", () => {
+      if (audioActual === audio && audio.currentTime > 0 && !audio.ended && temporizadorMuestra) {
+        if (audio._muestraFinEn) audio._muestraRestante = Math.max(0, audio._muestraFinEn - Date.now());
+        limpiarTemporizadorMuestra();
+        iconoBotonMuestra(boton, false);
+        boton.title = "Reanudar muestra de 30 segundos";
+      }
+    });
+    audio.addEventListener("ended", () => {
+      if (audioActual === audio) {
+        limpiarTemporizadorMuestra();
+        audioActual = null;
+        iconoBotonMuestra(boton, false);
+        boton.title = "Escuchar muestra de 30 segundos";
+      }
+    });
+    await audio.play();
+    programarFinMuestra(audio, boton, 30000);
+    iconoBotonMuestra(boton, true);
+    boton.title = "Pausar muestra";
+  } catch (error) {
+    zona.textContent = error.message || "No se ha podido reproducir la muestra.";
+    iconoBotonMuestra(boton, false);
+    boton.title = "Intentar reproducir la muestra";
+  } finally {
+    boton.disabled = false;
+  }
+}
+mostrar(cantidadSeleccionada);
+fetch("/ultima_actualizacion.txt")
+  .then(r => { if (!r.ok) throw new Error(); return r.text(); })
+  .then(fecha => { document.getElementById("ultima-actualizacion").textContent = "Última actualización: " + fecha.trim(); })
+  .catch(() => { document.getElementById("ultima-actualizacion").textContent = "Última actualización no disponible"; });
+</script>
+
+<script>
+async function fetchAccionProtegida(url, opciones={}) {
+  const cabeceras = new Headers(opciones.headers || {});
+  let token = "";
+  try { token = sessionStorage.getItem("mrAdminActionToken") || ""; } catch (e) {}
+  if (token) cabeceras.set("X-Admin-Token", token);
+  let respuesta = await fetch(url, {...opciones, headers: cabeceras});
+  if (respuesta.status === 401) {
+    const nuevo = window.prompt("Esta acción requiere el token de administración configurado en el servidor. Introduce el token:");
+    if (nuevo === null || !nuevo.trim()) return respuesta;
+    token = nuevo.trim();
+    try { sessionStorage.setItem("mrAdminActionToken", token); } catch (e) {}
+    cabeceras.set("X-Admin-Token", token);
+    respuesta = await fetch(url, {...opciones, headers: cabeceras});
+    if (respuesta.status === 401) {
+      try { sessionStorage.removeItem("mrAdminActionToken"); } catch (e) {}
+      window.alert("El token no es válido. Comprueba la configuración del servidor.");
+    }
+  }
+  return respuesta;
+}
+const nombresListas={
+  "los40":"LOS40",
+  "canal-fiesta":"Canal Fiesta",
+  "youtube":"YouTube"
+};
+function escaparLista(v){
+ return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function urlWikipedia(nombre){
+ return "https://es.wikipedia.org/w/index.php?search="+encodeURIComponent(String(nombre||""));
+}
+const cacheinformacionWikiWiki=new Map();
+const colaConsultasWikiPortada=[];let consultasWikiActivasPortada=0;
+function despacharConsultaWikiPortada(){while(consultasWikiActivasPortada<2&&colaConsultasWikiPortada.length){const tarea=colaConsultasWikiPortada.shift();consultasWikiActivasPortada++;(async()=>{try{tarea.resolve(await fetch(tarea.url,{signal:AbortSignal.timeout(18000)}));}catch(error){tarea.reject(error);}finally{consultasWikiActivasPortada--;despacharConsultaWikiPortada();}})();}}
+function solicitarConsultaWikiPortada(url){return new Promise((resolve,reject)=>{colaConsultasWikiPortada.push({url,resolve,reject});despacharConsultaWikiPortada();});}
+async function obtenerInfoPortada(tipo,nombre,artista){const clave=[tipo,nombre,artista||''].join('|');let p=cacheinformacionWikiWiki.get(clave);if(!p){const q=new URLSearchParams({tipo,nombre,artista:artista||''});p=solicitarConsultaWikiPortada('/api/resumen-musical?'+q+'&_='+Date.now()).then(async r=>{let d={};try{d=await r.json();}catch(e){}if(!r.ok&&!d.error)d.error='Gemini no ha podido generar la ficha (HTTP '+r.status+').';return d;}).catch(()=>({encontrado:false,error:'No se ha podido conectar con Gemini. Comprueba la conexión e inténtalo de nuevo.'}));cacheinformacionWikiWiki.set(clave,p);}return p;}
+const observadorWikiPortada=typeof IntersectionObserver!=='undefined'?new IntersectionObserver(es=>{for(const e of es){if(e.isIntersecting){observadorWikiPortada.unobserve(e.target);preverificarWikiPortada(e.target);}}},{rootMargin:'180px'}):null;
+async function preverificarWikiPortada(b){const d=await obtenerInfoPortada(b.dataset.wikiTipo,b.dataset.wikiNombre,b.dataset.wikiArtista||'');const contenido=b.dataset.wikiTipo==='artista'?d.biografia:d.informacion;if(d.encontrado&&contenido){b.textContent='ℹ';b.title='Información musical disponible';}else b.hidden=true;}
+function configurarIconosWiki(contenedor){ /* Los clics se gestionan por delegación para abrir una única ficha modal. */ }
+function agregarDesplegableAlbum(p, tarjeta) {
+  const info = tarjeta.querySelector(".info");
+  if (!info) return;
+  const boton = document.createElement("button");
+  boton.type = "button";
+  boton.className = "boton-album-canciones";
+  boton.textContent = "▼ Ver canciones";
+  boton.title = "Ver todas las canciones de este álbum";
+  const zona = document.createElement("div");
+  zona.className = "canciones-album";
+  zona.hidden = true;
+  boton.addEventListener("click", () => alternarCancionesAlbum(p, tarjeta, boton, zona));
+  info.append(boton, zona);
+}
+async function alternarCancionesAlbum(p, tarjeta, boton, zona) {
+  if (zona.dataset.cargado === "1") {
+    const abrir = zona.hidden;
+    zona.hidden = !abrir;
+    tarjeta.style.gridColumn = abrir ? "1 / -1" : "";
+    boton.textContent = abrir ? "▲ Ocultar canciones" : "▼ Ver canciones";
+    return;
+  }
+  boton.disabled = true;
+  boton.textContent = "Buscando canciones…";
+  try {
+    const consulta = new URLSearchParams({ artista: p.artista || "", titulo: p.titulo || "", id: p.id || "" });
+    const respuesta = await fetch(`/api/album/canciones?${consulta.toString()}`);
+    const datos = await respuesta.json();
+    if (!respuesta.ok) throw new Error(datos.error || "No se han encontrado las canciones de este álbum.");
+    zona.replaceChildren();
+    for (const c of datos.canciones) zona.appendChild(filaCancionAlbum(c));
+    zona.dataset.cargado = "1";
+    zona.hidden = false;
+    tarjeta.style.gridColumn = "1 / -1";
+    boton.textContent = "▲ Ocultar canciones";
+  } catch (error) {
+    zona.replaceChildren();
+    const mensaje = document.createElement("div");
+    mensaje.className = "mensaje-album";
+    mensaje.textContent = error.message || "No se han podido cargar las canciones.";
+    zona.appendChild(mensaje);
+    zona.hidden = false;
+    boton.textContent = "▼ Ver canciones";
+  } finally {
+    boton.disabled = false;
+  }
+}
+function filaCancionAlbum(c) {
+  const fila = document.createElement("article");
+  fila.className = "fila-cancion fila-album";
+  fila.dataset.titulo = c.titulo || "";
+  fila.dataset.artista = c.artista || "";
+  fila.innerHTML = `
+    <div class="info">
+      <div class="titulo"><span class="mr-num">${escapar(String(c.numero || ""))}</span>${escapar(c.titulo || "")} <button class="wiki-icon" data-wiki-tipo="cancion" data-wiki-nombre="${escapar(c.titulo || "")}" data-wiki-artista="${escapar(c.artista || "")}" title="Consultar información de la canción" aria-label="Consultar información de la canción">ℹ</button></div>
+      <div class="artista">${escapar(c.artista || "")}</div>
+    </div>
+    <div class="acciones-radar"><button class="boton-muestra boton-30" type="button" title="Escuchar muestra de 30 segundos"><svg aria-hidden="true" viewBox="0 0 24 24" width="17" height="17" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg><span>30 s</span></button><button class="boton-mediahuman" type="button" title="Buscar enlace para MediaHuman" aria-label="Descargar con MediaHuman"><svg aria-hidden="true" viewBox="0 0 24 24" width="21" height="21" focusable="false"><path d="M12 3v11m-5-5 5 5 5-5M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="boton-youtube" type="button" title="Abrir YouTube" aria-label="YouTube">Y</button></div>
+    <div class="reproductor-muestra" hidden></div>`;
+  const cancion = { titulo: c.titulo, artista: c.artista, previewUrl: c.previewUrl, trackViewUrl: c.trackViewUrl };
+  const botonMuestra = fila.querySelector(".boton-muestra");
+  botonMuestra.addEventListener("click", () => reproducirMuestra(cancion, fila, botonMuestra));
+  fila.querySelector(".boton-mediahuman").addEventListener("click", () => buscarCancionYouTube(cancion, "mediahuman"));
+  fila.querySelector(".boton-youtube").addEventListener("click", () => buscarCancionYouTube(cancion, "youtube"));
+  return fila;
+}
+const cacheImagenesLista=new Map();
+const colaImagenesLista=[];let imagenesActivasLista=0;
+function despacharImagenesLista(){while(imagenesActivasLista<3&&colaImagenesLista.length){const tarea=colaImagenesLista.shift();imagenesActivasLista++;(async()=>{try{const url="https://itunes.apple.com/search?"+new URLSearchParams({term:(tarea.cancion.artista||"")+" "+(tarea.cancion.titulo||""),entity:"song",limit:"1",country:"ES"});const r=await fetch(url,{signal:AbortSignal.timeout(7000)});if(!r.ok)throw new Error();const d=await r.json();const item=(d.results||[])[0];if(item&&item.artworkUrl100){const src=item.artworkUrl100.replace(/\d+x\d+bb/, "100x100bb");cacheImagenesLista.set(String(tarea.cancion.artista||"")+"|"+String(tarea.cancion.titulo||""),src);tarea.img.src=src;tarea.img.hidden=false;tarea.fallback.hidden=true;}else cacheImagenesLista.set(String(tarea.cancion.artista||"")+"|"+String(tarea.cancion.titulo||""),"");}catch(e){}finally{imagenesActivasLista--;despacharImagenesLista();}})();}}
+function cargarImagenCancionLista(cancion,img,fallback){
+ const directa=String(cancion.imagen||cancion.thumbnail||cancion.portada||"").trim();
+ if(directa&&/^https?:\/\//i.test(directa)){img.src=directa;return;}
+ const clave=String(cancion.artista||"")+"|"+String(cancion.titulo||"");
+ if(cacheImagenesLista.has(clave)){const url=cacheImagenesLista.get(clave);if(url){img.src=url;img.hidden=false;fallback.hidden=true;}return;}
+ const observador=typeof IntersectionObserver!=="undefined"?new IntersectionObserver((entries)=>{if(entries.some(e=>e.isIntersecting)){observador.disconnect();colaImagenesLista.push({cancion,img,fallback});despacharImagenesLista();}},{rootMargin:"160px"}):null;
+ if(observador)observador.observe(img.parentElement||img);else{colaImagenesLista.push({cancion,img,fallback});despacharImagenesLista();}
+}
+function mostrarLista(tipo,datos){
+ const estado=document.getElementById("estado-"+tipo);
+ const contenedor=document.getElementById("canciones-"+tipo);
+ estado.textContent=(datos.actualizado ? "Actualizada: "+new Date(datos.actualizado).toLocaleString("es-ES")+" · " : "")+(datos.mensaje||"");
+ contenedor.innerHTML="";
+ const canciones=datos.canciones||[];
+ if(!canciones.length){
+  contenedor.innerHTML='<div class="vacio">No hay canciones guardadas todavía. Pulsa el botón de actualizar de esta lista.</div>';
+  return;
+ }
+ for(const cancion of canciones){
+  const fila=document.createElement("article");
+  fila.className="fila-cancion";
+  const puesto=document.createElement("div");
+  puesto.className="puesto-cancion";
+  puesto.textContent=String(cancion.puesto||"–");
+  const miniatura=document.createElement("div");
+  miniatura.className="miniatura-cancion";
+  const imagenCancion=document.createElement("img");
+  imagenCancion.alt="Portada de "+(cancion.titulo||"la canción");
+  imagenCancion.loading="lazy";imagenCancion.decoding="async";imagenCancion.referrerPolicy="no-referrer";
+  imagenCancion.style.opacity="0";
+  const fallbackMiniatura=document.createElement("span");fallbackMiniatura.className="miniatura-fallback";fallbackMiniatura.textContent="♪";
+  miniatura.append(imagenCancion,fallbackMiniatura);
+  imagenCancion.addEventListener("load",()=>{fallbackMiniatura.hidden=true;imagenCancion.hidden=false;imagenCancion.style.opacity="1";});
+  imagenCancion.addEventListener("error",()=>{imagenCancion.hidden=true;fallbackMiniatura.hidden=false;});
+  const detalle=document.createElement("div");
+  detalle.className="detalle-cancion";
+  cargarImagenCancionLista(cancion,imagenCancion,fallbackMiniatura);
+  detalle.innerHTML='<div class="titulo-cancion">'+escaparLista(cancion.titulo)+' <button class="wiki-icon" data-wiki-tipo="cancion" data-wiki-nombre="'+escaparLista(cancion.titulo||'')+'" data-wiki-artista="'+escaparLista(cancion.artista||'')+'" title="Consultar información de la canción" aria-label="Consultar información de la canción">ℹ</button></div><div class="artista-cancion">'+escaparLista(cancion.artista)+' <button class="wiki-icon" data-wiki-tipo="artista" data-wiki-nombre="'+escaparLista(cancion.artista||'')+'" title="Consultar información del artista" aria-label="Consultar información del artista">ℹ</button></div>';
+  configurarIconosWiki(detalle);
+  const acciones=document.createElement("div");
+  acciones.className="acciones-cancion";
+  const boton=document.createElement("button");
+  boton.type="button";boton.className="boton-muestra boton-30";
+  boton.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="17" height="17" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg><span>30 s</span>';boton.title="Escuchar muestra de 30 segundos";
+  boton.setAttribute("aria-label","Muestra de 30 segundos");
+  const botonMedia=document.createElement("button");
+  botonMedia.type="button";botonMedia.className="boton-mediahuman";botonMedia.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="21" height="21" focusable="false"><path d="M12 3v11m-5-5 5 5 5-5M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  botonMedia.title="Buscar enlace para MediaHuman";botonMedia.setAttribute("aria-label","MediaHuman");
+  botonMedia.addEventListener("click",()=>buscarCancionYouTube(cancion,"mediahuman"));
+  const botonYoutube=document.createElement("button");
+  botonYoutube.type="button";botonYoutube.className="boton-youtube";botonYoutube.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg>';
+  botonYoutube.title="Abrir versión en YouTube";botonYoutube.setAttribute("aria-label","YouTube");
+  botonYoutube.addEventListener("click",()=>buscarCancionYouTube(cancion,"youtube"));
+   const reproductor=document.createElement("div");
+  reproductor.className="reproductor-muestra";reproductor.hidden=true;
+  acciones.append(boton,botonMedia,botonYoutube);
+  fila.append(puesto,miniatura,detalle,acciones,reproductor);
+  boton.addEventListener("click",()=>reproducirMuestra({
+   titulo:cancion.titulo||"",
+   artista:cancion.artista||""
+  },fila,boton));
+  contenedor.appendChild(fila);
+ }
+}
+
+async function copiarEnlaceMediaHuman(url,boton){
+ const original=boton.textContent;
+ try{
+  if(navigator.clipboard && window.isSecureContext){
+   await navigator.clipboard.writeText(url);
+  }else{
+   const area=document.createElement("textarea");
+   area.value=url; area.style.position="fixed"; area.style.opacity="0";
+   document.body.appendChild(area); area.select();
+   const ok=document.execCommand("copy"); area.remove();
+   if(!ok) throw new Error("El navegador no permitió copiar el enlace.");
+  }
+  if(boton.classList.contains("resultado-mediahuman")){
+   boton.style.borderColor="#2b765f";
+  }else{
+   boton.textContent="✓ Enlace copiado · MediaHuman debería detectarlo";
+  }
+ }catch(e){
+  window.prompt("Copia este enlace y pégalo en MediaHuman YouTube Downloader:",url);
+ }
+ setTimeout(()=>{boton.textContent=original;},4500);
+}
+async function buscarCancionYouTube(cancion,modo="mediahuman"){
+ if(modo==="full"){
+  const modal=document.getElementById("modal-mediahuman"),lista=document.getElementById("resultados-mediahuman"),estado=document.getElementById("estado-mediahuman"),reproductor=document.getElementById("reproductor-completo"),tituloModal=document.getElementById("titulo-modal-mediahuman");
+  modal.hidden=false;lista.replaceChildren();reproductor.replaceChildren();tituloModal.textContent="Audio completo";estado.textContent="Buscando una versión de audio en Audius…";
+  try{
+   const params=new URLSearchParams({titulo:cancion.titulo||"",artista:cancion.artista||""});
+   const respuesta=await fetch("/api/audius/buscar?"+params.toString()),datos=await respuesta.json();
+   if(!respuesta.ok)throw new Error(datos.error||"No se ha podido buscar en Audius.");
+   const pista=(datos.resultados||[])[0];
+   if(!pista)throw new Error("Audius no ha encontrado una coincidencia para esta canción.");
+   const encabezado=document.createElement("p");encabezado.textContent="Audio de Audius: "+pista.titulo+" · "+pista.artista;reproductor.appendChild(encabezado);
+   const audio=document.createElement("audio");audio.controls=true;audio.preload="none";audio.src=pista.streamUrl;audio.style.width="100%";reproductor.appendChild(audio);
+   if(pista.url){const enlace=document.createElement("a");enlace.href=pista.url;enlace.target="_blank";enlace.rel="noopener noreferrer";enlace.textContent="Abrir pista en Audius";reproductor.appendChild(enlace);}
+   estado.textContent="Encontrada una pista en Audius. Pulsa reproducir si el audio no empieza automáticamente.";
+   try{await audio.play();}catch(e){}
+  }catch(e){estado.textContent=e.message||"No se ha podido encontrar audio en Audius.";const enlace=document.createElement("a");enlace.href="https://audius.co/search/"+encodeURIComponent((cancion.artista||"")+" "+(cancion.titulo||""));enlace.target="_blank";enlace.rel="noopener noreferrer";enlace.textContent="Buscar esta canción en Audius";lista.appendChild(enlace);}
+  return;
+ }
+ const modal=document.getElementById("modal-mediahuman"),lista=document.getElementById("resultados-mediahuman"),estado=document.getElementById("estado-mediahuman"),reproductor=document.getElementById("reproductor-completo"),tituloModal=document.getElementById("titulo-modal-mediahuman");
+ lista.innerHTML="";reproductor.replaceChildren();
+ tituloModal.textContent=modo==="full"?"Reproducir canción completa":modo==="youtube"?"Elegir versión de YouTube":"Elige la versión para MediaHuman";
+ estado.textContent="Buscando versiones disponibles…";modal.hidden=false;
+ try{
+  const params=new URLSearchParams({titulo:cancion.titulo||"",artista:cancion.artista||""});
+  const respuesta=await fetch("/api/youtube/buscar?"+params.toString()),datos=await respuesta.json();
+  if(!respuesta.ok)throw new Error(datos.error||"No se encontraron resultados.");
+  if(modo==="full"){
+   const video=(datos.resultados||[])[0];
+   if(!video){estado.textContent="No he encontrado una versión para reproducir.";return;}
+   const match=String(video.url||"").match(/[?&]v=([^&]+)/);
+   if(!match){estado.textContent="No se ha podido identificar el vídeo.";return;}
+   tituloModal.textContent="Reproduciendo canción completa";
+   estado.textContent="He elegido automáticamente el primer resultado de YouTube: "+(video.titulo||cancion.titulo||"la canción")+" · "+(video.canal||"Canal desconocido")+". Reproducción automática de la versión seleccionada.";
+   const iframe=document.createElement("iframe");iframe.className="reproductor-completo";iframe.title="Reproductor de canción completa";
+   iframe.src="https://www.youtube-nocookie.com/embed/"+encodeURIComponent(match[1])+"?autoplay=1&rel=0";
+   iframe.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";iframe.allowFullscreen=true;
+   reproductor.appendChild(iframe);
+   abrir.addEventListener("click",()=>window.open(video.url,"_blank","noopener,noreferrer"));
+   lista.replaceChildren();
+   return;
+  }
+  estado.textContent=modo==="youtube"?"Elige una versión para abrirla en YouTube.":"Elige la versión correcta. Al pulsarla, se copiará su enlace para MediaHuman.";
+  for(const video of datos.resultados||[]){
+   const b=document.createElement("button");b.type="button";b.className="resultado-mediahuman";
+   const t=document.createElement("strong");t.textContent=video.titulo||"Vídeo sin título";
+   const ch=document.createElement("span");ch.textContent=video.canal||"Canal desconocido";b.append(t,ch);
+   b.addEventListener("click",async()=>{
+    if(modo==="youtube"){window.open(video.url,"_blank","noopener,noreferrer");return;}
+    if(modo==="full"){
+     const match=String(video.url||"").match(/[?&]v=([^&]+)/);
+     if(!match){estado.textContent="No se ha podido identificar el vídeo.";return;}
+     reproductor.replaceChildren();
+     const iframe=document.createElement("iframe");iframe.className="reproductor-completo";iframe.title="Reproductor de canción completa";
+     iframe.src="https://www.youtube-nocookie.com/embed/"+encodeURIComponent(match[1])+"?autoplay=1&rel=0";
+     iframe.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";iframe.allowFullscreen=true;
+     reproductor.appendChild(iframe);estado.textContent="Si el vídeo permite reproducción integrada, empezará a sonar aquí.";return;
+    }
+    b.disabled=true;try{await copiarEnlaceMediaHuman(video.url,b);estado.textContent="Enlace copiado. Si MediaHuman vigila el portapapeles, debería añadirlo a su cola.";}finally{b.disabled=false;}
+   });
+   lista.appendChild(b);
+  }
+ }catch(error){estado.textContent=error.message||"No se pudo buscar. Comprueba la conexión e inténtalo de nuevo.";}
+}
+function cerrarModalMediaHuman(){document.getElementById("modal-mediahuman").hidden=true;document.getElementById("reproductor-completo").replaceChildren();}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")cerrarModalMediaHuman();});
+async function cargarLista(tipo){
+ const estado=document.getElementById("estado-"+tipo);
+ try{
+  const r=await fetch("/api/listas/"+tipo);
+  const datos=await r.json();
+  mostrarLista(tipo,datos);
+  // Si Canal Fiesta aún no tiene caché, intentar cargarla automáticamente la primera vez.
+  if(tipo==="canal-fiesta" && !datos.canciones?.length && !datos.actualizado){
+   estado.textContent="Cargando por primera vez el Top 50 de Canal Fiesta…";
+   const actualizacion=await fetchAccionProtegida("/api/listas/canal-fiesta/actualizar",{method:"POST"});
+   const resultado=await actualizacion.json();
+   mostrarLista("canal-fiesta",resultado);
+   if(!actualizacion.ok && !resultado.canciones?.length){
+    estado.textContent=resultado.mensaje||resultado.error||"No se ha podido cargar el Top 50 de Canal Fiesta.";
+   }
+  }
+ }catch(e){estado.textContent="No se pudo cargar esta lista.";}
+}
+async function actualizarLista(tipo,boton){
+ const estado=document.getElementById("estado-"+tipo);
+ boton.disabled=true;
+ estado.textContent="Consultando la fuente oficial…";
+ try{
+  const r=await fetchAccionProtegida("/api/listas/"+tipo+"/actualizar",{method:"POST"});
+  const datos=await r.json();
+  mostrarLista(tipo,datos);
+  if(!r.ok && !datos.canciones?.length){
+   estado.textContent=datos.mensaje||datos.error||"No se pudo actualizar la lista.";
+  }
+ }catch(e){
+  estado.textContent="No se pudo actualizar. Comprueba la conexión e inténtalo de nuevo.";
+ }finally{boton.disabled=false;}
+}
+document.querySelectorAll(".actualizar-lista").forEach(b=>{
+ b.addEventListener("click",()=>actualizarLista(b.dataset.lista,b));
+});
+const paginaLista = document.body.dataset.pagina || "inicio";
+const tipoListaPagina = paginaLista.startsWith("lista-") ? paginaLista.slice(6) : null;
+if (tipoListaPagina) cargarLista(tipoListaPagina);
+</script>
+
+
+<div id="modal-mediahuman" class="modal-mediahuman" hidden role="dialog" aria-modal="true" aria-labelledby="titulo-modal-mediahuman">
+ <div class="caja-mediahuman">
+  <div class="cabecera-mediahuman"><h2 id="titulo-modal-mediahuman">Elige la versión para MediaHuman</h2><button class="cerrar-mediahuman" type="button" onclick="cerrarModalMediaHuman()">Cerrar ✕</button></div>
+  <p id="estado-mediahuman" class="estado-mediahuman" role="status">Preparando búsqueda…</p>
+  <div id="reproductor-completo"></div>
+  <div id="resultados-mediahuman"></div>
+ </div>
+</div>
+
+
+<script>
+(()=> {
+ const cache=new Map();
+ let modal, panel, titulo, texto, motor, fuentes, cerrador;
+ function prepararModal(){
+  if(modal)return;
+  modal=document.createElement('div');modal.className='modal-info-musical';modal.hidden=true;
+  modal.innerHTML='<section class="modal-info-musical-panel" role="dialog" aria-modal="true" aria-labelledby="modal-info-musical-titulo"><div class="modal-info-musical-cabecera"><h2 class="modal-info-musical-titulo" id="modal-info-musical-titulo">Información musical</h2><button class="modal-info-musical-cerrar" type="button" aria-label="Cerrar ficha">×</button></div><div class="modal-info-musical-motor"></div><div class="modal-info-musical-texto"></div><div class="modal-info-musical-fuentes"></div></section>';
+  document.body.appendChild(modal);panel=modal.querySelector('.modal-info-musical-panel');titulo=modal.querySelector('.modal-info-musical-titulo');texto=modal.querySelector('.modal-info-musical-texto');motor=modal.querySelector('.modal-info-musical-motor');fuentes=modal.querySelector('.modal-info-musical-fuentes');cerrador=modal.querySelector('.modal-info-musical-cerrar');
+  cerrador.addEventListener('click',cerrar);
+  modal.addEventListener('click',e=>{if(e.target===modal)cerrar();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)cerrar();});
+ }
+ function cerrar(){if(!modal)return;modal.hidden=true;document.body.classList.remove('modal-info-musical-abierto');}
+ async function consultar(tipo,nombre,artista){
+  const key=[tipo,nombre,artista||''].join('|');
+  if(!cache.has(key)){
+   const q=new URLSearchParams({tipo,nombre,artista:artista||''});
+   cache.set(key,fetch('/api/resumen-musical?'+q.toString()+'&_='+Date.now(),{signal:AbortSignal.timeout(40000)}).then(async r=>{let d={};try{d=await r.json()}catch(e){}if(!r.ok&&!d.error)d.error='Gemini no ha podido generar la ficha (HTTP '+r.status+').';return d;}).catch(()=>({encontrado:false,error:'No se ha podido conectar con Gemini.'})));
+  }
+  return cache.get(key);
+ }
+ async function abrir(b){
+  prepararModal();
+  const tipo=b.dataset.wikiTipo||'artista',nombre=b.dataset.wikiNombre||'',artista=b.dataset.wikiArtista||'';
+  if(!nombre)return;
+  const foco=document.activeElement;
+  titulo.textContent=(tipo==='artista'?'Biografía de ':'Información sobre ')+nombre;
+  motor.textContent='Consultando Gemini con búsqueda web…';texto.textContent='';fuentes.replaceChildren();texto.classList.remove('modal-info-musical-error');
+  modal.hidden=false;document.body.classList.add('modal-info-musical-abierto');cerrador.focus();
+  try{
+   const d=await consultar(tipo,nombre,artista);
+   const contenido=d.resumen||(tipo==='artista'?d.biografia:d.informacion);
+   if(!d.encontrado||!contenido){motor.textContent='';texto.classList.add('modal-info-musical-error');texto.textContent=d.error||'Gemini no ha podido generar una ficha con fuentes verificables.';return;}
+   motor.textContent='✨ Información generada por Gemini con búsqueda web';
+   texto.textContent=contenido;
+   for(const f of (d.fuentes||[]).slice(0,5)){
+    if(!f.url||!f.url.startsWith('https://'))continue;
+    const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=f.titulo||'Consultar fuente';fuentes.appendChild(a);
+   }
+   if(!fuentes.children.length)fuentes.textContent='Gemini no ha proporcionado enlaces de fuentes.';
+  }catch(e){motor.textContent='';texto.classList.add('modal-info-musical-error');texto.textContent='No se ha podido consultar la información musical.';}
+ }
+ document.addEventListener('click',e=>{const b=e.target.closest('.wiki-icon');if(b){e.preventDefault();e.stopPropagation();abrir(b);}});
+})();
+</script>
+
+</body>
+</html>

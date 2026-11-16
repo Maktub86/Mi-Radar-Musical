@@ -14,9 +14,11 @@ from urllib.parse import quote, urlencode
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 from concurrent.futures import ThreadPoolExecutor, as_completed
+EJECUTOR_HILOS = ThreadPoolExecutor  # alias: dentro de api_recomendaciones el nombre original queda como variable local
 import unicodedata
 import difflib
 import random
+import math
 import os
 import secrets
 from listas_musicales import cargar as cargar_lista, actualizar as actualizar_lista
@@ -231,7 +233,7 @@ header p{
  async function guardar(c){try{const r=await fetch('/api/recomendaciones/guardadas',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({canciones:[c]})});if(!r.ok)throw new Error('El servidor ha respondido '+r.status+'.');const d=await r.json();if(!Array.isArray(d.canciones))throw new Error('El servidor no ha confirmado el guardado.');escribir(d.canciones)}catch(e){abrirModal('No se pudo guardar','La canción no se ha guardado en la lista compartida. '+(e.message||'Comprueba la conexión y vuelve a intentarlo.'))}dibujar();actualizarBotones()}
  async function quitar(c){try{const r=await fetch('/api/recomendaciones/guardadas',{method:'DELETE',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({titulo:c.titulo,artista:c.artista})});if(!r.ok)throw new Error('El servidor ha respondido '+r.status+'.');const d=await r.json();if(!Array.isArray(d.canciones))throw new Error('El servidor no ha confirmado el cambio.');escribir(d.canciones);dibujar();actualizarBotones()}catch(e){abrirModal('No se pudo eliminar','La canción sigue en la lista compartida porque el servidor no ha confirmado el cambio. '+(e.message||''));await refrescar();dibujar();actualizarBotones()}}
  async function buscarVideos(c,modo,b){if(b)b.disabled=true;abrirModal(modo==='youtube'?'Elegir versión de YouTube':'Descargar con MediaHuman','Buscando resultados para '+c.artista+' — '+c.titulo+'…');try{const q=new URLSearchParams({titulo:c.titulo,artista:c.artista});const r=await fetch('/api/youtube/buscar?'+q);const d=await r.json();if(!r.ok)throw new Error(d.error||'No se encontraron resultados.');resultadosModal.replaceChildren();if(!(d.resultados||[]).length)throw new Error('No se encontraron resultados.');estadoModal.textContent=modo==='youtube'?'Pulsa una versión para abrirla en YouTube.':'Elige una versión: se copiará su enlace para pegarlo en MediaHuman YouTube Downloader.';for(const v of d.resultados){const btn=document.createElement('button');btn.type='button';btn.className='mr-resultado';const t=document.createElement('strong');t.textContent=v.titulo||'Vídeo sin título';const sub=document.createElement('span');sub.textContent=v.canal||'Canal desconocido';btn.append(t,sub);btn.addEventListener('click',async()=>{if(modo==='youtube'){window.open(v.url,'_blank','noopener,noreferrer');return}try{await navigator.clipboard.writeText(v.url);estadoModal.textContent='Enlace copiado. Pégalo en MediaHuman YouTube Downloader.';btn.textContent='✓ Enlace copiado: '+(v.titulo||'canción')}catch(e){window.prompt('Copia el enlace para MediaHuman:',v.url)}});resultadosModal.appendChild(btn)}}catch(e){estadoModal.textContent=e.message||'No se pudo consultar YouTube.'}finally{if(b)b.disabled=false}}
- async function escuchar(c,b){if(b)b.disabled=true;const original=b?b.innerHTML:'';if(b)b.textContent='Buscando…';try{let url=c.preview||'',nota='';let artista=c.artista,titulo=c.titulo;if(!url){const q=new URLSearchParams({titulo,artista});const r=await fetch('/api/muestra?'+q);const d=await r.json();if(!r.ok)throw new Error(d.error||'No hay muestra disponible.');url=d.previewUrl;artista=d.artista||artista;titulo=d.titulo||titulo;nota=d.nota||''}if(!url)throw new Error('No hay muestra de 30 segundos disponible para esta canción.');abrirModal('Muestra de 30 segundos',artista+' — '+titulo);if(nota){const aviso=document.createElement('p');aviso.textContent=nota;aviso.style.margin='8px 0';aviso.style.color='#f0c878';resultadosModal.appendChild(aviso)}const audio=document.createElement('audio');audio.controls=true;audio.preload='none';audio.src=url;audio.style.width='100%';resultadosModal.appendChild(audio);await audio.play();setTimeout(()=>{audio.pause();audio.currentTime=0},30000)}catch(e){abrirModal('Muestra no disponible',e.message||'No se ha podido reproducir la muestra.')}finally{if(b){b.disabled=false;b.innerHTML=original}}}
+ async function escuchar(c,b){if(b)b.disabled=true;const original=b?b.innerHTML:'';if(b)b.textContent='Buscando…';try{let url=c.preview||'',nota='';let artista=c.artista,titulo=c.titulo;if(!url){const q=new URLSearchParams({titulo,artista});const r=await fetch('/api/muestra?'+q);const d=await r.json();if(!r.ok)throw new Error(d.error||'No hay muestra disponible.');url=d.previewUrl;artista=d.artista||artista;titulo=d.titulo||titulo;nota=d.nota||''}if(!url)throw new Error('No hay muestra de 30 segundos disponible para esta canción.');await window.mrMuestraEnLinea(b,url,{nota:nota})}catch(e){window.mrMuestraError(b,e.message||'No se ha podido reproducir la muestra.')}finally{if(b){b.disabled=false;b.innerHTML=original}}}
  async function informacion(c,b){if(b)b.disabled=true;abrirModal('Información sobre '+c.titulo,'Consultando información musical…');try{const q=new URLSearchParams({tipo:'cancion',nombre:c.titulo,artista:c.artista});const r=await fetch('/api/resumen-musical?'+q);const d=await r.json();estadoModal.textContent=d.resumen||d.informacion||d.error||'No se ha encontrado información.';for(const f of (d.fuentes||[])){if(!f.url||!f.url.startsWith('https://'))continue;const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=f.titulo||'Consultar fuente';a.style.display='block';a.style.color='#d2b8ff';resultadosModal.appendChild(a)}}catch(e){estadoModal.textContent='No se ha podido consultar la información ahora mismo.'}finally{if(b)b.disabled=false}}
  function crearTarjeta(c){
   const f=document.createElement('article');f.className='mr-cancion-guardada';
@@ -360,6 +362,482 @@ html body .mr-cancion-guardada .mr-acciones{gap:7px!important}
  function pasar(){pendiente=false;document.querySelectorAll(SEL).forEach(iconizar);}
  new MutationObserver(function(){if(!pendiente){pendiente=true;requestAnimationFrame(pasar);}}).observe(document.documentElement,{childList:true,subtree:true});
  pasar();
+})();
+</script>
+<style id="mr-extras-css">
+.mr-artista-deezer{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:2px 0 10px;font-size:13px;color:#cdbbf0}
+.mr-artista-cambiar{border:1px solid #ffffff55;background:#ffffff14;color:#fff;border-radius:999px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.mr-artista-candidatos{flex:1 0 100%;display:grid;gap:8px}
+.mr-cand-msg{font-size:12px;color:#cdbbf0}
+.mr-cand{display:grid;gap:3px;text-align:left;border:1px solid #ffffff40;background:#ffffff10;color:#fff;border-radius:12px;padding:9px 12px;cursor:pointer}
+.mr-cand small{color:#cdbbf0;font-weight:400}
+.mr-cand:hover{background:#ffffff22}
+.mr-cand-actual{border-color:#3ddc84;background:#0f3a2833}
+.mr-cand-auto{text-align:center;color:#cdbbf0}
+.mr-exportar{display:inline-flex;margin:0 0 10px;padding:6px 12px;border-radius:999px;border:1px solid #ffffff55;color:#fff;background:#ffffff14;font-size:12px;font-weight:700;text-decoration:none}
+#mr-aviso-lento{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:99999;max-width:92vw;padding:10px 16px;border-radius:12px;background:#2a1b4d;border:1px solid #9b6bff;color:#fff;font-size:13px;box-shadow:0 8px 24px #0008;text-align:center}
+#mr-aviso-lento[hidden]{display:none}
+
+/* ===== Retoque visual general ===== */
+html{scroll-behavior:smooth}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:#9b6bff88;color:#fff}
+*{scrollbar-width:thin;scrollbar-color:#ffffff40 transparent}
+html body :is(.pista,.cancion,.fila-cancion,.publicacion-mejor,.tarjeta){transition:border-color .18s ease,box-shadow .18s ease,background-color .18s ease}
+html body :is(.pista,.cancion,.fila-cancion,.publicacion-mejor):hover{border-color:#ffffff42!important;box-shadow:0 8px 22px #0006}
+html body :is(button,nav a){transition:filter .15s ease,transform .15s ease,box-shadow .15s ease,background-color .15s ease}
+html body button:not(:disabled):active{transform:scale(.97)}
+html body :is(button,a,input,select,textarea):focus-visible{outline:2px solid #fff;outline-offset:2px}
+.mr-pos{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;margin-right:9px;padding:0 7px;border-radius:999px;background:linear-gradient(135deg,#8a4dff,#5b2fc4);color:#fff;font-size:12px;font-weight:900;vertical-align:middle;box-shadow:0 2px 8px #0005}
+.mr-pos-top{background:linear-gradient(135deg,#ffcf4d,#ff8a2b);color:#2a1700}
+.mr-minimizar{display:flex;align-items:center;gap:6px;margin:14px auto 4px;padding:9px 20px;border-radius:999px;border:1px solid #ffffff48;background:#ffffff14;color:#fff;font-size:13px;font-weight:800;cursor:pointer}
+.mr-minimizar:hover{background:#ffffff28}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media (max-width:560px){html body .acciones-pista{min-width:0!important;grid-template-columns:82px repeat(4,minmax(0,1fr))!important}}
+/* ===== Móvil ===== */
+html{-webkit-text-size-adjust:100%}
+@media (max-width:700px){
+ html body nav{flex-wrap:nowrap!important;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:8px!important;padding-left:4%!important;padding-right:4%!important}
+ html body nav::-webkit-scrollbar{display:none}
+ html body nav a{flex:none!important;white-space:nowrap!important;padding:11px 15px!important}
+}
+@media (max-width:560px){
+ html body .pista{grid-template-columns:minmax(0,1fr)!important;gap:8px!important}
+ html body .pista .acciones-pista{width:100%!important;min-width:0!important;justify-self:stretch!important}
+ html body .acciones-pista > :not(.boton-30){justify-self:center}
+ html body .pista-titulo{overflow-wrap:anywhere}
+ .mr-artista-deezer{font-size:12px}
+}
+/* ===== Ocultar lo que ya tengo / votos ===== */
+.mr-oculta-tengo{display:none!important}
+#mr-barra-tengo{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 4% 0}
+.mr-ocultar-tengo{border:1px solid #ffffff55;background:#ffffff14;color:#fff;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:800;cursor:pointer}
+.mr-ocultar-tengo[aria-pressed="true"]{background:linear-gradient(135deg,#168653,#20ad70);border-color:#69e5a4}
+.mr-ocultar-cuenta{font-size:12px;color:#cdbbf0}
+.boton-falta{margin-left:8px;border:1px solid #ffffff55;background:linear-gradient(135deg,#168653,#20ad70);color:#fff;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:800;cursor:pointer}
+.boton-falta:disabled{opacity:.7;cursor:wait}
+.mr-voto{width:42px;height:42px;border-radius:12px;border:1px solid #ffffff55;background:#ffffff14;font-size:18px;line-height:1;cursor:pointer;padding:0;display:inline-flex;align-items:center;justify-content:center;margin-left:6px}
+.mr-voto-si.activo{background:linear-gradient(135deg,#168653,#20ad70);border-color:#69e5a4}
+.mr-voto:disabled{opacity:.6;cursor:wait}
+.mr-descartada-nota{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0;padding:10px 14px;border-radius:12px;border:1px dashed #ffffff55;color:#cdbbf0;font-size:13px}
+.mr-descartada-nota button{border:1px solid #ffffff55;background:#ffffff14;color:#fff;border-radius:999px;padding:5px 12px;font-weight:700;cursor:pointer}
+.mr-generar-abajo{display:flex;justify-content:center;margin:20px 0 8px}
+.mr-generar-abajo[hidden]{display:none}
+.mr-generar-abajo button{min-width:min(320px,100%)}
+/* ===== Reproductor de la muestra: debajo de cada canción ===== */
+.mr-rep-inline{grid-column:1 / -1;flex:1 1 100%;width:100%;box-sizing:border-box;display:flex;align-items:center;gap:10px;margin-top:10px;padding:8px 12px;border-radius:14px;background:#ffffff12;border:1px solid #ffffff30}
+.mr-rep-inline[hidden]{display:none}
+.mr-rep-play,.mr-rep-cerrar{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid #ffffff55;color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.mr-rep-play{background:linear-gradient(135deg,#ff4fa3,#8a4dff)}
+.mr-rep-cerrar{background:#ffffff18;font-size:16px}
+.mr-rep-play svg{width:18px;height:18px}
+.mr-rep-barra{flex:1 1 120px;min-width:70px;accent-color:#b58aff;cursor:pointer}
+.mr-rep-tiempo{flex:none;font-size:12px;color:#cdbbf0;font-variant-numeric:tabular-nums;min-width:74px;text-align:right}
+.mr-rep-suelto{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:99998;width:min(520px,calc(100vw - 20px))}
+.mr-muestra-linea{grid-column:1 / -1;flex:1 1 100%;width:100%;box-sizing:border-box;display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:10px;padding:8px 12px;border-radius:14px;background:#ffffff12;border:1px solid #ffffff30}
+.mr-muestra-linea audio{flex:1 1 220px;min-width:0;height:40px}
+.mr-muestra-nota{flex:1 1 100%;font-size:12px;color:#f0c878}
+.mr-muestra-nota a{color:#cdbbf0}
+.mr-muestra-error{color:#ffb4b4;font-size:13px}
+.mr-muestra-suelta{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:99998;width:min(520px,calc(100vw - 20px));background:#1b1530}
+/* ===== Carátula tocable ===== */
+.mr-cover-tocable{position:relative;cursor:pointer}
+.mr-cover-tocable img{cursor:pointer}
+.mr-cover-play{position:absolute;right:8px;bottom:8px;width:34px;height:34px;border-radius:50%;background:rgba(20,13,42,.78);border:1px solid #ffffffa0;color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1;pointer-events:none;box-shadow:0 3px 10px #0007}
+.mr-cover-tocable:hover .mr-cover-play,.mr-cover-tocable:focus-visible .mr-cover-play{background:linear-gradient(135deg,#ff4fa3,#8a4dff)}
+html body button.mr-30-oculto.mr-30-oculto{display:none!important}
+/* Recomendaciones y Guardadas: todos los iconos siempre a la vista */
+html body :is(article.cancion,article.mr-cancion-guardada) :is(.acciones,.mr-acciones){opacity:1!important;visibility:visible!important}
+/* ===== Álbum desplegable (portada) ===== */
+.boton-album-canciones{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:9px 14px;border-radius:12px;border:1px solid #ffffff55;background:#ffffff14;color:#fff;font-size:13px;font-weight:800;cursor:pointer}
+.boton-album-canciones:disabled{opacity:.7;cursor:wait}
+.canciones-album{margin-top:12px;border-top:1px solid #ffffff22}
+.canciones-album[hidden]{display:none}
+.canciones-album .mensaje-album{padding:12px 0;color:#cdbbf0;font-size:13px}
+html body .fila-album{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;align-items:center;padding:10px 4px;border-bottom:1px solid #ffffff18}
+html body .fila-album .info{padding:0}
+html body .fila-album .titulo{font-size:15px;margin:0 0 4px}
+html body .fila-album .acciones-radar{display:flex!important;flex-wrap:wrap;gap:7px;width:auto;min-width:0;margin-top:0}
+html body .fila-album .acciones-radar .boton-muestra{width:91px;min-width:91px}
+html body .fila-album .reproductor-muestra{grid-column:1 / -1}
+.mr-num{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;margin-right:8px;border-radius:999px;background:#ffffff1c;font-size:11px;font-weight:800;color:#dedaf8}
+@media (max-width:560px){html body .fila-album{grid-template-columns:minmax(0,1fr)}}
+/* ===== Menos iconos: menú «⋯» ===== */
+html body button.mr-mas-oculto.mr-mas-oculto{display:none!important}
+.mr-mas-btn{width:42px;height:42px;border-radius:12px;border:1px solid #ffffff55;background:#ffffff18;color:#fff;display:inline-flex;align-items:center;justify-content:center;padding:0;cursor:pointer;margin-left:6px}
+.mr-mas-btn svg{width:20px;height:20px;display:block}
+.mr-mas-menu{position:fixed;z-index:99999;min-width:230px;padding:6px;border-radius:14px;background:#1b1530;border:1px solid #ffffff30;box-shadow:0 16px 40px #000b}
+.mr-mas-item{display:flex;align-items:center;gap:12px;width:100%;padding:11px 12px;border:0;border-radius:10px;background:transparent;color:#fff;font-size:14px;font-weight:700;text-align:left;cursor:pointer}
+.mr-mas-item:hover:not(:disabled){background:#ffffff1c}
+.mr-mas-item:disabled{opacity:.45;cursor:not-allowed}
+.mr-mas-item svg{width:20px;height:20px;flex:none}
+/* ===== Lo que me falta ===== */
+.botones-ranking .boton-faltan{display:none;border:1px solid #69e5a4;background:linear-gradient(100deg,#168653,#20ad70);color:#fff;border-radius:12px;padding:9px 14px;font-weight:800;cursor:pointer}
+.modo-falta .botones-ranking .boton-faltan{display:inline-flex;align-items:center}
+.boton-falta.activa{background:linear-gradient(135deg,#59627a,#3b4256)}
+/* ===== Pestaña Guardadas ===== */
+#tab-recomendaciones{display:none!important}
+</style>
+<script id="mr-extras-js">
+(function(){
+ /* 1) Aviso cuando el servidor tarda (Render gratuito se «duerme» y tarda en despertar) */
+ let lentas=0,aviso=null;
+ function mostrar(){if(!aviso){aviso=document.createElement('div');aviso.id='mr-aviso-lento';aviso.textContent='⏳ Esto puede tardar unos segundos: el servidor está arrancando o consultando fuentes musicales…';document.body.appendChild(aviso);}aviso.hidden=false;}
+ function ocultar(){if(aviso&&lentas<=0)aviso.hidden=true;}
+ const original=window.fetch.bind(window);
+ window.fetch=function(entrada,opciones){
+  const url=typeof entrada==='string'?entrada:((entrada&&entrada.url)||'');
+  if(url.indexOf('/api/')===-1||url.indexOf('/api/recomendaciones/guardadas')!==-1)return original(entrada,opciones);
+  let marcado=false;const t=setTimeout(function(){marcado=true;lentas++;mostrar();},6000);
+  const fin=function(){clearTimeout(t);if(marcado){marcado=false;lentas--;ocultar();}};
+  const p=original(entrada,opciones);p.then(fin,fin);return p;
+ };
+ /* 2) Check verde «Ya la tienes» también fuera de Cantantes */
+ const EXCLUIR=['/mi-musica','/mimusica','/login'];
+ if(!EXCLUIR.some(function(p){return location.pathname.indexOf(p)===0;})){
+  const memo=new Map();let espera=null;
+  const SELT='.tarjeta,.pista,.fila-cancion,.publicacion-mejor,.cancion,.mr-cancion-guardada';
+  function leer(n){
+   const w=n.querySelector('[data-wiki-tipo="cancion"]'),info=n.querySelector('[data-resumen-tipo="cancion"]');
+   const titulo=n.dataset.titulo||(w&&w.dataset.wikiNombre)||(info&&info.dataset.resumenNombre)||((n.querySelector('.pista-titulo,.titulo-cancion,.titulo')||{}).textContent||'').trim();
+   const meta=((n.querySelector('.pista-meta,.meta')||{}).textContent)||'',partes=meta.split(' · ');
+   const bruto=n.dataset.artista||(w&&w.dataset.wikiArtista)||(info&&info.dataset.resumenArtista)||((n.querySelector('.artista-cancion,.artista,.mr-artista')||{}).textContent||'').trim()||(partes.length>1?partes[1]:partes[0])||'';
+   return {titulo:String(titulo).replace(/^[+ℹ]\s*/,'').trim(),artista:String(bruto).replace(/[ℹ]+$/,'').trim()};
+  }
+  function insignia(){const s=document.createElement('span');s.className='mr-ya-tengo';s.title='Esta canción ya está en Mi música';s.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ya la tienes</span>';return s;}
+  function poner(n){const c=n.querySelector('.pista-titulo,.titulo-cancion,.titulo,.mr-titulo');if(!c)return;const d=c.parentElement||c;if(!d.querySelector('.mr-ya-tengo'))d.appendChild(insignia());}
+  async function revisar(){
+   const pend=[];
+   document.querySelectorAll(SELT).forEach(function(n){
+    if(n.querySelector('.mr-ya-tengo')||n.dataset.mrRev==='1')return;
+    const c=leer(n);if(!c.titulo||!c.artista)return;
+    const k=(c.artista+'|'+c.titulo).toLowerCase();
+    if(memo.has(k)){if(memo.get(k))poner(n);n.dataset.mrRev='1';return;}
+    pend.push({n:n,c:c,k:k});
+   });
+   if(!pend.length)return;
+   const unicos=Array.from(new Map(pend.map(function(p){return [p.k,p.c];})).entries()).slice(0,150);
+   try{
+    const r=await fetch('/api/ya-tengo',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({canciones:unicos.map(function(e){return {titulo:e[1].titulo,artista:e[1].artista};})})});
+    if(!r.ok)return;const d=await r.json();
+    unicos.forEach(function(e,i){memo.set(e[0],!!((d.resultados||[])[i]));});
+    pend.forEach(function(p){if(memo.has(p.k)){if(memo.get(p.k))poner(p.n);p.n.dataset.mrRev='1';}});
+   }catch(_){}
+  }
+  new MutationObserver(function(){clearTimeout(espera);espera=setTimeout(revisar,900);}).observe(document.body,{childList:true,subtree:true});
+  revisar();
+ }
+
+ /* 4) Reproductor de la muestra de 30 s: aparece justo debajo de la canción */
+ (function(){
+  const SEL30='.boton-30,.boton-muestra,.b30,.mr-b30';
+  const TARJ='article.cancion,article.mr-cancion-guardada,.pista,.fila-cancion,.publicacion-mejor,.tarjeta,.cancion,.item-cancion';
+  const PLAY='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg>';
+  const PAUSE='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/></svg>';
+  let ultimo=null,actual=null,caja=null,q={};
+  document.addEventListener('click',function(e){
+   const b=e.target.closest&&e.target.closest(SEL30);if(!b)return;
+   ultimo={t:Date.now(),boton:b,nodo:b.closest(TARJ)};
+  },true);
+  function fmt(s){s=Math.max(0,Math.floor(s||0));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
+  function crear(){
+   caja=document.createElement('div');caja.className='mr-rep-inline';caja.setAttribute('role','group');caja.setAttribute('aria-label','Reproductor de la muestra de 30 segundos');
+   caja.innerHTML='<button type="button" class="mr-rep-play" aria-label="Pausar o reanudar"></button><input class="mr-rep-barra" type="range" min="0" max="1000" value="0" aria-label="Progreso de la muestra"><span class="mr-rep-tiempo">0:00 / 0:30</span><button type="button" class="mr-rep-cerrar" aria-label="Cerrar reproductor" title="Cerrar">✕</button>';
+   q={play:caja.querySelector('.mr-rep-play'),rango:caja.querySelector('.mr-rep-barra'),tiempo:caja.querySelector('.mr-rep-tiempo'),cerrar:caja.querySelector('.mr-rep-cerrar')};
+   q.play.addEventListener('click',function(){if(!actual)return;if(actual.paused){actual.play();}else{actual.pause();}});
+   q.rango.addEventListener('input',function(){if(!actual)return;const d=isFinite(actual.duration)&&actual.duration>0?actual.duration:30;actual.currentTime=q.rango.value/1000*d;});
+   q.cerrar.addEventListener('click',cerrar);
+  }
+  function colocar(){
+   const i=(ultimo&&Date.now()-ultimo.t<20000)?ultimo:null;
+   caja.classList.remove('mr-rep-suelto');
+   if(i&&i.nodo&&i.nodo.isConnected){i.nodo.appendChild(caja);}
+   else if(i&&i.boton&&i.boton.isConnected){(i.boton.closest('.acciones,.acciones-pista,.acciones-publicacion,.acciones-radar,.acciones-cancion,.mr-acciones')||i.boton.parentElement).insertAdjacentElement('afterend',caja);}
+   else{document.body.appendChild(caja);caja.classList.add('mr-rep-suelto');}
+  }
+  function pintar(){
+   if(!actual||!caja)return;
+   const d=isFinite(actual.duration)&&actual.duration>0?actual.duration:30;
+   q.rango.value=Math.min(1000,Math.round(actual.currentTime/d*1000));
+   q.tiempo.textContent=fmt(actual.currentTime)+' / '+fmt(d);
+   q.play.innerHTML=actual.paused?PLAY:PAUSE;
+   q.play.setAttribute('aria-label',actual.paused?'Reanudar':'Pausar');
+  }
+  function alTerminar(){pintar();const a=actual;setTimeout(function(){if(actual===a&&a.paused)cerrar();},4000);}
+  const EVENTOS=['timeupdate','play','pause','loadedmetadata'];
+  function desligar(){if(!actual)return;EVENTOS.forEach(function(ev){actual.removeEventListener(ev,pintar);});actual.removeEventListener('ended',alTerminar);actual=null;}
+  function ligar(a){
+   if(!caja)crear();
+   if(actual===a){pintar();return;}
+   desligar();actual=a;colocar();
+   EVENTOS.forEach(function(ev){a.addEventListener(ev,pintar);});a.addEventListener('ended',alTerminar);
+   pintar();
+  }
+  function cerrar(){
+   if(actual){try{actual.pause();actual.currentTime=0;}catch(_){}}
+   desligar();if(caja)caja.remove();
+  }
+  const original=HTMLMediaElement.prototype.play;
+  HTMLMediaElement.prototype.play=function(){
+   const r=original.apply(this,arguments);
+   try{
+    if(this instanceof HTMLAudioElement&&!this.controls){
+     ligar(this);
+     if(r&&r.catch){const a=this;r.catch(function(){if(actual===a)cerrar();});}
+    }
+   }catch(_){}
+   return r;
+  };
+ })();
+ /* 6) Interruptor «Ocultar lo que ya tengo» */
+ (function(){
+  const EXC=['/mi-musica','/mimusica','/login','/programas','/recomendaciones'];
+  if(EXC.some(function(p){return location.pathname.indexOf(p)===0;}))return;
+  const SONG='.pista,.fila-cancion,.publicacion-mejor,.cancion';
+  let activo=false;try{activo=localStorage.getItem('mr_ocultar_tengo')==='1';}catch(_){}
+  let boton=null,cuenta=null;
+  function poner(v){activo=!!v;try{localStorage.setItem('mr_ocultar_tengo',activo?'1':'0');}catch(_){}aplicar();}
+  function texto(el,v){if(el.textContent!==v)el.textContent=v;}
+  function crear(){
+   if(boton&&boton.isConnected)return;
+   const nav=document.querySelector('nav');if(!nav)return;
+   const barra=document.createElement('div');barra.id='mr-barra-tengo';
+   boton=document.createElement('button');boton.type='button';boton.className='mr-ocultar-tengo';
+   cuenta=document.createElement('span');cuenta.className='mr-ocultar-cuenta';
+   barra.appendChild(boton);barra.appendChild(cuenta);nav.insertAdjacentElement('afterend',barra);
+   boton.addEventListener('click',function(){poner(!activo);});
+  }
+  function aplicar(){
+   crear();if(!boton)return;
+   let ocultas=0;
+   document.querySelectorAll(SONG).forEach(function(n){
+    const ocultar=activo&&!n.querySelector(SONG)&&!!n.querySelector('.mr-ya-tengo');
+    n.classList.toggle('mr-oculta-tengo',ocultar);if(ocultar)ocultas++;
+   });
+   boton.setAttribute('aria-pressed',activo?'true':'false');
+   texto(boton,activo?'✓ Ocultando lo que ya tengo':'Ocultar lo que ya tengo');
+   texto(cuenta,(activo&&ocultas)?(ocultas+' canciones ocultas'):'');
+  }
+  window.mrOcultarTengo=poner;
+  let espera=null;
+  new MutationObserver(function(){clearTimeout(espera);espera=setTimeout(aplicar,300);}).observe(document.body,{childList:true,subtree:true});
+  aplicar();
+ })();
+ /* 7) «Me gusta» y «No me interesa» en Recomendaciones */
+ (function(){
+  if(location.pathname.indexOf('/recomendaciones')!==0)return;
+  async function votar(titulo,artista,voto){
+   try{
+    const r=await fetch('/api/recomendaciones/votos',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({titulo:titulo,artista:artista,voto:voto})});
+    return r.ok;
+   }catch(_){return false;}
+  }
+  function boton(simbolo,clase,titulo){const b=document.createElement('button');b.type='button';b.className='mr-voto '+clase;b.textContent=simbolo;b.title=titulo;b.setAttribute('aria-label',titulo);return b;}
+  function preparar(art){
+   if(art.dataset.mrVoto==='1'||!art.closest('#resultados'))return;
+   const acciones=art.querySelector('.acciones'),titulo=art.dataset.titulo,artista=art.dataset.artista;
+   if(!acciones||!titulo||!artista)return;
+   art.dataset.mrVoto='1';
+   const no=boton('👎','mr-voto-no','No me interesa: no volverá a salir');
+   no.addEventListener('click',async function(){
+    no.disabled=true;
+    if(await votar(titulo,artista,-1)){
+     const nota=document.createElement('div');nota.className='mr-descartada-nota';
+     const msg=document.createElement('span');msg.textContent='«'+titulo+'» descartada: no volverá a salir.';
+     const deshacer=document.createElement('button');deshacer.type='button';deshacer.textContent='Deshacer';
+     deshacer.addEventListener('click',async function(){deshacer.disabled=true;if(await votar(titulo,artista,0)){nota.remove();art.style.display='';}else{deshacer.disabled=false;}});
+     nota.appendChild(msg);nota.appendChild(deshacer);
+     art.style.display='none';art.insertAdjacentElement('beforebegin',nota);
+    }
+    no.disabled=false;
+   });
+   acciones.appendChild(no);
+  }
+  function revisar(){document.querySelectorAll('#resultados article.cancion').forEach(preparar);}
+  let espera=null;
+  new MutationObserver(function(){clearTimeout(espera);espera=setTimeout(revisar,200);}).observe(document.body,{childList:true,subtree:true});
+  revisar();
+ })();
+ /* 8) El botón de buscar recomendaciones también debajo de los resultados */
+ (function(){
+  if(location.pathname.indexOf('/recomendaciones')!==0)return;
+  const arriba=document.getElementById('otras'),res=document.getElementById('resultados');
+  if(!arriba||!res)return;
+  const caja=document.createElement('div');caja.className='mr-generar-abajo';caja.hidden=true;
+  const b=document.createElement('button');b.type='button';b.className=arriba.className;
+  caja.appendChild(b);res.insertAdjacentElement('afterend',caja);
+  b.addEventListener('click',function(){
+   arriba.click();
+   try{res.scrollIntoView({behavior:'smooth',block:'start'});}catch(_){}
+  });
+  function sincronizar(){
+   const hay=res.children.length>0&&res.offsetParent!==null;
+   if(caja.hidden===hay)caja.hidden=!hay;
+   if(b.textContent!==arriba.textContent)b.textContent=arriba.textContent;
+   if(b.disabled!==arriba.disabled)b.disabled=arriba.disabled;
+  }
+  setInterval(sincronizar,500);sincronizar();
+ })();
+ /* 10) Menos iconos: lo secundario va en un menú «⋯» en cada canción */
+ (function(){
+  const CARDS='.pista,.fila-cancion,.publicacion-mejor';
+  const ACC='.acciones,.acciones-pista,.acciones-publicacion,.acciones-radar,.acciones-cancion,.mr-acciones';
+  const SVG=function(c){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+c+'</svg>';};
+  const SEC=[
+   ['.boton-mediahuman,.boton-descarga-radar,.descarga,.mr-descarga','Descargar con MediaHuman','dl'],
+   ['.boton-youtube,.youtube,.mr-youtube','Ver en YouTube','yt'],
+   ['.boton-wikipedia,.wiki-icon,.wiki,.info-btn','Información de la canción','info'],
+   ['.mr-voto-no','No me interesa','no']
+  ];
+  const ICO={
+   dl:SVG('<path d="M12 3.5v11M7 10l5 5 5-5M4.5 18v2.5h15V18"/>'),
+   yt:SVG('<rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.3v5.4l4.8-2.7z" fill="currentColor" stroke="none"/>'),
+   info:SVG('<circle cx="12" cy="12" r="9"/><path d="M12 11v5.2"/><circle cx="12" cy="7.9" r="1.1" fill="currentColor" stroke="none"/>'),
+   no:SVG('<circle cx="12" cy="12" r="9"/><path d="M8 8l8 8M16 8l-8 8"/>')
+  };
+  const PUNTOS='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg>';
+  let menu=null,origen=null;
+  function cerrar(){if(menu){menu.remove();menu=null;}if(origen){origen.setAttribute('aria-expanded','false');origen=null;}}
+  function secundarios(card){
+   const lista=[];
+   SEC.forEach(function(par){
+    const b=Array.prototype.find.call(card.querySelectorAll(par[0]),function(x){return !x.closest('.mr-mas-menu');});
+    if(b)lista.push({b:b,etq:par[1],ico:par[2]});
+   });
+   return lista;
+  }
+  function abrir(card,kebab){
+   cerrar();
+   const items=secundarios(card);if(!items.length)return;
+   menu=document.createElement('div');menu.className='mr-mas-menu';menu.setAttribute('role','menu');
+   items.forEach(function(i){
+    const it=document.createElement('button');it.type='button';it.className='mr-mas-item';it.setAttribute('role','menuitem');
+    it.innerHTML=ICO[i.ico]+'<span></span>';it.lastChild.textContent=i.etq;it.disabled=!!i.b.disabled;
+    it.addEventListener('click',function(){cerrar();i.b.click();});
+    menu.appendChild(it);
+   });
+   document.body.appendChild(menu);
+   const r=kebab.getBoundingClientRect(),w=menu.offsetWidth,h=menu.offsetHeight;
+   const x=Math.min(Math.max(8,r.right-w),window.innerWidth-w-8);
+   let y=r.bottom+6;if(y+h>window.innerHeight-8)y=Math.max(8,r.top-h-6);
+   menu.style.left=x+'px';menu.style.top=y+'px';
+   kebab.setAttribute('aria-expanded','true');origen=kebab;
+  }
+  function preparar(card){
+   if(card.querySelector(CARDS)||card.classList.contains('fila-album'))return;
+   const acc=card.querySelector(ACC);if(!acc)return;
+   const sec=secundarios(card);if(!sec.length)return;
+   card.querySelectorAll(SEC.map(function(p){return p[0];}).join(',')).forEach(function(b){if(!b.closest('.mr-mas-menu'))b.classList.add('mr-mas-oculto');});
+   if(card.querySelector('.mr-mas-btn'))return;
+   const k=document.createElement('button');k.type='button';k.className='mr-mas-btn';k.title='Más opciones';
+   k.setAttribute('aria-label','Más opciones');k.setAttribute('aria-haspopup','menu');k.setAttribute('aria-expanded','false');k.innerHTML=PUNTOS;
+   k.addEventListener('click',function(e){e.stopPropagation();if(origen===k){cerrar();}else{abrir(card,k);}});
+   acc.appendChild(k);
+  }
+  function revisar(){document.querySelectorAll(CARDS).forEach(preparar);}
+  document.addEventListener('click',function(e){if(menu&&!(e.target.closest&&e.target.closest('.mr-mas-menu')))cerrar();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrar();});
+  window.addEventListener('resize',cerrar);window.addEventListener('scroll',cerrar,true);
+  let espera=null;
+  new MutationObserver(function(){clearTimeout(espera);espera=setTimeout(revisar,250);}).observe(document.body,{childList:true,subtree:true});
+  revisar();
+ })();
+ /* 11) Una sola pestaña «Guardadas»: ya no hace falta el botón «Recomendaciones» */
+ (function(){
+  const rec=document.getElementById('tab-recomendaciones'),gua=document.getElementById('tab-guardadas');
+  if(!rec||!gua)return;
+  gua.addEventListener('click',function(e){
+   if(gua.classList.contains('activa')){e.stopImmediatePropagation();e.preventDefault();rec.click();}
+  },true);
+  function texto(){
+   const nodo=gua.firstChild;if(!nodo||nodo.nodeType!==3)return;
+   const v=gua.classList.contains('activa')?'↩ Volver a recomendaciones · ':'⭐ Guardadas ';
+   if(nodo.nodeValue!==v)nodo.nodeValue=v;
+  }
+  new MutationObserver(texto).observe(gua,{attributes:true,attributeFilter:['class']});
+  texto();
+ })();
+ /* 12) La muestra de 30 s se reproduce en línea, debajo de la canción (nunca en ventana emergente) */
+ (function(){
+  const TARJ='article.cancion,article.mr-cancion-guardada,.pista,.fila-cancion,.publicacion-mejor,.item-cancion,.tarjeta,article';
+  function quitarAnteriores(){
+   document.querySelectorAll('.mr-muestra-linea').forEach(function(x){
+    const a=x.querySelector('audio');if(a){try{a.pause();}catch(_){}}
+    x.remove();
+   });
+  }
+  function colocar(boton,linea){
+   const nodo=boton&&boton.closest?boton.closest(TARJ):null;
+   if(nodo){nodo.appendChild(linea);}
+   else{linea.classList.add('mr-muestra-suelta');document.body.appendChild(linea);}
+  }
+  function cerrarBoton(linea,audio){
+   const c=document.createElement('button');c.type='button';c.className='mr-rep-cerrar';c.textContent='✕';c.title='Cerrar';c.setAttribute('aria-label','Cerrar reproductor');
+   c.addEventListener('click',function(){if(audio){try{audio.pause();}catch(_){}}linea.remove();});
+   return c;
+  }
+  window.mrMuestraEnLinea=async function(boton,url,opciones){
+   quitarAnteriores();
+   const linea=document.createElement('div');linea.className='mr-muestra-linea';linea.setAttribute('role','group');linea.setAttribute('aria-label','Muestra de 30 segundos');
+   const audio=document.createElement('audio');audio.controls=true;audio.preload='none';audio.src=url;
+   linea.appendChild(audio);linea.appendChild(cerrarBoton(linea,audio));
+   if(opciones&&(opciones.nota||opciones.enlace)){
+    const n=document.createElement('div');n.className='mr-muestra-nota';
+    if(opciones.nota)n.appendChild(document.createTextNode(opciones.nota+(opciones.enlace?' · ':'')));
+    if(opciones.enlace){const a=document.createElement('a');a.href=opciones.enlace;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Ver canción en el catálogo';n.appendChild(a);}
+    linea.appendChild(n);
+   }
+   colocar(boton,linea);
+   audio.addEventListener('ended',function(){setTimeout(function(){linea.remove();},4000);});
+   await audio.play();
+   setTimeout(function(){try{audio.pause();audio.currentTime=0;}catch(_){}},30000);
+  };
+  window.mrMuestraError=function(boton,mensaje){
+   quitarAnteriores();
+   const linea=document.createElement('div');linea.className='mr-muestra-linea';
+   const m=document.createElement('span');m.className='mr-muestra-error';m.textContent=mensaje||'No se ha podido reproducir la muestra.';
+   linea.appendChild(m);linea.appendChild(cerrarBoton(linea,null));
+   colocar(boton,linea);
+   setTimeout(function(){linea.remove();},7000);
+  };
+ })();
+ /* 13) Carátula tocable: un toque reproduce la muestra, otro toque la para (si hay carátula; si no, sigue el botón 30 s) */
+ (function(){
+  const CARDS='article.cancion,article.mr-cancion-guardada,.pista,.fila-cancion,.publicacion-mejor,.tarjeta,.item-cancion';
+  const B30='.boton-30,.boton-muestra,.b30,.mr-b30';
+  const COVER='.portada-disco img,.portada-contenedor img,.mr-portada-contenedor img,img.portada,img.mr-portada,.portada-lista img,img.portada-lista';
+  function preparar(card){
+   if(card.dataset.mrCover==='1'||card.classList.contains('fila-album'))return;
+   const b=card.querySelector(B30),img=card.querySelector(COVER);
+   if(!b||!img)return;
+   card.dataset.mrCover='1';
+   const cont=img.closest('.portada-disco,.portada-contenedor,.mr-portada-contenedor,.portada-lista')||img.parentElement;
+   cont.classList.add('mr-cover-tocable');cont.setAttribute('role','button');cont.tabIndex=0;
+   cont.setAttribute('aria-label','Escuchar la muestra de 30 segundos; tócala otra vez para pararla');cont.title='Toca para escuchar 30 s (otra vez para parar)';
+   const insignia=document.createElement('span');insignia.className='mr-cover-play';insignia.setAttribute('aria-hidden','true');insignia.textContent='▶';cont.appendChild(insignia);
+   b.classList.add('mr-30-oculto');
+   function accion(e){
+    e.preventDefault();e.stopPropagation();
+    const activo=card.querySelector('.mr-muestra-linea,.mr-rep-inline');
+    if(activo){const c=activo.querySelector('.mr-rep-cerrar');if(c){c.click();}else{activo.remove();}return;}
+    b.click();
+   }
+   cont.addEventListener('click',accion);
+   cont.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')accion(e);});
+  }
+  function revisar(){document.querySelectorAll(CARDS).forEach(preparar);}
+  let espera=null;
+  new MutationObserver(function(){clearTimeout(espera);espera=setTimeout(revisar,250);}).observe(document.body,{childList:true,subtree:true});
+  revisar();
+ })();
+ /* 3) Copia de seguridad de las canciones guardadas */
+ function exportar(){
+  const p=document.querySelector('.mr-panel-guardadas');
+  if(!p||p.querySelector('.mr-exportar'))return;
+  const a=document.createElement('a');a.className='mr-exportar';a.href='/api/recomendaciones/guardadas/exportar';a.setAttribute('download','');a.textContent='⬇ Copia de seguridad de mis guardadas';
+  p.insertBefore(a,p.firstChild);
+ }
+ new MutationObserver(exportar).observe(document.body,{childList:true,subtree:true});exportar();
 })();
 </script>
 """
@@ -574,8 +1052,7 @@ def api_portada_recomendados():
 
     ruta_biblioteca = BASE / "mi_musica.json"
     try:
-        with ruta_biblioteca.open("r", encoding="utf-8") as archivo:
-            biblioteca = json.load(archivo)
+        biblioteca = _biblioteca_completa()
         if not isinstance(biblioteca, list):
             raise ValueError("La biblioteca no contiene una lista.")
     except (OSError, json.JSONDecodeError, ValueError):
@@ -835,21 +1312,43 @@ let mostrandoFavoritos=false;
 let topArtistasColeccion=[];
 let artistasBase=artistas;
 const botonEstrella=nodo('button','boton-estrella','⭐');
-botonEstrella.type='button';botonEstrella.title='Mostrar tus 20 artistas con más canciones';botonEstrella.setAttribute('aria-label','Mostrar tus 20 artistas con más canciones');
+botonEstrella.type='button';botonEstrella.title='Mostrar tus 40 artistas con más canciones';botonEstrella.setAttribute('aria-label','Mostrar tus 40 artistas con más canciones');
 botonEstrella.addEventListener('click',async()=>{
  mostrandoFavoritos=!mostrandoFavoritos;
  if(mostrandoFavoritos&&!topArtistasColeccion.length){
-  estado.textContent='Calculando tus 20 artistas con más canciones…';
+  estado.textContent='Calculando tus 40 artistas con más canciones…';
   try{const r=await fetch('/api/lo-mejor/artistas',{cache:'no-store'});if(!r.ok)throw new Error();topArtistasColeccion=await r.json();}
-  catch(e){mostrandoFavoritos=false;estado.textContent='No se ha podido cargar el top 20 de tu colección.';return;}
+  catch(e){mostrandoFavoritos=false;estado.textContent='No se ha podido cargar el top 40 de tu colección.';return;}
  }
  artistasBase=mostrandoFavoritos?topArtistasColeccion:artistas;
  inicialSeleccionada='';
  botonEstrella.classList.toggle('activa',mostrandoFavoritos);
- botonEstrella.title=mostrandoFavoritos?'Volver a todos los artistas':'Mostrar tus 20 artistas con más canciones';
+ botonEstrella.title=mostrandoFavoritos?'Volver a todos los artistas':'Mostrar tus 40 artistas con más canciones';
  mostrarArtistas();
 });
 alfabetoLoMejor.appendChild(botonEstrella);
+let modoFalta=false;
+const botonFalta=nodo('button','boton-falta','🔎 Lo que me falta');
+botonFalta.type='button';botonFalta.title='Tus 40 artistas con más canciones, con un desplegable de las 5 más populares que aún no tienes';
+botonFalta.addEventListener('click',async()=>{
+ if(botonFalta.disabled)return;
+ if(modoFalta){
+  modoFalta=false;contenedor.classList.remove('modo-falta');botonFalta.classList.remove('activa');botonFalta.textContent='🔎 Lo que me falta';
+  mostrandoFavoritos=false;artistasBase=artistas;inicialSeleccionada='';botonEstrella.classList.remove('activa');botonEstrella.title='Mostrar tus 40 artistas con más canciones';
+  mostrarArtistas();return;
+ }
+ botonFalta.disabled=true;botonFalta.textContent='Buscando…';
+ try{
+  if(!topArtistasColeccion.length){const r=await fetch('/api/lo-mejor/artistas',{cache:'no-store'});if(!r.ok)throw new Error();topArtistasColeccion=await r.json();}
+  mostrandoFavoritos=true;artistasBase=topArtistasColeccion;inicialSeleccionada='';
+  botonEstrella.classList.add('activa');botonEstrella.title='Volver a todos los artistas';
+  modoFalta=true;contenedor.classList.add('modo-falta');botonFalta.classList.add('activa');
+  mostrarArtistas();
+  estado.textContent='Tus '+topArtistasColeccion.length+' artistas con más canciones. Abre «Me faltan (5)» en cada uno para ver sus 5 canciones más populares que aún no tienes.';
+ }catch(e){estado.textContent='No se ha podido preparar «Lo que me falta» ahora mismo.';}
+ finally{botonFalta.disabled=false;botonFalta.textContent=modoFalta?'↩ Salir de «Lo que me falta»':'🔎 Lo que me falta';}
+});
+alfabetoLoMejor.appendChild(botonFalta);
 function normalizarNombre(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleUpperCase('es');}
 for(const letra of letrasAlfabeto){const b=nodo('button','',letra);b.type='button';b.dataset.letra=letra;b.addEventListener('click',()=>{inicialSeleccionada=inicialSeleccionada===letra?'':letra;mostrarArtistas();if(inicialSeleccionada&&inicialSeleccionada!=='#'){const caja=[...contenedor.querySelectorAll('.artista-mejor')].find(x=>normalizarNombre(x.querySelector('h2')?.textContent).startsWith(inicialSeleccionada));if(caja)caja.scrollIntoView({behavior:'smooth',block:'start'});}});alfabetoLoMejor.appendChild(b);}
 window.addEventListener('scroll',()=>{const cajas=[...contenedor.querySelectorAll('.artista-mejor')];let actual='';for(const caja of cajas){if(caja.getBoundingClientRect().top<=180)actual=normalizarNombre(caja.querySelector('h2')?.textContent).charAt(0)||'';else break;}if(!actual&&cajas.length)actual=normalizarNombre(cajas[0].querySelector('h2')?.textContent).charAt(0)||'';letraActual.hidden=!actual;if(actual){letraActual.textContent=actual;for(const b of alfabetoLoMejor.querySelectorAll('button'))b.classList.toggle('activa',b.dataset.letra===actual);}});
@@ -911,6 +1410,46 @@ function mostrarInfoWikipedia(contenedor,info,tipo){
 }
 let audioActivo=null;
 let temporizador=null;
+function botonMinimizar(zona,boton,etiqueta,caja){
+ const b=nodo('button','mr-minimizar','▲ Minimizar');b.type='button';b.title='Ocultar esta lista';
+ b.addEventListener('click',()=>{zona.hidden=true;boton.textContent=etiqueta;boton.dataset.error='';try{caja.scrollIntoView({behavior:'smooth',block:'nearest'});}catch(_){}});
+ return b;
+}
+function selectorArtista(nombre,d,caja,tipo,boton){
+ const linea=nodo('div','mr-artista-deezer');
+ const info=nodo('span','mr-artista-info','Artista en Deezer: '+(d.artista||nombre)+(d.seguidores?' ('+Number(d.seguidores).toLocaleString('es-ES')+' seguidores)':''));
+ const cambiar=nodo('button','mr-artista-cambiar','¿No es este artista?');cambiar.type='button';
+ const lista=nodo('div','mr-artista-candidatos');lista.hidden=true;
+ async function elegir(id){
+  lista.replaceChildren(nodo('div','mr-cand-msg','Guardando tu elección…'));
+  try{
+   const r=await fetch('/api/lo-mejor/artista-correcto',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({artista:nombre,deezer_id:id})});
+   const j=await r.json();if(!r.ok)throw new Error(j.error||'No se ha podido guardar.');
+   caja.querySelectorAll('.canciones-populares,.canciones-recientes,.canciones-faltan').forEach(z=>{z.dataset.cargado='';z.replaceChildren();z.hidden=true;});
+   const botones=caja.querySelectorAll('.boton-populares,.boton-recientes');botones.forEach(b=>{b.dataset.error='';});
+   await cargarTop(nombre,caja,boton,tipo);
+  }catch(e){lista.replaceChildren(nodo('div','mr-cand-msg',e.message||'Error'));}
+ }
+ cambiar.addEventListener('click',async()=>{
+  if(!lista.hidden){lista.hidden=true;return;}
+  lista.hidden=false;lista.replaceChildren(nodo('div','mr-cand-msg','Buscando artistas con ese nombre…'));
+  try{
+   const r=await fetch('/api/lo-mejor/candidatos?artista='+encodeURIComponent(nombre),{cache:'no-store'});
+   const c=await r.json();if(!r.ok)throw new Error(c.error||'No se han podido buscar artistas.');
+   lista.replaceChildren(nodo('div','mr-cand-msg','Elige el artista correcto (se recordará):'));
+   for(const a of c.candidatos||[]){
+    const b=nodo('button','mr-cand','');b.type='button';
+    b.appendChild(nodo('strong','',a.nombre+(a.seguidores?' · '+Number(a.seguidores).toLocaleString('es-ES')+' seguidores':'')));
+    b.appendChild(nodo('small','',(a.canciones&&a.canciones.length)?'Canciones: '+a.canciones.join(' · '):'Sin canciones destacadas'));
+    if(String(a.id)===String(d.deezer_id))b.classList.add('mr-cand-actual');
+    b.addEventListener('click',()=>elegir(String(a.id)));
+    lista.appendChild(b);
+   }
+   if(c.fijado){const auto=nodo('button','mr-cand mr-cand-auto','Volver a elegir automáticamente');auto.type='button';auto.addEventListener('click',()=>elegir(''));lista.appendChild(auto);}
+  }catch(e){lista.replaceChildren(nodo('div','mr-cand-msg',e.message||'Error'));}
+ });
+ linea.append(info,cambiar,lista);return linea;
+}
 function insigniaYaTengo(){const s=nodo('span','mr-ya-tengo');s.title='Esta canción ya está en Mi música';s.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ya la tienes</span>';return s;}
 function nodo(tag,clase,texto){const n=document.createElement(tag);if(clase)n.className=clase;if(texto!==undefined)n.textContent=texto;return n;}
 function mostrarArtistas(){
@@ -945,11 +1484,14 @@ function mostrarArtistas(){
   botonRecientes.addEventListener('click',()=>cargarTop(nombre,caja,botonRecientes,'recientes'));
   const botonPublicaciones=nodo('button','boton-publicaciones','💿 Últimas publicaciones (singles)');
   botonPublicaciones.addEventListener('click',()=>cargarPublicacionesLoMejor(nombre,caja,botonPublicaciones));
-  botonesRanking.append(boton,botonRecientes,botonPublicaciones);
+  const botonFaltan=nodo('button','boton-faltan','🔎 Me faltan (5)');
+  botonFaltan.addEventListener('click',()=>cargarTop(nombre,caja,botonFaltan,'faltan'));
+  botonesRanking.append(botonFaltan,boton,botonRecientes,botonPublicaciones);
   cabecera.appendChild(botonesRanking);
   caja.appendChild(cabecera);
   const canciones=nodo('div','canciones-artista canciones-populares');
   canciones.hidden=true;
+  const faltanZona=nodo('div','canciones-artista canciones-faltan');faltanZona.hidden=true;caja.appendChild(faltanZona);
   caja.appendChild(canciones);
   const recientes=nodo('div','canciones-artista canciones-recientes');
   recientes.hidden=true;
@@ -1016,6 +1558,7 @@ async function cargarPublicacionesLoMejor(nombre,caja,boton){
    youtube.addEventListener('click',()=>buscarYouTube({titulo:p.titulo||'',artista:nombre},'youtube'));
    acciones.append(muestra,mediahuman,youtube);fila.append(detalle,acciones);item.appendChild(fila);zona.appendChild(item);
   }
+  zona.appendChild(botonMinimizar(zona,boton,'💿 Últimas publicaciones (singles)',caja));
   zona.dataset.cargado='1';boton.textContent='Ocultar últimos singles';
  }catch(e){
   zona.appendChild(nodo('p','mensaje-pista',e.message||'No se han podido cargar las publicaciones.'));
@@ -1023,11 +1566,11 @@ async function cargarPublicacionesLoMejor(nombre,caja,boton){
  }finally{boton.disabled=false;}
 }
 async function cargarTop(nombre,caja,boton,tipo='populares'){
- const recientes=tipo==='recientes';
- const zona=caja.querySelector(recientes?'.canciones-recientes':'.canciones-populares');
- const etiqueta=recientes?'🆕 Éxitos recientes (5)':'⭐ Más populares (20)';
- const etiquetaOcultar=recientes?'Ocultar éxitos recientes':'Ocultar canciones populares';
- const etiquetaReintentar=recientes?'Reintentar éxitos recientes':'Reintentar canciones populares';
+ const recientes=tipo==='recientes',faltan=tipo==='faltan';
+ const zona=caja.querySelector(faltan?'.canciones-faltan':(recientes?'.canciones-recientes':'.canciones-populares'));
+ const etiqueta=faltan?'🔎 Me faltan (5)':(recientes?'🆕 Éxitos recientes (5)':'⭐ Más populares (20)');
+ const etiquetaOcultar=faltan?'Ocultar lo que me falta':(recientes?'Ocultar éxitos recientes':'Ocultar canciones populares');
+ const etiquetaReintentar=faltan?'Reintentar lo que me falta':(recientes?'Reintentar éxitos recientes':'Reintentar canciones populares');
  if(!zona.hidden&&boton.dataset.error!=='1'){zona.hidden=true;boton.textContent=etiqueta;return;}
  zona.hidden=false;
  if(zona.dataset.cargado==='1'){boton.textContent=etiquetaOcultar;return;}
@@ -1036,17 +1579,23 @@ async function cargarTop(nombre,caja,boton,tipo='populares'){
  const limite=setTimeout(()=>controlador.abort(),30000);
  let correcto=false;
  try{
-  const parametros=new URLSearchParams({artista:nombre,tipo});
+  const parametros=new URLSearchParams({artista:nombre,tipo:faltan?'populares':tipo});
   const r=await fetch('/api/lo-mejor?'+parametros.toString(),{cache:'no-store',signal:controlador.signal});
   let d;
   try{d=await r.json();}catch(_){throw new Error('La consulta musical ha devuelto una respuesta no válida. Inténtalo de nuevo.');}
   if(!r.ok)throw new Error(d.error||'No se ha podido cargar el ranking.');
   if(!Array.isArray(d.canciones)||!d.canciones.length)throw new Error('Deezer no ha devuelto canciones para este artista.');
+  if(faltan){d.canciones=d.canciones.filter(c=>!c.ya_tengo).slice(0,5);}
+  zona.appendChild(selectorArtista(nombre,d,caja,tipo,boton));
+  if(faltan&&!d.canciones.length)zona.appendChild(nodo('p','mensaje-pista','Ya tienes las canciones más populares de este artista.'));
+  let posicion=0;
   for(const pista of d.canciones){
+   posicion++;
    const fila=nodo('div','pista');
    const detalle=nodo('div','');
    const tituloPista=nodo('span','pista-titulo',pista.titulo);
    const tituloLinea=nodo('div','');tituloLinea.appendChild(tituloPista);detalle.appendChild(tituloLinea);
+   if(!recientes){const num=nodo('span','mr-pos'+(posicion<=3?' mr-pos-top':''),String(posicion));num.title='Puesto '+posicion+' por popularidad';tituloLinea.insertBefore(num,tituloPista);}
    const wiki=nodo('button','boton-wikipedia','G');wiki.type='button';
    wiki.dataset.resumenTipo='cancion';wiki.dataset.resumenNombre=pista.titulo;wiki.dataset.resumenArtista=pista.artista;
    wiki.title='Consultar información de '+pista.titulo+' de '+pista.artista;
@@ -1080,6 +1629,7 @@ async function cargarTop(nombre,caja,boton,tipo='populares'){
    youtube.addEventListener('click',()=>buscarYouTube(pista,'youtube'));
    acciones.append(muestra,mediahuman,youtube);fila.append(detalle,acciones);zona.appendChild(fila);
   }
+  zona.appendChild(botonMinimizar(zona,boton,etiqueta,caja));
   zona.dataset.cargado='1';
   zona.dataset.error='0';
   correcto=true;
@@ -1173,11 +1723,10 @@ fetch('/api/artistas',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error();re
 
 @app.get("/api/lo-mejor/artistas")
 def api_lo_mejor_artistas():
-    """Devuelve los 20 artistas con más canciones distintas en la colección local."""
+    """Devuelve los 40 artistas con más canciones distintas en la colección local."""
     ruta = BASE / "mi_musica.json"
     try:
-        with ruta.open("r", encoding="utf-8") as archivo:
-            biblioteca = json.load(archivo)
+        biblioteca = _biblioteca_completa()
     except (OSError, json.JSONDecodeError):
         return jsonify({"error": "No se ha podido leer tu colección musical."}), 500
     grupos = {}
@@ -1195,12 +1744,262 @@ def api_lo_mejor_artistas():
         if clave_artista not in grupos:
             grupos[clave_artista] = {"NombreOriginal": artista, "NombreNormalizado": artista, "cancionesEnColeccion": 0}
         grupos[clave_artista]["cancionesEnColeccion"] += 1
-    top = sorted(grupos.values(), key=lambda a: (-a["cancionesEnColeccion"], a["NombreOriginal"].casefold()))[:20]
+    top = sorted(grupos.values(), key=lambda a: (-a["cancionesEnColeccion"], a["NombreOriginal"].casefold()))[:40]
     return jsonify(top)
 
 
-@app.get("/api/lo-mejor")
-def api_lo_mejor():
+
+# ---------- Ajustes pequeños (p. ej. qué artista de Deezer es el correcto) ----------
+_RUTA_AJUSTES = BASE / "mr_ajustes.json"
+_CANDADO_AJUSTES = threading.Lock()
+_cache_ajustes = {"t": 0.0, "datos": None}
+
+
+def _ajustes_todos():
+    """Devuelve el diccionario de ajustes (se guarda en la base de datos si existe; si no, en un archivo)."""
+    ahora = time.time()
+    if _cache_ajustes["datos"] is not None and ahora - _cache_ajustes["t"] < 60:
+        return _cache_ajustes["datos"]
+    datos = {}
+    try:
+        if _url_bd_recomendaciones():
+            import psycopg
+            with psycopg.connect(_url_bd_recomendaciones(), connect_timeout=10) as conexion:
+                with conexion.cursor() as cursor:
+                    cursor.execute("CREATE TABLE IF NOT EXISTS mr_ajustes (clave TEXT PRIMARY KEY, valor JSONB NOT NULL, actualizado TIMESTAMPTZ NOT NULL DEFAULT NOW())")
+                    cursor.execute("SELECT clave, valor FROM mr_ajustes")
+                    for clave, valor in cursor.fetchall():
+                        if isinstance(valor, str):
+                            try:
+                                valor = json.loads(valor)
+                            except json.JSONDecodeError:
+                                continue
+                        datos[clave] = valor
+        else:
+            leido = json.loads(_RUTA_AJUSTES.read_text(encoding="utf-8"))
+            datos = leido if isinstance(leido, dict) else {}
+    except Exception:
+        datos = _cache_ajustes["datos"] if _cache_ajustes["datos"] is not None else {}
+    _cache_ajustes["t"] = ahora
+    _cache_ajustes["datos"] = datos
+    return datos
+
+
+def _ajuste_leer(clave, defecto=None):
+    with _CANDADO_AJUSTES:
+        return _ajustes_todos().get(clave, defecto)
+
+
+def _ajuste_escribir(clave, valor):
+    """Guarda un ajuste; con valor None lo borra."""
+    with _CANDADO_AJUSTES:
+        if _url_bd_recomendaciones():
+            import psycopg
+            with psycopg.connect(_url_bd_recomendaciones(), connect_timeout=10) as conexion:
+                with conexion.cursor() as cursor:
+                    cursor.execute("CREATE TABLE IF NOT EXISTS mr_ajustes (clave TEXT PRIMARY KEY, valor JSONB NOT NULL, actualizado TIMESTAMPTZ NOT NULL DEFAULT NOW())")
+                    if valor is None:
+                        cursor.execute("DELETE FROM mr_ajustes WHERE clave = %s", (clave,))
+                    else:
+                        cursor.execute(
+                            "INSERT INTO mr_ajustes (clave, valor) VALUES (%s, %s::jsonb) "
+                            "ON CONFLICT (clave) DO UPDATE SET valor = EXCLUDED.valor, actualizado = NOW()",
+                            (clave, json.dumps(valor, ensure_ascii=False)))
+        else:
+            try:
+                actuales = json.loads(_RUTA_AJUSTES.read_text(encoding="utf-8"))
+                if not isinstance(actuales, dict):
+                    actuales = {}
+            except (OSError, json.JSONDecodeError):
+                actuales = {}
+            if valor is None:
+                actuales.pop(clave, None)
+            else:
+                actuales[clave] = valor
+            temporal = _RUTA_AJUSTES.with_suffix(".tmp")
+            temporal.write_text(json.dumps(actuales, ensure_ascii=False, indent=2), encoding="utf-8")
+            temporal.replace(_RUTA_AJUSTES)
+        _cache_ajustes["datos"] = None
+        _cache_ajustes["t"] = 0.0
+
+
+_CACHE_EXTERNA = {}
+_CACHE_EXTERNA_SEGUNDOS = 12 * 3600
+_CANDADO_GUSTOS = threading.Lock()
+
+
+def _registrar_gustos(canciones):
+    """Guarda para siempre las canciones que guardas: siguen contando como gusto aunque luego las borres."""
+    nuevas = [
+        {"artista": str(c.get("artista") or "")[:200], "titulo": str(c.get("titulo") or "")[:200]}
+        for c in canciones if isinstance(c, dict) and c.get("artista") and c.get("titulo")
+    ]
+    if not nuevas:
+        return
+    with _CANDADO_GUSTOS:
+        actuales = _ajuste_leer("historial_gustos", [])
+        actuales = [g for g in actuales if isinstance(g, dict)] if isinstance(actuales, list) else []
+        vistas = {_llave_voto(g.get("artista"), g.get("titulo")) for g in actuales}
+        cambiado = False
+        for cancion in nuevas:
+            llave = _llave_voto(cancion["artista"], cancion["titulo"])
+            if llave not in vistas:
+                actuales.append(cancion)
+                vistas.add(llave)
+                cambiado = True
+        if cambiado:
+            _ajuste_escribir("historial_gustos", actuales[-3000:])
+
+
+GENEROS_PERMITIDOS = [
+    "Pop", "Rock", "Pop Rock", "R&B", "Rumba / Flamenco", "Fusión / Mestizaje", "Urbana", "Dance",
+    "Musical / BSO", "Chill / Acústico", "Autor / Raíz", "Flamenco Pop", "Latina", "Disco",
+    "Flamenco de Autor", "Dance Pop", "Tropical",
+]
+_CANDADO_EXTRAS = threading.Lock()
+
+
+def _biblioteca_completa():
+    """mi_musica.json (la genera tu PC) + las canciones que has marcado a mano como «ya la tengo»."""
+    with (BASE / "mi_musica.json").open("r", encoding="utf-8") as archivo:
+        base = json.load(archivo)
+    if not isinstance(base, list):
+        return base
+    extras = _ajuste_leer("mi_musica_extra", [])
+    if isinstance(extras, list) and extras:
+        # Si la canción ya ha llegado al archivo de tu PC, no se duplica.
+        ya_en_archivo = {
+            (normalizar_texto(p.get("artista")), _clave_titulo_coleccion(p.get("titulo")))
+            for p in base if isinstance(p, dict)
+        }
+        añadidas = []
+        for e in extras:
+            if not (isinstance(e, dict) and e.get("artista") and e.get("titulo")):
+                continue
+            llave_e = (normalizar_texto(e["artista"]), _clave_titulo_coleccion(e["titulo"]))
+            if llave_e in ya_en_archivo:
+                continue
+            ya_en_archivo.add(llave_e)
+            añadidas.append(e)
+        base = list(base) + añadidas
+    return base
+
+
+def _artistas_radar_completos():
+    """mi_radar_musical.csv + los artistas creados al marcar una canción como «ya la tengo»."""
+    with CSV_PATH.open("r", encoding="utf-8-sig", newline="") as archivo:
+        filas = list(csv.DictReader(archivo))
+    extras = _ajuste_leer("artistas_extra", [])
+    if isinstance(extras, list):
+        conocidos = {normalizar_texto(f.get("NombreOriginal")) for f in filas}
+        for extra in extras:
+            if isinstance(extra, dict) and extra.get("NombreOriginal") and normalizar_texto(extra["NombreOriginal"]) not in conocidos:
+                filas.append(dict(extra))
+                conocidos.add(normalizar_texto(extra["NombreOriginal"]))
+    return filas
+
+
+def _marcar_como_tengo_lote(canciones):
+    """Añade canciones a Mi música y, si hace falta, su artista a Cantantes. Devuelve (nuevas, artistas_nuevos)."""
+    candidatas = []
+    for c in canciones:
+        if not isinstance(c, dict):
+            continue
+        titulo = re.sub(r"\s*\((?:19|20)\d{2}\)\s*$", "", str(c.get("titulo") or "").strip())[:200].strip()
+        artista = str(c.get("artista") or "").strip()[:200]
+        if not titulo or not artista:
+            continue
+        try:
+            anio = int(c.get("anio") or 0)
+        except (TypeError, ValueError):
+            anio = 0
+        if not 1900 <= anio <= 2100:
+            anio = 0
+        genero = str(c.get("genero") or "").strip()
+        if genero not in GENEROS_PERMITIDOS:
+            genero = ""
+        candidatas.append({"artista": artista, "titulo": titulo, "anio": anio, "genero": genero, "manual": True})
+    if not candidatas:
+        return 0, []
+    with _CANDADO_EXTRAS:
+        extras = _ajuste_leer("mi_musica_extra", [])
+        extras = [e for e in extras if isinstance(e, dict)] if isinstance(extras, list) else []
+        vistos = set()
+        nuevas = []
+        for c in candidatas:
+            llave = (normalizar_texto(c["artista"]), _clave_titulo_coleccion(c["titulo"]))
+            if llave in vistos or ya_en_coleccion(c["titulo"], c["artista"]):
+                continue
+            vistos.add(llave)
+            nuevas.append(c)
+        if not nuevas:
+            return 0, []
+        _ajuste_escribir("mi_musica_extra", (extras + nuevas)[-5000:])
+        claves_radar = {normalizar_texto(f.get("NombreOriginal")) for f in _artistas_radar_completos()}
+        artistas_nuevos = []
+        for c in nuevas:
+            clave_a = normalizar_texto(c["artista"])
+            if clave_a not in claves_radar:
+                claves_radar.add(clave_a)
+                artistas_nuevos.append({
+                    "NombreOriginal": c["artista"], "NombreNormalizado": c["artista"],
+                    "Estado": "Vigilancia activa", "Observaciones": "Añadido al guardar una canción"})
+        if artistas_nuevos:
+            guardados = _ajuste_leer("artistas_extra", [])
+            guardados = [a for a in guardados if isinstance(a, dict)] if isinstance(guardados, list) else []
+            _ajuste_escribir("artistas_extra", (guardados + artistas_nuevos)[-2000:])
+    return len(nuevas), artistas_nuevos
+
+
+_migracion_guardadas = {"hecha": False, "intentos": 0}
+
+
+@app.before_request
+def _migrar_guardadas_una_vez():
+    """La primera vez, lo que ya estaba en Guardadas pasa a contar como «ya la tengo» (máx. 3 intentos)."""
+    if _migracion_guardadas["hecha"] or _migracion_guardadas["intentos"] >= 3:
+        return None
+    _migracion_guardadas["intentos"] += 1
+    try:
+        if not _ajuste_leer("guardadas_migradas", False):
+            with _CANDADO_GUARDADAS_RECOMENDACIONES:
+                actuales = list(_leer_guardadas_recomendaciones().get("canciones", []))
+            _marcar_como_tengo_lote(actuales)
+            _ajuste_escribir("guardadas_migradas", True)
+        _migracion_guardadas["hecha"] = True
+    except Exception:
+        pass
+    return None
+
+
+def _ajustes_con_prefijo(prefijo):
+    with _CANDADO_AJUSTES:
+        return {k[len(prefijo):]: v for k, v in _ajustes_todos().items() if k.startswith(prefijo) and isinstance(v, dict)}
+
+
+def _llave_voto(artista, titulo):
+    return normalizar_texto(artista) + "|" + normalizar_texto(titulo)
+
+
+def _votos_recomendaciones():
+    """{llave artista|título: {"v": 1 o -1, "artista":..., "titulo":...}}"""
+    return _ajustes_con_prefijo("voto:")
+
+
+# Memoria de los rankings de Cantantes: evita preguntar a Deezer/iTunes/Last.fm cada vez.
+_CACHE_LO_MEJOR = {}
+_CACHE_LO_MEJOR_SEGUNDOS = 6 * 3600
+_CANDADO_CACHE_LO_MEJOR = threading.Lock()
+
+
+def _vaciar_cache_lo_mejor(nombre):
+    clave_nombre = normalizar_texto(nombre)
+    with _CANDADO_CACHE_LO_MEJOR:
+        for clave in [k for k in _CACHE_LO_MEJOR if k[0] == clave_nombre]:
+            _CACHE_LO_MEJOR.pop(clave, None)
+
+
+def _calcular_lo_mejor(forzado_id=""):
     nombre_solicitado = (request.args.get("artista") or "").strip()
     tipo = (request.args.get("tipo") or "populares").strip().lower()
     if not nombre_solicitado:
@@ -1209,42 +2008,53 @@ def api_lo_mejor():
         return jsonify({"error": "Tipo de ranking no válido."}), 400
 
     try:
-        parametros = urlencode({"q": nombre_solicitado, "limit": 10})
-        peticion = Request(
-            "https://api.deezer.com/search/artist?" + parametros,
-            headers={"User-Agent": "MiRadarMusical/1.0"}
-        )
-        with urlopen(peticion, timeout=4) as respuesta:
-            datos = json.loads(respuesta.read().decode("utf-8"))
-        if datos.get("error"):
-            raise ValueError("Deezer no ha permitido consultar su catálogo.")
+        if forzado_id:
+            # El usuario ha indicado a mano qué artista de Deezer es el correcto.
+            peticion_artista = Request(
+                "https://api.deezer.com/artist/" + str(int(forzado_id)),
+                headers={"User-Agent": "MiRadarMusical/1.0"}
+            )
+            with urlopen(peticion_artista, timeout=4) as respuesta:
+                mejor = json.loads(respuesta.read().decode("utf-8"))
+            if mejor.get("error") or not mejor.get("id"):
+                raise ValueError("Deezer no reconoce el artista elegido.")
+            objetivo = normalizar_texto(nombre_solicitado)
+        else:
+            parametros = urlencode({"q": nombre_solicitado, "limit": 10})
+            peticion = Request(
+                "https://api.deezer.com/search/artist?" + parametros,
+                headers={"User-Agent": "MiRadarMusical/1.0"}
+            )
+            with urlopen(peticion, timeout=4) as respuesta:
+                datos = json.loads(respuesta.read().decode("utf-8"))
+            if datos.get("error"):
+                raise ValueError("Deezer no ha permitido consultar su catálogo.")
 
-        candidatos = datos.get("data", [])
-        objetivo = normalizar_texto(nombre_solicitado)
-        mejor = None
-        puntuacion_mejor = 0.0
-        for candidato in candidatos:
-            nombre = candidato.get("name") or ""
-            puntuacion = difflib.SequenceMatcher(
-                None, objetivo, normalizar_texto(nombre)
-            ).ratio()
-            if puntuacion > puntuacion_mejor:
-                puntuacion_mejor = puntuacion
-                mejor = candidato
+            candidatos = datos.get("data", [])
+            objetivo = normalizar_texto(nombre_solicitado)
+            mejor = None
+            puntuacion_mejor = 0.0
+            for candidato in candidatos:
+                nombre = candidato.get("name") or ""
+                puntuacion = difflib.SequenceMatcher(
+                    None, objetivo, normalizar_texto(nombre)
+                ).ratio()
+                if puntuacion > puntuacion_mejor:
+                    puntuacion_mejor = puntuacion
+                    mejor = candidato
 
-        if not mejor or puntuacion_mejor < 0.86:
-            return jsonify({
-                "error": "No he encontrado una coincidencia suficientemente segura para este artista en Deezer."
-            }), 404
+            if not mejor or puntuacion_mejor < 0.86:
+                return jsonify({
+                    "error": "No he encontrado una coincidencia suficientemente segura para este artista en Deezer."
+                }), 404
 
-        # Preferir coincidencia exacta del artista al resolver el nombre solicitado.
-        coincidencia_exacta = next(
-            (c for c in candidatos
-             if normalizar_texto(c.get("name", "")) == objetivo),
-            None
-        )
-        if coincidencia_exacta:
-            mejor = coincidencia_exacta
+            # Preferir coincidencia exacta del artista al resolver el nombre solicitado.
+            # Si hay varios artistas con exactamente el mismo nombre (p. ej. «El Barrio»),
+            # elegir el que más seguidores tiene en Deezer, no simplemente el primero de la lista.
+            iguales = [c for c in candidatos if normalizar_texto(c.get("name", "")) == objetivo]
+            coincidencia_exacta = max(iguales, key=lambda c: int(c.get("nb_fan") or 0)) if iguales else None
+            if coincidencia_exacta:
+                mejor = coincidencia_exacta
 
         nombre_deezer = mejor.get("name", nombre_solicitado)
         pistas_top = []
@@ -1261,36 +2071,42 @@ def api_lo_mejor():
             # El fallback de búsqueda libre puede seguir funcionando aunque falle /top.
             pistas_top = []
 
-        if not pistas_top:
+        if len(pistas_top) < 10:
+            # /top a veces devuelve muy pocas canciones; se completa con la búsqueda libre.
             # No usar el filtro avanzado artist:"...": puede devolver falsos vacíos.
             consulta_pistas = urlencode({"q": nombre_deezer, "limit": 100})
             peticion_pistas = Request(
                 "https://api.deezer.com/search/track?" + consulta_pistas,
                 headers={"User-Agent": "MiRadarMusical/1.0"}
             )
-            with urlopen(peticion_pistas, timeout=3) as respuesta:
-                datos_pistas = json.loads(respuesta.read().decode("utf-8"))
-            if datos_pistas.get("error"):
-                raise ValueError("Deezer no ha permitido buscar canciones de este artista.")
+            try:
+                with urlopen(peticion_pistas, timeout=3) as respuesta:
+                    datos_pistas = json.loads(respuesta.read().decode("utf-8"))
+                if datos_pistas.get("error"):
+                    raise ValueError("Deezer no ha permitido buscar canciones de este artista.")
+            except Exception:
+                if not pistas_top:
+                    raise
+                datos_pistas = {"data": []}
 
             pistas_busqueda = datos_pistas.get("data") or []
             objetivo_artista = normalizar_texto(nombre_deezer)
             id_artista = str(mejor.get("id", ""))
-            pistas_top = [
-                pista for pista in pistas_busqueda
-                if (
-                    id_artista and str((pista.get("artist") or {}).get("id", "")) == id_artista
-                ) or (
-                    normalizar_texto((pista.get("artist") or {}).get("name", "")) == objetivo_artista
-                )
-            ]
+            def _es_del_artista(pista):
+                # Si Deezer da el id del artista, manda el id (varios artistas pueden llamarse igual).
+                id_pista = str((pista.get("artist") or {}).get("id", ""))
+                if id_artista and id_pista:
+                    return id_pista == id_artista
+                return normalizar_texto((pista.get("artist") or {}).get("name", "")) == objetivo_artista
+            propias = [pista for pista in pistas_busqueda if _es_del_artista(pista)]
+            ids_ya = {str(p.get("id")) for p in pistas_top}
+            pistas_top = list(pistas_top) + [p for p in propias if str(p.get("id")) not in ids_ya]
             pistas_top.sort(key=lambda pista: int(pista.get("rank") or 0), reverse=True)
             pistas_top = pistas_top[:50]
 
         biblioteca = []
         try:
-            with (BASE / "mi_musica.json").open("r", encoding="utf-8") as archivo:
-                biblioteca = json.load(archivo)
+            biblioteca = _biblioteca_completa()
         except (OSError, json.JSONDecodeError):
             biblioteca = []
         anios_locales = {}
@@ -1495,6 +2311,8 @@ def api_lo_mejor():
         )
         return jsonify({
             "artista": mejor.get("name", nombre_solicitado),
+            "deezer_id": mejor.get("id"),
+            "seguidores": mejor.get("nb_fan"),
             "fuente": fuente_resultado,
             "tipo": tipo,
             "canciones": canciones
@@ -1504,6 +2322,128 @@ def api_lo_mejor():
             "error": "No se ha podido consultar Deezer ahora mismo. Inténtalo de nuevo más tarde."
         }), 502
 
+
+@app.get("/api/lo-mejor")
+def api_lo_mejor():
+    nombre_solicitado = (request.args.get("artista") or "").strip()
+    tipo = (request.args.get("tipo") or "populares").strip().lower()
+    if not nombre_solicitado or tipo not in ("populares", "recientes"):
+        return _calcular_lo_mejor("")
+    forzado = (request.args.get("deezer_id") or "").strip()
+    if not forzado.isdigit():
+        forzado = str(_ajuste_leer("artista_deezer:" + normalizar_texto(nombre_solicitado), "") or "")
+        if not forzado.isdigit():
+            forzado = ""
+    clave = (normalizar_texto(nombre_solicitado), tipo, forzado)
+    ahora = time.time()
+    if request.args.get("refrescar") != "1":
+        with _CANDADO_CACHE_LO_MEJOR:
+            guardado = _CACHE_LO_MEJOR.get(clave)
+        if guardado and ahora - guardado[0] < _CACHE_LO_MEJOR_SEGUNDOS:
+            datos = json.loads(json.dumps(guardado[1]))
+            for cancion in datos.get("canciones", []):
+                cancion["ya_tengo"] = ya_en_coleccion(
+                    cancion.get("titulo"), nombre_solicitado, datos.get("artista"), cancion.get("artista")
+                )
+            return jsonify(datos)
+    respuesta = _calcular_lo_mejor(forzado)
+    objeto, estado = (respuesta if isinstance(respuesta, tuple) else (respuesta, 200))
+    if estado == 200:
+        datos = objeto.get_json(silent=True)
+        if isinstance(datos, dict) and datos.get("canciones"):
+            with _CANDADO_CACHE_LO_MEJOR:
+                if len(_CACHE_LO_MEJOR) > 300:
+                    _CACHE_LO_MEJOR.clear()
+                _CACHE_LO_MEJOR[clave] = (ahora, datos)
+    return respuesta
+
+
+@app.get("/api/lo-mejor/candidatos")
+def api_lo_mejor_candidatos():
+    """Artistas de Deezer con nombre parecido, con sus canciones destacadas, para elegir el correcto."""
+    nombre = (request.args.get("artista") or "").strip()
+    if not nombre:
+        return jsonify({"error": "Falta el nombre del artista."}), 400
+    try:
+        peticion = Request(
+            "https://api.deezer.com/search/artist?" + urlencode({"q": nombre, "limit": 15}),
+            headers={"User-Agent": "MiRadarMusical/1.0"}
+        )
+        with urlopen(peticion, timeout=4) as respuesta:
+            datos = json.loads(respuesta.read().decode("utf-8"))
+        if datos.get("error"):
+            raise ValueError("Deezer no responde.")
+        objetivo = normalizar_texto(nombre)
+        candidatos = [
+            c for c in datos.get("data", [])
+            if c.get("id") and difflib.SequenceMatcher(None, objetivo, normalizar_texto(c.get("name"))).ratio() >= 0.7
+        ]
+        candidatos.sort(key=lambda c: int(c.get("nb_fan") or 0), reverse=True)
+        candidatos = candidatos[:6]
+
+        def canciones_de(candidato):
+            try:
+                req = Request(
+                    "https://api.deezer.com/artist/" + str(int(candidato["id"])) + "/top?limit=3",
+                    headers={"User-Agent": "MiRadarMusical/1.0"}
+                )
+                with urlopen(req, timeout=3) as r:
+                    top = json.loads(r.read().decode("utf-8"))
+                return [str(p.get("title") or "") for p in (top.get("data") or [])][:3]
+            except Exception:
+                return []
+
+        with ThreadPoolExecutor(max_workers=6) as ejecutor:
+            tops = list(ejecutor.map(canciones_de, candidatos))
+        fijado = str(_ajuste_leer("artista_deezer:" + objetivo, "") or "")
+        return jsonify({
+            "fijado": fijado if fijado.isdigit() else None,
+            "candidatos": [
+                {"id": c["id"], "nombre": c.get("name") or "", "seguidores": c.get("nb_fan"), "canciones": tops[i]}
+                for i, c in enumerate(candidatos)
+            ]
+        })
+    except Exception:
+        return jsonify({"error": "No se ha podido consultar Deezer ahora mismo."}), 502
+
+
+@app.post("/api/lo-mejor/artista-correcto")
+def api_lo_mejor_artista_correcto():
+    cuerpo = request.get_json(silent=True) or {}
+    nombre = str(cuerpo.get("artista") or "").strip()[:200]
+    identificador = str(cuerpo.get("deezer_id") or "").strip()
+    if not nombre or (identificador and not identificador.isdigit()):
+        return jsonify({"error": "Datos no válidos."}), 400
+    try:
+        _ajuste_escribir("artista_deezer:" + normalizar_texto(nombre), int(identificador) if identificador else None)
+    except Exception:
+        return jsonify({"error": "No se ha podido guardar la elección."}), 500
+    _vaciar_cache_lo_mejor(nombre)
+    return jsonify({"ok": True, "fijado": identificador or None})
+
+
+@app.post("/api/ya-tengo")
+def api_ya_tengo_lote():
+    """Para un lote de canciones {titulo, artista}, dice cuáles ya están en Mi música."""
+    cuerpo = request.get_json(silent=True) or {}
+    lista = cuerpo.get("canciones")
+    if not isinstance(lista, list) or len(lista) > 300:
+        return jsonify({"error": "Lista no válida."}), 400
+    return jsonify({"resultados": [
+        bool(isinstance(c, dict) and ya_en_coleccion(c.get("titulo"), c.get("artista"))) for c in lista
+    ]})
+
+
+@app.get("/api/recomendaciones/guardadas/exportar")
+def api_exportar_guardadas():
+    """Descarga una copia de seguridad de las canciones guardadas."""
+    with _CANDADO_GUARDADAS_RECOMENDACIONES:
+        estado = _leer_guardadas_recomendaciones()
+    cuerpo = json.dumps({"exportado": datetime.now().isoformat(timespec="seconds"),
+                         "canciones": estado.get("canciones", [])}, ensure_ascii=False, indent=2)
+    respuesta = app.response_class(cuerpo, mimetype="application/json")
+    respuesta.headers["Content-Disposition"] = "attachment; filename=mi-radar-guardadas-" + date.today().isoformat() + ".json"
+    return respuesta
 
 
 @app.get("/recomendaciones")
@@ -1660,6 +2600,27 @@ def api_leer_guardadas_recomendaciones():
     return jsonify(estado)
 
 
+@app.get("/api/guardadas-diagnostico")
+def api_diagnostico_guardadas():
+    """Dice dónde se guardan las canciones guardadas (sin mostrar ninguna clave ni dirección)."""
+    info = {"bd_configurada": bool(_url_bd_recomendaciones())}
+    try:
+        with _CANDADO_GUARDADAS_RECOMENDACIONES:
+            estado = _leer_guardadas_recomendaciones()
+        info["total_guardadas"] = len(estado.get("canciones", []))
+        info["almacenamiento"] = (
+            "base de datos (se conserva y se comparte entre móvil y ordenador)"
+            if info["bd_configurada"] else
+            "archivo en el disco del servidor (en Render gratuito se BORRA al reiniciar o redesplegar)"
+        )
+        info["estado"] = "correcto"
+    except Exception as error:
+        info["estado"] = "error"
+        info["error"] = type(error).__name__ + ": " + str(error)[:200].replace(_url_bd_recomendaciones() or "\u0000", "***")
+        info["almacenamiento"] = "base de datos (no responde)" if info["bd_configurada"] else "archivo del servidor (no se puede leer)"
+    return jsonify(info)
+
+
 @app.post("/api/recomendaciones/guardadas")
 def api_anadir_guardadas_recomendaciones():
     cuerpo = request.get_json(silent=True) or {}
@@ -1684,6 +2645,14 @@ def api_anadir_guardadas_recomendaciones():
             "portada": str(cancion.get("portada") or "")[:2000],
             "preview": str(cancion.get("preview") or "")[:2000],
         })
+    try:
+        _registrar_gustos(nuevas)
+    except Exception:
+        pass
+    try:
+        _marcar_como_tengo_lote(nuevas)  # guardar una canción = ya la tengo (también si luego la quitas de Guardadas)
+    except Exception:
+        pass
     with _CANDADO_GUARDADAS_RECOMENDACIONES:
         try:
             if _url_bd_recomendaciones():
@@ -1730,6 +2699,53 @@ def api_quitar_guardada_recomendacion():
     return jsonify(estado)
 
 
+def _orden_ponderado(elementos, pesos, semilla):
+    """Ordena al azar pero favoreciendo a los de más peso (misma semilla = mismo orden)."""
+    generador = random.Random(semilla)
+    clave_azar = [generador.random() ** (1.0 / max(0.01, float(peso))) for peso in pesos]
+    indices = sorted(range(len(elementos)), key=lambda i: -clave_azar[i])
+    return [elementos[i] for i in indices]
+
+
+@app.post("/api/mi-musica/ya-la-tengo")
+def api_ya_la_tengo():
+    cuerpo = request.get_json(silent=True) or {}
+    if not str(cuerpo.get("titulo") or "").strip() or not str(cuerpo.get("artista") or "").strip():
+        return jsonify({"error": "Faltan el título y el artista."}), 400
+    try:
+        nuevas, artistas_nuevos = _marcar_como_tengo_lote([cuerpo])
+    except Exception:
+        return jsonify({"error": "No se ha podido guardar ahora mismo."}), 500
+    return jsonify({"ok": True, "ya_estaba": nuevas == 0, "artista_nuevo": bool(artistas_nuevos)})
+
+
+@app.get("/api/recomendaciones/votos")
+def api_votos_recomendaciones():
+    votos = _votos_recomendaciones()
+    return jsonify({"votos": [
+        {"artista": v.get("artista"), "titulo": v.get("titulo"), "voto": v.get("v")} for v in votos.values()
+    ]})
+
+
+@app.post("/api/recomendaciones/votos")
+def api_votar_recomendacion():
+    cuerpo = request.get_json(silent=True) or {}
+    titulo = str(cuerpo.get("titulo") or "").strip()[:200]
+    artista = str(cuerpo.get("artista") or "").strip()[:200]
+    voto = cuerpo.get("voto")
+    if not titulo or not artista or voto not in (1, -1, 0):
+        return jsonify({"error": "Datos no válidos."}), 400
+    clave_voto = "voto:" + _llave_voto(artista, titulo)
+    try:
+        if voto == 0:
+            _ajuste_escribir(clave_voto, None)
+        else:
+            _ajuste_escribir(clave_voto, {"v": voto, "artista": artista, "titulo": titulo})
+    except Exception:
+        return jsonify({"error": "No se ha podido guardar tu voto."}), 500
+    return jsonify({"ok": True})
+
+
 @app.get("/api/recomendaciones")
 def api_recomendaciones():
     """Recomienda temas ajenos a la biblioteca usando una muestra aleatoria de toda la colección."""
@@ -1750,8 +2766,7 @@ def api_recomendaciones():
 
     ruta_biblioteca = BASE / "mi_musica.json"
     try:
-        with ruta_biblioteca.open("r", encoding="utf-8") as archivo:
-            biblioteca = json.load(archivo)
+        biblioteca = _biblioteca_completa()
     except (OSError, json.JSONDecodeError):
         return jsonify({"error": "No se ha podido leer tu biblioteca musical."}), 503
     if not isinstance(biblioteca, list) or not biblioteca:
@@ -1797,12 +2812,19 @@ def api_recomendaciones():
         timeout = min(timeout, 1.0 if decada_solicitada else 1.5)
         if url in cache_peticion:
             return cache_peticion[url]
+        guardado_global = _CACHE_EXTERNA.get(url)
+        if guardado_global and time.time() - guardado_global[0] < _CACHE_EXTERNA_SEGUNDOS:
+            cache_peticion[url] = guardado_global[1]
+            return guardado_global[1]
         try:
             pet = Request(url, headers={"User-Agent": "MiRadarMusical/1.0"})
             with urlopen(pet, timeout=timeout) as respuesta:
                 datos = json.loads(respuesta.read().decode("utf-8"))
             if isinstance(datos, dict) and not datos.get("error"):
                 cache_peticion[url] = datos
+                if len(_CACHE_EXTERNA) > 4000:
+                    _CACHE_EXTERNA.clear()
+                _CACHE_EXTERNA[url] = (time.time(), datos)
                 return datos
         except Exception as error:
             app.logger.info("Recomendaciones: fallo consultando catálogo: %s", error)
@@ -1881,7 +2903,9 @@ def api_recomendaciones():
                 portada = ""
         else:
             portada = ""
-        puntaje = peso * 100 + min(int(pista.get("rank") or 0) / 100000, 30)
+        popularidad_deezer = int(pista.get("rank") or 0)
+        # Hasta 45 puntos según lo conocida que es la canción (raíz cuadrada: 1.000.000 = 45, 100.000 = 14, 10.000 = 4,5).
+        puntaje = peso * 100 + 45 * (min(1.0, popularidad_deezer / 1000000) ** 0.5)
         actual = candidatos.get(llave)
         if actual and actual["puntuacion"] >= puntaje:
             return
@@ -1899,6 +2923,7 @@ def api_recomendaciones():
             "genero": genero_solicitado or (max(semilla["generos"], key=semilla["generos"].get) if semilla.get("generos") else ""),
             "relacionado_con": semilla["nombre"],
             "puntuacion": puntaje,
+            "popularidad": popularidad_deezer,
             "fuente_recomendacion": fuente
         }
 
@@ -1926,7 +2951,46 @@ def api_recomendaciones():
     # de esa época presentes en la biblioteca. En la búsqueda general se mantiene
     # la selección aleatoria de toda la colección.
     # La semilla del navegador hace que las páginas siguientes mantengan la misma selección.
-    random.Random(semilla_azar).shuffle(semillas_pistas)
+    if decada_solicitada or not semillas_pistas:
+        random.Random(semilla_azar).shuffle(semillas_pistas)
+    else:
+        # Más probabilidad para los artistas de los que tienes más canciones (sin dejar fuera al resto).
+        pesos_semilla = [max(1, artistas.get(clave(s["nombre"]), {}).get("total", 1)) ** 0.5 for s in semillas_pistas]
+        semillas_pistas = _orden_ponderado(semillas_pistas, pesos_semilla, semilla_azar)
+    votos_usuario = _votos_recomendaciones()
+    try:
+        with _CANDADO_GUARDADAS_RECOMENDACIONES:
+            guardadas_usuario = [g for g in _leer_guardadas_recomendaciones().get("canciones", []) if isinstance(g, dict)]
+    except Exception:
+        guardadas_usuario = []
+    try:
+        # El historial recuerda todo lo que has guardado alguna vez, aunque luego lo borres.
+        historial_gustos = _ajuste_leer("historial_gustos", [])
+        historial_gustos = [g for g in historial_gustos if isinstance(g, dict)] if isinstance(historial_gustos, list) else []
+        llaves_actuales = {_llave_voto(g.get("artista"), g.get("titulo")) for g in guardadas_usuario}
+        llaves_historial = {_llave_voto(g.get("artista"), g.get("titulo")) for g in historial_gustos}
+        pendientes_historial = [g for g in guardadas_usuario if _llave_voto(g.get("artista"), g.get("titulo")) not in llaves_historial]
+        if pendientes_historial:
+            _registrar_gustos(pendientes_historial)
+        guardadas_usuario = guardadas_usuario + [
+            g for g in historial_gustos if _llave_voto(g.get("artista"), g.get("titulo")) not in llaves_actuales
+        ]
+    except Exception:
+        pass
+    if not decada_solicitada and not genero_solicitado:
+        # Guardar una canción significa que te gusta: las guardadas (y los «me gusta» antiguos)
+        # pasan a ser puntos de partida (máx. 2 por búsqueda).
+        gustadas = {}
+        for g in list(guardadas_usuario) + [
+            {"artista": v.get("artista"), "titulo": v.get("titulo")}
+            for v in votos_usuario.values() if v.get("v") == 1
+        ]:
+            if g.get("artista") and g.get("titulo"):
+                gustadas[_llave_voto(g["artista"], g["titulo"])] = {
+                    "nombre": str(g["artista"]), "titulo": str(g["titulo"]), "genero": "", "anio": ""}
+        gustadas = list(gustadas.values())
+        if gustadas:
+            semillas_pistas = _orden_ponderado(gustadas, [1] * len(gustadas), semilla_azar)[:2] + semillas_pistas
     semillas_lastfm = []
     artistas_semilla = set()
     # Ampliar las referencias por década para que la personalización no dependa
@@ -1941,6 +3005,31 @@ def api_recomendaciones():
         if len(semillas_lastfm) >= limite_semillas:
             break
 
+    if clave_lastfm and semillas_lastfm and not decada_solicitada:
+        try:
+            urls_lastfm = [
+                "https://ws.audioscrobbler.com/2.0/?" + urlencode({
+                    "method": "track.getSimilar", "artist": s_["nombre"], "track": s_["titulo"],
+                    "api_key": clave_lastfm, "format": "json", "autocorrect": 1, "limit": 12})
+                for s_ in semillas_lastfm
+            ]
+            with EJECUTOR_HILOS(max_workers=3) as ejecutor_pf:
+                list(ejecutor_pf.map(lambda u_: consultar(u_, timeout=6), urls_lastfm))
+            urls_deezer = []
+            for u_ in urls_lastfm:
+                similares_pf = ((cache_peticion.get(u_) or {}).get("similartracks") or {}).get("track") or []
+                if isinstance(similares_pf, dict):
+                    similares_pf = [similares_pf]
+                for similar_pf in similares_pf[:4]:
+                    titulo_pf = str(similar_pf.get("name") or "").strip()
+                    artista_pf = str((similar_pf.get("artist") or {}).get("name") or "").strip()
+                    if titulo_pf and artista_pf and (clave(artista_pf), clave(titulo_pf)) not in existentes:
+                        urls_deezer.append("https://api.deezer.com/search/track?" + urlencode({
+                            "q": 'artist:"' + artista_pf + '" track:"' + titulo_pf + '"', "limit": 8}))
+            with EJECUTOR_HILOS(max_workers=6) as ejecutor_pf:
+                list(ejecutor_pf.map(consultar, urls_deezer))
+        except Exception as error_pf:
+            app.logger.info("Recomendaciones: precarga en paralelo no disponible: %s", error_pf)
     if clave_lastfm:
         for indice, semilla in enumerate(semillas_lastfm):
             params = urlencode({
@@ -2016,6 +3105,91 @@ def api_recomendaciones():
 
     # Si Last.fm no está configurado o no devuelve suficientes temas, completar con el
     # sistema anterior de artistas relacionados de Deezer.
+    # Fuente nueva: artistas parecidos a todo tu gusto (lo guardado pesa más) y lo más popular
+    # que aún no tienes de tus artistas. Se limita en tiempo para no agotar la petición.
+    def recomendar_por_artistas_parecidos():
+        inicio_fuente = time.time()
+        pesos_artista = {}
+        for k, datos_a in artistas.items():
+            pesos_artista[k] = [datos_a["nombre"], max(1, datos_a["total"]) ** 0.5]
+        for g in guardadas_usuario:
+            nombre_g = str(g.get("artista") or "").strip()
+            if nombre_g:
+                entrada_g = pesos_artista.setdefault(clave(nombre_g), [nombre_g, 1.0])
+                entrada_g[1] += 3.0
+        if not pesos_artista:
+            return
+        claves = list(pesos_artista)
+        elegidos = _orden_ponderado(claves, [pesos_artista[k][1] for k in claves], semilla_azar ^ 0x2F1B)[:8]
+
+        def id_de_artista(k):
+            nombre_k = pesos_artista[k][0]
+            fijado = _ajuste_leer("artista_deezer:" + clave(nombre_k), "")
+            if str(fijado or "").isdigit():
+                return str(fijado)
+            datos_k = consultar("https://api.deezer.com/search/artist?" + urlencode({"q": nombre_k, "limit": 8})).get("data") or []
+            iguales_k = [a for a in datos_k if clave(a.get("name")) == k]
+            if not iguales_k:
+                return ""
+            return str(max(iguales_k, key=lambda a: int(a.get("nb_fan") or 0)).get("id") or "")
+
+        def trabajo(k):
+            try:
+                id_k = id_de_artista(k)
+                if not id_k:
+                    return k, "", []
+                relacionados_k = consultar("https://api.deezer.com/artist/" + id_k + "/related?" + urlencode({"limit": 12})).get("data") or []
+                return k, id_k, relacionados_k
+            except Exception:
+                return k, "", []
+
+        with EJECUTOR_HILOS(max_workers=4) as ejecutor:
+            resultados_k = list(ejecutor.map(trabajo, elegidos))
+        if time.time() - inicio_fuente > 6:
+            return
+
+        puntos = {}
+        for k, id_k, relacionados_k in resultados_k:
+            for posicion, rel in enumerate(relacionados_k):
+                id_rel = str(rel.get("id") or "")
+                if not id_rel or clave(rel.get("name")) in artistas:
+                    continue  # solo artistas nuevos para ti
+                entrada_rel = puntos.setdefault(id_rel, {"nombre": rel.get("name") or "", "fans": int(rel.get("nb_fan") or 0), "puntos": 0.0, "quien": []})
+                entrada_rel["puntos"] += pesos_artista[k][1] * max(0.2, 1.0 - posicion * 0.06)
+                if pesos_artista[k][0] not in entrada_rel["quien"]:
+                    entrada_rel["quien"].append(pesos_artista[k][0])
+        mejores = sorted(puntos.items(), key=lambda kv: (-kv[1]["puntos"], -kv[1]["fans"]))[:6]
+        maximo = mejores[0][1]["puntos"] if mejores else 1.0
+
+        def top_de(par):
+            id_rel, datos_rel = par
+            top_rel = consultar("https://api.deezer.com/artist/" + id_rel + "/top?" + urlencode({"limit": 5})).get("data") or []
+            return datos_rel, top_rel
+
+        def top_propio(par):
+            k, id_k = par
+            return k, consultar("https://api.deezer.com/artist/" + id_k + "/top?" + urlencode({"limit": 15})).get("data") or []
+
+        propios = [(k, id_k) for k, id_k, _ in resultados_k if id_k][:3]
+        with EJECUTOR_HILOS(max_workers=4) as ejecutor:
+            tops_nuevos = list(ejecutor.map(top_de, mejores))
+            tops_propios = list(ejecutor.map(top_propio, propios))
+        for datos_rel, top_rel in tops_nuevos:
+            semilla_rel = {"nombre": " + ".join(datos_rel["quien"][:3]), "generos": {}}
+            peso_rel = 0.55 + 0.45 * (datos_rel["puntos"] / maximo)
+            for pista in top_rel:
+                añadir_candidata(pista, semilla_rel, peso_rel, "Artistas parecidos", completar_datos=False)
+        for k, top_k in tops_propios:
+            semilla_k = {"nombre": pesos_artista[k][0], "generos": artistas.get(k, {}).get("generos", {})}
+            for pista in top_k:
+                añadir_candidata(pista, semilla_k, 0.9, "Tus artistas", completar_datos=False)
+
+    if not decada_solicitada and not genero_solicitado:
+        try:
+            recomendar_por_artistas_parecidos()
+        except Exception as error:
+            app.logger.info("Recomendaciones: fuente de artistas parecidos no disponible: %s", error)
+
     if len(candidatos) < 10 or decada_solicitada:
         semillas_artistas = list(artistas.values())
         if genero_solicitado:
@@ -2233,6 +3407,27 @@ def api_recomendaciones():
         semilla_azar = int(request.args.get("azar") or "0")
     except (TypeError, ValueError):
         semilla_azar = 0
+    me_gusta_artista, no_gusta_artista = {}, {}
+    for voto_guardado in votos_usuario.values():
+        clave_artista_voto = normalizar_texto(voto_guardado.get("artista"))
+        destino_voto = me_gusta_artista if voto_guardado.get("v") == 1 else no_gusta_artista
+        destino_voto[clave_artista_voto] = destino_voto.get(clave_artista_voto, 0) + 1
+    llaves_guardadas = set()
+    for g in guardadas_usuario:
+        clave_artista_guardada = normalizar_texto(g.get("artista"))
+        me_gusta_artista[clave_artista_guardada] = me_gusta_artista.get(clave_artista_guardada, 0) + 1
+        llaves_guardadas.add(_llave_voto(g.get("artista"), g.get("titulo")))
+
+    def _descartada_por_voto(pista):
+        artista_pista = normalizar_texto(pista.get("artista"))
+        llave_pista = _llave_voto(pista.get("artista"), pista.get("titulo"))
+        if llave_pista in votos_usuario or llave_pista in llaves_guardadas:
+            return True  # ya la has guardado o descartado: no se repite
+        if ya_en_coleccion(pista.get("titulo"), pista.get("artista")):
+            return True  # ya está en Mi música (aunque cambie un paréntesis o « - Remastered »)
+        return no_gusta_artista.get(artista_pista, 0) >= 2 and me_gusta_artista.get(artista_pista, 0) == 0
+
+    ordenadas = [p for p in ordenadas if not _descartada_por_voto(p)]
     if decada_solicitada:
         # Deduplicar por pareja artista+título, nunca por artista solamente:
         # se permiten varios temas del mismo artista si son canciones distintas.
@@ -2245,8 +3440,23 @@ def api_recomendaciones():
         ordenadas = list(unicas.values())
         random.Random(semilla_azar).shuffle(ordenadas)
     else:
+        total_biblioteca_pistas = max(1, len(biblioteca))
+        conteo_generos = {}
+        for datos_artista in artistas.values():
+            for nombre_genero, cantidad in datos_artista["generos"].items():
+                conteo_generos[nombre_genero.casefold()] = conteo_generos.get(nombre_genero.casefold(), 0) + cantidad
         ordenadas.sort(key=lambda p: (-p["puntuacion"], clave(p["artista"]), clave(p["titulo"])))
-        random.Random(semilla_azar).shuffle(ordenadas)
+        pesos_finales = []
+        for pista in ordenadas:
+            # Bonus si es de un artista que ya escuchas y si encaja con tus géneros más frecuentes.
+            canciones_del_artista = artistas.get(clave(pista.get("artista") or ""), {}).get("total", 0)
+            bonus_artista = 25 * min(1.0, math.log1p(canciones_del_artista) / math.log1p(30)) if canciones_del_artista else 0
+            afinidad = conteo_generos.get(str(pista.get("genero") or "").casefold(), 0) / total_biblioteca_pistas
+            bonus_genero = 30 * min(1.0, afinidad * 4)
+            bonus_votos = 20 * min(3, me_gusta_artista.get(normalizar_texto(pista.get("artista")), 0))
+            pesos_finales.append(max(1.0, float(pista.get("puntuacion") or 0) + bonus_artista + bonus_genero + bonus_votos) ** 1.6
+                                 * ((0.3 + min(1.0, int(pista.get("popularidad") or 0) / 1000000) ** 0.5) ** 3))  # las populares salen bastante más, con excepciones
+        ordenadas = _orden_ponderado(ordenadas, pesos_finales, semilla_azar)
     return jsonify({"canciones": ordenadas[inicio:inicio + 10], "generos": generos,
                     "total_candidatas": len(ordenadas), "total_biblioteca": len(biblioteca),
                     "inicio": inicio, "decada": decada_solicitada, "fuente": fuente_final,
@@ -2365,9 +3575,7 @@ def pagina_mi_musica():
 
 @app.get("/api/mi-musica")
 def api_mi_musica():
-    ruta = BASE / "mi_musica.json"
-    with ruta.open("r", encoding="utf-8") as archivo:
-        return jsonify(json.load(archivo))
+    return jsonify(_biblioteca_completa())
 
 
 @app.get("/artistas")
@@ -2377,8 +3585,7 @@ def pagina_artistas():
 
 @app.get("/api/artistas")
 def artistas():
-    with CSV_PATH.open("r", encoding="utf-8-sig", newline="") as archivo:
-        return jsonify(list(csv.DictReader(archivo)))
+    return jsonify(_artistas_radar_completos())
 
 
 def normalizar_texto(valor):
@@ -2407,12 +3614,13 @@ def _indice_coleccion():
         mtime = ruta.stat().st_mtime
     except OSError:
         return {}
-    if _cache_coleccion["mtime"] == mtime:
+    extras_guardados = _ajuste_leer("mi_musica_extra", [])
+    version = (mtime, len(extras_guardados) if isinstance(extras_guardados, list) else 0)
+    if _cache_coleccion["mtime"] == version:
         return _cache_coleccion["indice"]
     indice = {}
     try:
-        with ruta.open("r", encoding="utf-8") as archivo:
-            biblioteca = json.load(archivo)
+        biblioteca = _biblioteca_completa()
     except (OSError, json.JSONDecodeError):
         return {}
     for pista in biblioteca if isinstance(biblioteca, list) else []:
@@ -2422,7 +3630,7 @@ def _indice_coleccion():
         for clave in {normalizar_texto(pista.get("titulo")), _clave_titulo_coleccion(pista.get("titulo"))}:
             if clave:
                 indice.setdefault(clave, set()).add(artista)
-    _cache_coleccion["mtime"] = mtime
+    _cache_coleccion["mtime"] = version
     _cache_coleccion["indice"] = indice
     return indice
 
@@ -2679,101 +3887,216 @@ def muestra_musical():
         "error": "No he encontrado una muestra de 30 segundos que coincida con seguridad en Deezer ni en Apple Music/iTunes."
     }), 404
 
+def _vistas_a_numero(texto):
+    """«12.345.678 visualizaciones», «1,2 M de visualizaciones», «345 mil visualizaciones» -> número."""
+    t_ = str(texto or "").lower()
+    m = re.search(r"(\d[\d.,]*)\s*(millones|millón|mill|mil|m|k)?(?![a-z])", t_)
+    if not m:
+        return 0
+    numero, sufijo = m.group(1), (m.group(2) or "")
+    factor = 1000000 if sufijo in ("millones", "millón", "mill", "m") else (1000 if sufijo in ("mil", "k") else 1)
+    try:
+        if factor > 1:
+            return int(float(numero.replace(",", ".")) * factor)
+        return int(re.sub(r"[^\d]", "", numero) or 0)
+    except ValueError:
+        return 0
+
+
+def _formato_vistas(n):
+    if n >= 1000000:
+        return ("%.1f" % (n / 1000000)).replace(".", ",") + " M vis."
+    if n >= 1000:
+        return str(n // 1000) + " mil vis."
+    return str(n) + " vis." if n else ""
+
+
+def _youtube_resultados(consulta):
+    """Resultados de una búsqueda de YouTube: [{titulo, canal, url, vistas}]."""
+    url = "https://www.youtube.com/results?" + urlencode({"search_query": consulta})
+    peticion = Request(url, headers={
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+        "Accept-Language": "es-ES,es;q=0.9,en;q=0.7"
+    })
+    with urlopen(peticion, timeout=12) as respuesta:
+        pagina = respuesta.read().decode("utf-8", errors="replace")
+    pos = pagina.find("ytInitialData")
+    if pos < 0:
+        raise ValueError("YouTube no ha devuelto los resultados esperados.")
+    inicio = pagina.find("{", pos)
+    if inicio < 0:
+        raise ValueError("No se encontraron datos de búsqueda.")
+    profundidad = 0
+    dentro_cadena = False
+    escape = False
+    fin = None
+    for i in range(inicio, len(pagina)):
+        c = pagina[i]
+        if dentro_cadena:
+            if escape:
+                escape = False
+            elif c == "\\":
+                escape = True
+            elif c == '"':
+                dentro_cadena = False
+            continue
+        if c == '"':
+            dentro_cadena = True
+        elif c == "{":
+            profundidad += 1
+        elif c == "}":
+            profundidad -= 1
+            if profundidad == 0:
+                fin = i + 1
+                break
+    if fin is None:
+        raise ValueError("Los resultados de YouTube estaban incompletos.")
+    datos = json.loads(pagina[inicio:fin])
+
+    encontrados = []
+    vistos = set()
+
+    def texto_de(objeto):
+        if not isinstance(objeto, dict):
+            return ""
+        return objeto.get("simpleText") or "".join(tramo.get("text", "") for tramo in objeto.get("runs", []))
+
+    def recorrer(obj):
+        if isinstance(obj, dict):
+            video = obj.get("videoRenderer")
+            if isinstance(video, dict):
+                video_id = video.get("videoId")
+                if video_id and video_id not in vistos:
+                    titulo_texto = texto_de(video.get("title", {}))
+                    canal_texto = texto_de(video.get("ownerText") or video.get("longBylineText") or {})
+                    vistas = _vistas_a_numero(texto_de(video.get("viewCountText") or video.get("shortViewCountText") or {}))
+                    if titulo_texto:
+                        vistos.add(video_id)
+                        encontrados.append({
+                            "titulo": titulo_texto,
+                            "canal": canal_texto or "Canal desconocido",
+                            "url": "https://www.youtube.com/watch?v=" + video_id,
+                            "vistas": vistas
+                        })
+            for valor in obj.values():
+                recorrer(valor)
+        elif isinstance(obj, list):
+            for valor in obj:
+                recorrer(valor)
+
+    recorrer(datos)
+    return encontrados
+
+
 @app.get("/api/youtube/buscar")
 def buscar_videos_youtube():
-    """Busca candidatos en YouTube para que el usuario elija la versión correcta."""
+    """Candidatos de YouTube: primero los vídeos con letra, luego los oficiales y el resto, cada grupo por visualizaciones."""
     titulo = (request.args.get("titulo") or "").strip()
     artista = (request.args.get("artista") or "").strip()
-    consulta = " ".join(x for x in (artista, titulo) if x).strip()
-    if not consulta:
+    base = " ".join(x for x in (artista, titulo) if x).strip()
+    if not base:
         return jsonify({"error": "Falta el título o el artista."}), 400
+    consulta_letra = base if re.search(r"\b(letra|lyrics?)\b", base, re.IGNORECASE) else base + " letra lyrics"
+    consulta_oficial = base + " oficial official"
+    resultados_por_consulta = []
+    with EJECUTOR_HILOS(max_workers=2) as ejecutor:
+        futuros = [ejecutor.submit(_youtube_resultados, q_) for q_ in (consulta_letra, consulta_oficial)]
+        for futuro in futuros:
+            try:
+                resultados_por_consulta.append(futuro.result())
+            except Exception:
+                resultados_por_consulta.append([])
+    fusion = []
+    ids_vistos = set()
+    for lista in resultados_por_consulta:
+        for video in lista:
+            if video["url"] not in ids_vistos:
+                ids_vistos.add(video["url"])
+                fusion.append(video)
+    if not fusion:
+        return jsonify({"error": "YouTube no devolvió vídeos para esa búsqueda. Puedes probar otra vez más tarde."}), 502
 
-    url = "https://www.youtube.com/results?" + urlencode({"search_query": consulta})
+    def grupo(video):
+        if re.search(r"\b(letra|lyrics?|lyric video)\b", video["titulo"], re.IGNORECASE):
+            return 0
+        if re.search(r"\b(oficial|official|vevo|videoclip)\b", video["titulo"] + " " + video["canal"], re.IGNORECASE):
+            return 1
+        return 2
+
+    fusion.sort(key=lambda v: (grupo(v), -v["vistas"]))
+    salida = []
+    for v in fusion[:10]:
+        etiqueta = {0: "con letra", 1: "oficial"}.get(grupo(v), "")
+        extras = " · ".join(x for x in (v["canal"], _formato_vistas(v["vistas"]), etiqueta) if x)
+        salida.append({"titulo": v["titulo"], "canal": extras, "url": v["url"]})
+    return jsonify({"consulta": consulta_letra, "resultados": salida})
+
+
+def _json_externo(url, timeout=6):
+    ahora = time.time()
+    guardado = _CACHE_EXTERNA.get(url)
+    if guardado and ahora - guardado[0] < _CACHE_EXTERNA_SEGUNDOS:
+        return guardado[1]
+    with urlopen(Request(url, headers={"User-Agent": "MiRadarMusical/1.0"}), timeout=timeout) as respuesta:
+        datos = json.loads(respuesta.read().decode("utf-8"))
+    if isinstance(datos, dict) and not datos.get("error"):
+        if len(_CACHE_EXTERNA) > 4000:
+            _CACHE_EXTERNA.clear()
+        _CACHE_EXTERNA[url] = (ahora, datos)
+    return datos
+
+
+@app.get("/api/album/canciones")
+def api_album_canciones():
+    """Todas las canciones de un álbum (Apple Music/iTunes), con su muestra de 30 s."""
+    artista = (request.args.get("artista") or "").strip()
+    titulo = (request.args.get("titulo") or "").strip()
+    identificador = (request.args.get("id") or "").strip()
+    if not artista or not titulo:
+        return jsonify({"error": "Faltan el artista y el título del álbum."}), 400
+    titulo_limpio = re.sub(r"\s*-\s*(single|ep)\s*$", "", titulo, flags=re.IGNORECASE).strip()
+    objetivo_artista = normalizar_texto(artista)
+    objetivo_titulo = _clave_titulo_coleccion(titulo_limpio)
     try:
-        peticion = Request(url, headers={
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
-            "Accept-Language": "es-ES,es;q=0.9,en;q=0.7"
-        })
-        with urlopen(peticion, timeout=12) as respuesta:
-            pagina = respuesta.read().decode("utf-8", errors="replace")
-
-        # YouTube incluye los resultados en ytInitialData. Extraemos el JSON
-        # equilibrando llaves para no depender de un patrón que corte el objeto.
-        marcador = "ytInitialData"
-        pos = pagina.find(marcador)
-        if pos < 0:
-            raise ValueError("YouTube no ha devuelto los resultados esperados.")
-        inicio = pagina.find("{", pos)
-        if inicio < 0:
-            raise ValueError("No se encontraron datos de búsqueda.")
-        profundidad = 0
-        dentro_cadena = False
-        escape = False
-        fin = None
-        for i in range(inicio, len(pagina)):
-            c = pagina[i]
-            if dentro_cadena:
-                if escape:
-                    escape = False
-                elif c == "\\":
-                    escape = True
-                elif c == '"':
-                    dentro_cadena = False
-                continue
-            if c == '"':
-                dentro_cadena = True
-            elif c == "{":
-                profundidad += 1
-            elif c == "}":
-                profundidad -= 1
-                if profundidad == 0:
-                    fin = i + 1
+        coleccion = identificador[6:] if identificador.startswith("apple-") and identificador[6:].isdigit() else ""
+        if not coleccion:
+            for pais in ("es", "us"):
+                datos = _json_externo("https://itunes.apple.com/search?" + urlencode({
+                    "term": artista + " " + titulo_limpio, "media": "music", "entity": "album", "limit": 15, "country": pais}))
+                for r in datos.get("results") or []:
+                    nombre_album = _clave_titulo_coleccion(r.get("collectionName"))
+                    artista_album = normalizar_texto(r.get("artistName"))
+                    artista_ok = objetivo_artista in artista_album or artista_album in objetivo_artista
+                    titulo_ok = nombre_album == objetivo_titulo or (
+                        min(len(nombre_album), len(objetivo_titulo)) >= 4
+                        and (nombre_album in objetivo_titulo or objetivo_titulo in nombre_album))
+                    if r.get("collectionId") and artista_ok and titulo_ok:
+                        coleccion = str(r["collectionId"])
+                        break
+                if coleccion:
                     break
-        if fin is None:
-            raise ValueError("Los resultados de YouTube estaban incompletos.")
-        datos = json.loads(pagina[inicio:fin])
-
-        encontrados = []
-        vistos = set()
-        def recorrer(obj):
-            if isinstance(obj, dict):
-                video = obj.get("videoRenderer")
-                if isinstance(video, dict):
-                    video_id = video.get("videoId")
-                    if video_id and video_id not in vistos:
-                        titulo_video = video.get("title", {})
-                        titulo_texto = titulo_video.get("simpleText")
-                        if not titulo_texto:
-                            titulo_texto = "".join(
-                                tramo.get("text", "")
-                                for tramo in titulo_video.get("runs", [])
-                            )
-                        canal = video.get("ownerText") or video.get("longBylineText") or {}
-                        canal_texto = canal.get("simpleText")
-                        if not canal_texto:
-                            canal_texto = "".join(
-                                tramo.get("text", "") for tramo in canal.get("runs", [])
-                            )
-                        if titulo_texto:
-                            vistos.add(video_id)
-                            encontrados.append({
-                                "titulo": titulo_texto,
-                                "canal": canal_texto or "Canal desconocido",
-                                "url": "https://www.youtube.com/watch?v=" + video_id
-                            })
-                for valor in obj.values():
-                    recorrer(valor)
-            elif isinstance(obj, list):
-                for valor in obj:
-                    recorrer(valor)
-        recorrer(datos)
-        if not encontrados:
-            return jsonify({"error": "YouTube no devolvió vídeos para esa búsqueda. Puedes probar otra vez más tarde."}), 502
-        return jsonify({"consulta": consulta, "resultados": encontrados[:8]})
+        if not coleccion:
+            return jsonify({"error": "No he encontrado las canciones de este álbum en Apple Music."}), 404
+        datos = _json_externo("https://itunes.apple.com/lookup?" + urlencode({
+            "id": coleccion, "entity": "song", "limit": 200, "country": "es"}))
+        resultados = datos.get("results") or []
+        album_info = next((r for r in resultados if r.get("wrapperType") == "collection"), {})
+        canciones = []
+        for r in resultados:
+            if r.get("wrapperType") != "track" or not r.get("trackName"):
+                continue
+            canciones.append({
+                "numero": int(r.get("trackNumber") or 0), "disco": int(r.get("discNumber") or 1),
+                "titulo": r.get("trackName"), "artista": r.get("artistName") or artista,
+                "previewUrl": r.get("previewUrl") or "", "trackViewUrl": r.get("trackViewUrl") or "",
+                "anio": int(str(r.get("releaseDate") or "0000")[:4] or 0), "genero": r.get("primaryGenreName") or ""})
+        if not canciones:
+            return jsonify({"error": "Apple Music no devuelve canciones para este álbum."}), 404
+        canciones.sort(key=lambda c: (c["disco"], c["numero"]))
+        return jsonify({"album": album_info.get("collectionName") or titulo,
+                        "portada": album_info.get("artworkUrl100") or "", "canciones": canciones})
     except Exception:
-        return jsonify({
-            "error": "No he podido consultar los resultados de YouTube. Comprueba la conexión e inténtalo de nuevo."
-        }), 502
+        return jsonify({"error": "No se han podido consultar las canciones del álbum ahora mismo."}), 502
 
 
 @app.get("/api/publicaciones/preview")
@@ -3098,11 +4421,20 @@ def _buscar_gemini_musical(tipo, nombre, artista=""):
         respuesta = None
         for intento in range(3):
             try:
-                with urlopen(req, timeout=45) as resp:
+                req_intento = req
+                if intento == 2:
+                    # Último intento con una petición más simple (sin ajuste de razonamiento).
+                    cuerpo_simple = dict(cuerpo)
+                    cuerpo_simple["generation_config"] = {"max_output_tokens": 2500}
+                    req_intento = Request(
+                        url, data=json.dumps(cuerpo_simple, ensure_ascii=False).encode("utf-8"),
+                        headers={"Content-Type": "application/json", "x-goog-api-key": clave,
+                                 "User-Agent": "MiRadarMusical/1.0"}, method="POST")
+                with urlopen(req_intento, timeout=45) as resp:
                     respuesta = json.loads(resp.read().decode("utf-8"))
                 break
             except HTTPError as error:
-                if error.code != 503 or intento == 2:
+                if error.code not in (500, 502, 503, 504) or intento == 2:
                     raise
                 error.close()
                 time.sleep(1 + intento * 2)
@@ -3325,7 +4657,7 @@ def api_resumen_musical():
     resultado_final = resultado_gemini
     error_final = error_gemini
     # El cambio automático a Groq se activa cuando Gemini devuelve HTTP 429 (cuota/límite).
-    if not resultado_final and error_gemini and "HTTP 429" in error_gemini:
+    if not resultado_final and error_gemini and re.search(r"HTTP (429|5\d\d)", error_gemini):
         resultado_final, error_groq = _buscar_groq_musical(tipo, nombre, artista)
         if not resultado_final:
             error_final = (error_gemini + " " + (error_groq or "")).strip()
