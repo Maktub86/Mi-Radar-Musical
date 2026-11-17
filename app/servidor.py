@@ -2766,6 +2766,56 @@ def api_votar_recomendacion():
     return jsonify({"ok": True})
 
 
+def _historial_recomendadas():
+    historial = _ajuste_leer("recomendadas_historial", {})
+    return dict(historial) if isinstance(historial, dict) else {}
+
+
+def _registrar_recomendadas(canciones, azar):
+    """Apunta las canciones mostradas para no repetirlas enseguida."""
+    if not canciones:
+        return
+    with _CANDADO_GUSTOS:
+        historial = _historial_recomendadas()
+        ahora = time.time()
+        for c in canciones:
+            llave = _llave_voto(c.get("artista"), c.get("titulo"))
+            previo = historial.get(llave) if isinstance(historial.get(llave), dict) else {}
+            if previo.get("azar") == azar:
+                continue  # misma búsqueda (otra página): no cuenta dos veces
+            historial[llave] = {"t": ahora, "n": int(previo.get("n") or 0) + 1, "azar": azar}
+        historial = {k: v for k, v in historial.items()
+                     if isinstance(v, dict) and ahora - float(v.get("t") or 0) < 120 * 86400}
+        if len(historial) > 2500:
+            historial = dict(sorted(historial.items(), key=lambda kv: kv[1]["t"])[-2500:])
+        _ajuste_escribir("recomendadas_historial", historial)
+
+
+def _diversificar_recomendaciones(lista, tam_pagina=10, max_por_semilla=3):
+    """Cada tanda de 10 sin repetir artista y sin que casi todas salgan «similar a» lo mismo."""
+    restantes = list(lista)
+    resultado = []
+    while restantes:
+        pagina, resto = [], []
+        artistas_pagina, semillas_pagina = set(), {}
+        for p in restantes:
+            artista_p = normalizar_texto(p.get("artista"))
+            semilla_p = str(p.get("relacionado_con") or "")
+            if len(pagina) < tam_pagina and artista_p not in artistas_pagina and semillas_pagina.get(semilla_p, 0) < max_por_semilla:
+                pagina.append(p)
+                artistas_pagina.add(artista_p)
+                semillas_pagina[semilla_p] = semillas_pagina.get(semilla_p, 0) + 1
+            else:
+                resto.append(p)
+        if len(pagina) < tam_pagina and resto:
+            faltan = tam_pagina - len(pagina)
+            pagina += resto[:faltan]
+            resto = resto[faltan:]
+        resultado += pagina
+        restantes = resto
+    return resultado
+
+
 @app.get("/api/recomendaciones")
 def api_recomendaciones():
     """Recomienda temas ajenos a la biblioteca usando una muestra aleatoria de toda la colección."""
@@ -2923,7 +2973,7 @@ def api_recomendaciones():
                 portada = ""
         else:
             portada = ""
-        popularidad_deezer = int(pista.get("rank") or 0)
+        popularidad_deezer = max(0, int(pista.get("rank") or 0))
         # Hasta 45 puntos según lo conocida que es la canción (raíz cuadrada: 1.000.000 = 45, 100.000 = 14, 10.000 = 4,5).
         puntaje = peso * 100 + 45 * (min(1.0, popularidad_deezer / 1000000) ** 0.5)
         actual = candidatos.get(llave)
@@ -3040,13 +3090,13 @@ def api_recomendaciones():
                 similares_pf = ((cache_peticion.get(u_) or {}).get("similartracks") or {}).get("track") or []
                 if isinstance(similares_pf, dict):
                     similares_pf = [similares_pf]
-                for similar_pf in similares_pf[:4]:
+                for similar_pf in similares_pf[:12]:
                     titulo_pf = str(similar_pf.get("name") or "").strip()
                     artista_pf = str((similar_pf.get("artist") or {}).get("name") or "").strip()
                     if titulo_pf and artista_pf and (clave(artista_pf), clave(titulo_pf)) not in existentes:
                         urls_deezer.append("https://api.deezer.com/search/track?" + urlencode({
                             "q": 'artist:"' + artista_pf + '" track:"' + titulo_pf + '"', "limit": 8}))
-            with EJECUTOR_HILOS(max_workers=6) as ejecutor_pf:
+            with EJECUTOR_HILOS(max_workers=8) as ejecutor_pf:
                 list(ejecutor_pf.map(consultar, urls_deezer))
         except Exception as error_pf:
             app.logger.info("Recomendaciones: precarga en paralelo no disponible: %s", error_pf)
@@ -3065,7 +3115,7 @@ def api_recomendaciones():
             similares = (datos.get("similartracks") or {}).get("track") or []
             if isinstance(similares, dict):
                 similares = [similares]
-            for similar in similares[:12 if decada_solicitada else 4]:
+            for similar in similares[:12]:
                 titulo = str(similar.get("name") or "").strip()
                 artista_info = similar.get("artist") or {}
                 nombre_artista = str(artista_info.get("name") or "").strip()
@@ -3178,17 +3228,17 @@ def api_recomendaciones():
                 entrada_rel["puntos"] += pesos_artista[k][1] * max(0.2, 1.0 - posicion * 0.06)
                 if pesos_artista[k][0] not in entrada_rel["quien"]:
                     entrada_rel["quien"].append(pesos_artista[k][0])
-        mejores = sorted(puntos.items(), key=lambda kv: (-kv[1]["puntos"], -kv[1]["fans"]))[:6]
+        mejores = sorted(puntos.items(), key=lambda kv: (-kv[1]["puntos"], -kv[1]["fans"]))[:10]
         maximo = mejores[0][1]["puntos"] if mejores else 1.0
 
         def top_de(par):
             id_rel, datos_rel = par
-            top_rel = consultar("https://api.deezer.com/artist/" + id_rel + "/top?" + urlencode({"limit": 5})).get("data") or []
+            top_rel = consultar("https://api.deezer.com/artist/" + id_rel + "/top?" + urlencode({"limit": 20})).get("data") or []
             return datos_rel, top_rel
 
         def top_propio(par):
             k, id_k = par
-            return k, consultar("https://api.deezer.com/artist/" + id_k + "/top?" + urlencode({"limit": 15})).get("data") or []
+            return k, consultar("https://api.deezer.com/artist/" + id_k + "/top?" + urlencode({"limit": 25})).get("data") or []
 
         propios = [(k, id_k) for k, id_k, _ in resultados_k if id_k][:3]
         with EJECUTOR_HILOS(max_workers=4) as ejecutor:
@@ -3475,9 +3525,28 @@ def api_recomendaciones():
             bonus_genero = 30 * min(1.0, afinidad * 4)
             bonus_votos = 20 * min(3, me_gusta_artista.get(normalizar_texto(pista.get("artista")), 0))
             pesos_finales.append(max(1.0, float(pista.get("puntuacion") or 0) + bonus_artista + bonus_genero + bonus_votos) ** 1.6
-                                 * ((0.3 + min(1.0, int(pista.get("popularidad") or 0) / 1000000) ** 0.5) ** 3))  # las populares salen bastante más, con excepciones
+                                 * ((0.3 + min(1.0, int(pista.get("popularidad") or 0) / 1000000) ** 0.5) ** 8))  # las más populares pesan mucho más, aunque sean la 20.ª de su artista
         ordenadas = _orden_ponderado(ordenadas, pesos_finales, semilla_azar)
-    return jsonify({"canciones": ordenadas[inicio:inicio + 10], "generos": generos,
+    # Lo que ya te enseñé hace poco se aparta (14 días por vez que salió, hasta 56) y solo vuelve si faltan canciones.
+    historial_rec = _historial_recomendadas()
+    ahora_rec = time.time()
+
+    def _en_reposo(pista):
+        guardado_rec = historial_rec.get(_llave_voto(pista.get("artista"), pista.get("titulo")))
+        if not isinstance(guardado_rec, dict) or guardado_rec.get("azar") == semilla_azar:
+            return False
+        return ahora_rec - float(guardado_rec.get("t") or 0) < 14 * 86400 * min(4, max(1, int(guardado_rec.get("n") or 1)))
+
+    frescas = [p for p in ordenadas if not _en_reposo(p)]
+    en_reposo = sorted((p for p in ordenadas if _en_reposo(p)),
+                       key=lambda p: historial_rec[_llave_voto(p.get("artista"), p.get("titulo"))]["t"])
+    ordenadas = _diversificar_recomendaciones(frescas + en_reposo)
+    pagina_final = ordenadas[inicio:inicio + 10]
+    try:
+        _registrar_recomendadas(pagina_final, semilla_azar)
+    except Exception:
+        pass
+    return jsonify({"canciones": pagina_final, "generos": generos,
                     "total_candidatas": len(ordenadas), "total_biblioteca": len(biblioteca),
                     "inicio": inicio, "decada": decada_solicitada, "fuente": fuente_final,
                     "aviso": "Se prioriza la similitud entre canciones de Last.fm cuando está configurado; Deezer completa los datos disponibles. Si no, se usan artistas relacionados de Deezer. Las canciones de tu biblioteca se excluyen."})
