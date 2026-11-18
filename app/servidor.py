@@ -232,7 +232,7 @@ header p{
  async function refrescar(avisar=false){try{let r=await fetch('/api/recomendaciones/guardadas',{cache:'no-store',credentials:'same-origin'});if(!r.ok)throw new Error('El servidor ha respondido '+r.status+'.');let d=await r.json();if(!Array.isArray(d.canciones))throw new Error('La respuesta del servidor no contiene una lista válida.');const marca='mrGuardadasMigracionCentral_v1';if(localStorage.getItem(marca)!=='1'){const locales=leer();if(locales.length){const p=await fetch('/api/recomendaciones/guardadas',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({canciones:locales})});if(!p.ok)throw new Error('No se han podido incorporar las canciones que ya estaban guardadas en este dispositivo.');const migradas=await p.json();if(!Array.isArray(migradas.canciones))throw new Error('El servidor no ha confirmado la migración inicial.');d=migradas;}localStorage.setItem(marca,'1');}escribir(d.canciones);return d.canciones}catch(e){if(avisar)abrirModal('No se pudo sincronizar','No se ha podido consultar o actualizar la lista central. '+(e.message||''));return leer()}}
  async function guardar(c){try{const r=await fetch('/api/recomendaciones/guardadas',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({canciones:[c]})});if(!r.ok)throw new Error('El servidor ha respondido '+r.status+'.');const d=await r.json();if(!Array.isArray(d.canciones))throw new Error('El servidor no ha confirmado el guardado.');escribir(d.canciones)}catch(e){abrirModal('No se pudo guardar','La canción no se ha guardado en la lista compartida. '+(e.message||'Comprueba la conexión y vuelve a intentarlo.'))}dibujar();actualizarBotones()}
  async function quitar(c){try{const r=await fetch('/api/recomendaciones/guardadas',{method:'DELETE',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({titulo:c.titulo,artista:c.artista})});if(!r.ok)throw new Error('El servidor ha respondido '+r.status+'.');const d=await r.json();if(!Array.isArray(d.canciones))throw new Error('El servidor no ha confirmado el cambio.');escribir(d.canciones);dibujar();actualizarBotones()}catch(e){abrirModal('No se pudo eliminar','La canción sigue en la lista compartida porque el servidor no ha confirmado el cambio. '+(e.message||''));await refrescar();dibujar();actualizarBotones()}}
- async function buscarVideos(c,modo,b){if(b)b.disabled=true;abrirModal(modo==='youtube'?'Elegir versión de YouTube':'Descargar con MediaHuman','Buscando resultados para '+c.artista+' — '+c.titulo+'…');try{const q=new URLSearchParams({titulo:c.titulo,artista:c.artista});const r=await fetch('/api/youtube/buscar?'+q);const d=await r.json();if(!r.ok)throw new Error(d.error||'No se encontraron resultados.');resultadosModal.replaceChildren();if(!(d.resultados||[]).length)throw new Error('No se encontraron resultados.');estadoModal.textContent=modo==='youtube'?'Pulsa una versión para abrirla en YouTube.':'Elige una versión: se copiará su enlace para pegarlo en MediaHuman YouTube Downloader.';for(const v of d.resultados){const btn=document.createElement('button');btn.type='button';btn.className='mr-resultado';const t=document.createElement('strong');t.textContent=v.titulo||'Vídeo sin título';const sub=document.createElement('span');sub.textContent=v.canal||'Canal desconocido';btn.append(t,sub);btn.addEventListener('click',async()=>{if(modo==='youtube'){window.open(v.url,'_blank','noopener,noreferrer');return}try{await navigator.clipboard.writeText(v.url);estadoModal.textContent='Enlace copiado. Pégalo en MediaHuman YouTube Downloader.';btn.textContent='✓ Enlace copiado: '+(v.titulo||'canción')}catch(e){window.prompt('Copia el enlace para MediaHuman:',v.url)}});resultadosModal.appendChild(btn)}}catch(e){estadoModal.textContent=e.message||'No se pudo consultar YouTube.'}finally{if(b)b.disabled=false}}
+ async function buscarVideos(c,modo,b){if(b)b.disabled=true;abrirModal(modo==='youtube'?'Elegir versión de YouTube':'Descargar con MediaHuman','Buscando resultados para '+c.artista+' — '+c.titulo+'…');try{const q=new URLSearchParams({titulo:c.titulo,artista:c.artista});const r=await fetch('/api/youtube/buscar?'+q);const d=await r.json();if(!r.ok)throw new Error(d.error||'No se encontraron resultados.');resultadosModal.replaceChildren();if(!(d.resultados||[]).length)throw new Error('No se encontraron resultados.');estadoModal.textContent=modo==='youtube'?'Pulsa una versión para abrirla en YouTube.':'Elige una versión: se copiará su enlace para pegarlo en MediaHuman YouTube Downloader.';const pv=window.mrPestanasVideos?window.mrPestanasVideos(resultadosModal,d):{lista:d.resultados,panel:()=>resultadosModal};for(const v of pv.lista){const btn=document.createElement('button');btn.type='button';btn.className='mr-resultado';const t=document.createElement('strong');t.textContent=v.titulo||'Vídeo sin título';const sub=document.createElement('span');sub.textContent=v.canal||'Canal desconocido';btn.append(t,sub);btn.addEventListener('click',async()=>{if(modo==='youtube'){window.open(v.url,'_blank','noopener,noreferrer');return}try{await navigator.clipboard.writeText(v.url);estadoModal.textContent='Enlace copiado. Pégalo en MediaHuman YouTube Downloader.';btn.textContent='✓ Enlace copiado: '+(v.titulo||'canción')}catch(e){window.prompt('Copia el enlace para MediaHuman:',v.url)}});pv.panel(v).appendChild(btn)}}catch(e){estadoModal.textContent=e.message||'No se pudo consultar YouTube.'}finally{if(b)b.disabled=false}}
  async function escuchar(c,b){if(b)b.disabled=true;const original=b?b.innerHTML:'';if(b)b.textContent='Buscando…';try{let url=c.preview||'',nota='';let artista=c.artista,titulo=c.titulo;if(!url){const q=new URLSearchParams({titulo,artista});const r=await fetch('/api/muestra?'+q);const d=await r.json();if(!r.ok)throw new Error(d.error||'No hay muestra disponible.');url=d.previewUrl;artista=d.artista||artista;titulo=d.titulo||titulo;nota=d.nota||''}if(!url)throw new Error('No hay muestra de 30 segundos disponible para esta canción.');await window.mrMuestraEnLinea(b,url,{nota:nota})}catch(e){window.mrMuestraError(b,e.message||'No se ha podido reproducir la muestra.')}finally{if(b){b.disabled=false;b.innerHTML=original}}}
  async function informacion(c,b){if(b)b.disabled=true;abrirModal('Información sobre '+c.titulo,'Consultando información musical…');try{const q=new URLSearchParams({tipo:'cancion',nombre:c.titulo,artista:c.artista});const r=await fetch('/api/resumen-musical?'+q);const d=await r.json();estadoModal.textContent=d.resumen||d.informacion||d.error||'No se ha encontrado información.';for(const f of (d.fuentes||[])){if(!f.url||!f.url.startsWith('https://'))continue;const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=f.titulo||'Consultar fuente';a.style.display='block';a.style.color='#d2b8ff';resultadosModal.appendChild(a)}}catch(e){estadoModal.textContent='No se ha podido consultar la información ahora mismo.'}finally{if(b)b.disabled=false}}
  function crearTarjeta(c){
@@ -285,8 +285,48 @@ header p{
             html = html.replace("</body>", script_resumenes + "</body>", 1)
         if request.path != "/login" and "</body>" in html and "mr-iconos-unificados-js" not in html:
             html = html.replace("</body>", ICONOS_UNIFICADOS_HTML + "</body>", 1)
+        if "</body>" in html and "mr-pestanas-videos-js" not in html:
+            html = html.replace("</body>", PESTANAS_VIDEOS_HTML + "</body>", 1)
         response.set_data(html)
     return response
+
+
+# Pestañas «Letras» y «Oficial» en las ventanas de descargar / elegir versión de YouTube.
+PESTANAS_VIDEOS_HTML = """
+<style id="mr-pestanas-videos-css">
+.mr-pv-barra{display:flex;gap:8px;margin:4px 0 12px;flex-wrap:wrap}
+.mr-pv-tab{flex:1 1 0;min-width:120px;padding:10px 14px;border-radius:12px;border:1px solid #ffffff40;background:#ffffff12;color:inherit;font:inherit;font-weight:700;cursor:pointer}
+.mr-pv-tab[aria-selected="true"]{background:linear-gradient(135deg,#7867ff,#d43e8f);border-color:#ffffff80;color:#fff}
+.mr-pv-tab:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.mr-pv-panel{display:flex;flex-direction:column;gap:8px}
+.mr-pv-panel[hidden]{display:none!important}
+.mr-pv-vacio{opacity:.8;padding:8px 2px}
+</style>
+<script id="mr-pestanas-videos-js">
+/* Reparte los vídeos en dos pestañas. Devuelve la lista a pintar y en qué panel va cada uno. */
+window.mrPestanasVideos=function(contenedor,d){
+ const letras=Array.isArray(d&&d.letras)?d.letras:null,oficiales=Array.isArray(d&&d.oficiales)?d.oficiales:null;
+ if(!contenedor||!letras||!oficiales||(!letras.length&&!oficiales.length)){return {lista:(d&&d.resultados)||[],panel:function(){return contenedor;}};}
+ const barra=document.createElement('div');barra.className='mr-pv-barra';barra.setAttribute('role','tablist');
+ const paneles=[],pestanas=[];
+ [['📝 Letras',letras,'No hay vídeos con letra para esta canción. Mira en «Oficial».'],['⭐ Oficial',oficiales,'No hay vídeos oficiales para esta canción. Mira en «Letras».']].forEach(function(def,i){
+  const t=document.createElement('button');t.type='button';t.className='mr-pv-tab';t.setAttribute('role','tab');
+  t.textContent=def[0]+' ('+def[1].length+')';
+  const p=document.createElement('div');p.className='mr-pv-panel';p.setAttribute('role','tabpanel');
+  if(!def[1].length){const v=document.createElement('div');v.className='mr-pv-vacio';v.textContent=def[2];p.appendChild(v);}
+  t.addEventListener('click',function(){activar(i);});
+  pestanas.push(t);paneles.push(p);barra.appendChild(t);
+ });
+ function activar(i){pestanas.forEach(function(t,j){t.setAttribute('aria-selected',String(i===j));t.tabIndex=i===j?0:-1;});paneles.forEach(function(p,j){p.hidden=i!==j;});}
+ barra.addEventListener('keydown',function(e){if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;const i=pestanas.indexOf(document.activeElement);if(i<0)return;const n=(i+1)%2;activar(n);pestanas[n].focus();e.preventDefault();});
+ contenedor.append(barra,paneles[0],paneles[1]);
+ activar(letras.length?0:1);
+ const lista=letras.map(function(v){return {v:v,p:paneles[0]};}).concat(oficiales.map(function(v){return {v:v,p:paneles[1]};}));
+ const destino=new Map();
+ return {lista:lista.map(function(x){const copia=Object.assign({},x.v);destino.set(copia,x.p);return copia;}),panel:function(v){return destino.get(v)||contenedor;}};
+};
+</script>
+"""
 
 
 ICONOS_UNIFICADOS_HTML = r"""
@@ -491,6 +531,7 @@ html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-ca
 html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones) > :is(.boton-youtube,.youtube,.mr-youtube){order:3}
 html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones) > :is(.mr-agregar,.guardar-btn){order:4}
 html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones) > :is(.boton-wikipedia,.wiki-icon,.wiki,.info-btn){order:5}
+html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones) > :is(.mr-voto-si){order:4}
 html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones) > :is(.mr-voto-no){order:6}
 html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones) > :is(.mr-mas-btn){order:7}
 html body :is(.acciones-radar,.acciones-pista,.acciones-publicacion,.acciones-cancion,.acciones,.mr-acciones) > :is(.mr-quitar){order:8}
@@ -658,6 +699,19 @@ html body :is(.titulo,.pista-titulo,.titulo-cancion,.mr-titulo) .wiki-icon{width
    const acciones=art.querySelector('.acciones'),titulo=art.dataset.titulo,artista=art.dataset.artista;
    if(!acciones||!titulo||!artista)return;
    art.dataset.mrVoto='1';
+   const si=boton('👍','mr-voto-si','Me gusta: tendré en cuenta esta canción para recomendarte');
+   si.setAttribute('aria-pressed','false');
+   si.addEventListener('click',async function(){
+    const activo=si.classList.contains('activo');
+    si.disabled=true;
+    if(await votar(titulo,artista,activo?0:1)){
+     si.classList.toggle('activo',!activo);si.setAttribute('aria-pressed',String(!activo));
+     si.title=!activo?'Te gusta (pulsa otra vez para quitarlo)':'Me gusta: tendré en cuenta esta canción para recomendarte';
+     si.setAttribute('aria-label',si.title);
+    }
+    si.disabled=false;
+   });
+   acciones.appendChild(si);
    const no=boton('👎','mr-voto-no','No me interesa: no volverá a salir');
    no.addEventListener('click',async function(){
     no.disabled=true;
@@ -1707,7 +1761,8 @@ async function buscarYouTube(pista,modo='mediahuman'){
   }
   if(modo==='mediahuman')estadoYoutube.textContent='Elige una versión para copiar su enlace y pegarlo en MediaHuman.';
   else estadoYoutube.textContent='Elige una versión para abrirla en YouTube.';
-  for(const video of d.resultados||[]){
+  const pv=window.mrPestanasVideos?window.mrPestanasVideos(resultadosYoutube,d):{lista:d.resultados||[],panel:()=>resultadosYoutube};
+  for(const video of pv.lista){
    const b=nodo('button','resultado-youtube');
    b.appendChild(nodo('strong','',video.titulo));b.appendChild(nodo('span','',video.canal));
    b.addEventListener('click',async()=>{
@@ -1729,7 +1784,7 @@ async function buscarYouTube(pista,modo='mediahuman'){
      catch(e){window.prompt('Copia el enlace para MediaHuman:',video.url);}
     }
    });
-   resultadosYoutube.appendChild(b);
+   pv.panel(video).appendChild(b);
   }
  }catch(e){estadoYoutube.textContent=e.message||'No se pudo buscar en YouTube.';}
 }
@@ -2791,6 +2846,103 @@ def _registrar_recomendadas(canciones, azar):
         _ajuste_escribir("recomendadas_historial", historial)
 
 
+_CANDADO_VISTAS_YOUTUBE = threading.Lock()
+_DIAS_VISTAS_YOUTUBE = 30
+
+
+def _vistas_youtube_guardadas():
+    """{llave artista|título: [visualizaciones, momento]} de consultas anteriores (duran 30 días)."""
+    datos = _ajuste_leer("popularidad_youtube", {})
+    return dict(datos) if isinstance(datos, dict) else {}
+
+
+def _consultar_vistas_youtube(artista, titulo, timeout=4):
+    """Visualizaciones del vídeo más visto de esa canción en YouTube (0 si no aparece)."""
+    titulo_nucleo = _clave_titulo_coleccion(titulo) or normalizar_texto(titulo)
+    artista_n = normalizar_texto(artista)
+    primer_artista = normalizar_texto(re.split(r",|&| feat\.? | ft\.? | x | y ", str(artista or ""), maxsplit=1)[0])
+    mejor = 0
+    for video in _youtube_resultados(str(artista) + " " + str(titulo), timeout=timeout):
+        texto_v = normalizar_texto(video.get("titulo")) + " " + normalizar_texto(video.get("canal"))
+        if titulo_nucleo and titulo_nucleo not in normalizar_texto(video.get("titulo")):
+            continue
+        if not ((artista_n and artista_n in texto_v) or (primer_artista and primer_artista in texto_v)):
+            continue
+        if re.search(r"\b(karaoke|cover|reaction|tutorial)\b", str(video.get("titulo") or ""), re.IGNORECASE):
+            continue
+        mejor = max(mejor, int(video.get("vistas") or 0))
+    return mejor
+
+
+def _completar_vistas_youtube(pistas, consultar_nuevas=True, max_consultas=24, limite_segundos=6.0):
+    """Pone «vistas_youtube» en cada pista: primero lo ya guardado; si se permite, consulta las que falten
+    (en paralelo y con tiempo máximo, para no agotar la petición en Render)."""
+    from concurrent.futures import ThreadPoolExecutor, wait
+    guardadas = _vistas_youtube_guardadas()
+    ahora = time.time()
+    faltan = []
+    for pista in pistas:
+        llave = _llave_voto(pista.get("artista"), pista.get("titulo"))
+        dato = guardadas.get(llave)
+        if isinstance(dato, list) and len(dato) == 2 and ahora - float(dato[1] or 0) < _DIAS_VISTAS_YOUTUBE * 86400:
+            pista["vistas_youtube"] = int(dato[0] or 0)
+        elif len(faltan) < max_consultas:
+            faltan.append((llave, pista))
+    if not consultar_nuevas or not faltan:
+        return
+    ejecutor = ThreadPoolExecutor(max_workers=8)
+    futuros = {ejecutor.submit(_consultar_vistas_youtube, p.get("artista"), p.get("titulo")): (llave, p)
+               for llave, p in faltan}
+    hechos, _ = wait(futuros, timeout=limite_segundos)
+    ejecutor.shutdown(wait=False, cancel_futures=True)
+    nuevas = {}
+    for futuro in hechos:
+        llave, pista = futuros[futuro]
+        try:
+            vistas = int(futuro.result() or 0)
+        except Exception:
+            continue  # YouTube no respondió: se intentará otro día
+        pista["vistas_youtube"] = vistas
+        nuevas[llave] = [vistas, int(ahora)]
+    if nuevas:
+        try:
+            with _CANDADO_VISTAS_YOUTUBE:
+                actuales = _vistas_youtube_guardadas()
+                actuales.update(nuevas)
+                actuales = {k: v for k, v in actuales.items()
+                            if isinstance(v, list) and len(v) == 2 and ahora - float(v[1] or 0) < _DIAS_VISTAS_YOUTUBE * 86400}
+                if len(actuales) > 3000:
+                    actuales = dict(sorted(actuales.items(), key=lambda kv: kv[1][1])[-3000:])
+                _ajuste_escribir("popularidad_youtube", actuales)
+        except Exception as error:
+            app.logger.info("Recomendaciones: no se pudieron guardar las visitas de YouTube: %s", error)
+
+
+def _escala_log(valor, minimo, maximo):
+    """0 si valor <= minimo, 1 si >= maximo, y en medio en escala logarítmica."""
+    if not valor or valor <= minimo:
+        return 0.0
+    return min(1.0, math.log10(valor / minimo) / math.log10(maximo / minimo))
+
+
+def _popularidad_combinada(pista):
+    """Lo conocida que es una canción (0 a 1) mezclando Deezer, Last.fm y YouTube.
+    Si falta alguna fuente, se reparte su peso entre las demás."""
+    partes = []
+    rank_deezer = int(pista.get("popularidad") or 0)
+    if rank_deezer > 0:
+        partes.append((0.30, min(1.0, rank_deezer / 1000000) ** 0.5))
+    oyentes_lastfm = int(pista.get("reproducciones_lastfm") or 0)
+    if oyentes_lastfm > 0:
+        partes.append((0.25, _escala_log(oyentes_lastfm, 10000, 30000000)))
+    vistas_yt = int(pista.get("vistas_youtube") or 0)
+    if vistas_yt > 0:  # 0 = no se encontró el vídeo: no se castiga, se usa el resto
+        partes.append((0.45, _escala_log(vistas_yt, 100000, 1000000000)))
+    if not partes:
+        return 0.0
+    return sum(peso * valor for peso, valor in partes) / sum(peso for peso, _ in partes)
+
+
 def _diversificar_recomendaciones(lista, tam_pagina=10, max_por_semilla=3):
     """Cada tanda de 10 sin repetir artista y sin que casi todas salgan «similar a» lo mismo."""
     restantes = list(lista)
@@ -2819,6 +2971,7 @@ def _diversificar_recomendaciones(lista, tam_pagina=10, max_por_semilla=3):
 @app.get("/api/recomendaciones")
 def api_recomendaciones():
     """Recomienda temas ajenos a la biblioteca usando una muestra aleatoria de toda la colección."""
+    inicio_peticion = time.time()
     genero_solicitado = (request.args.get("genero") or "").strip()
     decada_solicitada = (request.args.get("decada") or "").strip()
     if decada_solicitada and not re.fullmatch(r"(19|20)\d0", decada_solicitada):
@@ -2901,7 +3054,9 @@ def api_recomendaciones():
         cache_peticion[url] = {}
         return {}
 
-    def añadir_candidata(pista, semilla, peso, fuente, completar_datos=True):
+    def añadir_candidata(pista, semilla, peso, fuente, completar_datos=True, reproducciones_lfm=0):
+        # Lo que nace de una canción guardada pesa mucho más; de un «me gusta», algo más.
+        peso = peso * {"guardada": 1.6, "megusta": 1.25}.get(semilla.get("origen"), 1.0)
         titulo = str(pista.get("title") or pista.get("titulo") or pista.get("name") or "").strip()
         artista_info = pista.get("artist") or {}
         nombre_artista = str(artista_info.get("name") or pista.get("artista") or "").strip()
@@ -2977,7 +3132,13 @@ def api_recomendaciones():
         # Hasta 45 puntos según lo conocida que es la canción (raíz cuadrada: 1.000.000 = 45, 100.000 = 14, 10.000 = 4,5).
         puntaje = peso * 100 + 45 * (min(1.0, popularidad_deezer / 1000000) ** 0.5)
         actual = candidatos.get(llave)
+        try:
+            reproducciones_lfm = max(int(reproducciones_lfm or 0), int((actual or {}).get("reproducciones_lastfm") or 0))
+        except (TypeError, ValueError):
+            reproducciones_lfm = 0
         if actual and actual["puntuacion"] >= puntaje:
+            if reproducciones_lfm:
+                actual["reproducciones_lastfm"] = reproducciones_lfm
             return
         coincidencia_anio = re.search(r"(?:19|20)\d{2}", str(fecha_lanzamiento))
         anio = coincidencia_anio.group(0) if coincidencia_anio else ""
@@ -2994,6 +3155,7 @@ def api_recomendaciones():
             "relacionado_con": semilla["nombre"],
             "puntuacion": puntaje,
             "popularidad": popularidad_deezer,
+            "reproducciones_lastfm": reproducciones_lfm,
             "fuente_recomendacion": fuente
         }
 
@@ -3047,25 +3209,37 @@ def api_recomendaciones():
         ]
     except Exception:
         pass
+    hay_gustadas_semilla = False
     if not decada_solicitada and not genero_solicitado:
-        # Guardar una canción significa que te gusta: las guardadas (y los «me gusta» antiguos)
-        # pasan a ser puntos de partida (máx. 2 por búsqueda).
-        gustadas = {}
-        for g in list(guardadas_usuario) + [
-            {"artista": v.get("artista"), "titulo": v.get("titulo")}
-            for v in votos_usuario.values() if v.get("v") == 1
-        ]:
+        # Guardar una canción significa que te gusta: las guardadas y los «me gusta»
+        # pasan a ser puntos de partida (hasta 3 por búsqueda).
+        # Las guardadas pesan mucho (las más recientes, más aún); los «me gusta», algo.
+        gustadas, pesos_gustadas = {}, {}
+        for posicion_g, g in enumerate(guardadas_usuario):
             if g.get("artista") and g.get("titulo"):
-                gustadas[_llave_voto(g["artista"], g["titulo"])] = {
-                    "nombre": str(g["artista"]), "titulo": str(g["titulo"]), "genero": "", "anio": ""}
-        gustadas = list(gustadas.values())
+                llave_g = _llave_voto(g["artista"], g["titulo"])
+                if llave_g not in gustadas:
+                    gustadas[llave_g] = {"nombre": str(g["artista"]), "titulo": str(g["titulo"]),
+                                         "genero": "", "anio": "", "origen": "guardada"}
+                    pesos_gustadas[llave_g] = 6.0 if posicion_g < 25 else 4.0
+        for v in votos_usuario.values():
+            if v.get("v") == 1 and v.get("artista") and v.get("titulo"):
+                llave_g = _llave_voto(v["artista"], v["titulo"])
+                if llave_g not in gustadas:
+                    gustadas[llave_g] = {"nombre": str(v["artista"]), "titulo": str(v["titulo"]),
+                                         "genero": "", "anio": "", "origen": "megusta"}
+                    pesos_gustadas[llave_g] = 2.0
         if gustadas:
-            semillas_pistas = _orden_ponderado(gustadas, [1] * len(gustadas), semilla_azar)[:2] + semillas_pistas
+            llaves_g = list(gustadas)
+            elegidas_g = _orden_ponderado(llaves_g, [pesos_gustadas[k] for k in llaves_g], semilla_azar)[:3]
+            semillas_pistas = [gustadas[k] for k in elegidas_g] + semillas_pistas
+            hay_gustadas_semilla = True
     semillas_lastfm = []
     artistas_semilla = set()
     # Ampliar las referencias por década para que la personalización no dependa
     # de solo dos canciones. El conjunto de semillas sigue siendo diverso por artista.
-    limite_semillas = 5 if decada_solicitada else 3
+    # Con canciones guardadas/«me gusta» hay una referencia más, para no quitar sitio a tu biblioteca.
+    limite_semillas = 5 if decada_solicitada else (4 if hay_gustadas_semilla else 3)
     for pista_semilla in semillas_pistas:
         artista_clave = clave(pista_semilla["nombre"])
         if artista_clave in artistas_semilla:
@@ -3129,7 +3303,7 @@ def api_recomendaciones():
                         "titulo": titulo, "artist": {"name": nombre_artista},
                         "url": similar.get("url") or "", "image": similar.get("image") or []
                     }, semilla, max(0.5, float(similar.get("match") or 0.5)), "Last.fm",
-                       completar_datos=False)
+                       completar_datos=False, reproducciones_lfm=similar.get("playcount"))
                     continue
                 q = urlencode({"q": 'artist:"' + nombre_artista + '" track:"' + titulo + '"', "limit": 8})
                 resultados_deezer = consultar("https://api.deezer.com/search/track?" + q).get("data") or []
@@ -3160,7 +3334,8 @@ def api_recomendaciones():
                     # Evitar una consulta extra por canción: Render estaba agotando
                     # el tiempo de la petición al encadenar llamadas externas.
                     añadir_candidata(mejor, semilla, max(0.5, float(similar.get("match") or 0.5)) * 1.2,
-                                     "Last.fm", completar_datos=False)
+                                     "Last.fm", completar_datos=False,
+                                     reproducciones_lfm=similar.get("playcount"))
                 else:
                     # Si Deezer no encuentra una coincidencia fiable, conservar los
                     # datos originales de Last.fm, sin atribuirle la portada de otro tema.
@@ -3169,7 +3344,7 @@ def api_recomendaciones():
                         "url": similar.get("url") or "",
                         "image": similar.get("image") or []
                     }, semilla, max(0.5, float(similar.get("match") or 0.5)), "Last.fm",
-                       completar_datos=False)
+                       completar_datos=False, reproducciones_lfm=similar.get("playcount"))
 
     fuente_final = "Last.fm + Deezer + tu biblioteca" if candidatos else "Deezer + tu biblioteca"
 
@@ -3186,7 +3361,12 @@ def api_recomendaciones():
             nombre_g = str(g.get("artista") or "").strip()
             if nombre_g:
                 entrada_g = pesos_artista.setdefault(clave(nombre_g), [nombre_g, 1.0])
-                entrada_g[1] += 3.0
+                entrada_g[1] += 6.0  # guardar = mucho peso
+        for v in votos_usuario.values():
+            nombre_v = str(v.get("artista") or "").strip()
+            if nombre_v and v.get("v") == 1:
+                entrada_v = pesos_artista.setdefault(clave(nombre_v), [nombre_v, 1.0])
+                entrada_v[1] += 2.0  # «me gusta» = algo de peso
         if not pesos_artista:
             return
         claves = list(pesos_artista)
@@ -3477,7 +3657,7 @@ def api_recomendaciones():
         semilla_azar = int(request.args.get("azar") or "0")
     except (TypeError, ValueError):
         semilla_azar = 0
-    me_gusta_artista, no_gusta_artista = {}, {}
+    me_gusta_artista, no_gusta_artista, guardadas_artista = {}, {}, {}
     for voto_guardado in votos_usuario.values():
         clave_artista_voto = normalizar_texto(voto_guardado.get("artista"))
         destino_voto = me_gusta_artista if voto_guardado.get("v") == 1 else no_gusta_artista
@@ -3485,8 +3665,11 @@ def api_recomendaciones():
     llaves_guardadas = set()
     for g in guardadas_usuario:
         clave_artista_guardada = normalizar_texto(g.get("artista"))
+        guardadas_artista[clave_artista_guardada] = guardadas_artista.get(clave_artista_guardada, 0) + 1
         me_gusta_artista[clave_artista_guardada] = me_gusta_artista.get(clave_artista_guardada, 0) + 1
         llaves_guardadas.add(_llave_voto(g.get("artista"), g.get("titulo")))
+    semillas_guardadas = {normalizar_texto(g.get("artista")) for g in guardadas_usuario}
+    semillas_megusta = {normalizar_texto(v.get("artista")) for v in votos_usuario.values() if v.get("v") == 1}
 
     def _descartada_por_voto(pista):
         artista_pista = normalizar_texto(pista.get("artista"))
@@ -3516,16 +3699,38 @@ def api_recomendaciones():
             for nombre_genero, cantidad in datos_artista["generos"].items():
                 conteo_generos[nombre_genero.casefold()] = conteo_generos.get(nombre_genero.casefold(), 0) + cantidad
         ordenadas.sort(key=lambda p: (-p["puntuacion"], clave(p["artista"]), clave(p["titulo"])))
-        pesos_finales = []
-        for pista in ordenadas:
+
+        def peso_final(pista):
             # Bonus si es de un artista que ya escuchas y si encaja con tus géneros más frecuentes.
+            artista_n = normalizar_texto(pista.get("artista"))
             canciones_del_artista = artistas.get(clave(pista.get("artista") or ""), {}).get("total", 0)
             bonus_artista = 25 * min(1.0, math.log1p(canciones_del_artista) / math.log1p(30)) if canciones_del_artista else 0
             afinidad = conteo_generos.get(str(pista.get("genero") or "").casefold(), 0) / total_biblioteca_pistas
             bonus_genero = 30 * min(1.0, afinidad * 4)
-            bonus_votos = 20 * min(3, me_gusta_artista.get(normalizar_texto(pista.get("artista")), 0))
-            pesos_finales.append(max(1.0, float(pista.get("puntuacion") or 0) + bonus_artista + bonus_genero + bonus_votos) ** 1.6
-                                 * ((0.3 + min(1.0, int(pista.get("popularidad") or 0) / 1000000) ** 0.5) ** 8))  # las más populares pesan mucho más, aunque sean la 20.ª de su artista
+            # Guardar pesa mucho; «me gusta», algo. También cuenta si la sugerencia nace de ellas.
+            n_guardadas = guardadas_artista.get(artista_n, 0)
+            n_megusta = max(0, me_gusta_artista.get(artista_n, 0) - n_guardadas)
+            bonus_gustos = 45 * min(3, n_guardadas) + 15 * min(3, n_megusta)
+            origenes = {normalizar_texto(x) for x in str(pista.get("relacionado_con") or "").split(" + ")}
+            if origenes & semillas_guardadas:
+                bonus_gustos += 40
+            elif origenes & semillas_megusta:
+                bonus_gustos += 15
+            popularidad = _popularidad_combinada(pista)
+            # Las más conocidas (Deezer + Last.fm + YouTube) pesan mucho más, sin cerrar la puerta a las menos conocidas.
+            return (max(1.0, float(pista.get("puntuacion") or 0) + bonus_artista + bonus_genero + bonus_gustos) ** 1.6
+                    * ((0.3 + popularidad) ** 8))
+
+        # YouTube: visitas de las candidatas con más opciones de salir. Solo se consulta al pedir
+        # una tanda nueva (en las páginas siguientes se usa lo ya guardado, para que no cambie el orden).
+        try:
+            previas = sorted(ordenadas, key=peso_final, reverse=True)
+            _completar_vistas_youtube(previas[:40], consultar_nuevas=(inicio == 0 and time.time() - inicio_peticion < 15),
+                                      max_consultas=24, limite_segundos=6.0)
+            _completar_vistas_youtube([p for p in ordenadas if "vistas_youtube" not in p], consultar_nuevas=False)
+        except Exception as error_yt:
+            app.logger.info("Recomendaciones: popularidad de YouTube no disponible: %s", error_yt)
+        pesos_finales = [peso_final(p) for p in ordenadas]
         ordenadas = _orden_ponderado(ordenadas, pesos_finales, semilla_azar)
     # Lo que ya te enseñé hace poco se aparta (14 días por vez que salió, hasta 56) y solo vuelve si faltan canciones.
     historial_rec = _historial_recomendadas()
@@ -4000,14 +4205,14 @@ def _formato_vistas(n):
     return str(n) + " vis." if n else ""
 
 
-def _youtube_resultados(consulta):
+def _youtube_resultados(consulta, timeout=12):
     """Resultados de una búsqueda de YouTube: [{titulo, canal, url, vistas}]."""
     url = "https://www.youtube.com/results?" + urlencode({"search_query": consulta})
     peticion = Request(url, headers={
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
         "Accept-Language": "es-ES,es;q=0.9,en;q=0.7"
     })
-    with urlopen(peticion, timeout=12) as respuesta:
+    with urlopen(peticion, timeout=timeout) as respuesta:
         pagina = respuesta.read().decode("utf-8", errors="replace")
     pos = pagina.find("ytInitialData")
     if pos < 0:
@@ -4105,20 +4310,49 @@ def buscar_videos_youtube():
     if not fusion:
         return jsonify({"error": "YouTube no devolvió vídeos para esa búsqueda. Puedes probar otra vez más tarde."}), 502
 
+    # Solo vídeos de esa canción: si el título del vídeo no contiene el de la canción,
+    # suele ser otra canción del mismo artista (y con muchas visitas se colaba arriba).
+    titulo_nucleo = _clave_titulo_coleccion(titulo) if titulo else ""
+    if titulo_nucleo:
+        de_la_cancion = [v for v in fusion if titulo_nucleo in normalizar_texto(v["titulo"])]
+        if de_la_cancion:
+            fusion = de_la_cancion
+
     def grupo(video):
-        if re.search(r"\b(letra|lyrics?|lyric video)\b", video["titulo"], re.IGNORECASE):
-            return 0
-        if re.search(r"\b(oficial|official|vevo|videoclip)\b", video["titulo"] + " " + video["canal"], re.IGNORECASE):
-            return 1
-        return 2
+        return _tipo_video_youtube(video, artista)
 
     fusion.sort(key=lambda v: (grupo(v), -v["vistas"]))
-    salida = []
-    for v in fusion[:10]:
+
+    def formatear(v):
         etiqueta = {0: "con letra", 1: "oficial"}.get(grupo(v), "")
         extras = " · ".join(x for x in (v["canal"], _formato_vistas(v["vistas"]), etiqueta) if x)
-        salida.append({"titulo": v["titulo"], "canal": extras, "url": v["url"]})
-    return jsonify({"consulta": consulta_letra, "resultados": salida})
+        return {"titulo": v["titulo"], "canal": extras, "url": v["url"], "vistas": v["vistas"]}
+
+    salida = [formatear(v) for v in fusion[:10]]
+    # Dos pestañas en «Descargar»: con letra y oficiales, cada una de la más vista a la menos.
+    letras = [formatear(v) for v in fusion if grupo(v) == 0][:10]
+    oficiales = [formatear(v) for v in fusion if grupo(v) == 1][:10]
+    return jsonify({"consulta": consulta_letra, "resultados": salida,
+                    "letras": letras, "oficiales": oficiales})
+
+
+def _tipo_video_youtube(video, artista=""):
+    """0 = vídeo con letra, 1 = oficial (videoclip, audio oficial, VEVO o canal del artista), 2 = otro."""
+    titulo_v = str(video.get("titulo") or "")
+    canal_v = str(video.get("canal") or "")
+    if re.search(r"\b(letra|lyrics?|lyric video)\b", titulo_v, re.IGNORECASE):
+        return 0
+    if re.search(r"\b(karaoke|cover|reacci[oó]n|reaction|tutorial|instrumental)\b", titulo_v, re.IGNORECASE):
+        return 2
+    if re.search(r"\b(oficial|official|vevo|videoclip)\b", titulo_v + " " + canal_v, re.IGNORECASE):
+        return 1
+    canal_n = normalizar_texto(re.sub(r"\s*-\s*(topic|tema)\s*$", "", canal_v, flags=re.IGNORECASE))
+    if re.search(r"-\s*(topic|tema)\s*$", canal_v, re.IGNORECASE):
+        return 1  # canal automático de YouTube Music con el audio oficial
+    artista_n = normalizar_texto(artista)
+    if artista_n and canal_n and (canal_n == artista_n or canal_n.replace(" ", "") == artista_n.replace(" ", "")):
+        return 1  # publicado en el canal del propio artista
+    return 2
 
 
 def _json_externo(url, timeout=6):
