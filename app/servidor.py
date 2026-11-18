@@ -287,8 +287,103 @@ header p{
             html = html.replace("</body>", ICONOS_UNIFICADOS_HTML + "</body>", 1)
         if "</body>" in html and "mr-pestanas-videos-js" not in html:
             html = html.replace("</body>", PESTANAS_VIDEOS_HTML + "</body>", 1)
+        # Estilos visuales (Ajustes → Estilo visual): se aplican antes de pintar para que no parpadee.
+        if "mr-temas-css" not in html:
+            if "</head>" in html:
+                html = html.replace("</head>", TEMAS_CABECERA_HTML + "</head>", 1)
+            elif "<body" in html:
+                html = html.replace("<body", TEMAS_CABECERA_HTML + "<body", 1)
+            if "</body>" in html:
+                html = html.replace("</body>", TEMAS_SELECTOR_HTML + "</body>", 1)
         response.set_data(html)
     return response
+
+
+# Estilos visuales elegibles en Ajustes. «original» deja cada página con sus colores de siempre.
+# Los colores de los botones de acción (descargar, YouTube, guardar…) no se tocan: sirven para distinguirlos.
+_TEMAS = [
+    ("original", "Original", "linear-gradient(110deg,#5727a5,#b72d83 65%,#f06a76)"),
+    ("neon", "Neón", "linear-gradient(110deg,#05040a 30%,#ff2bd6 30% 60%,#00f0ff 60%)"),
+    ("vaporwave", "Vaporwave", "linear-gradient(110deg,#ff71ce,#b967ff 50%,#01cdfe)"),
+    ("vinilo", "Vinilo", "linear-gradient(110deg,#2a1a10,#8a5a2b 55%,#e0a24a)"),
+    ("oceano", "Océano", "linear-gradient(110deg,#0b3d91,#0f7c9c 55%,#2ec4b6)"),
+    ("grafito", "Grafito", "linear-gradient(110deg,#121316,#2a2d33 55%,#8ab4ff)"),
+]
+
+TEMAS_CABECERA_HTML = r"""
+<script>try{document.documentElement.dataset.tema=localStorage.getItem('mrTema')||'original';}catch(e){}</script>
+<style id="mr-temas-css">
+html[data-tema="neon"]{--t-fondo:radial-gradient(ellipse at top,#140a24 0,#05040a 60%);--t-cab:linear-gradient(110deg,#07050f,#120a22 60%,#07050f);--t-cab-texto:#fff;
+ --t-tarjeta:#0b0a16;--t-borde:#00f0ff55;--t-acento:#ff2bd6;--t-acento-texto:#fff;--t-sombra:0 0 0 1px #00f0ff22,0 0 18px #00f0ff1f;--t-titulo:0 0 6px #ff2bd6,0 0 18px #ff2bd6aa}
+html[data-tema="vaporwave"]{--t-fondo:linear-gradient(170deg,#1a0b2e,#2b0d3e 45%,#0d2b3e);--t-cab:linear-gradient(110deg,#ff71ce,#b967ff 50%,#01cdfe);--t-cab-texto:#fff;
+ --t-tarjeta:#24113acc;--t-borde:#ff71ce55;--t-acento:#01cdfe;--t-acento-texto:#0b1630;--t-sombra:0 6px 20px #b967ff22;--t-titulo:3px 3px 0 #01cdfe99}
+html[data-tema="vinilo"]{--t-fondo:radial-gradient(ellipse at top,#2a1d13 0,#15100b 60%);--t-cab:linear-gradient(110deg,#2a1a10,#6e4423 55%,#b9803a);--t-cab-texto:#fff6e8;
+ --t-tarjeta:#211910;--t-borde:#e0a24a33;--t-acento:#e0a24a;--t-acento-texto:#2a1a10;--t-sombra:0 6px 18px #00000055;--t-titulo:none}
+html[data-tema="oceano"]{--t-fondo:linear-gradient(170deg,#04121f,#062a3d 60%,#04121f);--t-cab:linear-gradient(110deg,#0b3d91,#0f7c9c 55%,#2ec4b6);--t-cab-texto:#fff;
+ --t-tarjeta:#0b2233;--t-borde:#2ec4b633;--t-acento:#2ec4b6;--t-acento-texto:#04121f;--t-sombra:0 6px 18px #0000004d;--t-titulo:none}
+html[data-tema="grafito"]{--t-fondo:#121316;--t-cab:#1b1d22;--t-cab-texto:#f2f4f8;
+ --t-tarjeta:#1a1c21;--t-borde:#ffffff17;--t-acento:#8ab4ff;--t-acento-texto:#0f1420;--t-sombra:none;--t-titulo:none}
+html[data-tema]:not([data-tema="original"]){--panel:var(--t-tarjeta)!important;--borde:var(--t-borde)!important}
+html[data-tema]:not([data-tema="original"]) body{background:var(--t-fondo)!important;background-attachment:fixed!important}
+html[data-tema]:not([data-tema="original"]) header{background:var(--t-cab)!important;color:var(--t-cab-texto)!important;border-bottom:1px solid var(--t-borde)!important}
+html[data-tema]:not([data-tema="original"]) header :is(h1,h2,p,div,span,small){color:inherit!important}
+html[data-tema]:not([data-tema="original"]) header h1{text-shadow:var(--t-titulo)!important}
+html[data-tema]:not([data-tema="original"]) nav a{border:1px solid var(--t-borde)!important}
+html[data-tema]:not([data-tema="original"]) nav a.activo{background:var(--t-acento)!important;color:var(--t-acento-texto)!important;border-color:var(--t-acento)!important}
+html[data-tema]:not([data-tema="original"]) :is(.tarjeta,article.cancion,.cancion,.fila-cancion,.pista,.publicacion-mejor,.mr-cancion-guardada,.programa,.controles,.panel-ajustes,.caja-mediahuman,.caja-musica,.modal-info-musical-panel,.mr-mas-menu,.modal-contenido,.caja-modal),
+html[data-tema]:not([data-tema="original"]) :is(.artista,.publicacion):not(.tarjeta *):not(.fila-cancion *):not(.cancion *){
+ background:var(--t-tarjeta)!important;border-color:var(--t-borde)!important;box-shadow:var(--t-sombra)!important}
+html[data-tema]:not([data-tema="original"]) :is(.portada-disco,.portada-alternativa){background:linear-gradient(135deg,var(--t-tarjeta),var(--t-acento))!important}
+html[data-tema]:not([data-tema="original"]) :is(input,select){border-color:var(--t-borde)!important}
+html[data-tema="neon"] :is(.tarjeta,article.cancion,.cancion,.fila-cancion,.pista,.publicacion-mejor,.mr-cancion-guardada):hover{box-shadow:0 0 0 1px #ff2bd6aa,0 0 22px #ff2bd655!important}
+html[data-tema="neon"] nav a.activo{box-shadow:0 0 12px #ff2bd6aa!important}
+html[data-tema="neon"] :is(.mr-voto,.mr-b30,.mr-descarga,.mr-youtube,.guardar-btn,.mr-agregar,.boton-mediahuman,.boton-youtube,.boton-descarga-radar,.descarga,.youtube,.b30,.boton-30):is(button,a){box-shadow:0 0 10px currentColor!important}
+html[data-tema="grafito"] *{text-shadow:none}
+</style>
+"""
+
+TEMAS_SELECTOR_HTML = (r"""
+<style id="mr-temas-selector-css">
+.mr-temas{margin-top:14px;padding-top:12px;border-top:1px solid #ffffff22}
+.mr-temas-titulo{font-weight:700;margin:0 0 8px}
+.mr-temas-lista{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mr-tema{display:flex;flex-direction:column;align-items:stretch;gap:5px;padding:6px;border-radius:12px;border:1px solid #ffffff30;background:#ffffff0d;color:inherit;font:inherit;font-size:12px;font-weight:600;cursor:pointer}
+.mr-tema i{display:block;height:26px;border-radius:8px}
+.mr-tema[aria-pressed="true"]{border:2px solid #fff;padding:5px}
+.mr-tema:focus-visible{outline:2px solid #fff;outline-offset:2px}
+</style>
+<script id="mr-temas-selector-js">
+(function(){
+ const TEMAS=""" + json.dumps([[c, n, g] for c, n, g in _TEMAS], ensure_ascii=False) + r""";
+ function actual(){try{return localStorage.getItem('mrTema')||'original';}catch(e){return 'original';}}
+ function poner(clave){
+  document.documentElement.dataset.tema=clave;
+  try{localStorage.setItem('mrTema',clave);}catch(e){}
+  document.querySelectorAll('.mr-tema').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.tema===clave));});
+ }
+ function montar(){
+  const panel=document.getElementById('panel-ajustes');
+  if(!panel||panel.querySelector('.mr-temas'))return;
+  const caja=document.createElement('div');caja.className='mr-temas';caja.setAttribute('role','group');caja.setAttribute('aria-label','Estilo visual');
+  const t=document.createElement('p');t.className='mr-temas-titulo';t.textContent='🎨 Estilo visual';caja.appendChild(t);
+  const lista=document.createElement('div');lista.className='mr-temas-lista';
+  TEMAS.forEach(function(x){
+   const b=document.createElement('button');b.type='button';b.className='mr-tema';b.dataset.tema=x[0];
+   const m=document.createElement('i');m.style.background=x[2];m.setAttribute('aria-hidden','true');
+   b.appendChild(m);b.appendChild(document.createTextNode(x[1]));
+   b.addEventListener('click',function(e){e.stopPropagation();poner(x[0]);});
+   lista.appendChild(b);
+  });
+  caja.appendChild(lista);
+  const n=document.createElement('p');n.textContent='Se aplica a toda la web en este dispositivo.';n.style.margin='8px 0 0';n.style.fontSize='12px';n.style.opacity='.8';caja.appendChild(n);
+  panel.appendChild(caja);
+  poner(actual());
+ }
+ montar();
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',montar);
+})();
+</script>
+""")
 
 
 # Pestañas «Letras» y «Oficial» en las ventanas de descargar / elegir versión de YouTube.
