@@ -489,7 +489,8 @@ async function buscarMusicaArtista(titulo,artista,modo){
    estado.textContent='Reproduciendo automáticamente: '+(v.titulo||titulo)+' · '+(v.canal||artista)+'.';return;
   }
   estado.textContent=modo==='youtube'?'Elige una versión para abrirla en YouTube.':'Elige una versión para copiar el enlace a MediaHuman.';
-  for(const v of d.resultados||[]){
+  const pv=window.mrPestanasVideos?window.mrPestanasVideos(lista,d):{lista:d.resultados||[],panel:()=>lista};
+  for(const v of pv.lista){
    const b=document.createElement('button');b.className='resultado-musica';const strong=document.createElement('strong');strong.textContent=v.titulo||'Vídeo sin título';const span=document.createElement('span');span.textContent=v.canal||'Canal desconocido';b.append(strong,span);
    b.addEventListener('click',async()=>{
     if(modo==='youtube'){window.open(v.url,'_blank','noopener,noreferrer');return;}
@@ -498,7 +499,7 @@ async function buscarMusicaArtista(titulo,artista,modo){
      const iframe=document.createElement('iframe');iframe.className='reproductor-completo';iframe.title='Canción completa';iframe.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(m[1])+'?autoplay=1&rel=0';iframe.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';iframe.allowFullscreen=true;reproductor.replaceChildren(iframe);estado.textContent='Si el vídeo permite reproducción integrada, sonará aquí.';return;
     }
     try{await navigator.clipboard.writeText(v.url);estado.textContent='Enlace copiado para MediaHuman.';}catch(e){window.prompt('Copia el enlace para MediaHuman:',v.url);}
-   });lista.appendChild(b);
+   });pv.panel(v).appendChild(b);
   }
  }catch(e){estado.textContent=e.message||'No se pudo buscar en YouTube.';}
 }

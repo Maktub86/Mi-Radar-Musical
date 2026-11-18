@@ -641,7 +641,8 @@ async function buscarCancionYouTube(cancion,modo="mediahuman"){
    return;
   }
   estado.textContent=modo==="youtube"?"Elige una versión para abrirla en YouTube.":"Elige la versión correcta. Al pulsarla, se copiará su enlace para MediaHuman.";
-  for(const video of datos.resultados||[]){
+  const pv=window.mrPestanasVideos?window.mrPestanasVideos(lista,datos):{lista:datos.resultados||[],panel:()=>lista};
+  for(const video of pv.lista){
    const b=document.createElement("button");b.type="button";b.className="resultado-mediahuman";
    const t=document.createElement("strong");t.textContent=video.titulo||"Vídeo sin título";
    const ch=document.createElement("span");ch.textContent=video.canal||"Canal desconocido";b.append(t,ch);
@@ -658,7 +659,7 @@ async function buscarCancionYouTube(cancion,modo="mediahuman"){
     }
     b.disabled=true;try{await copiarEnlaceMediaHuman(video.url,b);estado.textContent="Enlace copiado. Si MediaHuman vigila el portapapeles, debería añadirlo a su cola.";}finally{b.disabled=false;}
    });
-   lista.appendChild(b);
+   pv.panel(video).appendChild(b);
   }
  }catch(error){estado.textContent=error.message||"No se pudo buscar. Comprueba la conexión e inténtalo de nuevo.";}
 }
