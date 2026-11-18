@@ -50,7 +50,7 @@ const modal=document.getElementById('modal'),modalTitulo=document.getElementById
 let inicio=0,ultimaGeneracion=0,semillaAzar=Math.floor(Math.random()*2147483647);
 const CLAVE_GUARDADAS='miRadarMusical_recomendacionesGuardadas_v1';
 function leerGuardadas(){try{const d=JSON.parse(localStorage.getItem(CLAVE_GUARDADAS)||'[]');return Array.isArray(d)?d:[]}catch(e){return[]}}
-function claveCancion(c){return String(c.artista||'').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').trim().toLocaleLowerCase('es')+' — '+String(c.titulo||'').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').trim().toLocaleLowerCase('es')}
+function claveCancion(c){return String(c.artista||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLocaleLowerCase('es')+' — '+String(c.titulo||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLocaleLowerCase('es')}
 function combinarGuardadas(...listas){const mapa=new Map();for(const lista of listas){for(const c of (Array.isArray(lista)?lista:[])){if(!c||!c.titulo||!c.artista)continue;const k=claveCancion(c);if(!mapa.has(k))mapa.set(k,datosGuardada(c));else{const anterior=mapa.get(k);for(const campo of ['anio','genero','relacionado_con','album','portada','preview'])if(!anterior[campo]&&c[campo])anterior[campo]=c[campo]}}}return [...mapa.values()]}
 function estaGuardada(c){return leerGuardadas().some(x=>claveCancion(x)===claveCancion(c))}
 function datosGuardada(c){return {titulo:c.titulo,artista:c.artista,anio:c.anio||'',genero:c.genero||'',relacionado_con:c.relacionado_con||'',album:c.album||'',portada:c.portada||'',preview:c.preview||''}}
