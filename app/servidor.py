@@ -375,8 +375,8 @@ html body .mr-cancion-guardada .mr-acciones{gap:7px!important}
   download:S('<path d="M12 3.5v11M7 10l5 5 5-5M4.5 18v2.5h15V18"/>'),
   youtube:S('<rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.3v5.4l4.8-2.7z" fill="currentColor" stroke="none"/>'),
   info:S('<circle cx="12" cy="12" r="9"/><path d="M12 11v5.2"/><circle cx="12" cy="7.9" r="1.1" fill="currentColor" stroke="none"/>'),
-  plus:S('<path d="M12 5v14M5 12h14"/>'),
-  check:S('<path d="M5 12.5l4.5 4.5L19 7.5"/>'),
+  plus:S('<path d="M12 20l-7.5-7.43a5 5 0 1 1 7.5-6.56a5 5 0 0 1 8.2 5.4"/><path d="M15.5 18.5h6M18.5 15.5v6"/>'),
+  check:S('<path d="M12 20l-7.5-7.43a5 5 0 1 1 7.5-6.56a5 5 0 1 1 7.5 6.56" fill="currentColor"/>'),
   minus:S('<path d="M5 12h14"/>')
  };
  const SEL='.boton-30,.boton-muestra,.b30,.mr-b30,.boton-mediahuman,.boton-descarga-radar,.descarga,.mr-descarga,.boton-youtube,.youtube,.mr-youtube,.boton-wikipedia,.wiki-icon,.wiki,.info-btn,.mr-agregar,.guardar-btn,.mr-quitar';
@@ -459,6 +459,7 @@ html{-webkit-text-size-adjust:100%}
 .mr-voto{width:42px;height:42px;border-radius:12px;border:1px solid #ffffff55;background:#ffffff14;font-size:18px;line-height:1;cursor:pointer;padding:0;display:inline-flex;align-items:center;justify-content:center;margin-left:6px}
 .mr-voto-si.activo{background:linear-gradient(135deg,#168653,#20ad70);border-color:#69e5a4}
 .mr-voto:disabled{opacity:.6;cursor:wait}
+.mr-voto{color:#fff}.mr-voto svg{width:20px;height:20px;display:block;flex:none}
 .mr-descartada-nota{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0;padding:10px 14px;border-radius:12px;border:1px dashed #ffffff55;color:#cdbbf0;font-size:13px}
 .mr-descartada-nota button{border:1px solid #ffffff55;background:#ffffff14;color:#fff;border-radius:999px;padding:5px 12px;font-weight:700;cursor:pointer}
 .mr-generar-abajo{display:flex;justify-content:center;margin:20px 0 8px}
@@ -693,7 +694,8 @@ html body :is(.titulo,.pista-titulo,.titulo-cancion,.mr-titulo) .wiki-icon{width
     return r.ok;
    }catch(_){return false;}
   }
-  function boton(simbolo,clase,titulo){const b=document.createElement('button');b.type='button';b.className='mr-voto '+clase;b.textContent=simbolo;b.title=titulo;b.setAttribute('aria-label',titulo);return b;}
+  const ICO_VOTO={'👍':'<path d="M7 11v8a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3a4 4 0 0 0 4-4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1-2 2h-7a3 3 0 0 1-3-3"/>','👎':'<path d="M7 13v-8a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2-2l-1-5a2 3 0 0 0-2-2h-7a3 3 0 0 0-3 3"/>'};
+  function boton(simbolo,clase,titulo){const b=document.createElement('button');b.type='button';b.className='mr-voto '+clase;b.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">'+ICO_VOTO[simbolo]+'</svg>';b.title=titulo;b.setAttribute('aria-label',titulo);return b;}
   function preparar(art){
    if(art.dataset.mrVoto==='1'||!art.closest('#resultados'))return;
    const acciones=art.querySelector('.acciones'),titulo=art.dataset.titulo,artista=art.dataset.artista;
@@ -767,7 +769,7 @@ html body :is(.titulo,.pista-titulo,.titulo-cancion,.mr-titulo) .wiki-icon{width
    dl:SVG('<path d="M12 3.5v11M7 10l5 5 5-5M4.5 18v2.5h15V18"/>'),
    yt:SVG('<rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.3v5.4l4.8-2.7z" fill="currentColor" stroke="none"/>'),
    info:SVG('<circle cx="12" cy="12" r="9"/><path d="M12 11v5.2"/><circle cx="12" cy="7.9" r="1.1" fill="currentColor" stroke="none"/>'),
-   no:SVG('<circle cx="12" cy="12" r="9"/><path d="M8 8l8 8M16 8l-8 8"/>')
+   no:SVG('<path d="M7 13v-8a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2-2l-1-5a2 3 0 0 0-2-2h-7a3 3 0 0 0-3 3"/>')
   };
   const PUNTOS='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg>';
   let menu=null,origen=null;
@@ -862,9 +864,9 @@ html body :is(.titulo,.pista-titulo,.titulo-cancion,.mr-titulo) .wiki-icon{width
     linea.appendChild(n);
    }
    colocar(boton,linea);
-   audio.addEventListener('ended',function(){setTimeout(function(){linea.remove();},4000);});
+   audio.addEventListener('ended',function(){linea.dataset.terminada='1';setTimeout(function(){linea.remove();},4000);});
    await audio.play();
-   setTimeout(function(){try{audio.pause();audio.currentTime=0;}catch(_){}},30000);
+   setTimeout(function(){try{audio.pause();audio.currentTime=0;linea.dataset.terminada='1';}catch(_){}},30000);
   };
   window.mrMuestraError=function(boton,mensaje){
    quitarAnteriores();
@@ -893,7 +895,11 @@ html body :is(.titulo,.pista-titulo,.titulo-cancion,.mr-titulo) .wiki-icon{width
    function accion(e){
     e.preventDefault();e.stopPropagation();
     const activo=card.querySelector('.mr-muestra-linea,.mr-rep-inline');
-    if(activo){const c=activo.querySelector('.mr-rep-cerrar');if(c){c.click();}else{activo.remove();}return;}
+    if(activo){
+     const terminada=activo.dataset.terminada==='1';
+     const c=activo.querySelector('.mr-rep-cerrar');if(c){c.click();}else{activo.remove();}
+     if(!terminada)return; /* sonando: este toque la para */
+    }
     b.click();
    }
    cont.addEventListener('click',accion);
