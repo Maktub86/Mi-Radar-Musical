@@ -136,6 +136,14 @@
     "tipo": "Single"
   },
   {
+    "id": "1f35af97-4553-4950-8a3e-95da57d02084",
+    "imagen": "https://coverartarchive.org/release-group/1f35af97-4553-4950-8a3e-95da57d02084/front-250",
+    "titulo": "One Night in Highland Park",
+    "fecha": "2026-11-13",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
     "id": "apple-6814586519",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c1/88/11/c188113e-4c32-1dd2-3256-d865955f7e7a/26UM1IM18809.rgb.jpg/100x100bb.jpg",
     "titulo": "One Night In Highland Park (Live)",
@@ -518,6 +526,14 @@
     "fecha": "2026-11-06",
     "artista": "Kiko Rivera",
     "tipo": "Single"
+  },
+  {
+    "id": "apple-6808375208",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/58/d2/01/58d20100-a8de-ed9e-24a1-4940f72dd197/26UM1IM09768.rgb.jpg/100x100bb.jpg",
+    "titulo": "Rock And Roll Over (50th Anniversary Super Deluxe)",
+    "fecha": "2026-11-06",
+    "artista": "KISS",
+    "tipo": "Album"
   },
   {
     "id": "apple-6819847840",
@@ -26680,6 +26696,14 @@
     "tipo": "EP"
   },
   {
+    "id": "c06e303b-a18e-4664-9a87-1481d95182b1",
+    "imagen": "https://coverartarchive.org/release-group/c06e303b-a18e-4664-9a87-1481d95182b1/front-250",
+    "titulo": "No voy a llorar",
+    "fecha": "2025-02-07",
+    "artista": "Mónica Naranjo",
+    "tipo": "Single"
+  },
+  {
     "id": "bcabb3cb-7a05-41f9-b968-5ddeb7a32afa",
     "imagen": "https://coverartarchive.org/release-group/bcabb3cb-7a05-41f9-b968-5ddeb7a32afa/front-250",
     "titulo": "Freddie Mercury Years",
@@ -28661,6 +28685,14 @@
     "titulo": "Gravity",
     "fecha": "2024-12-06",
     "artista": "Loreen",
+    "tipo": "Single"
+  },
+  {
+    "id": "7290b2b4-765a-456e-b96b-9301b326f974",
+    "imagen": "https://coverartarchive.org/release-group/7290b2b4-765a-456e-b96b-9301b326f974/front-250",
+    "titulo": "Sacrificio",
+    "fecha": "2024-12-06",
+    "artista": "Mónica Naranjo",
     "tipo": "Single"
   },
   {
@@ -55997,7 +56029,7 @@
     "titulo": "Poquito a poquito",
     "fecha": "2023",
     "artista": "Marta Santos",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "1cc70f78-2f4b-47b2-8bca-3eda6dd573db",
@@ -162936,14 +162968,6 @@
     "tipo": "Single"
   },
   {
-    "id": "f58fd0a4-8a3a-4d0c-9d9c-e12746fe40d8",
-    "imagen": "https://coverartarchive.org/release-group/f58fd0a4-8a3a-4d0c-9d9c-e12746fe40d8/front-250",
-    "titulo": "Versace",
-    "fecha": "2015-01-06",
-    "artista": "Drake",
-    "tipo": "Single"
-  },
-  {
     "id": "630fdd46-e02e-4db2-a6c9-d1ae5eda866a",
     "imagen": "https://coverartarchive.org/release-group/630fdd46-e02e-4db2-a6c9-d1ae5eda866a/front-250",
     "titulo": "Overdrive (Pt. 2)",
@@ -179440,8 +179464,8 @@
     "tipo": "Single"
   },
   {
-    "id": "d1a4aabf-1031-42ab-be13-c407ffcd8aac",
-    "imagen": "https://coverartarchive.org/release-group/d1a4aabf-1031-42ab-be13-c407ffcd8aac/front-250",
+    "id": "f58fd0a4-8a3a-4d0c-9d9c-e12746fe40d8",
+    "imagen": "https://coverartarchive.org/release-group/f58fd0a4-8a3a-4d0c-9d9c-e12746fe40d8/front-250",
     "titulo": "Versace",
     "fecha": "2013-07-04",
     "artista": "Drake",
@@ -196616,6 +196640,14 @@
     "tipo": "EP"
   },
   {
+    "id": "fa0a7318-5001-435e-8223-adc5bc6b8c35",
+    "imagen": "https://coverartarchive.org/release-group/fa0a7318-5001-435e-8223-adc5bc6b8c35/front-250",
+    "titulo": "Dream Alive",
+    "fecha": "2011-12-13",
+    "artista": "Mónica Naranjo",
+    "tipo": "Single"
+  },
+  {
     "id": "8c7eb273-8f53-4848-85ff-c99a7476d013",
     "imagen": "https://coverartarchive.org/release-group/8c7eb273-8f53-4848-85ff-c99a7476d013/front-250",
     "titulo": "Lista de invitados",
@@ -202326,14 +202358,6 @@
     "fecha": "2011-03-02",
     "artista": "Avril Lavigne",
     "tipo": "Album"
-  },
-  {
-    "id": "7231ae7a-2863-4688-a136-aeb460db97f6",
-    "imagen": "https://coverartarchive.org/release-group/7231ae7a-2863-4688-a136-aeb460db97f6/front-250",
-    "titulo": "Goodbye Lullaby - Sessions",
-    "fecha": "2011-03-02",
-    "artista": "Avril Lavigne",
-    "tipo": "Other"
   },
   {
     "id": "cfe10725-eb1e-441a-8c4b-df13b0dc0aa5",
@@ -222448,6 +222472,14 @@
     "tipo": "Album"
   },
   {
+    "id": "0eec8045-a10b-49f1-891d-75e0cdd02c84",
+    "imagen": "https://coverartarchive.org/release-group/0eec8045-a10b-49f1-891d-75e0cdd02c84/front-250",
+    "titulo": "Un'altra direzione [Deluxe Album] [with booklet]",
+    "fecha": "2009-01-30",
+    "artista": "Nek",
+    "tipo": "Album"
+  },
+  {
     "id": "1231365c-f7b5-306d-92f0-53110b2773b1",
     "imagen": "https://coverartarchive.org/release-group/1231365c-f7b5-306d-92f0-53110b2773b1/front-250",
     "titulo": "Good Girl Gone Bad: The Remixes",
@@ -233035,14 +233067,6 @@
     "id": "4b82189e-66f3-382d-a805-d7fcf09da9c4",
     "imagen": "https://coverartarchive.org/release-group/4b82189e-66f3-382d-a805-d7fcf09da9c4/front-250",
     "titulo": "Four Decades of Hits",
-    "fecha": "2008",
-    "artista": "Chicago",
-    "tipo": "Album"
-  },
-  {
-    "id": "5407967e-c389-46e5-9fd7-69fd56f86e54",
-    "imagen": "https://coverartarchive.org/release-group/5407967e-c389-46e5-9fd7-69fd56f86e54/front-250",
-    "titulo": "Live 1968",
     "fecha": "2008",
     "artista": "Chicago",
     "tipo": "Album"
@@ -287594,7 +287618,7 @@
   {
     "id": "9ac0a24a-3eda-4cb5-a875-145d171da296",
     "imagen": "https://coverartarchive.org/release-group/9ac0a24a-3eda-4cb5-a875-145d171da296/front-250",
-    "titulo": "Chicas Malas (Remixes)",
+    "titulo": "Chicas malas (remixes)",
     "fecha": "2001-12-05",
     "artista": "Mónica Naranjo",
     "tipo": "Single"
@@ -288222,6 +288246,14 @@
     "fecha": "2001-10-29",
     "artista": "Natalie Imbruglia",
     "tipo": "Single"
+  },
+  {
+    "id": "d1f2b9da-5a97-3534-a549-3e65ab3c80f9",
+    "imagen": "https://coverartarchive.org/release-group/d1f2b9da-5a97-3534-a549-3e65ab3c80f9/front-250",
+    "titulo": "Chicas malas",
+    "fecha": "2001-10-26",
+    "artista": "Mónica Naranjo",
+    "tipo": "Album"
   },
   {
     "id": "74be65c4-251d-3231-901b-6a3ba2e7ebaa",
@@ -293534,14 +293566,6 @@
     "fecha": "2001",
     "artista": "Moloko",
     "tipo": "Single"
-  },
-  {
-    "id": "d1f2b9da-5a97-3534-a549-3e65ab3c80f9",
-    "imagen": "https://coverartarchive.org/release-group/d1f2b9da-5a97-3534-a549-3e65ab3c80f9/front-250",
-    "titulo": "Chicas malas",
-    "fecha": "2001",
-    "artista": "Mónica Naranjo",
-    "tipo": "Album"
   },
   {
     "id": "9787da92-32bd-451f-b0c4-33b91a22741c",
@@ -323640,14 +323664,6 @@
     "tipo": "Album"
   },
   {
-    "id": "e6b6c93e-8366-37ac-9fcc-0e1c71329011",
-    "imagen": "https://coverartarchive.org/release-group/e6b6c93e-8366-37ac-9fcc-0e1c71329011/front-250",
-    "titulo": "Palabra de mujer",
-    "fecha": "1997-06-10",
-    "artista": "Mónica Naranjo",
-    "tipo": "Album"
-  },
-  {
     "id": "64cc7510-fa7d-4898-9d94-cfbc7154336f",
     "imagen": "https://coverartarchive.org/release-group/64cc7510-fa7d-4898-9d94-cfbc7154336f/front-250",
     "titulo": "Stay in Hamburg",
@@ -323965,6 +323981,14 @@
     "titulo": "Iros todos a tomar por culo",
     "fecha": "1997-04-21",
     "artista": "Extremoduro",
+    "tipo": "Album"
+  },
+  {
+    "id": "e6b6c93e-8366-37ac-9fcc-0e1c71329011",
+    "imagen": "https://coverartarchive.org/release-group/e6b6c93e-8366-37ac-9fcc-0e1c71329011/front-250",
+    "titulo": "Palabra de mujer",
+    "fecha": "1997-04-15",
+    "artista": "Mónica Naranjo",
     "tipo": "Album"
   },
   {
@@ -408440,6 +408464,14 @@
     "tipo": "Album"
   },
   {
+    "id": "6ce475e5-70a5-4ece-89be-ef3b14c64f3e",
+    "imagen": "https://coverartarchive.org/release-group/6ce475e5-70a5-4ece-89be-ef3b14c64f3e/front-250",
+    "titulo": "Cat People (Putting Out Fire)",
+    "fecha": "1982-04-10",
+    "artista": "David Bowie",
+    "tipo": "Single"
+  },
+  {
     "id": "a4ffedd3-0c03-3477-8fbf-6ffc352721b6",
     "imagen": "https://coverartarchive.org/release-group/a4ffedd3-0c03-3477-8fbf-6ffc352721b6/front-250",
     "titulo": "Jump Up!",
@@ -410454,14 +410486,6 @@
     "fecha": "1982",
     "artista": "David Bowie",
     "tipo": "EP"
-  },
-  {
-    "id": "6ce475e5-70a5-4ece-89be-ef3b14c64f3e",
-    "imagen": "https://coverartarchive.org/release-group/6ce475e5-70a5-4ece-89be-ef3b14c64f3e/front-250",
-    "titulo": "Cat People (Putting Out Fire)",
-    "fecha": "1982",
-    "artista": "David Bowie",
-    "tipo": "Single"
   },
   {
     "id": "640f5bcd-6b71-446d-8eed-b035b5a0cfa7",
@@ -421216,14 +421240,6 @@
     "tipo": "Single"
   },
   {
-    "id": "101b88e8-2b25-43d5-89e4-087cdb8b0959",
-    "imagen": "https://coverartarchive.org/release-group/101b88e8-2b25-43d5-89e4-087cdb8b0959/front-250",
-    "titulo": "Leave Home (40th Anniversary Deluxe Edition)",
-    "fecha": "1977-01-10",
-    "artista": "Ramones",
-    "tipo": "Album"
-  },
-  {
     "id": "bc3b5116-300a-3696-919d-bca466a3f143",
     "imagen": "https://coverartarchive.org/release-group/bc3b5116-300a-3696-919d-bca466a3f143/front-250",
     "titulo": "Leave Home",
@@ -430864,20 +430880,20 @@
     "tipo": "Single"
   },
   {
+    "id": "f5cd3e6c-2dd1-38ff-aeed-55af970e34ef",
+    "imagen": "https://coverartarchive.org/release-group/f5cd3e6c-2dd1-38ff-aeed-55af970e34ef/front-250",
+    "titulo": "Chicago V",
+    "fecha": "1972-07-10",
+    "artista": "Chicago",
+    "tipo": "Album"
+  },
+  {
     "id": "318f82bb-c253-4602-9617-ea1b5c45a758",
     "imagen": "https://coverartarchive.org/release-group/318f82bb-c253-4602-9617-ea1b5c45a758/front-250",
     "titulo": "Free Four / Stay",
     "fecha": "1972-07-10",
     "artista": "Pink Floyd",
     "tipo": "Single"
-  },
-  {
-    "id": "f5cd3e6c-2dd1-38ff-aeed-55af970e34ef",
-    "imagen": "https://coverartarchive.org/release-group/f5cd3e6c-2dd1-38ff-aeed-55af970e34ef/front-250",
-    "titulo": "Chicago V",
-    "fecha": "1972-07-01",
-    "artista": "Chicago",
-    "tipo": "Album"
   },
   {
     "id": "9f91ccc2-b7bb-3085-a10d-869431ed67e6",
@@ -449784,20 +449800,20 @@
     "tipo": "Album"
   },
   {
-    "id": "b935f509-a333-4006-be07-ba81007c682c",
-    "imagen": "https://coverartarchive.org/release-group/b935f509-a333-4006-be07-ba81007c682c/front-250",
-    "titulo": "Bostoner All Star Session",
-    "fecha": "1955",
-    "artista": "Louis Armstrong",
-    "tipo": "EP"
-  },
-  {
     "id": "5c12e7de-038e-4608-890d-92c6c6f6f078",
     "imagen": "https://coverartarchive.org/release-group/5c12e7de-038e-4608-890d-92c6c6f6f078/front-250",
     "titulo": "Moments to Remember / Only You",
     "fecha": "1955",
     "artista": "Louis Armstrong",
     "tipo": "Single"
+  },
+  {
+    "id": "b935f509-a333-4006-be07-ba81007c682c",
+    "imagen": "https://coverartarchive.org/release-group/b935f509-a333-4006-be07-ba81007c682c/front-250",
+    "titulo": "Bostoner All Star Session",
+    "fecha": "1955",
+    "artista": "Louis Armstrong",
+    "tipo": "EP"
   },
   {
     "id": "6fcb7d38-a2d0-4bad-83c5-676c2bbdf371",
@@ -454190,22 +454206,6 @@
     "fecha": "",
     "artista": "Avril Lavigne",
     "tipo": "Album"
-  },
-  {
-    "id": "11ef80e6-7795-4a85-a8d7-3a4785b3802a",
-    "imagen": "https://coverartarchive.org/release-group/11ef80e6-7795-4a85-a8d7-3a4785b3802a/front-250",
-    "titulo": "The Best Damn Thing - Sessions",
-    "fecha": "",
-    "artista": "Avril Lavigne",
-    "tipo": "Other"
-  },
-  {
-    "id": "37be488a-f11c-4ef5-afa9-f725fae6f2cb",
-    "imagen": "https://coverartarchive.org/release-group/37be488a-f11c-4ef5-afa9-f725fae6f2cb/front-250",
-    "titulo": "Under My Skin - Sessions",
-    "fecha": "",
-    "artista": "Avril Lavigne",
-    "tipo": "Other"
   },
   {
     "id": "da0557b3-0c75-3445-8569-bbd874018fba",
@@ -477568,6 +477568,14 @@
     "tipo": "Album"
   },
   {
+    "id": "101b88e8-2b25-43d5-89e4-087cdb8b0959",
+    "imagen": "https://coverartarchive.org/release-group/101b88e8-2b25-43d5-89e4-087cdb8b0959/front-250",
+    "titulo": "Leave Home",
+    "fecha": "",
+    "artista": "Ramones",
+    "tipo": "Album"
+  },
+  {
     "id": "ba15d4b8-976f-3b73-8654-675bab7a973c",
     "imagen": "https://coverartarchive.org/release-group/ba15d4b8-976f-3b73-8654-675bab7a973c/front-250",
     "titulo": "1978-09-15: 4 Pinheads in Amsterdam: Paradiso, Amsterdam, Netherlands",
@@ -483059,14 +483067,6 @@
     "id": "7154cd67-a5fd-4ec6-aed6-2236709125c2",
     "imagen": "https://coverartarchive.org/release-group/7154cd67-a5fd-4ec6-aed6-2236709125c2/front-250",
     "titulo": "Hey Hey We're The Monkees",
-    "fecha": "",
-    "artista": "The Monkees",
-    "tipo": "Album"
-  },
-  {
-    "id": "9b659b51-4603-303e-ba99-756de47b2138",
-    "imagen": "https://coverartarchive.org/release-group/9b659b51-4603-303e-ba99-756de47b2138/front-250",
-    "titulo": "The Monkees",
     "fecha": "",
     "artista": "The Monkees",
     "tipo": "Album"

@@ -1,15 +1,15 @@
 {
   "canciones": [
     {
-      "titulo": "Milko Freestyle (Video Oficial)",
-      "artista": "C. Tangana, Agorazein",
-      "url": "https://www.youtube.com/watch?v=DttlD1UaJu0",
-      "puesto": 1
-    },
-    {
       "titulo": "MI VIDA",
       "artista": "Natos y Waor, Recycled J, Morad, Hijos de la Ruina",
       "url": "https://www.youtube.com/watch?v=fkHpcfguMUw",
+      "puesto": 1
+    },
+    {
+      "titulo": "Milko Freestyle (Video Oficial)",
+      "artista": "C. Tangana, Agorazein",
+      "url": "https://www.youtube.com/watch?v=DttlD1UaJu0",
       "puesto": 2
     },
     {
@@ -25,166 +25,166 @@
       "puesto": 4
     },
     {
-      "titulo": "DONDE ESTÁN?",
-      "artista": "YOLAMASCARA, 50 Cent",
-      "url": "https://www.youtube.com/watch?v=3ZPHmzC7F9Q",
-      "puesto": 5
-    },
-    {
-      "titulo": "SFDK - Juégala con Ana Rey",
-      "artista": "SFDK",
+      "titulo": "Juégala",
+      "artista": "SFDK, Ana Rey",
       "url": "https://www.youtube.com/watch?v=nwF8ShMdmWs",
-      "puesto": 6
-    },
-    {
-      "titulo": "TUSSI",
-      "artista": "Anuel AA, LAJA",
-      "url": "https://www.youtube.com/watch?v=T0rVuheJOp8",
-      "puesto": 7
-    },
-    {
-      "titulo": "Kidd Keo x Conep - BBZ IN THE CLUB (Official Video)",
-      "artista": "Kidd Keo",
-      "url": "https://www.youtube.com/watch?v=Do3iV8iHIJA",
-      "puesto": 8
+      "puesto": 5
     },
     {
       "titulo": "Dos de Enero",
       "artista": "SFDK",
       "url": "https://www.youtube.com/watch?v=v_jcZAeLAB0",
+      "puesto": 6
+    },
+    {
+      "titulo": "DONDE ESTÁN?",
+      "artista": "YOLAMASCARA, 50 Cent",
+      "url": "https://www.youtube.com/watch?v=3ZPHmzC7F9Q",
+      "puesto": 7
+    },
+    {
+      "titulo": "BBZ IN THE CLUB",
+      "artista": "Kidd Keo, Conep",
+      "url": "https://www.youtube.com/watch?v=Do3iV8iHIJA",
+      "puesto": 8
+    },
+    {
+      "titulo": "TUSSI",
+      "artista": "Anuel AA, LAJA",
+      "url": "https://www.youtube.com/watch?v=T0rVuheJOp8",
       "puesto": 9
-    },
-    {
-      "titulo": "SHARINGAN",
-      "artista": "La Pantera",
-      "url": "https://www.youtube.com/watch?v=CoIxntRIQJU",
-      "puesto": 10
-    },
-    {
-      "titulo": "Topa - LAS RUEDAS DEL AUTOBÚS 🚌 🚎",
-      "artista": "Diego Topa",
-      "url": "https://www.youtube.com/watch?v=RYRaBGD1Z2Y",
-      "puesto": 11
-    },
-    {
-      "titulo": "ALBA MORENO, LUIS CORTÉS - VOLVER A CAER (Video Oficial)",
-      "artista": "Alba Moreno",
-      "url": "https://www.youtube.com/watch?v=8Eky5HBvqAU",
-      "puesto": 12
     },
     {
       "titulo": "Dime que me quieres",
       "artista": "Los Niños Del Sur, Titi de Alicante",
       "url": "https://www.youtube.com/watch?v=WIyblIO91mM",
+      "puesto": 10
+    },
+    {
+      "titulo": "SHARINGAN",
+      "artista": "La Pantera",
+      "url": "https://www.youtube.com/watch?v=CoIxntRIQJU",
+      "puesto": 11
+    },
+    {
+      "titulo": "Topa - LAS RUEDAS DEL AUTOBÚS 🚌 🚎",
+      "artista": "Diego Topa",
+      "url": "https://www.youtube.com/watch?v=RYRaBGD1Z2Y",
+      "puesto": 12
+    },
+    {
+      "titulo": "Volver a caer",
+      "artista": "Luis Cortés, Alba Moreno",
+      "url": "https://www.youtube.com/watch?v=8Eky5HBvqAU",
       "puesto": 13
     },
     {
-      "titulo": "COLORÉAME",
-      "artista": "La Pantera",
-      "url": "https://www.youtube.com/watch?v=3saw7VbTe_w",
+      "titulo": "En Mi Cuadra",
+      "artista": "Mauro Dembow, Jaime El King, Pirlo, High Galaxy Music",
+      "url": "https://www.youtube.com/watch?v=1iXd7Xi-Qpg",
       "puesto": 14
-    },
-    {
-      "titulo": "Promesas",
-      "artista": "Marina, Moncho Chavea",
-      "url": "https://www.youtube.com/watch?v=wDdHQ8lRZNY",
-      "puesto": 15
     },
     {
       "titulo": "COMO FUERA",
       "artista": "Manuel Turizo, J Balvin",
       "url": "https://www.youtube.com/watch?v=EQGVGXypBdQ",
+      "puesto": 15
+    },
+    {
+      "titulo": "COLORÉAME",
+      "artista": "La Pantera",
+      "url": "https://www.youtube.com/watch?v=3saw7VbTe_w",
       "puesto": 16
     },
     {
-      "titulo": "PIRLO 420 ❌ Jaime El King - En Mi Cuadra (Video Oficial)",
-      "artista": "Pirlo 420",
-      "url": "https://www.youtube.com/watch?v=1iXd7Xi-Qpg",
+      "titulo": "Promesas",
+      "artista": "Marina, Moncho Chavea",
+      "url": "https://www.youtube.com/watch?v=wDdHQ8lRZNY",
       "puesto": 17
+    },
+    {
+      "titulo": "Piruleta",
+      "artista": "SFDK",
+      "url": "https://www.youtube.com/watch?v=0Tj-bIGmo30",
+      "puesto": 18
     },
     {
       "titulo": "Matfahmnach",
       "artista": "Douzi",
       "url": "https://www.youtube.com/watch?v=Ryh8hyh8wkc",
-      "puesto": 18
+      "puesto": 19
     },
     {
       "titulo": "Debes Saber Rmx Ft. La Cebolla, Negro Jari [Prod. By Yoseik] (Videoclip Oficial)",
       "artista": "Taranto",
       "url": "https://www.youtube.com/watch?v=aBUvA6imvtE",
-      "puesto": 19
-    },
-    {
-      "titulo": "Lejos de Mi (Official Music Video)",
-      "artista": "Josue Rarujo",
-      "url": "https://www.youtube.com/watch?v=tA1QNxP5f_w",
       "puesto": 20
-    },
-    {
-      "titulo": "Traigo (Video Oficial)",
-      "artista": "La Plazuela, DeLasRosas",
-      "url": "https://www.youtube.com/watch?v=p5P49yT8RKQ",
-      "puesto": 21
-    },
-    {
-      "titulo": "SÉ DE TI",
-      "artista": "La Pantera",
-      "url": "https://www.youtube.com/watch?v=66IRBm1bKJY",
-      "puesto": 22
-    },
-    {
-      "titulo": "SFDK - Piruleta",
-      "artista": "SFDK",
-      "url": "https://www.youtube.com/watch?v=0Tj-bIGmo30",
-      "puesto": 23
-    },
-    {
-      "titulo": "POKITO",
-      "artista": "Diljit Dosanjh, Daddy Yankee",
-      "url": "https://www.youtube.com/watch?v=XO1h5G6xytU",
-      "puesto": 24
-    },
-    {
-      "titulo": "ASI CANTA JEREZ EN NAVIDAD - QUE PASA? - (Video Oficial) #asicantajerezennavidad",
-      "artista": "Luis de Perikin",
-      "url": "https://www.youtube.com/watch?v=DvKEc1gda4Q",
-      "puesto": 25
-    },
-    {
-      "titulo": "CONQUISTADOR",
-      "artista": "Gonzy, Sech",
-      "url": "https://www.youtube.com/watch?v=h-hYRw1Llg4",
-      "puesto": 26
-    },
-    {
-      "titulo": "Cuestión De Tiempo (Video Oficial)",
-      "artista": "Cano",
-      "url": "https://www.youtube.com/watch?v=i9c8kfxDVfc",
-      "puesto": 27
     },
     {
       "titulo": "Jador - Tu Piele Alba, Eu Maro (Official Video)",
       "artista": "Jador",
       "url": "https://www.youtube.com/watch?v=SVxgSoMG860",
-      "puesto": 28
+      "puesto": 21
     },
     {
-      "titulo": "2.0 #2",
-      "artista": "l0rna",
-      "url": "https://www.youtube.com/watch?v=nnd9d5Aj4qI",
-      "puesto": 29
+      "titulo": "Traigo (Video Oficial)",
+      "artista": "La Plazuela, DeLasRosas",
+      "url": "https://www.youtube.com/watch?v=p5P49yT8RKQ",
+      "puesto": 22
+    },
+    {
+      "titulo": "Cuando Yo Me Muera",
+      "artista": "Diego Santos",
+      "url": "https://www.youtube.com/watch?v=QjEIgc8ETl8",
+      "puesto": 23
+    },
+    {
+      "titulo": "Lejos de Mi (Official Music Video)",
+      "artista": "Josue Rarujo",
+      "url": "https://www.youtube.com/watch?v=tA1QNxP5f_w",
+      "puesto": 24
+    },
+    {
+      "titulo": "SÉ DE TI",
+      "artista": "La Pantera",
+      "url": "https://www.youtube.com/watch?v=66IRBm1bKJY",
+      "puesto": 25
     },
     {
       "titulo": "W Sound 11 “ÚLTIMAMENTE” - De La Rose, Westcol, Ovy On The Drums",
       "artista": "W Sound",
       "url": "https://www.youtube.com/watch?v=n4YthEANrwQ",
+      "puesto": 26
+    },
+    {
+      "titulo": "POKITO",
+      "artista": "Diljit Dosanjh, Daddy Yankee",
+      "url": "https://www.youtube.com/watch?v=XO1h5G6xytU",
+      "puesto": 27
+    },
+    {
+      "titulo": "ASI CANTA JEREZ EN NAVIDAD - QUE PASA? - (Video Oficial) #asicantajerezennavidad",
+      "artista": "Luis de Perikin",
+      "url": "https://www.youtube.com/watch?v=DvKEc1gda4Q",
+      "puesto": 28
+    },
+    {
+      "titulo": "Cuestión De Tiempo (Video Oficial)",
+      "artista": "Cano",
+      "url": "https://www.youtube.com/watch?v=i9c8kfxDVfc",
+      "puesto": 29
+    },
+    {
+      "titulo": "SLAYTER, JC Reyes - nunca dije adios (Visualizer) | malas decisiones",
+      "artista": "SLAYTER",
+      "url": "https://www.youtube.com/watch?v=_LhBZ-XWJwY",
       "puesto": 30
     }
   ],
   "fuente": "https://charts.youtube.com/charts/TrendingVideos/es",
   "nombre": "Tendencias musicales de YouTube",
   "tipo": "youtube",
-  "actualizado": "2026-11-17T05:52+00:00",
+  "actualizado": "2026-11-18T05:46+00:00",
   "en_curso": false,
   "mensaje": "Lista actualizada: 30 canciones."
 }
