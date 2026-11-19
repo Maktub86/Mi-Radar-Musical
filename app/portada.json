@@ -1,5 +1,45 @@
 [
   {
+    "id": "apple-6831810311",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b5/9e/93/b59e9360-eb54-5c97-4ea0-79a79350b0eb/0.jpg/100x100bb.jpg",
+    "titulo": "Al Niño Dios (Remasterizado 2026) - Single",
+    "fecha": "2026-11-19",
+    "artista": "Carlos Baute",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6814495737",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5c/18/bf/5c18bf4e-32a5-f084-2835-7dadb4ddf78d/26UM1IM20274.rgb.jpg/100x100bb.jpg",
+    "titulo": "El Último De La Fila Directo 2026",
+    "fecha": "2026-11-19",
+    "artista": "El Último de la Fila",
+    "tipo": "Album"
+  },
+  {
+    "id": "b9cbef13-11a1-4f72-80a9-ac531709b034",
+    "imagen": "https://coverartarchive.org/release-group/b9cbef13-11a1-4f72-80a9-ac531709b034/front-250",
+    "titulo": "Good Times",
+    "fecha": "2026-11-18",
+    "artista": "Chic",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6828566379",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b7/51/5b/b7515b27-e67c-8007-00f9-54db9de7ea89/1200220398546.jpg/100x100bb.jpg",
+    "titulo": "Quiero un Camino (feat. Coti) - Single",
+    "fecha": "2026-11-18",
+    "artista": "Melon Diesel",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6835541230",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6d/af/31/6daf31bd-9076-b4f3-c746-fd67cf5395ae/196874953983.jpg/100x100bb.jpg",
+    "titulo": "Leave With Me (Featured in Always Lalisa) - Single",
+    "fecha": "2026-11-18",
+    "artista": "LiSA",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6832495160",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/80/63/67/806367ea-8190-3fc2-b7aa-ab09c04e1d6a/8435799097610.png/100x100bb.jpg",
     "titulo": "SOY VIEJO PERO PUNKY - Single",
@@ -155,14 +195,6 @@
     "id": "676461cb-76d3-43f5-a837-7312e9c652d6",
     "imagen": "https://coverartarchive.org/release-group/676461cb-76d3-43f5-a837-7312e9c652d6/front-250",
     "titulo": "Take Away the Pain",
-    "fecha": "2026-11-13",
-    "artista": "MAGIC!",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6810562901",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ea/79/4f/ea794fbd-169e-3be1-eb11-13cb76e4b427/4308737.jpg/100x100bb.jpg",
-    "titulo": "Take Away The Pain - Single",
     "fecha": "2026-11-13",
     "artista": "MAGIC!",
     "tipo": "Single"
@@ -707,6 +739,14 @@
     "id": "ab45b3e9-a91c-41c3-ad34-8af7a95d2591",
     "imagen": "https://coverartarchive.org/release-group/ab45b3e9-a91c-41c3-ad34-8af7a95d2591/front-250",
     "titulo": "くたばれマイダーリン",
+    "fecha": "2026-11-04",
+    "artista": "LiSA",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6825742580",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e0/d8/1b/e0d81b14-836f-6d9a-d2ff-450f2de70729/4547366862638.jpg/100x100bb.jpg",
+    "titulo": "くたばれマイダーリン - Single",
     "fecha": "2026-11-04",
     "artista": "LiSA",
     "tipo": "Single"
@@ -1901,6 +1941,14 @@
     "titulo": "Bajón Emocional - EP",
     "fecha": "2026-10-08",
     "artista": "Yuridia",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6821148622",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/38/c2/fb/38c2fb5b-4af8-344a-af97-8f8e05567030/885288824254.jpg/100x100bb.jpg",
+    "titulo": "PITCOIN",
+    "fecha": "2026-10-08",
+    "artista": "Pitbull",
     "tipo": "Album"
   },
   {
@@ -23866,7 +23914,7 @@
   {
     "id": "81adb627-0687-4606-b854-6b8e8263e45a",
     "imagen": "https://coverartarchive.org/release-group/81adb627-0687-4606-b854-6b8e8263e45a/front-250",
-    "titulo": "Espresso Macchiato (Remix)",
+    "titulo": "Espresso macchiato (remix)",
     "fecha": "2025-05-09",
     "artista": "Tommy Cash",
     "tipo": "Single"
@@ -28610,7 +28658,7 @@
   {
     "id": "542928ff-70f4-466a-ba04-cf8e77788b40",
     "imagen": "https://coverartarchive.org/release-group/542928ff-70f4-466a-ba04-cf8e77788b40/front-250",
-    "titulo": "Espresso Macchiato",
+    "titulo": "Espresso macchiato",
     "fecha": "2024-12-07",
     "artista": "Tommy Cash",
     "tipo": "Single"
@@ -30701,6 +30749,14 @@
     "titulo": "Warning Signs",
     "fecha": "2024-10-11",
     "artista": "Loreen",
+    "tipo": "Single"
+  },
+  {
+    "id": "a81c3f4d-714d-43f7-9146-cdb5252d864d",
+    "imagen": "https://coverartarchive.org/release-group/a81c3f4d-714d-43f7-9146-cdb5252d864d/front-250",
+    "titulo": "Fama",
+    "fecha": "2024-10-11",
+    "artista": "Mónica Naranjo",
     "tipo": "Single"
   },
   {
@@ -37702,6 +37758,14 @@
     "fecha": "2024-04-05",
     "artista": "Doja Cat",
     "tipo": "Single"
+  },
+  {
+    "id": "93012c6c-ed99-40fe-bb75-cf029ad25f82",
+    "imagen": "https://coverartarchive.org/release-group/93012c6c-ed99-40fe-bb75-cf029ad25f82/front-250",
+    "titulo": "Scarlet 2 CLAUDE",
+    "fecha": "2024-04-05",
+    "artista": "Doja Cat",
+    "tipo": "Album"
   },
   {
     "id": "fbde4892-871c-4fb8-83c6-bf383db6889a",
@@ -51352,6 +51416,14 @@
     "tipo": "Single"
   },
   {
+    "id": "29738fd1-3144-4c9e-9433-34ffa81e7229",
+    "imagen": "https://coverartarchive.org/release-group/29738fd1-3144-4c9e-9433-34ffa81e7229/front-250",
+    "titulo": "Si tú no vuelves (en directo Cover Night)",
+    "fecha": "2023-05-05",
+    "artista": "Mónica Naranjo",
+    "tipo": "Single"
+  },
+  {
     "id": "b6d95093-9e9b-4365-9cd0-6ed3b8e8b0af",
     "imagen": "https://coverartarchive.org/release-group/b6d95093-9e9b-4365-9cd0-6ed3b8e8b0af/front-250",
     "titulo": "Out on the Road (Mondo version) / Killing Time",
@@ -54880,6 +54952,14 @@
     "tipo": "Album"
   },
   {
+    "id": "3ed2ea78-726d-40fb-9235-ff44f39ba657",
+    "imagen": "https://coverartarchive.org/release-group/3ed2ea78-726d-40fb-9235-ff44f39ba657/front-250",
+    "titulo": "Diva",
+    "fecha": "2023-01-31",
+    "artista": "Mónica Naranjo",
+    "tipo": "Single"
+  },
+  {
     "id": "e2a87510-7f1c-41bd-93e6-875729514c54",
     "imagen": "https://coverartarchive.org/release-group/e2a87510-7f1c-41bd-93e6-875729514c54/front-250",
     "titulo": "UFO",
@@ -57174,6 +57254,14 @@
     "fecha": "2022-11-25",
     "artista": "Michael Bublé",
     "tipo": "EP"
+  },
+  {
+    "id": "258a7a38-1d8c-436f-b751-521ef85d888c",
+    "imagen": "https://coverartarchive.org/release-group/258a7a38-1d8c-436f-b751-521ef85d888c/front-250",
+    "titulo": "Toda una mujer",
+    "fecha": "2022-11-25",
+    "artista": "Mónica Naranjo",
+    "tipo": "Single"
   },
   {
     "id": "d5b70be7-c32a-49ef-9474-90d4f0313582",
@@ -63520,6 +63608,14 @@
     "tipo": "Single"
   },
   {
+    "id": "5040087e-c988-40c0-b75a-475d950c1270",
+    "imagen": "https://coverartarchive.org/release-group/5040087e-c988-40c0-b75a-475d950c1270/front-250",
+    "titulo": "Polvo vacío",
+    "fecha": "2022-06-01",
+    "artista": "Mónica Naranjo",
+    "tipo": "Single"
+  },
+  {
     "id": "be7edef1-f211-4255-b7d9-8b9d0069ba85",
     "imagen": "https://coverartarchive.org/release-group/be7edef1-f211-4255-b7d9-8b9d0069ba85/front-250",
     "titulo": "FERNET",
@@ -68232,6 +68328,14 @@
     "tipo": "Single"
   },
   {
+    "id": "7306dfb1-d665-48e6-9c04-c96e7ad54680",
+    "imagen": "https://coverartarchive.org/release-group/7306dfb1-d665-48e6-9c04-c96e7ad54680/front-250",
+    "titulo": "Puro Minage (live)",
+    "fecha": "2022-01-14",
+    "artista": "Mónica Naranjo",
+    "tipo": "Album"
+  },
+  {
     "id": "8bd5b5aa-b3e5-4dd3-a5c0-e66057d7620a",
     "imagen": "https://coverartarchive.org/release-group/8bd5b5aa-b3e5-4dd3-a5c0-e66057d7620a/front-250",
     "titulo": "I Feel Good (71 Digits remix)",
@@ -71741,6 +71845,14 @@
     "titulo": "The Motto",
     "fecha": "2021-11-04",
     "artista": "Ava Max",
+    "tipo": "Single"
+  },
+  {
+    "id": "de8a438c-f0fd-4f54-97d6-54225468bebe",
+    "imagen": "https://coverartarchive.org/release-group/de8a438c-f0fd-4f54-97d6-54225468bebe/front-250",
+    "titulo": "Lágrimas de un ángel",
+    "fecha": "2021-11-04",
+    "artista": "Mónica Naranjo",
     "tipo": "Single"
   },
   {
@@ -76670,6 +76782,14 @@
     "fecha": "2021-07-05",
     "artista": "Jennifer Lopez",
     "tipo": "Single"
+  },
+  {
+    "id": "5d37364a-2c52-4a60-94f5-dd1b25eca459",
+    "imagen": "https://coverartarchive.org/release-group/5d37364a-2c52-4a60-94f5-dd1b25eca459/front-250",
+    "titulo": "Renaissance (live)",
+    "fecha": "2021-07-05",
+    "artista": "Mónica Naranjo",
+    "tipo": "Album"
   },
   {
     "id": "991bf452-c07f-4c55-aa1b-c847177a85b1",
@@ -93784,6 +93904,14 @@
     "tipo": "Single"
   },
   {
+    "id": "53a4053f-2b2d-461b-a4cc-34a1a984874b",
+    "imagen": "https://coverartarchive.org/release-group/53a4053f-2b2d-461b-a4cc-34a1a984874b/front-250",
+    "titulo": "Mes Excentricités, Vol. II",
+    "fecha": "2020-06-26",
+    "artista": "Mónica Naranjo",
+    "tipo": "EP"
+  },
+  {
     "id": "f7349b61-6f99-464b-8849-4d2d6ed73701",
     "imagen": "https://coverartarchive.org/release-group/f7349b61-6f99-464b-8849-4d2d6ed73701/front-250",
     "titulo": "Together in This (from the Jungle Beat motion picture)",
@@ -98904,6 +99032,14 @@
     "tipo": "Album"
   },
   {
+    "id": "5048ec5c-073e-4983-8383-0132ec7f466e",
+    "imagen": "https://coverartarchive.org/release-group/5048ec5c-073e-4983-8383-0132ec7f466e/front-250",
+    "titulo": "Tentaciones",
+    "fecha": "2020-02-14",
+    "artista": "Mónica Naranjo",
+    "tipo": "Single"
+  },
+  {
     "id": "c0cdccdd-c6dc-4dd8-b2f1-5dc5ff5464de",
     "imagen": "https://coverartarchive.org/release-group/c0cdccdd-c6dc-4dd8-b2f1-5dc5ff5464de/front-250",
     "titulo": "Querido alguien",
@@ -100056,6 +100192,14 @@
     "tipo": "Single"
   },
   {
+    "id": "8acf0be4-f052-4d4d-a4e8-833f2073c3e8",
+    "imagen": "https://coverartarchive.org/release-group/8acf0be4-f052-4d4d-a4e8-833f2073c3e8/front-250",
+    "titulo": "Grande",
+    "fecha": "2020-01-17",
+    "artista": "Mónica Naranjo",
+    "tipo": "Single"
+  },
+  {
     "id": "5fc6a3da-6da5-492d-96de-603fb09d612a",
     "imagen": "https://coverartarchive.org/release-group/5fc6a3da-6da5-492d-96de-603fb09d612a/front-250",
     "titulo": "Picky",
@@ -101046,14 +101190,6 @@
     "fecha": "2020",
     "artista": "Mike Oldfield",
     "tipo": "Broadcast"
-  },
-  {
-    "id": "53a4053f-2b2d-461b-a4cc-34a1a984874b",
-    "imagen": "https://coverartarchive.org/release-group/53a4053f-2b2d-461b-a4cc-34a1a984874b/front-250",
-    "titulo": "Mes Excentricités, Vol. II",
-    "fecha": "2020",
-    "artista": "Mónica Naranjo",
-    "tipo": "EP"
   },
   {
     "id": "7657be02-0dd8-428e-9741-fb74255ff106",
@@ -104856,6 +104992,14 @@
     "tipo": "Single"
   },
   {
+    "id": "38e20b36-e8d1-4253-89c9-375b9af59210",
+    "imagen": "https://coverartarchive.org/release-group/38e20b36-e8d1-4253-89c9-375b9af59210/front-250",
+    "titulo": "Mes excentricités, vol. 1",
+    "fecha": "2019-10-11",
+    "artista": "Mónica Naranjo",
+    "tipo": "EP"
+  },
+  {
     "id": "e00a5a74-1269-4fc6-9f69-cd6556d69961",
     "imagen": "https://coverartarchive.org/release-group/e00a5a74-1269-4fc6-9f69-cd6556d69961/front-250",
     "titulo": "Hot In Herre (remixes)",
@@ -108240,6 +108384,14 @@
     "tipo": "Single"
   },
   {
+    "id": "fa74fac4-eaaf-4caa-b567-41dc070211f7",
+    "imagen": "https://coverartarchive.org/release-group/fa74fac4-eaaf-4caa-b567-41dc070211f7/front-250",
+    "titulo": "Doble corazón",
+    "fecha": "2019-07-03",
+    "artista": "Mónica Naranjo",
+    "tipo": "Single"
+  },
+  {
     "id": "1aac68e0-a60c-4640-ab21-3d6442f9ed9b",
     "imagen": "https://coverartarchive.org/release-group/1aac68e0-a60c-4640-ab21-3d6442f9ed9b/front-250",
     "titulo": "Fucking Money Man",
@@ -110781,6 +110933,14 @@
     "titulo": "Late Night Feelings (Krystal Klear remix)",
     "fecha": "2019-04-26",
     "artista": "Mark Ronson",
+    "tipo": "Single"
+  },
+  {
+    "id": "c8cc6f5c-2749-4f1c-9f34-2bf8e4f795aa",
+    "imagen": "https://coverartarchive.org/release-group/c8cc6f5c-2749-4f1c-9f34-2bf8e4f795aa/front-250",
+    "titulo": "Tú y yo y el loco amor (banda sonora \"Salir del ropero\")",
+    "fecha": "2019-04-26",
+    "artista": "Mónica Naranjo",
     "tipo": "Single"
   },
   {
@@ -115397,14 +115557,6 @@
     "titulo": "Little Drummer Boy",
     "fecha": "2019",
     "artista": "The Cranberries",
-    "tipo": "Single"
-  },
-  {
-    "id": "1c75d7ae-0e80-4327-bb55-f959cdba10a7",
-    "imagen": "https://coverartarchive.org/release-group/1c75d7ae-0e80-4327-bb55-f959cdba10a7/front-250",
-    "titulo": "Mr. Brightside (remixes)",
-    "fecha": "2019",
-    "artista": "The Killers",
     "tipo": "Single"
   },
   {
@@ -167968,6 +168120,14 @@
     "tipo": "Album"
   },
   {
+    "id": "48388e2e-5507-48d9-b23a-109c9c1f1a16",
+    "imagen": "https://coverartarchive.org/release-group/48388e2e-5507-48d9-b23a-109c9c1f1a16/front-250",
+    "titulo": "Torrente 5: Operación Eurovegas",
+    "fecha": "2014-09-12",
+    "artista": "Mónica Naranjo",
+    "tipo": "Single"
+  },
+  {
     "id": "a38f182c-2a8b-456f-9aac-a4b4630d895e",
     "imagen": "https://coverartarchive.org/release-group/a38f182c-2a8b-456f-9aac-a4b4630d895e/front-250",
     "titulo": "If U Slip U Slide (You Could Be Mine)",
@@ -170480,14 +170640,6 @@
     "tipo": "Single"
   },
   {
-    "id": "6a7c4e9c-3c68-4a46-9302-1449bd6f610c",
-    "imagen": "https://coverartarchive.org/release-group/6a7c4e9c-3c68-4a46-9302-1449bd6f610c/front-250",
-    "titulo": "4.0",
-    "fecha": "2014-05-06",
-    "artista": "Mónica Naranjo",
-    "tipo": "Album"
-  },
-  {
     "id": "90a28c76-e4d8-48ea-b30f-b00d6d32b6e0",
     "imagen": "https://coverartarchive.org/release-group/90a28c76-e4d8-48ea-b30f-b00d6d32b6e0/front-250",
     "titulo": "Olé Brazil",
@@ -170534,6 +170686,14 @@
     "fecha": "2014-05-05",
     "artista": "Michael Jackson",
     "tipo": "Single"
+  },
+  {
+    "id": "6a7c4e9c-3c68-4a46-9302-1449bd6f610c",
+    "imagen": "https://coverartarchive.org/release-group/6a7c4e9c-3c68-4a46-9302-1449bd6f610c/front-250",
+    "titulo": "4.0",
+    "fecha": "2014-05-05",
+    "artista": "Mónica Naranjo",
+    "tipo": "Album"
   },
   {
     "id": "123ffe82-4938-48f5-811b-02b82012f4d7",
@@ -171310,6 +171470,14 @@
     "fecha": "2014-03-31",
     "artista": "Kool & the Gang",
     "tipo": "Album"
+  },
+  {
+    "id": "b788b7ee-87f2-4415-87f8-ca38336c32a4",
+    "imagen": "https://coverartarchive.org/release-group/b788b7ee-87f2-4415-87f8-ca38336c32a4/front-250",
+    "titulo": "Solo se vive una vez (4.0 version)",
+    "fecha": "2014-03-31",
+    "artista": "Mónica Naranjo",
+    "tipo": "Single"
   },
   {
     "id": "21c7fc09-a460-4f77-9205-5b72dd7d8cee",
@@ -179928,6 +180096,14 @@
     "tipo": "Album"
   },
   {
+    "id": "08cf809a-62e8-4c35-8e36-dceb394c0ad5",
+    "imagen": "https://coverartarchive.org/release-group/08cf809a-62e8-4c35-8e36-dceb394c0ad5/front-250",
+    "titulo": "Esencial Mónica Naranjo",
+    "fecha": "2013-06-18",
+    "artista": "Mónica Naranjo",
+    "tipo": "Album"
+  },
+  {
     "id": "5bd3efe0-4a61-46a5-b1e1-3bc4fe5adbe9",
     "imagen": "https://coverartarchive.org/release-group/5bd3efe0-4a61-46a5-b1e1-3bc4fe5adbe9/front-250",
     "titulo": "Despicable Me 2: Original Motion Picture Soundtrack",
@@ -184693,14 +184869,6 @@
     "titulo": "Cardio Tour",
     "fecha": "2013",
     "artista": "Miguel Bosé",
-    "tipo": "Album"
-  },
-  {
-    "id": "08cf809a-62e8-4c35-8e36-dceb394c0ad5",
-    "imagen": "https://coverartarchive.org/release-group/08cf809a-62e8-4c35-8e36-dceb394c0ad5/front-250",
-    "titulo": "Esencial Mónica Naranjo",
-    "fecha": "2013",
-    "artista": "Mónica Naranjo",
     "tipo": "Album"
   },
   {
@@ -217048,14 +217216,6 @@
     "tipo": "Album"
   },
   {
-    "id": "b79115d2-db2e-4315-93cb-e9469c256ae0",
-    "imagen": "https://coverartarchive.org/release-group/b79115d2-db2e-4315-93cb-e9469c256ae0/front-250",
-    "titulo": "One Love (Club Version)",
-    "fecha": "2009-11-27",
-    "artista": "David Guetta",
-    "tipo": "Album"
-  },
-  {
     "id": "f3934df2-ba03-4f03-a542-7852e1d11a12",
     "imagen": "https://coverartarchive.org/release-group/f3934df2-ba03-4f03-a542-7852e1d11a12/front-250",
     "titulo": "KISS Alive 35: Live at Sports Arena, San Diego, CA Nov 27, 2009",
@@ -231224,6 +231384,14 @@
     "tipo": "EP"
   },
   {
+    "id": "414d0f5e-8758-3e17-be16-40a9dae4e546",
+    "imagen": "https://coverartarchive.org/release-group/414d0f5e-8758-3e17-be16-40a9dae4e546/front-250",
+    "titulo": "Europa",
+    "fecha": "2008-03-18",
+    "artista": "Mónica Naranjo",
+    "tipo": "Single"
+  },
+  {
     "id": "9e408ad1-fac8-4e45-b6d2-b4d3a5acba03",
     "imagen": "https://coverartarchive.org/release-group/9e408ad1-fac8-4e45-b6d2-b4d3a5acba03/front-250",
     "titulo": "Опиум",
@@ -234838,14 +235006,6 @@
     "fecha": "2008",
     "artista": "Modestia Aparte",
     "tipo": "Album"
-  },
-  {
-    "id": "414d0f5e-8758-3e17-be16-40a9dae4e546",
-    "imagen": "https://coverartarchive.org/release-group/414d0f5e-8758-3e17-be16-40a9dae4e546/front-250",
-    "titulo": "Europa",
-    "fecha": "2008",
-    "artista": "Mónica Naranjo",
-    "tipo": "Single"
   },
   {
     "id": "c3e0dbce-07d8-4fb5-9f90-680eb003dc52",
@@ -257432,6 +257592,14 @@
     "tipo": "Album"
   },
   {
+    "id": "29c67728-adb9-46fd-bbd5-64c25ce0d446",
+    "imagen": "https://coverartarchive.org/release-group/29c67728-adb9-46fd-bbd5-64c25ce0d446/front-250",
+    "titulo": "Mr. Brightside (Jacques Lu Cont's Thin White Duke mix)",
+    "fecha": "2005-02-22",
+    "artista": "The Killers",
+    "tipo": "Single"
+  },
+  {
     "id": "9f63f118-dece-3ff5-a0cf-5bd91b942cd7",
     "imagen": "https://coverartarchive.org/release-group/9f63f118-dece-3ff5-a0cf-5bd91b942cd7/front-250",
     "titulo": "Constantine: Original Motion Picture Score",
@@ -261462,6 +261630,14 @@
     "fecha": "2005",
     "artista": "The Cranberries",
     "tipo": "Album"
+  },
+  {
+    "id": "1c75d7ae-0e80-4327-bb55-f959cdba10a7",
+    "imagen": "https://coverartarchive.org/release-group/1c75d7ae-0e80-4327-bb55-f959cdba10a7/front-250",
+    "titulo": "Mr. Brightside (remixes)",
+    "fecha": "2005",
+    "artista": "The Killers",
+    "tipo": "Single"
   },
   {
     "id": "344efff9-a593-46a8-877e-7f16d005e162",
@@ -274750,14 +274926,6 @@
     "fecha": "2003",
     "artista": "ABBA",
     "tipo": "Single"
-  },
-  {
-    "id": "6dbeecac-a85d-4640-af08-0037d22667ed",
-    "imagen": "https://coverartarchive.org/release-group/6dbeecac-a85d-4640-af08-0037d22667ed/front-250",
-    "titulo": "Back in Black",
-    "fecha": "2003",
-    "artista": "AC/DC",
-    "tipo": "Album"
   },
   {
     "id": "196dcd7a-f561-328a-b440-3bf271f61f72",
@@ -371296,6 +371464,14 @@
     "tipo": "Album"
   },
   {
+    "id": "94db5d25-b77a-42fa-8eb4-ce09ea3b63fb",
+    "imagen": "https://coverartarchive.org/release-group/94db5d25-b77a-42fa-8eb4-ce09ea3b63fb/front-250",
+    "titulo": "Live USA",
+    "fecha": "1991",
+    "artista": "AC/DC",
+    "tipo": "Album"
+  },
+  {
     "id": "e6e82200-0f59-44b1-b31e-aec5950178c0",
     "imagen": "https://coverartarchive.org/release-group/e6e82200-0f59-44b1-b31e-aec5950178c0/front-250",
     "titulo": "Live USA",
@@ -371363,14 +371539,6 @@
     "id": "88790d96-7a74-46e6-925a-99686b1c2c15",
     "imagen": "https://coverartarchive.org/release-group/88790d96-7a74-46e6-925a-99686b1c2c15/front-250",
     "titulo": "Off the Record Specials With Mary Turner",
-    "fecha": "1991",
-    "artista": "AC/DC",
-    "tipo": "Album"
-  },
-  {
-    "id": "94db5d25-b77a-42fa-8eb4-ce09ea3b63fb",
-    "imagen": "https://coverartarchive.org/release-group/94db5d25-b77a-42fa-8eb4-ce09ea3b63fb/front-250",
-    "titulo": "Live USA",
     "fecha": "1991",
     "artista": "AC/DC",
     "tipo": "Album"
@@ -373680,14 +373848,6 @@
     "tipo": "Album"
   },
   {
-    "id": "0a6a5370-94f3-3dc5-9771-cd2edcb8f3df",
-    "imagen": "https://coverartarchive.org/release-group/0a6a5370-94f3-3dc5-9771-cd2edcb8f3df/front-250",
-    "titulo": "1991-08-10: The Four Sandmen: Gentofte Stadion, Copenhagen, Denmark",
-    "fecha": "1991",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "12c3736c-f168-4a95-b13b-7af6c79501d4",
     "imagen": "https://coverartarchive.org/release-group/12c3736c-f168-4a95-b13b-7af6c79501d4/front-250",
     "titulo": "1991-11-12: Brown County Veterans Memorial Arena - Green Bay, WI, USA",
@@ -373699,6 +373859,14 @@
     "id": "36d835a4-037b-3698-a92c-6ccd74e1463a",
     "imagen": "https://coverartarchive.org/release-group/36d835a4-037b-3698-a92c-6ccd74e1463a/front-250",
     "titulo": "San Francisco '85",
+    "fecha": "1991",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "4501b2b4-b681-397e-800b-0515a442f75f",
+    "imagen": "https://coverartarchive.org/release-group/4501b2b4-b681-397e-800b-0515a442f75f/front-250",
+    "titulo": "1991-08-10: Gentofte Stadion, Copenhagen, Denmark",
     "fecha": "1991",
     "artista": "Metallica",
     "tipo": "Album"
@@ -389800,6 +389968,14 @@
     "tipo": "Single"
   },
   {
+    "id": "ba38f63f-bd0e-4293-ae56-7c8c39266ccc",
+    "imagen": "https://coverartarchive.org/release-group/ba38f63f-bd0e-4293-ae56-7c8c39266ccc/front-250",
+    "titulo": "In the Air Tonight ('88 remix)",
+    "fecha": "1988",
+    "artista": "Phil Collins",
+    "tipo": "Single"
+  },
+  {
     "id": "8cbf76da-6530-347b-acb8-13486aeeb648",
     "imagen": "https://coverartarchive.org/release-group/8cbf76da-6530-347b-acb8-13486aeeb648/front-250",
     "titulo": "1972‐02‐20: The Rainbow Theatre, Finsbury Park, London, UK",
@@ -391006,14 +391182,6 @@
     "fecha": "1987-12",
     "artista": "Gary Moore",
     "tipo": "Single"
-  },
-  {
-    "id": "def74c02-2d96-4bae-9e2c-4394f45d9498",
-    "imagen": "https://coverartarchive.org/release-group/def74c02-2d96-4bae-9e2c-4394f45d9498/front-250",
-    "titulo": "Rock ’n’ On: 24 Legendary Hits",
-    "fecha": "1987-11-30",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
   },
   {
     "id": "ccd24009-ae49-36f4-b407-85a1c28cddaa",
@@ -409232,14 +409400,6 @@
     "tipo": "Album"
   },
   {
-    "id": "ac93c553-799c-4bd3-9f40-4c12d9508e1e",
-    "imagen": "https://coverartarchive.org/release-group/ac93c553-799c-4bd3-9f40-4c12d9508e1e/front-250",
-    "titulo": "Historia de la música rock - 26",
-    "fecha": "1982",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "bf67243a-fc07-49a9-9c77-eb2ad96915d0",
     "imagen": "https://coverartarchive.org/release-group/bf67243a-fc07-49a9-9c77-eb2ad96915d0/front-250",
     "titulo": "Elvis Presley (La grande storia del rock)",
@@ -409267,6 +409427,14 @@
     "id": "a789fcd1-8e24-354b-b2a9-a44d789784f5",
     "imagen": "https://coverartarchive.org/release-group/a789fcd1-8e24-354b-b2a9-a44d789784f5/front-250",
     "titulo": "Memories of Christmas",
+    "fecha": "1982",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "ac93c553-799c-4bd3-9f40-4c12d9508e1e",
+    "imagen": "https://coverartarchive.org/release-group/ac93c553-799c-4bd3-9f40-4c12d9508e1e/front-250",
+    "titulo": "Historia de la música rock - 26",
     "fecha": "1982",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -426818,7 +426986,7 @@
   {
     "id": "3d6811bd-7d84-4a36-bd34-57a6ada59979",
     "imagen": "https://coverartarchive.org/release-group/3d6811bd-7d84-4a36-bd34-57a6ada59979/front-250",
-    "titulo": "Rod Stewart And The Faces",
+    "titulo": "Rod Stewart and the Faces",
     "fecha": "1975",
     "artista": "Rod Stewart",
     "tipo": "Album"
@@ -429867,6 +430035,14 @@
     "id": "48e2926f-639a-4289-8303-451f1dadefc1",
     "imagen": "https://coverartarchive.org/release-group/48e2926f-639a-4289-8303-451f1dadefc1/front-250",
     "titulo": "Elvis",
+    "fecha": "1973",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "def74c02-2d96-4bae-9e2c-4394f45d9498",
+    "imagen": "https://coverartarchive.org/release-group/def74c02-2d96-4bae-9e2c-4394f45d9498/front-250",
+    "titulo": "Rock ’n’ On: 24 Legendary Hits",
     "fecha": "1973",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -463832,14 +464008,6 @@
     "tipo": "Single"
   },
   {
-    "id": "93012c6c-ed99-40fe-bb75-cf029ad25f82",
-    "imagen": "https://coverartarchive.org/release-group/93012c6c-ed99-40fe-bb75-cf029ad25f82/front-250",
-    "titulo": "Scarlet 2 CLAUDE",
-    "fecha": "",
-    "artista": "Doja Cat",
-    "tipo": "Album"
-  },
-  {
     "id": "a0cb160b-50ab-4995-9d0a-c1de963fc199",
     "imagen": "https://coverartarchive.org/release-group/a0cb160b-50ab-4995-9d0a-c1de963fc199/front-250",
     "titulo": "1974-04-20: The Bottom Line, New York, NY, USA",
@@ -472976,14 +473144,6 @@
     "tipo": "Album"
   },
   {
-    "id": "4501b2b4-b681-397e-800b-0515a442f75f",
-    "imagen": "https://coverartarchive.org/release-group/4501b2b4-b681-397e-800b-0515a442f75f/front-250",
-    "titulo": "1991-08-10: Gentofte Stadion, Copenhagen, Denmark",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "4ac0eff0-2e53-3416-8f94-990a17ed679c",
     "imagen": "https://coverartarchive.org/release-group/4ac0eff0-2e53-3416-8f94-990a17ed679c/front-250",
     "titulo": "1985-01-26: Brooklyn, NY, USA",
@@ -473003,6 +473163,14 @@
     "id": "5155ec1f-1d45-3332-8fbe-4649a5b5140c",
     "imagen": "https://coverartarchive.org/release-group/5155ec1f-1d45-3332-8fbe-4649a5b5140c/front-250",
     "titulo": "1988‐10‐15: Helsinki, Finland",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "52727903-2c8a-3211-aefb-50448e2a327f",
+    "imagen": "https://coverartarchive.org/release-group/52727903-2c8a-3211-aefb-50448e2a327f/front-250",
+    "titulo": "1994-05-30: Earthquake Hits Buffalo: Darien Lake Amphitheater, Buffalo, NY, USA",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -473176,17 +473344,17 @@
     "tipo": "Album"
   },
   {
-    "id": "96ad199f-eeb7-3b87-ab5e-d951ce1be1d4",
-    "imagen": "https://coverartarchive.org/release-group/96ad199f-eeb7-3b87-ab5e-d951ce1be1d4/front-250",
-    "titulo": "1986-07-16: Fort Wayne, IN, USA",
+    "id": "94576e27-c7c8-3d7a-b2ab-bcd49814653f",
+    "imagen": "https://coverartarchive.org/release-group/94576e27-c7c8-3d7a-b2ab-bcd49814653f/front-250",
+    "titulo": "1994-05-30: Buffalo, NY, USA",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
   },
   {
-    "id": "97640434-74ee-3067-9a8f-a0cbc1e729b4",
-    "imagen": "https://coverartarchive.org/release-group/97640434-74ee-3067-9a8f-a0cbc1e729b4/front-250",
-    "titulo": "1992‐11‐26: Festhalle, Frankfurt, Germany",
+    "id": "96ad199f-eeb7-3b87-ab5e-d951ce1be1d4",
+    "imagen": "https://coverartarchive.org/release-group/96ad199f-eeb7-3b87-ab5e-d951ce1be1d4/front-250",
+    "titulo": "1986-07-16: Fort Wayne, IN, USA",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -473267,6 +473435,14 @@
     "id": "b02acbcd-8c10-3168-869c-fbdcf25c91b5",
     "imagen": "https://coverartarchive.org/release-group/b02acbcd-8c10-3168-869c-fbdcf25c91b5/front-250",
     "titulo": "1984-12-04: Sindelfingen, Germany",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "b068722b-79e4-3282-a971-59a95c3c35be",
+    "imagen": "https://coverartarchive.org/release-group/b068722b-79e4-3282-a971-59a95c3c35be/front-250",
+    "titulo": "1994-06-07: Allentown, PA, USA",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -473387,14 +473563,6 @@
     "id": "da005e1e-8937-31ba-8c0d-cdd9ac0f63a6",
     "imagen": "https://coverartarchive.org/release-group/da005e1e-8937-31ba-8c0d-cdd9ac0f63a6/front-250",
     "titulo": "1993-07-04: Rock Werchter, Werchter, Belgium",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
-    "id": "db1a1e69-f0c3-3621-8b67-f5560c785296",
-    "imagen": "https://coverartarchive.org/release-group/db1a1e69-f0c3-3621-8b67-f5560c785296/front-250",
-    "titulo": "1985-02-09: Chicago, IL, USA",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -473736,14 +473904,6 @@
     "tipo": "Album"
   },
   {
-    "id": "52727903-2c8a-3211-aefb-50448e2a327f",
-    "imagen": "https://coverartarchive.org/release-group/52727903-2c8a-3211-aefb-50448e2a327f/front-250",
-    "titulo": "1994-05-30: Earthquake Hits Buffalo: Darien Lake Amphitheater, Buffalo, NY, USA",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "55a54262-d01f-3cc8-81fa-2d35ba01ceaa",
     "imagen": "https://coverartarchive.org/release-group/55a54262-d01f-3cc8-81fa-2d35ba01ceaa/front-250",
     "titulo": "1999-05-28: Globen Theater, Stockholm, Sweden",
@@ -473904,14 +474064,6 @@
     "tipo": "Album"
   },
   {
-    "id": "94576e27-c7c8-3d7a-b2ab-bcd49814653f",
-    "imagen": "https://coverartarchive.org/release-group/94576e27-c7c8-3d7a-b2ab-bcd49814653f/front-250",
-    "titulo": "1994-05-30: Buffalo, NY, USA",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "98f4c378-8101-3c99-a83b-dacc429458f3",
     "imagen": "https://coverartarchive.org/release-group/98f4c378-8101-3c99-a83b-dacc429458f3/front-250",
     "titulo": "1997-08-24: Reading, UK",
@@ -473976,12 +474128,12 @@
     "tipo": "Album"
   },
   {
-    "id": "b068722b-79e4-3282-a971-59a95c3c35be",
-    "imagen": "https://coverartarchive.org/release-group/b068722b-79e4-3282-a971-59a95c3c35be/front-250",
-    "titulo": "1994-06-07: Allentown, PA, USA",
+    "id": "b2f32543-c99e-3827-b5ea-baeda81af93b",
+    "imagen": "https://coverartarchive.org/release-group/b2f32543-c99e-3827-b5ea-baeda81af93b/front-250",
+    "titulo": "2009-04-04: Rock & Roll Hall of Fame Induction Ceremony, Cleveland, OH, USA",
     "fecha": "",
     "artista": "Metallica",
-    "tipo": "Album"
+    "tipo": "EP"
   },
   {
     "id": "b2fcc465-fd3c-3823-9762-a979f41c554a",
@@ -474254,14 +474406,6 @@
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
-  },
-  {
-    "id": "b2f32543-c99e-3827-b5ea-baeda81af93b",
-    "imagen": "https://coverartarchive.org/release-group/b2f32543-c99e-3827-b5ea-baeda81af93b/front-250",
-    "titulo": "2009-04-04: Rock & Roll Hall of Fame Induction Ceremony, Cleveland, OH, USA",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "EP"
   },
   {
     "id": "f5040ecf-a706-45f6-856d-b0ea1abeb1b0",
@@ -474598,14 +474742,6 @@
     "fecha": "",
     "artista": "Modestia Aparte",
     "tipo": "Album"
-  },
-  {
-    "id": "38e20b36-e8d1-4253-89c9-375b9af59210",
-    "imagen": "https://coverartarchive.org/release-group/38e20b36-e8d1-4253-89c9-375b9af59210/front-250",
-    "titulo": "Mes Excentricités, Vol. 1",
-    "fecha": "",
-    "artista": "Mónica Naranjo",
-    "tipo": "EP"
   },
   {
     "id": "4822181d-146d-3b3d-8143-9ce6313ea045",
@@ -476984,14 +477120,6 @@
     "tipo": "Album"
   },
   {
-    "id": "04a3d845-900d-455a-a1bc-b7577339b295",
-    "imagen": "https://coverartarchive.org/release-group/04a3d845-900d-455a-a1bc-b7577339b295/front-250",
-    "titulo": "Budapest",
-    "fecha": "",
-    "artista": "Queen",
-    "tipo": "Album"
-  },
-  {
     "id": "439511f8-eb74-4434-bc6b-112f986824e4",
     "imagen": "https://coverartarchive.org/release-group/439511f8-eb74-4434-bc6b-112f986824e4/front-250",
     "titulo": "Golden Ballads",
@@ -477035,6 +477163,14 @@
     "id": "de953ed8-2f8e-3c90-bf3a-609bccc99398",
     "imagen": "https://coverartarchive.org/release-group/de953ed8-2f8e-3c90-bf3a-609bccc99398/front-250",
     "titulo": "Best Selection",
+    "fecha": "",
+    "artista": "Queen",
+    "tipo": "Album"
+  },
+  {
+    "id": "04a3d845-900d-455a-a1bc-b7577339b295",
+    "imagen": "https://coverartarchive.org/release-group/04a3d845-900d-455a-a1bc-b7577339b295/front-250",
+    "titulo": "Budapest",
     "fecha": "",
     "artista": "Queen",
     "tipo": "Album"
@@ -482518,14 +482654,6 @@
     "fecha": "",
     "artista": "The Foundations",
     "tipo": "Album"
-  },
-  {
-    "id": "29c67728-adb9-46fd-bbd5-64c25ce0d446",
-    "imagen": "https://coverartarchive.org/release-group/29c67728-adb9-46fd-bbd5-64c25ce0d446/front-250",
-    "titulo": "Mr. Brightside (Jacques Lu Cont's Thin White Duke mix)",
-    "fecha": "",
-    "artista": "The Killers",
-    "tipo": "Single"
   },
   {
     "id": "2ba3d659-8019-4e5a-a8f9-09c0c0bbb5fd",
