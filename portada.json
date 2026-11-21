@@ -1,5 +1,13 @@
 [
   {
+    "id": "3e9ce240-ab4c-4267-a343-dce37db0417f",
+    "imagen": "https://coverartarchive.org/release-group/3e9ce240-ab4c-4267-a343-dce37db0417f/front-250",
+    "titulo": "Summer, Highland Falls (alternate acoustic version)",
+    "fecha": "2026-11-20",
+    "artista": "Billy Joel",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6831730477",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c8/4c/dc/c84cdce1-9a30-1781-39db-3e893a678bfa/823375584131_Cover.jpg/100x100bb.jpg",
     "titulo": "AQUILES, Vol.1",
@@ -40,12 +48,28 @@
     "tipo": "Single"
   },
   {
+    "id": "3cfa1562-90d4-4f12-bde6-4a62b29cb2b5",
+    "imagen": "https://coverartarchive.org/release-group/3cfa1562-90d4-4f12-bde6-4a62b29cb2b5/front-250",
+    "titulo": "Ma préférée",
+    "fecha": "2026-11-20",
+    "artista": "J Balvin",
+    "tipo": "Single"
+  },
+  {
+    "id": "58206afd-3a1d-4283-a420-7f831f4a05ea",
+    "imagen": "https://coverartarchive.org/release-group/58206afd-3a1d-4283-a420-7f831f4a05ea/front-250",
+    "titulo": "Fire",
+    "fecha": "2026-11-20",
+    "artista": "Loreen",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6836766214",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/30/cb/ae/30cbae4b-3fd0-4c66-8b9b-897bc698f9ed/26UM1IM47866.rgb.jpg/100x100bb.jpg",
-    "titulo": "Here (For Christmas) - Single",
+    "titulo": "Here (For Christmas)",
     "fecha": "2026-11-20",
     "artista": "Lukas Graham",
-    "tipo": "Single"
+    "tipo": "Album"
   },
   {
     "id": "apple-6825904452",
@@ -80,6 +104,14 @@
     "tipo": "Single"
   },
   {
+    "id": "apple-6837325766",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0b/6e/a8/0b6ea817-1a19-c6c5-b80a-8a7021913246/1702599.jpg/100x100bb.jpg",
+    "titulo": "Rêve de demain - Single",
+    "fecha": "2026-11-20",
+    "artista": "Raphael",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6821086153",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/28/ce/d1/28ced1df-88ff-9b25-fdd0-2825c8e466c7/1200220275144.jpg/100x100bb.jpg",
     "titulo": "Pearls Of Passion (40th Anniversary Edition)",
@@ -110,6 +142,14 @@
     "fecha": "2026-11-20",
     "artista": "Take That",
     "tipo": "Album"
+  },
+  {
+    "id": "9c3c7ee3-4961-4070-ac6e-b162d42b0bed",
+    "imagen": "https://coverartarchive.org/release-group/9c3c7ee3-4961-4070-ac6e-b162d42b0bed/front-250",
+    "titulo": "A PLACE TO GO",
+    "fecha": "2026-11-20",
+    "artista": "The Kid LAROI",
+    "tipo": "Single"
   },
   {
     "id": "apple-6834527143",
@@ -150,6 +190,22 @@
     "fecha": "2026-11-19",
     "artista": "El Último de la Fila",
     "tipo": "Album"
+  },
+  {
+    "id": "3e41c284-aada-4d39-a845-f57cdc7d3c9c",
+    "imagen": "https://coverartarchive.org/release-group/3e41c284-aada-4d39-a845-f57cdc7d3c9c/front-250",
+    "titulo": "SOY MEJOR 2.0",
+    "fecha": "2026-11-19",
+    "artista": "Quevedo",
+    "tipo": "Single"
+  },
+  {
+    "id": "0955d03a-3ef9-48a7-8bc1-9d353c2d2bb3",
+    "imagen": "https://coverartarchive.org/release-group/0955d03a-3ef9-48a7-8bc1-9d353c2d2bb3/front-250",
+    "titulo": "Tremendo Desastre",
+    "fecha": "2026-11-19",
+    "artista": "Rauw Alejandro",
+    "tipo": "Single"
   },
   {
     "id": "apple-6832753081",
@@ -552,14 +608,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6829356003",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/9c/e9/95/9ce99515-f7df-fde2-1bdb-f63f6b2d9a88/859750000279_cover.jpg/100x100bb.jpg",
-    "titulo": "Passion - Single",
-    "fecha": "2026-11-07",
-    "artista": "OnMusic",
-    "tipo": "Single"
-  },
-  {
     "id": "284a99e7-0d61-4f6d-8dcf-2af1109f73d4",
     "imagen": "https://coverartarchive.org/release-group/284a99e7-0d61-4f6d-8dcf-2af1109f73d4/front-250",
     "titulo": "Good Weather For Immaculate Conception",
@@ -800,6 +848,14 @@
     "tipo": "Album"
   },
   {
+    "id": "70447cc0-40ed-4db1-80d1-fe4f66a9ed5a",
+    "imagen": "https://coverartarchive.org/release-group/70447cc0-40ed-4db1-80d1-fe4f66a9ed5a/front-250",
+    "titulo": "All the People",
+    "fecha": "2026-11-06",
+    "artista": "Ayra Starr",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6827070722",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c3/a1/1a/c3a11a09-21c0-2183-1e6d-12b4fb76166b/26UM1IM37417.rgb.jpg/100x100bb.jpg",
     "titulo": "Inevitable (Live) [feat. RUSLANA] - Single",
@@ -856,14 +912,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6829355789",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5d/3e/dd/5d3edd95-36ff-63d3-0a0d-ee2d677d65df/859750000293_cover.jpg/100x100bb.jpg",
-    "titulo": "Fácil Me Olvide - Single",
-    "fecha": "2026-11-05",
-    "artista": "OnMusic",
-    "tipo": "Single"
-  },
-  {
     "id": "fd6054f7-d749-446c-8230-9d3caecd1c78",
     "imagen": "https://coverartarchive.org/release-group/fd6054f7-d749-446c-8230-9d3caecd1c78/front-250",
     "titulo": "Sheep (original radio edit)",
@@ -901,14 +949,6 @@
     "titulo": "くたばれマイダーリン - Single",
     "fecha": "2026-11-04",
     "artista": "LiSA",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6829352593",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/22/71/05/227105f9-408c-2974-4031-04ef3ca13aad/859749999546_cover.jpg/100x100bb.jpg",
-    "titulo": "Cuando Te Veo - Single",
-    "fecha": "2026-11-03",
-    "artista": "OnMusic",
     "tipo": "Single"
   },
   {
@@ -11131,6 +11171,14 @@
     "id": "apple-6781081338",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ed/0c/89/ed0c89b1-bb54-7933-f93a-4ba8d625fc10/602478438561.jpg/100x100bb.jpg",
     "titulo": "Queen II (2026 Mix)",
+    "fecha": "2026-03-27",
+    "artista": "Queen",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6799160177",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f7/a5/65/f7a56513-1ef7-8703-b39d-d638a8745cb0/0602478438615.jpg/100x100bb.jpg",
+    "titulo": "Queen II (Collector's Edition)",
     "fecha": "2026-03-27",
     "artista": "Queen",
     "tipo": "Album"
@@ -23864,14 +23912,6 @@
     "tipo": "Single"
   },
   {
-    "id": "cb834bd2-c36d-4f3d-a4d5-9188b8566392",
-    "imagen": "https://coverartarchive.org/release-group/cb834bd2-c36d-4f3d-a4d5-9188b8566392/front-250",
-    "titulo": "Greenwich Village Folk: Four Classic Albums",
-    "fecha": "2025-05-09",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
     "id": "f3abfe00-6d78-4ecc-ac23-a2be02ab3519",
     "imagen": "https://coverartarchive.org/release-group/f3abfe00-6d78-4ecc-ac23-a2be02ab3519/front-250",
     "titulo": "Greenwich Village Folk: Four Classic Albums",
@@ -29014,6 +29054,14 @@
     "fecha": "2024-12-06",
     "artista": "The Rolling Stones",
     "tipo": "Album"
+  },
+  {
+    "id": "66470607-4dfa-48bb-b975-5def450f45f7",
+    "imagen": "https://coverartarchive.org/release-group/66470607-4dfa-48bb-b975-5def450f45f7/front-250",
+    "titulo": "Hit It Once",
+    "fecha": "2024-12-06",
+    "artista": "Wiz Khalifa",
+    "tipo": "Single"
   },
   {
     "id": "97af29c2-e3b5-417a-aac7-888fb2d5ff52",
@@ -36424,6 +36472,14 @@
     "tipo": "Album"
   },
   {
+    "id": "4d279016-536c-4a68-93d8-72b2822acf81",
+    "imagen": "https://coverartarchive.org/release-group/4d279016-536c-4a68-93d8-72b2822acf81/front-250",
+    "titulo": "XXX",
+    "fecha": "2024-05-10",
+    "artista": "Wiz Khalifa",
+    "tipo": "Single"
+  },
+  {
     "id": "19728ece-7f1c-487c-bbe4-0847f0edbfca",
     "imagen": "https://coverartarchive.org/release-group/19728ece-7f1c-487c-bbe4-0847f0edbfca/front-250",
     "titulo": "HE KNOWS",
@@ -39202,7 +39258,7 @@
   {
     "id": "abd64cf0-06b3-4d47-94ce-dc2feb394437",
     "imagen": "https://coverartarchive.org/release-group/abd64cf0-06b3-4d47-94ce-dc2feb394437/front-250",
-    "titulo": "Time To Say Goodbye",
+    "titulo": "Time to Say Goodbye",
     "fecha": "2024-03-11",
     "artista": "Andrea Bocelli",
     "tipo": "Single"
@@ -39586,7 +39642,7 @@
   {
     "id": "e90fac8c-5997-4587-83b3-1009007d20d2",
     "imagen": "https://coverartarchive.org/release-group/e90fac8c-5997-4587-83b3-1009007d20d2/front-250",
-    "titulo": "Dare To Be (From The Motion Picture \"Cabrini\")",
+    "titulo": "Dare to Be (From the Motion Picture \"Cabrini\")",
     "fecha": "2024-02-23",
     "artista": "Andrea Bocelli",
     "tipo": "Single"
@@ -66450,7 +66506,7 @@
   {
     "id": "79b0dfa0-b381-46ac-9d57-2da93411e0ea",
     "imagen": "https://coverartarchive.org/release-group/79b0dfa0-b381-46ac-9d57-2da93411e0ea/front-250",
-    "titulo": "Solamente Una Vez",
+    "titulo": "Solamente una vez",
     "fecha": "2022-03-18",
     "artista": "Andrea Bocelli",
     "tipo": "Single"
@@ -71912,6 +71968,14 @@
     "tipo": "Single"
   },
   {
+    "id": "e329076c-99ff-4667-9f8b-c4268f8018cd",
+    "imagen": "https://coverartarchive.org/release-group/e329076c-99ff-4667-9f8b-c4268f8018cd/front-250",
+    "titulo": "One Night (DJ Seinfeld Remix)",
+    "fecha": "2021-11-05",
+    "artista": "Griff",
+    "tipo": "Single"
+  },
+  {
     "id": "68b63f5f-6c97-4ac7-983b-4fd12ccdcc3a",
     "imagen": "https://coverartarchive.org/release-group/68b63f5f-6c97-4ac7-983b-4fd12ccdcc3a/front-250",
     "titulo": "Against The World",
@@ -72229,6 +72293,14 @@
     "titulo": "Basket Case (BBC Live Session)",
     "fecha": "2021-10-29",
     "artista": "Green Day",
+    "tipo": "Single"
+  },
+  {
+    "id": "0b005e85-1683-40e0-a1bf-89b5ec3ac8f8",
+    "imagen": "https://coverartarchive.org/release-group/0b005e85-1683-40e0-a1bf-89b5ec3ac8f8/front-250",
+    "titulo": "One Night (Jack wins Remix)",
+    "fecha": "2021-10-29",
+    "artista": "Griff",
     "tipo": "Single"
   },
   {
@@ -76366,6 +76438,14 @@
     "fecha": "2021-07-23",
     "artista": "The Rolling Stones",
     "tipo": "EP"
+  },
+  {
+    "id": "ba114fd1-a8a9-4d65-aadd-ed5aa194778f",
+    "imagen": "https://coverartarchive.org/release-group/ba114fd1-a8a9-4d65-aadd-ed5aa194778f/front-250",
+    "titulo": "Activated",
+    "fecha": "2021-07-23",
+    "artista": "Wiz Khalifa",
+    "tipo": "Single"
   },
   {
     "id": "38a2747e-3ec8-4b21-900c-58cbc4234d2b",
@@ -81014,6 +81094,14 @@
     "fecha": "2021-04-02",
     "artista": "Wiz Khalifa",
     "tipo": "EP"
+  },
+  {
+    "id": "5af5bc13-078d-42e6-83b5-fdfdf6cbb1c3",
+    "imagen": "https://coverartarchive.org/release-group/5af5bc13-078d-42e6-83b5-fdfdf6cbb1c3/front-250",
+    "titulo": "Yea Yup",
+    "fecha": "2021-04-02",
+    "artista": "Wiz Khalifa",
+    "tipo": "Single"
   },
   {
     "id": "a16ece0d-7d62-4f68-9f5f-7caf8f36fb17",
@@ -96938,7 +97026,7 @@
   {
     "id": "c966319d-9058-4677-abf8-4209a496645c",
     "imagen": "https://coverartarchive.org/release-group/c966319d-9058-4677-abf8-4209a496645c/front-250",
-    "titulo": "Music For Hope: From the Duomo di Milano",
+    "titulo": "Music for Hope: From the Duomo di Milano",
     "fecha": "2020-04-12",
     "artista": "Andrea Bocelli",
     "tipo": "Album"
@@ -105386,7 +105474,7 @@
   {
     "id": "c5f317f1-7590-4cea-8a47-9b7e428b2f51",
     "imagen": "https://coverartarchive.org/release-group/c5f317f1-7590-4cea-8a47-9b7e428b2f51/front-250",
-    "titulo": "Return To Love",
+    "titulo": "Return to Love",
     "fecha": "2019-10-03",
     "artista": "Andrea Bocelli",
     "tipo": "Single"
@@ -105410,7 +105498,7 @@
   {
     "id": "c5f317f1-7590-4cea-8a47-9b7e428b2f51",
     "imagen": "https://coverartarchive.org/release-group/c5f317f1-7590-4cea-8a47-9b7e428b2f51/front-250",
-    "titulo": "Return To Love",
+    "titulo": "Return to Love",
     "fecha": "2019-10-03",
     "artista": "Ellie Goulding",
     "tipo": "Single"
@@ -117776,14 +117864,6 @@
     "tipo": "Single"
   },
   {
-    "id": "502fa40b-c6e4-4881-b1d1-562c31868b21",
-    "imagen": "https://coverartarchive.org/release-group/502fa40b-c6e4-4881-b1d1-562c31868b21/front-250",
-    "titulo": "LOFI PAPI",
-    "fecha": "2018-11-06",
-    "artista": "Drake",
-    "tipo": "Album"
-  },
-  {
     "id": "168feb63-6d38-4f4d-8dc8-18ec57515485",
     "imagen": "https://coverartarchive.org/release-group/168feb63-6d38-4f4d-8dc8-18ec57515485/front-250",
     "titulo": "Bad Liar",
@@ -122270,6 +122350,14 @@
     "fecha": "2018-06-29",
     "artista": "Sting",
     "tipo": "EP"
+  },
+  {
+    "id": "108298d2-5613-4f70-9869-1a00242a64a3",
+    "imagen": "https://coverartarchive.org/release-group/108298d2-5613-4f70-9869-1a00242a64a3/front-250",
+    "titulo": "Gin & Drugs (feat. Problem)",
+    "fecha": "2018-06-29",
+    "artista": "Wiz Khalifa",
+    "tipo": "Single"
   },
   {
     "id": "282c79bd-bafc-45d3-a70d-aa4bfe475a30",
@@ -176642,7 +176730,7 @@
   {
     "id": "31e6197c-b295-4d20-a6c9-061d542b9322",
     "imagen": "https://coverartarchive.org/release-group/31e6197c-b295-4d20-a6c9-061d542b9322/front-250",
-    "titulo": "Quizàs, Quizàs, Quizàs",
+    "titulo": "Quizàs, quizàs, quizàs",
     "fecha": "2013-11-08",
     "artista": "Andrea Bocelli",
     "tipo": "EP"
@@ -176658,7 +176746,7 @@
   {
     "id": "31e6197c-b295-4d20-a6c9-061d542b9322",
     "imagen": "https://coverartarchive.org/release-group/31e6197c-b295-4d20-a6c9-061d542b9322/front-250",
-    "titulo": "Quizàs, Quizàs, Quizàs",
+    "titulo": "Quizàs, quizàs, quizàs",
     "fecha": "2013-11-08",
     "artista": "Jennifer Lopez",
     "tipo": "EP"
@@ -210584,14 +210672,6 @@
     "tipo": "Single"
   },
   {
-    "id": "a5da9d1a-c3dc-4787-a218-622f14981b72",
-    "imagen": "https://coverartarchive.org/release-group/a5da9d1a-c3dc-4787-a218-622f14981b72/front-250",
-    "titulo": "Thank Us Later: The Remix Album",
-    "fecha": "2010-06-16",
-    "artista": "Drake",
-    "tipo": "Album"
-  },
-  {
     "id": "0492ab4a-916f-45e3-92ed-1d2cc6052292",
     "imagen": "https://coverartarchive.org/release-group/0492ab4a-916f-45e3-92ed-1d2cc6052292/front-250",
     "titulo": "9AM in Dallas",
@@ -242336,14 +242416,6 @@
     "tipo": "Album"
   },
   {
-    "id": "b516fdfb-43c2-48d7-bf49-08a62eac1d58",
-    "imagen": "https://coverartarchive.org/release-group/b516fdfb-43c2-48d7-bf49-08a62eac1d58/front-250",
-    "titulo": "Birmingham 2007",
-    "fecha": "2007",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
     "id": "17b8745d-c52a-4f04-a293-3b72cc63e370",
     "imagen": "https://coverartarchive.org/release-group/17b8745d-c52a-4f04-a293-3b72cc63e370/front-250",
     "titulo": "Park It Where The Sun Don't Shine",
@@ -242499,6 +242571,14 @@
     "id": "9b069320-7ccf-4a94-9cc4-509aa6994e4f",
     "imagen": "https://coverartarchive.org/release-group/9b069320-7ccf-4a94-9cc4-509aa6994e4f/front-250",
     "titulo": "Glasgow 2007",
+    "fecha": "2007",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
+    "id": "b516fdfb-43c2-48d7-bf49-08a62eac1d58",
+    "imagen": "https://coverartarchive.org/release-group/b516fdfb-43c2-48d7-bf49-08a62eac1d58/front-250",
+    "titulo": "Birmingham 2007",
     "fecha": "2007",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -267010,7 +267090,7 @@
   {
     "id": "b97408cf-9aae-47c2-8e5a-61a8e1fdf175",
     "imagen": "https://coverartarchive.org/release-group/b97408cf-9aae-47c2-8e5a-61a8e1fdf175/front-250",
-    "titulo": "Verdi - Il Trovatore",
+    "titulo": "Verdi - Il trovatore",
     "fecha": "2004",
     "artista": "Andrea Bocelli",
     "tipo": "Album"
@@ -275568,17 +275648,17 @@
     "tipo": "Album"
   },
   {
-    "id": "e3cb4845-0ccf-4fff-b848-1b14c360af9a",
-    "imagen": "https://coverartarchive.org/release-group/e3cb4845-0ccf-4fff-b848-1b14c360af9a/front-250",
-    "titulo": "You Could Never Improve The Music. But Wait Until You Hear The Sound",
+    "id": "8b461352-91f2-475c-980a-98f3fc0669de",
+    "imagen": "https://coverartarchive.org/release-group/8b461352-91f2-475c-980a-98f3fc0669de/front-250",
+    "titulo": "The Lost Cover Show of 2002",
     "fecha": "2003",
     "artista": "Bob Dylan",
     "tipo": "Album"
   },
   {
-    "id": "8b461352-91f2-475c-980a-98f3fc0669de",
-    "imagen": "https://coverartarchive.org/release-group/8b461352-91f2-475c-980a-98f3fc0669de/front-250",
-    "titulo": "The Lost Cover Show of 2002",
+    "id": "e3cb4845-0ccf-4fff-b848-1b14c360af9a",
+    "imagen": "https://coverartarchive.org/release-group/e3cb4845-0ccf-4fff-b848-1b14c360af9a/front-250",
+    "titulo": "You Could Never Improve The Music. But Wait Until You Hear The Sound",
     "fecha": "2003",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -291528,9 +291608,25 @@
     "tipo": "Album"
   },
   {
+    "id": "5ee60c70-52e6-43b2-9fe0-286c6ecc08aa",
+    "imagen": "https://coverartarchive.org/release-group/5ee60c70-52e6-43b2-9fe0-286c6ecc08aa/front-250",
+    "titulo": "Borgholm 2001",
+    "fecha": "2001",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
     "id": "a561f050-e09d-39ff-be78-02edde7b68ee",
     "imagen": "https://coverartarchive.org/release-group/a561f050-e09d-39ff-be78-02edde7b68ee/front-250",
     "titulo": "1995 European Tour: Anthology",
+    "fecha": "2001",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
+    "id": "d2d69ba5-d133-3a04-8f40-11a555a3f831",
+    "imagen": "https://coverartarchive.org/release-group/d2d69ba5-d133-3a04-8f40-11a555a3f831/front-250",
+    "titulo": "Duets",
     "fecha": "2001",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -291555,14 +291651,6 @@
     "id": "2ea55cd3-a25b-487d-a334-caa490447753",
     "imagen": "https://coverartarchive.org/release-group/2ea55cd3-a25b-487d-a334-caa490447753/front-250",
     "titulo": "Roadmaps for the Soul",
-    "fecha": "2001",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
-    "id": "5ee60c70-52e6-43b2-9fe0-286c6ecc08aa",
-    "imagen": "https://coverartarchive.org/release-group/5ee60c70-52e6-43b2-9fe0-286c6ecc08aa/front-250",
-    "titulo": "Borgholm 2001",
     "fecha": "2001",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -291603,14 +291691,6 @@
     "id": "cd146f5c-7c89-4995-9e4f-c341eb77c5d3",
     "imagen": "https://coverartarchive.org/release-group/cd146f5c-7c89-4995-9e4f-c341eb77c5d3/front-250",
     "titulo": "Spokane 2001",
-    "fecha": "2001",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
-    "id": "d2d69ba5-d133-3a04-8f40-11a555a3f831",
-    "imagen": "https://coverartarchive.org/release-group/d2d69ba5-d133-3a04-8f40-11a555a3f831/front-250",
-    "titulo": "Duets",
     "fecha": "2001",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -308210,7 +308290,7 @@
   {
     "id": "76a52226-a89c-44f4-bc63-63abaa2a6b5c",
     "imagen": "https://coverartarchive.org/release-group/76a52226-a89c-44f4-bc63-63abaa2a6b5c/front-250",
-    "titulo": "Canto Della Terra",
+    "titulo": "Canto della terra",
     "fecha": "1999",
     "artista": "Andrea Bocelli",
     "tipo": "Single"
@@ -325157,7 +325237,7 @@
     "titulo": "La Voix magique",
     "fecha": "1997",
     "artista": "Andrea Bocelli",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "ca0fbd45-16d5-3b0e-ab2b-f0b48fdf3439",
@@ -342712,6 +342792,14 @@
     "tipo": "Album"
   },
   {
+    "id": "769e3922-1778-4b1b-8145-587bfdc8b53c",
+    "imagen": "https://coverartarchive.org/release-group/769e3922-1778-4b1b-8145-587bfdc8b53c/front-250",
+    "titulo": "Eric Clapton & The Yardbirds",
+    "fecha": "1995",
+    "artista": "Eric Clapton",
+    "tipo": "Album"
+  },
+  {
     "id": "e5990abc-782e-4898-bf9c-3f95a52196d0",
     "imagen": "https://coverartarchive.org/release-group/e5990abc-782e-4898-bf9c-3f95a52196d0/front-250",
     "titulo": "Early Greatest",
@@ -350640,6 +350728,14 @@
     "tipo": "Album"
   },
   {
+    "id": "336cc60d-e7e7-4596-ad8f-da5f301be5fd",
+    "imagen": "https://coverartarchive.org/release-group/336cc60d-e7e7-4596-ad8f-da5f301be5fd/front-250",
+    "titulo": "Montreux ’86",
+    "fecha": "1994",
+    "artista": "Eric Clapton",
+    "tipo": "Album"
+  },
+  {
     "id": "8fb5134b-25db-44e8-a945-75eaa3499c52",
     "imagen": "https://coverartarchive.org/release-group/8fb5134b-25db-44e8-a945-75eaa3499c52/front-250",
     "titulo": "Tears in Heaven",
@@ -354552,6 +354648,14 @@
     "tipo": "Album"
   },
   {
+    "id": "01cd11f7-515e-3edf-a22a-21286b4fe5f5",
+    "imagen": "https://coverartarchive.org/release-group/01cd11f7-515e-3edf-a22a-21286b4fe5f5/front-250",
+    "titulo": "Zoocoustic",
+    "fecha": "1994",
+    "artista": "U2",
+    "tipo": "Album"
+  },
+  {
     "id": "36a72bee-423e-3199-ad59-2688c0b94138",
     "imagen": "https://coverartarchive.org/release-group/36a72bee-423e-3199-ad59-2688c0b94138/front-250",
     "titulo": "The Silent Side of U2",
@@ -354603,14 +354707,6 @@
     "id": "e4cf9915-e863-3743-a1ec-e64932f6b69b",
     "imagen": "https://coverartarchive.org/release-group/e4cf9915-e863-3743-a1ec-e64932f6b69b/front-250",
     "titulo": "Keeping the Faith, Volume 2: 1984–1988",
-    "fecha": "1994",
-    "artista": "U2",
-    "tipo": "Album"
-  },
-  {
-    "id": "01cd11f7-515e-3edf-a22a-21286b4fe5f5",
-    "imagen": "https://coverartarchive.org/release-group/01cd11f7-515e-3edf-a22a-21286b4fe5f5/front-250",
-    "titulo": "Zoocoustic",
     "fecha": "1994",
     "artista": "U2",
     "tipo": "Album"
@@ -365016,17 +365112,17 @@
     "tipo": "Album"
   },
   {
-    "id": "b39e29a3-6b1e-3189-8913-033af353ad7d",
-    "imagen": "https://coverartarchive.org/release-group/b39e29a3-6b1e-3189-8913-033af353ad7d/front-250",
-    "titulo": "1988-06-10: San Francisco Bay Blues: Greek Theatre, Berkeley, CA, USA",
+    "id": "878c97d6-8c92-32e4-929f-7e73451dc089",
+    "imagen": "https://coverartarchive.org/release-group/878c97d6-8c92-32e4-929f-7e73451dc089/front-250",
+    "titulo": "Golden Vanity",
     "fecha": "1992",
     "artista": "Bob Dylan",
     "tipo": "Album"
   },
   {
-    "id": "878c97d6-8c92-32e4-929f-7e73451dc089",
-    "imagen": "https://coverartarchive.org/release-group/878c97d6-8c92-32e4-929f-7e73451dc089/front-250",
-    "titulo": "Golden Vanity",
+    "id": "b39e29a3-6b1e-3189-8913-033af353ad7d",
+    "imagen": "https://coverartarchive.org/release-group/b39e29a3-6b1e-3189-8913-033af353ad7d/front-250",
+    "titulo": "1988-06-10: San Francisco Bay Blues: Greek Theatre, Berkeley, CA, USA",
     "fecha": "1992",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -378226,7 +378322,7 @@
   {
     "id": "0c32f832-371b-40a8-b8ef-e986311cb7a7",
     "imagen": "https://coverartarchive.org/release-group/0c32f832-371b-40a8-b8ef-e986311cb7a7/front-250",
-    "titulo": "Greatest Hits (25 OR 6 TO 4)",
+    "titulo": "Greatest Hits (25 or 6 to 4)",
     "fecha": "1990",
     "artista": "Chicago",
     "tipo": "Album"
@@ -383296,17 +383392,17 @@
     "tipo": "Single"
   },
   {
-    "id": "3faeca63-586b-36e3-87cd-542866dd3239",
-    "imagen": "https://coverartarchive.org/release-group/3faeca63-586b-36e3-87cd-542866dd3239/front-250",
-    "titulo": "The Genuine Basement Tapes, Volume 3",
+    "id": "c79d86f0-413c-3818-bb12-365a0fde5985",
+    "imagen": "https://coverartarchive.org/release-group/c79d86f0-413c-3818-bb12-365a0fde5985/front-250",
+    "titulo": "The Genuine Basement Tapes, Volume 2",
     "fecha": "1989",
     "artista": "Bob Dylan",
     "tipo": "Album"
   },
   {
-    "id": "c79d86f0-413c-3818-bb12-365a0fde5985",
-    "imagen": "https://coverartarchive.org/release-group/c79d86f0-413c-3818-bb12-365a0fde5985/front-250",
-    "titulo": "The Genuine Basement Tapes, Volume 2",
+    "id": "3faeca63-586b-36e3-87cd-542866dd3239",
+    "imagen": "https://coverartarchive.org/release-group/3faeca63-586b-36e3-87cd-542866dd3239/front-250",
+    "titulo": "The Genuine Basement Tapes, Volume 3",
     "fecha": "1989",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -388176,6 +388272,14 @@
     "tipo": "Album"
   },
   {
+    "id": "2da6a53c-a4ff-4bcf-a73d-432d1d318bac",
+    "imagen": "https://coverartarchive.org/release-group/2da6a53c-a4ff-4bcf-a73d-432d1d318bac/front-250",
+    "titulo": "Best",
+    "fecha": "1988",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
     "id": "543ac2f9-6648-49c2-83ec-fb584d817ac9",
     "imagen": "https://coverartarchive.org/release-group/543ac2f9-6648-49c2-83ec-fb584d817ac9/front-250",
     "titulo": "The Wild Cathedral Evening",
@@ -388190,14 +388294,6 @@
     "fecha": "1988",
     "artista": "Bob Dylan",
     "tipo": "Publicación"
-  },
-  {
-    "id": "2da6a53c-a4ff-4bcf-a73d-432d1d318bac",
-    "imagen": "https://coverartarchive.org/release-group/2da6a53c-a4ff-4bcf-a73d-432d1d318bac/front-250",
-    "titulo": "Best",
-    "fecha": "1988",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
   },
   {
     "id": "20d1fee1-f381-49b4-8539-1d7470eb6b26",
@@ -397336,14 +397432,6 @@
     "tipo": "Album"
   },
   {
-    "id": "336cc60d-e7e7-4596-ad8f-da5f301be5fd",
-    "imagen": "https://coverartarchive.org/release-group/336cc60d-e7e7-4596-ad8f-da5f301be5fd/front-250",
-    "titulo": "Montreux'86",
-    "fecha": "1986",
-    "artista": "Eric Clapton",
-    "tipo": "Publicación"
-  },
-  {
     "id": "b7758489-3a12-3389-b76b-8cf80a105013",
     "imagen": "https://coverartarchive.org/release-group/b7758489-3a12-3389-b76b-8cf80a105013/front-250",
     "titulo": "August",
@@ -398586,7 +398674,7 @@
   {
     "id": "17e812c3-6ec1-4a7c-942d-3179fe1c30da",
     "imagen": "https://coverartarchive.org/release-group/17e812c3-6ec1-4a7c-942d-3179fe1c30da/front-250",
-    "titulo": "En Concert",
+    "titulo": "En concert",
     "fecha": "1985-12",
     "artista": "Céline Dion",
     "tipo": "Album"
@@ -427632,14 +427720,6 @@
     "tipo": "Single"
   },
   {
-    "id": "cf90044e-b161-3cda-99c7-2390802023b9",
-    "imagen": "https://coverartarchive.org/release-group/cf90044e-b161-3cda-99c7-2390802023b9/front-250",
-    "titulo": "Walls and Bridges",
-    "fecha": "1974-10-04",
-    "artista": "John Lennon",
-    "tipo": "Album"
-  },
-  {
     "id": "e5da29c6-e3da-43c0-9432-4ae370777d9a",
     "imagen": "https://coverartarchive.org/release-group/e5da29c6-e3da-43c0-9432-4ae370777d9a/front-250",
     "titulo": "How Long",
@@ -427693,6 +427773,14 @@
     "titulo": "Smiler",
     "fecha": "1974-09-27",
     "artista": "Rod Stewart",
+    "tipo": "Album"
+  },
+  {
+    "id": "cf90044e-b161-3cda-99c7-2390802023b9",
+    "imagen": "https://coverartarchive.org/release-group/cf90044e-b161-3cda-99c7-2390802023b9/front-250",
+    "titulo": "Walls and Bridges",
+    "fecha": "1974-09-26",
+    "artista": "John Lennon",
     "tipo": "Album"
   },
   {
@@ -454146,7 +454234,7 @@
   {
     "id": "f790d712-8d10-4b9b-9d42-6b9e566fba9c",
     "imagen": "https://coverartarchive.org/release-group/f790d712-8d10-4b9b-9d42-6b9e566fba9c/front-250",
-    "titulo": "Cieli Di Toscana",
+    "titulo": "Cieli di Toscana",
     "fecha": "",
     "artista": "Andrea Bocelli",
     "tipo": "Album"
@@ -455488,6 +455576,14 @@
     "tipo": "Album"
   },
   {
+    "id": "3e8b3334-4547-3247-afa7-e82993cef5bd",
+    "imagen": "https://coverartarchive.org/release-group/3e8b3334-4547-3247-afa7-e82993cef5bd/front-250",
+    "titulo": "The 1965 Interview",
+    "fecha": "",
+    "artista": "Bob Dylan",
+    "tipo": "Other"
+  },
+  {
     "id": "7803a1c1-a82a-468f-a780-5aa7a35993d1",
     "imagen": "https://coverartarchive.org/release-group/7803a1c1-a82a-468f-a780-5aa7a35993d1/front-250",
     "titulo": "1986-08-05 Shoreline Amphitheatre, Mountain View, CA",
@@ -455526,14 +455622,6 @@
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Album"
-  },
-  {
-    "id": "3e8b3334-4547-3247-afa7-e82993cef5bd",
-    "imagen": "https://coverartarchive.org/release-group/3e8b3334-4547-3247-afa7-e82993cef5bd/front-250",
-    "titulo": "The 1965 Interview",
-    "fecha": "",
-    "artista": "Bob Dylan",
-    "tipo": "Other"
   },
   {
     "id": "430c9ba4-f6bf-4170-a84b-9e20051a6d0d",
@@ -455915,6 +456003,14 @@
     "id": "5cb43015-0587-4496-9794-c9b9a7499d85",
     "imagen": "https://coverartarchive.org/release-group/5cb43015-0587-4496-9794-c9b9a7499d85/front-250",
     "titulo": "1974-01-28: Nassau County Coliseum, Nassau, NY, USA",
+    "fecha": "",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
+    "id": "5d88994e-5be0-4237-b06e-71903089e6fa",
+    "imagen": "https://coverartarchive.org/release-group/5d88994e-5be0-4237-b06e-71903089e6fa/front-250",
+    "titulo": "1976-05-11: Municipal Auditorium, San Antonio, TX, USA",
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -456312,14 +456408,6 @@
     "tipo": "Album"
   },
   {
-    "id": "5d88994e-5be0-4237-b06e-71903089e6fa",
-    "imagen": "https://coverartarchive.org/release-group/5d88994e-5be0-4237-b06e-71903089e6fa/front-250",
-    "titulo": "1976-05-11: Municipal Auditorium, San Antonio, TX, USA",
-    "fecha": "",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
     "id": "5dc3a6fc-0d23-459a-b662-04cff160eb65",
     "imagen": "https://coverartarchive.org/release-group/5dc3a6fc-0d23-459a-b662-04cff160eb65/front-250",
     "titulo": "1997-12-09: Avalon, Boston, MA, USA",
@@ -456331,6 +456419,14 @@
     "id": "5ebb4e8c-23da-428c-8b2c-187808b5d38b",
     "imagen": "https://coverartarchive.org/release-group/5ebb4e8c-23da-428c-8b2c-187808b5d38b/front-250",
     "titulo": "1988-07-18: Meadowbrook Music Theatre, Oakland University, Rochester Hills, MI, USA",
+    "fecha": "",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
+    "id": "60ebc918-2d87-3107-bb29-bdb9c1886eb0",
+    "imagen": "https://coverartarchive.org/release-group/60ebc918-2d87-3107-bb29-bdb9c1886eb0/front-250",
+    "titulo": "2000-09-24: Guildhall, Portsmouth, England, UK",
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -457120,14 +457216,6 @@
     "tipo": "Album"
   },
   {
-    "id": "60ebc918-2d87-3107-bb29-bdb9c1886eb0",
-    "imagen": "https://coverartarchive.org/release-group/60ebc918-2d87-3107-bb29-bdb9c1886eb0/front-250",
-    "titulo": "2000-09-24: Guildhall, Portsmouth, England, UK",
-    "fecha": "",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
     "id": "61b56eb4-c27d-473d-aabb-e1ce8534ef26",
     "imagen": "https://coverartarchive.org/release-group/61b56eb4-c27d-473d-aabb-e1ce8534ef26/front-250",
     "titulo": "2009-03-25: Oslo Spektrum, Oslo, Norway",
@@ -457259,6 +457347,14 @@
     "id": "911a2eed-83b9-471a-991d-60e5677385c4",
     "imagen": "https://coverartarchive.org/release-group/911a2eed-83b9-471a-991d-60e5677385c4/front-250",
     "titulo": "2008-06-03: Russia Ice Palace, St. Petersburg, Russia",
+    "fecha": "",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
+    "id": "921a1631-5bd9-4a0e-998e-3c565bcf854a",
+    "imagen": "https://coverartarchive.org/release-group/921a1631-5bd9-4a0e-998e-3c565bcf854a/front-250",
+    "titulo": "2009-10-29: Aragon Ballroom, Chicago, IL, USA",
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -457848,20 +457944,20 @@
     "tipo": "Album"
   },
   {
-    "id": "921a1631-5bd9-4a0e-998e-3c565bcf854a",
-    "imagen": "https://coverartarchive.org/release-group/921a1631-5bd9-4a0e-998e-3c565bcf854a/front-250",
-    "titulo": "2009-10-29: Aragon Ballroom, Chicago, IL, USA",
-    "fecha": "",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
     "id": "925293ba-1bcd-41b9-beab-e5b41319397f",
     "imagen": "https://coverartarchive.org/release-group/925293ba-1bcd-41b9-beab-e5b41319397f/front-250",
     "titulo": "Live Tramps 1999",
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Album"
+  },
+  {
+    "id": "99e817d6-b7ae-421a-8776-edaa73141b9b",
+    "imagen": "https://coverartarchive.org/release-group/99e817d6-b7ae-421a-8776-edaa73141b9b/front-250",
+    "titulo": "1987-06-xx: The Complete Rehearsals (So Far…): Club Front, San Rafael, CA, USA",
+    "fecha": "",
+    "artista": "Bob Dylan",
+    "tipo": "Other"
   },
   {
     "id": "a227f100-f0f7-4e9a-9388-f479ace61869",
@@ -458067,14 +458163,6 @@
     "id": "96286567-64c1-3555-aa33-fbdbda674b5a",
     "imagen": "https://coverartarchive.org/release-group/96286567-64c1-3555-aa33-fbdbda674b5a/front-250",
     "titulo": "The Witmark Demos",
-    "fecha": "",
-    "artista": "Bob Dylan",
-    "tipo": "Other"
-  },
-  {
-    "id": "99e817d6-b7ae-421a-8776-edaa73141b9b",
-    "imagen": "https://coverartarchive.org/release-group/99e817d6-b7ae-421a-8776-edaa73141b9b/front-250",
-    "titulo": "1987-06-xx: The Complete Rehearsals (So Far…): Club Front, San Rafael, CA, USA",
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Other"
@@ -466232,14 +466320,6 @@
     "tipo": "Album"
   },
   {
-    "id": "8bf9ed09-70f1-428d-a05d-f6d0d96fe959",
-    "imagen": "https://coverartarchive.org/release-group/8bf9ed09-70f1-428d-a05d-f6d0d96fe959/front-250",
-    "titulo": "1996-05-09: Duets: Roseland Ballroom, New York City, NY, USA",
-    "fecha": "",
-    "artista": "Eric Clapton",
-    "tipo": "Album"
-  },
-  {
     "id": "8f3c9316-856d-3cd2-9774-6ed29aa75bc4",
     "imagen": "https://coverartarchive.org/release-group/8f3c9316-856d-3cd2-9774-6ed29aa75bc4/front-250",
     "titulo": "1984-06-17: Thanks for the Ride: Isstadion, Stockholm, Sweden",
@@ -466984,6 +467064,14 @@
     "tipo": "Album"
   },
   {
+    "id": "8bf9ed09-70f1-428d-a05d-f6d0d96fe959",
+    "imagen": "https://coverartarchive.org/release-group/8bf9ed09-70f1-428d-a05d-f6d0d96fe959/front-250",
+    "titulo": "1996-05-09: Duets: Roseland Ballroom, New York City, NY, USA",
+    "fecha": "",
+    "artista": "Eric Clapton",
+    "tipo": "Album"
+  },
+  {
     "id": "8fbdbeb2-23e9-4665-8d63-934305f53acb",
     "imagen": "https://coverartarchive.org/release-group/8fbdbeb2-23e9-4665-8d63-934305f53acb/front-250",
     "titulo": "Denver 1975",
@@ -467429,14 +467517,6 @@
     "titulo": "Donde Esta La Vida",
     "fecha": "",
     "artista": "Francisco Céspedes",
-    "tipo": "Album"
-  },
-  {
-    "id": "1e429af6-7af2-41c5-83e9-bb46929edc5e",
-    "imagen": "https://coverartarchive.org/release-group/1e429af6-7af2-41c5-83e9-bb46929edc5e/front-250",
-    "titulo": "Extranjero",
-    "fecha": "",
-    "artista": "Franco de Vita",
     "tipo": "Album"
   },
   {
@@ -475464,6 +475544,14 @@
     "tipo": "Album"
   },
   {
+    "id": "5db06503-28cf-40ba-929a-f01983922235",
+    "imagen": "https://coverartarchive.org/release-group/5db06503-28cf-40ba-929a-f01983922235/front-250",
+    "titulo": "1995 (What's the Story) Morning Glory? Japan Tour",
+    "fecha": "",
+    "artista": "Oasis",
+    "tipo": "Album"
+  },
+  {
     "id": "5de5698b-d6ec-4cca-8655-6df92d3777ae",
     "imagen": "https://coverartarchive.org/release-group/5de5698b-d6ec-4cca-8655-6df92d3777ae/front-250",
     "titulo": "2003-05-03: Zanzibar Club, Liverpool, UK",
@@ -475491,14 +475579,6 @@
     "id": "7a0dc1a4-0064-45d3-8382-de5e6b3d4a70",
     "imagen": "https://coverartarchive.org/release-group/7a0dc1a4-0064-45d3-8382-de5e6b3d4a70/front-250",
     "titulo": "Later Presents… Oasis",
-    "fecha": "",
-    "artista": "Oasis",
-    "tipo": "Album"
-  },
-  {
-    "id": "7ea0cf98-c5cf-4547-b166-88a8d8019a5b",
-    "imagen": "https://coverartarchive.org/release-group/7ea0cf98-c5cf-4547-b166-88a8d8019a5b/front-250",
-    "titulo": "The Golden Unplugged Album",
     "fecha": "",
     "artista": "Oasis",
     "tipo": "Album"
@@ -475635,6 +475715,14 @@
     "id": "6bb518f0-3532-4bd2-9ffd-6b8ca81d5abf",
     "imagen": "https://coverartarchive.org/release-group/6bb518f0-3532-4bd2-9ffd-6b8ca81d5abf/front-250",
     "titulo": "Live Demonstration Tape (extended)",
+    "fecha": "",
+    "artista": "Oasis",
+    "tipo": "Album"
+  },
+  {
+    "id": "7ea0cf98-c5cf-4547-b166-88a8d8019a5b",
+    "imagen": "https://coverartarchive.org/release-group/7ea0cf98-c5cf-4547-b166-88a8d8019a5b/front-250",
+    "titulo": "The Golden Unplugged Album",
     "fecha": "",
     "artista": "Oasis",
     "tipo": "Album"
@@ -488032,20 +488120,20 @@
     "tipo": "Broadcast"
   },
   {
-    "id": "a0c3d1c5-384a-40ab-9087-00fc5638b6fe",
-    "imagen": "https://coverartarchive.org/release-group/a0c3d1c5-384a-40ab-9087-00fc5638b6fe/front-250",
-    "titulo": "Forgotten Songs",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Other"
-  },
-  {
     "id": "cdb301df-90dd-42d8-92cc-d28e4d3fd654",
     "imagen": "https://coverartarchive.org/release-group/cdb301df-90dd-42d8-92cc-d28e4d3fd654/front-250",
     "titulo": "Torn (feat. Dolly Parton)",
     "fecha": "",
     "artista": "U2",
     "tipo": "Single"
+  },
+  {
+    "id": "cfbce91a-59e9-3d3b-acbd-f44afe3ae357",
+    "imagen": "https://coverartarchive.org/release-group/cfbce91a-59e9-3d3b-acbd-f44afe3ae357/front-250",
+    "titulo": "Shaped",
+    "fecha": "",
+    "artista": "U2",
+    "tipo": "Other"
   },
   {
     "id": "043fd6bf-1be7-343c-89d9-1abb2c971661",
@@ -488110,6 +488198,14 @@
     "fecha": "",
     "artista": "U2",
     "tipo": "Publicación"
+  },
+  {
+    "id": "25766d20-b43a-3457-a441-a0f16453543f",
+    "imagen": "https://coverartarchive.org/release-group/25766d20-b43a-3457-a441-a0f16453543f/front-250",
+    "titulo": "The Ultimate 7″ & 12″ Collection, Part I",
+    "fecha": "",
+    "artista": "U2",
+    "tipo": "Album"
   },
   {
     "id": "2e9652cb-f147-4fc8-a00f-bc6cbc98e633",
@@ -488312,14 +488408,6 @@
     "tipo": "Publicación"
   },
   {
-    "id": "cfbce91a-59e9-3d3b-acbd-f44afe3ae357",
-    "imagen": "https://coverartarchive.org/release-group/cfbce91a-59e9-3d3b-acbd-f44afe3ae357/front-250",
-    "titulo": "Shaped",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Other"
-  },
-  {
     "id": "d4f37c46-49fc-3467-af0a-52db043e4c73",
     "imagen": "https://coverartarchive.org/release-group/d4f37c46-49fc-3467-af0a-52db043e4c73/front-250",
     "titulo": "Especial, Volume 1",
@@ -488387,14 +488475,6 @@
     "id": "0bad19b2-d1c0-45b0-aa93-0b46865d4a38",
     "imagen": "https://coverartarchive.org/release-group/0bad19b2-d1c0-45b0-aa93-0b46865d4a38/front-250",
     "titulo": "The Ultimate 7″ & 12″ Collection, Part VI",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Album"
-  },
-  {
-    "id": "25766d20-b43a-3457-a441-a0f16453543f",
-    "imagen": "https://coverartarchive.org/release-group/25766d20-b43a-3457-a441-a0f16453543f/front-250",
-    "titulo": "The Ultimate 7″ & 12″ Collection, Part I",
     "fecha": "",
     "artista": "U2",
     "tipo": "Album"
@@ -488555,6 +488635,14 @@
     "id": "28089322-d829-4115-b68d-7680f1e404bf",
     "imagen": "https://coverartarchive.org/release-group/28089322-d829-4115-b68d-7680f1e404bf/front-250",
     "titulo": "1981-03-06 Late Show: Paradise Rock Club, Boston, MA, USA",
+    "fecha": "",
+    "artista": "U2",
+    "tipo": "Album"
+  },
+  {
+    "id": "2f3b069b-cfe7-3064-ae74-3933d7c19cbf",
+    "imagen": "https://coverartarchive.org/release-group/2f3b069b-cfe7-3064-ae74-3933d7c19cbf/front-250",
+    "titulo": "1981-03-15: Reseda Country Club, Reseda, CA, USA",
     "fecha": "",
     "artista": "U2",
     "tipo": "Album"
@@ -488963,14 +489051,6 @@
     "id": "2c6aa2f6-0239-438f-8ce7-76d4a2fea965",
     "imagen": "https://coverartarchive.org/release-group/2c6aa2f6-0239-438f-8ce7-76d4a2fea965/front-250",
     "titulo": "1981-10-26: Élysée Montmartre, Paris, France",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Album"
-  },
-  {
-    "id": "2f3b069b-cfe7-3064-ae74-3933d7c19cbf",
-    "imagen": "https://coverartarchive.org/release-group/2f3b069b-cfe7-3064-ae74-3933d7c19cbf/front-250",
-    "titulo": "1981-03-15: Reseda Country Club, Reseda, CA, USA",
     "fecha": "",
     "artista": "U2",
     "tipo": "Album"
@@ -489496,6 +489576,14 @@
     "tipo": "Album"
   },
   {
+    "id": "c5659345-51bf-4291-9dde-59937ce8989a",
+    "imagen": "https://coverartarchive.org/release-group/c5659345-51bf-4291-9dde-59937ce8989a/front-250",
+    "titulo": "1983-03-07: Colston Hall, Bristol, UK",
+    "fecha": "",
+    "artista": "U2",
+    "tipo": "Album"
+  },
+  {
     "id": "c9907b20-9193-448e-b7ad-54c50ab50d87",
     "imagen": "https://coverartarchive.org/release-group/c9907b20-9193-448e-b7ad-54c50ab50d87/front-250",
     "titulo": "1981-10-07: Polytechnic, Leicester, UK",
@@ -489659,6 +489747,14 @@
     "id": "09af695e-237d-44f5-a0f5-819881bf2bf5",
     "imagen": "https://coverartarchive.org/release-group/09af695e-237d-44f5-a0f5-819881bf2bf5/front-250",
     "titulo": "1983-03-17: City Hall, Sheffield, UK",
+    "fecha": "",
+    "artista": "U2",
+    "tipo": "Album"
+  },
+  {
+    "id": "0a1cabe1-bb24-487e-80c2-7e021e55b89a",
+    "imagen": "https://coverartarchive.org/release-group/0a1cabe1-bb24-487e-80c2-7e021e55b89a/front-250",
+    "titulo": "1984-12-07: Massey Hall, Toronto, ON, Canada",
     "fecha": "",
     "artista": "U2",
     "tipo": "Album"
@@ -490216,14 +490312,6 @@
     "tipo": "Album"
   },
   {
-    "id": "c5659345-51bf-4291-9dde-59937ce8989a",
-    "imagen": "https://coverartarchive.org/release-group/c5659345-51bf-4291-9dde-59937ce8989a/front-250",
-    "titulo": "1983-03-07: Colston Hall, Bristol, UK",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Album"
-  },
-  {
     "id": "c5ebb02c-8844-4b17-8534-30b694f13dde",
     "imagen": "https://coverartarchive.org/release-group/c5ebb02c-8844-4b17-8534-30b694f13dde/front-250",
     "titulo": "1983-05-22 (soundcheck): Northrup Auditorium, Minneapolis, MN, USA",
@@ -490496,14 +490584,6 @@
     "tipo": "Album"
   },
   {
-    "id": "0a1cabe1-bb24-487e-80c2-7e021e55b89a",
-    "imagen": "https://coverartarchive.org/release-group/0a1cabe1-bb24-487e-80c2-7e021e55b89a/front-250",
-    "titulo": "1984-12-07: Massey Hall, Toronto, ON, Canada",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Album"
-  },
-  {
     "id": "0bf9ddb9-3210-4f31-aeac-57d8b3a2a906",
     "imagen": "https://coverartarchive.org/release-group/0bf9ddb9-3210-4f31-aeac-57d8b3a2a906/front-250",
     "titulo": "1985-02-01: Musensaal, Mannheim, Germany",
@@ -490595,6 +490675,14 @@
     "id": "31e79845-f677-4a8f-8a0d-da2c7878a1cb",
     "imagen": "https://coverartarchive.org/release-group/31e79845-f677-4a8f-8a0d-da2c7878a1cb/front-250",
     "titulo": "1985-02-05: Teatro Tenda, Bologna, Italy",
+    "fecha": "",
+    "artista": "U2",
+    "tipo": "Album"
+  },
+  {
+    "id": "3293e95c-37b5-45ec-80c9-3bfd2584b6f0",
+    "imagen": "https://coverartarchive.org/release-group/3293e95c-37b5-45ec-80c9-3bfd2584b6f0/front-250",
+    "titulo": "1987-05-04: The Centrum, Worcester, MA, USA",
     "fecha": "",
     "artista": "U2",
     "tipo": "Album"
@@ -491384,14 +491472,6 @@
     "tipo": "Album"
   },
   {
-    "id": "3293e95c-37b5-45ec-80c9-3bfd2584b6f0",
-    "imagen": "https://coverartarchive.org/release-group/3293e95c-37b5-45ec-80c9-3bfd2584b6f0/front-250",
-    "titulo": "1987-05-04: The Centrum, Worcester, MA, USA",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Album"
-  },
-  {
     "id": "35160f30-d40e-47a6-b2f6-cb8a3b06626d",
     "imagen": "https://coverartarchive.org/release-group/35160f30-d40e-47a6-b2f6-cb8a3b06626d/front-250",
     "titulo": "1987-09-25: John F. Kennedy Stadium, Philadelphia, PA, USA",
@@ -491915,6 +491995,14 @@
     "id": "d1d850f9-3ad0-414c-8129-87be2bdeb596",
     "imagen": "https://coverartarchive.org/release-group/d1d850f9-3ad0-414c-8129-87be2bdeb596/front-250",
     "titulo": "1987-10-28: Chicago - My Kind of Town: Rosemont Horizon, Rosemont, IL, USA",
+    "fecha": "",
+    "artista": "U2",
+    "tipo": "Album"
+  },
+  {
+    "id": "d51cd98e-47b8-3403-8cd1-0ffe949d4c99",
+    "imagen": "https://coverartarchive.org/release-group/d51cd98e-47b8-3403-8cd1-0ffe949d4c99/front-250",
+    "titulo": "1989-12-30: At the Eleventh Hour: Point Depot, Dublin, Ireland",
     "fecha": "",
     "artista": "U2",
     "tipo": "Album"
@@ -492608,6 +492696,14 @@
     "tipo": "Album"
   },
   {
+    "id": "b91d5880-8aec-4d6b-bdd1-520483ea766b",
+    "imagen": "https://coverartarchive.org/release-group/b91d5880-8aec-4d6b-bdd1-520483ea766b/front-250",
+    "titulo": "1998-01-31: Morumbi, Sao Paulo, Brazil",
+    "fecha": "",
+    "artista": "U2",
+    "tipo": "Album"
+  },
+  {
     "id": "ba1496c6-a886-43b0-bbac-0bc637e9ab62",
     "imagen": "https://coverartarchive.org/release-group/ba1496c6-a886-43b0-bbac-0bc637e9ab62/front-250",
     "titulo": "1992‐08‐20: Sullivan Stadium, Foxboro, MA, USA",
@@ -492683,14 +492779,6 @@
     "id": "cb3df03f-8c94-3de4-b80b-0cbe84050da0",
     "imagen": "https://coverartarchive.org/release-group/cb3df03f-8c94-3de4-b80b-0cbe84050da0/front-250",
     "titulo": "1992-08-23: Bono Breaks Wind Over Boston: Foxboro Stadium, Foxboro, MA, USA",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Album"
-  },
-  {
-    "id": "d51cd98e-47b8-3403-8cd1-0ffe949d4c99",
-    "imagen": "https://coverartarchive.org/release-group/d51cd98e-47b8-3403-8cd1-0ffe949d4c99/front-250",
-    "titulo": "1989-12-30: At the Eleventh Hour: Point Depot, Dublin, Ireland",
     "fecha": "",
     "artista": "U2",
     "tipo": "Album"
@@ -492995,6 +493083,14 @@
     "id": "2e625fc9-7c3c-4ce1-82e3-c8a3ff09949d",
     "imagen": "https://coverartarchive.org/release-group/2e625fc9-7c3c-4ce1-82e3-c8a3ff09949d/front-250",
     "titulo": "2011-06-29: Sun Life Stadium, Miami, FL, USA",
+    "fecha": "",
+    "artista": "U2",
+    "tipo": "Album"
+  },
+  {
+    "id": "2eccef24-c75e-4fcb-ab97-391bf371f1ea",
+    "imagen": "https://coverartarchive.org/release-group/2eccef24-c75e-4fcb-ab97-391bf371f1ea/front-250",
+    "titulo": "2011‐05‐21: Invesco Field at Mile High, Denver, CO, USA",
     "fecha": "",
     "artista": "U2",
     "tipo": "Album"
@@ -493384,14 +493480,6 @@
     "tipo": "Album"
   },
   {
-    "id": "b91d5880-8aec-4d6b-bdd1-520483ea766b",
-    "imagen": "https://coverartarchive.org/release-group/b91d5880-8aec-4d6b-bdd1-520483ea766b/front-250",
-    "titulo": "1998-01-31: Morumbi, Sao Paulo, Brazil",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Album"
-  },
-  {
     "id": "b9b3e0a5-65dd-4a43-9461-a7ac1262e3d5",
     "imagen": "https://coverartarchive.org/release-group/b9b3e0a5-65dd-4a43-9461-a7ac1262e3d5/front-250",
     "titulo": "2009‐10‐01: Scott Stadium, Charlottesville, VA, USA",
@@ -493699,14 +493787,6 @@
     "id": "21ddb5b0-29be-4ed7-b29f-b6706cc5bcff",
     "imagen": "https://coverartarchive.org/release-group/21ddb5b0-29be-4ed7-b29f-b6706cc5bcff/front-250",
     "titulo": "Dragonfruit: Remixes Not for Propoganda",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Album"
-  },
-  {
-    "id": "2eccef24-c75e-4fcb-ab97-391bf371f1ea",
-    "imagen": "https://coverartarchive.org/release-group/2eccef24-c75e-4fcb-ab97-391bf371f1ea/front-250",
-    "titulo": "2011‐05‐21: Invesco Field at Mile High, Denver, CO, USA",
     "fecha": "",
     "artista": "U2",
     "tipo": "Album"
@@ -494270,6 +494350,14 @@
     "fecha": "",
     "artista": "U2",
     "tipo": "Broadcast"
+  },
+  {
+    "id": "a0c3d1c5-384a-40ab-9087-00fc5638b6fe",
+    "imagen": "https://coverartarchive.org/release-group/a0c3d1c5-384a-40ab-9087-00fc5638b6fe/front-250",
+    "titulo": "Forgotten Songs",
+    "fecha": "",
+    "artista": "U2",
+    "tipo": "Other"
   },
   {
     "id": "b2f1fe3f-60b6-4fe7-bbd3-6cd1fd487905",
