@@ -1,0 +1,41 @@
+name: Actualizar Mi música
+
+# Se ejecuta solo cuando subes un lista_mp3.txt nuevo a la rama principal.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "lista_mp3.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualizar-mi-musica
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Pasar lista_mp3.txt a «Mi música» y al radar
+        run: python app/actualizar_mi_musica.py lista_mp3.txt
+
+      - name: Guardar los cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- app/mi_musica.json mi_radar_musical.csv artistas_unicos.txt
+          if git diff --cached --quiet; then
+            echo "Mi música ya estaba al día."
+          else
+            git commit -m "Actualizar Mi música desde lista_mp3.txt"
+            git pull --rebase origin main
+            git push
+          fi

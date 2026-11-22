@@ -1,22 +1,21 @@
 # ==========================================================================
-#  Mi Radar Musical - Generar el listado de canciones y actualizar "Mi musica"
+#  Mi Radar Musical - Generar el listado de tus canciones (lista_mp3.txt)
 #
-#  1. Recorre tu carpeta de musica y crea lista_mp3.txt con lineas asi:
+#  Recorre tu carpeta de musica y crea en el ESCRITORIO el archivo
+#  lista_mp3.txt, con una linea por cancion:
 #        1982 | Michael Jackson - Thriller.mp3
-#  2. Ejecuta app\actualizar_mi_musica.py, que pasa ese listado a la web
-#     (app\mi_musica.json, mi_radar_musical.csv y artistas_unicos.txt).
-#  3. Si la carpeta del proyecto es un repositorio de Git, te ofrece subirlo.
 #
-#  Guarda este archivo en la carpeta del proyecto ("Pagina radar musica"),
-#  al lado de la carpeta "app". Ejecutalo con clic derecho > "Ejecutar con PowerShell".
+#  Despues solo tienes que subir lista_mp3.txt al repositorio de GitHub
+#  (Add file > Upload files). GitHub actualiza "Mi musica" solo y Render
+#  publica la web en unos minutos.
+#
+#  Ejecutalo con clic derecho > "Ejecutar con PowerShell".
 # ==========================================================================
 
 # >>> CAMBIA ESTA RUTA por la carpeta donde tienes tus MP3 <<<
 $CarpetaMusica = "D:\Musica"
 
-# Carpeta del proyecto: la misma en la que esta guardado este archivo.
-$Proyecto = $PSScriptRoot
-$Lista    = Join-Path $Proyecto "lista_mp3.txt"
+$Lista = Join-Path ([Environment]::GetFolderPath("Desktop")) "lista_mp3.txt"
 
 $ErrorActionPreference = "Stop"
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
@@ -26,12 +25,7 @@ if (-not (Test-Path -LiteralPath $CarpetaMusica)) {
     Write-Host "Abre este archivo con el Bloc de notas y cambia la linea `$CarpetaMusica."
     Read-Host "Pulsa Intro para salir"; exit 1
 }
-if (-not (Test-Path -LiteralPath (Join-Path $Proyecto "app\actualizar_mi_musica.py"))) {
-    Write-Host "Este archivo tiene que estar en la carpeta del proyecto (junto a la carpeta 'app')." -ForegroundColor Red
-    Read-Host "Pulsa Intro para salir"; exit 1
-}
 
-# --- 1. Leer los MP3 y averiguar el ano de cada uno -----------------------
 # El ano se toma de la carpeta si se llama como un ano (p. ej. ...\1982\cancion.mp3);
 # si no, de la etiqueta "Ano" del MP3 (la que rellenas con Mp3tag).
 $shell   = New-Object -ComObject Shell.Application
@@ -72,7 +66,7 @@ if ($lineas.Count -eq 0) {
 }
 $ordenadas = @($lineas | Sort-Object -Unique)
 [System.IO.File]::WriteAllLines($Lista, [string[]]$ordenadas, (New-Object System.Text.UTF8Encoding($false)))
-Write-Host ("Listado creado: {0} canciones -> {1}" -f $ordenadas.Count, $Lista) -ForegroundColor Green
+Write-Host ("`nListado creado con {0} canciones en tu escritorio: {1}" -f $ordenadas.Count, $Lista) -ForegroundColor Green
 
 if ($sinAnio.Count) {
     Write-Host "`nSin ano (rellena la etiqueta Ano con Mp3tag y vuelve a ejecutar):" -ForegroundColor Yellow
@@ -83,36 +77,7 @@ if ($sinGuion.Count) {
     $sinGuion | ForEach-Object { Write-Host "  $_" }
 }
 
-# --- 2. Pasar el listado a la web -----------------------------------------
-$python = $null
-foreach ($candidato in @("py", "python")) {
-    if (Get-Command $candidato -ErrorAction SilentlyContinue) { $python = $candidato; break }
-}
-if (-not $python) {
-    $python = Get-ChildItem "$env:LOCALAPPDATA\Programs\Python\Python3*\python.exe" -ErrorAction SilentlyContinue |
-              Sort-Object FullName -Descending | Select-Object -First 1 -ExpandProperty FullName
-}
-if (-not $python) {
-    Write-Host "`nNo encuentro Python. Instalalo desde python.org y vuelve a ejecutar." -ForegroundColor Red
-    Read-Host "Pulsa Intro para salir"; exit 1
-}
-
-Write-Host "`nActualizando 'Mi musica' ..." -ForegroundColor Cyan
-& $python (Join-Path $Proyecto "app\actualizar_mi_musica.py") $Lista
-if ($LASTEXITCODE -ne 0) { Read-Host "Algo ha fallado. Pulsa Intro para salir"; exit 1 }
-
-# --- 3. Subir a GitHub (opcional) -----------------------------------------
-if ((Test-Path -LiteralPath (Join-Path $Proyecto ".git")) -and (Get-Command git -ErrorAction SilentlyContinue)) {
-    $r = Read-Host "`nSubir los cambios a GitHub? (s/n)"
-    if ($r -match '^[sS]') {
-        Push-Location $Proyecto
-        git pull --rebase --autostash
-        git add -- lista_mp3.txt app/mi_musica.json mi_radar_musical.csv artistas_unicos.txt
-        git commit -m "Actualizar Mi musica con el listado de canciones"
-        git push
-        Pop-Location
-    }
-}
-
-Write-Host "`nListo. Recarga la pagina 'Mi musica' para ver los cambios." -ForegroundColor Green
-Read-Host "Pulsa Intro para cerrar"
+Write-Host "`nAhora sube lista_mp3.txt a GitHub:" -ForegroundColor Cyan
+Write-Host "  https://github.com/Maktub86/Mi-Radar-Musical  >  Add file  >  Upload files"
+Write-Host "  Arrastra lista_mp3.txt y pulsa 'Commit changes'. En unos minutos la web estara actualizada."
+Read-Host "`nPulsa Intro para cerrar"
