@@ -240,6 +240,14 @@
     "tipo": "Single"
   },
   {
+    "id": "9a0c0396-4168-4aea-84a6-b60d11878680",
+    "imagen": "https://coverartarchive.org/release-group/9a0c0396-4168-4aea-84a6-b60d11878680/front-250",
+    "titulo": "XXXL",
+    "fecha": "2026-11-18",
+    "artista": "Tommy Cash",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6832495160",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/80/63/67/806367ea-8190-3fc2-b7aa-ab09c04e1d6a/8435799097610.png/100x100bb.jpg",
     "titulo": "SOY VIEJO PERO PUNKY - Single",
@@ -326,6 +334,14 @@
     "fecha": "2026-11-13",
     "artista": "Bonnie Tyler",
     "tipo": "Single"
+  },
+  {
+    "id": "b1d013af-b5cd-4861-a108-48de64c62344",
+    "imagen": "https://coverartarchive.org/release-group/b1d013af-b5cd-4861-a108-48de64c62344/front-250",
+    "titulo": "4 Seasons of Boyz II Men: Winter Without You",
+    "fecha": "2026-11-13",
+    "artista": "Boyz II Men",
+    "tipo": "Album"
   },
   {
     "id": "f979bc54-2506-43d9-a389-ee30e7a453c3",
@@ -952,9 +968,9 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6824984388",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/6b/3e/03/6b3e0309-a9b8-b59c-543c-1e3d61e3c74c/196874849941.jpg/100x100bb.jpg",
-    "titulo": "Navidad Melancólica (Deluxe)",
+    "id": "609d0ff2-d70c-4b1d-9095-9e251d6433e8",
+    "imagen": "https://coverartarchive.org/release-group/609d0ff2-d70c-4b1d-9095-9e251d6433e8/front-250",
+    "titulo": "Navidad melancólica (deluxe)",
     "fecha": "2026-11-03",
     "artista": "Thalía",
     "tipo": "Album"
@@ -1152,6 +1168,14 @@
     "tipo": "Album"
   },
   {
+    "id": "482ba68f-f5cc-47c4-af2f-2c95ccebc68a",
+    "imagen": "https://coverartarchive.org/release-group/482ba68f-f5cc-47c4-af2f-2c95ccebc68a/front-250",
+    "titulo": "My Guy",
+    "fecha": "2026-10-30",
+    "artista": "Sam Smith",
+    "tipo": "Single"
+  },
+  {
     "id": "b67bff1b-fab1-41ed-87b6-69087079dab8",
     "imagen": "https://coverartarchive.org/release-group/b67bff1b-fab1-41ed-87b6-69087079dab8/front-250",
     "titulo": "My Guy",
@@ -1232,6 +1256,14 @@
     "tipo": "Single"
   },
   {
+    "id": "6481f482-e2ca-4499-a1e0-199085254f51",
+    "imagen": "https://coverartarchive.org/release-group/6481f482-e2ca-4499-a1e0-199085254f51/front-250",
+    "titulo": "Uh Lala",
+    "fecha": "2026-10-29",
+    "artista": "Yera",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6827293503",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d3/6a/e7/d36ae784-84be-5811-5cc2-ce4dc9ae7611/196874897980.jpg/100x100bb.jpg",
     "titulo": "BODYPAINTING - Single",
@@ -1245,6 +1277,22 @@
     "titulo": "Felicidades",
     "fecha": "2026-10-29",
     "artista": "Yami Safdie",
+    "tipo": "Single"
+  },
+  {
+    "id": "6a799238-8e0c-4838-9d85-16ca20961bd3",
+    "imagen": "https://coverartarchive.org/release-group/6a799238-8e0c-4838-9d85-16ca20961bd3/front-250",
+    "titulo": "Bodypainting",
+    "fecha": "2026-10-29",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6827293503",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d3/6a/e7/d36ae784-84be-5811-5cc2-ce4dc9ae7611/196874897980.jpg/100x100bb.jpg",
+    "titulo": "BODYPAINTING - Single",
+    "fecha": "2026-10-29",
+    "artista": "Emilia",
     "tipo": "Single"
   },
   {
@@ -1381,6 +1429,14 @@
     "titulo": "Sin Miedo A Nada - Single",
     "fecha": "2026-10-23",
     "artista": "Lérica",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6818546984",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8a/ff/19/8aff1934-8e76-5dee-b607-bcbc98daa407/26UM1IM18809.rgb.jpg/100x100bb.jpg",
+    "titulo": "Tiger Rag (Live At Highland Park) - Single",
+    "fecha": "2026-10-23",
+    "artista": "Louis Armstrong",
     "tipo": "Single"
   },
   {
@@ -1674,7 +1730,7 @@
   {
     "id": "6176a2f8-e6e3-43e0-b8fe-e5494c57afee",
     "imagen": "https://coverartarchive.org/release-group/6176a2f8-e6e3-43e0-b8fe-e5494c57afee/front-250",
-    "titulo": "La vida que nos espera (feat. Gilberto Santa Rosa)",
+    "titulo": "La vida que nos espera",
     "fecha": "2026-10-16",
     "artista": "Pablo Alborán",
     "tipo": "Single"
@@ -1798,6 +1854,14 @@
     "fecha": "2026-10-15",
     "artista": "U2",
     "tipo": "Single"
+  },
+  {
+    "id": "6e3e9a3a-4766-41e9-b003-582760816514",
+    "imagen": "https://coverartarchive.org/release-group/6e3e9a3a-4766-41e9-b003-582760816514/front-250",
+    "titulo": "Reflections: Heartbreak and Harmony",
+    "fecha": "2026-10-12",
+    "artista": "Boyz II Men",
+    "tipo": "EP"
   },
   {
     "id": "apple-6819861177",
@@ -3232,6 +3296,22 @@
     "tipo": "Single"
   },
   {
+    "id": "de6b2043-b33e-4185-95e5-3b3709e78da9",
+    "imagen": "https://coverartarchive.org/release-group/de6b2043-b33e-4185-95e5-3b3709e78da9/front-250",
+    "titulo": "chicle mal enganchado",
+    "fecha": "2026-09-11",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6807454816",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/22/44/da/2244da06-1829-dd53-f231-cd7026c2c8ce/885288457063.jpg/100x100bb.jpg",
+    "titulo": "chicle mal enganchado - Single",
+    "fecha": "2026-09-11",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6807135609",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/69/e7/51/69e751e6-09ea-68cb-364b-71d231b281ce/823375411802_Cover.jpg/100x100bb.jpg",
     "titulo": "Tabú - Single",
@@ -3374,6 +3454,14 @@
     "fecha": "2026-09-04",
     "artista": "Bobby McFerrin",
     "tipo": "Single"
+  },
+  {
+    "id": "532af977-b1a8-4121-9f3d-efff70482990",
+    "imagen": "https://coverartarchive.org/release-group/532af977-b1a8-4121-9f3d-efff70482990/front-250",
+    "titulo": "4 Seasons of Boyz II Men: Fall in My Feelings",
+    "fecha": "2026-09-04",
+    "artista": "Boyz II Men",
+    "tipo": "Album"
   },
   {
     "id": "fdce0be2-18a0-4058-9a34-549dfce49d4d",
@@ -4720,6 +4808,14 @@
     "tipo": "Single"
   },
   {
+    "id": "04a3d845-900d-455a-a1bc-b7577339b295",
+    "imagen": "https://coverartarchive.org/release-group/04a3d845-900d-455a-a1bc-b7577339b295/front-250",
+    "titulo": "Budapest",
+    "fecha": "2026-07-27",
+    "artista": "Queen",
+    "tipo": "Album"
+  },
+  {
     "id": "a880447a-1911-4d43-98d7-260fceeeac28",
     "imagen": "https://coverartarchive.org/release-group/a880447a-1911-4d43-98d7-260fceeeac28/front-250",
     "titulo": "Radio Ga Ga (Live in Budapest)",
@@ -4874,6 +4970,14 @@
   {
     "id": "apple-6789633251",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/65/ea/f1/65eaf109-280c-bd6f-574c-9b2cb5eb4b37/196873910758.jpg/100x100bb.jpg",
+    "titulo": "Tour_En_Vivo.mp3",
+    "fecha": "2026-07-23",
+    "artista": "Emilia",
+    "tipo": "Album"
+  },
+  {
+    "id": "b89e5f25-f23f-4c59-8913-3b7d7256a3d4",
+    "imagen": "https://coverartarchive.org/release-group/b89e5f25-f23f-4c59-8913-3b7d7256a3d4/front-250",
     "titulo": "Tour_En_Vivo.mp3",
     "fecha": "2026-07-23",
     "artista": "Emilia",
@@ -6490,7 +6594,7 @@
   {
     "id": "d19b0ff6-93fe-47b3-a719-7998bd7dfe79",
     "imagen": "https://coverartarchive.org/release-group/d19b0ff6-93fe-47b3-a719-7998bd7dfe79/front-250",
-    "titulo": "In The Name Of Healing (from the Prime Original Movie ‘Your Fault: London’)",
+    "titulo": "In the Name of Healing",
     "fecha": "2026-06-12",
     "artista": "Griff",
     "tipo": "Single"
@@ -7304,6 +7408,14 @@
     "tipo": "Single"
   },
   {
+    "id": "apple-1896150479",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/97/cb/39/97cb3929-8b38-b38e-688a-7ddcc11d0090/artwork.jpg/100x100bb.jpg",
+    "titulo": "Sorry for Seeking You Second - Single",
+    "fecha": "2026-06-01",
+    "artista": "Ewan McGregor",
+    "tipo": "Single"
+  },
+  {
     "id": "3769de60-45d0-475f-93ee-ff9ad184aba1",
     "imagen": "https://coverartarchive.org/release-group/3769de60-45d0-475f-93ee-ff9ad184aba1/front-250",
     "titulo": "Imperfect-I'mperfect",
@@ -7616,17 +7728,17 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6779478942",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/58/c9/57/58c957b7-37af-1e97-48d7-0a034775df5d/199316652253_cover.jpg/100x100bb.jpg",
-    "titulo": "Night Falls - Single",
+    "id": "apple-6779478667",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0b/2d/46/0b2d4634-172b-74d7-70e2-c839cc89e87b/199316652246_cover.jpg/100x100bb.jpg",
+    "titulo": "Nobody's There - Single",
     "fecha": "2026-05-27",
     "artista": "Bebe Rexha",
     "tipo": "Single"
   },
   {
-    "id": "apple-6779478667",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0b/2d/46/0b2d4634-172b-74d7-70e2-c839cc89e87b/199316652246_cover.jpg/100x100bb.jpg",
-    "titulo": "Nobody's There - Single",
+    "id": "apple-6779478942",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/58/c9/57/58c957b7-37af-1e97-48d7-0a034775df5d/199316652253_cover.jpg/100x100bb.jpg",
+    "titulo": "Night Falls - Single",
     "fecha": "2026-05-27",
     "artista": "Bebe Rexha",
     "tipo": "Single"
@@ -9077,6 +9189,14 @@
     "titulo": "Tiene Que Ser Él - Single",
     "fecha": "2026-05-01",
     "artista": "NIA",
+    "tipo": "Single"
+  },
+  {
+    "id": "f6db0fcc-a03e-4bf7-a9b9-92e871762411",
+    "imagen": "https://coverartarchive.org/release-group/f6db0fcc-a03e-4bf7-a9b9-92e871762411/front-250",
+    "titulo": "Girl’s Girl (Girls Trip)",
+    "fecha": "2026-05-01",
+    "artista": "Emilia",
     "tipo": "Single"
   },
   {
@@ -11224,6 +11344,22 @@
     "tipo": "Single"
   },
   {
+    "id": "4804039b-2f3e-4390-b27d-64c5bf5e2c37",
+    "imagen": "https://coverartarchive.org/release-group/4804039b-2f3e-4390-b27d-64c5bf5e2c37/front-250",
+    "titulo": "cançó de primavera",
+    "fecha": "2026-03-27",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-1884395258",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/92/52/709252a2-1d4e-9d9f-79a9-7977c1e5c500/820200620996.jpg/100x100bb.jpg",
+    "titulo": "cançó de primavera - Single",
+    "fecha": "2026-03-27",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
     "id": "2b15acb2-e3aa-448f-aad3-7277fe198dc9",
     "imagen": "https://coverartarchive.org/release-group/2b15acb2-e3aa-448f-aad3-7277fe198dc9/front-250",
     "titulo": "Cuéntame",
@@ -12376,6 +12512,22 @@
     "tipo": "Single"
   },
   {
+    "id": "5fd2d465-da2c-4e5e-a2f9-e5140e15d989",
+    "imagen": "https://coverartarchive.org/release-group/5fd2d465-da2c-4e5e-a2f9-e5140e15d989/front-250",
+    "titulo": "Siete días",
+    "fecha": "2026-03-06",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-1878342097",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c9/26/67/c92667aa-69a0-a05c-296e-1dd826761b26/820200372208.jpg/100x100bb.jpg",
+    "titulo": "siete días - Single",
+    "fecha": "2026-03-06",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
     "id": "5c586935-739c-46af-bf76-a6b9b5471cb6",
     "imagen": "https://coverartarchive.org/release-group/5c586935-739c-46af-bf76-a6b9b5471cb6/front-250",
     "titulo": "¡VIDA MÉXICO!",
@@ -12512,6 +12664,14 @@
     "tipo": "Single"
   },
   {
+    "id": "16ccbd13-14cc-409b-b4e5-b2596dbcde13",
+    "imagen": "https://coverartarchive.org/release-group/16ccbd13-14cc-409b-b4e5-b2596dbcde13/front-250",
+    "titulo": "Somos más",
+    "fecha": "2026-03-03",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-1881672023",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ce/4f/39/ce4f39c7-e885-bfe6-c12b-115416a92b90/1013235.jpg/100x100bb.jpg",
     "titulo": "Bangaranga - Single",
@@ -12605,6 +12765,14 @@
     "titulo": "Hasta Morir - Single",
     "fecha": "2026-02-28",
     "artista": "OnMusic",
+    "tipo": "Single"
+  },
+  {
+    "id": "0b3d386a-d03c-4cf6-a17a-2c2ab14337f2",
+    "imagen": "https://coverartarchive.org/release-group/0b3d386a-d03c-4cf6-a17a-2c2ab14337f2/front-250",
+    "titulo": "De tot cor",
+    "fecha": "2026-02-28",
+    "artista": "Rigoberta Bandini",
     "tipo": "Single"
   },
   {
@@ -13600,6 +13768,14 @@
     "tipo": "Single"
   },
   {
+    "id": "034acaf2-ec9c-48ee-9534-0f5f2bb6505f",
+    "imagen": "https://coverartarchive.org/release-group/034acaf2-ec9c-48ee-9534-0f5f2bb6505f/front-250",
+    "titulo": "JETSKI (remix)",
+    "fecha": "2026-02-12",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-1874934145",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b1/78/aa/b178aabd-f319-565c-6d50-810550629ba8/cover.jpg/100x100bb.jpg",
     "titulo": "Raindrops Keep Fallin' on My Head (Re-Recorded - Sunshine Remix) - Single",
@@ -13667,6 +13843,14 @@
     "id": "apple-1875221082",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/97/f7/4897f7fc-e9b6-8e47-956a-929612bff438/820200270153.jpg/100x100bb.jpg",
     "titulo": "Ако друга намериш - Single",
+    "fecha": "2026-02-09",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
+    "id": "98c66244-059a-4871-abe1-7519428e1146",
+    "imagen": "https://coverartarchive.org/release-group/98c66244-059a-4871-abe1-7519428e1146/front-250",
+    "titulo": "Страх ме е",
     "fecha": "2026-02-09",
     "artista": "Emilia",
     "tipo": "Single"
@@ -14632,6 +14816,14 @@
     "tipo": "Single"
   },
   {
+    "id": "5ca25aae-8d91-4ba8-8fca-ee6268dace5d",
+    "imagen": "https://coverartarchive.org/release-group/5ca25aae-8d91-4ba8-8fca-ee6268dace5d/front-250",
+    "titulo": "BOTA",
+    "fecha": "2026-01-22",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "5f0abcd5-5c2c-4b31-9136-cd0487683d92",
     "imagen": "https://coverartarchive.org/release-group/5f0abcd5-5c2c-4b31-9136-cd0487683d92/front-250",
     "titulo": "Cambiaré",
@@ -15560,6 +15752,14 @@
     "tipo": "Single"
   },
   {
+    "id": "990748c1-a778-49da-8dbe-c08792d4558d",
+    "imagen": "https://coverartarchive.org/release-group/990748c1-a778-49da-8dbe-c08792d4558d/front-250",
+    "titulo": "Genio Atrapado",
+    "fecha": "2025-12-19",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "f88917bc-61d0-4337-9ba3-aa26e4599a74",
     "imagen": "https://coverartarchive.org/release-group/f88917bc-61d0-4337-9ba3-aa26e4599a74/front-250",
     "titulo": "Ave Maria",
@@ -15990,14 +16190,6 @@
     "fecha": "2025-12-03",
     "artista": "Juanes",
     "tipo": "Single"
-  },
-  {
-    "id": "f6da80ac-7a3f-420a-8d96-764d368e0c80",
-    "imagen": "https://coverartarchive.org/release-group/f6da80ac-7a3f-420a-8d96-764d368e0c80/front-250",
-    "titulo": "2025-12-03: Beyon Al Dana Amphitheatre, Sakhir, BH",
-    "fecha": "2025-12-03",
-    "artista": "Metallica",
-    "tipo": "Album"
   },
   {
     "id": "2052b9c6-00d7-4d1f-b29d-2804998950ac",
@@ -16477,6 +16669,22 @@
     "titulo": "A PERFECT WORLD",
     "fecha": "2025-11-20",
     "artista": "The Kid LAROI",
+    "tipo": "Single"
+  },
+  {
+    "id": "25ab3c4d-2e5d-4946-b137-a47d880dde65",
+    "imagen": "https://coverartarchive.org/release-group/25ab3c4d-2e5d-4946-b137-a47d880dde65/front-250",
+    "titulo": "La cita",
+    "fecha": "2025-11-20",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
+    "id": "3493d3f8-06a7-421c-8244-e6eda72a26ee",
+    "imagen": "https://coverartarchive.org/release-group/3493d3f8-06a7-421c-8244-e6eda72a26ee/front-250",
+    "titulo": "No te apartes de mí",
+    "fecha": "2025-11-20",
+    "artista": "Rigoberta Bandini",
     "tipo": "Single"
   },
   {
@@ -17256,6 +17464,14 @@
     "tipo": "Single"
   },
   {
+    "id": "2c406803-738d-4dbe-87cc-0f57fed5816f",
+    "imagen": "https://coverartarchive.org/release-group/2c406803-738d-4dbe-87cc-0f57fed5816f/front-250",
+    "titulo": "Supersexi",
+    "fecha": "2025-10-30",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "b62219ab-be78-474f-a0ec-75e80ef30870",
     "imagen": "https://coverartarchive.org/release-group/b62219ab-be78-474f-a0ec-75e80ef30870/front-250",
     "titulo": "Apple Music Live: Gracie Abrams",
@@ -17685,6 +17901,14 @@
     "titulo": "Who’s Dat Girl",
     "fecha": "2025-10-17",
     "artista": "Ayra Starr",
+    "tipo": "Single"
+  },
+  {
+    "id": "a519cf10-ad50-4cd9-bb3b-18797374d90c",
+    "imagen": "https://coverartarchive.org/release-group/a519cf10-ad50-4cd9-bb3b-18797374d90c/front-250",
+    "titulo": "Maldita noche (En vivo estadio Vélez)",
+    "fecha": "2025-10-17",
+    "artista": "Emilia",
     "tipo": "Single"
   },
   {
@@ -20624,6 +20848,14 @@
     "tipo": "Album"
   },
   {
+    "id": "40c79053-c092-4eef-b599-20b589a14973",
+    "imagen": "https://coverartarchive.org/release-group/40c79053-c092-4eef-b599-20b589a14973/front-250",
+    "titulo": "perfectas",
+    "fecha": "2025-07-31",
+    "artista": "Emilia",
+    "tipo": "Album"
+  },
+  {
     "id": "414d5256-fe67-4eaf-aede-04a8b54c7c32",
     "imagen": "https://coverartarchive.org/release-group/414d5256-fe67-4eaf-aede-04a8b54c7c32/front-250",
     "titulo": "Anoche",
@@ -20656,12 +20888,28 @@
     "tipo": "Single"
   },
   {
+    "id": "55970057-d2f0-4424-9936-20a1a83a24b0",
+    "imagen": "https://coverartarchive.org/release-group/55970057-d2f0-4424-9936-20a1a83a24b0/front-250",
+    "titulo": "servidora 🕶️",
+    "fecha": "2025-07-30",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "d16791e1-b0a5-4373-ba7b-0820ac10d3d8",
     "imagen": "https://coverartarchive.org/release-group/d16791e1-b0a5-4373-ba7b-0820ac10d3d8/front-250",
     "titulo": "2025‐06‐15: Letnany Airport, Prague, Czech Republic",
     "fecha": "2025-07-29",
     "artista": "Bruce Springsteen",
     "tipo": "Album"
+  },
+  {
+    "id": "177251e4-44d4-471f-88df-69ee24b531a4",
+    "imagen": "https://coverartarchive.org/release-group/177251e4-44d4-471f-88df-69ee24b531a4/front-250",
+    "titulo": "beautiful 💄",
+    "fecha": "2025-07-29",
+    "artista": "Emilia",
+    "tipo": "Single"
   },
   {
     "id": "d1d833ae-15ca-4aaa-8024-468dae8e33a0",
@@ -21672,6 +21920,14 @@
     "tipo": "Album"
   },
   {
+    "id": "9d4ac43c-6969-44d9-9359-b0201d26407e",
+    "imagen": "https://coverartarchive.org/release-group/9d4ac43c-6969-44d9-9359-b0201d26407e/front-250",
+    "titulo": "pasarella 👠",
+    "fecha": "2025-07-03",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "408be83c-5972-4e0b-88ed-450efa021f47",
     "imagen": "https://coverartarchive.org/release-group/408be83c-5972-4e0b-88ed-450efa021f47/front-250",
     "titulo": "Barbie & Ken",
@@ -22416,6 +22672,14 @@
     "tipo": "Single"
   },
   {
+    "id": "7a9d7d16-f7c0-42dc-9654-44d422010020",
+    "imagen": "https://coverartarchive.org/release-group/7a9d7d16-f7c0-42dc-9654-44d422010020/front-250",
+    "titulo": "+ Te Vale",
+    "fecha": "2025-06-19",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "ddfd835c-d002-439d-9c76-422242b43d31",
     "imagen": "https://coverartarchive.org/release-group/ddfd835c-d002-439d-9c76-422242b43d31/front-250",
     "titulo": "Can You Hear Me?",
@@ -22885,6 +23149,14 @@
     "titulo": "MASNA REMIX",
     "fecha": "2025-06-05",
     "artista": "Nicki Nicole",
+    "tipo": "Single"
+  },
+  {
+    "id": "545e32d5-7283-4875-ba01-3d102f7e4073",
+    "imagen": "https://coverartarchive.org/release-group/545e32d5-7283-4875-ba01-3d102f7e4073/front-250",
+    "titulo": "MASNA REMIX",
+    "fecha": "2025-06-05",
+    "artista": "Emilia",
     "tipo": "Single"
   },
   {
@@ -24704,6 +24976,14 @@
     "tipo": "Single"
   },
   {
+    "id": "ef1d0a7c-f4b5-4bab-933b-ba013fb4f5f6",
+    "imagen": "https://coverartarchive.org/release-group/ef1d0a7c-f4b5-4bab-933b-ba013fb4f5f6/front-250",
+    "titulo": "MOTINHA 2.0 (Mete marcha) (remix)",
+    "fecha": "2025-04-24",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "8f99a6a5-fa84-47c1-903b-163b7aa8b4af",
     "imagen": "https://coverartarchive.org/release-group/8f99a6a5-fa84-47c1-903b-163b7aa8b4af/front-250",
     "titulo": "Is This What You've Been Waiting For?",
@@ -25664,6 +25944,22 @@
     "tipo": "Single"
   },
   {
+    "id": "d2ea5dbc-bff1-4fb7-b84e-d51603ec4fb0",
+    "imagen": "https://coverartarchive.org/release-group/d2ea5dbc-bff1-4fb7-b84e-d51603ec4fb0/front-250",
+    "titulo": "blackout 🧊",
+    "fecha": "2025-03-25",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
+    "id": "9c7f9269-bfe5-48ac-8410-46b0e2ab62bf",
+    "imagen": "https://coverartarchive.org/release-group/9c7f9269-bfe5-48ac-8410-46b0e2ab62bf/front-250",
+    "titulo": "El amor (Freenipples & Love is INDIE air remix)",
+    "fecha": "2025-03-25",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
     "id": "ea9a7126-3355-4f7e-9b62-4029bb356535",
     "imagen": "https://coverartarchive.org/release-group/ea9a7126-3355-4f7e-9b62-4029bb356535/front-250",
     "titulo": "Afterlife (From the Netflix Series “Devil May Cry”)",
@@ -25741,6 +26037,14 @@
     "titulo": "Las canciones",
     "fecha": "2025-03-21",
     "artista": "El Kanka",
+    "tipo": "Album"
+  },
+  {
+    "id": "040da60f-1800-40da-83e9-0d6b4d1a65ce",
+    "imagen": "https://coverartarchive.org/release-group/040da60f-1800-40da-83e9-0d6b4d1a65ce/front-250",
+    "titulo": "Jesucrista Superstar",
+    "fecha": "2025-03-21",
+    "artista": "Rigoberta Bandini",
     "tipo": "Album"
   },
   {
@@ -26056,6 +26360,14 @@
     "tipo": "EP"
   },
   {
+    "id": "630f50af-38ee-4642-97df-1d92893bc28a",
+    "imagen": "https://coverartarchive.org/release-group/630f50af-38ee-4642-97df-1d92893bc28a/front-250",
+    "titulo": "Aprenderás",
+    "fecha": "2025-03-07",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
     "id": "cc4e1354-b520-49d7-ae50-e109296f6070",
     "imagen": "https://coverartarchive.org/release-group/cc4e1354-b520-49d7-ae50-e109296f6070/front-250",
     "titulo": "Make Up Your Mind",
@@ -26277,6 +26589,14 @@
     "titulo": "Pray",
     "fecha": "2025-02-28",
     "artista": "Disciples",
+    "tipo": "Single"
+  },
+  {
+    "id": "0034a891-6358-4b0d-9388-7153b1f717fc",
+    "imagen": "https://coverartarchive.org/release-group/0034a891-6358-4b0d-9388-7153b1f717fc/front-250",
+    "titulo": "Soy mayor",
+    "fecha": "2025-02-28",
+    "artista": "Rigoberta Bandini",
     "tipo": "Single"
   },
   {
@@ -26536,6 +26856,14 @@
     "tipo": "Single"
   },
   {
+    "id": "c0dc514f-db86-4cea-8182-6200a17d1290",
+    "imagen": "https://coverartarchive.org/release-group/c0dc514f-db86-4cea-8182-6200a17d1290/front-250",
+    "titulo": "bunda 🍑",
+    "fecha": "2025-02-20",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "0f3ca75d-7998-425f-b7a4-73b5491baf69",
     "imagen": "https://coverartarchive.org/release-group/0f3ca75d-7998-425f-b7a4-73b5491baf69/front-250",
     "titulo": "La Plena (W Sound 05)",
@@ -26733,6 +27061,14 @@
     "titulo": "First Love",
     "fecha": "2025-02-14",
     "artista": "Will Smith",
+    "tipo": "Single"
+  },
+  {
+    "id": "2c4db0d4-fbfb-41e5-a9e2-c55b43542e4d",
+    "imagen": "https://coverartarchive.org/release-group/2c4db0d4-fbfb-41e5-a9e2-c55b43542e4d/front-250",
+    "titulo": "El Amor (Premio Goya 2025)",
+    "fecha": "2025-02-14",
+    "artista": "Rigoberta Bandini",
     "tipo": "Single"
   },
   {
@@ -27064,6 +27400,14 @@
     "tipo": "Single"
   },
   {
+    "id": "9a00d65c-b424-4863-8fe8-eea3810e3efe",
+    "imagen": "https://coverartarchive.org/release-group/9a00d65c-b424-4863-8fe8-eea3810e3efe/front-250",
+    "titulo": "Vestido rojo",
+    "fecha": "2025-02-03",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "5c7087e5-1cbf-4572-938b-7fee56f91a4d",
     "imagen": "https://coverartarchive.org/release-group/5c7087e5-1cbf-4572-938b-7fee56f91a4d/front-250",
     "titulo": "1979 (Lukas Bach remix)",
@@ -27190,6 +27534,14 @@
     "fecha": "2025-01-31",
     "artista": "Tiësto",
     "tipo": "EP"
+  },
+  {
+    "id": "7cc55db7-7ffe-487d-a633-3090b0ba9d13",
+    "imagen": "https://coverartarchive.org/release-group/7cc55db7-7ffe-487d-a633-3090b0ba9d13/front-250",
+    "titulo": "KAIMAN",
+    "fecha": "2025-01-31",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
   },
   {
     "id": "b8011894-90a5-4725-8686-a27fc233d784",
@@ -28019,6 +28371,14 @@
     "id": "f1314f8b-d17d-4721-895e-bc70ce2bb359",
     "imagen": "https://coverartarchive.org/release-group/f1314f8b-d17d-4721-895e-bc70ce2bb359/front-250",
     "titulo": "M72 World Tour: Auckland, NZL",
+    "fecha": "2025",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "f6da80ac-7a3f-420a-8d96-764d368e0c80",
+    "imagen": "https://coverartarchive.org/release-group/f6da80ac-7a3f-420a-8d96-764d368e0c80/front-250",
+    "titulo": "2025-12-03: Beyon Al Dana Amphitheatre, Sakhir, BH",
     "fecha": "2025",
     "artista": "Metallica",
     "tipo": "Album"
@@ -30872,6 +31232,14 @@
     "tipo": "Single"
   },
   {
+    "id": "1a749393-54d8-4a8d-9c85-0c6ea1fb030d",
+    "imagen": "https://coverartarchive.org/release-group/1a749393-54d8-4a8d-9c85-0c6ea1fb030d/front-250",
+    "titulo": "Noviogangsta <3",
+    "fecha": "2024-10-12",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "51299acb-d593-4e2b-a1f9-f8320be902ca",
     "imagen": "https://coverartarchive.org/release-group/51299acb-d593-4e2b-a1f9-f8320be902ca/front-250",
     "titulo": "Sympathy is a knife",
@@ -31645,6 +32013,14 @@
     "titulo": "PINACOLADA EP",
     "fecha": "2024-09-27",
     "artista": "Ayra Starr",
+    "tipo": "Single"
+  },
+  {
+    "id": "a2c680ca-a6be-4759-b0f8-a2f6c8c59f82",
+    "imagen": "https://coverartarchive.org/release-group/a2c680ca-a6be-4759-b0f8-a2f6c8c59f82/front-250",
+    "titulo": "Si Muriera Mañana",
+    "fecha": "2024-09-27",
+    "artista": "Rigoberta Bandini",
     "tipo": "Single"
   },
   {
@@ -32678,6 +33054,14 @@
     "fecha": "2024-08-30",
     "artista": "U2",
     "tipo": "EP"
+  },
+  {
+    "id": "37b1a7c8-1121-43b8-874a-90bd513b39da",
+    "imagen": "https://coverartarchive.org/release-group/37b1a7c8-1121-43b8-874a-90bd513b39da/front-250",
+    "titulo": "Carita triste",
+    "fecha": "2024-08-30",
+    "artista": "Emilia",
+    "tipo": "Single"
   },
   {
     "id": "487d7d65-b92f-4bfd-a6f5-0652660b8379",
@@ -35120,6 +35504,14 @@
     "tipo": "Single"
   },
   {
+    "id": "16320ab2-3a5e-4d55-a572-d952b448e84e",
+    "imagen": "https://coverartarchive.org/release-group/16320ab2-3a5e-4d55-a572-d952b448e84e/front-250",
+    "titulo": "La_playlist.mpeg",
+    "fecha": "2024-06-20",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "080200d0-ea4a-4af4-80a3-bfee143e9114",
     "imagen": "https://coverartarchive.org/release-group/080200d0-ea4a-4af4-80a3-bfee143e9114/front-250",
     "titulo": "Smoking Down the Track: I and I - 1984-1999",
@@ -35989,6 +36381,14 @@
     "titulo": "Poundcake (live at the West End Marketplace, Dallas, TX, 12/4/1991)",
     "fecha": "2024-05-23",
     "artista": "Van Halen",
+    "tipo": "Single"
+  },
+  {
+    "id": "730bb3b9-b1a5-447f-bcaa-f94d345400f2",
+    "imagen": "https://coverartarchive.org/release-group/730bb3b9-b1a5-447f-bcaa-f94d345400f2/front-250",
+    "titulo": "Perdonarte, ¿Para Qué?",
+    "fecha": "2024-05-23",
+    "artista": "Emilia",
     "tipo": "Single"
   },
   {
@@ -37040,6 +37440,14 @@
     "tipo": "Single"
   },
   {
+    "id": "0d5b3435-1277-4c2a-ab0e-f5a42e964d0a",
+    "imagen": "https://coverartarchive.org/release-group/0d5b3435-1277-4c2a-ab0e-f5a42e964d0a/front-250",
+    "titulo": "Contradicción",
+    "fecha": "2024-04-25",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
     "id": "9b234dcf-b91f-4589-b330-cf22a899ba80",
     "imagen": "https://coverartarchive.org/release-group/9b234dcf-b91f-4589-b330-cf22a899ba80/front-250",
     "titulo": "Japanese Singles Collection - Greatest Hits",
@@ -37760,6 +38168,14 @@
     "tipo": "EP"
   },
   {
+    "id": "a4797f9f-734b-4640-b8ad-f22acc6163ae",
+    "imagen": "https://coverartarchive.org/release-group/a4797f9f-734b-4640-b8ad-f22acc6163ae/front-250",
+    "titulo": "Splash (más que mares)",
+    "fecha": "2024-04-12",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
     "id": "181dbf42-3a88-4eee-92b1-dd98b7944f86",
     "imagen": "https://coverartarchive.org/release-group/181dbf42-3a88-4eee-92b1-dd98b7944f86/front-250",
     "titulo": "MERCEDES",
@@ -37966,14 +38382,6 @@
     "fecha": "2024-04-05",
     "artista": "Doja Cat",
     "tipo": "Single"
-  },
-  {
-    "id": "93012c6c-ed99-40fe-bb75-cf029ad25f82",
-    "imagen": "https://coverartarchive.org/release-group/93012c6c-ed99-40fe-bb75-cf029ad25f82/front-250",
-    "titulo": "Scarlet 2 CLAUDE",
-    "fecha": "2024-04-05",
-    "artista": "Doja Cat",
-    "tipo": "Album"
   },
   {
     "id": "fbde4892-871c-4fb8-83c6-bf383db6889a",
@@ -38693,6 +39101,14 @@
     "titulo": "Llórame Un Río",
     "fecha": "2024-03-28",
     "artista": "Belinda",
+    "tipo": "Single"
+  },
+  {
+    "id": "44cc2d12-4543-4252-bba6-a571f73ddaa6",
+    "imagen": "https://coverartarchive.org/release-group/44cc2d12-4543-4252-bba6-a571f73ddaa6/front-250",
+    "titulo": "Petit bonbon",
+    "fecha": "2024-03-28",
+    "artista": "Rigoberta Bandini",
     "tipo": "Single"
   },
   {
@@ -41168,6 +41584,22 @@
     "tipo": "Single"
   },
   {
+    "id": "fc942c65-21d7-461d-9e34-c232aae2b945",
+    "imagen": "https://coverartarchive.org/release-group/fc942c65-21d7-461d-9e34-c232aae2b945/front-250",
+    "titulo": "La niña bonita",
+    "fecha": "2024-01-12",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
+    "id": "f9546673-4c75-486b-a78c-5db503a22b3d",
+    "imagen": "https://coverartarchive.org/release-group/f9546673-4c75-486b-a78c-5db503a22b3d/front-250",
+    "titulo": "JET_Set.mp3",
+    "fecha": "2024-01-11",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "f7daaced-e464-4f14-8632-5ab81d2bc9d4",
     "imagen": "https://coverartarchive.org/release-group/f7daaced-e464-4f14-8632-5ab81d2bc9d4/front-250",
     "titulo": "COMO YO TE QUIERO (DELUXE)",
@@ -41253,6 +41685,14 @@
     "titulo": "Una foto - Remix",
     "fecha": "2024-01-05",
     "artista": "Nicki Nicole",
+    "tipo": "Single"
+  },
+  {
+    "id": "45e736ef-887b-4cdb-a833-ae0b512fe780",
+    "imagen": "https://coverartarchive.org/release-group/45e736ef-887b-4cdb-a833-ae0b512fe780/front-250",
+    "titulo": "Una foto - Remix",
+    "fecha": "2024-01-05",
+    "artista": "Emilia",
     "tipo": "Single"
   },
   {
@@ -41997,6 +42437,14 @@
     "titulo": "Cryin' (Remastered)",
     "fecha": "2023-12-22",
     "artista": "Roy Orbison",
+    "tipo": "Single"
+  },
+  {
+    "id": "ee22d138-f7d3-4628-bb73-82f634d49c15",
+    "imagen": "https://coverartarchive.org/release-group/ee22d138-f7d3-4628-bb73-82f634d49c15/front-250",
+    "titulo": "Qué más da",
+    "fecha": "2023-12-22",
+    "artista": "Rigoberta Bandini",
     "tipo": "Single"
   },
   {
@@ -43910,6 +44358,14 @@
     "fecha": "2023-11-03",
     "artista": "Chanel",
     "tipo": "Single"
+  },
+  {
+    "id": "2c1c4c90-e1ae-428d-b795-8640cced29b8",
+    "imagen": "https://coverartarchive.org/release-group/2c1c4c90-e1ae-428d-b795-8640cced29b8/front-250",
+    "titulo": ".mp3",
+    "fecha": "2023-11-03",
+    "artista": "Emilia",
+    "tipo": "Album"
   },
   {
     "id": "1ab2d658-c765-469a-a3a4-22858fa7eb2d",
@@ -46408,6 +46864,14 @@
     "tipo": "Single"
   },
   {
+    "id": "50834058-a846-4e11-b35b-c2856edbbda5",
+    "imagen": "https://coverartarchive.org/release-group/50834058-a846-4e11-b35b-c2856edbbda5/front-250",
+    "titulo": "GTA.mp3",
+    "fecha": "2023-09-07",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "ccb5c248-aeb8-41e3-9ebb-6249f180ce30",
     "imagen": "https://coverartarchive.org/release-group/ccb5c248-aeb8-41e3-9ebb-6249f180ce30/front-250",
     "titulo": "Mixing Up The Medicine / A Retrospective",
@@ -48448,6 +48912,14 @@
     "tipo": "Single"
   },
   {
+    "id": "9a7f06ec-1c87-4854-99f4-239e21b9eb10",
+    "imagen": "https://coverartarchive.org/release-group/9a7f06ec-1c87-4854-99f4-239e21b9eb10/front-250",
+    "titulo": "Salgo a Bailar",
+    "fecha": "2023-07-14",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "f1c31823-3a17-4d6a-9f50-e65ade1a0c03",
     "imagen": "https://coverartarchive.org/release-group/f1c31823-3a17-4d6a-9f50-e65ade1a0c03/front-250",
     "titulo": "Demasiado",
@@ -49674,7 +50146,7 @@
   {
     "id": "232cd07d-f727-41ae-a124-1d0bd5fbe301",
     "imagen": "https://coverartarchive.org/release-group/232cd07d-f727-41ae-a124-1d0bd5fbe301/front-250",
-    "titulo": "Il primo passo sulla Luna",
+    "titulo": "Il primo passo sulla luna",
     "fecha": "2023-06-16",
     "artista": "Laura Pausini",
     "tipo": "Single"
@@ -50013,6 +50485,22 @@
     "titulo": "Madrid sin vos",
     "fecha": "2023-06-09",
     "artista": "Coti",
+    "tipo": "Single"
+  },
+  {
+    "id": "bdc435a4-539d-468d-94b5-8c58fde9f56b",
+    "imagen": "https://coverartarchive.org/release-group/bdc435a4-539d-468d-94b5-8c58fde9f56b/front-250",
+    "titulo": "Nagasaki",
+    "fecha": "2023-06-09",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
+    "id": "f391e0c9-3d5c-4e32-bd0d-b69cc25dab11",
+    "imagen": "https://coverartarchive.org/release-group/f391e0c9-3d5c-4e32-bd0d-b69cc25dab11/front-250",
+    "titulo": "Yo solo quiero amor",
+    "fecha": "2023-06-09",
+    "artista": "Rigoberta Bandini",
     "tipo": "Single"
   },
   {
@@ -50984,6 +51472,14 @@
     "tipo": "Single"
   },
   {
+    "id": "1db13d78-c81a-4fdd-b070-b019a2f33e0e",
+    "imagen": "https://coverartarchive.org/release-group/1db13d78-c81a-4fdd-b070-b019a2f33e0e/front-250",
+    "titulo": "Miami Beach",
+    "fecha": "2023-05-19",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
     "id": "f36e536d-a3a6-42b9-be76-010fd5e5674c",
     "imagen": "https://coverartarchive.org/release-group/f36e536d-a3a6-42b9-be76-010fd5e5674c/front-250",
     "titulo": "Tú sí",
@@ -51733,6 +52229,14 @@
     "titulo": "If I Ain’t Got You (orchestral version)",
     "fecha": "2023-05-03",
     "artista": "Alicia Keys",
+    "tipo": "Single"
+  },
+  {
+    "id": "472cb181-5f4d-40cc-9dab-8dcb52fbad8f",
+    "imagen": "https://coverartarchive.org/release-group/472cb181-5f4d-40cc-9dab-8dcb52fbad8f/front-250",
+    "titulo": "No_se_ve.mp3",
+    "fecha": "2023-05-03",
+    "artista": "Emilia",
     "tipo": "Single"
   },
   {
@@ -54040,6 +54544,14 @@
     "tipo": "Single"
   },
   {
+    "id": "bc81b595-b6db-42d7-963d-49958ddb0204",
+    "imagen": "https://coverartarchive.org/release-group/bc81b595-b6db-42d7-963d-49958ddb0204/front-250",
+    "titulo": "Tu recuerdo",
+    "fecha": "2023-03-02",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "29061050-e95b-4b80-b139-a6d256d3c964",
     "imagen": "https://coverartarchive.org/release-group/29061050-e95b-4b80-b139-a6d256d3c964/front-250",
     "titulo": "If Darkness Had a Son",
@@ -55144,6 +55656,14 @@
     "tipo": "EP"
   },
   {
+    "id": "d74dde22-d0dd-4caa-a39d-76a1449075c9",
+    "imagen": "https://coverartarchive.org/release-group/d74dde22-d0dd-4caa-a39d-76a1449075c9/front-250",
+    "titulo": "En la intimidad | CROSSOVER #1",
+    "fecha": "2023-02-01",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "588cb0a7-d375-4b52-8877-7b82885e6194",
     "imagen": "https://coverartarchive.org/release-group/588cb0a7-d375-4b52-8877-7b82885e6194/front-250",
     "titulo": "What Else Can You Show Me: It's Alright Ma - 1964-2013",
@@ -56090,7 +56610,7 @@
   {
     "id": "aa52ad93-f8ed-4a19-9baf-f3e4c53cc063",
     "imagen": "https://coverartarchive.org/release-group/aa52ad93-f8ed-4a19-9baf-f3e4c53cc063/front-250",
-    "titulo": "What You Won't Do For Love",
+    "titulo": "What You Won't Do for Love",
     "fecha": "2023",
     "artista": "Boyz II Men",
     "tipo": "Album"
@@ -57680,6 +58200,14 @@
     "tipo": "EP"
   },
   {
+    "id": "f2cb8c37-911b-4da5-8e9c-9cfe0dcd1fb8",
+    "imagen": "https://coverartarchive.org/release-group/f2cb8c37-911b-4da5-8e9c-9cfe0dcd1fb8/front-250",
+    "titulo": "Underground",
+    "fecha": "2022-11-18",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "69a42374-e55a-4400-ad72-d45145348abc",
     "imagen": "https://coverartarchive.org/release-group/69a42374-e55a-4400-ad72-d45145348abc/front-250",
     "titulo": "The Most Winning",
@@ -58712,6 +59240,14 @@
     "tipo": "Album"
   },
   {
+    "id": "aaa50034-4053-4973-8adf-e87ce66bc320",
+    "imagen": "https://coverartarchive.org/release-group/aaa50034-4053-4973-8adf-e87ce66bc320/front-250",
+    "titulo": "Emilia en vivo",
+    "fecha": "2022-10-28",
+    "artista": "Emilia",
+    "tipo": "Album"
+  },
+  {
     "id": "4160529c-eecc-47e2-bd43-0422091d93ee",
     "imagen": "https://coverartarchive.org/release-group/4160529c-eecc-47e2-bd43-0422091d93ee/front-250",
     "titulo": "Music for a Sushi Restaurant",
@@ -59552,6 +60088,14 @@
     "tipo": "Broadcast"
   },
   {
+    "id": "d72bad13-7505-43ea-b8bd-ffd2ece928a0",
+    "imagen": "https://coverartarchive.org/release-group/d72bad13-7505-43ea-b8bd-ffd2ece928a0/front-250",
+    "titulo": "La emperatriz",
+    "fecha": "2022-10-07",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Album"
+  },
+  {
     "id": "775b8498-15a0-4f05-ba5a-e89259f62141",
     "imagen": "https://coverartarchive.org/release-group/775b8498-15a0-4f05-ba5a-e89259f62141/front-250",
     "titulo": "Llegará",
@@ -60080,6 +60624,14 @@
     "tipo": "Other"
   },
   {
+    "id": "4012d447-78ad-41c7-9bc3-a430113e6838",
+    "imagen": "https://coverartarchive.org/release-group/4012d447-78ad-41c7-9bc3-a430113e6838/front-250",
+    "titulo": "I’m Good (Blue) (Manse Festival mix)",
+    "fecha": "2022-09-21",
+    "artista": "David Guetta",
+    "tipo": "Single"
+  },
+  {
     "id": "7464ae1f-019e-4ff4-9aa5-0e7de5f70a85",
     "imagen": "https://coverartarchive.org/release-group/7464ae1f-019e-4ff4-9aa5-0e7de5f70a85/front-250",
     "titulo": "What U Wanting",
@@ -60125,6 +60677,14 @@
     "titulo": "Pareja del año (Reggaeton acústico volume 2)",
     "fecha": "2022-09-21",
     "artista": "Sebastián Yatra",
+    "tipo": "Single"
+  },
+  {
+    "id": "4012d447-78ad-41c7-9bc3-a430113e6838",
+    "imagen": "https://coverartarchive.org/release-group/4012d447-78ad-41c7-9bc3-a430113e6838/front-250",
+    "titulo": "I’m Good (Blue) (Manse Festival mix)",
+    "fecha": "2022-09-21",
+    "artista": "Bebe Rexha",
     "tipo": "Single"
   },
   {
@@ -61312,6 +61872,14 @@
     "tipo": "Single"
   },
   {
+    "id": "02b576f4-548e-41f0-af6b-436243f62c11",
+    "imagen": "https://coverartarchive.org/release-group/02b576f4-548e-41f0-af6b-436243f62c11/front-250",
+    "titulo": "La chain",
+    "fecha": "2022-08-16",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "08795979-9acf-4487-9cfd-6d6fbb4162d5",
     "imagen": "https://coverartarchive.org/release-group/08795979-9acf-4487-9cfd-6d6fbb4162d5/front-250",
     "titulo": "Bad for Me (acoustic)",
@@ -62176,6 +62744,14 @@
     "tipo": "Single"
   },
   {
+    "id": "64063a50-cb8f-4332-8a66-85dd7fc5597f",
+    "imagen": "https://coverartarchive.org/release-group/64063a50-cb8f-4332-8a66-85dd7fc5597f/front-250",
+    "titulo": "Quieres",
+    "fecha": "2022-07-21",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "b16b7932-4cab-46d0-a73c-34d67ef5c4eb",
     "imagen": "https://coverartarchive.org/release-group/b16b7932-4cab-46d0-a73c-34d67ef5c4eb/front-250",
     "titulo": "Moods",
@@ -62573,6 +63149,14 @@
     "titulo": "Sah Sah",
     "fecha": "2022-07-08",
     "artista": "Marshmello",
+    "tipo": "Single"
+  },
+  {
+    "id": "79beb583-3063-4985-814f-38341efaa38b",
+    "imagen": "https://coverartarchive.org/release-group/79beb583-3063-4985-814f-38341efaa38b/front-250",
+    "titulo": "Así bailaba",
+    "fecha": "2022-07-08",
+    "artista": "Rigoberta Bandini",
     "tipo": "Single"
   },
   {
@@ -63672,6 +64256,14 @@
     "tipo": "Single"
   },
   {
+    "id": "6e4fca5b-ea8c-4cb7-93e0-77134f83caa6",
+    "imagen": "https://coverartarchive.org/release-group/6e4fca5b-ea8c-4cb7-93e0-77134f83caa6/front-250",
+    "titulo": "A todos mis amantes",
+    "fecha": "2022-06-07",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
     "id": "9a0be969-e604-46cf-8c28-b62f8c105769",
     "imagen": "https://coverartarchive.org/release-group/9a0be969-e604-46cf-8c28-b62f8c105769/front-250",
     "titulo": "Why Can't You Wait (3LAU remix)",
@@ -63880,6 +64472,14 @@
     "tipo": "Single"
   },
   {
+    "id": "bc94558a-e71b-4483-8982-af6e43038690",
+    "imagen": "https://coverartarchive.org/release-group/bc94558a-e71b-4483-8982-af6e43038690/front-250",
+    "titulo": "Tú crees en mí?",
+    "fecha": "2022-05-31",
+    "artista": "Emilia",
+    "tipo": "Album"
+  },
+  {
     "id": "3259561e-072a-4a54-a289-e4cf39761367",
     "imagen": "https://coverartarchive.org/release-group/3259561e-072a-4a54-a289-e4cf39761367/front-250",
     "titulo": "La tormenta",
@@ -63909,6 +64509,14 @@
     "titulo": "Intoxicao",
     "fecha": "2022-05-30",
     "artista": "Nicki Nicole",
+    "tipo": "Single"
+  },
+  {
+    "id": "86aa4818-0bd2-4a13-b1c5-26125d9b94cc",
+    "imagen": "https://coverartarchive.org/release-group/86aa4818-0bd2-4a13-b1c5-26125d9b94cc/front-250",
+    "titulo": "Intoxicao",
+    "fecha": "2022-05-30",
+    "artista": "Emilia",
     "tipo": "Single"
   },
   {
@@ -64838,6 +65446,14 @@
     "fecha": "2022-05-05",
     "artista": "Rvssian",
     "tipo": "EP"
+  },
+  {
+    "id": "ce13304c-e5f9-4e43-9f72-0c208d337fd4",
+    "imagen": "https://coverartarchive.org/release-group/ce13304c-e5f9-4e43-9f72-0c208d337fd4/front-250",
+    "titulo": "Todas las Mamás",
+    "fecha": "2022-05-04",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
   },
   {
     "id": "7fad4dc4-dbc9-4d25-b87c-d6b616786ee1",
@@ -67368,6 +67984,14 @@
     "tipo": "EP"
   },
   {
+    "id": "41386c44-5cc5-47ac-a73d-feb4219f2ce5",
+    "imagen": "https://coverartarchive.org/release-group/41386c44-5cc5-47ac-a73d-feb4219f2ce5/front-250",
+    "titulo": "El Madrileño (La Sobremesa)",
+    "fecha": "2022-02-18",
+    "artista": "C. Tangana",
+    "tipo": "Album"
+  },
+  {
     "id": "c62c858b-efca-4a33-838b-f6101e240dab",
     "imagen": "https://coverartarchive.org/release-group/c62c858b-efca-4a33-838b-f6101e240dab/front-250",
     "titulo": "Light Switch (acoustic)",
@@ -67565,6 +68189,14 @@
     "titulo": "Love’s Train",
     "fecha": "2022-02-14",
     "artista": "Silk Sonic",
+    "tipo": "Single"
+  },
+  {
+    "id": "6511eaba-984a-4583-b9b2-deb638857c24",
+    "imagen": "https://coverartarchive.org/release-group/6511eaba-984a-4583-b9b2-deb638857c24/front-250",
+    "titulo": "Esto recién empieza",
+    "fecha": "2022-02-14",
+    "artista": "Emilia",
     "tipo": "Single"
   },
   {
@@ -69872,6 +70504,14 @@
     "tipo": "Single"
   },
   {
+    "id": "72ff6b1e-a48c-48c7-8a99-c968e913863f",
+    "imagen": "https://coverartarchive.org/release-group/72ff6b1e-a48c-48c7-8a99-c968e913863f/front-250",
+    "titulo": "Ay mamá",
+    "fecha": "2021-12-23",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
     "id": "23ab8f7e-4ea2-47a4-b271-529c44cbef98",
     "imagen": "https://coverartarchive.org/release-group/23ab8f7e-4ea2-47a4-b271-529c44cbef98/front-250",
     "titulo": "Japanese Singles Collection: Greatest Hits",
@@ -71064,6 +71704,14 @@
     "tipo": "Album"
   },
   {
+    "id": "31fcd62d-6590-4ece-b6f4-acce41114fbf",
+    "imagen": "https://coverartarchive.org/release-group/31fcd62d-6590-4ece-b6f4-acce41114fbf/front-250",
+    "titulo": "Te doy mi vida",
+    "fecha": "2021-11-26",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "ffc39b7c-cf4f-4e7b-a8a6-9e45dd525ce0",
     "imagen": "https://coverartarchive.org/release-group/ffc39b7c-cf4f-4e7b-a8a6-9e45dd525ce0/front-250",
     "titulo": "Música ligera",
@@ -71752,6 +72400,14 @@
     "tipo": "Single"
   },
   {
+    "id": "9726ec38-8a5c-42e7-b924-f7c98284c323",
+    "imagen": "https://coverartarchive.org/release-group/9726ec38-8a5c-42e7-b924-f7c98284c323/front-250",
+    "titulo": "828",
+    "fecha": "2021-11-11",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "8d518b0b-3259-4a58-af1a-6ab00bbf0a27",
     "imagen": "https://coverartarchive.org/release-group/8d518b0b-3259-4a58-af1a-6ab00bbf0a27/front-250",
     "titulo": "Bite Me",
@@ -72413,6 +73069,14 @@
     "titulo": "Preached",
     "fecha": "2021-10-29",
     "artista": "Marshmello",
+    "tipo": "Single"
+  },
+  {
+    "id": "0b383b2f-2ccd-41ad-8f68-7ecf76ab0171",
+    "imagen": "https://coverartarchive.org/release-group/0b383b2f-2ccd-41ad-8f68-7ecf76ab0171/front-250",
+    "titulo": "Julio Iglesias",
+    "fecha": "2021-10-29",
+    "artista": "Rigoberta Bandini",
     "tipo": "Single"
   },
   {
@@ -77944,6 +78608,14 @@
     "tipo": "Single"
   },
   {
+    "id": "59c6b5e8-a490-4bd8-b112-564d8aef8d96",
+    "imagen": "https://coverartarchive.org/release-group/59c6b5e8-a490-4bd8-b112-564d8aef8d96/front-250",
+    "titulo": "A ver qué pasa",
+    "fecha": "2021-06-15",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
     "id": "577bc8b6-7f15-46ab-9f6e-0ef57cbb858e",
     "imagen": "https://coverartarchive.org/release-group/577bc8b6-7f15-46ab-9f6e-0ef57cbb858e/front-250",
     "titulo": "willow (90’s trend remix)",
@@ -77957,6 +78629,14 @@
     "titulo": "Contigo",
     "fecha": "2021-06-13",
     "artista": "Alejandro Sanz",
+    "tipo": "Single"
+  },
+  {
+    "id": "54f117ba-3c2d-4ed8-a611-12435d3a00d8",
+    "imagen": "https://coverartarchive.org/release-group/54f117ba-3c2d-4ed8-a611-12435d3a00d8/front-250",
+    "titulo": "Como si no importara",
+    "fecha": "2021-06-13",
+    "artista": "Emilia",
     "tipo": "Single"
   },
   {
@@ -80149,6 +80829,14 @@
     "titulo": "Our Languish (Outwild remix)",
     "fecha": "2021-04-23",
     "artista": "Xavi",
+    "tipo": "Single"
+  },
+  {
+    "id": "55c0c79e-8d30-447e-a299-bba58354f727",
+    "imagen": "https://coverartarchive.org/release-group/55c0c79e-8d30-447e-a299-bba58354f727/front-250",
+    "titulo": "The Fuck Fuck Fuck Poem",
+    "fecha": "2021-04-23",
+    "artista": "Rigoberta Bandini",
     "tipo": "Single"
   },
   {
@@ -83936,6 +84624,14 @@
     "tipo": "EP"
   },
   {
+    "id": "b62496a5-0bfd-4e7e-81e8-16ac2ca3e4ca",
+    "imagen": "https://coverartarchive.org/release-group/b62496a5-0bfd-4e7e-81e8-16ac2ca3e4ca/front-250",
+    "titulo": "Perra",
+    "fecha": "2021-01-22",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
     "id": "9e755b3e-8c9a-4994-9d4e-b2d86e44bb9c",
     "imagen": "https://coverartarchive.org/release-group/9e755b3e-8c9a-4994-9d4e-b2d86e44bb9c/front-250",
     "titulo": "Lifestyle",
@@ -87200,6 +87896,14 @@
     "tipo": "Album"
   },
   {
+    "id": "8f84eeda-64de-4d49-b6c4-983de1073d23",
+    "imagen": "https://coverartarchive.org/release-group/8f84eeda-64de-4d49-b6c4-983de1073d23/front-250",
+    "titulo": "Cuando tú nazcas",
+    "fecha": "2020-11-20",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
     "id": "b0528706-1f6f-468d-949c-c5c8304420d5",
     "imagen": "https://coverartarchive.org/release-group/b0528706-1f6f-468d-949c-c5c8304420d5/front-250",
     "titulo": "Is It Just Me?",
@@ -89206,6 +89910,14 @@
     "fecha": "2020-10-15",
     "artista": "Whitney Houston",
     "tipo": "Album"
+  },
+  {
+    "id": "ff47c25d-361f-4c0c-a4b9-543a78476f82",
+    "imagen": "https://coverartarchive.org/release-group/ff47c25d-361f-4c0c-a4b9-543a78476f82/front-250",
+    "titulo": "Bendición",
+    "fecha": "2020-10-15",
+    "artista": "Emilia",
+    "tipo": "Single"
   },
   {
     "id": "6c84ce0a-7d79-473e-b831-04b101385d8f",
@@ -92248,6 +92960,14 @@
     "tipo": "Single"
   },
   {
+    "id": "12d19bbf-918b-424c-b810-2de2dd0f0707",
+    "imagen": "https://coverartarchive.org/release-group/12d19bbf-918b-424c-b810-2de2dd0f0707/front-250",
+    "titulo": "Já é Tarde (No Más)",
+    "fecha": "2020-08-14",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "485ed4df-6b6c-4961-9a36-a4cd222a900c",
     "imagen": "https://coverartarchive.org/release-group/485ed4df-6b6c-4961-9a36-a4cd222a900c/front-250",
     "titulo": "Stayin’ Alive (San Pacho remix)",
@@ -92757,14 +93477,6 @@
     "titulo": "Past Life (remix)",
     "fecha": "2020-07-31",
     "artista": "Selena Gomez",
-    "tipo": "Single"
-  },
-  {
-    "id": "ae6c41e1-a597-4708-a5de-2a3204538100",
-    "imagen": "https://coverartarchive.org/release-group/ae6c41e1-a597-4708-a5de-2a3204538100/front-250",
-    "titulo": "Zombie (Remastered 2020)",
-    "fecha": "2020-07-31",
-    "artista": "The Cranberries",
     "tipo": "Single"
   },
   {
@@ -96056,6 +96768,14 @@
     "tipo": "Single"
   },
   {
+    "id": "a91d2311-0d1d-4e6d-b063-93b7b4121241",
+    "imagen": "https://coverartarchive.org/release-group/a91d2311-0d1d-4e6d-b063-93b7b4121241/front-250",
+    "titulo": "Que Cristo baje",
+    "fecha": "2020-05-08",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
     "id": "8f9b327d-36fa-4892-b7ae-afd2c119f906",
     "imagen": "https://coverartarchive.org/release-group/8f9b327d-36fa-4892-b7ae-afd2c119f906/front-250",
     "titulo": "Guille Asesino",
@@ -96872,6 +97592,14 @@
     "tipo": "Single"
   },
   {
+    "id": "a7d2dd45-acba-4eba-96d4-9545a94e9117",
+    "imagen": "https://coverartarchive.org/release-group/a7d2dd45-acba-4eba-96d4-9545a94e9117/front-250",
+    "titulo": "Fiesta",
+    "fecha": "2020-04-17",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
     "id": "e0d976e7-373c-4501-8653-d6854cd5bc10",
     "imagen": "https://coverartarchive.org/release-group/e0d976e7-373c-4501-8653-d6854cd5bc10/front-250",
     "titulo": "Salt (The Remixes)",
@@ -97350,6 +98078,14 @@
     "fecha": "2020-04-05",
     "artista": "Edward Maya",
     "tipo": "Album"
+  },
+  {
+    "id": "0618b181-58d3-4cb0-81b9-c568976e9cb5",
+    "imagen": "https://coverartarchive.org/release-group/0618b181-58d3-4cb0-81b9-c568976e9cb5/front-250",
+    "titulo": "Stand By Me",
+    "fecha": "2020-04-05",
+    "artista": "Imagine Dragons",
+    "tipo": "Single"
   },
   {
     "id": "4b1b845c-9967-4175-a576-6b2b4cd005f4",
@@ -98461,6 +99197,14 @@
     "titulo": "Bad Child / Can’t Be Happy All the Time",
     "fecha": "2020-03-12",
     "artista": "Tones and I",
+    "tipo": "Single"
+  },
+  {
+    "id": "02a4df50-7597-442b-b6a3-b55b124f3b31",
+    "imagen": "https://coverartarchive.org/release-group/02a4df50-7597-442b-b6a3-b55b124f3b31/front-250",
+    "titulo": "HISTERIQUEO",
+    "fecha": "2020-03-11",
+    "artista": "Emilia",
     "tipo": "Single"
   },
   {
@@ -99752,6 +100496,14 @@
     "tipo": "Single"
   },
   {
+    "id": "d9b76f34-d53e-4f65-a81e-69725b2d5c3b",
+    "imagen": "https://coverartarchive.org/release-group/d9b76f34-d53e-4f65-a81e-69725b2d5c3b/front-250",
+    "titulo": "No más",
+    "fecha": "2020-02-04",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "e9966fe0-4e4b-4474-ae59-27bf6ffc290f",
     "imagen": "https://coverartarchive.org/release-group/e9966fe0-4e4b-4474-ae59-27bf6ffc290f/front-250",
     "titulo": "Yummy (Summer Walker remix)",
@@ -100053,6 +100805,14 @@
     "titulo": "Sigo buscándote",
     "fecha": "2020-01-30",
     "artista": "Mau y Ricky",
+    "tipo": "Single"
+  },
+  {
+    "id": "0e3db95f-6a1d-4da8-b050-af36dcc7b499",
+    "imagen": "https://coverartarchive.org/release-group/0e3db95f-6a1d-4da8-b050-af36dcc7b499/front-250",
+    "titulo": "Policía",
+    "fecha": "2020-01-30",
+    "artista": "Emilia",
     "tipo": "Single"
   },
   {
@@ -101016,17 +101776,17 @@
     "tipo": "Album"
   },
   {
-    "id": "6344d3b8-8637-4037-8e00-21ece2bbcecd",
-    "imagen": "https://coverartarchive.org/release-group/6344d3b8-8637-4037-8e00-21ece2bbcecd/front-250",
-    "titulo": "King Creole & More: New Mono-To-Stereo Mixes",
+    "id": "adb16f98-3db3-4e42-8c90-78844b3776dd",
+    "imagen": "https://coverartarchive.org/release-group/adb16f98-3db3-4e42-8c90-78844b3776dd/front-250",
+    "titulo": "Bruce Jackson on the Road With Elvis",
     "fecha": "2020",
     "artista": "Elvis Presley",
     "tipo": "Album"
   },
   {
-    "id": "adb16f98-3db3-4e42-8c90-78844b3776dd",
-    "imagen": "https://coverartarchive.org/release-group/adb16f98-3db3-4e42-8c90-78844b3776dd/front-250",
-    "titulo": "Bruce Jackson on the Road With Elvis",
+    "id": "6344d3b8-8637-4037-8e00-21ece2bbcecd",
+    "imagen": "https://coverartarchive.org/release-group/6344d3b8-8637-4037-8e00-21ece2bbcecd/front-250",
+    "titulo": "King Creole & More: New Mono-To-Stereo Mixes",
     "fecha": "2020",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -101629,7 +102389,7 @@
     "titulo": "Essentials",
     "fecha": "2020",
     "artista": "The Killers",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "2da0ff5d-965f-4c9e-a9f4-2fd422e9cdc5",
@@ -101838,6 +102598,22 @@
     "fecha": "2020",
     "artista": "David Bowie",
     "tipo": "Album"
+  },
+  {
+    "id": "4f6a1ef0-541c-4342-909b-e3233bc2ca7b",
+    "imagen": "https://coverartarchive.org/release-group/4f6a1ef0-541c-4342-909b-e3233bc2ca7b/front-250",
+    "titulo": "In Spain We Call It Soledad",
+    "fecha": "2020",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
+  },
+  {
+    "id": "515fca99-c461-4c92-a34b-6a19e508cd48",
+    "imagen": "https://coverartarchive.org/release-group/515fca99-c461-4c92-a34b-6a19e508cd48/front-250",
+    "titulo": "Too Many Drugs",
+    "fecha": "2020",
+    "artista": "Rigoberta Bandini",
+    "tipo": "Single"
   },
   {
     "id": "90959ac3-453d-4a52-891e-03b0b5247d3c",
@@ -102101,6 +102877,14 @@
     "titulo": "Wanted (TT Spry remix)",
     "fecha": "2019-12-19",
     "artista": "OneRepublic",
+    "tipo": "Single"
+  },
+  {
+    "id": "bd94d4a2-29ae-46a8-a087-1b4ed491b3d0",
+    "imagen": "https://coverartarchive.org/release-group/bd94d4a2-29ae-46a8-a087-1b4ed491b3d0/front-250",
+    "titulo": "Billion",
+    "fecha": "2019-12-19",
+    "artista": "Emilia",
     "tipo": "Single"
   },
   {
@@ -102949,6 +103733,14 @@
     "titulo": "South of the Border (acoustic)",
     "fecha": "2019-11-29",
     "artista": "Camila Cabello",
+    "tipo": "Single"
+  },
+  {
+    "id": "ae0b98e3-b9c0-4efe-b26f-2bf3714974be",
+    "imagen": "https://coverartarchive.org/release-group/ae0b98e3-b9c0-4efe-b26f-2bf3714974be/front-250",
+    "titulo": "Boomshakalaka",
+    "fecha": "2019-11-29",
+    "artista": "Emilia",
     "tipo": "Single"
   },
   {
@@ -106640,6 +107432,14 @@
     "tipo": "Single"
   },
   {
+    "id": "b9382669-8cc2-4953-87ae-c73374481527",
+    "imagen": "https://coverartarchive.org/release-group/b9382669-8cc2-4953-87ae-c73374481527/front-250",
+    "titulo": "No soy yo",
+    "fecha": "2019-08-30",
+    "artista": "Emilia",
+    "tipo": "Single"
+  },
+  {
     "id": "1d94ec65-3ee1-43d8-9857-1d440c56e1ba",
     "imagen": "https://coverartarchive.org/release-group/1d94ec65-3ee1-43d8-9857-1d440c56e1ba/front-250",
     "titulo": "Se iluminaba",
@@ -107510,6 +108310,14 @@
     "fecha": "2019-08-02",
     "artista": "Metallica",
     "tipo": "Album"
+  },
+  {
+    "id": "105ff7b4-f901-4f76-8160-f1ca9e57d383",
+    "imagen": "https://coverartarchive.org/release-group/105ff7b4-f901-4f76-8160-f1ca9e57d383/front-250",
+    "titulo": "Kick It",
+    "fecha": "2019-08-02",
+    "artista": "Natasha Bedingfield",
+    "tipo": "Single"
   },
   {
     "id": "cf339322-8ba3-4c16-83e1-2891e9246862",
@@ -109568,6 +110376,14 @@
     "tipo": "Single"
   },
   {
+    "id": "fe026c0f-d7a8-4c21-8af8-b842072a5dd2",
+    "imagen": "https://coverartarchive.org/release-group/fe026c0f-d7a8-4c21-8af8-b842072a5dd2/front-250",
+    "titulo": "Euphoria (DJ Swivel Forever mix)",
+    "fecha": "2019-06-10",
+    "artista": "BTS",
+    "tipo": "Single"
+  },
+  {
     "id": "175c9c27-69d4-492d-9f08-aaf3797d8a0e",
     "imagen": "https://coverartarchive.org/release-group/175c9c27-69d4-492d-9f08-aaf3797d8a0e/front-250",
     "titulo": "Flying on My Own (live from Las Vegas)",
@@ -110173,6 +110989,14 @@
     "titulo": "Find U Again",
     "fecha": "2019-05-30",
     "artista": "Camila Cabello",
+    "tipo": "Single"
+  },
+  {
+    "id": "dca382aa-ffa7-4747-8d3f-67342e57ea54",
+    "imagen": "https://coverartarchive.org/release-group/dca382aa-ffa7-4747-8d3f-67342e57ea54/front-250",
+    "titulo": "El chisme",
+    "fecha": "2019-05-30",
+    "artista": "Emilia",
     "tipo": "Single"
   },
   {
@@ -113093,6 +113917,14 @@
     "titulo": "Here With Me",
     "fecha": "2019-03-08",
     "artista": "Marshmello",
+    "tipo": "Single"
+  },
+  {
+    "id": "763d25a0-6ad4-40a7-bf68-acd0492f9724",
+    "imagen": "https://coverartarchive.org/release-group/763d25a0-6ad4-40a7-bf68-acd0492f9724/front-250",
+    "titulo": "Recalienta",
+    "fecha": "2019-03-08",
+    "artista": "Emilia",
     "tipo": "Single"
   },
   {
@@ -121496,6 +122328,14 @@
     "tipo": "Single"
   },
   {
+    "id": "7439ffe9-93d1-4581-86b9-c9a9bd16fa70",
+    "imagen": "https://coverartarchive.org/release-group/7439ffe9-93d1-4581-86b9-c9a9bd16fa70/front-250",
+    "titulo": "When I Grow Up (Dimitri Vegas & Like Mike vs Brennan Heart Tomorrowland mix)",
+    "fecha": "2018-07-29",
+    "artista": "Wiz Khalifa",
+    "tipo": "Single"
+  },
+  {
     "id": "e2b9bf19-1f45-4b2e-9eaa-a46d677349b4",
     "imagen": "https://coverartarchive.org/release-group/e2b9bf19-1f45-4b2e-9eaa-a46d677349b4/front-250",
     "titulo": "Into Your Arms (Vice remix)",
@@ -123048,6 +123888,14 @@
     "tipo": "Single"
   },
   {
+    "id": "e3c7c8c9-a406-49b9-a9e4-eb4a61a76381",
+    "imagen": "https://coverartarchive.org/release-group/e3c7c8c9-a406-49b9-a9e4-eb4a61a76381/front-250",
+    "titulo": "땡",
+    "fecha": "2018-06-10",
+    "artista": "BTS",
+    "tipo": "Single"
+  },
+  {
     "id": "d64c33ca-690b-49b5-9f7f-1315025bde78",
     "imagen": "https://coverartarchive.org/release-group/d64c33ca-690b-49b5-9f7f-1315025bde78/front-250",
     "titulo": "Three Little Birds",
@@ -124157,6 +125005,14 @@
     "titulo": "Twice",
     "fecha": "2018-05-11",
     "artista": "Christina Aguilera",
+    "tipo": "Single"
+  },
+  {
+    "id": "1561b67e-bea0-4616-b663-7fcc887c7298",
+    "imagen": "https://coverartarchive.org/release-group/1561b67e-bea0-4616-b663-7fcc887c7298/front-250",
+    "titulo": "Stay (Dannic & LoaX remix)",
+    "fecha": "2018-05-11",
+    "artista": "INNA",
     "tipo": "Single"
   },
   {
@@ -147824,6 +148680,14 @@
     "tipo": "Single"
   },
   {
+    "id": "7eff3319-abef-464f-ac92-18db0d58eaaf",
+    "imagen": "https://coverartarchive.org/release-group/7eff3319-abef-464f-ac92-18db0d58eaaf/front-250",
+    "titulo": "The Hills (Dimitri Vegas & Like Mike remix)",
+    "fecha": "2016-08-09",
+    "artista": "The Weeknd",
+    "tipo": "Single"
+  },
+  {
     "id": "7ed17ab9-fa88-451b-9687-fbe66c6b1717",
     "imagen": "https://coverartarchive.org/release-group/7ed17ab9-fa88-451b-9687-fbe66c6b1717/front-250",
     "titulo": "In the Name of Love (Syzz Bootleg)",
@@ -153477,6 +154341,14 @@
     "titulo": "The Magic of Bonnie Tyler",
     "fecha": "2016",
     "artista": "Bonnie Tyler",
+    "tipo": "Album"
+  },
+  {
+    "id": "b3864501-78c8-41e7-bfa9-13820f61b90d",
+    "imagen": "https://coverartarchive.org/release-group/b3864501-78c8-41e7-bfa9-13820f61b90d/front-250",
+    "titulo": "Best Selection of Boyz II Men",
+    "fecha": "2016",
+    "artista": "Boyz II Men",
     "tipo": "Album"
   },
   {
@@ -163906,7 +164778,7 @@
   {
     "id": "80eefd99-3cd1-4b5b-ad9e-5310c870542e",
     "imagen": "https://coverartarchive.org/release-group/80eefd99-3cd1-4b5b-ad9e-5310c870542e/front-250",
-    "titulo": "Love Me Like You Do (ATB Remix)",
+    "titulo": "Love Me Like You Do (ATB remix)",
     "fecha": "2015",
     "artista": "Ellie Goulding",
     "tipo": "Single"
@@ -168706,7 +169578,7 @@
   {
     "id": "ecb37891-65bf-4476-8e0a-9e11a8f5b931",
     "imagen": "https://coverartarchive.org/release-group/ecb37891-65bf-4476-8e0a-9e11a8f5b931/front-250",
-    "titulo": "Sino A Ti",
+    "titulo": "Sino a ti",
     "fecha": "2014-08-26",
     "artista": "Laura Pausini",
     "tipo": "Single"
@@ -168714,7 +169586,7 @@
   {
     "id": "ecb37891-65bf-4476-8e0a-9e11a8f5b931",
     "imagen": "https://coverartarchive.org/release-group/ecb37891-65bf-4476-8e0a-9e11a8f5b931/front-250",
-    "titulo": "Sino A Ti",
+    "titulo": "Sino a ti",
     "fecha": "2014-08-26",
     "artista": "Thalía",
     "tipo": "Single"
@@ -174088,14 +174960,6 @@
     "tipo": "Album"
   },
   {
-    "id": "fc2f8379-5af3-44d8-9255-db6ba5672f36",
-    "imagen": "https://coverartarchive.org/release-group/fc2f8379-5af3-44d8-9255-db6ba5672f36/front-250",
-    "titulo": "Memphis To Nashville '61",
-    "fecha": "2014",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "72907876-d09f-4c30-8dbe-d4e25e7b3231",
     "imagen": "https://coverartarchive.org/release-group/72907876-d09f-4c30-8dbe-d4e25e7b3231/front-250",
     "titulo": "The Best of British: The RCA Years 1957–1958",
@@ -174115,6 +174979,14 @@
     "id": "b12d91f6-e8e3-4690-9d33-51ea7561a7de",
     "imagen": "https://coverartarchive.org/release-group/b12d91f6-e8e3-4690-9d33-51ea7561a7de/front-250",
     "titulo": "The Real… Elvis 60’s Collection",
+    "fecha": "2014",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "fc2f8379-5af3-44d8-9255-db6ba5672f36",
+    "imagen": "https://coverartarchive.org/release-group/fc2f8379-5af3-44d8-9255-db6ba5672f36/front-250",
+    "titulo": "Memphis To Nashville '61",
     "fecha": "2014",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -176602,7 +177474,7 @@
   {
     "id": "e29ed8b1-a66f-4963-a84f-a34113ba933b",
     "imagen": "https://coverartarchive.org/release-group/e29ed8b1-a66f-4963-a84f-a34113ba933b/front-250",
-    "titulo": "It's Not Goodbye (New Version 2013)",
+    "titulo": "It's Not Goodbye (new Version 2013)",
     "fecha": "2013-11-12",
     "artista": "Laura Pausini",
     "tipo": "Single"
@@ -224424,17 +225296,17 @@
     "tipo": "Album"
   },
   {
-    "id": "9f4f5e08-df3d-4968-9b44-c32bd0ee5f3b",
-    "imagen": "https://coverartarchive.org/release-group/9f4f5e08-df3d-4968-9b44-c32bd0ee5f3b/front-250",
-    "titulo": "New Haven ’76",
+    "id": "4864946c-77f5-4efa-98d9-6e09a8a33a0b",
+    "imagen": "https://coverartarchive.org/release-group/4864946c-77f5-4efa-98d9-6e09a8a33a0b/front-250",
+    "titulo": "The Wonder of You: Recorded Live in Las Vegas, August 13, 1970",
     "fecha": "2009",
     "artista": "Elvis Presley",
     "tipo": "Album"
   },
   {
-    "id": "4864946c-77f5-4efa-98d9-6e09a8a33a0b",
-    "imagen": "https://coverartarchive.org/release-group/4864946c-77f5-4efa-98d9-6e09a8a33a0b/front-250",
-    "titulo": "The Wonder of You: Recorded Live in Las Vegas, August 13, 1970",
+    "id": "9f4f5e08-df3d-4968-9b44-c32bd0ee5f3b",
+    "imagen": "https://coverartarchive.org/release-group/9f4f5e08-df3d-4968-9b44-c32bd0ee5f3b/front-250",
+    "titulo": "New Haven ’76",
     "fecha": "2009",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -232216,6 +233088,14 @@
     "tipo": "Album"
   },
   {
+    "id": "d70f859f-f536-458b-adcb-11fa382a9eb5",
+    "imagen": "https://coverartarchive.org/release-group/d70f859f-f536-458b-adcb-11fa382a9eb5/front-250",
+    "titulo": "Jailhouse Rock",
+    "fecha": "2008-01-25",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
     "id": "5b4bbd28-8205-38dc-ac85-ec3a4fb81185",
     "imagen": "https://coverartarchive.org/release-group/5b4bbd28-8205-38dc-ac85-ec3a4fb81185/front-250",
     "titulo": "2007-10-15: Absolutely Live, Tempodrom, Berlin (Radio FM 1 Broadcast)",
@@ -233720,14 +234600,6 @@
     "tipo": "Album"
   },
   {
-    "id": "a4852d74-b6e9-4aa9-8887-376e91e584d8",
-    "imagen": "https://coverartarchive.org/release-group/a4852d74-b6e9-4aa9-8887-376e91e584d8/front-250",
-    "titulo": "Christmas With Elvis Presley",
-    "fecha": "2008",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "07153f29-7e9a-4990-bb10-d0c9ebbb0178",
     "imagen": "https://coverartarchive.org/release-group/07153f29-7e9a-4990-bb10-d0c9ebbb0178/front-250",
     "titulo": "Elvis: The Early Recordings",
@@ -233827,6 +234699,14 @@
     "id": "a2a6a681-5d0c-45cb-8771-e2e2767d82b5",
     "imagen": "https://coverartarchive.org/release-group/a2a6a681-5d0c-45cb-8771-e2e2767d82b5/front-250",
     "titulo": "28 Essential Greats",
+    "fecha": "2008",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "a4852d74-b6e9-4aa9-8887-376e91e584d8",
+    "imagen": "https://coverartarchive.org/release-group/a4852d74-b6e9-4aa9-8887-376e91e584d8/front-250",
+    "titulo": "Christmas With Elvis Presley",
     "fecha": "2008",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -250336,14 +251216,6 @@
     "tipo": "Album"
   },
   {
-    "id": "b2e62852-9dab-449d-a29d-c6267da774ab",
-    "imagen": "https://coverartarchive.org/release-group/b2e62852-9dab-449d-a29d-c6267da774ab/front-250",
-    "titulo": "Shine (Dance Vault mixes)",
-    "fecha": "2006-01-01",
-    "artista": "Luther Vandross",
-    "tipo": "Single"
-  },
-  {
     "id": "db9425e7-661b-32e6-8f5f-313e1b7c6bd7",
     "imagen": "https://coverartarchive.org/release-group/db9425e7-661b-32e6-8f5f-313e1b7c6bd7/front-250",
     "titulo": "Leavin’",
@@ -252374,6 +253246,14 @@
     "fecha": "2006",
     "artista": "Louis Armstrong",
     "tipo": "Album"
+  },
+  {
+    "id": "b2e62852-9dab-449d-a29d-c6267da774ab",
+    "imagen": "https://coverartarchive.org/release-group/b2e62852-9dab-449d-a29d-c6267da774ab/front-250",
+    "titulo": "Shine (Dance Vault mixes)",
+    "fecha": "2006",
+    "artista": "Luther Vandross",
+    "tipo": "Single"
   },
   {
     "id": "f7261ea4-c1b2-48d8-8ac8-0cd27b634150",
@@ -256408,6 +257288,14 @@
     "tipo": "Single"
   },
   {
+    "id": "9ccdd2e9-0984-4d9d-a279-861b4cfd936d",
+    "imagen": "https://coverartarchive.org/release-group/9ccdd2e9-0984-4d9d-a279-861b4cfd936d/front-250",
+    "titulo": "2005-06-09: NBA Finals, Game 1",
+    "fecha": "2005-06-09",
+    "artista": "Alanis Morissette",
+    "tipo": "Broadcast"
+  },
+  {
     "id": "6d1a87c3-9e11-36d8-8c41-3e11b974fde7",
     "imagen": "https://coverartarchive.org/release-group/6d1a87c3-9e11-36d8-8c41-3e11b974fde7/front-250",
     "titulo": "A Bigger Bang",
@@ -256670,6 +257558,14 @@
     "fecha": "2005-05-27",
     "artista": "The Beach Boys",
     "tipo": "Publicación"
+  },
+  {
+    "id": "cd5c9294-112b-49ba-992e-d9f3308cd2b2",
+    "imagen": "https://coverartarchive.org/release-group/cd5c9294-112b-49ba-992e-d9f3308cd2b2/front-250",
+    "titulo": "Hand in My Pocket (live on Ellen, 2005-05-25)",
+    "fecha": "2005-05-25",
+    "artista": "Alanis Morissette",
+    "tipo": "Broadcast"
   },
   {
     "id": "990c6869-9722-3190-9e49-bbac56ae53b6",
@@ -259816,14 +260712,6 @@
     "tipo": "Album"
   },
   {
-    "id": "24f0b894-331b-43c1-bce7-bac24f1fbb1a",
-    "imagen": "https://coverartarchive.org/release-group/24f0b894-331b-43c1-bce7-bac24f1fbb1a/front-250",
-    "titulo": "Everybody Loves Somebody",
-    "fecha": "2005",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "405464f5-a165-476e-ba63-d3441bd82992",
     "imagen": "https://coverartarchive.org/release-group/405464f5-a165-476e-ba63-d3441bd82992/front-250",
     "titulo": "Everybody Loves Somebody",
@@ -259875,6 +260763,14 @@
     "id": "11bc4771-3952-3513-b098-a4f62fd8f3b9",
     "imagen": "https://coverartarchive.org/release-group/11bc4771-3952-3513-b098-a4f62fd8f3b9/front-250",
     "titulo": "There's No Business Like Show Business",
+    "fecha": "2005",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "24f0b894-331b-43c1-bce7-bac24f1fbb1a",
+    "imagen": "https://coverartarchive.org/release-group/24f0b894-331b-43c1-bce7-bac24f1fbb1a/front-250",
+    "titulo": "Everybody Loves Somebody",
     "fecha": "2005",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -266656,14 +267552,6 @@
     "tipo": "Album"
   },
   {
-    "id": "c622b149-d11c-4235-99ab-54fea6738df1",
-    "imagen": "https://coverartarchive.org/release-group/c622b149-d11c-4235-99ab-54fea6738df1/front-250",
-    "titulo": "2004-01-19: Brisbane Entertainment Centre, Brisbane, AUS",
-    "fecha": "2004-01-19",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "be6b455b-21a5-35a6-98ab-224837e9cab1",
     "imagen": "https://coverartarchive.org/release-group/be6b455b-21a5-35a6-98ab-224837e9cab1/front-250",
     "titulo": "Two Princes: The Best of Spin Doctors",
@@ -267992,6 +268880,14 @@
     "tipo": "Publicación"
   },
   {
+    "id": "0108ae18-6935-457f-ac5e-1e5cf2617655",
+    "imagen": "https://coverartarchive.org/release-group/0108ae18-6935-457f-ac5e-1e5cf2617655/front-250",
+    "titulo": "The Only Elvis Presley Album You’ll Ever Need",
+    "fecha": "2004",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
     "id": "4da55789-b097-42c5-a7bb-eee00e877c11",
     "imagen": "https://coverartarchive.org/release-group/4da55789-b097-42c5-a7bb-eee00e877c11/front-250",
     "titulo": "Flashback",
@@ -268051,14 +268947,6 @@
     "id": "f6b9d2da-0d17-4510-84ff-0a1dfb16b556",
     "imagen": "https://coverartarchive.org/release-group/f6b9d2da-0d17-4510-84ff-0a1dfb16b556/front-250",
     "titulo": "From His Roots",
-    "fecha": "2004",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
-    "id": "0108ae18-6935-457f-ac5e-1e5cf2617655",
-    "imagen": "https://coverartarchive.org/release-group/0108ae18-6935-457f-ac5e-1e5cf2617655/front-250",
-    "titulo": "The Only Elvis Presley Album You’ll Ever Need",
     "fecha": "2004",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -269416,6 +270304,14 @@
     "tipo": "Album"
   },
   {
+    "id": "c3ef702a-1c50-3baa-9529-7ff3d4d4d9a5",
+    "imagen": "https://coverartarchive.org/release-group/c3ef702a-1c50-3baa-9529-7ff3d4d4d9a5/front-250",
+    "titulo": "2004-04-20: Uniondale, NY, USA",
+    "fecha": "2004",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
     "id": "e558101d-c9a0-3abe-84ce-c3f78822764f",
     "imagen": "https://coverartarchive.org/release-group/e558101d-c9a0-3abe-84ce-c3f78822764f/front-250",
     "titulo": "2004-03-06: Los Angeles, CA, USA",
@@ -269467,14 +270363,6 @@
     "id": "c02bf740-262f-4db3-9b48-5707e467a9f1",
     "imagen": "https://coverartarchive.org/release-group/c02bf740-262f-4db3-9b48-5707e467a9f1/front-250",
     "titulo": "2004-07-04: Reykjavik, Iceland, Egilshollin",
-    "fecha": "2004",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
-    "id": "c3ef702a-1c50-3baa-9529-7ff3d4d4d9a5",
-    "imagen": "https://coverartarchive.org/release-group/c3ef702a-1c50-3baa-9529-7ff3d4d4d9a5/front-250",
-    "titulo": "2004-04-20: Uniondale, NY, USA",
     "fecha": "2004",
     "artista": "Metallica",
     "tipo": "Album"
@@ -276408,14 +277296,6 @@
     "tipo": "Album"
   },
   {
-    "id": "8d60a69e-5740-4ea6-a80b-029aa3f02ff3",
-    "imagen": "https://coverartarchive.org/release-group/8d60a69e-5740-4ea6-a80b-029aa3f02ff3/front-250",
-    "titulo": "Elvis 2nd To None",
-    "fecha": "2003",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "636063b5-f846-3ad8-8af7-d61e50541c4c",
     "imagen": "https://coverartarchive.org/release-group/636063b5-f846-3ad8-8af7-d61e50541c4c/front-250",
     "titulo": "The Movie Songs",
@@ -276427,6 +277307,14 @@
     "id": "7885b291-9880-46a8-a843-eaa775286359",
     "imagen": "https://coverartarchive.org/release-group/7885b291-9880-46a8-a843-eaa775286359/front-250",
     "titulo": "The Gospel Songs",
+    "fecha": "2003",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "8d60a69e-5740-4ea6-a80b-029aa3f02ff3",
+    "imagen": "https://coverartarchive.org/release-group/8d60a69e-5740-4ea6-a80b-029aa3f02ff3/front-250",
+    "titulo": "Elvis 2nd To None",
     "fecha": "2003",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -287402,7 +288290,7 @@
   {
     "id": "3db113fc-8649-406d-a85e-3d03d18ebd71",
     "imagen": "https://coverartarchive.org/release-group/3db113fc-8649-406d-a85e-3d03d18ebd71/front-250",
-    "titulo": "L'Olimpiade",
+    "titulo": "L'olimpiade",
     "fecha": "2002",
     "artista": "Tiziano Ferro",
     "tipo": "Single"
@@ -291624,14 +292512,6 @@
     "tipo": "Album"
   },
   {
-    "id": "d2d69ba5-d133-3a04-8f40-11a555a3f831",
-    "imagen": "https://coverartarchive.org/release-group/d2d69ba5-d133-3a04-8f40-11a555a3f831/front-250",
-    "titulo": "Duets",
-    "fecha": "2001",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
     "id": "d426b8a3-cab0-42a7-af94-7be0608967a2",
     "imagen": "https://coverartarchive.org/release-group/d426b8a3-cab0-42a7-af94-7be0608967a2/front-250",
     "titulo": "Bergen 2001",
@@ -291691,6 +292571,14 @@
     "id": "cd146f5c-7c89-4995-9e4f-c341eb77c5d3",
     "imagen": "https://coverartarchive.org/release-group/cd146f5c-7c89-4995-9e4f-c341eb77c5d3/front-250",
     "titulo": "Spokane 2001",
+    "fecha": "2001",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
+    "id": "d2d69ba5-d133-3a04-8f40-11a555a3f831",
+    "imagen": "https://coverartarchive.org/release-group/d2d69ba5-d133-3a04-8f40-11a555a3f831/front-250",
+    "titulo": "Duets",
     "fecha": "2001",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -292720,14 +293608,6 @@
     "tipo": "Album"
   },
   {
-    "id": "3d0e771e-2926-43bc-9972-08acb03ec03e",
-    "imagen": "https://coverartarchive.org/release-group/3d0e771e-2926-43bc-9972-08acb03ec03e/front-250",
-    "titulo": "45 Original Recordings: The Golden Voice / All of Me",
-    "fecha": "2001",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "043bd715-9f26-3a3f-8d41-5c4438dfde1c",
     "imagen": "https://coverartarchive.org/release-group/043bd715-9f26-3a3f-8d41-5c4438dfde1c/front-250",
     "titulo": "Sinatra",
@@ -292739,6 +293619,14 @@
     "id": "1790b494-a79b-4c02-9146-2a66b1162903",
     "imagen": "https://coverartarchive.org/release-group/1790b494-a79b-4c02-9146-2a66b1162903/front-250",
     "titulo": "On the Sendemintal Side",
+    "fecha": "2001",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "3d0e771e-2926-43bc-9972-08acb03ec03e",
+    "imagen": "https://coverartarchive.org/release-group/3d0e771e-2926-43bc-9972-08acb03ec03e/front-250",
+    "titulo": "45 Original Recordings: The Golden Voice / All of Me",
     "fecha": "2001",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -299672,17 +300560,17 @@
     "tipo": "Album"
   },
   {
-    "id": "a698fb4b-443c-4c89-8057-f6e8ce9fcb47",
-    "imagen": "https://coverartarchive.org/release-group/a698fb4b-443c-4c89-8057-f6e8ce9fcb47/front-250",
-    "titulo": "Golden Collection 2000",
+    "id": "cd859040-c458-4d1b-a42e-8f2f5f982165",
+    "imagen": "https://coverartarchive.org/release-group/cd859040-c458-4d1b-a42e-8f2f5f982165/front-250",
+    "titulo": "Abba",
     "fecha": "2000",
     "artista": "ABBA",
     "tipo": "Album"
   },
   {
-    "id": "cd859040-c458-4d1b-a42e-8f2f5f982165",
-    "imagen": "https://coverartarchive.org/release-group/cd859040-c458-4d1b-a42e-8f2f5f982165/front-250",
-    "titulo": "Abba",
+    "id": "a698fb4b-443c-4c89-8057-f6e8ce9fcb47",
+    "imagen": "https://coverartarchive.org/release-group/a698fb4b-443c-4c89-8057-f6e8ce9fcb47/front-250",
+    "titulo": "Golden Collection 2000",
     "fecha": "2000",
     "artista": "ABBA",
     "tipo": "Album"
@@ -308064,17 +308952,17 @@
     "tipo": "Single"
   },
   {
-    "id": "4b6e1b52-8dee-476d-87c1-0af5fd3c5b1e",
-    "imagen": "https://coverartarchive.org/release-group/4b6e1b52-8dee-476d-87c1-0af5fd3c5b1e/front-250",
-    "titulo": "Golden Hits",
+    "id": "bcc24fc2-30cc-4df4-aef2-2d7c2715fbe8",
+    "imagen": "https://coverartarchive.org/release-group/bcc24fc2-30cc-4df4-aef2-2d7c2715fbe8/front-250",
+    "titulo": "The Collection",
     "fecha": "1999",
     "artista": "ABBA",
     "tipo": "Album"
   },
   {
-    "id": "bcc24fc2-30cc-4df4-aef2-2d7c2715fbe8",
-    "imagen": "https://coverartarchive.org/release-group/bcc24fc2-30cc-4df4-aef2-2d7c2715fbe8/front-250",
-    "titulo": "The Collection",
+    "id": "4b6e1b52-8dee-476d-87c1-0af5fd3c5b1e",
+    "imagen": "https://coverartarchive.org/release-group/4b6e1b52-8dee-476d-87c1-0af5fd3c5b1e/front-250",
+    "titulo": "Golden Hits",
     "fecha": "1999",
     "artista": "ABBA",
     "tipo": "Album"
@@ -326864,14 +327752,6 @@
     "tipo": "Album"
   },
   {
-    "id": "a8ef79a6-a927-3c4d-88ba-b29555bc6fe2",
-    "imagen": "https://coverartarchive.org/release-group/a8ef79a6-a927-3c4d-88ba-b29555bc6fe2/front-250",
-    "titulo": "The Frank Sinatra Collection, Volume 2: Supreme Sinatra",
-    "fecha": "1997",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "c4233c34-4e9f-4e97-a56c-d18fd8c3e08c",
     "imagen": "https://coverartarchive.org/release-group/c4233c34-4e9f-4e97-a56c-d18fd8c3e08c/front-250",
     "titulo": "Love Songs",
@@ -326939,6 +327819,14 @@
     "id": "9e41b20d-6d3a-410e-aa92-551c1d545d00",
     "imagen": "https://coverartarchive.org/release-group/9e41b20d-6d3a-410e-aa92-551c1d545d00/front-250",
     "titulo": "Volume 2 – A Lovely Way to Spend the Evening",
+    "fecha": "1997",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "a8ef79a6-a927-3c4d-88ba-b29555bc6fe2",
+    "imagen": "https://coverartarchive.org/release-group/a8ef79a6-a927-3c4d-88ba-b29555bc6fe2/front-250",
+    "titulo": "The Frank Sinatra Collection, Volume 2: Supreme Sinatra",
     "fecha": "1997",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -329128,6 +330016,14 @@
     "tipo": "EP"
   },
   {
+    "id": "c8afe571-04e6-33c2-a65f-b3a72f7ed8ed",
+    "imagen": "https://coverartarchive.org/release-group/c8afe571-04e6-33c2-a65f-b3a72f7ed8ed/front-250",
+    "titulo": "Argue This",
+    "fecha": "1997",
+    "artista": "The Cranberries",
+    "tipo": "Album"
+  },
+  {
     "id": "48836902-36d6-4815-b480-8c99a865b13e",
     "imagen": "https://coverartarchive.org/release-group/48836902-36d6-4815-b480-8c99a865b13e/front-250",
     "titulo": "Free to Decide Tour",
@@ -329139,14 +330035,6 @@
     "id": "984eed8d-c170-3b52-86cd-59108630ab83",
     "imagen": "https://coverartarchive.org/release-group/984eed8d-c170-3b52-86cd-59108630ab83/front-250",
     "titulo": "Forever Live",
-    "fecha": "1997",
-    "artista": "The Cranberries",
-    "tipo": "Album"
-  },
-  {
-    "id": "c8afe571-04e6-33c2-a65f-b3a72f7ed8ed",
-    "imagen": "https://coverartarchive.org/release-group/c8afe571-04e6-33c2-a65f-b3a72f7ed8ed/front-250",
-    "titulo": "Argue This",
     "fecha": "1997",
     "artista": "The Cranberries",
     "tipo": "Album"
@@ -331214,14 +332102,6 @@
     "fecha": "1996-10-10",
     "artista": "Céline Dion",
     "tipo": "Single"
-  },
-  {
-    "id": "dc0a80c2-d52f-450c-86d0-283e1816307f",
-    "imagen": "https://coverartarchive.org/release-group/dc0a80c2-d52f-450c-86d0-283e1816307f/front-250",
-    "titulo": "1996-10-09: The Point, Dublin, IRL",
-    "fecha": "1996-10-09",
-    "artista": "Metallica",
-    "tipo": "Album"
   },
   {
     "id": "83ffb3a7-c3f5-393f-a9ce-fceb00bb9f8c",
@@ -333654,6 +334534,14 @@
     "fecha": "1996",
     "artista": "Bonnie Tyler",
     "tipo": "EP"
+  },
+  {
+    "id": "31348ba6-c4f7-497b-9fc8-19c58bab34d0",
+    "imagen": "https://coverartarchive.org/release-group/31348ba6-c4f7-497b-9fc8-19c58bab34d0/front-250",
+    "titulo": "Best Ballads",
+    "fecha": "1996",
+    "artista": "Boyz II Men",
+    "tipo": "Album"
   },
   {
     "id": "0d657590-d9d1-482c-86ef-97e231f2bd39",
@@ -344104,14 +344992,6 @@
     "tipo": "Album"
   },
   {
-    "id": "88032b2b-dd3b-36a8-9fe0-de720fb451fd",
-    "imagen": "https://coverartarchive.org/release-group/88032b2b-dd3b-36a8-9fe0-de720fb451fd/front-250",
-    "titulo": "Ultra Rare Trax",
-    "fecha": "1995",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "9c7f657f-c21b-352c-bf7c-665120ba42a1",
     "imagen": "https://coverartarchive.org/release-group/9c7f657f-c21b-352c-bf7c-665120ba42a1/front-250",
     "titulo": "The $5.98 E.P.: Garage Days Re‐Revisited …and More",
@@ -344131,6 +345011,14 @@
     "id": "f1b3e2e0-d298-4a53-97fd-534d97947943",
     "imagen": "https://coverartarchive.org/release-group/f1b3e2e0-d298-4a53-97fd-534d97947943/front-250",
     "titulo": "1982–1988: The Complete Demo Collection",
+    "fecha": "1995",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "88032b2b-dd3b-36a8-9fe0-de720fb451fd",
+    "imagen": "https://coverartarchive.org/release-group/88032b2b-dd3b-36a8-9fe0-de720fb451fd/front-250",
+    "titulo": "Ultra Rare Trax",
     "fecha": "1995",
     "artista": "Metallica",
     "tipo": "Album"
@@ -347104,6 +347992,14 @@
     "tipo": "Single"
   },
   {
+    "id": "5efa752d-26b9-471e-b8d6-0906ef2d3b32",
+    "imagen": "https://coverartarchive.org/release-group/5efa752d-26b9-471e-b8d6-0906ef2d3b32/front-250",
+    "titulo": "Jagged Little Pill Sessions",
+    "fecha": "1994-11-01",
+    "artista": "Alanis Morissette",
+    "tipo": "Other"
+  },
+  {
     "id": "ae9e22a3-1565-4244-821b-86a46ff6ffe0",
     "imagen": "https://coverartarchive.org/release-group/ae9e22a3-1565-4244-821b-86a46ff6ffe0/front-250",
     "titulo": "When We Dance",
@@ -348974,6 +349870,22 @@
     "fecha": "1994",
     "artista": "Al Green",
     "tipo": "Single"
+  },
+  {
+    "id": "758fbc78-f078-48a9-a544-8cd30d8a71e4",
+    "imagen": "https://coverartarchive.org/release-group/758fbc78-f078-48a9-a544-8cd30d8a71e4/front-250",
+    "titulo": "Ironic (demo)",
+    "fecha": "1994",
+    "artista": "Alanis Morissette",
+    "tipo": "Other"
+  },
+  {
+    "id": "bd3483e1-9ef0-44e1-81b9-a3dcbda1de51",
+    "imagen": "https://coverartarchive.org/release-group/bd3483e1-9ef0-44e1-81b9-a3dcbda1de51/front-250",
+    "titulo": "Jagged Little Pill (demos)",
+    "fecha": "1994",
+    "artista": "Alanis Morissette",
+    "tipo": "Other"
   },
   {
     "id": "c8f42cb8-3c20-46e5-a254-3b283abd46ef",
@@ -358696,30 +359608,6 @@
     "tipo": "Album"
   },
   {
-    "id": "4cee0c74-91df-416f-ad11-1f440e11809c",
-    "imagen": "https://coverartarchive.org/release-group/4cee0c74-91df-416f-ad11-1f440e11809c/front-250",
-    "titulo": "Gold Collection Vol. 2",
-    "fecha": "1993",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
-    "id": "abc1613d-b6c2-4c19-8504-40981df2347f",
-    "imagen": "https://coverartarchive.org/release-group/abc1613d-b6c2-4c19-8504-40981df2347f/front-250",
-    "titulo": "Gold Collection Vol. 1",
-    "fecha": "1993",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
-    "id": "d040b0b3-1288-4c99-bf41-5d5622434520",
-    "imagen": "https://coverartarchive.org/release-group/d040b0b3-1288-4c99-bf41-5d5622434520/front-250",
-    "titulo": "Gold Collection Vol. 3",
-    "fecha": "1993",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "0255e3e2-9d81-3437-89ba-aaa3b7ed1158",
     "imagen": "https://coverartarchive.org/release-group/0255e3e2-9d81-3437-89ba-aaa3b7ed1158/front-250",
     "titulo": "The Greatest Hits: Can't Help Falling in Love",
@@ -358731,6 +359619,14 @@
     "id": "16351025-4101-4cdb-8018-47908f5ba8fa",
     "imagen": "https://coverartarchive.org/release-group/16351025-4101-4cdb-8018-47908f5ba8fa/front-250",
     "titulo": "Volume 4: Hits and More",
+    "fecha": "1993",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "4cee0c74-91df-416f-ad11-1f440e11809c",
+    "imagen": "https://coverartarchive.org/release-group/4cee0c74-91df-416f-ad11-1f440e11809c/front-250",
+    "titulo": "Gold Collection Vol. 2",
     "fecha": "1993",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -358768,6 +359664,14 @@
     "tipo": "Album"
   },
   {
+    "id": "abc1613d-b6c2-4c19-8504-40981df2347f",
+    "imagen": "https://coverartarchive.org/release-group/abc1613d-b6c2-4c19-8504-40981df2347f/front-250",
+    "titulo": "Gold Collection Vol. 1",
+    "fecha": "1993",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
     "id": "b26227f5-7de8-448d-be5d-fd978dfe9985",
     "imagen": "https://coverartarchive.org/release-group/b26227f5-7de8-448d-be5d-fd978dfe9985/front-250",
     "titulo": "In Memory Volume 4",
@@ -358779,6 +359683,14 @@
     "id": "c84bba7d-ef7d-4672-ab7a-700bea5ad17f",
     "imagen": "https://coverartarchive.org/release-group/c84bba7d-ef7d-4672-ab7a-700bea5ad17f/front-250",
     "titulo": "The Greatest Hits",
+    "fecha": "1993",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "d040b0b3-1288-4c99-bf41-5d5622434520",
+    "imagen": "https://coverartarchive.org/release-group/d040b0b3-1288-4c99-bf41-5d5622434520/front-250",
+    "titulo": "Gold Collection Vol. 3",
     "fecha": "1993",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -359032,14 +359944,6 @@
     "tipo": "Album"
   },
   {
-    "id": "61801ed6-3d76-475f-9a78-042d46589f99",
-    "imagen": "https://coverartarchive.org/release-group/61801ed6-3d76-475f-9a78-042d46589f99/front-250",
-    "titulo": "Swing Classics",
-    "fecha": "1993",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "77da1554-bd40-42eb-8ce1-163e71c30dc6",
     "imagen": "https://coverartarchive.org/release-group/77da1554-bd40-42eb-8ce1-163e71c30dc6/front-250",
     "titulo": "16 Classic Performances",
@@ -359091,6 +359995,14 @@
     "id": "55c77338-adc3-4901-8392-e608ecb71e03",
     "imagen": "https://coverartarchive.org/release-group/55c77338-adc3-4901-8392-e608ecb71e03/front-250",
     "titulo": "Volume 3 - 1939-1940 - Complete Edition",
+    "fecha": "1993",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "61801ed6-3d76-475f-9a78-042d46589f99",
+    "imagen": "https://coverartarchive.org/release-group/61801ed6-3d76-475f-9a78-042d46589f99/front-250",
+    "titulo": "Swing Classics",
     "fecha": "1993",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -360280,14 +361192,6 @@
     "tipo": "Album"
   },
   {
-    "id": "0798d5bb-7001-33f1-a123-e9f345fdce84",
-    "imagen": "https://coverartarchive.org/release-group/0798d5bb-7001-33f1-a123-e9f345fdce84/front-250",
-    "titulo": "1989: USA",
-    "fecha": "1993",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "a0a52bd1-4b19-488c-a5b3-907e966823c9",
     "imagen": "https://coverartarchive.org/release-group/a0a52bd1-4b19-488c-a5b3-907e966823c9/front-250",
     "titulo": "15 Pieces of Live Shit: Binge & Purge",
@@ -360299,6 +361203,14 @@
     "id": "bae2bf18-aa7e-4993-857e-64db135f9045",
     "imagen": "https://coverartarchive.org/release-group/bae2bf18-aa7e-4993-857e-64db135f9045/front-250",
     "titulo": "Garage Complete: The Early Unofficial Anthology: 1981–1983",
+    "fecha": "1993",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "0798d5bb-7001-33f1-a123-e9f345fdce84",
+    "imagen": "https://coverartarchive.org/release-group/0798d5bb-7001-33f1-a123-e9f345fdce84/front-250",
+    "titulo": "1989: USA",
     "fecha": "1993",
     "artista": "Metallica",
     "tipo": "Album"
@@ -364722,7 +365634,7 @@
   {
     "id": "d1051cfb-1167-3447-8e41-6f9ec88f871a",
     "imagen": "https://coverartarchive.org/release-group/d1051cfb-1167-3447-8e41-6f9ec88f871a/front-250",
-    "titulo": "Oro: grandes éxitos",
+    "titulo": "Oro: Grandes éxitos",
     "fecha": "1992",
     "artista": "ABBA",
     "tipo": "Album"
@@ -365112,14 +366024,6 @@
     "tipo": "Album"
   },
   {
-    "id": "878c97d6-8c92-32e4-929f-7e73451dc089",
-    "imagen": "https://coverartarchive.org/release-group/878c97d6-8c92-32e4-929f-7e73451dc089/front-250",
-    "titulo": "Golden Vanity",
-    "fecha": "1992",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
     "id": "b39e29a3-6b1e-3189-8913-033af353ad7d",
     "imagen": "https://coverartarchive.org/release-group/b39e29a3-6b1e-3189-8913-033af353ad7d/front-250",
     "titulo": "1988-06-10: San Francisco Bay Blues: Greek Theatre, Berkeley, CA, USA",
@@ -365131,6 +366035,14 @@
     "id": "d1fc0401-eaa7-3447-bcd5-1712096bf1a1",
     "imagen": "https://coverartarchive.org/release-group/d1fc0401-eaa7-3447-bcd5-1712096bf1a1/front-250",
     "titulo": "Folksinger’s Choice",
+    "fecha": "1992",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
+    "id": "878c97d6-8c92-32e4-929f-7e73451dc089",
+    "imagen": "https://coverartarchive.org/release-group/878c97d6-8c92-32e4-929f-7e73451dc089/front-250",
+    "titulo": "Golden Vanity",
     "fecha": "1992",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -373048,9 +373960,49 @@
     "tipo": "Album"
   },
   {
+    "id": "16878a61-c244-3c41-96ad-b502447f9926",
+    "imagen": "https://coverartarchive.org/release-group/16878a61-c244-3c41-96ad-b502447f9926/front-250",
+    "titulo": "Elvis Through the Years, Volume 7: Fame and Fortune",
+    "fecha": "1991",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "240cb86f-4b2e-4c29-9ae7-f8a957a38d7b",
+    "imagen": "https://coverartarchive.org/release-group/240cb86f-4b2e-4c29-9ae7-f8a957a38d7b/front-250",
+    "titulo": "Elvis Through the Years, Volume 08: Are You Lonesome Tonight",
+    "fecha": "1991",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "76e2e9a5-aee9-4114-88d0-25b832b7a743",
+    "imagen": "https://coverartarchive.org/release-group/76e2e9a5-aee9-4114-88d0-25b832b7a743/front-250",
+    "titulo": "Grandes Del Rock’n’Roll",
+    "fecha": "1991",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
     "id": "7f683675-083e-34cb-a139-4be738bc5ba2",
     "imagen": "https://coverartarchive.org/release-group/7f683675-083e-34cb-a139-4be738bc5ba2/front-250",
     "titulo": "Christmas Favorites",
+    "fecha": "1991",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "b0ef67d9-80e0-4c71-b634-71d54fd2d869",
+    "imagen": "https://coverartarchive.org/release-group/b0ef67d9-80e0-4c71-b634-71d54fd2d869/front-250",
+    "titulo": "Elvis at His Romantic Best",
+    "fecha": "1991",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "b6f8b7cf-996d-4e32-9af8-a1d71242998b",
+    "imagen": "https://coverartarchive.org/release-group/b6f8b7cf-996d-4e32-9af8-a1d71242998b/front-250",
+    "titulo": "Elvis Forever 30 Hits",
     "fecha": "1991",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -373096,22 +374048,6 @@
     "tipo": "Album"
   },
   {
-    "id": "16878a61-c244-3c41-96ad-b502447f9926",
-    "imagen": "https://coverartarchive.org/release-group/16878a61-c244-3c41-96ad-b502447f9926/front-250",
-    "titulo": "Elvis Through the Years, Volume 7: Fame and Fortune",
-    "fecha": "1991",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
-    "id": "240cb86f-4b2e-4c29-9ae7-f8a957a38d7b",
-    "imagen": "https://coverartarchive.org/release-group/240cb86f-4b2e-4c29-9ae7-f8a957a38d7b/front-250",
-    "titulo": "Elvis Through the Years, Volume 08: Are You Lonesome Tonight",
-    "fecha": "1991",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "317fa451-633f-41ae-99b2-8e0df6dc35a0",
     "imagen": "https://coverartarchive.org/release-group/317fa451-633f-41ae-99b2-8e0df6dc35a0/front-250",
     "titulo": "The Rock ’n’ Roll Era: Elvis Presley: 1956–1961",
@@ -373123,30 +374059,6 @@
     "id": "5b78b385-30bc-49f5-9e84-496ada3cf972",
     "imagen": "https://coverartarchive.org/release-group/5b78b385-30bc-49f5-9e84-496ada3cf972/front-250",
     "titulo": "Greatest Film Hits",
-    "fecha": "1991",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
-    "id": "76e2e9a5-aee9-4114-88d0-25b832b7a743",
-    "imagen": "https://coverartarchive.org/release-group/76e2e9a5-aee9-4114-88d0-25b832b7a743/front-250",
-    "titulo": "Grandes Del Rock’n’Roll",
-    "fecha": "1991",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
-    "id": "b0ef67d9-80e0-4c71-b634-71d54fd2d869",
-    "imagen": "https://coverartarchive.org/release-group/b0ef67d9-80e0-4c71-b634-71d54fd2d869/front-250",
-    "titulo": "Elvis at His Romantic Best",
-    "fecha": "1991",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
-    "id": "b6f8b7cf-996d-4e32-9af8-a1d71242998b",
-    "imagen": "https://coverartarchive.org/release-group/b6f8b7cf-996d-4e32-9af8-a1d71242998b/front-250",
-    "titulo": "Elvis Forever 30 Hits",
     "fecha": "1991",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -377979,6 +378891,14 @@
     "id": "0ad25a24-919f-4c71-a227-e8adc9055f60",
     "imagen": "https://coverartarchive.org/release-group/0ad25a24-919f-4c71-a227-e8adc9055f60/front-250",
     "titulo": "Get Ready! Tonight Bob's Staying Here With You",
+    "fecha": "1990",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
+    "id": "6698feca-4278-4cd9-b304-77ef706294df",
+    "imagen": "https://coverartarchive.org/release-group/6698feca-4278-4cd9-b304-77ef706294df/front-250",
+    "titulo": "Live in Berlin 1990",
     "fecha": "1990",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -383392,17 +384312,17 @@
     "tipo": "Single"
   },
   {
-    "id": "c79d86f0-413c-3818-bb12-365a0fde5985",
-    "imagen": "https://coverartarchive.org/release-group/c79d86f0-413c-3818-bb12-365a0fde5985/front-250",
-    "titulo": "The Genuine Basement Tapes, Volume 2",
+    "id": "3faeca63-586b-36e3-87cd-542866dd3239",
+    "imagen": "https://coverartarchive.org/release-group/3faeca63-586b-36e3-87cd-542866dd3239/front-250",
+    "titulo": "The Genuine Basement Tapes, Volume 3",
     "fecha": "1989",
     "artista": "Bob Dylan",
     "tipo": "Album"
   },
   {
-    "id": "3faeca63-586b-36e3-87cd-542866dd3239",
-    "imagen": "https://coverartarchive.org/release-group/3faeca63-586b-36e3-87cd-542866dd3239/front-250",
-    "titulo": "The Genuine Basement Tapes, Volume 3",
+    "id": "c79d86f0-413c-3818-bb12-365a0fde5985",
+    "imagen": "https://coverartarchive.org/release-group/c79d86f0-413c-3818-bb12-365a0fde5985/front-250",
+    "titulo": "The Genuine Basement Tapes, Volume 2",
     "fecha": "1989",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -389264,6 +390184,14 @@
     "tipo": "Album"
   },
   {
+    "id": "ec7ba8cf-695f-452c-8394-27562579348e",
+    "imagen": "https://coverartarchive.org/release-group/ec7ba8cf-695f-452c-8394-27562579348e/front-250",
+    "titulo": "Il meglio di Frank Sinatra",
+    "fecha": "1988",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
     "id": "ef83d7b4-7812-438d-b7d0-3882f8427b83",
     "imagen": "https://coverartarchive.org/release-group/ef83d7b4-7812-438d-b7d0-3882f8427b83/front-250",
     "titulo": "Ol’ Blue Eyes",
@@ -394403,14 +395331,6 @@
     "id": "f047ba59-57c2-466c-b40d-8a6ab7352286",
     "imagen": "https://coverartarchive.org/release-group/f047ba59-57c2-466c-b40d-8a6ab7352286/front-250",
     "titulo": "Percy Sledge",
-    "fecha": "1987",
-    "artista": "Percy Sledge",
-    "tipo": "Album"
-  },
-  {
-    "id": "f175ba8d-3082-4413-b6d1-8d07363a3197",
-    "imagen": "https://coverartarchive.org/release-group/f175ba8d-3082-4413-b6d1-8d07363a3197/front-250",
-    "titulo": "Percy!",
     "fecha": "1987",
     "artista": "Percy Sledge",
     "tipo": "Album"
@@ -404952,6 +405872,14 @@
     "tipo": "Album"
   },
   {
+    "id": "030a8f46-c005-3eda-b789-71e5c13c837c",
+    "imagen": "https://coverartarchive.org/release-group/030a8f46-c005-3eda-b789-71e5c13c837c/front-250",
+    "titulo": "1983‐12‐27: Wembley Arena, London, UK",
+    "fecha": "1983-12-27",
+    "artista": "The Police",
+    "tipo": "Album"
+  },
+  {
     "id": "09e4a8f4-4b96-40a5-8c39-e4ac33b39a51",
     "imagen": "https://coverartarchive.org/release-group/09e4a8f4-4b96-40a5-8c39-e4ac33b39a51/front-250",
     "titulo": "1983-12-18: Agora Ballroom, Cleveland, OH, USA",
@@ -406568,6 +407496,22 @@
     "tipo": "Single"
   },
   {
+    "id": "d5bcac09-2201-4ec7-a683-9a1e314da42b",
+    "imagen": "https://coverartarchive.org/release-group/d5bcac09-2201-4ec7-a683-9a1e314da42b/front-250",
+    "titulo": "A Legendary Performer, Volume 4",
+    "fecha": "1983",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "d98e4b3b-6cc9-3ab1-94ff-12e119434d62",
+    "imagen": "https://coverartarchive.org/release-group/d98e4b3b-6cc9-3ab1-94ff-12e119434d62/front-250",
+    "titulo": "Elvis Forever: 32 Hits",
+    "fecha": "1983",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
     "id": "28b7a89e-0c8a-488c-938f-b7ac0d420f6f",
     "imagen": "https://coverartarchive.org/release-group/28b7a89e-0c8a-488c-938f-b7ac0d420f6f/front-250",
     "titulo": "His Greatest Hits",
@@ -406595,22 +407539,6 @@
     "id": "bd770851-e98f-3f4d-b6e1-6a21cc0fb407",
     "imagen": "https://coverartarchive.org/release-group/bd770851-e98f-3f4d-b6e1-6a21cc0fb407/front-250",
     "titulo": "The Complete Bonus Songs",
-    "fecha": "1983",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
-    "id": "d5bcac09-2201-4ec7-a683-9a1e314da42b",
-    "imagen": "https://coverartarchive.org/release-group/d5bcac09-2201-4ec7-a683-9a1e314da42b/front-250",
-    "titulo": "A Legendary Performer, Volume 4",
-    "fecha": "1983",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
-    "id": "d98e4b3b-6cc9-3ab1-94ff-12e119434d62",
-    "imagen": "https://coverartarchive.org/release-group/d98e4b3b-6cc9-3ab1-94ff-12e119434d62/front-250",
-    "titulo": "Elvis Forever: 32 Hits",
     "fecha": "1983",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -407309,6 +408237,14 @@
     "titulo": "Walk a Fine Line",
     "fecha": "1983",
     "artista": "Paul Anka",
+    "tipo": "Album"
+  },
+  {
+    "id": "f175ba8d-3082-4413-b6d1-8d07363a3197",
+    "imagen": "https://coverartarchive.org/release-group/f175ba8d-3082-4413-b6d1-8d07363a3197/front-250",
+    "titulo": "Percy!",
+    "fecha": "1983",
+    "artista": "Percy Sledge",
     "tipo": "Album"
   },
   {
@@ -409696,22 +410632,6 @@
     "tipo": "Album"
   },
   {
-    "id": "bf67243a-fc07-49a9-9c77-eb2ad96915d0",
-    "imagen": "https://coverartarchive.org/release-group/bf67243a-fc07-49a9-9c77-eb2ad96915d0/front-250",
-    "titulo": "Elvis Presley (La grande storia del rock)",
-    "fecha": "1982",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
-    "id": "f48b08be-c8be-45f5-9b37-be3a3ebd50cd",
-    "imagen": "https://coverartarchive.org/release-group/f48b08be-c8be-45f5-9b37-be3a3ebd50cd/front-250",
-    "titulo": "By Request",
-    "fecha": "1982",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "5f710742-9301-4c80-8d22-bef536cd84b8",
     "imagen": "https://coverartarchive.org/release-group/5f710742-9301-4c80-8d22-bef536cd84b8/front-250",
     "titulo": "Suspicious Minds",
@@ -409731,6 +410651,22 @@
     "id": "ac93c553-799c-4bd3-9f40-4c12d9508e1e",
     "imagen": "https://coverartarchive.org/release-group/ac93c553-799c-4bd3-9f40-4c12d9508e1e/front-250",
     "titulo": "Historia de la música rock - 26",
+    "fecha": "1982",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "bf67243a-fc07-49a9-9c77-eb2ad96915d0",
+    "imagen": "https://coverartarchive.org/release-group/bf67243a-fc07-49a9-9c77-eb2ad96915d0/front-250",
+    "titulo": "Elvis Presley (La grande storia del rock)",
+    "fecha": "1982",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "f48b08be-c8be-45f5-9b37-be3a3ebd50cd",
+    "imagen": "https://coverartarchive.org/release-group/f48b08be-c8be-45f5-9b37-be3a3ebd50cd/front-250",
+    "titulo": "By Request",
     "fecha": "1982",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -450224,14 +451160,6 @@
     "tipo": "EP"
   },
   {
-    "id": "2460703f-37e0-4d48-a992-8931c911ee02",
-    "imagen": "https://coverartarchive.org/release-group/2460703f-37e0-4d48-a992-8931c911ee02/front-250",
-    "titulo": "Same Old Saturday Night / If I Had Three Wishes",
-    "fecha": "1955",
-    "artista": "Frank Sinatra",
-    "tipo": "Single"
-  },
-  {
     "id": "5885de84-8bc1-31ee-a7d3-7a1bc6f1a1d5",
     "imagen": "https://coverartarchive.org/release-group/5885de84-8bc1-31ee-a7d3-7a1bc6f1a1d5/front-250",
     "titulo": "Learnin’ the Blues / If I Had Three Wishes",
@@ -450251,6 +451179,14 @@
     "id": "d905c008-2af6-3de2-9ec4-552609f07e8b",
     "imagen": "https://coverartarchive.org/release-group/d905c008-2af6-3de2-9ec4-552609f07e8b/front-250",
     "titulo": "Not as a Stranger / How Could You Do a Thing Like That to Me?",
+    "fecha": "1955",
+    "artista": "Frank Sinatra",
+    "tipo": "Single"
+  },
+  {
+    "id": "2460703f-37e0-4d48-a992-8931c911ee02",
+    "imagen": "https://coverartarchive.org/release-group/2460703f-37e0-4d48-a992-8931c911ee02/front-250",
+    "titulo": "Same Old Saturday Night / If I Had Three Wishes",
     "fecha": "1955",
     "artista": "Frank Sinatra",
     "tipo": "Single"
@@ -451712,14 +452648,6 @@
     "tipo": "EP"
   },
   {
-    "id": "075e10ee-3251-4afe-8b9a-dadc1783fb2b",
-    "imagen": "https://coverartarchive.org/release-group/075e10ee-3251-4afe-8b9a-dadc1783fb2b/front-250",
-    "titulo": "There's No Business Like Show Business / Mam'selle",
-    "fecha": "1947",
-    "artista": "Frank Sinatra",
-    "tipo": "Single"
-  },
-  {
     "id": "0bc8e157-33af-4b58-94fb-a486751f9d1f",
     "imagen": "https://coverartarchive.org/release-group/0bc8e157-33af-4b58-94fb-a486751f9d1f/front-250",
     "titulo": "Can't You Just See Yourself / You're My Girl",
@@ -451987,6 +452915,14 @@
     "id": "f66225bc-b0a7-48f3-ad91-4e1df3ca5c6c",
     "imagen": "https://coverartarchive.org/release-group/f66225bc-b0a7-48f3-ad91-4e1df3ca5c6c/front-250",
     "titulo": "How Deep Is the Ocean / Home on the Range",
+    "fecha": "1947",
+    "artista": "Frank Sinatra",
+    "tipo": "Single"
+  },
+  {
+    "id": "075e10ee-3251-4afe-8b9a-dadc1783fb2b",
+    "imagen": "https://coverartarchive.org/release-group/075e10ee-3251-4afe-8b9a-dadc1783fb2b/front-250",
+    "titulo": "There's No Business Like Show Business / Mam'selle",
     "fecha": "1947",
     "artista": "Frank Sinatra",
     "tipo": "Single"
@@ -456008,14 +456944,6 @@
     "tipo": "Album"
   },
   {
-    "id": "5d88994e-5be0-4237-b06e-71903089e6fa",
-    "imagen": "https://coverartarchive.org/release-group/5d88994e-5be0-4237-b06e-71903089e6fa/front-250",
-    "titulo": "1976-05-11: Municipal Auditorium, San Antonio, TX, USA",
-    "fecha": "",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
     "id": "7547baad-13c0-4850-b4a2-1541ef2a6142",
     "imagen": "https://coverartarchive.org/release-group/7547baad-13c0-4850-b4a2-1541ef2a6142/front-250",
     "titulo": "1974-01-11: Forum de Montreal, Montreal, QC, Canada",
@@ -456408,6 +457336,14 @@
     "tipo": "Album"
   },
   {
+    "id": "5d88994e-5be0-4237-b06e-71903089e6fa",
+    "imagen": "https://coverartarchive.org/release-group/5d88994e-5be0-4237-b06e-71903089e6fa/front-250",
+    "titulo": "1976-05-11: Municipal Auditorium, San Antonio, TX, USA",
+    "fecha": "",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
     "id": "5dc3a6fc-0d23-459a-b662-04cff160eb65",
     "imagen": "https://coverartarchive.org/release-group/5dc3a6fc-0d23-459a-b662-04cff160eb65/front-250",
     "titulo": "1997-12-09: Avalon, Boston, MA, USA",
@@ -456419,14 +457355,6 @@
     "id": "5ebb4e8c-23da-428c-8b2c-187808b5d38b",
     "imagen": "https://coverartarchive.org/release-group/5ebb4e8c-23da-428c-8b2c-187808b5d38b/front-250",
     "titulo": "1988-07-18: Meadowbrook Music Theatre, Oakland University, Rochester Hills, MI, USA",
-    "fecha": "",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
-    "id": "60ebc918-2d87-3107-bb29-bdb9c1886eb0",
-    "imagen": "https://coverartarchive.org/release-group/60ebc918-2d87-3107-bb29-bdb9c1886eb0/front-250",
-    "titulo": "2000-09-24: Guildhall, Portsmouth, England, UK",
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -457216,6 +458144,14 @@
     "tipo": "Album"
   },
   {
+    "id": "60ebc918-2d87-3107-bb29-bdb9c1886eb0",
+    "imagen": "https://coverartarchive.org/release-group/60ebc918-2d87-3107-bb29-bdb9c1886eb0/front-250",
+    "titulo": "2000-09-24: Guildhall, Portsmouth, England, UK",
+    "fecha": "",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
     "id": "61b56eb4-c27d-473d-aabb-e1ce8534ef26",
     "imagen": "https://coverartarchive.org/release-group/61b56eb4-c27d-473d-aabb-e1ce8534ef26/front-250",
     "titulo": "2009-03-25: Oslo Spektrum, Oslo, Norway",
@@ -457347,14 +458283,6 @@
     "id": "911a2eed-83b9-471a-991d-60e5677385c4",
     "imagen": "https://coverartarchive.org/release-group/911a2eed-83b9-471a-991d-60e5677385c4/front-250",
     "titulo": "2008-06-03: Russia Ice Palace, St. Petersburg, Russia",
-    "fecha": "",
-    "artista": "Bob Dylan",
-    "tipo": "Album"
-  },
-  {
-    "id": "921a1631-5bd9-4a0e-998e-3c565bcf854a",
-    "imagen": "https://coverartarchive.org/release-group/921a1631-5bd9-4a0e-998e-3c565bcf854a/front-250",
-    "titulo": "2009-10-29: Aragon Ballroom, Chicago, IL, USA",
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Album"
@@ -457944,20 +458872,20 @@
     "tipo": "Album"
   },
   {
+    "id": "921a1631-5bd9-4a0e-998e-3c565bcf854a",
+    "imagen": "https://coverartarchive.org/release-group/921a1631-5bd9-4a0e-998e-3c565bcf854a/front-250",
+    "titulo": "2009-10-29: Aragon Ballroom, Chicago, IL, USA",
+    "fecha": "",
+    "artista": "Bob Dylan",
+    "tipo": "Album"
+  },
+  {
     "id": "925293ba-1bcd-41b9-beab-e5b41319397f",
     "imagen": "https://coverartarchive.org/release-group/925293ba-1bcd-41b9-beab-e5b41319397f/front-250",
     "titulo": "Live Tramps 1999",
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Album"
-  },
-  {
-    "id": "99e817d6-b7ae-421a-8776-edaa73141b9b",
-    "imagen": "https://coverartarchive.org/release-group/99e817d6-b7ae-421a-8776-edaa73141b9b/front-250",
-    "titulo": "1987-06-xx: The Complete Rehearsals (So Far…): Club Front, San Rafael, CA, USA",
-    "fecha": "",
-    "artista": "Bob Dylan",
-    "tipo": "Other"
   },
   {
     "id": "a227f100-f0f7-4e9a-9388-f479ace61869",
@@ -458163,6 +459091,14 @@
     "id": "96286567-64c1-3555-aa33-fbdbda674b5a",
     "imagen": "https://coverartarchive.org/release-group/96286567-64c1-3555-aa33-fbdbda674b5a/front-250",
     "titulo": "The Witmark Demos",
+    "fecha": "",
+    "artista": "Bob Dylan",
+    "tipo": "Other"
+  },
+  {
+    "id": "99e817d6-b7ae-421a-8776-edaa73141b9b",
+    "imagen": "https://coverartarchive.org/release-group/99e817d6-b7ae-421a-8776-edaa73141b9b/front-250",
+    "titulo": "1987-06-xx: The Complete Rehearsals (So Far…): Club Front, San Rafael, CA, USA",
     "fecha": "",
     "artista": "Bob Dylan",
     "tipo": "Other"
@@ -458837,14 +459773,6 @@
     "titulo": "Wichita 1979 DISC 2",
     "fecha": "",
     "artista": "Boston",
-    "tipo": "Album"
-  },
-  {
-    "id": "31348ba6-c4f7-497b-9fc8-19c58bab34d0",
-    "imagen": "https://coverartarchive.org/release-group/31348ba6-c4f7-497b-9fc8-19c58bab34d0/front-250",
-    "titulo": "Best Ballads",
-    "fecha": "",
-    "artista": "Boyz II Men",
     "tipo": "Album"
   },
   {
@@ -462488,6 +463416,14 @@
     "tipo": "Single"
   },
   {
+    "id": "c9c8b93b-7f74-4770-a809-80a4599f8f13",
+    "imagen": "https://coverartarchive.org/release-group/c9c8b93b-7f74-4770-a809-80a4599f8f13/front-250",
+    "titulo": "Again",
+    "fecha": "",
+    "artista": "Bruno Mars",
+    "tipo": "Single"
+  },
+  {
     "id": "ff419cf7-f17f-431a-bf06-1a570df57938",
     "imagen": "https://coverartarchive.org/release-group/ff419cf7-f17f-431a-bf06-1a570df57938/front-250",
     "titulo": "Nothin' On You",
@@ -462622,14 +463558,6 @@
     "fecha": "",
     "artista": "Bryan Adams",
     "tipo": "Album"
-  },
-  {
-    "id": "e3c7c8c9-a406-49b9-a9e4-eb4a61a76381",
-    "imagen": "https://coverartarchive.org/release-group/e3c7c8c9-a406-49b9-a9e4-eb4a61a76381/front-250",
-    "titulo": "땡",
-    "fecha": "",
-    "artista": "BTS",
-    "tipo": "Single"
   },
   {
     "id": "145e782f-9264-3d00-b9e5-d058d1325fdc",
@@ -467568,14 +468496,6 @@
     "tipo": "Album"
   },
   {
-    "id": "6d5b62ee-9b92-4c53-b8d5-abc614d856aa",
-    "imagen": "https://coverartarchive.org/release-group/6d5b62ee-9b92-4c53-b8d5-abc614d856aa/front-250",
-    "titulo": "After Hours",
-    "fecha": "",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "6e2bd54c-1853-429d-99a8-806c76567f38",
     "imagen": "https://coverartarchive.org/release-group/6e2bd54c-1853-429d-99a8-806c76567f38/front-250",
     "titulo": "20 Reflective Recordings",
@@ -467827,6 +468747,14 @@
     "id": "69279367-aed4-30d5-82b8-c272a6bef04b",
     "imagen": "https://coverartarchive.org/release-group/69279367-aed4-30d5-82b8-c272a6bef04b/front-250",
     "titulo": "The Entertainers",
+    "fecha": "",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "6d5b62ee-9b92-4c53-b8d5-abc614d856aa",
+    "imagen": "https://coverartarchive.org/release-group/6d5b62ee-9b92-4c53-b8d5-abc614d856aa/front-250",
+    "titulo": "After Hours",
     "fecha": "",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -472616,6 +473544,14 @@
     "tipo": "Single"
   },
   {
+    "id": "6335635d-21a4-4b6a-bff5-960fe719dc43",
+    "imagen": "https://coverartarchive.org/release-group/6335635d-21a4-4b6a-bff5-960fe719dc43/front-250",
+    "titulo": "Master of Puppets",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
     "id": "00f59d74-255f-4979-8b20-0ea64be3a065",
     "imagen": "https://coverartarchive.org/release-group/00f59d74-255f-4979-8b20-0ea64be3a065/front-250",
     "titulo": "Live at Sportovni Hala, Prague, CZ Sep 9 1996",
@@ -472888,6 +473824,14 @@
     "tipo": "Album"
   },
   {
+    "id": "c622b149-d11c-4235-99ab-54fea6738df1",
+    "imagen": "https://coverartarchive.org/release-group/c622b149-d11c-4235-99ab-54fea6738df1/front-250",
+    "titulo": "2004-01-19: Brisbane Entertainment Centre, Brisbane, AUS",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
     "id": "cbdb680a-3600-4b1d-8d6d-7b3c04698642",
     "imagen": "https://coverartarchive.org/release-group/cbdb680a-3600-4b1d-8d6d-7b3c04698642/front-250",
     "titulo": "Moscow Magnetic: SK Olimpiisky, Moscow, Russia Apr 24, 2010",
@@ -472907,6 +473851,14 @@
     "id": "d3fc967e-9426-4d32-9487-2dca77d23878",
     "imagen": "https://coverartarchive.org/release-group/d3fc967e-9426-4d32-9487-2dca77d23878/front-250",
     "titulo": "2009‐11‐01: Colisee Pepsi, Quebec City, Quebec, Canada",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "dc0a80c2-d52f-450c-86d0-283e1816307f",
+    "imagen": "https://coverartarchive.org/release-group/dc0a80c2-d52f-450c-86d0-283e1816307f/front-250",
+    "titulo": "1996-10-09: The Point, Dublin, IRL",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -473139,14 +474091,6 @@
     "id": "5ebca851-9034-3104-9b86-e5b180f25e56",
     "imagen": "https://coverartarchive.org/release-group/5ebca851-9034-3104-9b86-e5b180f25e56/front-250",
     "titulo": "1983-03-05: The Stone, San Francisco, CA, USA",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
-    "id": "9a82dfe2-59c2-3bd4-8788-fe78c6d3b093",
-    "imagen": "https://coverartarchive.org/release-group/9a82dfe2-59c2-3bd4-8788-fe78c6d3b093/front-250",
-    "titulo": "1983-11-26: The Stone, San Francisco, CA, USA",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -473520,14 +474464,6 @@
     "tipo": "Album"
   },
   {
-    "id": "665238fe-57ba-31bf-8b62-b2923fa4afc9",
-    "imagen": "https://coverartarchive.org/release-group/665238fe-57ba-31bf-8b62-b2923fa4afc9/front-250",
-    "titulo": "1993‐05‐04: Santiago, Chile",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "6b33c439-fc56-3b36-8fec-be6dba5b9840",
     "imagen": "https://coverartarchive.org/release-group/6b33c439-fc56-3b36-8fec-be6dba5b9840/front-250",
     "titulo": "1990-05-21: Paris, France",
@@ -473627,6 +474563,14 @@
     "id": "96ad199f-eeb7-3b87-ab5e-d951ce1be1d4",
     "imagen": "https://coverartarchive.org/release-group/96ad199f-eeb7-3b87-ab5e-d951ce1be1d4/front-250",
     "titulo": "1986-07-16: Fort Wayne, IN, USA",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "9a82dfe2-59c2-3bd4-8788-fe78c6d3b093",
+    "imagen": "https://coverartarchive.org/release-group/9a82dfe2-59c2-3bd4-8788-fe78c6d3b093/front-250",
+    "titulo": "1983-11-26: The Stone, San Francisco, CA, USA",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -474219,6 +475163,14 @@
     "id": "5b840928-ab7d-3493-ba3e-942e426ef492",
     "imagen": "https://coverartarchive.org/release-group/5b840928-ab7d-3493-ba3e-942e426ef492/front-250",
     "titulo": "Kiel ’Em All",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "665238fe-57ba-31bf-8b62-b2923fa4afc9",
+    "imagen": "https://coverartarchive.org/release-group/665238fe-57ba-31bf-8b62-b2923fa4afc9/front-250",
+    "titulo": "1993‐05‐04: Santiago, Chile",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -475546,7 +476498,7 @@
   {
     "id": "5db06503-28cf-40ba-929a-f01983922235",
     "imagen": "https://coverartarchive.org/release-group/5db06503-28cf-40ba-929a-f01983922235/front-250",
-    "titulo": "1995 (What's the Story) Morning Glory? Japan Tour",
+    "titulo": "1995 (What’s the Story) Morning Glory? Japan Tour",
     "fecha": "",
     "artista": "Oasis",
     "tipo": "Album"
@@ -477472,14 +478424,6 @@
     "tipo": "Album"
   },
   {
-    "id": "04a3d845-900d-455a-a1bc-b7577339b295",
-    "imagen": "https://coverartarchive.org/release-group/04a3d845-900d-455a-a1bc-b7577339b295/front-250",
-    "titulo": "Budapest",
-    "fecha": "",
-    "artista": "Queen",
-    "tipo": "Album"
-  },
-  {
     "id": "005a2131-0a0b-4af4-ae5f-d27602a62182",
     "imagen": "https://coverartarchive.org/release-group/005a2131-0a0b-4af4-ae5f-d27602a62182/front-250",
     "titulo": "1977-03-13: Seattle Center Arena, Seattle, WA, USA",
@@ -478251,6 +479195,14 @@
     "id": "0dd40ed6-2a0f-45d6-ad3e-3cec6031efbb",
     "imagen": "https://coverartarchive.org/release-group/0dd40ed6-2a0f-45d6-ad3e-3cec6031efbb/front-250",
     "titulo": "The Genius of Ray Charles",
+    "fecha": "",
+    "artista": "Ray Charles",
+    "tipo": "Album"
+  },
+  {
+    "id": "0efe8da2-3239-432e-9bbd-13a67947b7e7",
+    "imagen": "https://coverartarchive.org/release-group/0efe8da2-3239-432e-9bbd-13a67947b7e7/front-250",
+    "titulo": "Legends In Music - Ray Charles",
     "fecha": "",
     "artista": "Ray Charles",
     "tipo": "Album"
@@ -483696,14 +484648,6 @@
     "tipo": "Other"
   },
   {
-    "id": "a224a88b-5641-4deb-9c4c-fda388876caa",
-    "imagen": "https://coverartarchive.org/release-group/a224a88b-5641-4deb-9c4c-fda388876caa/front-250",
-    "titulo": "1981‐02‐02: Budokan Hall, Tokyo, Japan",
-    "fecha": "",
-    "artista": "The Police",
-    "tipo": "Album"
-  },
-  {
     "id": "a4bfec98-84f1-4d08-93ae-2a7976b01585",
     "imagen": "https://coverartarchive.org/release-group/a4bfec98-84f1-4d08-93ae-2a7976b01585/front-250",
     "titulo": "Ghost in the Machine: Definitive Edition Demos",
@@ -483779,14 +484723,6 @@
     "id": "f0fcf7e1-8ee5-423c-8178-13dacabde58d",
     "imagen": "https://coverartarchive.org/release-group/f0fcf7e1-8ee5-423c-8178-13dacabde58d/front-250",
     "titulo": "1980‐04‐04: Palasport, Torino, Italy",
-    "fecha": "",
-    "artista": "The Police",
-    "tipo": "Album"
-  },
-  {
-    "id": "030a8f46-c005-3eda-b789-71e5c13c837c",
-    "imagen": "https://coverartarchive.org/release-group/030a8f46-c005-3eda-b789-71e5c13c837c/front-250",
-    "titulo": "1983‐12‐27: Wembley Arena, London, UK",
     "fecha": "",
     "artista": "The Police",
     "tipo": "Album"
@@ -484019,6 +484955,14 @@
     "id": "a0c63afe-6f54-3436-b924-113e527704bc",
     "imagen": "https://coverartarchive.org/release-group/a0c63afe-6f54-3436-b924-113e527704bc/front-250",
     "titulo": "1983‐11‐14: Reunion Arena, Dallas, TX, USA",
+    "fecha": "",
+    "artista": "The Police",
+    "tipo": "Album"
+  },
+  {
+    "id": "a224a88b-5641-4deb-9c4c-fda388876caa",
+    "imagen": "https://coverartarchive.org/release-group/a224a88b-5641-4deb-9c4c-fda388876caa/front-250",
+    "titulo": "1981‐02‐02: Budokan Hall, Tokyo, Japan",
     "fecha": "",
     "artista": "The Police",
     "tipo": "Album"
@@ -488120,14 +489064,6 @@
     "tipo": "Broadcast"
   },
   {
-    "id": "cdb301df-90dd-42d8-92cc-d28e4d3fd654",
-    "imagen": "https://coverartarchive.org/release-group/cdb301df-90dd-42d8-92cc-d28e4d3fd654/front-250",
-    "titulo": "Torn (feat. Dolly Parton)",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Single"
-  },
-  {
     "id": "cfbce91a-59e9-3d3b-acbd-f44afe3ae357",
     "imagen": "https://coverartarchive.org/release-group/cfbce91a-59e9-3d3b-acbd-f44afe3ae357/front-250",
     "titulo": "Shaped",
@@ -488408,6 +489344,14 @@
     "tipo": "Publicación"
   },
   {
+    "id": "cde92f04-9151-4b35-90c2-32dd54390a3e",
+    "imagen": "https://coverartarchive.org/release-group/cde92f04-9151-4b35-90c2-32dd54390a3e/front-250",
+    "titulo": "The Ultimate 7″ & 12″ Collection, Part II",
+    "fecha": "",
+    "artista": "U2",
+    "tipo": "Album"
+  },
+  {
     "id": "d4f37c46-49fc-3467-af0a-52db043e4c73",
     "imagen": "https://coverartarchive.org/release-group/d4f37c46-49fc-3467-af0a-52db043e4c73/front-250",
     "titulo": "Especial, Volume 1",
@@ -488552,14 +489496,6 @@
     "tipo": "Album"
   },
   {
-    "id": "cde92f04-9151-4b35-90c2-32dd54390a3e",
-    "imagen": "https://coverartarchive.org/release-group/cde92f04-9151-4b35-90c2-32dd54390a3e/front-250",
-    "titulo": "The Ultimate 7″ & 12″ Collection, Part II",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Album"
-  },
-  {
     "id": "d29c03a8-982e-44b2-8a6c-2196b079c3f4",
     "imagen": "https://coverartarchive.org/release-group/d29c03a8-982e-44b2-8a6c-2196b079c3f4/front-250",
     "titulo": "Cinnamon: U2 Duets for Spicelegs (not for Propaganda)",
@@ -488619,6 +489555,14 @@
     "id": "144e5171-9bb8-4467-8ea4-6d34fa58af05",
     "imagen": "https://coverartarchive.org/release-group/144e5171-9bb8-4467-8ea4-6d34fa58af05/front-250",
     "titulo": "1981-01-23: McMordie Hall, Queen's University, Belfast, Northern Ireland",
+    "fecha": "",
+    "artista": "U2",
+    "tipo": "Album"
+  },
+  {
+    "id": "199cbde1-3b1d-4214-9193-5f7bcf8a6ab7",
+    "imagen": "https://coverartarchive.org/release-group/199cbde1-3b1d-4214-9193-5f7bcf8a6ab7/front-250",
+    "titulo": "1981-03-18: San Jose State College, San Jose, CA, USA",
     "fecha": "",
     "artista": "U2",
     "tipo": "Album"
@@ -489003,14 +489947,6 @@
     "id": "187f5dc1-fb13-4291-8cd3-9b381a6db5f5",
     "imagen": "https://coverartarchive.org/release-group/187f5dc1-fb13-4291-8cd3-9b381a6db5f5/front-250",
     "titulo": "1982-02-21: First Avenue, Minneapolis, MN, USA",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Album"
-  },
-  {
-    "id": "199cbde1-3b1d-4214-9193-5f7bcf8a6ab7",
-    "imagen": "https://coverartarchive.org/release-group/199cbde1-3b1d-4214-9193-5f7bcf8a6ab7/front-250",
-    "titulo": "1981-03-18: San Jose State College, San Jose, CA, USA",
     "fecha": "",
     "artista": "U2",
     "tipo": "Album"
@@ -489592,6 +490528,14 @@
     "tipo": "Album"
   },
   {
+    "id": "ca27db17-337f-4424-8ab0-fd9659b3d903",
+    "imagen": "https://coverartarchive.org/release-group/ca27db17-337f-4424-8ab0-fd9659b3d903/front-250",
+    "titulo": "1983-03-10: Odeon, Birmingham, UK",
+    "fecha": "",
+    "artista": "U2",
+    "tipo": "Album"
+  },
+  {
     "id": "ca28c941-a9b8-4bae-8aaf-d1251b8a81a0",
     "imagen": "https://coverartarchive.org/release-group/ca28c941-a9b8-4bae-8aaf-d1251b8a81a0/front-250",
     "titulo": "1982-02-23: University Of Illinois Auditorium, Champaign, IL, USA",
@@ -490072,6 +491016,14 @@
     "tipo": "Album"
   },
   {
+    "id": "691d3552-2e4d-431f-9435-462672814ac9",
+    "imagen": "https://coverartarchive.org/release-group/691d3552-2e4d-431f-9435-462672814ac9/front-250",
+    "titulo": "1984-12-08: Fox Theater, Detroit, MI, USA",
+    "fecha": "",
+    "artista": "U2",
+    "tipo": "Album"
+  },
+  {
     "id": "69537844-5406-4f91-a503-6d49073380e9",
     "imagen": "https://coverartarchive.org/release-group/69537844-5406-4f91-a503-6d49073380e9/front-250",
     "titulo": "1984-11-10: Apollo Theater, Manchester, UK",
@@ -490323,14 +491275,6 @@
     "id": "c6cb579b-9237-4841-95cf-464d53852ae4",
     "imagen": "https://coverartarchive.org/release-group/c6cb579b-9237-4841-95cf-464d53852ae4/front-250",
     "titulo": "1984-08-31: Show Building, Wellington, New Zealand",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Album"
-  },
-  {
-    "id": "ca27db17-337f-4424-8ab0-fd9659b3d903",
-    "imagen": "https://coverartarchive.org/release-group/ca27db17-337f-4424-8ab0-fd9659b3d903/front-250",
-    "titulo": "1983-03-10: Odeon, Birmingham, UK",
     "fecha": "",
     "artista": "U2",
     "tipo": "Album"
@@ -490848,14 +491792,6 @@
     "tipo": "Album"
   },
   {
-    "id": "691d3552-2e4d-431f-9435-462672814ac9",
-    "imagen": "https://coverartarchive.org/release-group/691d3552-2e4d-431f-9435-462672814ac9/front-250",
-    "titulo": "1984-12-08: Fox Theater, Detroit, MI, USA",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Album"
-  },
-  {
     "id": "69a42d32-bab4-4cdb-8122-5e232c960015",
     "imagen": "https://coverartarchive.org/release-group/69a42d32-bab4-4cdb-8122-5e232c960015/front-250",
     "titulo": "1986-06-08: McNichols Sports Arena, Denver, CO, USA",
@@ -491115,6 +492051,14 @@
     "id": "ccffcf83-d9ce-4ac8-afee-a1977d80268e",
     "imagen": "https://coverartarchive.org/release-group/ccffcf83-d9ce-4ac8-afee-a1977d80268e/front-250",
     "titulo": "1987-05-03: The Centrum, Worcester, MA, USA",
+    "fecha": "",
+    "artista": "U2",
+    "tipo": "Album"
+  },
+  {
+    "id": "cee7bf97-c250-4ea2-9cb5-5e9d94022ba3",
+    "imagen": "https://coverartarchive.org/release-group/cee7bf97-c250-4ea2-9cb5-5e9d94022ba3/front-250",
+    "titulo": "1987-05-07: Civic Center, Hartford, CT, USA",
     "fecha": "",
     "artista": "U2",
     "tipo": "Album"
@@ -491744,6 +492688,14 @@
     "tipo": "Album"
   },
   {
+    "id": "78f335d7-929d-3f99-9182-04431baa095d",
+    "imagen": "https://coverartarchive.org/release-group/78f335d7-929d-3f99-9182-04431baa095d/front-250",
+    "titulo": "1991 Studio Sessions",
+    "fecha": "",
+    "artista": "U2",
+    "tipo": "Album"
+  },
+  {
     "id": "808395e3-afbb-4019-81e8-744bb5737ae8",
     "imagen": "https://coverartarchive.org/release-group/808395e3-afbb-4019-81e8-744bb5737ae8/front-250",
     "titulo": "1987-10-01: Olympic Stadium, Montreal, QC, Canada",
@@ -491971,14 +492923,6 @@
     "id": "ccab9dbd-2a37-486f-b75c-8ee44e9b6bf7",
     "imagen": "https://coverartarchive.org/release-group/ccab9dbd-2a37-486f-b75c-8ee44e9b6bf7/front-250",
     "titulo": "1987-12-11: Hampton Coliseum, Hampton, VA, USA",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Album"
-  },
-  {
-    "id": "cee7bf97-c250-4ea2-9cb5-5e9d94022ba3",
-    "imagen": "https://coverartarchive.org/release-group/cee7bf97-c250-4ea2-9cb5-5e9d94022ba3/front-250",
-    "titulo": "1987-05-07: Civic Center, Hartford, CT, USA",
     "fecha": "",
     "artista": "U2",
     "tipo": "Album"
@@ -492408,6 +493352,14 @@
     "tipo": "Album"
   },
   {
+    "id": "4f05ebe0-5efb-4014-aeda-4cf1b4d28602",
+    "imagen": "https://coverartarchive.org/release-group/4f05ebe0-5efb-4014-aeda-4cf1b4d28602/front-250",
+    "titulo": "1998-02-11: Estadio Nacional, Santiago, Chile",
+    "fecha": "",
+    "artista": "U2",
+    "tipo": "Album"
+  },
+  {
     "id": "4f110a56-63f5-4cfb-8619-3bc90cc5d442",
     "imagen": "https://coverartarchive.org/release-group/4f110a56-63f5-4cfb-8619-3bc90cc5d442/front-250",
     "titulo": "1993-08-11: Wembley Stadium, London, UK",
@@ -492523,14 +493475,6 @@
     "id": "756a538b-1af1-4802-9ee2-baf12bf88b56",
     "imagen": "https://coverartarchive.org/release-group/756a538b-1af1-4802-9ee2-baf12bf88b56/front-250",
     "titulo": "1992‐05‐25: Olympiahalle, Munich, Germany",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Album"
-  },
-  {
-    "id": "78f335d7-929d-3f99-9182-04431baa095d",
-    "imagen": "https://coverartarchive.org/release-group/78f335d7-929d-3f99-9182-04431baa095d/front-250",
-    "titulo": "1991 Studio Sessions",
     "fecha": "",
     "artista": "U2",
     "tipo": "Album"
@@ -493216,14 +494160,6 @@
     "tipo": "Album"
   },
   {
-    "id": "4f05ebe0-5efb-4014-aeda-4cf1b4d28602",
-    "imagen": "https://coverartarchive.org/release-group/4f05ebe0-5efb-4014-aeda-4cf1b4d28602/front-250",
-    "titulo": "1998-02-11: Estadio Nacional, Santiago, Chile",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Album"
-  },
-  {
     "id": "4f38f332-6ccc-357b-a44e-7c7111d174de",
     "imagen": "https://coverartarchive.org/release-group/4f38f332-6ccc-357b-a44e-7c7111d174de/front-250",
     "titulo": "1998-03-21: Last Night on World Tour '97-98: Johannesburg Stadium, Johannesburg, South Africa",
@@ -493419,6 +494355,14 @@
     "id": "a18192cf-058d-4cd4-9c99-554ed3b8a7c7",
     "imagen": "https://coverartarchive.org/release-group/a18192cf-058d-4cd4-9c99-554ed3b8a7c7/front-250",
     "titulo": "2011-03-25: Estadio Nacional, Santiago, Chile",
+    "fecha": "",
+    "artista": "U2",
+    "tipo": "Album"
+  },
+  {
+    "id": "a57794cb-dbb3-4422-944d-28fbb337365c",
+    "imagen": "https://coverartarchive.org/release-group/a57794cb-dbb3-4422-944d-28fbb337365c/front-250",
+    "titulo": "2011‐05‐21: Invesco Field Stadium, Denver, CO, USA",
     "fecha": "",
     "artista": "U2",
     "tipo": "Album"
@@ -494067,14 +495011,6 @@
     "id": "a3658436-cc43-3113-b5d0-ebf0705d4bf1",
     "imagen": "https://coverartarchive.org/release-group/a3658436-cc43-3113-b5d0-ebf0705d4bf1/front-250",
     "titulo": "Miami Elevation Concert",
-    "fecha": "",
-    "artista": "U2",
-    "tipo": "Album"
-  },
-  {
-    "id": "a57794cb-dbb3-4422-944d-28fbb337365c",
-    "imagen": "https://coverartarchive.org/release-group/a57794cb-dbb3-4422-944d-28fbb337365c/front-250",
-    "titulo": "2011‐05‐21: Invesco Field Stadium, Denver, CO, USA",
     "fecha": "",
     "artista": "U2",
     "tipo": "Album"

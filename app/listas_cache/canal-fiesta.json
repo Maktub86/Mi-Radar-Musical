@@ -2,44 +2,44 @@
   "canciones": [
     {
       "puesto": 1,
-      "artista": "Alejandro Astola",
-      "titulo": "Si tú quisieras",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 2,
-      "artista": "Pablo López & Lola Índigo",
-      "titulo": "Casi siempre",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 3,
-      "artista": "Antoñito Molina",
-      "titulo": "Ya no me acuerdo de ti",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 4,
-      "artista": "Melendi",
-      "titulo": "Veneno y arena",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 5,
-      "artista": "Aitana",
-      "titulo": "Conexión psíquica",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 6,
       "artista": "Camilo",
       "titulo": "El árbol",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
-      "puesto": 7,
+      "puesto": 2,
       "artista": "Manuel Carrasco y Juanes",
       "titulo": "Gente Corriente",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 3,
+      "artista": "Pablo López & Lola Índigo",
+      "titulo": "Casi siempre",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 4,
+      "artista": "Antoñito Molina",
+      "titulo": "Ya no me acuerdo de ti",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 5,
+      "artista": "Melendi",
+      "titulo": "Veneno y arena",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 6,
+      "artista": "Alejandro Astola",
+      "titulo": "Si tú quisieras",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 7,
+      "artista": "Aitana",
+      "titulo": "Conexión psíquica",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
@@ -50,56 +50,56 @@
     },
     {
       "puesto": 9,
-      "artista": "Carín León",
-      "titulo": "Desde que te tengo",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 10,
-      "artista": "Shakira & Maluma",
-      "titulo": "Agua",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 11,
-      "artista": "Blas Cantó",
-      "titulo": "Para qué",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 12,
       "artista": "Cepeda",
       "titulo": "Corazón anestesiado",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
-      "puesto": 13,
+      "puesto": 10,
       "artista": "Carmen Ferre & Bombai",
       "titulo": "Quémalo",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
-      "puesto": 14,
-      "artista": "Leire Martínez",
-      "titulo": "Cabeza de ratón",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 15,
+      "puesto": 11,
       "artista": "Estopa",
       "titulo": "Bicho raro",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
-      "puesto": 16,
+      "puesto": 12,
+      "artista": "Blas Cantó",
+      "titulo": "Para qué",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 13,
       "artista": "Manuel Carrasco",
       "titulo": "A la sombra de una higuera",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
+      "puesto": 14,
+      "artista": "Merche",
+      "titulo": "Invencible",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 15,
+      "artista": "Carín León",
+      "titulo": "Desde que te tengo",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 16,
+      "artista": "Álvaro de Luna",
+      "titulo": "Dame alas",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
       "puesto": 17,
-      "artista": "Marta Santos",
-      "titulo": "Todo de mí",
+      "artista": "Leire Martínez",
+      "titulo": "Cabeza de ratón",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
@@ -110,20 +110,20 @@
     },
     {
       "puesto": 19,
-      "artista": "Ana Mena & Lola Índigo",
-      "titulo": "Pa ti toa",
+      "artista": "Marta Santos",
+      "titulo": "Todo de mí",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
       "puesto": 20,
-      "artista": "Merche",
-      "titulo": "Invencible",
+      "artista": "Shakira & Maluma",
+      "titulo": "Agua",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
       "puesto": 21,
-      "artista": "María Peláe",
-      "titulo": "Ay!",
+      "artista": "Ana Mena & Lola Índigo",
+      "titulo": "Pa ti toa",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
@@ -134,98 +134,98 @@
     },
     {
       "puesto": 23,
-      "artista": "Álvaro de Luna",
-      "titulo": "Dame alas",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 24,
       "artista": "Aslándticos",
       "titulo": "A nuestra manera",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
-      "puesto": 25,
-      "artista": "Raúle",
-      "titulo": "Sentencia",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 26,
-      "artista": "Julia Medina",
-      "titulo": "Libre",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 27,
-      "artista": "Alejandro Sanz & Edén Muñoz",
-      "titulo": "Yo era poesía",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 28,
-      "artista": "Gonzalo Hermida",
-      "titulo": "Esperanza al corazón",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 29,
+      "puesto": 24,
       "artista": "Laura Pausini",
       "titulo": "Mientes",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
-      "puesto": 30,
-      "artista": "Manuel Ayra",
-      "titulo": "Yo soy el error",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 31,
-      "artista": "Mafalda Cardenal",
-      "titulo": "Canción de Amor",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 32,
-      "artista": "Alvaro García",
-      "titulo": "Si tú supieras",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 33,
-      "artista": "Abraham Mateo, María Becerra y Big One",
-      "titulo": "Así",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 34,
-      "artista": "Mesalla",
-      "titulo": "Toca vivir",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 35,
+      "puesto": 25,
       "artista": "Morat",
       "titulo": "Me mata",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
+      "puesto": 26,
+      "artista": "Alvaro García",
+      "titulo": "Si tú supieras",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 27,
+      "artista": "Manuel Ayra",
+      "titulo": "Yo soy el error",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 28,
+      "artista": "Raúle",
+      "titulo": "Sentencia",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 29,
+      "artista": "María Peláe",
+      "titulo": "Ay!",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 30,
+      "artista": "Mesalla",
+      "titulo": "Toca vivir",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 31,
+      "artista": "Julia Medina",
+      "titulo": "Libre",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 32,
+      "artista": "Alejandro Sanz & Edén Muñoz",
+      "titulo": "Yo era poesía",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 33,
+      "artista": "El Barrio",
+      "titulo": "Relicario",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 34,
+      "artista": "Gonzalo Hermida",
+      "titulo": "Esperanza al corazón",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 35,
+      "artista": "Mafalda Cardenal",
+      "titulo": "Canción de Amor",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
       "puesto": 36,
+      "artista": "Javi Crespo",
+      "titulo": "Fugaz",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 37,
       "artista": "Quevedo & Elvis Crespo",
       "titulo": "La Graciosa",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
-      "puesto": 37,
-      "artista": "Luis Fonsi",
-      "titulo": "Me despido",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
       "puesto": 38,
-      "artista": "Vicco",
-      "titulo": "Tiramisú",
+      "artista": "Karol G, Judeline, Rusowsky",
+      "titulo": "Bby Wow",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
@@ -236,20 +236,20 @@
     },
     {
       "puesto": 40,
-      "artista": "Karol G, Judeline, Rusowsky",
-      "titulo": "Bby Wow",
+      "artista": "Abraham Mateo, María Becerra y Big One",
+      "titulo": "Así",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
       "puesto": 41,
-      "artista": "Mónica Naranjo",
-      "titulo": "Puzzles",
+      "artista": "La Plazuela, Delasrosas",
+      "titulo": "Traigo",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
       "puesto": 42,
-      "artista": "Javi Crespo",
-      "titulo": "Fugaz",
+      "artista": "Raúl Camacho & Cepeda",
+      "titulo": "Has sido tú",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
@@ -260,51 +260,51 @@
     },
     {
       "puesto": 44,
-      "artista": "El Barrio",
-      "titulo": "Peliculón",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 45,
-      "artista": "Raúl Camacho & Cepeda",
-      "titulo": "Has sido tú",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 46,
-      "artista": "Pastora Soler",
-      "titulo": "Mi salvavidas",
-      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
-    },
-    {
-      "puesto": 47,
       "artista": "Antonio José",
       "titulo": "La canción de nuestro baile",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
-      "puesto": 48,
-      "artista": "Paula Kroops, Juan Magán & Funzo",
-      "titulo": "Brindemos",
+      "puesto": 45,
+      "artista": "Luis Fonsi",
+      "titulo": "Me despido",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
-      "puesto": 49,
+      "puesto": 46,
+      "artista": "Melody",
+      "titulo": "El huracán",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 47,
       "artista": "Chambao & Camilo",
       "titulo": "Despierta",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     },
     {
+      "puesto": 48,
+      "artista": "Luzía",
+      "titulo": "Más todavía",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
+      "puesto": 49,
+      "artista": "Aydená",
+      "titulo": "Vete ya",
+      "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
+    },
+    {
       "puesto": 50,
-      "artista": "El Duende Callejero",
-      "titulo": "Con mis colegas",
+      "artista": "Paula Kroops, Juan Magán & Funzo",
+      "titulo": "Brindemos",
       "url": "https://www.canalsur.es/radio/canal-fiesta/top-50/"
     }
   ],
   "fuente": "https://www.canalsur.es/radio/canal-fiesta/top-50/",
   "nombre": "Canal Fiesta · Top 50",
   "tipo": "canal-fiesta",
-  "actualizado": "2026-11-21T06:29+00:00",
+  "actualizado": "2026-11-22T22:25+00:00",
   "en_curso": false,
   "mensaje": "Lista actualizada: 50 canciones."
 }
