@@ -15,6 +15,7 @@ from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 from concurrent.futures import ThreadPoolExecutor, as_completed
 EJECUTOR_HILOS = ThreadPoolExecutor  # alias: dentro de api_recomendaciones el nombre original queda como variable local
+import html
 import unicodedata
 import difflib
 import random
@@ -1303,7 +1304,7 @@ def api_portada_recomendados():
 
 @app.get("/programas")
 def pagina_programas():
-    return """<!DOCTYPE html>
+    pagina = """<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1338,6 +1339,16 @@ main{max-width:1000px;margin:auto;padding:30px 6%}
 .estilo-copiable:hover{background:#344b78}
 .estado-copiar-estilos{color:var(--verde);min-height:20px;font-size:13px}
 footer{text-align:center;color:var(--suave);font-size:12px;padding:30px}
+.paso-a-paso{counter-reset:paso;list-style:none;padding:0;margin:16px 0}
+.paso-a-paso li{counter-increment:paso;position:relative;padding:4px 0 12px 44px;color:var(--suave);line-height:1.55}
+.paso-a-paso li::before{content:counter(paso);position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;background:#2b765f;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.paso-a-paso b{color:var(--texto)}
+.programa code{background:#0d0f19;border:1px solid #ffffff1c;border-radius:6px;padding:1px 6px;color:#ffd9a0;font-size:13px;overflow-wrap:anywhere}
+.acciones-script{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0}
+details.script{margin-top:6px}
+details.script summary{cursor:pointer;color:var(--verde);font-weight:700}
+details.script pre{max-height:420px;overflow:auto;background:#0d0f19;border:1px solid #ffffff1c;border-radius:10px;padding:14px;font-size:12.5px;line-height:1.45;color:#e7e4ff;white-space:pre}
+#estado-copiar-script{color:var(--verde);font-size:13px;min-height:18px;margin:0}
 </style>
 </head>
 <body>
@@ -1359,6 +1370,22 @@ footer{text-align:center;color:var(--suave);font-size:12px;padding:30px}
 <section class="programa"><h2>MP3Gain GUI</h2><p>Normaliza el volumen de archivos MP3. Enlace al proyecto original de MP3Gain.</p><a class="descargar" href="https://mp3gain.sourceforge.net/download.php" target="_blank" rel="noopener noreferrer">Descargar MP3Gain ↗</a></section>
 <p class="aviso">Nota: los enlaces abren páginas externas. ID3Remover y MP3Gain son herramientas antiguas; crea una copia de seguridad antes de modificar archivos y comprueba que la versión sea compatible con tu Windows.</p>
 <section class="programa"><h2>Estilos musicales</h2><p>Consulta la lista en una ventana independiente y copia un estilo concreto o todos los estilos de una vez.</p><button type="button" id="abrir-estilos" class="boton-estilos">🎼 Desplegar estilos musicales</button></section>
+<section class="programa" id="actualizar-mi-musica"><h2>📋 Actualizar «Mi música» con tus canciones</h2>
+<p>Cada vez que añadas, borres o renombres MP3 en tu ordenador, sigue estos pasos para que la página «Mi música» (y el radar) refleje exactamente las canciones que tienes.</p>
+<ol class="paso-a-paso">
+<li><b>Nombra bien los archivos.</b> Cada MP3 debe llamarse <code>Artista - Título.mp3</code>. Los invitados van entre paréntesis: <code>Lady Gaga - Die With A Smile (feat. Bruno Mars).mp3</code>. El año se lee de la etiqueta «Año» del MP3 (rellénala con Mp3tag) o, si tienes las canciones en carpetas por año, del nombre de la carpeta (<code>…\\1982\\Michael Jackson - Thriller.mp3</code>).</li>
+<li><b>Guarda el script en la carpeta del proyecto.</b> Descárgalo con el botón de abajo y ponlo en <code>Escritorio\\Pagina radar musica</code>, al lado de la carpeta <code>app</code>. Si prefieres copiarlo y pegarlo en el Bloc de notas, en «Guardar como» elige <i>Tipo: Todos los archivos</i>, <i>Codificación: UTF-8 con BOM</i> y llámalo <code>generar_lista_mp3.ps1</code>.</li>
+<li><b>Indica dónde están tus MP3.</b> Abre <code>generar_lista_mp3.ps1</code> con el Bloc de notas y cambia la línea <code>$CarpetaMusica = "D:\\Musica"</code> por la ruta real de tu carpeta de música. Guarda el archivo.</li>
+<li><b>Ejecútalo.</b> Clic derecho sobre <code>generar_lista_mp3.ps1</code> → «Ejecutar con PowerShell». Si Windows no te deja, abre PowerShell en esa carpeta (Mayús + clic derecho → «Abrir ventana de PowerShell aquí») y escribe:<br><code>powershell -ExecutionPolicy Bypass -File .\\generar_lista_mp3.ps1</code></li>
+<li><b>Revisa el resumen.</b> El script crea <code>lista_mp3.txt</code> (líneas como <code>1982 | Michael Jackson - Thriller.mp3</code>) y a continuación ejecuta <code>app\\actualizar_mi_musica.py</code>, que actualiza <code>app\\mi_musica.json</code>, añade los artistas nuevos a <code>mi_radar_musical.csv</code> y regenera <code>artistas_unicos.txt</code>. En pantalla verás cuántas canciones hay, qué artistas se han añadido al radar y si alguna canción se ha quedado sin año o con el género «Pop» por defecto.</li>
+<li><b>Súbelo a GitHub.</b> Si la carpeta del proyecto está enlazada con Git, el script te pregunta si quieres subir los cambios: responde <code>s</code>. Si no, sube a mano esos cuatro archivos (<code>lista_mp3.txt</code>, <code>app/mi_musica.json</code>, <code>mi_radar_musical.csv</code> y <code>artistas_unicos.txt</code>) desde la web del repositorio. Después recarga «Mi música».</li>
+</ol>
+<p class="aviso">Los géneros que ya tenían tus canciones se conservan. A las canciones nuevas se les pone el género más habitual de ese artista en tu colección (las bandas sonoras que empiezan por «Cast» van a «Musical / BSO»). Las canciones que ya no están en el listado desaparecen de «Mi música», pero sus artistas siguen vigilados en el radar.</p>
+<p class="aviso">¿Ya tienes el <code>lista_mp3.txt</code> hecho? Ponlo en la carpeta del proyecto y ejecuta solo la segunda parte: <code>python app\\actualizar_mi_musica.py lista_mp3.txt</code> (añade <code>--simular</code> al final para ver qué cambiaría sin guardar nada).</p>
+<div class="acciones-script"><a class="descargar" href="/programas/generar_lista_mp3.ps1" download>⬇ Descargar generar_lista_mp3.ps1</a><button type="button" id="copiar-script" class="boton-estilos">📋 Copiar el script</button></div>
+<p id="estado-copiar-script" role="status"></p>
+<details class="script"><summary>Ver el contenido del script de PowerShell</summary><pre id="texto-script">__SCRIPT_PS1__</pre></details>
+</section>
 </main>
 <div id="modal-estilos" class="modal-estilos" hidden role="dialog" aria-modal="true" aria-labelledby="titulo-estilos">
 <div class="caja-estilos">
@@ -1390,8 +1417,26 @@ footer{text-align:center;color:var(--suave);font-size:12px;padding:30px}
  document.addEventListener("keydown",e=>{if(e.key==="Escape")cerrar();});
 })();
 </script>
+<script>
+(function(){
+ const b=document.getElementById("copiar-script"),pre=document.getElementById("texto-script"),est=document.getElementById("estado-copiar-script");
+ if(!b||!pre)return;
+ b.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(pre.textContent);est.textContent="✓ Script copiado. Pégalo en el Bloc de notas y guárdalo como generar_lista_mp3.ps1.";}catch(e){pre.parentElement.open=true;est.textContent="No se pudo copiar automáticamente: selecciona el texto del script y cópialo con Ctrl+C.";}});
+})();
+</script>
 <footer>Mi Radar Musical</footer>
 </body></html>"""
+    try:
+        script_ps1 = (BASE.parent / "generar_lista_mp3.ps1").read_text(encoding="utf-8-sig")
+    except OSError:
+        script_ps1 = "No se encuentra generar_lista_mp3.ps1 en la carpeta del proyecto."
+    return pagina.replace("__SCRIPT_PS1__", html.escape(script_ps1))
+
+
+@app.get("/programas/generar_lista_mp3.ps1")
+def descargar_script_lista_mp3():
+    return send_from_directory(BASE.parent, "generar_lista_mp3.ps1", as_attachment=True,
+                               mimetype="text/plain; charset=utf-8")
 
 
 @app.get("/lo-mejor")
@@ -4022,9 +4067,13 @@ def _indice_coleccion():
         artista = normalizar_texto(pista.get("artista"))
         if not artista:
             continue
+        # Los invitados van en el título («... (feat. Bruno Mars)»): también cuentan como artistas.
+        artistas_pista = {artista}
+        for invitados in re.findall(r"\((?:feat\.?|ft\.?)\s*([^)]*)\)", str(pista.get("titulo") or ""), re.IGNORECASE):
+            artistas_pista.update(a for a in (normalizar_texto(x) for x in invitados.split(",")) if a)
         for clave in {normalizar_texto(pista.get("titulo")), _clave_titulo_coleccion(pista.get("titulo"))}:
             if clave:
-                indice.setdefault(clave, set()).add(artista)
+                indice.setdefault(clave, set()).update(artistas_pista)
     _cache_coleccion["mtime"] = version
     _cache_coleccion["indice"] = indice
     return indice
