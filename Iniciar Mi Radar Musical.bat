@@ -1,4 +1,6 @@
- @echo off
-cd /d "%USERPROFILE%\Desktop\Pagina radar musica\app"
-"C:\Users\34667\AppData\Local\Programs\Python\Python315\python.exe" servidor.py
+@echo off
+cd /d "%~dp0app"
+set "PY=python"
+where py >nul 2>nul && set "PY=py -3"
+%PY% servidor.py
 pause
