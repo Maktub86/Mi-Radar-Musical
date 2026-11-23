@@ -1048,6 +1048,14 @@
     "tipo": "Single"
   },
   {
+    "id": "5d581a6e-63d1-4f87-9f62-fae11ac87526",
+    "imagen": "https://coverartarchive.org/release-group/5d581a6e-63d1-4f87-9f62-fae11ac87526/front-250",
+    "titulo": "COSITA",
+    "fecha": "2026-10-30",
+    "artista": "Daddy Yankee",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6826230338",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/61/f4/06/61f406b5-831e-0952-871d-1e4ce45a3e49/1200220368198.jpg/100x100bb.jpg",
     "titulo": "BAD IDEA - Single",
@@ -2197,14 +2205,6 @@
     "titulo": "Bajón Emocional - EP",
     "fecha": "2026-10-08",
     "artista": "Yuridia",
-    "tipo": "Album"
-  },
-  {
-    "id": "apple-6821148622",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/38/c2/fb/38c2fb5b-4af8-344a-af97-8f8e05567030/885288824254.jpg/100x100bb.jpg",
-    "titulo": "PITCOIN",
-    "fecha": "2026-10-08",
-    "artista": "Pitbull",
     "tipo": "Album"
   },
   {
@@ -35480,6 +35480,14 @@
     "tipo": "Single"
   },
   {
+    "id": "ceb53d42-503a-4bc9-aaaf-04cea191783b",
+    "imagen": "https://coverartarchive.org/release-group/ceb53d42-503a-4bc9-aaaf-04cea191783b/front-250",
+    "titulo": "Love Me Now or Lose Me Later",
+    "fecha": "2024-06-20",
+    "artista": "Kygo",
+    "tipo": "Single"
+  },
+  {
     "id": "e64c15d3-7c52-4863-9bf7-598c2f469b56",
     "imagen": "https://coverartarchive.org/release-group/e64c15d3-7c52-4863-9bf7-598c2f469b56/front-250",
     "titulo": "Healing (Shattered Heart)",
@@ -54325,6 +54333,14 @@
     "titulo": "2023‐03‐02: Ball Arena, Denver, CO, USA",
     "fecha": "2023-03-06",
     "artista": "Bruce Springsteen",
+    "tipo": "Album"
+  },
+  {
+    "id": "301e8282-3764-4f03-b6a7-bac3b3a2bc24",
+    "imagen": "https://coverartarchive.org/release-group/301e8282-3764-4f03-b6a7-bac3b3a2bc24/front-250",
+    "titulo": "Let Me Be There (January 28, 29, February 1, 1974, Hilton Hotel, Las Vegas)",
+    "fecha": "2023-03-06",
+    "artista": "Elvis Presley",
     "tipo": "Album"
   },
   {
@@ -175272,20 +175288,20 @@
     "tipo": "Album"
   },
   {
-    "id": "ebeaeeb4-231f-42ed-8987-64f6bbc9a31f",
-    "imagen": "https://coverartarchive.org/release-group/ebeaeeb4-231f-42ed-8987-64f6bbc9a31f/front-250",
-    "titulo": "Nobody To Love (Kygo Remix)",
-    "fecha": "2014",
-    "artista": "Kygo",
-    "tipo": "Single"
-  },
-  {
     "id": "be3449fb-60ac-4c9a-97e0-3ad17fa6907b",
     "imagen": "https://coverartarchive.org/release-group/be3449fb-60ac-4c9a-97e0-3ad17fa6907b/front-250",
     "titulo": "Diplo & Friends Guest Mix",
     "fecha": "2014",
     "artista": "Kygo",
     "tipo": "Broadcast"
+  },
+  {
+    "id": "ebeaeeb4-231f-42ed-8987-64f6bbc9a31f",
+    "imagen": "https://coverartarchive.org/release-group/ebeaeeb4-231f-42ed-8987-64f6bbc9a31f/front-250",
+    "titulo": "Nobody To Love (Kygo Remix)",
+    "fecha": "2014",
+    "artista": "Kygo",
+    "tipo": "Single"
   },
   {
     "id": "1a288b7d-a1de-4a11-bf0b-bf9cb511163f",
@@ -221376,6 +221392,14 @@
     "tipo": "EP"
   },
   {
+    "id": "a2a0757f-46b4-47d1-b152-e0d34b6f7253",
+    "imagen": "https://coverartarchive.org/release-group/a2a0757f-46b4-47d1-b152-e0d34b6f7253/front-250",
+    "titulo": "I Gotta Feeling",
+    "fecha": "2009-07-10",
+    "artista": "Black Eyed Peas",
+    "tipo": "Single"
+  },
+  {
     "id": "bc411944-42a3-4272-9b5f-5af6d09168b7",
     "imagen": "https://coverartarchive.org/release-group/bc411944-42a3-4272-9b5f-5af6d09168b7/front-250",
     "titulo": "She Wolf",
@@ -221608,17 +221632,17 @@
     "tipo": "Broadcast"
   },
   {
-    "id": "8999da32-a37e-4f6c-a071-f0538894c551",
-    "imagen": "https://coverartarchive.org/release-group/8999da32-a37e-4f6c-a071-f0538894c551/front-250",
-    "titulo": "Tribute to the King of Pop",
+    "id": "edd4a38b-2249-44d6-974f-a5567f6b2cad",
+    "imagen": "https://coverartarchive.org/release-group/edd4a38b-2249-44d6-974f-a5567f6b2cad/front-250",
+    "titulo": "The Collection",
     "fecha": "2009-06-26",
     "artista": "Michael Jackson",
     "tipo": "Album"
   },
   {
-    "id": "edd4a38b-2249-44d6-974f-a5567f6b2cad",
-    "imagen": "https://coverartarchive.org/release-group/edd4a38b-2249-44d6-974f-a5567f6b2cad/front-250",
-    "titulo": "The Collection",
+    "id": "8999da32-a37e-4f6c-a071-f0538894c551",
+    "imagen": "https://coverartarchive.org/release-group/8999da32-a37e-4f6c-a071-f0538894c551/front-250",
+    "titulo": "Tribute to the King of Pop",
     "fecha": "2009-06-26",
     "artista": "Michael Jackson",
     "tipo": "Album"
@@ -224075,14 +224099,6 @@
     "id": "918bade8-af46-4451-99b0-0d1715db0bb8",
     "imagen": "https://coverartarchive.org/release-group/918bade8-af46-4451-99b0-0d1715db0bb8/front-250",
     "titulo": "Imma Be",
-    "fecha": "2009-01-01",
-    "artista": "Black Eyed Peas",
-    "tipo": "Single"
-  },
-  {
-    "id": "a2a0757f-46b4-47d1-b152-e0d34b6f7253",
-    "imagen": "https://coverartarchive.org/release-group/a2a0757f-46b4-47d1-b152-e0d34b6f7253/front-250",
-    "titulo": "I Gotta Feeling",
     "fecha": "2009-01-01",
     "artista": "Black Eyed Peas",
     "tipo": "Single"
@@ -252352,14 +252368,6 @@
     "tipo": "Other"
   },
   {
-    "id": "5c1b6ab9-e542-4606-9d7c-2d0cb7f2126c",
-    "imagen": "https://coverartarchive.org/release-group/5c1b6ab9-e542-4606-9d7c-2d0cb7f2126c/front-250",
-    "titulo": "A Legendary Performer Vol. 8",
-    "fecha": "2006",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "9494be0a-c22a-431b-b2d5-033287d66cb4",
     "imagen": "https://coverartarchive.org/release-group/9494be0a-c22a-431b-b2d5-033287d66cb4/front-250",
     "titulo": "A Holy Rockin’ Christmas",
@@ -252387,6 +252395,14 @@
     "id": "dd26a5f6-958f-487d-8cda-bc6b86091f0e",
     "imagen": "https://coverartarchive.org/release-group/dd26a5f6-958f-487d-8cda-bc6b86091f0e/front-250",
     "titulo": "The American Way Volume Four (Sound of the City)",
+    "fecha": "2006",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "5c1b6ab9-e542-4606-9d7c-2d0cb7f2126c",
+    "imagen": "https://coverartarchive.org/release-group/5c1b6ab9-e542-4606-9d7c-2d0cb7f2126c/front-250",
+    "titulo": "A Legendary Performer Vol. 8",
     "fecha": "2006",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -273382,6 +273398,14 @@
     "fecha": "2003-10-06",
     "artista": "Shaggy",
     "tipo": "Album"
+  },
+  {
+    "id": "097476db-0f64-4032-8941-9e1cdcc7e5d6",
+    "imagen": "https://coverartarchive.org/release-group/097476db-0f64-4032-8941-9e1cdcc7e5d6/front-250",
+    "titulo": "The Pepsi EP",
+    "fecha": "2003-10-04",
+    "artista": "Shakira",
+    "tipo": "EP"
   },
   {
     "id": "a7fbfb90-624b-43ed-8f10-4a4b89c64dbe",
@@ -338832,6 +338856,14 @@
     "tipo": "Other"
   },
   {
+    "id": "f0701494-34e1-4003-ab24-1b217613f409",
+    "imagen": "https://coverartarchive.org/release-group/f0701494-34e1-4003-ab24-1b217613f409/front-250",
+    "titulo": "Mellon Collie Disc Three",
+    "fecha": "1996",
+    "artista": "The Smashing Pumpkins",
+    "tipo": "Album"
+  },
+  {
     "id": "03ce656b-4713-4815-b6ca-83265d328db2",
     "imagen": "https://coverartarchive.org/release-group/03ce656b-4713-4815-b6ca-83265d328db2/front-250",
     "titulo": "The Mellon Collie Demos",
@@ -338851,14 +338883,6 @@
     "id": "c2862c79-f04d-4502-bf24-823d44ac71f9",
     "imagen": "https://coverartarchive.org/release-group/c2862c79-f04d-4502-bf24-823d44ac71f9/front-250",
     "titulo": "Tune In, Turn On, Rawk Out",
-    "fecha": "1996",
-    "artista": "The Smashing Pumpkins",
-    "tipo": "Album"
-  },
-  {
-    "id": "f0701494-34e1-4003-ab24-1b217613f409",
-    "imagen": "https://coverartarchive.org/release-group/f0701494-34e1-4003-ab24-1b217613f409/front-250",
-    "titulo": "Mellon Collie Disc Three",
     "fecha": "1996",
     "artista": "The Smashing Pumpkins",
     "tipo": "Album"
@@ -355192,6 +355216,14 @@
     "tipo": "Album"
   },
   {
+    "id": "5ad3a21e-85ca-4403-be87-2340e2e06f51",
+    "imagen": "https://coverartarchive.org/release-group/5ad3a21e-85ca-4403-be87-2340e2e06f51/front-250",
+    "titulo": "Spaceboy",
+    "fecha": "1994",
+    "artista": "The Smashing Pumpkins",
+    "tipo": "Album"
+  },
+  {
     "id": "a0a2b09f-c314-34ba-a0c9-7e43529135f8",
     "imagen": "https://coverartarchive.org/release-group/a0a2b09f-c314-34ba-a0c9-7e43529135f8/front-250",
     "titulo": "1993‐08‐14: 3 Feet High: Metro, Chicago, IL, USA",
@@ -355315,14 +355347,6 @@
     "id": "5352c1f3-be4f-4a1c-b4a6-5b3aed84a513",
     "imagen": "https://coverartarchive.org/release-group/5352c1f3-be4f-4a1c-b4a6-5b3aed84a513/front-250",
     "titulo": "The Greatest Day",
-    "fecha": "1994",
-    "artista": "The Smashing Pumpkins",
-    "tipo": "Album"
-  },
-  {
-    "id": "5ad3a21e-85ca-4403-be87-2340e2e06f51",
-    "imagen": "https://coverartarchive.org/release-group/5ad3a21e-85ca-4403-be87-2340e2e06f51/front-250",
-    "titulo": "Spaceboy",
     "fecha": "1994",
     "artista": "The Smashing Pumpkins",
     "tipo": "Album"
@@ -421960,6 +421984,14 @@
     "tipo": "Single"
   },
   {
+    "id": "b277e529-f8c6-4851-b95a-0c623c379ae3",
+    "imagen": "https://coverartarchive.org/release-group/b277e529-f8c6-4851-b95a-0c623c379ae3/front-250",
+    "titulo": "The Christmas Song / Merry Christmas Darling",
+    "fecha": "1977-11",
+    "artista": "Carpenters",
+    "tipo": "Single"
+  },
+  {
     "id": "90b93791-1425-42cb-869b-423b1dbe3047",
     "imagen": "https://coverartarchive.org/release-group/90b93791-1425-42cb-869b-423b1dbe3047/front-250",
     "titulo": "Rod Stewart / Crosby, Stills & Nash / The Rolling Stones / Yes",
@@ -466504,14 +466536,6 @@
     "tipo": "Broadcast"
   },
   {
-    "id": "f2de1402-9204-470f-90e0-4fa0469bce35",
-    "imagen": "https://coverartarchive.org/release-group/f2de1402-9204-470f-90e0-4fa0469bce35/front-250",
-    "titulo": "Eric Clapton",
-    "fecha": "",
-    "artista": "Eric Clapton",
-    "tipo": "Album"
-  },
-  {
     "id": "018390e1-bbcd-3864-9cdd-032ffeda915a",
     "imagen": "https://coverartarchive.org/release-group/018390e1-bbcd-3864-9cdd-032ffeda915a/front-250",
     "titulo": "The World of Eric Clapton",
@@ -467243,6 +467267,14 @@
     "id": "8b50821f-e14e-4a7d-be5f-ec2577ed7b62",
     "imagen": "https://coverartarchive.org/release-group/8b50821f-e14e-4a7d-be5f-ec2577ed7b62/front-250",
     "titulo": "1974‐11‐05: First Appearance: Koseinenkin Kaikan Dai Hall, Osaka, Japan",
+    "fecha": "",
+    "artista": "Eric Clapton",
+    "tipo": "Album"
+  },
+  {
+    "id": "8bf9ed09-70f1-428d-a05d-f6d0d96fe959",
+    "imagen": "https://coverartarchive.org/release-group/8bf9ed09-70f1-428d-a05d-f6d0d96fe959/front-250",
+    "titulo": "1996-05-09: Duets: Roseland Ballroom, New York City, NY, USA",
     "fecha": "",
     "artista": "Eric Clapton",
     "tipo": "Album"
@@ -467987,14 +468019,6 @@
     "id": "8ac77aed-becf-41d9-9f8c-4497f73e49f0",
     "imagen": "https://coverartarchive.org/release-group/8ac77aed-becf-41d9-9f8c-4497f73e49f0/front-250",
     "titulo": "2017‐05‐22: Royal Albert Hall, London, England, UK",
-    "fecha": "",
-    "artista": "Eric Clapton",
-    "tipo": "Album"
-  },
-  {
-    "id": "8bf9ed09-70f1-428d-a05d-f6d0d96fe959",
-    "imagen": "https://coverartarchive.org/release-group/8bf9ed09-70f1-428d-a05d-f6d0d96fe959/front-250",
-    "titulo": "1996-05-09: Duets: Roseland Ballroom, New York City, NY, USA",
     "fecha": "",
     "artista": "Eric Clapton",
     "tipo": "Album"
@@ -475736,14 +475760,6 @@
     "tipo": "Single"
   },
   {
-    "id": "a20b2a0f-010a-4c9b-8038-fb8017fca807",
-    "imagen": "https://coverartarchive.org/release-group/a20b2a0f-010a-4c9b-8038-fb8017fca807/front-250",
-    "titulo": "Blood on the Dance Floor",
-    "fecha": "",
-    "artista": "Michael Jackson",
-    "tipo": "Album"
-  },
-  {
     "id": "ea32d663-3cac-420b-a954-55caefade957",
     "imagen": "https://coverartarchive.org/release-group/ea32d663-3cac-420b-a954-55caefade957/front-250",
     "titulo": "The Acapella Archive",
@@ -475771,6 +475787,14 @@
     "id": "8ddc3d26-594b-364f-a00b-0ddaa23a5e84",
     "imagen": "https://coverartarchive.org/release-group/8ddc3d26-594b-364f-a00b-0ddaa23a5e84/front-250",
     "titulo": "1988: Bad Tour Live in Rotterdam 1988",
+    "fecha": "",
+    "artista": "Michael Jackson",
+    "tipo": "Album"
+  },
+  {
+    "id": "a20b2a0f-010a-4c9b-8038-fb8017fca807",
+    "imagen": "https://coverartarchive.org/release-group/a20b2a0f-010a-4c9b-8038-fb8017fca807/front-250",
+    "titulo": "Blood on the Dance Floor",
     "fecha": "",
     "artista": "Michael Jackson",
     "tipo": "Album"
@@ -486984,6 +487008,14 @@
     "tipo": "Album"
   },
   {
+    "id": "e888f171-e09f-456f-a28b-906ae81520af",
+    "imagen": "https://coverartarchive.org/release-group/e888f171-e09f-456f-a28b-906ae81520af/front-250",
+    "titulo": "1992‐08‐10: 328 Performance Hall, Nashville, TN, USA",
+    "fecha": "",
+    "artista": "The Smashing Pumpkins",
+    "tipo": "Album"
+  },
+  {
     "id": "f30162b4-88c4-4b6f-96b5-bc7b98ba5ba0",
     "imagen": "https://coverartarchive.org/release-group/f30162b4-88c4-4b6f-96b5-bc7b98ba5ba0/front-250",
     "titulo": "1992‐02‐24: CLUB CITTA’, Kawasaki, Japan",
@@ -487235,6 +487267,14 @@
     "id": "49acaff7-1eb8-4cca-9759-8fbef88a7b67",
     "imagen": "https://coverartarchive.org/release-group/49acaff7-1eb8-4cca-9759-8fbef88a7b67/front-250",
     "titulo": "2000‐05‐06: Sunrise Theater, Sunrise, FL, USA",
+    "fecha": "",
+    "artista": "The Smashing Pumpkins",
+    "tipo": "Album"
+  },
+  {
+    "id": "4a34d04e-565b-4ebb-a750-54c0c640333d",
+    "imagen": "https://coverartarchive.org/release-group/4a34d04e-565b-4ebb-a750-54c0c640333d/front-250",
+    "titulo": "2011‐10‐11: Slowdown, Omaha, NE, USA",
     "fecha": "",
     "artista": "The Smashing Pumpkins",
     "tipo": "Album"
@@ -487680,14 +487720,6 @@
     "tipo": "Album"
   },
   {
-    "id": "e888f171-e09f-456f-a28b-906ae81520af",
-    "imagen": "https://coverartarchive.org/release-group/e888f171-e09f-456f-a28b-906ae81520af/front-250",
-    "titulo": "1992‐08‐10: 328 Performance Hall, Nashville, TN, USA",
-    "fecha": "",
-    "artista": "The Smashing Pumpkins",
-    "tipo": "Album"
-  },
-  {
     "id": "e8a24461-042a-34be-b85e-4026136e2e55",
     "imagen": "https://coverartarchive.org/release-group/e8a24461-042a-34be-b85e-4026136e2e55/front-250",
     "titulo": "2007-05-28: Pinkpop: Megaland, Landgraff, Netherlands",
@@ -487931,14 +487963,6 @@
     "id": "4951e9fb-fbe6-4014-867f-94a105773b18",
     "imagen": "https://coverartarchive.org/release-group/4951e9fb-fbe6-4014-867f-94a105773b18/front-250",
     "titulo": "TV Appearances 1993-2005",
-    "fecha": "",
-    "artista": "The Smashing Pumpkins",
-    "tipo": "Album"
-  },
-  {
-    "id": "4a34d04e-565b-4ebb-a750-54c0c640333d",
-    "imagen": "https://coverartarchive.org/release-group/4a34d04e-565b-4ebb-a750-54c0c640333d/front-250",
-    "titulo": "2011‐10‐11: Slowdown, Omaha, NE, USA",
     "fecha": "",
     "artista": "The Smashing Pumpkins",
     "tipo": "Album"
@@ -488208,6 +488232,14 @@
     "tipo": "Album"
   },
   {
+    "id": "bed6cdd8-9f37-4b11-909d-865e74fbe6fa",
+    "imagen": "https://coverartarchive.org/release-group/bed6cdd8-9f37-4b11-909d-865e74fbe6fa/front-250",
+    "titulo": "Tonight, Tonight At BBC",
+    "fecha": "",
+    "artista": "The Smashing Pumpkins",
+    "tipo": "Single"
+  },
+  {
     "id": "cd170059-ea49-3a6c-9f15-7e55ff3cd1ca",
     "imagen": "https://coverartarchive.org/release-group/cd170059-ea49-3a6c-9f15-7e55ff3cd1ca/front-250",
     "titulo": "MCIS Demos III: Demos for D’arcy",
@@ -488302,14 +488334,6 @@
     "fecha": "",
     "artista": "The Smashing Pumpkins",
     "tipo": "Broadcast"
-  },
-  {
-    "id": "bed6cdd8-9f37-4b11-909d-865e74fbe6fa",
-    "imagen": "https://coverartarchive.org/release-group/bed6cdd8-9f37-4b11-909d-865e74fbe6fa/front-250",
-    "titulo": "Tonight, Tonight At BBC",
-    "fecha": "",
-    "artista": "The Smashing Pumpkins",
-    "tipo": "Single"
   },
   {
     "id": "eae8f4b7-6366-4bc4-94cc-16f051580574",
