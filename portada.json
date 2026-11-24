@@ -1,5 +1,13 @@
 [
   {
+    "id": "apple-6838561959",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/df/56/5a/df565adc-1274-fc7f-4b23-2cced5ceb4c5/15UMGIM32560.rgb.jpg/100x100bb.jpg",
+    "titulo": "Run Away With Me - Single",
+    "fecha": "2026-11-24",
+    "artista": "Carly Rae Jepsen",
+    "tipo": "Single"
+  },
+  {
     "id": "3e9ce240-ab4c-4267-a343-dce37db0417f",
     "imagen": "https://coverartarchive.org/release-group/3e9ce240-ab4c-4267-a343-dce37db0417f/front-250",
     "titulo": "Summer, Highland Falls (alternate acoustic version)",
@@ -2416,6 +2424,14 @@
     "tipo": "Single"
   },
   {
+    "id": "b930a27c-a95a-422c-bb37-bc3849412691",
+    "imagen": "https://coverartarchive.org/release-group/b930a27c-a95a-422c-bb37-bc3849412691/front-250",
+    "titulo": "What Happened in Vegas...",
+    "fecha": "2026-10-01",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
     "id": "14773fb9-a977-451d-b93f-9bba7b46cf82",
     "imagen": "https://coverartarchive.org/release-group/14773fb9-a977-451d-b93f-9bba7b46cf82/front-250",
     "titulo": "Dreamers",
@@ -3829,6 +3845,14 @@
     "titulo": "Offline Mode",
     "fecha": "2026-08-28",
     "artista": "Edward Maya",
+    "tipo": "Single"
+  },
+  {
+    "id": "790e407b-278b-45df-a70d-d1f98b11345a",
+    "imagen": "https://coverartarchive.org/release-group/790e407b-278b-45df-a70d-d1f98b11345a/front-250",
+    "titulo": "SEEIN’ STARS: ELTON JOHN VERSION",
+    "fecha": "2026-08-28",
+    "artista": "Elton John",
     "tipo": "Single"
   },
   {
@@ -7114,14 +7138,6 @@
   {
     "id": "07de8cfe-5ef6-448f-888f-3eeb9d3fb112",
     "imagen": "https://coverartarchive.org/release-group/07de8cfe-5ef6-448f-888f-3eeb9d3fb112/front-250",
-    "titulo": "Sanctuary",
-    "fecha": "2026-06-05",
-    "artista": "Evanescence",
-    "tipo": "Album"
-  },
-  {
-    "id": "7c432466-91ef-44bd-97c5-2cbfa96489cf",
-    "imagen": "https://coverartarchive.org/release-group/7c432466-91ef-44bd-97c5-2cbfa96489cf/front-250",
     "titulo": "Sanctuary",
     "fecha": "2026-06-05",
     "artista": "Evanescence",
@@ -33586,7 +33602,7 @@
   {
     "id": "f7c6e28a-616c-446d-9c9f-a1ab64d3c3af",
     "imagen": "https://coverartarchive.org/release-group/f7c6e28a-616c-446d-9c9f-a1ab64d3c3af/front-250",
-    "titulo": "Brought The Heat Back",
+    "titulo": "Brought the Heat Back",
     "fecha": "2024-08-09",
     "artista": "Ava Max",
     "tipo": "Single"
@@ -42558,6 +42574,14 @@
     "fecha": "2023-12-15",
     "artista": "Lérica",
     "tipo": "Single"
+  },
+  {
+    "id": "d6a730fc-bf66-469f-adee-f7906a991e8e",
+    "imagen": "https://coverartarchive.org/release-group/d6a730fc-bf66-469f-adee-f7906a991e8e/front-250",
+    "titulo": "Veinticirco La Gira (En Vivo)",
+    "fecha": "2023-12-15",
+    "artista": "Los Caligaris",
+    "tipo": "Album"
   },
   {
     "id": "f5284ebf-0f1b-4944-93ab-72c8baaa301c",
@@ -84520,6 +84544,22 @@
     "tipo": "Single"
   },
   {
+    "id": "24bd104b-852f-47fa-8ad7-998613693df1",
+    "imagen": "https://coverartarchive.org/release-group/24bd104b-852f-47fa-8ad7-998613693df1/front-250",
+    "titulo": "Convénceme (DJ Antonis Dimitriou Kizomba Remix)",
+    "fecha": "2021-01-24",
+    "artista": "India Martínez",
+    "tipo": "Single"
+  },
+  {
+    "id": "24bd104b-852f-47fa-8ad7-998613693df1",
+    "imagen": "https://coverartarchive.org/release-group/24bd104b-852f-47fa-8ad7-998613693df1/front-250",
+    "titulo": "Convénceme (DJ Antonis Dimitriou Kizomba Remix)",
+    "fecha": "2021-01-24",
+    "artista": "Marc Anthony",
+    "tipo": "Single"
+  },
+  {
     "id": "efa4d545-62cd-4eba-8eef-369177543654",
     "imagen": "https://coverartarchive.org/release-group/efa4d545-62cd-4eba-8eef-369177543654/front-250",
     "titulo": "All Hail Rock n Roll: Live American Radio Broadcast",
@@ -94821,6 +94861,14 @@
     "titulo": "Slow Grenade",
     "fecha": "2020-06-30",
     "artista": "Ellie Goulding",
+    "tipo": "Single"
+  },
+  {
+    "id": "0d8043f3-3f9c-4986-bf2e-76990a938d7a",
+    "imagen": "https://coverartarchive.org/release-group/0d8043f3-3f9c-4986-bf2e-76990a938d7a/front-250",
+    "titulo": "Perfect Song",
+    "fecha": "2020-06-30",
+    "artista": "Sabrina Carpenter",
     "tipo": "Single"
   },
   {
@@ -117176,6 +117224,14 @@
     "tipo": "Single"
   },
   {
+    "id": "4dde6919-2153-4c72-80dc-85216b67fe0c",
+    "imagen": "https://coverartarchive.org/release-group/4dde6919-2153-4c72-80dc-85216b67fe0c/front-250",
+    "titulo": "Without Me (DJ Tronky Bachata Remix)",
+    "fecha": "2018-12-14",
+    "artista": "Halsey",
+    "tipo": "Single"
+  },
+  {
     "id": "ac228f2a-bf97-4983-a1fe-4db893dcadb6",
     "imagen": "https://coverartarchive.org/release-group/ac228f2a-bf97-4983-a1fe-4db893dcadb6/front-250",
     "titulo": "Rewrite the Stars (Wideboy’s Hands in the air remix)",
@@ -126094,6 +126150,14 @@
     "fecha": "2018-04-13",
     "artista": "Jason Derulo",
     "tipo": "Single"
+  },
+  {
+    "id": "c70628ea-a931-4dd0-bf5d-118ba8844b31",
+    "imagen": "https://coverartarchive.org/release-group/c70628ea-a931-4dd0-bf5d-118ba8844b31/front-250",
+    "titulo": "20 Años: El Show Más Feliz del Mundo (En Vivo)",
+    "fecha": "2018-04-13",
+    "artista": "Los Caligaris",
+    "tipo": "Album"
   },
   {
     "id": "a08524a9-7063-48c8-aa63-46bb88c5ddaa",
@@ -146405,6 +146469,14 @@
     "titulo": "Libre",
     "fecha": "2016-10-14",
     "artista": "Franco de Vita",
+    "tipo": "Album"
+  },
+  {
+    "id": "e0e2f9dd-ce66-453f-8b03-3f4d7a1c056f",
+    "imagen": "https://coverartarchive.org/release-group/e0e2f9dd-ce66-453f-8b03-3f4d7a1c056f/front-250",
+    "titulo": "Somos Todos Vivos",
+    "fecha": "2016-10-14",
+    "artista": "Los Caligaris",
     "tipo": "Album"
   },
   {
@@ -232784,6 +232856,14 @@
     "tipo": "Album"
   },
   {
+    "id": "6bbc0ccf-095b-4cef-a180-27542ae640ca",
+    "imagen": "https://coverartarchive.org/release-group/6bbc0ccf-095b-4cef-a180-27542ae640ca/front-250",
+    "titulo": "Ultimate Box",
+    "fecha": "2008-02-27",
+    "artista": "Céline Dion",
+    "tipo": "Publicación"
+  },
+  {
     "id": "572752f9-f04a-49a2-90fd-e639e8c91bb3",
     "imagen": "https://coverartarchive.org/release-group/572752f9-f04a-49a2-90fd-e639e8c91bb3/front-250",
     "titulo": "LIVE - Paris 2008.02.27",
@@ -257666,7 +257746,7 @@
   {
     "id": "3149f8bc-023e-4e0a-865e-d5fe116df643",
     "imagen": "https://coverartarchive.org/release-group/3149f8bc-023e-4e0a-865e-d5fe116df643/front-250",
-    "titulo": "Suspicious Minds (White Label Club Mix)",
+    "titulo": "Suspicious Minds (White Label Club mix)",
     "fecha": "2005-05-19",
     "artista": "Elvis Presley",
     "tipo": "Single"
@@ -260728,14 +260808,6 @@
     "tipo": "Album"
   },
   {
-    "id": "405464f5-a165-476e-ba63-d3441bd82992",
-    "imagen": "https://coverartarchive.org/release-group/405464f5-a165-476e-ba63-d3441bd82992/front-250",
-    "titulo": "Everybody Loves Somebody",
-    "fecha": "2005",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "a3f5542a-2465-4d87-9a9b-27ab485d8acd",
     "imagen": "https://coverartarchive.org/release-group/a3f5542a-2465-4d87-9a9b-27ab485d8acd/front-250",
     "titulo": "Embraceable You",
@@ -260786,6 +260858,14 @@
   {
     "id": "24f0b894-331b-43c1-bce7-bac24f1fbb1a",
     "imagen": "https://coverartarchive.org/release-group/24f0b894-331b-43c1-bce7-bac24f1fbb1a/front-250",
+    "titulo": "Everybody Loves Somebody",
+    "fecha": "2005",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "405464f5-a165-476e-ba63-d3441bd82992",
+    "imagen": "https://coverartarchive.org/release-group/405464f5-a165-476e-ba63-d3441bd82992/front-250",
     "titulo": "Everybody Loves Somebody",
     "fecha": "2005",
     "artista": "Frank Sinatra",
@@ -261672,20 +261752,20 @@
     "tipo": "Album"
   },
   {
-    "id": "dedb420e-6586-4695-afcb-31566222ced9",
-    "imagen": "https://coverartarchive.org/release-group/dedb420e-6586-4695-afcb-31566222ced9/front-250",
-    "titulo": "The Best Ballads",
-    "fecha": "2005",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "2b3bed53-0df4-4db3-af58-1397b5d9a095",
     "imagen": "https://coverartarchive.org/release-group/2b3bed53-0df4-4db3-af58-1397b5d9a095/front-250",
     "titulo": "Heavy Metal Box",
     "fecha": "2005",
     "artista": "Metallica",
     "tipo": "Other"
+  },
+  {
+    "id": "dedb420e-6586-4695-afcb-31566222ced9",
+    "imagen": "https://coverartarchive.org/release-group/dedb420e-6586-4695-afcb-31566222ced9/front-250",
+    "titulo": "The Best Ballads",
+    "fecha": "2005",
+    "artista": "Metallica",
+    "tipo": "Album"
   },
   {
     "id": "78b2f0f3-70f9-4c31-9a65-1cb513712249",
@@ -269072,6 +269152,14 @@
     "tipo": "Album"
   },
   {
+    "id": "eb6be5e5-5df3-4e7c-af33-4cb2a2e82e2b",
+    "imagen": "https://coverartarchive.org/release-group/eb6be5e5-5df3-4e7c-af33-4cb2a2e82e2b/front-250",
+    "titulo": "Breathe No More",
+    "fecha": "2004",
+    "artista": "Evanescence",
+    "tipo": "Single"
+  },
+  {
     "id": "51c1b7d4-a080-48c6-aa1d-d95bbcc9fe97",
     "imagen": "https://coverartarchive.org/release-group/51c1b7d4-a080-48c6-aa1d-d95bbcc9fe97/front-250",
     "titulo": "Bring Me to Life / Only When I Lose Myself",
@@ -269083,14 +269171,6 @@
     "id": "b862112c-3149-3669-8204-01095200f332",
     "imagen": "https://coverartarchive.org/release-group/b862112c-3149-3669-8204-01095200f332/front-250",
     "titulo": "Imaginary",
-    "fecha": "2004",
-    "artista": "Evanescence",
-    "tipo": "Single"
-  },
-  {
-    "id": "eb6be5e5-5df3-4e7c-af33-4cb2a2e82e2b",
-    "imagen": "https://coverartarchive.org/release-group/eb6be5e5-5df3-4e7c-af33-4cb2a2e82e2b/front-250",
-    "titulo": "Breathe No More",
     "fecha": "2004",
     "artista": "Evanescence",
     "tipo": "Single"
@@ -270304,6 +270384,14 @@
     "tipo": "Album"
   },
   {
+    "id": "a1c18257-9008-325f-b8c2-a29ec68363fb",
+    "imagen": "https://coverartarchive.org/release-group/a1c18257-9008-325f-b8c2-a29ec68363fb/front-250",
+    "titulo": "2004-04-26: Norfolk, VA, USA",
+    "fecha": "2004",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
     "id": "a6c2bfb1-989f-43fd-b57c-4bb11e82922c",
     "imagen": "https://coverartarchive.org/release-group/a6c2bfb1-989f-43fd-b57c-4bb11e82922c/front-250",
     "titulo": "2004-03-26: Vancouver, BC, Canada",
@@ -270363,14 +270451,6 @@
     "id": "7f43f689-bbfb-3180-85be-85ed78ef985a",
     "imagen": "https://coverartarchive.org/release-group/7f43f689-bbfb-3180-85be-85ed78ef985a/front-250",
     "titulo": "2004-06-29: Stadio Euganeo, Padova, Italy",
-    "fecha": "2004",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
-    "id": "a1c18257-9008-325f-b8c2-a29ec68363fb",
-    "imagen": "https://coverartarchive.org/release-group/a1c18257-9008-325f-b8c2-a29ec68363fb/front-250",
-    "titulo": "2004-04-26: Norfolk, VA, USA",
     "fecha": "2004",
     "artista": "Metallica",
     "tipo": "Album"
@@ -290282,7 +290362,7 @@
   {
     "id": "2a129502-972d-4886-b5e4-5fea4f9b1a71",
     "imagen": "https://coverartarchive.org/release-group/2a129502-972d-4886-b5e4-5fea4f9b1a71/front-250",
-    "titulo": "Best of Elvis '56 - '77",
+    "titulo": "Best of Elvis ’56 – ’77",
     "fecha": "2001-08-07",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -306584,14 +306664,6 @@
     "tipo": "Album"
   },
   {
-    "id": "623480a2-6d6a-3bc3-9c73-571294ab3646",
-    "imagen": "https://coverartarchive.org/release-group/623480a2-6d6a-3bc3-9c73-571294ab3646/front-250",
-    "titulo": "Westlife",
-    "fecha": "1999-11-08",
-    "artista": "Westlife",
-    "tipo": "Album"
-  },
-  {
     "id": "716f9eee-c6fb-37b8-a62b-99b71976efea",
     "imagen": "https://coverartarchive.org/release-group/716f9eee-c6fb-37b8-a62b-99b71976efea/front-250",
     "titulo": "Will 2k",
@@ -306661,6 +306733,14 @@
     "titulo": "1972-04-28: Auditorium Theatre, Chicago, IL, USA",
     "fecha": "1999-11-01",
     "artista": "Pink Floyd",
+    "tipo": "Album"
+  },
+  {
+    "id": "623480a2-6d6a-3bc3-9c73-571294ab3646",
+    "imagen": "https://coverartarchive.org/release-group/623480a2-6d6a-3bc3-9c73-571294ab3646/front-250",
+    "titulo": "Westlife",
+    "fecha": "1999-11-01",
+    "artista": "Westlife",
     "tipo": "Album"
   },
   {
@@ -320720,17 +320800,17 @@
     "tipo": "Album"
   },
   {
-    "id": "a593797a-2ae8-4c1e-be92-16eebca2f100",
-    "imagen": "https://coverartarchive.org/release-group/a593797a-2ae8-4c1e-be92-16eebca2f100/front-250",
-    "titulo": "Poor Touring Me",
+    "id": "ea810c8c-73c6-44ff-935c-4289f8459431",
+    "imagen": "https://coverartarchive.org/release-group/ea810c8c-73c6-44ff-935c-4289f8459431/front-250",
+    "titulo": "Last Caress",
     "fecha": "1998",
     "artista": "Metallica",
     "tipo": "EP"
   },
   {
-    "id": "ea810c8c-73c6-44ff-935c-4289f8459431",
-    "imagen": "https://coverartarchive.org/release-group/ea810c8c-73c6-44ff-935c-4289f8459431/front-250",
-    "titulo": "Last Caress",
+    "id": "a593797a-2ae8-4c1e-be92-16eebca2f100",
+    "imagen": "https://coverartarchive.org/release-group/a593797a-2ae8-4c1e-be92-16eebca2f100/front-250",
+    "titulo": "Poor Touring Me",
     "fecha": "1998",
     "artista": "Metallica",
     "tipo": "EP"
@@ -327728,14 +327808,6 @@
     "tipo": "Album"
   },
   {
-    "id": "67fee186-7d2d-34cc-b0e3-cde2d54e7d67",
-    "imagen": "https://coverartarchive.org/release-group/67fee186-7d2d-34cc-b0e3-cde2d54e7d67/front-250",
-    "titulo": "The Frank Sinatra Collection, Volume 1: Sensational Sinatra",
-    "fecha": "1997",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "756d80f5-d154-42b7-a133-a9a15b8171d5",
     "imagen": "https://coverartarchive.org/release-group/756d80f5-d154-42b7-a133-a9a15b8171d5/front-250",
     "titulo": "Legendary Radio Recordings",
@@ -327835,6 +327907,14 @@
     "id": "5981a06c-3446-32e8-a310-1f4052a5874d",
     "imagen": "https://coverartarchive.org/release-group/5981a06c-3446-32e8-a310-1f4052a5874d/front-250",
     "titulo": "The Frank Sinatra Collection, Volume 3: Sentimental Sinatra",
+    "fecha": "1997",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "67fee186-7d2d-34cc-b0e3-cde2d54e7d67",
+    "imagen": "https://coverartarchive.org/release-group/67fee186-7d2d-34cc-b0e3-cde2d54e7d67/front-250",
+    "titulo": "The Frank Sinatra Collection, Volume 1: Sensational Sinatra",
     "fecha": "1997",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -339136,12 +339216,12 @@
     "tipo": "Single"
   },
   {
-    "id": "0a9ec3c7-981a-4408-b1cc-ce31331d9e07",
-    "imagen": "https://coverartarchive.org/release-group/0a9ec3c7-981a-4408-b1cc-ce31331d9e07/front-250",
-    "titulo": "Tina Turner",
+    "id": "850b7564-8be5-4fe9-9c45-229b76092bc6",
+    "imagen": "https://coverartarchive.org/release-group/850b7564-8be5-4fe9-9c45-229b76092bc6/front-250",
+    "titulo": "Hot Legs",
     "fecha": "1996",
     "artista": "Tina Turner",
-    "tipo": "Album"
+    "tipo": "Single"
   },
   {
     "id": "166905f6-32d4-4e6d-8c25-7dd91f101c31",
@@ -339158,14 +339238,6 @@
     "fecha": "1996",
     "artista": "Tina Turner",
     "tipo": "EP"
-  },
-  {
-    "id": "850b7564-8be5-4fe9-9c45-229b76092bc6",
-    "imagen": "https://coverartarchive.org/release-group/850b7564-8be5-4fe9-9c45-229b76092bc6/front-250",
-    "titulo": "Hot Legs",
-    "fecha": "1996",
-    "artista": "Tina Turner",
-    "tipo": "Single"
   },
   {
     "id": "06e6d96f-1ecd-4e2a-a8f6-9372c10fe7e0",
@@ -347296,14 +347368,6 @@
     "tipo": "Single"
   },
   {
-    "id": "6b4a5f74-2b00-48ff-aa42-3d5a1443cf83",
-    "imagen": "https://coverartarchive.org/release-group/6b4a5f74-2b00-48ff-aa42-3d5a1443cf83/front-250",
-    "titulo": "Simply Tina",
-    "fecha": "1995",
-    "artista": "Tina Turner",
-    "tipo": "Album"
-  },
-  {
     "id": "c50ea45d-cf72-32e4-a3d6-a2de2a1d271d",
     "imagen": "https://coverartarchive.org/release-group/c50ea45d-cf72-32e4-a3d6-a2de2a1d271d/front-250",
     "titulo": "Selection of Tina Turner",
@@ -355400,14 +355464,6 @@
     "tipo": "Album"
   },
   {
-    "id": "888689b4-5c27-4b6e-b2e0-598d177c011f",
-    "imagen": "https://coverartarchive.org/release-group/888689b4-5c27-4b6e-b2e0-598d177c011f/front-250",
-    "titulo": "The Magic Collection",
-    "fecha": "1994",
-    "artista": "Tina Turner",
-    "tipo": "Album"
-  },
-  {
     "id": "ae096ac0-8cc8-4f17-b3b5-998807b19557",
     "imagen": "https://coverartarchive.org/release-group/ae096ac0-8cc8-4f17-b3b5-998807b19557/front-250",
     "titulo": "What’s Love Live",
@@ -359984,14 +360040,6 @@
     "tipo": "Album"
   },
   {
-    "id": "94797512-5ffd-3799-9530-3937be44be04",
-    "imagen": "https://coverartarchive.org/release-group/94797512-5ffd-3799-9530-3937be44be04/front-250",
-    "titulo": "On the Sunny Side of the Street",
-    "fecha": "1993",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "b2442f9e-da96-42cc-a40f-3d75f27184f1",
     "imagen": "https://coverartarchive.org/release-group/b2442f9e-da96-42cc-a40f-3d75f27184f1/front-250",
     "titulo": "1949 Lite Up Time Shows",
@@ -360035,6 +360083,14 @@
     "id": "8c9a9a13-ca82-4d37-8a65-057bf3230e17",
     "imagen": "https://coverartarchive.org/release-group/8c9a9a13-ca82-4d37-8a65-057bf3230e17/front-250",
     "titulo": "The Radio Years",
+    "fecha": "1993",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "94797512-5ffd-3799-9530-3937be44be04",
+    "imagen": "https://coverartarchive.org/release-group/94797512-5ffd-3799-9530-3937be44be04/front-250",
+    "titulo": "On the Sunny Side of the Street",
     "fecha": "1993",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -361216,14 +361272,6 @@
     "tipo": "Album"
   },
   {
-    "id": "a0a52bd1-4b19-488c-a5b3-907e966823c9",
-    "imagen": "https://coverartarchive.org/release-group/a0a52bd1-4b19-488c-a5b3-907e966823c9/front-250",
-    "titulo": "15 Pieces of Live Shit: Binge & Purge",
-    "fecha": "1993",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "bae2bf18-aa7e-4993-857e-64db135f9045",
     "imagen": "https://coverartarchive.org/release-group/bae2bf18-aa7e-4993-857e-64db135f9045/front-250",
     "titulo": "Garage Complete: The Early Unofficial Anthology: 1981–1983",
@@ -361283,6 +361331,14 @@
     "id": "9c1a8144-791e-349e-badf-0ce80be91b3a",
     "imagen": "https://coverartarchive.org/release-group/9c1a8144-791e-349e-badf-0ce80be91b3a/front-250",
     "titulo": "Destroyer",
+    "fecha": "1993",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "a0a52bd1-4b19-488c-a5b3-907e966823c9",
+    "imagen": "https://coverartarchive.org/release-group/a0a52bd1-4b19-488c-a5b3-907e966823c9/front-250",
+    "titulo": "15 Pieces of Live Shit: Binge & Purge",
     "fecha": "1993",
     "artista": "Metallica",
     "tipo": "Album"
@@ -386832,14 +386888,6 @@
     "tipo": "Single"
   },
   {
-    "id": "f158a9ec-1104-44ea-9fd1-1d794ae67d57",
-    "imagen": "https://coverartarchive.org/release-group/f158a9ec-1104-44ea-9fd1-1d794ae67d57/front-250",
-    "titulo": "Smile",
-    "fecha": "1989",
-    "artista": "The Beach Boys",
-    "tipo": "Album"
-  },
-  {
     "id": "f5f23b55-62f3-481a-8683-4914950e70cd",
     "imagen": "https://coverartarchive.org/release-group/f5f23b55-62f3-481a-8683-4914950e70cd/front-250",
     "titulo": "The Beatles in Italy 1965",
@@ -394579,6 +394627,14 @@
     "id": "4a7e79e9-b982-487d-a975-2cbbe485e460",
     "imagen": "https://coverartarchive.org/release-group/4a7e79e9-b982-487d-a975-2cbbe485e460/front-250",
     "titulo": "Frank Sinatra: Suddenly It’s Spring",
+    "fecha": "1987",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "8ccc6e6c-c2da-4b48-a5e2-3f5c608161b7",
+    "imagen": "https://coverartarchive.org/release-group/8ccc6e6c-c2da-4b48-a5e2-3f5c608161b7/front-250",
+    "titulo": "The Frank Sinatra Collection - 20 Golden Greats",
     "fecha": "1987",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -408499,6 +408555,14 @@
     "id": "81310db3-f23a-4cd6-aa48-c71f86a0ddb5",
     "imagen": "https://coverartarchive.org/release-group/81310db3-f23a-4cd6-aa48-c71f86a0ddb5/front-250",
     "titulo": "The Very Best Of",
+    "fecha": "1983",
+    "artista": "The Beach Boys",
+    "tipo": "Album"
+  },
+  {
+    "id": "f158a9ec-1104-44ea-9fd1-1d794ae67d57",
+    "imagen": "https://coverartarchive.org/release-group/f158a9ec-1104-44ea-9fd1-1d794ae67d57/front-250",
+    "titulo": "Smile",
     "fecha": "1983",
     "artista": "The Beach Boys",
     "tipo": "Album"
@@ -451208,14 +451272,6 @@
     "tipo": "Single"
   },
   {
-    "id": "d905c008-2af6-3de2-9ec4-552609f07e8b",
-    "imagen": "https://coverartarchive.org/release-group/d905c008-2af6-3de2-9ec4-552609f07e8b/front-250",
-    "titulo": "Not as a Stranger / How Could You Do a Thing Like That to Me?",
-    "fecha": "1955",
-    "artista": "Frank Sinatra",
-    "tipo": "Single"
-  },
-  {
     "id": "2460703f-37e0-4d48-a992-8931c911ee02",
     "imagen": "https://coverartarchive.org/release-group/2460703f-37e0-4d48-a992-8931c911ee02/front-250",
     "titulo": "Same Old Saturday Night / If I Had Three Wishes",
@@ -451227,6 +451283,14 @@
     "id": "72acf961-f037-44f3-b965-b90dd6af7119",
     "imagen": "https://coverartarchive.org/release-group/72acf961-f037-44f3-b965-b90dd6af7119/front-250",
     "titulo": "Sheila / Day by Day",
+    "fecha": "1955",
+    "artista": "Frank Sinatra",
+    "tipo": "Single"
+  },
+  {
+    "id": "d905c008-2af6-3de2-9ec4-552609f07e8b",
+    "imagen": "https://coverartarchive.org/release-group/d905c008-2af6-3de2-9ec4-552609f07e8b/front-250",
+    "titulo": "Not as a Stranger / How Could You Do a Thing Like That to Me?",
     "fecha": "1955",
     "artista": "Frank Sinatra",
     "tipo": "Single"
@@ -452920,14 +452984,6 @@
     "tipo": "Single"
   },
   {
-    "id": "e889e726-1e2c-4bb8-bcb8-f0f03d826c90",
-    "imagen": "https://coverartarchive.org/release-group/e889e726-1e2c-4bb8-bcb8-f0f03d826c90/front-250",
-    "titulo": "The Moon Was Yellow and the Night Was Young / Always",
-    "fecha": "1947",
-    "artista": "Frank Sinatra",
-    "tipo": "Single"
-  },
-  {
     "id": "f09258fb-d52c-4443-b95e-449aa069c620",
     "imagen": "https://coverartarchive.org/release-group/f09258fb-d52c-4443-b95e-449aa069c620/front-250",
     "titulo": "Silent Night, Holy Night / White Christmas",
@@ -452979,6 +453035,14 @@
     "id": "5ed45ca9-cff2-40c3-a2e2-9e52fbe56916",
     "imagen": "https://coverartarchive.org/release-group/5ed45ca9-cff2-40c3-a2e2-9e52fbe56916/front-250",
     "titulo": "These Foolish Things / A Ghost of a Chance",
+    "fecha": "1947",
+    "artista": "Frank Sinatra",
+    "tipo": "Single"
+  },
+  {
+    "id": "e889e726-1e2c-4bb8-bcb8-f0f03d826c90",
+    "imagen": "https://coverartarchive.org/release-group/e889e726-1e2c-4bb8-bcb8-f0f03d826c90/front-250",
+    "titulo": "The Moon Was Yellow and the Night Was Young / Always",
     "fecha": "1947",
     "artista": "Frank Sinatra",
     "tipo": "Single"
@@ -466528,6 +466592,22 @@
     "tipo": "Album"
   },
   {
+    "id": "60c480b4-e1d7-417f-b37d-38262d00737f",
+    "imagen": "https://coverartarchive.org/release-group/60c480b4-e1d7-417f-b37d-38262d00737f/front-250",
+    "titulo": "Finally Found You (Remixes)",
+    "fecha": "",
+    "artista": "Enrique Iglesias",
+    "tipo": "Single"
+  },
+  {
+    "id": "da943b8a-8b9a-436a-a764-71f6e6db7254",
+    "imagen": "https://coverartarchive.org/release-group/da943b8a-8b9a-436a-a764-71f6e6db7254/front-250",
+    "titulo": "Finally Found You (Remixes Pt. 2)",
+    "fecha": "",
+    "artista": "Enrique Iglesias",
+    "tipo": "Single"
+  },
+  {
     "id": "10377c12-a59b-49ce-a4f1-21ad07939713",
     "imagen": "https://coverartarchive.org/release-group/10377c12-a59b-49ce-a4f1-21ad07939713/front-250",
     "titulo": "Live at The Roxy",
@@ -468528,14 +468608,6 @@
     "tipo": "Album"
   },
   {
-    "id": "8eb2702d-af59-403b-b716-ef5cdb3a0716",
-    "imagen": "https://coverartarchive.org/release-group/8eb2702d-af59-403b-b716-ef5cdb3a0716/front-250",
-    "titulo": "A Superb 2CD Collection of Ol' Blue Eyes Classics",
-    "fecha": "",
-    "artista": "Frank Sinatra",
-    "tipo": "Album"
-  },
-  {
     "id": "02c3fc3e-6915-3257-b24e-7f576db3d2b8",
     "imagen": "https://coverartarchive.org/release-group/02c3fc3e-6915-3257-b24e-7f576db3d2b8/front-250",
     "titulo": "Night and Day",
@@ -468835,6 +468907,14 @@
     "id": "8e10df0f-b0c5-43e0-99e0-26f937a0f612",
     "imagen": "https://coverartarchive.org/release-group/8e10df0f-b0c5-43e0-99e0-26f937a0f612/front-250",
     "titulo": "Young at Heart",
+    "fecha": "",
+    "artista": "Frank Sinatra",
+    "tipo": "Album"
+  },
+  {
+    "id": "8eb2702d-af59-403b-b716-ef5cdb3a0716",
+    "imagen": "https://coverartarchive.org/release-group/8eb2702d-af59-403b-b716-ef5cdb3a0716/front-250",
+    "titulo": "A Superb 2CD Collection of Ol' Blue Eyes Classics",
     "fecha": "",
     "artista": "Frank Sinatra",
     "tipo": "Album"
@@ -474120,14 +474200,6 @@
     "tipo": "Album"
   },
   {
-    "id": "d00b35e3-bf4e-32dc-a13a-275594f79208",
-    "imagen": "https://coverartarchive.org/release-group/d00b35e3-bf4e-32dc-a13a-275594f79208/front-250",
-    "titulo": "1983-11-25: The Keystone, Berkeley, CA, USA",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "d1417bf3-205c-316f-ac1b-9060bddeafb9",
     "imagen": "https://coverartarchive.org/release-group/d1417bf3-205c-316f-ac1b-9060bddeafb9/front-250",
     "titulo": "1982-10-18: Night of the Rivvit Head: The Old Warldof, San Francisco, CA, USA",
@@ -474760,6 +474832,14 @@
     "tipo": "Album"
   },
   {
+    "id": "d00b35e3-bf4e-32dc-a13a-275594f79208",
+    "imagen": "https://coverartarchive.org/release-group/d00b35e3-bf4e-32dc-a13a-275594f79208/front-250",
+    "titulo": "1983-11-25: The Keystone, Berkeley, CA, USA",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
     "id": "d1850ec3-138f-3a1b-bd5a-2b3f8e897d13",
     "imagen": "https://coverartarchive.org/release-group/d1850ec3-138f-3a1b-bd5a-2b3f8e897d13/front-250",
     "titulo": "1988-10-29: Bruxelles, Belgium",
@@ -474851,14 +474931,6 @@
     "id": "ed97d49a-46de-3eec-adac-a7b2e4b9d7fe",
     "imagen": "https://coverartarchive.org/release-group/ed97d49a-46de-3eec-adac-a7b2e4b9d7fe/front-250",
     "titulo": "1992‐02‐29: Friends of Misery: Providence, RI, USA",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
-    "id": "ef512949-8726-3bb7-9483-2697512cd6fc",
-    "imagen": "https://coverartarchive.org/release-group/ef512949-8726-3bb7-9483-2697512cd6fc/front-250",
-    "titulo": "1993‐04‐15: One Night in Bangkok 1993: Bangkok, Thailand",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -475587,6 +475659,14 @@
     "id": "ee1ea0d1-4a80-3060-934d-42aa68742c58",
     "imagen": "https://coverartarchive.org/release-group/ee1ea0d1-4a80-3060-934d-42aa68742c58/front-250",
     "titulo": "Live Shit",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "ef512949-8726-3bb7-9483-2697512cd6fc",
+    "imagen": "https://coverartarchive.org/release-group/ef512949-8726-3bb7-9483-2697512cd6fc/front-250",
+    "titulo": "1993‐04‐15: One Night in Bangkok 1993: Bangkok, Thailand",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -482232,6 +482312,14 @@
     "tipo": "Album"
   },
   {
+    "id": "54cfa95c-2b60-4287-9eac-da42979cf958",
+    "imagen": "https://coverartarchive.org/release-group/54cfa95c-2b60-4287-9eac-da42979cf958/front-250",
+    "titulo": "The Cocaine Sessions",
+    "fecha": "",
+    "artista": "The Beach Boys",
+    "tipo": "Album"
+  },
+  {
     "id": "7b692eec-ecc1-3815-b9b0-4e61f31dd7db",
     "imagen": "https://coverartarchive.org/release-group/7b692eec-ecc1-3815-b9b0-4e61f31dd7db/front-250",
     "titulo": "Landlocked",
@@ -482315,14 +482403,6 @@
     "id": "513b3268-f1a8-42cb-aa57-e4c164327b4a",
     "imagen": "https://coverartarchive.org/release-group/513b3268-f1a8-42cb-aa57-e4c164327b4a/front-250",
     "titulo": "The Fillmore East 1971",
-    "fecha": "",
-    "artista": "The Beach Boys",
-    "tipo": "Album"
-  },
-  {
-    "id": "54cfa95c-2b60-4287-9eac-da42979cf958",
-    "imagen": "https://coverartarchive.org/release-group/54cfa95c-2b60-4287-9eac-da42979cf958/front-250",
-    "titulo": "The Cocaine Sessions",
     "fecha": "",
     "artista": "The Beach Boys",
     "tipo": "Album"
@@ -483926,6 +484006,14 @@
     "fecha": "",
     "artista": "The Foundations",
     "tipo": "Album"
+  },
+  {
+    "id": "415b4de0-d5f8-4005-b3b8-d1faf7522534",
+    "imagen": "https://coverartarchive.org/release-group/415b4de0-d5f8-4005-b3b8-d1faf7522534/front-250",
+    "titulo": "Sorry, I ain't Sorry",
+    "fecha": "",
+    "artista": "The Kid LAROI",
+    "tipo": "Single"
   },
   {
     "id": "2ba3d659-8019-4e5a-a8f9-09c0c0bbb5fd",
@@ -488507,14 +488595,6 @@
     "id": "91d94bd1-21d1-334c-a688-621d848d2ae6",
     "imagen": "https://coverartarchive.org/release-group/91d94bd1-21d1-334c-a688-621d848d2ae6/front-250",
     "titulo": "Stand by Your Man",
-    "fecha": "",
-    "artista": "Tina Turner",
-    "tipo": "Album"
-  },
-  {
-    "id": "97be3412-a871-47a3-b941-f49f72ffbfa2",
-    "imagen": "https://coverartarchive.org/release-group/97be3412-a871-47a3-b941-f49f72ffbfa2/front-250",
-    "titulo": "Good Hearted Woman",
     "fecha": "",
     "artista": "Tina Turner",
     "tipo": "Album"
