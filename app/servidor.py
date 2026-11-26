@@ -1,5 +1,5 @@
 import re
-from flask import Flask, jsonify, send_from_directory, request
+from flask import Flask, jsonify, send_from_directory, request, Response, stream_with_context
 import csv
 import json
 import subprocess
@@ -10,7 +10,7 @@ import sys
 from datetime import date, datetime
 from zoneinfo import ZoneInfo
 from pathlib import Path
-from urllib.parse import quote, urlencode
+from urllib.parse import quote, urlencode, urlparse
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -234,7 +234,7 @@ header p{
  async function guardar(c){try{const r=await fetch('/api/recomendaciones/guardadas',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({canciones:[c]})});if(!r.ok)throw new Error('El servidor ha respondido '+r.status+'.');const d=await r.json();if(!Array.isArray(d.canciones))throw new Error('El servidor no ha confirmado el guardado.');escribir(d.canciones)}catch(e){abrirModal('No se pudo guardar','La canción no se ha guardado en la lista compartida. '+(e.message||'Comprueba la conexión y vuelve a intentarlo.'))}dibujar();actualizarBotones()}
  async function quitar(c){try{const r=await fetch('/api/recomendaciones/guardadas',{method:'DELETE',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({titulo:c.titulo,artista:c.artista})});if(!r.ok)throw new Error('El servidor ha respondido '+r.status+'.');const d=await r.json();if(!Array.isArray(d.canciones))throw new Error('El servidor no ha confirmado el cambio.');escribir(d.canciones);dibujar();actualizarBotones()}catch(e){abrirModal('No se pudo eliminar','La canción sigue en la lista compartida porque el servidor no ha confirmado el cambio. '+(e.message||''));await refrescar();dibujar();actualizarBotones()}}
  async function buscarVideos(c,modo,b){if(b)b.disabled=true;abrirModal(modo==='youtube'?'Elegir versión de YouTube':'Descargar con MediaHuman','Buscando resultados para '+c.artista+' — '+c.titulo+'…');try{const q=new URLSearchParams({titulo:c.titulo,artista:c.artista});const r=await fetch('/api/youtube/buscar?'+q);const d=await r.json();if(!r.ok)throw new Error(d.error||'No se encontraron resultados.');resultadosModal.replaceChildren();if(!(d.resultados||[]).length)throw new Error('No se encontraron resultados.');estadoModal.textContent=modo==='youtube'?'Pulsa una versión para abrirla en YouTube.':'Elige una versión: se copiará su enlace para pegarlo en MediaHuman YouTube Downloader.';const pv=window.mrPestanasVideos?window.mrPestanasVideos(resultadosModal,d):{lista:d.resultados,panel:()=>resultadosModal};for(const v of pv.lista){const btn=document.createElement('button');btn.type='button';btn.className='mr-resultado';const t=document.createElement('strong');t.textContent=v.titulo||'Vídeo sin título';const sub=document.createElement('span');sub.textContent=v.canal||'Canal desconocido';btn.append(t,sub);btn.addEventListener('click',async()=>{if(modo==='youtube'){window.open(v.url,'_blank','noopener,noreferrer');return}try{await navigator.clipboard.writeText(v.url);estadoModal.textContent='Enlace copiado. Pégalo en MediaHuman YouTube Downloader.';btn.textContent='✓ Enlace copiado: '+(v.titulo||'canción')}catch(e){window.prompt('Copia el enlace para MediaHuman:',v.url)}});pv.panel(v).appendChild(btn)}}catch(e){estadoModal.textContent=e.message||'No se pudo consultar YouTube.'}finally{if(b)b.disabled=false}}
- async function escuchar(c,b){if(b)b.disabled=true;const original=b?b.innerHTML:'';if(b)b.textContent='Buscando…';try{let url=c.preview||'',nota='';let artista=c.artista,titulo=c.titulo;if(!url){const q=new URLSearchParams({titulo,artista});const r=await fetch('/api/muestra?'+q);const d=await r.json();if(!r.ok)throw new Error(d.error||'No hay muestra disponible.');url=d.previewUrl;artista=d.artista||artista;titulo=d.titulo||titulo;nota=d.nota||''}if(!url)throw new Error('No hay muestra de 30 segundos disponible para esta canción.');await window.mrMuestraEnLinea(b,url,{nota:nota})}catch(e){window.mrMuestraError(b,e.message||'No se ha podido reproducir la muestra.')}finally{if(b){b.disabled=false;b.innerHTML=original}}}
+ async function escuchar(c,b){if(b)b.disabled=true;const original=b?b.innerHTML:'';if(b)b.textContent='Buscando…';try{let url=c.preview||'',nota='';let artista=c.artista,titulo=c.titulo;if(!url){const q=new URLSearchParams({titulo,artista});const r=await fetch('/api/muestra?'+q);const d=await r.json();if(!r.ok)throw new Error(d.error||'No hay muestra disponible.');url=d.previewUrl;artista=d.artista||artista;titulo=d.titulo||titulo;nota=d.nota||''}if(!url)throw new Error('No hay muestra de 30 segundos disponible para esta canción.');await window.mrMuestraEnLinea(b,url,{nota:nota,titulo:c.titulo,artista:c.artista})}catch(e){window.mrMuestraError(b,e.message||'No se ha podido reproducir la muestra.')}finally{if(b){b.disabled=false;b.innerHTML=original}}}
  async function informacion(c,b){if(b)b.disabled=true;abrirModal('Información sobre '+c.titulo,'Consultando información musical…');try{const q=new URLSearchParams({tipo:'cancion',nombre:c.titulo,artista:c.artista});const r=await fetch('/api/resumen-musical?'+q);const d=await r.json();estadoModal.textContent=d.resumen||d.informacion||d.error||'No se ha encontrado información.';for(const f of (d.fuentes||[])){if(!f.url||!f.url.startsWith('https://'))continue;const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=f.titulo||'Consultar fuente';a.style.display='block';a.style.color='#d2b8ff';resultadosModal.appendChild(a)}}catch(e){estadoModal.textContent='No se ha podido consultar la información ahora mismo.'}finally{if(b)b.disabled=false}}
  function crearTarjeta(c){
   const f=document.createElement('article');f.className='mr-cancion-guardada';
@@ -288,6 +288,11 @@ header p{
             html = html.replace("</body>", ICONOS_UNIFICADOS_HTML + "</body>", 1)
         if "</body>" in html and "mr-pestanas-videos-js" not in html:
             html = html.replace("</body>", PESTANAS_VIDEOS_HTML + "</body>", 1)
+        if "mr-muestra-audio-js" not in html:
+            if "</head>" in html:
+                html = html.replace("</head>", MUESTRA_AUDIO_HTML + "</head>", 1)
+            elif "</body>" in html:
+                html = html.replace("</body>", MUESTRA_AUDIO_HTML + "</body>", 1)
         # Estilos visuales (Ajustes → Estilo visual): se aplican antes de pintar para que no parpadee.
         if "mr-temas-css" not in html:
             if "</head>" in html:
@@ -310,6 +315,29 @@ _TEMAS = [
     ("oceano", "Océano", "linear-gradient(110deg,#0b3d91,#0f7c9c 55%,#2ec4b6)"),
     ("grafito", "Grafito", "linear-gradient(110deg,#121316,#2a2d33 55%,#8ab4ff)"),
 ]
+
+MUESTRA_AUDIO_HTML = r"""<script id="mr-muestra-audio-js">
+(function(){
+ if(window.__mrMuestraAudio)return;window.__mrMuestraAudio=true;
+ var P=HTMLMediaElement.prototype,original=P.play;
+ function externa(src){try{var u=new URL(src,location.href);return /^https?:$/.test(u.protocol)&&u.origin!==location.origin;}catch(_){return false;}}
+ function proxy(el,src){var q=new URLSearchParams({u:src});var d=el.dataset||{};if(d.titulo)q.set('titulo',d.titulo);if(d.artista)q.set('artista',d.artista);return '/api/muestra/audio?'+q.toString();}
+ function amable(err){if(err&&err.name==='NotSupportedError'){var e=new Error('No se ha podido cargar el audio de esta muestra. Prueba de nuevo dentro de un momento.');e.name=err.name;return e;}return err;}
+ P.play=function(){
+  var el=this,src=el.currentSrc||el.getAttribute('src')||'';
+  var promesa=original.apply(el,arguments);
+  if(!promesa||typeof promesa.catch!=='function')return promesa;
+  return promesa.catch(function(err){
+   if(err&&err.name==='NotSupportedError'&&!el.__mrProxy&&externa(src)){
+    el.__mrProxy=true;el.src=proxy(el,src);try{el.load();}catch(_){}
+    return original.call(el).catch(function(e2){throw amable(e2);});
+   }
+   throw amable(err);
+  });
+ };
+})();
+</script>
+"""
 
 TEMAS_CABECERA_HTML = r"""
 <script>try{document.documentElement.dataset.tema=localStorage.getItem('mrTema')||'original';}catch(e){}</script>
@@ -951,7 +979,10 @@ html body :is(.titulo,.pista-titulo,.titulo-cancion,.mr-titulo) .wiki-icon{width
   window.mrMuestraEnLinea=async function(boton,url,opciones){
    quitarAnteriores();
    const linea=document.createElement('div');linea.className='mr-muestra-linea';linea.setAttribute('role','group');linea.setAttribute('aria-label','Muestra de 30 segundos');
-   const audio=document.createElement('audio');audio.controls=true;audio.preload='none';audio.src=url;
+   const audio=document.createElement('audio');audio.controls=true;audio.preload='none';
+   if(opciones&&opciones.titulo)audio.dataset.titulo=opciones.titulo;
+   if(opciones&&opciones.artista)audio.dataset.artista=opciones.artista;
+   audio.src=url;
    linea.appendChild(audio);linea.appendChild(cerrarBoton(linea,audio));
    if(opciones&&(opciones.nota||opciones.enlace)){
     const n=document.createElement('div');n.className='mr-muestra-nota';
@@ -1861,7 +1892,7 @@ async function cargarTop(nombre,caja,boton,tipo='populares'){
 function reproducir(pista,boton){
  if(audioActivo){audioActivo.pause();audioActivo.currentTime=0;audioActivo=null;}
  if(temporizador)clearTimeout(temporizador);
- const audio=new Audio(pista.preview);audio.preload='none';audioActivo=audio;
+ const audio=new Audio();audio.preload='none';audio.dataset.titulo=pista.titulo||'';audio.dataset.artista=pista.artista||'';audio.src=pista.preview;audioActivo=audio;
  boton.disabled=true;audio.play().then(()=>{
   temporizador=setTimeout(()=>{if(audioActivo===audio){audio.pause();audio.currentTime=0;audioActivo=null;}boton.disabled=false;},30000);
  }).catch(()=>{boton.disabled=false;estado.textContent='No se ha podido reproducir la muestra de esta canción.';});
@@ -4150,14 +4181,130 @@ def buscar_audio_audius():
         return jsonify({"error": "Audius no está disponible ahora o no tiene coincidencias para esta canción."}), 502
 
 
+# --- Muestras de 30 s servidas a través del propio servidor -------------------
+# Las direcciones de Deezer caducan al poco tiempo y algunos navegadores o
+# bloqueadores no cargan directamente sus CDN; el reproductor mostraba entonces
+# «Failed to load because no supported source was found». Por eso el servidor
+# comprueba que el audio responde y lo retransmite desde /api/muestra/audio.
+_HOSTS_MUESTRA = ("dzcdn.net", "deezer.com", "mzstatic.com", "apple.com")
+_CACHE_MUESTRAS = {}
+_CACHE_MUESTRAS_SEGUNDOS = 600
+
+
+def _host_muestra_permitido(url):
+    try:
+        partes = urlparse(str(url or ""))
+    except ValueError:
+        return False
+    host = (partes.hostname or "").lower()
+    return partes.scheme in ("http", "https") and any(
+        host == h or host.endswith("." + h) for h in _HOSTS_MUESTRA
+    )
+
+
+def _abrir_muestra(url, rango=None, timeout=8):
+    """Abre el audio de una muestra y comprueba que realmente es audio."""
+    if not _host_muestra_permitido(url):
+        raise ValueError("Origen de audio no permitido.")
+    cabeceras = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+        "Accept": "audio/*,*/*;q=0.8",
+    }
+    if rango:
+        cabeceras["Range"] = rango
+    respuesta = urlopen(Request(url, headers=cabeceras), timeout=timeout)
+    tipo = (respuesta.headers.get("Content-Type") or "").lower()
+    if respuesta.status not in (200, 206) or not (
+        tipo.startswith("audio/") or "octet-stream" in tipo or "mpeg" in tipo or "mp4" in tipo
+    ):
+        respuesta.close()
+        raise ValueError("La muestra no devolvió audio (" + (tipo or "sin tipo") + ").")
+    return respuesta
+
+
+def _muestra_responde(url):
+    try:
+        _abrir_muestra(url, rango="bytes=0-1", timeout=6).close()
+        return True
+    except Exception as error:
+        app.logger.info("Muestra no disponible (%s): %s", url[:80], error)
+        return False
+
+
+def _url_proxy_muestra(url, titulo="", artista=""):
+    return "/api/muestra/audio?" + urlencode({"u": url, "titulo": titulo or "", "artista": artista or ""})
+
+
 @app.get("/api/muestra")
 def muestra_musical():
     """Busca muestras de 30 segundos y permite versiones alternativas verificadas."""
     titulo = (request.args.get("titulo") or "").strip()
     artista = (request.args.get("artista") or "").strip()
+    datos, codigo = _resolver_muestra(titulo, artista)
+    if codigo == 200:
+        datos = dict(datos)
+        datos["previewDirecto"] = datos["previewUrl"]
+        datos["previewUrl"] = _url_proxy_muestra(datos["previewUrl"], titulo, artista)
+    return jsonify(datos), codigo
 
+
+@app.get("/api/muestra/audio")
+def audio_muestra():
+    """Retransmite la muestra; si la dirección guardada ha caducado, busca otra."""
+    url = (request.args.get("u") or "").strip()
+    titulo = (request.args.get("titulo") or "").strip()
+    artista = (request.args.get("artista") or "").strip()
+    rango = request.headers.get("Range")
+    clave = (normalizar_texto(titulo), normalizar_texto(artista))
+
+    respuesta = None
+    intentadas = []
+    cache = _CACHE_MUESTRAS.get(clave)
+    for candidata in (url, cache[1] if cache and time.time() - cache[0] < _CACHE_MUESTRAS_SEGUNDOS else ""):
+        if not candidata or candidata in intentadas:
+            continue
+        intentadas.append(candidata)
+        try:
+            respuesta = _abrir_muestra(candidata, rango)
+            break
+        except Exception as error:
+            app.logger.info("No se pudo abrir la muestra guardada: %s", error)
+    if respuesta is None and titulo and artista:
+        _CACHE_MUESTRAS.pop(clave, None)
+        datos, codigo = _resolver_muestra(titulo, artista)
+        nueva = datos.get("previewUrl") if codigo == 200 else ""
+        if nueva and nueva not in intentadas:
+            try:
+                respuesta = _abrir_muestra(nueva, rango)
+            except Exception as error:
+                app.logger.info("Tampoco se pudo abrir la muestra nueva: %s", error)
+    if respuesta is None:
+        return jsonify({"error": "No se ha podido cargar el audio de la muestra."}), 404
+
+    def generar():
+        try:
+            while True:
+                bloque = respuesta.read(64 * 1024)
+                if not bloque:
+                    break
+                yield bloque
+        finally:
+            respuesta.close()
+
+    cabeceras = {"Cache-Control": "no-store"}
+    for nombre in ("Content-Type", "Content-Length", "Content-Range", "Accept-Ranges"):
+        valor = respuesta.headers.get(nombre)
+        if valor:
+            cabeceras[nombre] = valor
+    return Response(stream_with_context(generar()), status=respuesta.status, headers=cabeceras)
+
+
+def _resolver_muestra(titulo, artista):
+    """Devuelve (datos, código HTTP) con una muestra cuyo audio se ha comprobado."""
+    titulo = (titulo or "").strip()
+    artista = (artista or "").strip()
     if not titulo or not artista:
-        return jsonify({"error": "Falta el título o el artista."}), 400
+        return {"error": "Falta el título o el artista."}, 400
 
     # Separa la canción de los añadidos habituales en títulos de vídeos o ediciones.
     titulo_sin_lanzamiento = re.sub(
@@ -4281,6 +4428,7 @@ def muestra_musical():
         return mejor
 
     errores = []
+    sin_audio = []
     proveedores = [
         ("Deezer", "https://api.deezer.com/search?", "q", 50),
         ("Apple Music/iTunes", "https://itunes.apple.com/search?", "term", 50)
@@ -4295,6 +4443,12 @@ def muestra_musical():
                 resultado = buscar_en_catalogo(
                     base_url + urlencode(parametros), fuente
                 )
+                if resultado and resultado["previewUrl"] in sin_audio:
+                    continue
+                if resultado and not _muestra_responde(resultado["previewUrl"]):
+                    # La ficha existe pero su audio no carga: prueba la siguiente fuente.
+                    sin_audio.append(resultado["previewUrl"])
+                    continue
                 if resultado:
                     # Si se pidió un directo y solo existe muestra de estudio,
                     # lo avisamos en la interfaz en vez de presentarlo como directo.
@@ -4312,19 +4466,27 @@ def muestra_musical():
                         resultado["nota"] = (
                             "Se ha encontrado la versión de estudio; no es la grabación en directo."
                         )
-                    return jsonify({**resultado, "duracion": 30})
+                    _CACHE_MUESTRAS[(normalizar_texto(titulo), normalizar_texto(artista))] = (
+                        time.time(), resultado["previewUrl"]
+                    )
+                    return {**resultado, "duracion": 30}, 200
             except Exception:
                 if fuente not in errores:
                     errores.append(fuente)
 
     if len(errores) == 2:
-        return jsonify({
+        return {
             "error": "No se ha podido consultar Deezer ni Apple Music/iTunes ahora mismo."
-        }), 502
+        }, 502
 
-    return jsonify({
+    if sin_audio:
+        return {
+            "error": "Encontré la canción, pero ni Deezer ni Apple Music/iTunes sirven ahora mismo su audio de muestra."
+        }, 404
+
+    return {
         "error": "No he encontrado una muestra de 30 segundos que coincida con seguridad en Deezer ni en Apple Music/iTunes."
-    }), 404
+    }, 404
 
 def _vistas_a_numero(texto):
     """«12.345.678 visualizaciones», «1,2 M de visualizaciones», «345 mil visualizaciones» -> número."""
@@ -4595,7 +4757,8 @@ def preview_publicacion():
             if puntuacion > mejor_puntuacion:
                 mejor, mejor_puntuacion = pista, puntuacion
         if mejor and mejor.get("preview"):
-            return jsonify({"preview": mejor.get("preview"), "titulo": mejor.get("title") or titulo})
+            return jsonify({"preview": _url_proxy_muestra(mejor.get("preview"), mejor.get("title") or titulo, artista),
+                            "titulo": mejor.get("title") or titulo})
 
         # Si el título es un álbum/EP y no una canción, buscar el lanzamiento
         # y usar la primera pista con muestra disponible.
@@ -4625,7 +4788,7 @@ def preview_publicacion():
                 datos_pistas = json.loads(respuesta_pistas.read().decode("utf-8"))
             pista_preview = next((p for p in (datos_pistas.get("data") or []) if p.get("preview")), None)
             if pista_preview:
-                return jsonify({"preview": pista_preview["preview"],
+                return jsonify({"preview": _url_proxy_muestra(pista_preview["preview"], pista_preview.get("title") or titulo, artista),
                                 "titulo": pista_preview.get("title") or titulo})
         return jsonify({"error": "Deezer no ofrece una muestra de 30 segundos para esta publicación."}), 404
     except Exception as error:
