@@ -1333,6 +1333,74 @@ def api_portada_recomendados():
     respuesta.headers["Cache-Control"] = "public, max-age=180"
     return respuesta
 
+# --- Descargas de la página Programas: asistente y copia de seguridad ---------
+_CARPETA_ASISTENTE = BASE.parent / "asistente"
+_ARCHIVOS_COPIA = [
+    # (ruta en el ordenador, ruta dentro del ZIP)
+    ("mi_musica.json", "app/mi_musica.json"),
+    ("mr_ajustes.json", "app/mr_ajustes.json"),
+    ("recomendaciones_guardadas.json", "app/recomendaciones_guardadas.json"),
+    ("portada.json", "app/portada.json"),
+    ("resumenes_musicales.json", "app/resumenes_musicales.json"),
+    ("../mi_radar_musical.csv", "mi_radar_musical.csv"),
+    ("../lanzamientos.json", "lanzamientos.json"),
+    ("../artistas_unicos.txt", "artistas_unicos.txt"),
+]
+_LEEME_COPIA = """COPIA DE SEGURIDAD DE MI RADAR MUSICAL
+=====================================
+Contiene tus datos: Mi música, ajustes, recomendaciones guardadas, artistas
+y lanzamientos. NO contiene la clave de Gemini (por seguridad).
+
+Para restaurarla: copia el contenido de este ZIP dentro de la carpeta del
+proyecto Mi Radar Musical, respetando las carpetas (lo de app/ va en app/),
+y acepta sustituir los archivos. Después abre «Iniciar Mi Radar Musical.bat».
+"""
+
+
+def _zip_respuesta(nombre_zip, entradas):
+    import io
+    import zipfile
+    memoria = io.BytesIO()
+    with zipfile.ZipFile(memoria, "w", zipfile.ZIP_DEFLATED) as z:
+        for ruta, nombre in entradas:
+            if isinstance(ruta, bytes):
+                z.writestr(nombre, ruta)
+            else:
+                z.write(ruta, nombre)
+    memoria.seek(0)
+    return Response(memoria.getvalue(), mimetype="application/zip", headers={
+        "Content-Disposition": "attachment; filename=" + nombre_zip,
+        "Cache-Control": "no-store",
+    })
+
+
+@app.get("/descargas/asistente-radar.zip")
+def descargar_asistente():
+    """ZIP con el asistente automático, su instalador y los grupos de acciones de Mp3tag."""
+    if not _CARPETA_ASISTENTE.is_dir():
+        return jsonify({"error": "No se encuentra la carpeta del asistente en el proyecto."}), 404
+    entradas = [
+        (ruta, "Asistente Descargar Radar/" + ruta.relative_to(_CARPETA_ASISTENTE).as_posix())
+        for ruta in sorted(_CARPETA_ASISTENTE.rglob("*")) if ruta.is_file()
+    ]
+    return _zip_respuesta("Asistente-Descargar-Radar.zip", entradas)
+
+
+@app.get("/descargas/copia-de-seguridad.zip")
+def descargar_copia_seguridad():
+    """ZIP con los datos personales de Mi Radar Musical (sin claves)."""
+    entradas = [(_LEEME_COPIA.encode("utf-8"), "LEEME_COPIA.txt")]
+    for origen, nombre in _ARCHIVOS_COPIA:
+        ruta = (BASE / origen).resolve()
+        if ruta.is_file():
+            entradas.append((ruta, nombre))
+    carpeta_listas = BASE / "listas_cache"
+    if carpeta_listas.is_dir():
+        for ruta in sorted(carpeta_listas.glob("*.json")):
+            entradas.append((ruta, "app/listas_cache/" + ruta.name))
+    return _zip_respuesta("Mi-Radar-Musical-copia-" + date.today().isoformat() + ".zip", entradas)
+
+
 @app.get("/programas")
 def pagina_programas():
     pagina = """<!DOCTYPE html>
@@ -1353,6 +1421,7 @@ main{max-width:1000px;margin:auto;padding:30px 6%}
 .programa{padding:20px;margin:12px 0;background:var(--panel);border:1px solid #ffffff18;border-radius:15px}
 .programa h2{margin:0 0 8px;font-size:clamp(22px,3vw,28px)}
 .programa p{color:var(--suave);line-height:1.5}
+.programa h3{margin:22px 0 4px;font-size:18px}
 .descargar{display:inline-block;padding:10px 15px;background:#2b765f;color:white;text-decoration:none;border-radius:20px;font-weight:bold}
 .boton-estilos{display:inline-block;padding:12px 18px;background:#326de6;color:white;border:0;border-radius:20px;font-size:15px;font-weight:800;cursor:pointer}
 .boton-estilos:hover{background:#4782ff}
@@ -1398,6 +1467,40 @@ footer{text-align:center;color:var(--suave);font-size:12px;padding:30px}
 <section class="programa"><h2>ID3Remover</h2><p>Herramienta para eliminar etiquetas ID3 de archivos MP3. Es un programa antiguo; revisa la página y el archivo antes de instalarlo.</p><a class="descargar" href="https://sourceforge.net/projects/id3remover/files/" target="_blank" rel="noopener noreferrer">Ver archivos en SourceForge ↗</a></section>
 <section class="programa"><h2>MP3Gain GUI</h2><p>Normaliza el volumen de archivos MP3. Enlace al proyecto original de MP3Gain.</p><a class="descargar" href="https://mp3gain.sourceforge.net/download.php" target="_blank" rel="noopener noreferrer">Descargar MP3Gain ↗</a></section>
 <p class="aviso">Nota: los enlaces abren páginas externas. ID3Remover y MP3Gain son herramientas antiguas; crea una copia de seguridad antes de modificar archivos y comprueba que la versión sea compatible con tu Windows.</p>
+<section class="programa" id="asistente-automatico"><h2>🤖 Asistente automático</h2>
+<p>«Descargar Radar» procesa solo cada canción que descargas con MediaHuman: quita las etiquetas viejas con ID3 Remover, ajusta el volumen con MP3Gain, busca carátula, año y género (iTunes, Deezer y MusicBrainz) y hace que Mp3tag lo guarde todo con tus grupos de acciones <b>Uololo</b> y <b>Radar datos</b>.</p>
+<div class="acciones-script"><a class="descargar" href="/descargas/asistente-radar.zip" download>⬇ Descargar el asistente (ZIP)</a></div>
+<p class="aviso">El ZIP incluye el asistente, el instalador, la herramienta de diagnóstico, un ejemplo de configuración y los grupos de acciones de Mp3tag guardados.</p>
+<h3>Instalarlo paso a paso</h3>
+<ol class="paso-a-paso">
+<li><b>Instala los programas</b> de esta página: MediaHuman, Mp3tag, ID3 Remover y MP3Gain. Deja <code>ID3Remover.exe</code> en el Escritorio y <code>mp3gain.exe</code> en <code>Escritorio\\Otros\\Descarga música\\95</code>. Abre Mp3tag una vez y ciérralo.</li>
+<li><b>Descarga el asistente</b> con el botón de arriba y descomprime el ZIP (clic derecho → <i>Extraer todo</i>).</li>
+<li>Entra en la carpeta y haz <b>doble clic en <code>Instalar_Asistente.bat</code></b>. Crea las carpetas, copia el asistente, busca los programas, prepara <code>configuracion.json</code>, instala en Mp3tag los grupos <b>Uololo</b> y <b>Radar datos</b> y pone en el Escritorio el acceso directo <b>Descargar Radar</b>. Si no encuentra algún programa, te abre <code>configuracion.json</code> para que escribas su ruta.</li>
+<li>En <b>MediaHuman</b> → Preferencias, pon como carpeta de salida <code>Escritorio\\Otros\\Descarga música</code>.</li>
+<li>En <b>Mp3tag</b> pulsa <code>Alt+5</code> y deja <b>marcados</b> «Uololo» y «Radar datos». Comprueba que el cuadro <b>Filtro</b> de abajo está vacío: si tiene texto, el asistente no ve la canción.</li>
+<li>Haz <b>doble clic en «Descargar Radar»</b> en el Escritorio, descarga una canción y pulsa OK cuando te pregunte. No toques el ratón ni el teclado mientras trabaja en Mp3tag.</li>
+</ol>
+<h3>Si algo falla</h3>
+<ol class="paso-a-paso">
+<li>Clic derecho en <code>Diagnostico_Radar.ps1</code> (carpeta <code>Descargar Radar</code>) → <i>Ejecutar con PowerShell</i>. Muestra la configuración y las últimas líneas del registro.</li>
+<li>El registro está en <code>Descargar Radar\\registro_auxiliar.txt</code> o, si Windows no deja escribir ahí, en <code>%TEMP%\\registro_auxiliar_radar.txt</code>.</li>
+<li>Si cambias el archivo del asistente, <b>cierra antes su ventana de PowerShell</b>: solo puede haber una copia en marcha y, si no, seguiría la versión antigua.</li>
+</ol>
+</section>
+<section class="programa" id="copia-seguridad"><h2>💾 Copia de seguridad y restaurar</h2>
+<p>El programa completo de Mi Radar Musical está guardado en GitHub. Tus datos personales (Mi música, ajustes, recomendaciones guardadas) se guardan en este ordenador: descarga una copia de vez en cuando.</p>
+<div class="acciones-script"><a class="descargar" href="/descargas/copia-de-seguridad.zip" download>⬇ Descargar copia de mis datos</a><a class="descargar" href="https://github.com/Maktub86/Mi-Radar-Musical" target="_blank" rel="noopener noreferrer">Proyecto en GitHub ↗</a></div>
+<h3>Si cambias de ordenador o se rompe</h3>
+<ol class="paso-a-paso">
+<li><b>Instala Python 3</b> desde <a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer" style="color:#ffd9a0">python.org</a>. En el instalador marca <b>«Add python.exe to PATH»</b>.</li>
+<li><b>Descarga el proyecto</b>: en GitHub pulsa <i>Code → Download ZIP</i> (o usa GitHub Desktop) y descomprímelo, por ejemplo en <code>Documentos\\GitHub\\Mi-Radar-Musical</code>.</li>
+<li>En esa carpeta, escribe <code>powershell</code> en la barra de direcciones, pulsa Intro y ejecuta <code>py -m pip install flask</code>.</li>
+<li><b>Recupera tus datos</b>: descomprime tu copia de seguridad dentro de la carpeta del proyecto y acepta sustituir los archivos.</li>
+<li>Si usabas los resúmenes con IA, vuelve a crear <code>app\\gemini_api_key.txt</code> con tu clave (no se guarda en las copias por seguridad).</li>
+<li>Doble clic en <b><code>Iniciar Mi Radar Musical.bat</code></b> y abre <code>http://127.0.0.1:5000</code> en el navegador.</li>
+<li>Para el asistente de descargas, sigue los pasos de la sección <b>🤖 Asistente automático</b>.</li>
+</ol>
+</section>
 <section class="programa"><h2>Estilos musicales</h2><p>Consulta la lista en una ventana independiente y copia un estilo concreto o todos los estilos de una vez.</p><button type="button" id="abrir-estilos" class="boton-estilos">🎼 Desplegar estilos musicales</button></section>
 <section class="programa" id="actualizar-mi-musica"><h2>📋 Actualizar «Mi música»</h2>
 <ol class="paso-a-paso">

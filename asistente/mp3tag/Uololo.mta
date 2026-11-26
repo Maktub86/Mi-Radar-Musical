@@ -1,0 +1,10 @@
+﻿[#0]
+T=5
+F=ARTIST
+1=$regexp(%_filename%,(.*) - .*,$1)
+
+[#1]
+T=5
+F=TITLE
+1=%_filename%
+

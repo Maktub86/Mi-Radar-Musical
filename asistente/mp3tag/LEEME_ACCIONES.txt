@@ -1,0 +1,3 @@
+Aquí van los grupos de acciones de Mp3tag (archivos .mta): "Uololo" y "Radar datos".
+El instalador los copia a %APPDATA%\Mp3tag\data\actions.
+Para actualizarlos: copia aquí los .mta de esa carpeta de tu ordenador.

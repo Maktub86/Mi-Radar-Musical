@@ -1,0 +1,43 @@
+﻿ASISTENTE AUTOMÁTICO "DESCARGAR RADAR" - Mi Radar Musical
+==========================================================
+
+Qué hace: cada vez que MediaHuman descarga una canción en la carpeta
+"Descarga música", el asistente la procesa solo:
+  1) ID3 Remover borra las etiquetas que trae.
+  2) MP3Gain ajusta el volumen (95 dB).
+  3) Busca carátula, año y género (iTunes, Deezer y MusicBrainz).
+  4) Mp3tag ejecuta los grupos de acciones "Uololo" y "Radar datos"
+     y guarda título, artista, año, álbum, género y carátula.
+  5) Comprueba que todo se ha guardado y te avisa.
+
+INSTALACIÓN EN UN ORDENADOR NUEVO
+---------------------------------
+1. Instala los programas (enlaces en la página "Programas" de Mi Radar Musical):
+   - MediaHuman YouTube to MP3 Converter
+   - Mp3tag (instalación normal)
+   - ID3 Remover: deja ID3Remover.exe en el Escritorio
+   - MP3Gain: deja mp3gain.exe y MP3GainGUI.exe en
+     Escritorio\Otros\Descarga música\95
+   Abre Mp3tag una vez y ciérralo (así crea su carpeta de configuración).
+2. Descomprime este ZIP en cualquier carpeta.
+3. Doble clic en Instalar_Asistente.bat. Hace todo esto:
+   - crea Escritorio\Otros\Descargar Radar y Escritorio\Otros\Descarga música
+   - copia el asistente
+   - busca los programas y crea configuracion.json
+   - instala en Mp3tag los grupos de acciones guardados (carpeta mp3tag)
+   - crea el acceso directo "Descargar Radar" en el Escritorio
+   Si algún programa no aparece, te abre configuracion.json para que
+   escribas su ruta (usa \\ en las rutas, como en configuracion_ejemplo.json).
+4. MediaHuman: Preferencias > carpeta de salida = Escritorio\Otros\Descarga música
+5. Mp3tag: pulsa Alt+5 y deja MARCADOS "Uololo" y "Radar datos".
+   El cuadro "Filtro" de la parte de abajo de Mp3tag tiene que estar VACÍO.
+6. Doble clic en "Descargar Radar" (Escritorio) y descarga una canción.
+
+SI ALGO FALLA
+-------------
+- Ejecuta Diagnostico_Radar.ps1 (clic derecho > Ejecutar con PowerShell).
+- El registro está en Descargar Radar\registro_auxiliar.txt o, si Windows
+  no deja escribir ahí, en %TEMP%\registro_auxiliar_radar.txt.
+- "0 filas" en Mp3tag: vacía el cuadro Filtro de Mp3tag.
+- Si cambias el archivo del asistente, cierra antes la ventana de PowerShell
+  del asistente: solo puede haber una copia en marcha.
