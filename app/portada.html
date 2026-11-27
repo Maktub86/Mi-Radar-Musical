@@ -531,6 +531,11 @@ async function fetchAccionProtegida(url, opciones={}) {
     estado.innerHTML="⏳ "+(d.mensaje||"Actualización lanzada.")+" Suele tardar 2–4 h"+enlace(d.url);
     if(!temporizador)temporizador=setInterval(consultar,60000);
     setTimeout(consultar,15000);
+   }else if(r.status===503&&d.url_flujo){
+    // Sin llave en el servidor: se abre GitHub, donde basta con pulsar «Run workflow».
+    boton.disabled=false;
+    window.open(d.url_flujo,"_blank","noopener");
+    estado.innerHTML='Se ha abierto GitHub: pulsa «Run workflow» y luego el botón verde. <a href="'+d.url_flujo+'" target="_blank" rel="noopener noreferrer">Abrir otra vez</a>';
    }else{
     boton.disabled=false;
     estado.innerHTML="⚠️ "+escaparLista(d.error||"No se pudo lanzar la actualización.")+(d.url_flujo?' <a href="'+d.url_flujo+'" target="_blank" rel="noopener noreferrer">Abrir en GitHub</a>':"");
