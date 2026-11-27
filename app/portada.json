@@ -1,10 +1,154 @@
 [
   {
+    "id": "apple-6835969610",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1d/7d/34/1d7d345e-d59a-155b-2792-9ea9f8182467/196874932834.jpg/100x100bb.jpg",
+    "titulo": "Holidays - EP",
+    "fecha": "2026-11-27",
+    "artista": "Billy Joel",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6837042542",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/91/4c/6b/914c6bdb-7173-7df4-e11c-6d144ed52f06/5059449490267.png/100x100bb.jpg",
+    "titulo": "The Christmas Spirit - Single",
+    "fecha": "2026-11-27",
+    "artista": "Bryan Adams",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6827524846",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/6e/36/ce/6e36ce56-c5d1-339f-e01d-aee22245c319/8445775420240.png/100x100bb.jpg",
+    "titulo": "Somos Ricos - Single",
+    "fecha": "2026-11-27",
+    "artista": "Decai",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6831397208",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/78/ed/bb/78edbbe5-b892-31af-906c-e62936aa40c3/26UM1IM43241.rgb.jpg/100x100bb.jpg",
+    "titulo": "babe - Single",
+    "fecha": "2026-11-27",
+    "artista": "Felix Jaehn",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6828062292",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6b/8d/f4/6b8df4e1-f263-3b12-eef9-3a5bee8906a7/196874938621.jpg/100x100bb.jpg",
+    "titulo": "Driving Home For Christmas - Single",
+    "fecha": "2026-11-27",
+    "artista": "James Arthur",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6830352299",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/37/5e/b1/375eb118-1625-93c3-4191-2829e7daa3b5/1200220258451.jpg/100x100bb.jpg",
+    "titulo": "Another Year - Single",
+    "fecha": "2026-11-27",
+    "artista": "James Blunt",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6839234799",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c2/ba/84/c2ba84a5-d55d-6724-61c2-e12aa0a64acb/1745231.jpg/100x100bb.jpg",
+    "titulo": "Proof of Love - Single",
+    "fecha": "2026-11-27",
+    "artista": "Jennifer Lopez",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6839374755",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5f/e6/fc/5fe6fcd3-81f1-0491-c2aa-8dccf7f0e5e3/26UM1IM47564.rgb.jpg/100x100bb.jpg",
+    "titulo": "Cozy Little Christmas: Unwrapped - Single",
+    "fecha": "2026-11-27",
+    "artista": "Katy Perry",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6838331199",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/e9/3e/70e93e43-724f-38d4-4e3b-db9c7cd15c6a/54933.jpg/100x100bb.jpg",
+    "titulo": "A La Nanita Nana - Single",
+    "fecha": "2026-11-27",
+    "artista": "María Villalón",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6828556371",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/23/ea/03/23ea0304-c813-2375-b5da-ec237e62aa0d/1200220398898.jpg/100x100bb.jpg",
+    "titulo": "EN SU VOZ - Single",
+    "fecha": "2026-11-27",
+    "artista": "Marta Soto",
+    "tipo": "Single"
+  },
+  {
+    "id": "4c8609bc-522c-448e-94dd-0301db2d346b",
+    "imagen": "https://coverartarchive.org/release-group/4c8609bc-522c-448e-94dd-0301db2d346b/front-250",
+    "titulo": "Seven Tears",
+    "fecha": "2026-11-27",
+    "artista": "Sting",
+    "tipo": "Album"
+  },
+  {
+    "id": "6c9418ff-fad8-4528-8f77-564ef9f24eaa",
+    "imagen": "https://coverartarchive.org/release-group/6c9418ff-fad8-4528-8f77-564ef9f24eaa/front-250",
+    "titulo": "Need to Feel Loved",
+    "fecha": "2026-11-27",
+    "artista": "Tiësto",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6836713320",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/47/db/79/47db7963-a39c-cf3b-62e3-63fa67197791/711641390329.jpg/100x100bb.jpg",
+    "titulo": "Paz y Amor - Single",
+    "fecha": "2026-11-26",
+    "artista": "Haze",
+    "tipo": "Single"
+  },
+  {
+    "id": "186586dd-67b0-4b9f-a308-666a6143adec",
+    "imagen": "https://coverartarchive.org/release-group/186586dd-67b0-4b9f-a308-666a6143adec/front-250",
+    "titulo": "Dangerous 35",
+    "fecha": "2026-11-26",
+    "artista": "Michael Jackson",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6835924148",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/09/68/67/096867f1-89d3-8e9a-705d-bed8a8f0e2da/cover.jpg/100x100bb.jpg",
+    "titulo": "Alta parte - Single",
+    "fecha": "2026-11-25",
+    "artista": "Akcent",
+    "tipo": "Single"
+  },
+  {
+    "id": "ab312877-ffb3-407d-9d6c-f2f03bd4192d",
+    "imagen": "https://coverartarchive.org/release-group/ab312877-ffb3-407d-9d6c-f2f03bd4192d/front-250",
+    "titulo": "Bird of Paradise",
+    "fecha": "2026-11-25",
+    "artista": "Natalie Imbruglia",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6832543987",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c4/4a/30/c44a305e-bf3c-2061-8ad4-1fe4b0249014/5053760163855_cover.jpg/100x100bb.jpg",
+    "titulo": "Bird of Paradise - Single",
+    "fecha": "2026-11-25",
+    "artista": "Natalie Imbruglia",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6838561959",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/df/56/5a/df565adc-1274-fc7f-4b23-2cced5ceb4c5/15UMGIM32560.rgb.jpg/100x100bb.jpg",
     "titulo": "Run Away With Me - Single",
     "fecha": "2026-11-24",
     "artista": "Carly Rae Jepsen",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-6836751908",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/37/ca/c0/37cac0e7-c2e1-a923-c01d-f023b21d2c52/8445775427911.png/100x100bb.jpg",
+    "titulo": "Un Humano en el Espacio (En Directo - En el Gran Teatro Falla) - Single",
+    "fecha": "2026-11-23",
+    "artista": "Gonzalo Hermida",
     "tipo": "Single"
   },
   {
@@ -40,8 +184,8 @@
     "tipo": "Album"
   },
   {
-    "id": "apple-6819148825",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/14/a0/15/14a0159b-3a20-1781-08f5-7f3d2cbd392c/196874576571.jpg/100x100bb.jpg",
+    "id": "064153b4-05a9-4eef-9bcf-c0310ed7480f",
+    "imagen": "https://coverartarchive.org/release-group/064153b4-05a9-4eef-9bcf-c0310ed7480f/front-250",
     "titulo": "LA MAKETA",
     "fecha": "2026-11-20",
     "artista": "Estopa",
@@ -112,14 +256,6 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6837325766",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0b/6e/a8/0b6ea817-1a19-c6c5-b80a-8a7021913246/1702599.jpg/100x100bb.jpg",
-    "titulo": "Rêve de demain - Single",
-    "fecha": "2026-11-20",
-    "artista": "Raphael",
-    "tipo": "Single"
-  },
-  {
     "id": "apple-6821086153",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/28/ce/d1/28ced1df-88ff-9b25-fdd0-2825c8e466c7/1200220275144.jpg/100x100bb.jpg",
     "titulo": "Pearls Of Passion (40th Anniversary Edition)",
@@ -147,6 +283,14 @@
     "id": "2386e7e0-1b74-4ec1-9b40-c604dcc4b630",
     "imagen": "https://coverartarchive.org/release-group/2386e7e0-1b74-4ec1-9b40-c604dcc4b630/front-250",
     "titulo": "Dreamers",
+    "fecha": "2026-11-20",
+    "artista": "Take That",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6835661423",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/9b/64/46/9b644653-2182-0b9e-57ca-d66450e9d679/26UM1IM20740.rgb.jpg/100x100bb.jpg",
+    "titulo": "Dreamers (Deluxe)",
     "fecha": "2026-11-20",
     "artista": "Take That",
     "tipo": "Album"
@@ -213,6 +357,14 @@
     "titulo": "Tremendo Desastre",
     "fecha": "2026-11-19",
     "artista": "Rauw Alejandro",
+    "tipo": "Single"
+  },
+  {
+    "id": "cea446e4-0960-4d0c-b4e8-754458dbc87b",
+    "imagen": "https://coverartarchive.org/release-group/cea446e4-0960-4d0c-b4e8-754458dbc87b/front-250",
+    "titulo": "no caigas en las trampas",
+    "fecha": "2026-11-19",
+    "artista": "Nicki Nicole",
     "tipo": "Single"
   },
   {
@@ -480,14 +632,6 @@
     "tipo": "Single"
   },
   {
-    "id": "09f9581c-52b0-4d2b-bb1b-d5902830b8c1",
-    "imagen": "https://coverartarchive.org/release-group/09f9581c-52b0-4d2b-bb1b-d5902830b8c1/front-250",
-    "titulo": "Carnaval de Luz",
-    "fecha": "2026-11-13",
-    "artista": "U2",
-    "tipo": "Album"
-  },
-  {
     "id": "apple-6824860475",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/9e/81/eb9e81c2-5d98-a04d-3845-64c2c0b4d456/1200220344239.jpg/100x100bb.jpg",
     "titulo": "Grandes Éxitos",
@@ -558,6 +702,14 @@
     "fecha": "2026-11-12",
     "artista": "Rauw Alejandro",
     "tipo": "Single"
+  },
+  {
+    "id": "09f9581c-52b0-4d2b-bb1b-d5902830b8c1",
+    "imagen": "https://coverartarchive.org/release-group/09f9581c-52b0-4d2b-bb1b-d5902830b8c1/front-250",
+    "titulo": "Carnaval de Luz",
+    "fecha": "2026-11-12",
+    "artista": "U2",
+    "tipo": "Album"
   },
   {
     "id": "f72783a7-7c3a-453d-9b27-b4369c774791",
@@ -768,8 +920,8 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6825044183",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/04/d5/16/04d51686-2aab-e65f-5e41-b8129fbda852/26UM1IM00479.rgb.jpg/100x100bb.jpg",
+    "id": "0dba70ed-54ca-40dd-a27a-a8c0710eeb30",
+    "imagen": "https://coverartarchive.org/release-group/0dba70ed-54ca-40dd-a27a-a8c0710eeb30/front-250",
     "titulo": "25 Aniversario",
     "fecha": "2026-11-06",
     "artista": "Juanes",
@@ -1445,14 +1597,6 @@
     "titulo": "Sin Miedo A Nada - Single",
     "fecha": "2026-10-23",
     "artista": "Lérica",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6818546984",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8a/ff/19/8aff1934-8e76-5dee-b607-bcbc98daa407/26UM1IM18809.rgb.jpg/100x100bb.jpg",
-    "titulo": "Tiger Rag (Live At Highland Park) - Single",
-    "fecha": "2026-10-23",
-    "artista": "Louis Armstrong",
     "tipo": "Single"
   },
   {
@@ -2213,6 +2357,14 @@
     "titulo": "Bajón Emocional - EP",
     "fecha": "2026-10-08",
     "artista": "Yuridia",
+    "tipo": "Album"
+  },
+  {
+    "id": "apple-6821148622",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/38/c2/fb/38c2fb5b-4af8-344a-af97-8f8e05567030/885288824254.jpg/100x100bb.jpg",
+    "titulo": "PITCOIN",
+    "fecha": "2026-10-08",
+    "artista": "Pitbull",
     "tipo": "Album"
   },
   {
@@ -4552,6 +4704,14 @@
     "tipo": "Single"
   },
   {
+    "id": "c346deb7-47f5-451d-8651-8a5c2d2426da",
+    "imagen": "https://coverartarchive.org/release-group/c346deb7-47f5-451d-8651-8a5c2d2426da/front-250",
+    "titulo": "Love Sensation",
+    "fecha": "2026-08-06",
+    "artista": "Kylie Minogue",
+    "tipo": "Single"
+  },
+  {
     "id": "44f59495-31a6-4073-a77e-6dac510bde19",
     "imagen": "https://coverartarchive.org/release-group/44f59495-31a6-4073-a77e-6dac510bde19/front-250",
     "titulo": "Love Sensation",
@@ -6280,14 +6440,6 @@
     "tipo": "Single"
   },
   {
-    "id": "7ab043c8-090a-47ba-a119-45b42f8a7214",
-    "imagen": "https://coverartarchive.org/release-group/7ab043c8-090a-47ba-a119-45b42f8a7214/front-250",
-    "titulo": "Thunder Box",
-    "fecha": "2026-06-19",
-    "artista": "AC/DC",
-    "tipo": "Album"
-  },
-  {
     "id": "apple-6778294645",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/73/00/62/7300620d-58f3-de23-a078-1a08f1103625/cover.jpg/100x100bb.jpg",
     "titulo": "On and On (Mert Harmankaya Remix) - Single",
@@ -7752,17 +7904,17 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-6779478942",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/58/c9/57/58c957b7-37af-1e97-48d7-0a034775df5d/199316652253_cover.jpg/100x100bb.jpg",
-    "titulo": "Night Falls - Single",
+    "id": "apple-6779479307",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/50/92/ff/5092ff46-a1e3-25cf-58fc-22b09b7f7c96/199316652185_cover.jpg/100x100bb.jpg",
+    "titulo": "Drink And A Little Love - Single",
     "fecha": "2026-05-27",
     "artista": "Bebe Rexha",
     "tipo": "Single"
   },
   {
-    "id": "apple-6779479307",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/50/92/ff/5092ff46-a1e3-25cf-58fc-22b09b7f7c96/199316652185_cover.jpg/100x100bb.jpg",
-    "titulo": "Drink And A Little Love - Single",
+    "id": "apple-6779478942",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/58/c9/57/58c957b7-37af-1e97-48d7-0a034775df5d/199316652253_cover.jpg/100x100bb.jpg",
+    "titulo": "Night Falls - Single",
     "fecha": "2026-05-27",
     "artista": "Bebe Rexha",
     "tipo": "Single"
@@ -8968,25 +9120,9 @@
     "tipo": "Single"
   },
   {
-    "id": "apple-1896059423",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ab/c3/a8/abc3a86d-2159-53ca-2205-217576c4e813/196874319604.jpg/100x100bb.jpg",
-    "titulo": "mad koknut (bundle) - Single",
-    "fecha": "2026-05-05",
-    "artista": "Beéle",
-    "tipo": "Single"
-  },
-  {
     "id": "apple-1896059558",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4c/9a/6d/4c9a6d58-01f2-3ead-b5cb-d6a7d42a8a83/196874319468.jpg/100x100bb.jpg",
     "titulo": "en la mía (bundle) - Single",
-    "fecha": "2026-05-05",
-    "artista": "Beéle",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1896059616",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/27/bc/1c/27bc1c16-01f7-91c7-c957-00ea4de7da3b/196874319659.jpg/100x100bb.jpg",
-    "titulo": "una curita por favor (bundle) - Single",
     "fecha": "2026-05-05",
     "artista": "Beéle",
     "tipo": "Single"
@@ -9000,9 +9136,25 @@
     "tipo": "Single"
   },
   {
+    "id": "apple-1896059423",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ab/c3/a8/abc3a86d-2159-53ca-2205-217576c4e813/196874319604.jpg/100x100bb.jpg",
+    "titulo": "mad koknut (bundle) - Single",
+    "fecha": "2026-05-05",
+    "artista": "Beéle",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-1896059569",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7f/eb/26/7feb262c-b2e5-603a-2913-f8ec2f4c957d/196874319499.jpg/100x100bb.jpg",
     "titulo": "frente al mar (bundle) - Single",
+    "fecha": "2026-05-05",
+    "artista": "Beéle",
+    "tipo": "Single"
+  },
+  {
+    "id": "apple-1896059616",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/27/bc/1c/27bc1c16-01f7-91c7-c957-00ea4de7da3b/196874319659.jpg/100x100bb.jpg",
+    "titulo": "una curita por favor (bundle) - Single",
     "fecha": "2026-05-05",
     "artista": "Beéle",
     "tipo": "Single"
@@ -14864,6 +15016,14 @@
     "tipo": "Single"
   },
   {
+    "id": "69b68e53-559e-4253-9434-720d65f232a9",
+    "imagen": "https://coverartarchive.org/release-group/69b68e53-559e-4253-9434-720d65f232a9/front-250",
+    "titulo": "High School Musical: Troy's Greatest Hits",
+    "fecha": "2026-01-20",
+    "artista": "Zac Efron",
+    "tipo": "Album"
+  },
+  {
     "id": "apple-1870848485",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f2/ab/5d/f2ab5daa-ed02-89f4-3b13-a028d6a5125c/artwork.jpg/100x100bb.jpg",
     "titulo": "Tan Intocable - Single",
@@ -15354,7 +15514,7 @@
   {
     "id": "d81ff658-c732-40a0-a114-d5771d844dd8",
     "imagen": "https://coverartarchive.org/release-group/d81ff658-c732-40a0-a114-d5771d844dd8/front-250",
-    "titulo": "Wearin' That Night Life Look",
+    "titulo": "Wearin’ That Night Life Look",
     "fecha": "2026-01-08",
     "artista": "Elvis Presley",
     "tipo": "Single"
@@ -16037,6 +16197,14 @@
     "titulo": "Empty Space",
     "fecha": "2025-12-05",
     "artista": "Edward Maya",
+    "tipo": "Single"
+  },
+  {
+    "id": "b7e14e21-4ba2-440d-8522-217c103b4a12",
+    "imagen": "https://coverartarchive.org/release-group/b7e14e21-4ba2-440d-8522-217c103b4a12/front-250",
+    "titulo": "VILLA&ZIKO",
+    "fecha": "2025-12-05",
+    "artista": "Estopa",
     "tipo": "Single"
   },
   {
@@ -19653,7 +19821,7 @@
     "titulo": "The Last Tours Volume 3",
     "fecha": "2025-09",
     "artista": "Elvis Presley",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "32bb2df5-d2a5-45e5-aaa7-f2334d1960e6",
@@ -26032,6 +26200,14 @@
     "tipo": "Single"
   },
   {
+    "id": "f2deb361-898f-4b7d-8979-c5d7453c0d5d",
+    "imagen": "https://coverartarchive.org/release-group/f2deb361-898f-4b7d-8979-c5d7453c0d5d/front-250",
+    "titulo": "Gato Negro",
+    "fecha": "2025-03-21",
+    "artista": "Javi Medina",
+    "tipo": "Album"
+  },
+  {
     "id": "ea1dcbf4-1893-4a8f-aaee-b64ae236b9b7",
     "imagen": "https://coverartarchive.org/release-group/ea1dcbf4-1893-4a8f-aaee-b64ae236b9b7/front-250",
     "titulo": "Love Me to Heaven",
@@ -28160,6 +28336,14 @@
     "tipo": "Single"
   },
   {
+    "id": "7ab043c8-090a-47ba-a119-45b42f8a7214",
+    "imagen": "https://coverartarchive.org/release-group/7ab043c8-090a-47ba-a119-45b42f8a7214/front-250",
+    "titulo": "Thunder Box",
+    "fecha": "2025",
+    "artista": "AC/DC",
+    "tipo": "Album"
+  },
+  {
     "id": "00b50315-3b0a-46e7-ae66-1ca747c70ac3",
     "imagen": "https://coverartarchive.org/release-group/00b50315-3b0a-46e7-ae66-1ca747c70ac3/front-250",
     "titulo": "Transmission Impossible",
@@ -28274,7 +28458,7 @@
   {
     "id": "daf0f76a-c28a-476e-a9f6-27a200f3b02e",
     "imagen": "https://coverartarchive.org/release-group/daf0f76a-c28a-476e-a9f6-27a200f3b02e/front-250",
-    "titulo": "The Rise of the King: Elvis Presley's 200 Essential Hits",
+    "titulo": "The Rise of the King: Elvis Presley’s 200 Essential Hits",
     "fecha": "2025",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -28397,6 +28581,14 @@
     "titulo": "2025-12-03: Beyon Al Dana Amphitheatre, Sakhir, BH",
     "fecha": "2025",
     "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "c44e6ccb-69a3-44de-9cdc-b5fd1045932d",
+    "imagen": "https://coverartarchive.org/release-group/c44e6ccb-69a3-44de-9cdc-b5fd1045932d/front-250",
+    "titulo": "More Than Thriller (Alternate Album Collection)",
+    "fecha": "2025",
+    "artista": "Michael Jackson",
     "tipo": "Album"
   },
   {
@@ -30946,7 +31138,7 @@
   {
     "id": "b8b7abc1-4719-4494-be80-26421d4cc5ca",
     "imagen": "https://coverartarchive.org/release-group/b8b7abc1-4719-4494-be80-26421d4cc5ca/front-250",
-    "titulo": "Duets (30th Anniversary)",
+    "titulo": "Duets",
     "fecha": "2024-10-24",
     "artista": "Andrea Bocelli",
     "tipo": "Album"
@@ -31117,6 +31309,14 @@
     "titulo": "Never Enough",
     "fecha": "2024-10-18",
     "artista": "Edward Maya",
+    "tipo": "Single"
+  },
+  {
+    "id": "c7f91c31-d3f5-4c7b-ac65-46fdb7bc5fa3",
+    "imagen": "https://coverartarchive.org/release-group/c7f91c31-d3f5-4c7b-ac65-46fdb7bc5fa3/front-250",
+    "titulo": "It Makes No Difference (Live at Crypto.com Arena, Los Angeles, CA, 9/24/2023)",
+    "fecha": "2024-10-18",
+    "artista": "Eric Clapton",
     "tipo": "Single"
   },
   {
@@ -33544,6 +33744,14 @@
     "tipo": "Single"
   },
   {
+    "id": "ba1c0957-0ecc-4733-b8be-60daee14041f",
+    "imagen": "https://coverartarchive.org/release-group/ba1c0957-0ecc-4733-b8be-60daee14041f/front-250",
+    "titulo": "Yes (Mind Games Meditation Mix)",
+    "fecha": "2024-08-14",
+    "artista": "John Lennon",
+    "tipo": "Single"
+  },
+  {
     "id": "c2f05ea3-2877-474d-a520-a4328ea5bc02",
     "imagen": "https://coverartarchive.org/release-group/c2f05ea3-2877-474d-a520-a4328ea5bc02/front-250",
     "titulo": "Edge of Saturday Night",
@@ -35216,6 +35424,14 @@
     "tipo": "Single"
   },
   {
+    "id": "20a65142-c2d1-409d-945a-a3eb91b95e0d",
+    "imagen": "https://coverartarchive.org/release-group/20a65142-c2d1-409d-945a-a3eb91b95e0d/front-250",
+    "titulo": "Aisumasen (I’m Sorry) (Ultimate Mix)",
+    "fecha": "2024-06-27",
+    "artista": "John Lennon",
+    "tipo": "Single"
+  },
+  {
     "id": "e8f259f9-7878-4160-88ed-e49b4b0124a7",
     "imagen": "https://coverartarchive.org/release-group/e8f259f9-7878-4160-88ed-e49b4b0124a7/front-250",
     "titulo": "Literal - EP",
@@ -35880,6 +36096,14 @@
     "tipo": "Single"
   },
   {
+    "id": "8b29b2af-246c-4ea4-8b80-76b7f37abf32",
+    "imagen": "https://coverartarchive.org/release-group/8b29b2af-246c-4ea4-8b80-76b7f37abf32/front-250",
+    "titulo": "You Are Here (Ultimate Mix)",
+    "fecha": "2024-06-06",
+    "artista": "John Lennon",
+    "tipo": "Single"
+  },
+  {
     "id": "da95a73c-f2e9-4da9-8021-ab4143e43e66",
     "imagen": "https://coverartarchive.org/release-group/da95a73c-f2e9-4da9-8021-ab4143e43e66/front-250",
     "titulo": "1 OF 1",
@@ -36061,6 +36285,14 @@
     "titulo": "Morning",
     "fecha": "2024-05-31",
     "artista": "Jason Derulo",
+    "tipo": "Single"
+  },
+  {
+    "id": "1f774dd7-c00b-4aa6-9edd-363cd9ec555f",
+    "imagen": "https://coverartarchive.org/release-group/1f774dd7-c00b-4aa6-9edd-363cd9ec555f/front-250",
+    "titulo": "Without You (with HAYLA)",
+    "fecha": "2024-05-31",
+    "artista": "Kygo",
     "tipo": "Single"
   },
   {
@@ -37368,6 +37600,14 @@
     "tipo": "Single"
   },
   {
+    "id": "97035422-99e3-44f6-b00f-c97b4b7b9147",
+    "imagen": "https://coverartarchive.org/release-group/97035422-99e3-44f6-b00f-c97b4b7b9147/front-250",
+    "titulo": "I've Tried Everything But Therapy (Part 1.5)",
+    "fecha": "2024-04-26",
+    "artista": "Teddy Swims",
+    "tipo": "Album"
+  },
+  {
     "id": "12a742b2-77e1-4de6-bbfe-a1898584557e",
     "imagen": "https://coverartarchive.org/release-group/12a742b2-77e1-4de6-bbfe-a1898584557e/front-250",
     "titulo": "A mucha honra",
@@ -38104,6 +38344,14 @@
     "tipo": "Single"
   },
   {
+    "id": "98bc16d1-3b83-4b45-941d-6d4e0458aad3",
+    "imagen": "https://coverartarchive.org/release-group/98bc16d1-3b83-4b45-941d-6d4e0458aad3/front-250",
+    "titulo": "All Night Long (Oden & Fatzo Remix)",
+    "fecha": "2024-04-12",
+    "artista": "David Guetta",
+    "tipo": "Single"
+  },
+  {
     "id": "bbffc38c-77ce-4565-8462-c64de37e4357",
     "imagen": "https://coverartarchive.org/release-group/bbffc38c-77ce-4565-8462-c64de37e4357/front-250",
     "titulo": "Lighter (MY PAL AL remix)",
@@ -38395,6 +38643,14 @@
     "id": "2bcd8abb-5ec2-4192-ad89-a2e1c03959ee",
     "imagen": "https://coverartarchive.org/release-group/2bcd8abb-5ec2-4192-ad89-a2e1c03959ee/front-250",
     "titulo": "I Don’t Wanna Wait",
+    "fecha": "2024-04-05",
+    "artista": "David Guetta",
+    "tipo": "Single"
+  },
+  {
+    "id": "b39100b1-5541-4d9c-8bd5-afef1de841ab",
+    "imagen": "https://coverartarchive.org/release-group/b39100b1-5541-4d9c-8bd5-afef1de841ab/front-250",
+    "titulo": "All Night Long (Mat.Joe Remix)",
     "fecha": "2024-04-05",
     "artista": "David Guetta",
     "tipo": "Single"
@@ -38957,6 +39213,14 @@
     "titulo": "Stumblin’ In (LUNAX remix)",
     "fecha": "2024-03-29",
     "artista": "CYRIL",
+    "tipo": "Single"
+  },
+  {
+    "id": "8893b1f2-f0ea-493f-a918-a6cf9715b083",
+    "imagen": "https://coverartarchive.org/release-group/8893b1f2-f0ea-493f-a918-a6cf9715b083/front-250",
+    "titulo": "All Night Long (Musumeci Remix)",
+    "fecha": "2024-03-29",
+    "artista": "David Guetta",
     "tipo": "Single"
   },
   {
@@ -49786,7 +50050,7 @@
   {
     "id": "ca6b48f3-89c8-48a5-b633-a82e204205a2",
     "imagen": "https://coverartarchive.org/release-group/ca6b48f3-89c8-48a5-b633-a82e204205a2/front-250",
-    "titulo": "Si Te Vas / Que Tengo Que Hacer (Italian Remix By Cuban Deejays)",
+    "titulo": "Si te vas / Que tengo que hacer (Italian remix by Cuban Deejays)",
     "fecha": "2023-06-23",
     "artista": "Daddy Yankee",
     "tipo": "Single"
@@ -65622,6 +65886,14 @@
     "fecha": "2022-04-29",
     "artista": "DVICIO",
     "tipo": "Album"
+  },
+  {
+    "id": "a4e89adf-0e1d-4563-bc74-389e52f35328",
+    "imagen": "https://coverartarchive.org/release-group/a4e89adf-0e1d-4563-bc74-389e52f35328/front-250",
+    "titulo": "Have You Ever Loved a Woman (Live at the Fillmore, San Francisco, 1994)",
+    "fecha": "2022-04-29",
+    "artista": "Eric Clapton",
+    "tipo": "Single"
   },
   {
     "id": "5eb2ca23-2be7-4279-957e-d070ab0fc209",
@@ -94930,7 +95202,7 @@
   {
     "id": "53a4053f-2b2d-461b-a4cc-34a1a984874b",
     "imagen": "https://coverartarchive.org/release-group/53a4053f-2b2d-461b-a4cc-34a1a984874b/front-250",
-    "titulo": "Mes Excentricités, Vol. II",
+    "titulo": "Mes excentricités, vol. 2",
     "fecha": "2020-06-26",
     "artista": "Mónica Naranjo",
     "tipo": "EP"
@@ -95274,7 +95546,7 @@
   {
     "id": "f6574fd7-064a-4132-89ee-a41b929e705b",
     "imagen": "https://coverartarchive.org/release-group/f6574fd7-064a-4132-89ee-a41b929e705b/front-250",
-    "titulo": "Can’t Help Falling In Love: The Greatest Love Songs of Elvis Presley",
+    "titulo": "Can’t Help Falling in Love: The Greatest Love Songs of Elvis Presley",
     "fecha": "2020-06-19",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -101776,14 +102048,6 @@
     "tipo": "Album"
   },
   {
-    "id": "ea23f464-7662-4784-ac38-129d3f8107a4",
-    "imagen": "https://coverartarchive.org/release-group/ea23f464-7662-4784-ac38-129d3f8107a4/front-250",
-    "titulo": "Christmas in L.A.",
-    "fecha": "2020",
-    "artista": "Chicago",
-    "tipo": "Album"
-  },
-  {
     "id": "2e84277e-4274-4851-8596-c78adb0989fb",
     "imagen": "https://coverartarchive.org/release-group/2e84277e-4274-4851-8596-c78adb0989fb/front-250",
     "titulo": "1968-09-18: Itchy Foot Mose, Los Angeles, CA, USA",
@@ -101803,6 +102067,14 @@
     "id": "40213d79-e100-463a-891b-285fd4f4f9eb",
     "imagen": "https://coverartarchive.org/release-group/40213d79-e100-463a-891b-285fd4f4f9eb/front-250",
     "titulo": "The Big Thing",
+    "fecha": "2020",
+    "artista": "Chicago",
+    "tipo": "Album"
+  },
+  {
+    "id": "ea23f464-7662-4784-ac38-129d3f8107a4",
+    "imagen": "https://coverartarchive.org/release-group/ea23f464-7662-4784-ac38-129d3f8107a4/front-250",
+    "titulo": "Christmas in L.A.",
     "fecha": "2020",
     "artista": "Chicago",
     "tipo": "Album"
@@ -101840,14 +102112,6 @@
     "tipo": "Album"
   },
   {
-    "id": "adb16f98-3db3-4e42-8c90-78844b3776dd",
-    "imagen": "https://coverartarchive.org/release-group/adb16f98-3db3-4e42-8c90-78844b3776dd/front-250",
-    "titulo": "Bruce Jackson on the Road With Elvis",
-    "fecha": "2020",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "6344d3b8-8637-4037-8e00-21ece2bbcecd",
     "imagen": "https://coverartarchive.org/release-group/6344d3b8-8637-4037-8e00-21ece2bbcecd/front-250",
     "titulo": "King Creole & More: New Mono-To-Stereo Mixes",
@@ -101856,17 +102120,25 @@
     "tipo": "Album"
   },
   {
-    "id": "6ddc72d4-6fd9-4ebe-98bc-340386a181c9",
-    "imagen": "https://coverartarchive.org/release-group/6ddc72d4-6fd9-4ebe-98bc-340386a181c9/front-250",
-    "titulo": "The Kid Galahad Sessions",
+    "id": "78ed2424-857a-4f2f-860c-2af2fd0ae2fa",
+    "imagen": "https://coverartarchive.org/release-group/78ed2424-857a-4f2f-860c-2af2fd0ae2fa/front-250",
+    "titulo": "The Forgotten Album",
     "fecha": "2020",
     "artista": "Elvis Presley",
     "tipo": "Album"
   },
   {
-    "id": "78ed2424-857a-4f2f-860c-2af2fd0ae2fa",
-    "imagen": "https://coverartarchive.org/release-group/78ed2424-857a-4f2f-860c-2af2fd0ae2fa/front-250",
-    "titulo": "The Forgotten Album",
+    "id": "adb16f98-3db3-4e42-8c90-78844b3776dd",
+    "imagen": "https://coverartarchive.org/release-group/adb16f98-3db3-4e42-8c90-78844b3776dd/front-250",
+    "titulo": "Bruce Jackson on the Road With Elvis",
+    "fecha": "2020",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "6ddc72d4-6fd9-4ebe-98bc-340386a181c9",
+    "imagen": "https://coverartarchive.org/release-group/6ddc72d4-6fd9-4ebe-98bc-340386a181c9/front-250",
+    "titulo": "The Kid Galahad Sessions",
     "fecha": "2020",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -122450,7 +122722,7 @@
   {
     "id": "c7232841-897a-4022-bd29-0c1196866d5f",
     "imagen": "https://coverartarchive.org/release-group/c7232841-897a-4022-bd29-0c1196866d5f/front-250",
-    "titulo": "Don’t Matter To Me (with Michael Jackson)",
+    "titulo": "Don’t Matter To Me",
     "fecha": "2018-07-27",
     "artista": "Drake",
     "tipo": "Single"
@@ -122501,6 +122773,14 @@
     "titulo": "More Than Friends",
     "fecha": "2018-07-27",
     "artista": "Meghan Trainor",
+    "tipo": "Single"
+  },
+  {
+    "id": "c7232841-897a-4022-bd29-0c1196866d5f",
+    "imagen": "https://coverartarchive.org/release-group/c7232841-897a-4022-bd29-0c1196866d5f/front-250",
+    "titulo": "Don’t Matter To Me",
+    "fecha": "2018-07-27",
+    "artista": "Michael Jackson",
     "tipo": "Single"
   },
   {
@@ -130173,6 +130453,14 @@
     "titulo": "Black Collection: The Beatles",
     "fecha": "2018",
     "artista": "The Beatles",
+    "tipo": "Album"
+  },
+  {
+    "id": "e1add1f0-dbe5-4cdf-8120-6687f4dad67e",
+    "imagen": "https://coverartarchive.org/release-group/e1add1f0-dbe5-4cdf-8120-6687f4dad67e/front-250",
+    "titulo": "Everything I Said…",
+    "fecha": "2018",
+    "artista": "The Cranberries",
     "tipo": "Album"
   },
   {
@@ -139190,6 +139478,14 @@
     "fecha": "2017-04-14",
     "artista": "Lena",
     "tipo": "Single"
+  },
+  {
+    "id": "ca78fc6d-5c3c-4fa5-9af7-cf3b6345a57f",
+    "imagen": "https://coverartarchive.org/release-group/ca78fc6d-5c3c-4fa5-9af7-cf3b6345a57f/front-250",
+    "titulo": "Louis",
+    "fecha": "2017-04-14",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
   },
   {
     "id": "5956f987-ebf6-4c25-9425-fea828914fbf",
@@ -152562,7 +152858,7 @@
   {
     "id": "6bb96ce3-847c-4573-aefd-4db7e965c5da",
     "imagen": "https://coverartarchive.org/release-group/6bb96ce3-847c-4573-aefd-4db7e965c5da/front-250",
-    "titulo": "Viva Las Vegas: Elvis Presley's Greatest Movie Songs",
+    "titulo": "Viva Las Vegas: Elvis Presley’s Greatest Movie Songs",
     "fecha": "2016-03-20",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -159730,7 +160026,7 @@
   {
     "id": "7f0ca5e0-c8cb-4bab-a403-d6431dfe808a",
     "imagen": "https://coverartarchive.org/release-group/7f0ca5e0-c8cb-4bab-a403-d6431dfe808a/front-250",
-    "titulo": "The Complete '60s Albums Collection, Vol. 2: 1966-1969",
+    "titulo": "The Complete ’60s Albums Collection, Vol. 2: 1966–1969",
     "fecha": "2015-08-07",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -160378,7 +160674,7 @@
   {
     "id": "b998f62f-1766-4861-98ea-2305a1815b01",
     "imagen": "https://coverartarchive.org/release-group/b998f62f-1766-4861-98ea-2305a1815b01/front-250",
-    "titulo": "Run Away with Me",
+    "titulo": "Run Away With Me",
     "fecha": "2015-07-10",
     "artista": "Carly Rae Jepsen",
     "tipo": "Single"
@@ -164346,7 +164642,7 @@
   {
     "id": "3e169495-e1af-40b9-9090-1f5e5c65d476",
     "imagen": "https://coverartarchive.org/release-group/3e169495-e1af-40b9-9090-1f5e5c65d476/front-250",
-    "titulo": "The Complete '60s Albums Collection, Vol. 1: 1960-1965",
+    "titulo": "The Complete ’60s Albums Collection, Vol. 1: 1960–1965",
     "fecha": "2015-01-02",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -175032,6 +175328,14 @@
     "tipo": "Album"
   },
   {
+    "id": "a13488f5-7123-415a-bc6d-4c736240970d",
+    "imagen": "https://coverartarchive.org/release-group/a13488f5-7123-415a-bc6d-4c736240970d/front-250",
+    "titulo": "Something for the Girls",
+    "fecha": "2014",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
     "id": "c1f9011a-1e28-4f37-bef5-11047cf2e5e3",
     "imagen": "https://coverartarchive.org/release-group/c1f9011a-1e28-4f37-bef5-11047cf2e5e3/front-250",
     "titulo": "Christmas Gold Collection",
@@ -175048,6 +175352,14 @@
     "tipo": "Album"
   },
   {
+    "id": "fc2f8379-5af3-44d8-9255-db6ba5672f36",
+    "imagen": "https://coverartarchive.org/release-group/fc2f8379-5af3-44d8-9255-db6ba5672f36/front-250",
+    "titulo": "Memphis To Nashville '61",
+    "fecha": "2014",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
     "id": "72907876-d09f-4c30-8dbe-d4e25e7b3231",
     "imagen": "https://coverartarchive.org/release-group/72907876-d09f-4c30-8dbe-d4e25e7b3231/front-250",
     "titulo": "The Best of British: The RCA Years 1957–1958",
@@ -175056,25 +175368,9 @@
     "tipo": "Album"
   },
   {
-    "id": "a13488f5-7123-415a-bc6d-4c736240970d",
-    "imagen": "https://coverartarchive.org/release-group/a13488f5-7123-415a-bc6d-4c736240970d/front-250",
-    "titulo": "Something for the Girls",
-    "fecha": "2014",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "b12d91f6-e8e3-4690-9d33-51ea7561a7de",
     "imagen": "https://coverartarchive.org/release-group/b12d91f6-e8e3-4690-9d33-51ea7561a7de/front-250",
     "titulo": "The Real… Elvis 60’s Collection",
-    "fecha": "2014",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
-    "id": "fc2f8379-5af3-44d8-9255-db6ba5672f36",
-    "imagen": "https://coverartarchive.org/release-group/fc2f8379-5af3-44d8-9255-db6ba5672f36/front-250",
-    "titulo": "Memphis To Nashville '61",
     "fecha": "2014",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -202512,6 +202808,14 @@
     "tipo": "Album"
   },
   {
+    "id": "cd94016a-7e09-4276-8f92-1065a3bd1b8c",
+    "imagen": "https://coverartarchive.org/release-group/cd94016a-7e09-4276-8f92-1065a3bd1b8c/front-250",
+    "titulo": "If I Could",
+    "fecha": "2011-05-15",
+    "artista": "Ed Sheeran",
+    "tipo": "Single"
+  },
+  {
     "id": "fb4903be-16d0-4244-9024-22cc56d43d9e",
     "imagen": "https://coverartarchive.org/release-group/fb4903be-16d0-4244-9024-22cc56d43d9e/front-250",
     "titulo": "Satellite (Rockabilly Version)",
@@ -225280,6 +225584,14 @@
     "tipo": "Album"
   },
   {
+    "id": "3719b0aa-2ff2-45a3-8cd4-48580f24f1ae",
+    "imagen": "https://coverartarchive.org/release-group/3719b0aa-2ff2-45a3-8cd4-48580f24f1ae/front-250",
+    "titulo": "75 Aniversário",
+    "fecha": "2009",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
     "id": "09f6cbf8-5e51-463f-9b2a-fa4004af31c8",
     "imagen": "https://coverartarchive.org/release-group/09f6cbf8-5e51-463f-9b2a-fa4004af31c8/front-250",
     "titulo": "75 years",
@@ -225291,14 +225603,6 @@
     "id": "2f07824a-6812-4d61-82b9-56ea2284fa65",
     "imagen": "https://coverartarchive.org/release-group/2f07824a-6812-4d61-82b9-56ea2284fa65/front-250",
     "titulo": "The Best of Elvis Presley",
-    "fecha": "2009",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
-    "id": "3719b0aa-2ff2-45a3-8cd4-48580f24f1ae",
-    "imagen": "https://coverartarchive.org/release-group/3719b0aa-2ff2-45a3-8cd4-48580f24f1ae/front-250",
-    "titulo": "75 Aniversário",
     "fecha": "2009",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -225376,17 +225680,17 @@
     "tipo": "Album"
   },
   {
-    "id": "98405818-4a68-496e-8406-f94937c82864",
-    "imagen": "https://coverartarchive.org/release-group/98405818-4a68-496e-8406-f94937c82864/front-250",
-    "titulo": "Dixieland Delight",
+    "id": "4864946c-77f5-4efa-98d9-6e09a8a33a0b",
+    "imagen": "https://coverartarchive.org/release-group/4864946c-77f5-4efa-98d9-6e09a8a33a0b/front-250",
+    "titulo": "The Wonder of You: Recorded Live in Las Vegas, August 13, 1970",
     "fecha": "2009",
     "artista": "Elvis Presley",
     "tipo": "Album"
   },
   {
-    "id": "4864946c-77f5-4efa-98d9-6e09a8a33a0b",
-    "imagen": "https://coverartarchive.org/release-group/4864946c-77f5-4efa-98d9-6e09a8a33a0b/front-250",
-    "titulo": "The Wonder of You: Recorded Live in Las Vegas, August 13, 1970",
+    "id": "98405818-4a68-496e-8406-f94937c82864",
+    "imagen": "https://coverartarchive.org/release-group/98405818-4a68-496e-8406-f94937c82864/front-250",
+    "titulo": "Dixieland Delight",
     "fecha": "2009",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -245176,14 +245480,6 @@
     "tipo": "Album"
   },
   {
-    "id": "5fbc1b99-6cdf-4ddb-a901-a7db2a238817",
-    "imagen": "https://coverartarchive.org/release-group/5fbc1b99-6cdf-4ddb-a901-a7db2a238817/front-250",
-    "titulo": "De legendes van de jazz",
-    "fecha": "2007",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "68ad4ed7-15e2-4d68-adce-a6e42d5a7922",
     "imagen": "https://coverartarchive.org/release-group/68ad4ed7-15e2-4d68-adce-a6e42d5a7922/front-250",
     "titulo": "Cheek to Cheek-Legends in Duet",
@@ -245219,6 +245515,14 @@
     "id": "5c0178d9-d225-47b1-8d7a-2d97d1dc38b2",
     "imagen": "https://coverartarchive.org/release-group/5c0178d9-d225-47b1-8d7a-2d97d1dc38b2/front-250",
     "titulo": "Originals",
+    "fecha": "2007",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "5fbc1b99-6cdf-4ddb-a901-a7db2a238817",
+    "imagen": "https://coverartarchive.org/release-group/5fbc1b99-6cdf-4ddb-a901-a7db2a238817/front-250",
+    "titulo": "De legendes van de jazz",
     "fecha": "2007",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -246904,6 +247208,14 @@
     "tipo": "Single"
   },
   {
+    "id": "db4a16ef-128f-3a82-b268-e672c1826273",
+    "imagen": "https://coverartarchive.org/release-group/db4a16ef-128f-3a82-b268-e672c1826273/front-250",
+    "titulo": "The Best of Tom Jones",
+    "fecha": "2007",
+    "artista": "Tom Jones",
+    "tipo": "Album"
+  },
+  {
     "id": "ef4bc355-2aa3-40fe-85cd-6f5e9a4f1ec8",
     "imagen": "https://coverartarchive.org/release-group/ef4bc355-2aa3-40fe-85cd-6f5e9a4f1ec8/front-250",
     "titulo": "Golden Collection",
@@ -246923,14 +247235,6 @@
     "id": "bb6d729e-9551-3724-afd8-4da19353cc6d",
     "imagen": "https://coverartarchive.org/release-group/bb6d729e-9551-3724-afd8-4da19353cc6d/front-250",
     "titulo": "Tom Sings the Beatles",
-    "fecha": "2007",
-    "artista": "Tom Jones",
-    "tipo": "Album"
-  },
-  {
-    "id": "db4a16ef-128f-3a82-b268-e672c1826273",
-    "imagen": "https://coverartarchive.org/release-group/db4a16ef-128f-3a82-b268-e672c1826273/front-250",
-    "titulo": "The Best of Tom Jones",
     "fecha": "2007",
     "artista": "Tom Jones",
     "tipo": "Album"
@@ -252301,7 +252605,7 @@
     "titulo": "An American Icon",
     "fecha": "2006",
     "artista": "Elvis Presley",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "16ead027-8fff-4103-84ea-338fbb9129aa",
@@ -270416,6 +270720,14 @@
     "tipo": "Album"
   },
   {
+    "id": "ce723de4-ef57-30fe-901b-7878e7f40ebe",
+    "imagen": "https://coverartarchive.org/release-group/ce723de4-ef57-30fe-901b-7878e7f40ebe/front-250",
+    "titulo": "2004-04-29: Grand Rapids, MI, USA",
+    "fecha": "2004",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
     "id": "e558101d-c9a0-3abe-84ce-c3f78822764f",
     "imagen": "https://coverartarchive.org/release-group/e558101d-c9a0-3abe-84ce-c3f78822764f/front-250",
     "titulo": "2004-03-06: Los Angeles, CA, USA",
@@ -270459,14 +270771,6 @@
     "id": "c02bf740-262f-4db3-9b48-5707e467a9f1",
     "imagen": "https://coverartarchive.org/release-group/c02bf740-262f-4db3-9b48-5707e467a9f1/front-250",
     "titulo": "2004-07-04: Reykjavik, Iceland, Egilshollin",
-    "fecha": "2004",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
-    "id": "ce723de4-ef57-30fe-901b-7878e7f40ebe",
-    "imagen": "https://coverartarchive.org/release-group/ce723de4-ef57-30fe-901b-7878e7f40ebe/front-250",
-    "titulo": "2004-04-29: Grand Rapids, MI, USA",
     "fecha": "2004",
     "artista": "Metallica",
     "tipo": "Album"
@@ -278040,14 +278344,6 @@
     "tipo": "Album"
   },
   {
-    "id": "0a404db0-134b-4a67-a05e-f85000b25497",
-    "imagen": "https://coverartarchive.org/release-group/0a404db0-134b-4a67-a05e-f85000b25497/front-250",
-    "titulo": "Lost In Weybridge",
-    "fecha": "2003",
-    "artista": "John Lennon",
-    "tipo": "Album"
-  },
-  {
     "id": "6bb1fc37-e583-4032-99cb-9cd49b7d71d3",
     "imagen": "https://coverartarchive.org/release-group/6bb1fc37-e583-4032-99cb-9cd49b7d71d3/front-250",
     "titulo": "The Lost Lennon Tapes, Volume 8",
@@ -278083,6 +278379,14 @@
     "id": "d7820aaa-17a9-4bd6-b6e3-af2dff75aa2c",
     "imagen": "https://coverartarchive.org/release-group/d7820aaa-17a9-4bd6-b6e3-af2dff75aa2c/front-250",
     "titulo": "The Lost Lennon Tapes, Volume 9",
+    "fecha": "2003",
+    "artista": "John Lennon",
+    "tipo": "Album"
+  },
+  {
+    "id": "0a404db0-134b-4a67-a05e-f85000b25497",
+    "imagen": "https://coverartarchive.org/release-group/0a404db0-134b-4a67-a05e-f85000b25497/front-250",
+    "titulo": "Lost In Weybridge",
     "fecha": "2003",
     "artista": "John Lennon",
     "tipo": "Album"
@@ -278544,14 +278848,6 @@
     "tipo": "Album"
   },
   {
-    "id": "a49e5082-1b09-410b-92c8-1121eada8004",
-    "imagen": "https://coverartarchive.org/release-group/a49e5082-1b09-410b-92c8-1121eada8004/front-250",
-    "titulo": "24 Chefs-d'œuvre",
-    "fecha": "2003",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "0fa7589d-7cbf-4b75-8d93-6273376ad6b3",
     "imagen": "https://coverartarchive.org/release-group/0fa7589d-7cbf-4b75-8d93-6273376ad6b3/front-250",
     "titulo": "What a Wonderful Trumpet",
@@ -278635,6 +278931,14 @@
     "id": "a0e4f86d-d02c-410e-94da-43a1d9fde0fd",
     "imagen": "https://coverartarchive.org/release-group/a0e4f86d-d02c-410e-94da-43a1d9fde0fd/front-250",
     "titulo": "Memories Of New Orleans",
+    "fecha": "2003",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "a49e5082-1b09-410b-92c8-1121eada8004",
+    "imagen": "https://coverartarchive.org/release-group/a49e5082-1b09-410b-92c8-1121eada8004/front-250",
+    "titulo": "24 Chefs-d'œuvre",
     "fecha": "2003",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -288032,6 +288336,14 @@
     "tipo": "Album"
   },
   {
+    "id": "77185ebd-37cc-35bd-bed7-4d74d25c1765",
+    "imagen": "https://coverartarchive.org/release-group/77185ebd-37cc-35bd-bed7-4d74d25c1765/front-250",
+    "titulo": "Rare Stars: The Rarest of 1992–2002",
+    "fecha": "2002",
+    "artista": "The Cranberries",
+    "tipo": "Album"
+  },
+  {
     "id": "9edd6c79-6e0e-45fc-9ace-53a4278aae78",
     "imagen": "https://coverartarchive.org/release-group/9edd6c79-6e0e-45fc-9ace-53a4278aae78/front-250",
     "titulo": "Stars: The Best of Videos 1992–2002",
@@ -291584,6 +291896,14 @@
     "tipo": "Album"
   },
   {
+    "id": "23d261f2-df20-4146-9fcc-ba86c2886cf1",
+    "imagen": "https://coverartarchive.org/release-group/23d261f2-df20-4146-9fcc-ba86c2886cf1/front-250",
+    "titulo": "Room Service Interview CD",
+    "fecha": "2001-03",
+    "artista": "Roxette",
+    "tipo": "Album"
+  },
+  {
     "id": "56ddef5f-2256-4fdc-8f43-4ac65073e9df",
     "imagen": "https://coverartarchive.org/release-group/56ddef5f-2256-4fdc-8f43-4ac65073e9df/front-250",
     "titulo": "Live in Brazil",
@@ -294430,6 +294750,14 @@
     "fecha": "2001",
     "artista": "Lou Bega",
     "tipo": "Single"
+  },
+  {
+    "id": "60d4d37b-3dad-4022-942e-f0ea0263b186",
+    "imagen": "https://coverartarchive.org/release-group/60d4d37b-3dad-4022-942e-f0ea0263b186/front-250",
+    "titulo": "Greatest Recordings",
+    "fecha": "2001",
+    "artista": "Louis Armstrong",
+    "tipo": "Publicación"
   },
   {
     "id": "f26b07fe-c461-49fb-bf26-b6d20e8d9301",
@@ -303320,14 +303648,6 @@
     "tipo": "Album"
   },
   {
-    "id": "9bf129e5-52a3-47a3-a8d4-a3793d47d8e9",
-    "imagen": "https://coverartarchive.org/release-group/9bf129e5-52a3-47a3-a8d4-a3793d47d8e9/front-250",
-    "titulo": "Falling In Love",
-    "fecha": "2000",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "a37e19ef-5413-4604-a731-627b42c911f6",
     "imagen": "https://coverartarchive.org/release-group/a37e19ef-5413-4604-a731-627b42c911f6/front-250",
     "titulo": "A Portrait",
@@ -303427,6 +303747,14 @@
     "id": "6ca21a3b-ee39-3a41-88f7-8a457c59f04d",
     "imagen": "https://coverartarchive.org/release-group/6ca21a3b-ee39-3a41-88f7-8a457c59f04d/front-250",
     "titulo": "Midnite Jazz & Blues: Cheek to Cheek",
+    "fecha": "2000",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "9bf129e5-52a3-47a3-a8d4-a3793d47d8e9",
+    "imagen": "https://coverartarchive.org/release-group/9bf129e5-52a3-47a3-a8d4-a3793d47d8e9/front-250",
+    "titulo": "Falling In Love",
     "fecha": "2000",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -313280,6 +313608,14 @@
     "tipo": "Single"
   },
   {
+    "id": "08469c7c-1e7c-3d8d-9734-c1afb3861eca",
+    "imagen": "https://coverartarchive.org/release-group/08469c7c-1e7c-3d8d-9734-c1afb3861eca/front-250",
+    "titulo": "Animal Instinct",
+    "fecha": "1999",
+    "artista": "The Cranberries",
+    "tipo": "Album"
+  },
+  {
     "id": "0976daa1-cce7-492f-9378-d273ce6e210a",
     "imagen": "https://coverartarchive.org/release-group/0976daa1-cce7-492f-9378-d273ce6e210a/front-250",
     "titulo": "Just My Imagination",
@@ -313299,6 +313635,14 @@
     "id": "348e7f75-7508-4a07-a803-f96a406a8907",
     "imagen": "https://coverartarchive.org/release-group/348e7f75-7508-4a07-a803-f96a406a8907/front-250",
     "titulo": "World Ballads Collection",
+    "fecha": "1999",
+    "artista": "The Cranberries",
+    "tipo": "Album"
+  },
+  {
+    "id": "82e41549-dcf5-3939-bd5b-dda0ef325c56",
+    "imagen": "https://coverartarchive.org/release-group/82e41549-dcf5-3939-bd5b-dda0ef325c56/front-250",
+    "titulo": "The Best Singles Collection",
     "fecha": "1999",
     "artista": "The Cranberries",
     "tipo": "Album"
@@ -320800,17 +321144,17 @@
     "tipo": "Album"
   },
   {
-    "id": "ea810c8c-73c6-44ff-935c-4289f8459431",
-    "imagen": "https://coverartarchive.org/release-group/ea810c8c-73c6-44ff-935c-4289f8459431/front-250",
-    "titulo": "Last Caress",
+    "id": "a593797a-2ae8-4c1e-be92-16eebca2f100",
+    "imagen": "https://coverartarchive.org/release-group/a593797a-2ae8-4c1e-be92-16eebca2f100/front-250",
+    "titulo": "Poor Touring Me",
     "fecha": "1998",
     "artista": "Metallica",
     "tipo": "EP"
   },
   {
-    "id": "a593797a-2ae8-4c1e-be92-16eebca2f100",
-    "imagen": "https://coverartarchive.org/release-group/a593797a-2ae8-4c1e-be92-16eebca2f100/front-250",
-    "titulo": "Poor Touring Me",
+    "id": "ea810c8c-73c6-44ff-935c-4289f8459431",
+    "imagen": "https://coverartarchive.org/release-group/ea810c8c-73c6-44ff-935c-4289f8459431/front-250",
+    "titulo": "Last Caress",
     "fecha": "1998",
     "artista": "Metallica",
     "tipo": "EP"
@@ -321398,6 +321742,14 @@
     "fecha": "1998",
     "artista": "Scorpions",
     "tipo": "EP"
+  },
+  {
+    "id": "78ae2381-699b-48d7-8b65-4862b37276af",
+    "imagen": "https://coverartarchive.org/release-group/78ae2381-699b-48d7-8b65-4862b37276af/front-250",
+    "titulo": "Romantic Ballads",
+    "fecha": "1998",
+    "artista": "Scorpions",
+    "tipo": "Album"
   },
   {
     "id": "c480d664-2ade-4a25-8d0a-5f8c0aee5d36",
@@ -326149,7 +326501,7 @@
     "titulo": "Shades of Soul: 40 Original Soul Classics",
     "fecha": "1997",
     "artista": "Al Green",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "acd9096f-993d-3986-9451-45c7344807d7",
@@ -326293,7 +326645,7 @@
     "titulo": "Shades of Soul: 40 Original Soul Classics",
     "fecha": "1997",
     "artista": "Aretha Franklin",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "cd068492-b31e-3c15-b5a9-adff09426a3b",
@@ -326397,7 +326749,7 @@
     "titulo": "Shades of Soul: 40 Original Soul Classics",
     "fecha": "1997",
     "artista": "Barry White",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "c38120f9-f575-4823-a691-a2696327f1f3",
@@ -326501,7 +326853,7 @@
     "titulo": "Shades of Soul: 40 Original Soul Classics",
     "fecha": "1997",
     "artista": "Ben E. King",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "b026f104-979b-3fa9-8853-c12de8acb2c1",
@@ -326525,7 +326877,7 @@
     "titulo": "Shades of Soul: 40 Original Soul Classics",
     "fecha": "1997",
     "artista": "Bill Withers",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "22c705a6-5a31-341e-a0c7-0ce3e34b7e13",
@@ -327021,7 +327373,7 @@
     "titulo": "Shades of Soul: 40 Original Soul Classics",
     "fecha": "1997",
     "artista": "Chic",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "c37521ac-9fd3-39fc-9733-b31e97e3cf3d",
@@ -328861,7 +329213,7 @@
     "titulo": "Shades of Soul: 40 Original Soul Classics",
     "fecha": "1997",
     "artista": "Luther Vandross",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "bdcb9842-b4c1-4fc7-90ac-0872322ab81f",
@@ -329141,7 +329493,7 @@
     "titulo": "Shades of Soul: 40 Original Soul Classics",
     "fecha": "1997",
     "artista": "Minnie Riperton",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "a6aa7632-bbc1-443e-8e7c-96aeb82b5f70",
@@ -329293,7 +329645,7 @@
     "titulo": "Shades of Soul: 40 Original Soul Classics",
     "fecha": "1997",
     "artista": "Otis Redding",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "d1511c9e-1434-356e-919e-2e3fb4151d4f",
@@ -329373,7 +329725,7 @@
     "titulo": "Shades of Soul: 40 Original Soul Classics",
     "fecha": "1997",
     "artista": "Percy Sledge",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "9667e8f5-d82f-381e-a0ae-cf871a6ab8ef",
@@ -330981,7 +331333,7 @@
     "titulo": "Shades of Soul: 40 Original Soul Classics",
     "fecha": "1997",
     "artista": "The Temptations",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "1af975e1-4120-343b-bd32-405956606b2f",
@@ -331024,6 +331376,14 @@
     "tipo": "Album"
   },
   {
+    "id": "d4adb1b7-7c86-3a89-af44-3d5933494bae",
+    "imagen": "https://coverartarchive.org/release-group/d4adb1b7-7c86-3a89-af44-3d5933494bae/front-250",
+    "titulo": "The Best of… Tom Jones",
+    "fecha": "1997",
+    "artista": "Tom Jones",
+    "tipo": "Album"
+  },
+  {
     "id": "ebaba87b-62e2-4539-97d1-bc38e1e9c539",
     "imagen": "https://coverartarchive.org/release-group/ebaba87b-62e2-4539-97d1-bc38e1e9c539/front-250",
     "titulo": "Delilah",
@@ -331051,14 +331411,6 @@
     "id": "b1bbe42b-be88-427f-be5a-0e3175b9786c",
     "imagen": "https://coverartarchive.org/release-group/b1bbe42b-be88-427f-be5a-0e3175b9786c/front-250",
     "titulo": "The Collection",
-    "fecha": "1997",
-    "artista": "Tom Jones",
-    "tipo": "Album"
-  },
-  {
-    "id": "d4adb1b7-7c86-3a89-af44-3d5933494bae",
-    "imagen": "https://coverartarchive.org/release-group/d4adb1b7-7c86-3a89-af44-3d5933494bae/front-250",
-    "titulo": "The Best of… Tom Jones",
     "fecha": "1997",
     "artista": "Tom Jones",
     "tipo": "Album"
@@ -333125,22 +333477,6 @@
     "titulo": "Killing Me Softly",
     "fecha": "1996-05-27",
     "artista": "Fugees",
-    "tipo": "Single"
-  },
-  {
-    "id": "0cff4332-83c6-446e-8c86-1b7170300c3a",
-    "imagen": "https://coverartarchive.org/release-group/0cff4332-83c6-446e-8c86-1b7170300c3a/front-250",
-    "titulo": "On Silent Wings",
-    "fecha": "1996-05-27",
-    "artista": "Sting",
-    "tipo": "Single"
-  },
-  {
-    "id": "0cff4332-83c6-446e-8c86-1b7170300c3a",
-    "imagen": "https://coverartarchive.org/release-group/0cff4332-83c6-446e-8c86-1b7170300c3a/front-250",
-    "titulo": "On Silent Wings",
-    "fecha": "1996-05-27",
-    "artista": "Tina Turner",
     "tipo": "Single"
   },
   {
@@ -336856,14 +337192,6 @@
     "tipo": "Album"
   },
   {
-    "id": "8156445d-1087-3fde-993e-b63339ff8d55",
-    "imagen": "https://coverartarchive.org/release-group/8156445d-1087-3fde-993e-b63339ff8d55/front-250",
-    "titulo": "St. Louis Blues",
-    "fecha": "1996",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "87b5e617-54bf-38f5-813d-f17ea3a4f973",
     "imagen": "https://coverartarchive.org/release-group/87b5e617-54bf-38f5-813d-f17ea3a4f973/front-250",
     "titulo": "Mack the Knife",
@@ -336963,6 +337291,14 @@
     "id": "62359e3f-d536-31df-8f24-9cfea42cfb1d",
     "imagen": "https://coverartarchive.org/release-group/62359e3f-d536-31df-8f24-9cfea42cfb1d/front-250",
     "titulo": "The Wonderful Music of Louis Armstrong",
+    "fecha": "1996",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "8156445d-1087-3fde-993e-b63339ff8d55",
+    "imagen": "https://coverartarchive.org/release-group/8156445d-1087-3fde-993e-b63339ff8d55/front-250",
+    "titulo": "St. Louis Blues",
     "fecha": "1996",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -337408,6 +337744,14 @@
     "tipo": "Single"
   },
   {
+    "id": "318dfdce-ad79-44ee-af0e-3701c5683cab",
+    "imagen": "https://coverartarchive.org/release-group/318dfdce-ad79-44ee-af0e-3701c5683cab/front-250",
+    "titulo": "Another Story",
+    "fecha": "1996",
+    "artista": "Oasis",
+    "tipo": "Album"
+  },
+  {
     "id": "833fa5e3-20d1-41fc-8c7a-273bb2699001",
     "imagen": "https://coverartarchive.org/release-group/833fa5e3-20d1-41fc-8c7a-273bb2699001/front-250",
     "titulo": "Champagne Supernova",
@@ -337475,14 +337819,6 @@
     "id": "2da0b17e-ec89-4379-af99-163f87ab645d",
     "imagen": "https://coverartarchive.org/release-group/2da0b17e-ec89-4379-af99-163f87ab645d/front-250",
     "titulo": "The Fab Five",
-    "fecha": "1996",
-    "artista": "Oasis",
-    "tipo": "Album"
-  },
-  {
-    "id": "318dfdce-ad79-44ee-af0e-3701c5683cab",
-    "imagen": "https://coverartarchive.org/release-group/318dfdce-ad79-44ee-af0e-3701c5683cab/front-250",
-    "titulo": "Another Story",
     "fecha": "1996",
     "artista": "Oasis",
     "tipo": "Album"
@@ -338547,14 +338883,6 @@
     "id": "61924aa0-9882-42b7-b82b-e72cc9439a34",
     "imagen": "https://coverartarchive.org/release-group/61924aa0-9882-42b7-b82b-e72cc9439a34/front-250",
     "titulo": "Live Zombie USA ’94",
-    "fecha": "1996",
-    "artista": "The Cranberries",
-    "tipo": "Album"
-  },
-  {
-    "id": "7ca8bd8c-a21e-4a40-892d-1f293f16584e",
-    "imagen": "https://coverartarchive.org/release-group/7ca8bd8c-a21e-4a40-892d-1f293f16584e/front-250",
-    "titulo": "Unwired",
     "fecha": "1996",
     "artista": "The Cranberries",
     "tipo": "Album"
@@ -345088,6 +345416,14 @@
     "tipo": "Album"
   },
   {
+    "id": "88032b2b-dd3b-36a8-9fe0-de720fb451fd",
+    "imagen": "https://coverartarchive.org/release-group/88032b2b-dd3b-36a8-9fe0-de720fb451fd/front-250",
+    "titulo": "Ultra Rare Trax",
+    "fecha": "1995",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
     "id": "9c7f657f-c21b-352c-bf7c-665120ba42a1",
     "imagen": "https://coverartarchive.org/release-group/9c7f657f-c21b-352c-bf7c-665120ba42a1/front-250",
     "titulo": "The $5.98 E.P.: Garage Days Re‐Revisited …and More",
@@ -345107,14 +345443,6 @@
     "id": "f1b3e2e0-d298-4a53-97fd-534d97947943",
     "imagen": "https://coverartarchive.org/release-group/f1b3e2e0-d298-4a53-97fd-534d97947943/front-250",
     "titulo": "1982–1988: The Complete Demo Collection",
-    "fecha": "1995",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
-    "id": "88032b2b-dd3b-36a8-9fe0-de720fb451fd",
-    "imagen": "https://coverartarchive.org/release-group/88032b2b-dd3b-36a8-9fe0-de720fb451fd/front-250",
-    "titulo": "Ultra Rare Trax",
     "fecha": "1995",
     "artista": "Metallica",
     "tipo": "Album"
@@ -345358,14 +345686,6 @@
     "fecha": "1995",
     "artista": "Modestia Aparte",
     "tipo": "Publicación"
-  },
-  {
-    "id": "7dce3cfb-8cc6-4a7e-8ae6-fe49d3d44459",
-    "imagen": "https://coverartarchive.org/release-group/7dce3cfb-8cc6-4a7e-8ae6-fe49d3d44459/front-250",
-    "titulo": "Sola",
-    "fecha": "1995",
-    "artista": "Mónica Naranjo",
-    "tipo": "Single"
   },
   {
     "id": "5033d964-1517-47c8-b7a2-b426f9b1300c",
@@ -346675,6 +346995,14 @@
     "id": "5876b095-5d9d-4c6c-b40f-bd89a6e52c1d",
     "imagen": "https://coverartarchive.org/release-group/5876b095-5d9d-4c6c-b40f-bd89a6e52c1d/front-250",
     "titulo": "Absolutely Acoustic",
+    "fecha": "1995",
+    "artista": "The Cranberries",
+    "tipo": "Album"
+  },
+  {
+    "id": "7ca8bd8c-a21e-4a40-892d-1f293f16584e",
+    "imagen": "https://coverartarchive.org/release-group/7ca8bd8c-a21e-4a40-892d-1f293f16584e/front-250",
+    "titulo": "Unwired",
     "fecha": "1995",
     "artista": "The Cranberries",
     "tipo": "Album"
@@ -353232,8 +353560,8 @@
     "tipo": "Single"
   },
   {
-    "id": "78e731e6-4841-45f2-9394-2c315e7f2591",
-    "imagen": "https://coverartarchive.org/release-group/78e731e6-4841-45f2-9394-2c315e7f2591/front-250",
+    "id": "7dce3cfb-8cc6-4a7e-8ae6-fe49d3d44459",
+    "imagen": "https://coverartarchive.org/release-group/7dce3cfb-8cc6-4a7e-8ae6-fe49d3d44459/front-250",
     "titulo": "Sola",
     "fecha": "1994",
     "artista": "Mónica Naranjo",
@@ -353944,6 +354272,14 @@
     "tipo": "Album"
   },
   {
+    "id": "7e464f58-49eb-4cb6-96ea-6cf43af3250a",
+    "imagen": "https://coverartarchive.org/release-group/7e464f58-49eb-4cb6-96ea-6cf43af3250a/front-250",
+    "titulo": "Historias",
+    "fecha": "1994",
+    "artista": "Ricardo Arjona",
+    "tipo": "Album"
+  },
+  {
     "id": "3727cb4f-24ab-4e93-bea4-59aecf6faff3",
     "imagen": "https://coverartarchive.org/release-group/3727cb4f-24ab-4e93-bea4-59aecf6faff3/front-250",
     "titulo": "The ★ Collection",
@@ -354264,20 +354600,20 @@
     "tipo": "Single"
   },
   {
-    "id": "7420ef42-1787-3083-a282-997836ca8ef2",
-    "imagen": "https://coverartarchive.org/release-group/7420ef42-1787-3083-a282-997836ca8ef2/front-250",
-    "titulo": "This Cowboy Song",
-    "fecha": "1994",
-    "artista": "Sting",
-    "tipo": "Single"
-  },
-  {
     "id": "76ce9354-e4e3-39e4-a382-7c021086443c",
     "imagen": "https://coverartarchive.org/release-group/76ce9354-e4e3-39e4-a382-7c021086443c/front-250",
     "titulo": "Five Live!",
     "fecha": "1994",
     "artista": "Sting",
     "tipo": "EP"
+  },
+  {
+    "id": "7420ef42-1787-3083-a282-997836ca8ef2",
+    "imagen": "https://coverartarchive.org/release-group/7420ef42-1787-3083-a282-997836ca8ef2/front-250",
+    "titulo": "This Cowboy Song",
+    "fecha": "1994",
+    "artista": "Sting",
+    "tipo": "Single"
   },
   {
     "id": "a2b7093f-4399-3261-8c3d-a736716c48a3",
@@ -354690,7 +355026,7 @@
   {
     "id": "6c25dc02-8388-34a3-b55e-be5533d6dda1",
     "imagen": "https://coverartarchive.org/release-group/6c25dc02-8388-34a3-b55e-be5533d6dda1/front-250",
-    "titulo": "Stories to be Told",
+    "titulo": "Stories to Be Told",
     "fecha": "1994",
     "artista": "The Cranberries",
     "tipo": "Album"
@@ -358114,7 +358450,7 @@
   {
     "id": "f350fcf6-59d3-305f-bcaa-a6612946e8b9",
     "imagen": "https://coverartarchive.org/release-group/f350fcf6-59d3-305f-bcaa-a6612946e8b9/front-250",
-    "titulo": "1975-04-26: Cruel but Fair: LA Sports Arena, Los Angeles, CA, USA",
+    "titulo": "1975-04-26: LA Sports Arena, Los Angeles, CA, USA",
     "fecha": "1993-01",
     "artista": "Pink Floyd",
     "tipo": "Album"
@@ -360904,14 +361240,6 @@
     "tipo": "Album"
   },
   {
-    "id": "b1bc8998-e164-45a1-875e-c7199369abab",
-    "imagen": "https://coverartarchive.org/release-group/b1bc8998-e164-45a1-875e-c7199369abab/front-250",
-    "titulo": "Anthology",
-    "fecha": "1993",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "1010812f-aa58-41bd-87e4-1e1aacf29de8",
     "imagen": "https://coverartarchive.org/release-group/1010812f-aa58-41bd-87e4-1e1aacf29de8/front-250",
     "titulo": "Hello Dolly",
@@ -361027,6 +361355,14 @@
     "id": "a612f792-a373-4fda-a3bc-04b972c31e06",
     "imagen": "https://coverartarchive.org/release-group/a612f792-a373-4fda-a3bc-04b972c31e06/front-250",
     "titulo": "The Complete Louis Armstrong With Fletcher Henderson, Vol. 1: 1924/25",
+    "fecha": "1993",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "b1bc8998-e164-45a1-875e-c7199369abab",
+    "imagen": "https://coverartarchive.org/release-group/b1bc8998-e164-45a1-875e-c7199369abab/front-250",
+    "titulo": "Anthology",
     "fecha": "1993",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -361272,6 +361608,14 @@
     "tipo": "Album"
   },
   {
+    "id": "a0a52bd1-4b19-488c-a5b3-907e966823c9",
+    "imagen": "https://coverartarchive.org/release-group/a0a52bd1-4b19-488c-a5b3-907e966823c9/front-250",
+    "titulo": "15 Pieces of Live Shit: Binge & Purge",
+    "fecha": "1993",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
     "id": "bae2bf18-aa7e-4993-857e-64db135f9045",
     "imagen": "https://coverartarchive.org/release-group/bae2bf18-aa7e-4993-857e-64db135f9045/front-250",
     "titulo": "Garage Complete: The Early Unofficial Anthology: 1981–1983",
@@ -361331,14 +361675,6 @@
     "id": "9c1a8144-791e-349e-badf-0ce80be91b3a",
     "imagen": "https://coverartarchive.org/release-group/9c1a8144-791e-349e-badf-0ce80be91b3a/front-250",
     "titulo": "Destroyer",
-    "fecha": "1993",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
-    "id": "a0a52bd1-4b19-488c-a5b3-907e966823c9",
-    "imagen": "https://coverartarchive.org/release-group/a0a52bd1-4b19-488c-a5b3-907e966823c9/front-250",
-    "titulo": "15 Pieces of Live Shit: Binge & Purge",
     "fecha": "1993",
     "artista": "Metallica",
     "tipo": "Album"
@@ -374040,6 +374376,14 @@
     "tipo": "Album"
   },
   {
+    "id": "16655595-4ebe-32ef-8359-1d21586f29dd",
+    "imagen": "https://coverartarchive.org/release-group/16655595-4ebe-32ef-8359-1d21586f29dd/front-250",
+    "titulo": "Greatest Rock & Roll Hits",
+    "fecha": "1991",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
     "id": "16878a61-c244-3c41-96ad-b502447f9926",
     "imagen": "https://coverartarchive.org/release-group/16878a61-c244-3c41-96ad-b502447f9926/front-250",
     "titulo": "Elvis Through the Years, Volume 7: Fame and Fortune",
@@ -374051,6 +374395,22 @@
     "id": "240cb86f-4b2e-4c29-9ae7-f8a957a38d7b",
     "imagen": "https://coverartarchive.org/release-group/240cb86f-4b2e-4c29-9ae7-f8a957a38d7b/front-250",
     "titulo": "Elvis Through the Years, Volume 08: Are You Lonesome Tonight",
+    "fecha": "1991",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "317fa451-633f-41ae-99b2-8e0df6dc35a0",
+    "imagen": "https://coverartarchive.org/release-group/317fa451-633f-41ae-99b2-8e0df6dc35a0/front-250",
+    "titulo": "The Rock ’n’ Roll Era: Elvis Presley: 1956–1961",
+    "fecha": "1991",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "5b78b385-30bc-49f5-9e84-496ada3cf972",
+    "imagen": "https://coverartarchive.org/release-group/5b78b385-30bc-49f5-9e84-496ada3cf972/front-250",
+    "titulo": "Greatest Film Hits",
     "fecha": "1991",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -374115,30 +374475,6 @@
     "id": "fb61ca61-136c-368f-88bf-47f13b5a7665",
     "imagen": "https://coverartarchive.org/release-group/fb61ca61-136c-368f-88bf-47f13b5a7665/front-250",
     "titulo": "16 Rock'n Roll",
-    "fecha": "1991",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
-    "id": "16655595-4ebe-32ef-8359-1d21586f29dd",
-    "imagen": "https://coverartarchive.org/release-group/16655595-4ebe-32ef-8359-1d21586f29dd/front-250",
-    "titulo": "Greatest Rock & Roll Hits",
-    "fecha": "1991",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
-    "id": "317fa451-633f-41ae-99b2-8e0df6dc35a0",
-    "imagen": "https://coverartarchive.org/release-group/317fa451-633f-41ae-99b2-8e0df6dc35a0/front-250",
-    "titulo": "The Rock ’n’ Roll Era: Elvis Presley: 1956–1961",
-    "fecha": "1991",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
-    "id": "5b78b385-30bc-49f5-9e84-496ada3cf972",
-    "imagen": "https://coverartarchive.org/release-group/5b78b385-30bc-49f5-9e84-496ada3cf972/front-250",
-    "titulo": "Greatest Film Hits",
     "fecha": "1991",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -377741,7 +378077,7 @@
     "titulo": "Heartbreak Hotel, Hound Dog & Other Top Ten Hits",
     "fecha": "1990-10",
     "artista": "Elvis Presley",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "1c2e051d-2472-411c-8922-f9d05c5e2492",
@@ -390808,14 +391144,6 @@
     "tipo": "Album"
   },
   {
-    "id": "e33d78d1-50a9-3f37-85e2-9109e1cd94fb",
-    "imagen": "https://coverartarchive.org/release-group/e33d78d1-50a9-3f37-85e2-9109e1cd94fb/front-250",
-    "titulo": "Stardust",
-    "fecha": "1988",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "0ada6737-7a94-4dbd-bdfd-5529fda730a8",
     "imagen": "https://coverartarchive.org/release-group/0ada6737-7a94-4dbd-bdfd-5529fda730a8/front-250",
     "titulo": "The Wonderful World of Louis Armstrong (18 Golden Hits)",
@@ -390899,6 +391227,14 @@
     "id": "cdfb0201-8ffc-3a02-b42a-4abd66be7f01",
     "imagen": "https://coverartarchive.org/release-group/cdfb0201-8ffc-3a02-b42a-4abd66be7f01/front-250",
     "titulo": "The Wonderful World of Ella Fitzgerald & Louis Armstrong",
+    "fecha": "1988",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "e33d78d1-50a9-3f37-85e2-9109e1cd94fb",
+    "imagen": "https://coverartarchive.org/release-group/e33d78d1-50a9-3f37-85e2-9109e1cd94fb/front-250",
+    "titulo": "Stardust",
     "fecha": "1988",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -404352,6 +404688,14 @@
     "tipo": "Album"
   },
   {
+    "id": "69064ec7-29a2-4941-b649-bc1db1271957",
+    "imagen": "https://coverartarchive.org/release-group/69064ec7-29a2-4941-b649-bc1db1271957/front-250",
+    "titulo": "You're The Inspiration",
+    "fecha": "1984",
+    "artista": "Chicago",
+    "tipo": "Publicación"
+  },
+  {
     "id": "932f12b0-b65b-4ec9-953a-2ce78318aeec",
     "imagen": "https://coverartarchive.org/release-group/932f12b0-b65b-4ec9-953a-2ce78318aeec/front-250",
     "titulo": "1969-09-13: Varsity Stadium, Toronto, ON, Canada",
@@ -407576,22 +407920,6 @@
     "tipo": "Single"
   },
   {
-    "id": "d5bcac09-2201-4ec7-a683-9a1e314da42b",
-    "imagen": "https://coverartarchive.org/release-group/d5bcac09-2201-4ec7-a683-9a1e314da42b/front-250",
-    "titulo": "A Legendary Performer, Volume 4",
-    "fecha": "1983",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
-    "id": "d98e4b3b-6cc9-3ab1-94ff-12e119434d62",
-    "imagen": "https://coverartarchive.org/release-group/d98e4b3b-6cc9-3ab1-94ff-12e119434d62/front-250",
-    "titulo": "Elvis Forever: 32 Hits",
-    "fecha": "1983",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "28b7a89e-0c8a-488c-938f-b7ac0d420f6f",
     "imagen": "https://coverartarchive.org/release-group/28b7a89e-0c8a-488c-938f-b7ac0d420f6f/front-250",
     "titulo": "His Greatest Hits",
@@ -407619,6 +407947,22 @@
     "id": "bd770851-e98f-3f4d-b6e1-6a21cc0fb407",
     "imagen": "https://coverartarchive.org/release-group/bd770851-e98f-3f4d-b6e1-6a21cc0fb407/front-250",
     "titulo": "The Complete Bonus Songs",
+    "fecha": "1983",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "d5bcac09-2201-4ec7-a683-9a1e314da42b",
+    "imagen": "https://coverartarchive.org/release-group/d5bcac09-2201-4ec7-a683-9a1e314da42b/front-250",
+    "titulo": "A Legendary Performer, Volume 4",
+    "fecha": "1983",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "d98e4b3b-6cc9-3ab1-94ff-12e119434d62",
+    "imagen": "https://coverartarchive.org/release-group/d98e4b3b-6cc9-3ab1-94ff-12e119434d62/front-250",
+    "titulo": "Elvis Forever: 32 Hits",
     "fecha": "1983",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -420973,7 +421317,7 @@
     "titulo": "A Canadian Tribute",
     "fecha": "1978",
     "artista": "Elvis Presley",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "dacc9962-faf0-441d-bb52-7794a0fd10db",
@@ -423306,10 +423650,10 @@
   {
     "id": "92ea969a-0904-45df-aab9-2162522e9268",
     "imagen": "https://coverartarchive.org/release-group/92ea969a-0904-45df-aab9-2162522e9268/front-250",
-    "titulo": "Elvis In Demand",
+    "titulo": "Elvis in Demand",
     "fecha": "1977",
     "artista": "Elvis Presley",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "a61b9898-0d5c-3850-a655-68dcc1462688",
@@ -440392,14 +440736,6 @@
     "tipo": "Album"
   },
   {
-    "id": "2a61dbcb-40ed-383f-88e0-b216ac65b4b5",
-    "imagen": "https://coverartarchive.org/release-group/2a61dbcb-40ed-383f-88e0-b216ac65b4b5/front-250",
-    "titulo": "The Tom Jones Fever Zone",
-    "fecha": "1968",
-    "artista": "Tom Jones",
-    "tipo": "Album"
-  },
-  {
     "id": "819987bb-c18c-4ad4-a9ba-eae636430b7c",
     "imagen": "https://coverartarchive.org/release-group/819987bb-c18c-4ad4-a9ba-eae636430b7c/front-250",
     "titulo": "Dalila",
@@ -445448,6 +445784,14 @@
     "tipo": "Album"
   },
   {
+    "id": "436bb557-ad23-371e-bb81-b1a3a367e84d",
+    "imagen": "https://coverartarchive.org/release-group/436bb557-ad23-371e-bb81-b1a3a367e84d/front-250",
+    "titulo": "Tom Jones",
+    "fecha": "1965",
+    "artista": "Tom Jones",
+    "tipo": "EP"
+  },
+  {
     "id": "1b6d2eed-163b-3213-9fc9-2ca8d198c6dc",
     "imagen": "https://coverartarchive.org/release-group/1b6d2eed-163b-3213-9fc9-2ca8d198c6dc/front-250",
     "titulo": "What’s New Pussycat? / With These Hands",
@@ -445462,14 +445806,6 @@
     "fecha": "1965",
     "artista": "Tom Jones",
     "tipo": "Single"
-  },
-  {
-    "id": "436bb557-ad23-371e-bb81-b1a3a367e84d",
-    "imagen": "https://coverartarchive.org/release-group/436bb557-ad23-371e-bb81-b1a3a367e84d/front-250",
-    "titulo": "Tom Jones",
-    "fecha": "1965",
-    "artista": "Tom Jones",
-    "tipo": "EP"
   },
   {
     "id": "9ce03abb-b31f-4c06-91c5-01e3b17107ff",
@@ -450024,20 +450360,20 @@
     "tipo": "Single"
   },
   {
-    "id": "a0c31843-87b0-4524-b2ba-d4366f79d5d1",
-    "imagen": "https://coverartarchive.org/release-group/a0c31843-87b0-4524-b2ba-d4366f79d5d1/front-250",
-    "titulo": "Jailhouse Rock",
-    "fecha": "1958",
-    "artista": "Elvis Presley",
-    "tipo": "Publicación"
-  },
-  {
     "id": "05027dc0-26dd-4dfd-bf07-d4f753020c10",
     "imagen": "https://coverartarchive.org/release-group/05027dc0-26dd-4dfd-bf07-d4f753020c10/front-250",
     "titulo": "King Creole Vol. 2",
     "fecha": "1958",
     "artista": "Elvis Presley",
     "tipo": "EP"
+  },
+  {
+    "id": "a0c31843-87b0-4524-b2ba-d4366f79d5d1",
+    "imagen": "https://coverartarchive.org/release-group/a0c31843-87b0-4524-b2ba-d4366f79d5d1/front-250",
+    "titulo": "Jailhouse Rock",
+    "fecha": "1958",
+    "artista": "Elvis Presley",
+    "tipo": "Single"
   },
   {
     "id": "04404d3d-17a3-46ab-949f-b59060766310",
@@ -450584,20 +450920,20 @@
     "tipo": "Single"
   },
   {
-    "id": "7ba62fa4-fdca-4744-94c9-a43742fccda1",
-    "imagen": "https://coverartarchive.org/release-group/7ba62fa4-fdca-4744-94c9-a43742fccda1/front-250",
-    "titulo": "Mean Woman Blues / Have I Told You Lately That I Love You?",
-    "fecha": "1957",
-    "artista": "Elvis Presley",
-    "tipo": "Publicación"
-  },
-  {
     "id": "214fb8f8-bdee-3a96-ba46-e833f73de94f",
     "imagen": "https://coverartarchive.org/release-group/214fb8f8-bdee-3a96-ba46-e833f73de94f/front-250",
     "titulo": "Jailhouse Rock",
     "fecha": "1957",
     "artista": "Elvis Presley",
     "tipo": "EP"
+  },
+  {
+    "id": "7ba62fa4-fdca-4744-94c9-a43742fccda1",
+    "imagen": "https://coverartarchive.org/release-group/7ba62fa4-fdca-4744-94c9-a43742fccda1/front-250",
+    "titulo": "Mean Woman Blues / Have I Told You Lately That I Love You?",
+    "fecha": "1957",
+    "artista": "Elvis Presley",
+    "tipo": "Single"
   },
   {
     "id": "b3b04c5c-8924-478c-a0f3-015fd6c3aef0",
@@ -451560,14 +451896,6 @@
     "tipo": "Album"
   },
   {
-    "id": "0158c1b2-8b4e-4159-8393-aa73298c7796",
-    "imagen": "https://coverartarchive.org/release-group/0158c1b2-8b4e-4159-8393-aa73298c7796/front-250",
-    "titulo": "Skookian / Otchi-Tchor-Ni-Ya",
-    "fecha": "1954",
-    "artista": "Louis Armstrong",
-    "tipo": "EP"
-  },
-  {
     "id": "81e67993-5ee8-432d-b6fd-2f38a108f25d",
     "imagen": "https://coverartarchive.org/release-group/81e67993-5ee8-432d-b6fd-2f38a108f25d/front-250",
     "titulo": "Louis Armstrong Plays W.C. Handy, Volume 1",
@@ -451587,6 +451915,14 @@
     "id": "aa27b632-fc0c-4600-81f2-10e89f4d49bc",
     "imagen": "https://coverartarchive.org/release-group/aa27b632-fc0c-4600-81f2-10e89f4d49bc/front-250",
     "titulo": "Louis Armstrong and the Mills Brothers, Volume One",
+    "fecha": "1954",
+    "artista": "Louis Armstrong",
+    "tipo": "EP"
+  },
+  {
+    "id": "0158c1b2-8b4e-4159-8393-aa73298c7796",
+    "imagen": "https://coverartarchive.org/release-group/0158c1b2-8b4e-4159-8393-aa73298c7796/front-250",
+    "titulo": "Skookian / Otchi-Tchor-Ni-Ya",
     "fecha": "1954",
     "artista": "Louis Armstrong",
     "tipo": "EP"
@@ -463696,12 +464032,36 @@
     "tipo": "Single"
   },
   {
+    "id": "3252cbd9-af58-44a0-93de-77f4a08326e0",
+    "imagen": "https://coverartarchive.org/release-group/3252cbd9-af58-44a0-93de-77f4a08326e0/front-250",
+    "titulo": "Run Away With Me (remixes, part two)",
+    "fecha": "",
+    "artista": "Carly Rae Jepsen",
+    "tipo": "Single"
+  },
+  {
+    "id": "33dc38a4-cb69-4747-b538-008018fa9405",
+    "imagen": "https://coverartarchive.org/release-group/33dc38a4-cb69-4747-b538-008018fa9405/front-250",
+    "titulo": "Run Away With Me (remixes)",
+    "fecha": "",
+    "artista": "Carly Rae Jepsen",
+    "tipo": "Single"
+  },
+  {
     "id": "61239dc2-6a6f-4946-8c93-a8c617bf28db",
     "imagen": "https://coverartarchive.org/release-group/61239dc2-6a6f-4946-8c93-a8c617bf28db/front-250",
     "titulo": "Curiosity Side B",
     "fecha": "",
     "artista": "Carly Rae Jepsen",
     "tipo": "EP"
+  },
+  {
+    "id": "c1a35e67-7a16-40a5-80af-6bf3f7d0cff5",
+    "imagen": "https://coverartarchive.org/release-group/c1a35e67-7a16-40a5-80af-6bf3f7d0cff5/front-250",
+    "titulo": "Call Me Maybe (DAISHI DANCE remix)",
+    "fecha": "",
+    "artista": "Carly Rae Jepsen",
+    "tipo": "Single"
   },
   {
     "id": "ddcc5eb1-7ce2-4f50-9995-798aee31e107",
@@ -466013,7 +466373,7 @@
     "titulo": "Elvis Ultimate 50 CD2",
     "fecha": "",
     "artista": "Elvis Presley",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "a04befe7-8049-48ce-9b1c-b16ca80a0dee",
@@ -466021,7 +466381,7 @@
     "titulo": "Rock'n Roll Legend",
     "fecha": "",
     "artista": "Elvis Presley",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "b4a64a57-6a36-4ebc-ba0c-4f90e86f07f8",
@@ -466029,7 +466389,7 @@
     "titulo": "he King and Friends Disc 2",
     "fecha": "",
     "artista": "Elvis Presley",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "bb2a367f-a2d0-4982-8c3f-b687b391d6da",
@@ -466037,7 +466397,7 @@
     "titulo": "Elvis-The King & Friends Disc 1",
     "fecha": "",
     "artista": "Elvis Presley",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "019fce9f-80ff-35d8-b273-9c91a0815f1f",
@@ -466147,6 +466507,14 @@
     "id": "3d7f25d4-9296-3c61-a557-096c250c258c",
     "imagen": "https://coverartarchive.org/release-group/3d7f25d4-9296-3c61-a557-096c250c258c/front-250",
     "titulo": "Elvis: The Legend, Volume 3",
+    "fecha": "",
+    "artista": "Elvis Presley",
+    "tipo": "Album"
+  },
+  {
+    "id": "3da2f822-5661-3977-abd1-012aa1569f75",
+    "imagen": "https://coverartarchive.org/release-group/3da2f822-5661-3977-abd1-012aa1569f75/front-250",
+    "titulo": "Louisiana Hayride Shows 1954-56",
     "fecha": "",
     "artista": "Elvis Presley",
     "tipo": "Album"
@@ -466392,14 +466760,6 @@
     "tipo": "Album"
   },
   {
-    "id": "3da2f822-5661-3977-abd1-012aa1569f75",
-    "imagen": "https://coverartarchive.org/release-group/3da2f822-5661-3977-abd1-012aa1569f75/front-250",
-    "titulo": "Louisiana Hayride Shows 1954-56",
-    "fecha": "",
-    "artista": "Elvis Presley",
-    "tipo": "Album"
-  },
-  {
     "id": "baae7b11-7c07-459c-8566-a29431c9174d",
     "imagen": "https://coverartarchive.org/release-group/baae7b11-7c07-459c-8566-a29431c9174d/front-250",
     "titulo": "Sound & Vision Elvis Presley",
@@ -466434,7 +466794,7 @@
   {
     "id": "9c8d1785-6669-479b-8a6b-a4a566130286",
     "imagen": "https://coverartarchive.org/release-group/9c8d1785-6669-479b-8a6b-a4a566130286/front-250",
-    "titulo": "Can't Help Falling in Love",
+    "titulo": "Can’t Help Falling in Love",
     "fecha": "",
     "artista": "Elvis Presley",
     "tipo": "Single"
@@ -467192,14 +467552,6 @@
     "tipo": "Album"
   },
   {
-    "id": "5e36ae1d-1a72-4bf2-8f1d-03723040207d",
-    "imagen": "https://coverartarchive.org/release-group/5e36ae1d-1a72-4bf2-8f1d-03723040207d/front-250",
-    "titulo": "1995-10-01: Everyday I Have The Blues: Olympic Pool, Tokyo, Japan",
-    "fecha": "",
-    "artista": "Eric Clapton",
-    "tipo": "Album"
-  },
-  {
     "id": "5f93a4a2-ba29-44b5-a493-2176e4110188",
     "imagen": "https://coverartarchive.org/release-group/5f93a4a2-ba29-44b5-a493-2176e4110188/front-250",
     "titulo": "1988‐09‐07: The Spectrum, Philadelphia, PA, USA",
@@ -467347,14 +467699,6 @@
     "id": "8b50821f-e14e-4a7d-be5f-ec2577ed7b62",
     "imagen": "https://coverartarchive.org/release-group/8b50821f-e14e-4a7d-be5f-ec2577ed7b62/front-250",
     "titulo": "1974‐11‐05: First Appearance: Koseinenkin Kaikan Dai Hall, Osaka, Japan",
-    "fecha": "",
-    "artista": "Eric Clapton",
-    "tipo": "Album"
-  },
-  {
-    "id": "8bf9ed09-70f1-428d-a05d-f6d0d96fe959",
-    "imagen": "https://coverartarchive.org/release-group/8bf9ed09-70f1-428d-a05d-f6d0d96fe959/front-250",
-    "titulo": "1996-05-09: Duets: Roseland Ballroom, New York City, NY, USA",
     "fecha": "",
     "artista": "Eric Clapton",
     "tipo": "Album"
@@ -467976,6 +468320,14 @@
     "tipo": "Album"
   },
   {
+    "id": "5e36ae1d-1a72-4bf2-8f1d-03723040207d",
+    "imagen": "https://coverartarchive.org/release-group/5e36ae1d-1a72-4bf2-8f1d-03723040207d/front-250",
+    "titulo": "1995-10-01: Everyday I Have The Blues: Olympic Pool, Tokyo, Japan",
+    "fecha": "",
+    "artista": "Eric Clapton",
+    "tipo": "Album"
+  },
+  {
     "id": "673de148-576e-44f6-b7ef-2b6290c210ac",
     "imagen": "https://coverartarchive.org/release-group/673de148-576e-44f6-b7ef-2b6290c210ac/front-250",
     "titulo": "EC – The Coliseum 11‒07‒1976 Jacksonville FL",
@@ -468099,6 +468451,14 @@
     "id": "8ac77aed-becf-41d9-9f8c-4497f73e49f0",
     "imagen": "https://coverartarchive.org/release-group/8ac77aed-becf-41d9-9f8c-4497f73e49f0/front-250",
     "titulo": "2017‐05‐22: Royal Albert Hall, London, England, UK",
+    "fecha": "",
+    "artista": "Eric Clapton",
+    "tipo": "Album"
+  },
+  {
+    "id": "8bf9ed09-70f1-428d-a05d-f6d0d96fe959",
+    "imagen": "https://coverartarchive.org/release-group/8bf9ed09-70f1-428d-a05d-f6d0d96fe959/front-250",
+    "titulo": "1996-05-09: Duets: Roseland Ballroom, New York City, NY, USA",
     "fecha": "",
     "artista": "Eric Clapton",
     "tipo": "Album"
@@ -468312,11 +468672,11 @@
     "tipo": "Album"
   },
   {
-    "id": "b7e14e21-4ba2-440d-8522-217c103b4a12",
-    "imagen": "https://coverartarchive.org/release-group/b7e14e21-4ba2-440d-8522-217c103b4a12/front-250",
-    "titulo": "VILLA&ZIKO",
+    "id": "f7994fe3-b10e-4d29-bbb3-77d72f3b185c",
+    "imagen": "https://coverartarchive.org/release-group/f7994fe3-b10e-4d29-bbb3-77d72f3b185c/front-250",
+    "titulo": "Layla (short edit)",
     "fecha": "",
-    "artista": "Estopa",
+    "artista": "Eric Clapton",
     "tipo": "Single"
   },
   {
@@ -471040,14 +471400,6 @@
     "tipo": "Broadcast"
   },
   {
-    "id": "52f31ada-ff11-4004-9d26-a61661bc677d",
-    "imagen": "https://coverartarchive.org/release-group/52f31ada-ff11-4004-9d26-a61661bc677d/front-250",
-    "titulo": "Mega Hits: Kansas",
-    "fecha": "",
-    "artista": "Kansas",
-    "tipo": "Album"
-  },
-  {
     "id": "7dd61705-8a8f-4898-a5fa-28da83bda281",
     "imagen": "https://coverartarchive.org/release-group/7dd61705-8a8f-4898-a5fa-28da83bda281/front-250",
     "titulo": "1993-07-26: Dallas Alley, Dallas, TX, USA",
@@ -472464,14 +472816,6 @@
     "tipo": "Album"
   },
   {
-    "id": "503ddb66-70ca-3b5f-b0d4-621e6f135c73",
-    "imagen": "https://coverartarchive.org/release-group/503ddb66-70ca-3b5f-b0d4-621e6f135c73/front-250",
-    "titulo": "Take It Satch",
-    "fecha": "",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
     "id": "565e85ff-03ff-4556-896f-4a799a5d0295",
     "imagen": "https://coverartarchive.org/release-group/565e85ff-03ff-4556-896f-4a799a5d0295/front-250",
     "titulo": "Best of Louie Armstrong",
@@ -472667,14 +473011,6 @@
     "id": "c846ee3e-d705-4935-ab26-00a0ec944992",
     "imagen": "https://coverartarchive.org/release-group/c846ee3e-d705-4935-ab26-00a0ec944992/front-250",
     "titulo": "Greatest Hits",
-    "fecha": "",
-    "artista": "Louis Armstrong",
-    "tipo": "Album"
-  },
-  {
-    "id": "ca78fc6d-5c3c-4fa5-9af7-cf3b6345a57f",
-    "imagen": "https://coverartarchive.org/release-group/ca78fc6d-5c3c-4fa5-9af7-cf3b6345a57f/front-250",
-    "titulo": "Louis",
     "fecha": "",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -472899,6 +473235,14 @@
     "id": "4858c6a6-5b74-4cff-ba97-288055dd811c",
     "imagen": "https://coverartarchive.org/release-group/4858c6a6-5b74-4cff-ba97-288055dd811c/front-250",
     "titulo": "Tiger Rag",
+    "fecha": "",
+    "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "503ddb66-70ca-3b5f-b0d4-621e6f135c73",
+    "imagen": "https://coverartarchive.org/release-group/503ddb66-70ca-3b5f-b0d4-621e6f135c73/front-250",
+    "titulo": "Take It Satch",
     "fecha": "",
     "artista": "Louis Armstrong",
     "tipo": "Album"
@@ -473648,14 +473992,6 @@
     "tipo": "Single"
   },
   {
-    "id": "6335635d-21a4-4b6a-bff5-960fe719dc43",
-    "imagen": "https://coverartarchive.org/release-group/6335635d-21a4-4b6a-bff5-960fe719dc43/front-250",
-    "titulo": "Master of Puppets",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "00f59d74-255f-4979-8b20-0ea64be3a065",
     "imagen": "https://coverartarchive.org/release-group/00f59d74-255f-4979-8b20-0ea64be3a065/front-250",
     "titulo": "Live at Sportovni Hala, Prague, CZ Sep 9 1996",
@@ -474195,6 +474531,14 @@
     "id": "5ebca851-9034-3104-9b86-e5b180f25e56",
     "imagen": "https://coverartarchive.org/release-group/5ebca851-9034-3104-9b86-e5b180f25e56/front-250",
     "titulo": "1983-03-05: The Stone, San Francisco, CA, USA",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "d00b35e3-bf4e-32dc-a13a-275594f79208",
+    "imagen": "https://coverartarchive.org/release-group/d00b35e3-bf4e-32dc-a13a-275594f79208/front-250",
+    "titulo": "1983-11-25: The Keystone, Berkeley, CA, USA",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -474832,14 +475176,6 @@
     "tipo": "Album"
   },
   {
-    "id": "d00b35e3-bf4e-32dc-a13a-275594f79208",
-    "imagen": "https://coverartarchive.org/release-group/d00b35e3-bf4e-32dc-a13a-275594f79208/front-250",
-    "titulo": "1983-11-25: The Keystone, Berkeley, CA, USA",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "d1850ec3-138f-3a1b-bd5a-2b3f8e897d13",
     "imagen": "https://coverartarchive.org/release-group/d1850ec3-138f-3a1b-bd5a-2b3f8e897d13/front-250",
     "titulo": "1988-10-29: Bruxelles, Belgium",
@@ -474931,6 +475267,14 @@
     "id": "ed97d49a-46de-3eec-adac-a7b2e4b9d7fe",
     "imagen": "https://coverartarchive.org/release-group/ed97d49a-46de-3eec-adac-a7b2e4b9d7fe/front-250",
     "titulo": "1992‐02‐29: Friends of Misery: Providence, RI, USA",
+    "fecha": "",
+    "artista": "Metallica",
+    "tipo": "Album"
+  },
+  {
+    "id": "ef512949-8726-3bb7-9483-2697512cd6fc",
+    "imagen": "https://coverartarchive.org/release-group/ef512949-8726-3bb7-9483-2697512cd6fc/front-250",
+    "titulo": "1993‐04‐15: One Night in Bangkok 1993: Bangkok, Thailand",
     "fecha": "",
     "artista": "Metallica",
     "tipo": "Album"
@@ -475664,14 +476008,6 @@
     "tipo": "Album"
   },
   {
-    "id": "ef512949-8726-3bb7-9483-2697512cd6fc",
-    "imagen": "https://coverartarchive.org/release-group/ef512949-8726-3bb7-9483-2697512cd6fc/front-250",
-    "titulo": "1993‐04‐15: One Night in Bangkok 1993: Bangkok, Thailand",
-    "fecha": "",
-    "artista": "Metallica",
-    "tipo": "Album"
-  },
-  {
     "id": "f23e041a-4a9c-353b-b8d8-5c4c8ad0012f",
     "imagen": "https://coverartarchive.org/release-group/f23e041a-4a9c-353b-b8d8-5c4c8ad0012f/front-250",
     "titulo": "Loadin’ Barcelona",
@@ -476328,14 +476664,6 @@
     "tipo": "Album"
   },
   {
-    "id": "37f54357-fc2c-4657-a5d4-d0445adabcd1",
-    "imagen": "https://coverartarchive.org/release-group/37f54357-fc2c-4657-a5d4-d0445adabcd1/front-250",
-    "titulo": "…There and Then",
-    "fecha": "",
-    "artista": "Oasis",
-    "tipo": "Publicación"
-  },
-  {
     "id": "3b28939c-dff2-4820-aeea-886d9576960b",
     "imagen": "https://coverartarchive.org/release-group/3b28939c-dff2-4820-aeea-886d9576960b/front-250",
     "titulo": "Big Time Sunday Times",
@@ -476640,6 +476968,14 @@
     "tipo": "Album"
   },
   {
+    "id": "7ea0cf98-c5cf-4547-b166-88a8d8019a5b",
+    "imagen": "https://coverartarchive.org/release-group/7ea0cf98-c5cf-4547-b166-88a8d8019a5b/front-250",
+    "titulo": "The Golden Unplugged Album",
+    "fecha": "",
+    "artista": "Oasis",
+    "tipo": "Album"
+  },
+  {
     "id": "832a7eb9-4b02-4d91-8851-ae29050207ec",
     "imagen": "https://coverartarchive.org/release-group/832a7eb9-4b02-4d91-8851-ae29050207ec/front-250",
     "titulo": "New York City",
@@ -476768,17 +477104,17 @@
     "tipo": "Broadcast"
   },
   {
+    "id": "37f54357-fc2c-4657-a5d4-d0445adabcd1",
+    "imagen": "https://coverartarchive.org/release-group/37f54357-fc2c-4657-a5d4-d0445adabcd1/front-250",
+    "titulo": "…There and Then",
+    "fecha": "",
+    "artista": "Oasis",
+    "tipo": "Single"
+  },
+  {
     "id": "6bb518f0-3532-4bd2-9ffd-6b8ca81d5abf",
     "imagen": "https://coverartarchive.org/release-group/6bb518f0-3532-4bd2-9ffd-6b8ca81d5abf/front-250",
     "titulo": "Live Demonstration Tape (extended)",
-    "fecha": "",
-    "artista": "Oasis",
-    "tipo": "Album"
-  },
-  {
-    "id": "7ea0cf98-c5cf-4547-b166-88a8d8019a5b",
-    "imagen": "https://coverartarchive.org/release-group/7ea0cf98-c5cf-4547-b166-88a8d8019a5b/front-250",
-    "titulo": "The Golden Unplugged Album",
     "fecha": "",
     "artista": "Oasis",
     "tipo": "Album"
@@ -476859,6 +477195,14 @@
     "id": "0f6e7340-ab07-48bc-959c-e3c13126caee",
     "imagen": "https://coverartarchive.org/release-group/0f6e7340-ab07-48bc-959c-e3c13126caee/front-250",
     "titulo": "Best Selection",
+    "fecha": "",
+    "artista": "Otis Redding",
+    "tipo": "Album"
+  },
+  {
+    "id": "852cf510-996b-4b87-960b-6e4f1f5b4780",
+    "imagen": "https://coverartarchive.org/release-group/852cf510-996b-4b87-960b-6e4f1f5b4780/front-250",
+    "titulo": "Pain in My Heart",
     "fecha": "",
     "artista": "Otis Redding",
     "tipo": "Album"
@@ -483760,44 +484104,12 @@
     "tipo": "Album"
   },
   {
-    "id": "08469c7c-1e7c-3d8d-9734-c1afb3861eca",
-    "imagen": "https://coverartarchive.org/release-group/08469c7c-1e7c-3d8d-9734-c1afb3861eca/front-250",
-    "titulo": "Animal Instinct",
-    "fecha": "",
-    "artista": "The Cranberries",
-    "tipo": "Album"
-  },
-  {
-    "id": "77185ebd-37cc-35bd-bed7-4d74d25c1765",
-    "imagen": "https://coverartarchive.org/release-group/77185ebd-37cc-35bd-bed7-4d74d25c1765/front-250",
-    "titulo": "Rare Stars: The Rarest of 1992–2002",
-    "fecha": "",
-    "artista": "The Cranberries",
-    "tipo": "Album"
-  },
-  {
     "id": "7c69e32c-a1a4-4daf-82f3-8beaac923221",
     "imagen": "https://coverartarchive.org/release-group/7c69e32c-a1a4-4daf-82f3-8beaac923221/front-250",
     "titulo": "Zombie",
     "fecha": "",
     "artista": "The Cranberries",
     "tipo": "Single"
-  },
-  {
-    "id": "82e41549-dcf5-3939-bd5b-dda0ef325c56",
-    "imagen": "https://coverartarchive.org/release-group/82e41549-dcf5-3939-bd5b-dda0ef325c56/front-250",
-    "titulo": "The Best Singles Collection",
-    "fecha": "",
-    "artista": "The Cranberries",
-    "tipo": "Album"
-  },
-  {
-    "id": "e1add1f0-dbe5-4cdf-8120-6687f4dad67e",
-    "imagen": "https://coverartarchive.org/release-group/e1add1f0-dbe5-4cdf-8120-6687f4dad67e/front-250",
-    "titulo": "Everything I Said…",
-    "fecha": "",
-    "artista": "The Cranberries",
-    "tipo": "Album"
   },
   {
     "id": "14517903-439f-4755-9d54-a41388d00512",
