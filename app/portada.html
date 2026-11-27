@@ -32,6 +32,10 @@ button{border:1px solid #ffffff25;border-radius:22px;padding:10px 17px;backgroun
 button.activo{background:var(--azul);border-color:var(--azul)}
 #estado{color:var(--suave);margin:10px 0 20px}
 #ultima-actualizacion{color:var(--suave);font-size:13px;margin:-10px 0 20px}
+.fila-actualizacion{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:-10px 0 20px}.fila-actualizacion #ultima-actualizacion{margin:0}
+#actualizar-radar-ahora{padding:7px 14px;font-size:13px;border-radius:12px;background:linear-gradient(120deg,#706bff,#b72d83);border-color:#c6a5ff}#actualizar-radar-ahora:disabled{opacity:.55;cursor:default}
+#estado-actualizacion-github{color:var(--suave);font-size:13px}#estado-actualizacion-github a{color:inherit}
+body[data-pagina^="lista-"] .fila-actualizacion{display:none!important}
 .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .tarjeta{background:var(--panel);border:1px solid #ffffff12;border-radius:17px;overflow:hidden;min-width:0;transition:transform .15s}
 .tarjeta:hover{transform:translateY(-3px)}
@@ -170,7 +174,11 @@ body.modal-info-musical-abierto{overflow:hidden}
     </div>
   </div>
   <div id="estado">Cargando publicaciones…</div>
-  <div id="ultima-actualizacion">Consultando última actualización…</div>
+  <div class="fila-actualizacion">
+    <div id="ultima-actualizacion">Consultando última actualización…</div>
+    <button id="actualizar-radar-ahora" type="button" title="Lanza ahora la actualización completa del radar">🔄 Actualizar ahora</button>
+    <span id="estado-actualizacion-github" aria-live="polite"></span>
+  </div>
   <section id="lista" class="grid"></section>
 
 <section class="bloque-listas" id="listas-musicales">
@@ -490,6 +498,50 @@ async function fetchAccionProtegida(url, opciones={}) {
   }
   return respuesta;
 }
+(()=>{
+ const boton=document.getElementById("actualizar-radar-ahora");
+ const estado=document.getElementById("estado-actualizacion-github");
+ if(!boton||!estado)return;
+ let temporizador=null;
+ const enlace=url=>url?' · <a href="'+url+'" target="_blank" rel="noopener noreferrer">ver en GitHub</a>':'';
+ function horaCorta(iso){try{return new Date(iso).toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"})}catch(e){return""}}
+ function pintar(d){
+  if(d.en_curso){
+   boton.disabled=true;
+   estado.innerHTML="⏳ Actualizando desde las "+horaCorta(d.inicio)+" (suele tardar 2–4 h)"+enlace(d.url);
+   if(!temporizador)temporizador=setInterval(consultar,60000);
+   return;
+  }
+  boton.disabled=false;
+  if(temporizador){clearInterval(temporizador);temporizador=null;
+   if(d.resultado==="success")estado.innerHTML="✅ Actualización terminada. Recarga la página en unos minutos para ver las novedades."+enlace(d.url);
+   else if(d.resultado)estado.innerHTML="⚠️ La actualización no terminó bien."+enlace(d.url);
+  }
+ }
+ async function consultar(){
+  try{const r=await fetch("/api/actualizar-github/estado",{cache:"no-store"});pintar(await r.json());}catch(e){}
+ }
+ boton.addEventListener("click",async()=>{
+  boton.disabled=true;
+  estado.textContent="Lanzando actualización…";
+  try{
+   const r=await fetchAccionProtegida("/api/actualizar-github",{method:"POST"});
+   const d=await r.json().catch(()=>({}));
+   if(r.ok||r.status===409){
+    estado.innerHTML="⏳ "+(d.mensaje||"Actualización lanzada.")+" Suele tardar 2–4 h"+enlace(d.url);
+    if(!temporizador)temporizador=setInterval(consultar,60000);
+    setTimeout(consultar,15000);
+   }else{
+    boton.disabled=false;
+    estado.innerHTML="⚠️ "+escaparLista(d.error||"No se pudo lanzar la actualización.")+(d.url_flujo?' <a href="'+d.url_flujo+'" target="_blank" rel="noopener noreferrer">Abrir en GitHub</a>':"");
+   }
+  }catch(e){
+   boton.disabled=false;
+   estado.textContent="⚠️ No se pudo contactar con el servidor.";
+  }
+ });
+ consultar();
+})();
 const nombresListas={
   "los40":"LOS40",
   "canal-fiesta":"Canal Fiesta",

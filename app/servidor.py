@@ -5506,6 +5506,122 @@ def actualizar_radar():
 
 
 
+# --- Actualización en GitHub (botón «Actualizar ahora» de la portada) ---
+# En Render la actualización no puede hacerse en el propio servidor (tarda horas
+# y los archivos se pierden en cada despliegue), así que el botón pide a GitHub
+# que lance el flujo «Actualización diaria». Requiere la variable de entorno
+# GITHUB_TOKEN: un token de GitHub con permiso «Actions: Read and write» sobre
+# el repositorio.
+_GITHUB_REPO = (os.environ.get("GITHUB_REPO") or "Maktub86/Mi-Radar-Musical").strip()
+_GITHUB_FLUJO = "actualizacion-diaria.yml"
+_cache_estado_github = {"momento": 0.0, "datos": None}
+_candado_estado_github = threading.Lock()
+
+
+def _token_github():
+    return (os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN") or "").strip()
+
+
+def _url_flujo_github():
+    return f"https://github.com/{_GITHUB_REPO}/actions/workflows/{_GITHUB_FLUJO}"
+
+
+def _github_api(ruta, metodo="GET", cuerpo=None):
+    cabeceras = {
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+        "User-Agent": "MiRadarMusical",
+    }
+    token = _token_github()
+    if token:
+        cabeceras["Authorization"] = "Bearer " + token
+    datos = None
+    if cuerpo is not None:
+        datos = json.dumps(cuerpo).encode("utf-8")
+        cabeceras["Content-Type"] = "application/json"
+    peticion = Request(
+        f"https://api.github.com/repos/{_GITHUB_REPO}{ruta}",
+        data=datos, headers=cabeceras, method=metodo,
+    )
+    with urlopen(peticion, timeout=15) as respuesta:
+        contenido = respuesta.read()
+    return json.loads(contenido) if contenido else {}
+
+
+def _ultima_ejecucion_github():
+    datos = _github_api(f"/actions/workflows/{_GITHUB_FLUJO}/runs?per_page=10")
+    for ejecucion in datos.get("workflow_runs") or []:
+        # Las ejecuciones programadas que no tocan terminan en segundos y no
+        # interesan; las manuales, las largas y las que siguen en marcha, sí.
+        if ejecucion.get("status") != "completed" or ejecucion.get("event") == "workflow_dispatch":
+            return ejecucion
+        try:
+            inicio = datetime.fromisoformat(str(ejecucion.get("run_started_at")).replace("Z", "+00:00"))
+            fin = datetime.fromisoformat(str(ejecucion.get("updated_at")).replace("Z", "+00:00"))
+            if (fin - inicio).total_seconds() > 300 or ejecucion.get("conclusion") != "success":
+                return ejecucion
+        except (TypeError, ValueError):
+            continue
+    return None
+
+
+def _resumen_ejecucion(ejecucion):
+    if not ejecucion:
+        return {"en_curso": False, "estado": None}
+    return {
+        "en_curso": ejecucion.get("status") != "completed",
+        "estado": ejecucion.get("status"),
+        "resultado": ejecucion.get("conclusion"),
+        "inicio": ejecucion.get("run_started_at") or ejecucion.get("created_at"),
+        "fin": ejecucion.get("updated_at"),
+        "url": ejecucion.get("html_url"),
+    }
+
+
+@app.get("/api/actualizar-github/estado")
+def estado_actualizacion_github():
+    ahora = time.time()
+    with _candado_estado_github:
+        if _cache_estado_github["datos"] and ahora - _cache_estado_github["momento"] < 30:
+            return jsonify(_cache_estado_github["datos"])
+    try:
+        datos = _resumen_ejecucion(_ultima_ejecucion_github())
+    except Exception:
+        return jsonify({"en_curso": False, "estado": None, "error": "No se pudo consultar GitHub."})
+    datos["configurado"] = bool(_token_github())
+    datos["url_flujo"] = _url_flujo_github()
+    with _candado_estado_github:
+        _cache_estado_github.update(momento=ahora, datos=datos)
+    return jsonify(datos)
+
+
+@app.post("/api/actualizar-github")
+def lanzar_actualizacion_github():
+    permiso = _comprobar_permiso_actualizacion()
+    if permiso:
+        return permiso
+    if not _token_github():
+        return jsonify({
+            "error": "Falta configurar GITHUB_TOKEN en el servidor. Mientras tanto puedes lanzarla desde GitHub con «Run workflow».",
+            "url_flujo": _url_flujo_github(),
+        }), 503
+    try:
+        actual = _ultima_ejecucion_github()
+        if actual and actual.get("status") != "completed":
+            return jsonify({"en_curso": True, "mensaje": "Ya hay una actualización en marcha.", **_resumen_ejecucion(actual)}), 409
+        _github_api(f"/actions/workflows/{_GITHUB_FLUJO}/dispatches", "POST", {"ref": "main"})
+    except HTTPError as error:
+        mensaje = "GitHub rechazó la petición"
+        if error.code in (401, 403, 404):
+            mensaje += ": revisa que GITHUB_TOKEN sea válido y tenga permiso «Actions: Read and write»"
+        return jsonify({"error": mensaje + ".", "url_flujo": _url_flujo_github()}), 502
+    except Exception:
+        return jsonify({"error": "No se pudo contactar con GitHub. Inténtalo de nuevo en un rato."}), 502
+    with _candado_estado_github:
+        _cache_estado_github.update(momento=0.0, datos=None)
+    return jsonify({"en_curso": True, "mensaje": "Actualización lanzada en GitHub."}), 202
+
+
 @app.get("/api/listas/<tipo>")
 def api_lista_musical(tipo):
     if tipo not in ("los40", "canal-fiesta", "youtube"):
