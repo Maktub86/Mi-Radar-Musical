@@ -1,5 +1,13 @@
 [
   {
+    "id": "19f3df5b-1308-47b7-b039-d30ce23a7f41",
+    "imagen": "https://coverartarchive.org/release-group/19f3df5b-1308-47b7-b039-d30ce23a7f41/front-250",
+    "titulo": "Holidays",
+    "fecha": "2026-11-27",
+    "artista": "Billy Joel",
+    "tipo": "EP"
+  },
+  {
     "id": "apple-6835969610",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1d/7d/34/1d7d345e-d59a-155b-2792-9ea9f8182467/196874932834.jpg/100x100bb.jpg",
     "titulo": "Holidays - EP",
@@ -40,11 +48,27 @@
     "tipo": "Single"
   },
   {
+    "id": "5cf212c2-1638-40eb-adda-7671607d1ad8",
+    "imagen": "https://coverartarchive.org/release-group/5cf212c2-1638-40eb-adda-7671607d1ad8/front-250",
+    "titulo": "Another Year",
+    "fecha": "2026-11-27",
+    "artista": "James Blunt",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-6830352299",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/37/5e/b1/375eb118-1625-93c3-4191-2829e7daa3b5/1200220258451.jpg/100x100bb.jpg",
     "titulo": "Another Year - Single",
     "fecha": "2026-11-27",
     "artista": "James Blunt",
+    "tipo": "Single"
+  },
+  {
+    "id": "8b8adb45-6d89-444b-a560-cd593fb8595a",
+    "imagen": "https://coverartarchive.org/release-group/8b8adb45-6d89-444b-a560-cd593fb8595a/front-250",
+    "titulo": "Proof of Love",
+    "fecha": "2026-11-27",
+    "artista": "Jennifer Lopez",
     "tipo": "Single"
   },
   {
@@ -77,6 +101,22 @@
     "titulo": "EN SU VOZ - Single",
     "fecha": "2026-11-27",
     "artista": "Marta Soto",
+    "tipo": "Single"
+  },
+  {
+    "id": "7b5edbdd-21ad-412d-8ea6-d8ae05450f97",
+    "imagen": "https://coverartarchive.org/release-group/7b5edbdd-21ad-412d-8ea6-d8ae05450f97/front-250",
+    "titulo": "The Shadow Sessions: Songs From Loose",
+    "fecha": "2026-11-27",
+    "artista": "Nelly Furtado",
+    "tipo": "Album"
+  },
+  {
+    "id": "97c329e3-10c3-45b0-a152-506114a6527a",
+    "imagen": "https://coverartarchive.org/release-group/97c329e3-10c3-45b0-a152-506114a6527a/front-250",
+    "titulo": "miss this christmas",
+    "fecha": "2026-11-27",
+    "artista": "Olivia Rodrigo",
     "tipo": "Single"
   },
   {
@@ -288,14 +328,6 @@
     "tipo": "Album"
   },
   {
-    "id": "apple-6835661423",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/9b/64/46/9b644653-2182-0b9e-57ca-d66450e9d679/26UM1IM20740.rgb.jpg/100x100bb.jpg",
-    "titulo": "Dreamers (Deluxe)",
-    "fecha": "2026-11-20",
-    "artista": "Take That",
-    "tipo": "Album"
-  },
-  {
     "id": "9c3c7ee3-4961-4070-ac6e-b162d42b0bed",
     "imagen": "https://coverartarchive.org/release-group/9c3c7ee3-4961-4070-ac6e-b162d42b0bed/front-250",
     "titulo": "A PLACE TO GO",
@@ -413,14 +445,6 @@
     "titulo": "SOY VIEJO PERO PUNKY - Single",
     "fecha": "2026-11-16",
     "artista": "Celtas Cortos",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-6825408364",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f3/2d/5f/f32d5f81-b2f7-9044-5627-e00bfaa31418/1200220355822.jpg/100x100bb.jpg",
-    "titulo": "Mubarak Ho - Single",
-    "fecha": "2026-11-16",
-    "artista": "Maná",
     "tipo": "Single"
   },
   {
@@ -2411,6 +2435,14 @@
     "id": "25e34e8f-3473-44b4-80ad-66cea4be37ba",
     "imagen": "https://coverartarchive.org/release-group/25e34e8f-3473-44b4-80ad-66cea4be37ba/front-250",
     "titulo": "Mariô",
+    "fecha": "2026-10-02",
+    "artista": "David Guetta",
+    "tipo": "Single"
+  },
+  {
+    "id": "b1be1c75-d120-4386-8010-7a709e5f125f",
+    "imagen": "https://coverartarchive.org/release-group/b1be1c75-d120-4386-8010-7a709e5f125f/front-250",
+    "titulo": "London",
     "fecha": "2026-10-02",
     "artista": "David Guetta",
     "tipo": "Single"
@@ -4686,6 +4718,14 @@
     "fecha": "2026-08-07",
     "artista": "Olivia Rodrigo",
     "tipo": "Single"
+  },
+  {
+    "id": "9d36e833-88a6-4d50-b4d5-e90811f26162",
+    "imagen": "https://coverartarchive.org/release-group/9d36e833-88a6-4d50-b4d5-e90811f26162/front-250",
+    "titulo": "The Black Sessions",
+    "fecha": "2026-08-07",
+    "artista": "The Cranberries",
+    "tipo": "Album"
   },
   {
     "id": "0413fd53-d182-42ca-969b-321d1f252949",
@@ -9088,6 +9128,14 @@
     "tipo": "Single"
   },
   {
+    "id": "apple-1896059534",
+    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d2/78/09/d2780920-c0f9-f609-0ca6-035871ce8fbd/196874318416.jpg/100x100bb.jpg",
+    "titulo": "si te pillara (bundle) - Single",
+    "fecha": "2026-05-05",
+    "artista": "Beéle",
+    "tipo": "Single"
+  },
+  {
     "id": "apple-1896062328",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d9/a2/f0/d9a2f04d-56ed-ca3c-8ef3-e07c04bcdcf9/196874319451.jpg/100x100bb.jpg",
     "titulo": "quédate (bundle) - Single",
@@ -9099,14 +9147,6 @@
     "id": "apple-1896059458",
     "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/60/48/3a/60483a07-e533-99bc-162e-ba388019026e/196874319536.jpg/100x100bb.jpg",
     "titulo": "estrella fugaz (bundle) - Single",
-    "fecha": "2026-05-05",
-    "artista": "Beéle",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1896059534",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d2/78/09/d2780920-c0f9-f609-0ca6-035871ce8fbd/196874318416.jpg/100x100bb.jpg",
-    "titulo": "si te pillara (bundle) - Single",
     "fecha": "2026-05-05",
     "artista": "Beéle",
     "tipo": "Single"
@@ -10237,14 +10277,6 @@
     "titulo": "Low Rise Jeans - Single",
     "fecha": "2026-04-17",
     "artista": "Demi Lovato",
-    "tipo": "Single"
-  },
-  {
-    "id": "apple-1884543876",
-    "imagen": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/43/41/c4/4341c435-6079-13a9-9c05-950bf0eae157/00792755020579_Cover.jpg/100x100bb.jpg",
-    "titulo": "Feels Like The First Time (Live From Ellis Island) - Single",
-    "fecha": "2026-04-17",
-    "artista": "Foreigner",
     "tipo": "Single"
   },
   {
@@ -12645,14 +12677,6 @@
     "titulo": "New Religion",
     "fecha": "2026-03-06",
     "artista": "Bebe Rexha",
-    "tipo": "Single"
-  },
-  {
-    "id": "1c5d87a1-6f2c-4736-971e-a330a5f76d2d",
-    "imagen": "https://coverartarchive.org/release-group/1c5d87a1-6f2c-4736-971e-a330a5f76d2d/front-250",
-    "titulo": "We Don't Get Along",
-    "fecha": "2026-03-06",
-    "artista": "Marshmello",
     "tipo": "Single"
   },
   {
@@ -59298,7 +59322,7 @@
   {
     "id": "90993ecf-3b38-4db7-8d96-2abf9641f4d0",
     "imagen": "https://coverartarchive.org/release-group/90993ecf-3b38-4db7-8d96-2abf9641f4d0/front-250",
-    "titulo": "Selección Operación Triunfo",
+    "titulo": "Selección: Operación Triunfo",
     "fecha": "2022-11-03",
     "artista": "Chenoa",
     "tipo": "Album"
@@ -86152,6 +86176,14 @@
     "tipo": "Other"
   },
   {
+    "id": "14517903-439f-4755-9d54-a41388d00512",
+    "imagen": "https://coverartarchive.org/release-group/14517903-439f-4755-9d54-a41388d00512/front-250",
+    "titulo": "Radio & TV Sessions, 1991–2017",
+    "fecha": "2021",
+    "artista": "The Cranberries",
+    "tipo": "Album"
+  },
+  {
     "id": "5ad0b210-432b-4db5-8c5b-bc60b8d3ac11",
     "imagen": "https://coverartarchive.org/release-group/5ad0b210-432b-4db5-8c5b-bc60b8d3ac11/front-250",
     "titulo": "A Bigger Bang in Salt Lake City",
@@ -102048,6 +102080,14 @@
     "tipo": "Album"
   },
   {
+    "id": "ea23f464-7662-4784-ac38-129d3f8107a4",
+    "imagen": "https://coverartarchive.org/release-group/ea23f464-7662-4784-ac38-129d3f8107a4/front-250",
+    "titulo": "Christmas in L.A.",
+    "fecha": "2020",
+    "artista": "Chicago",
+    "tipo": "Album"
+  },
+  {
     "id": "2e84277e-4274-4851-8596-c78adb0989fb",
     "imagen": "https://coverartarchive.org/release-group/2e84277e-4274-4851-8596-c78adb0989fb/front-250",
     "titulo": "1968-09-18: Itchy Foot Mose, Los Angeles, CA, USA",
@@ -102067,14 +102107,6 @@
     "id": "40213d79-e100-463a-891b-285fd4f4f9eb",
     "imagen": "https://coverartarchive.org/release-group/40213d79-e100-463a-891b-285fd4f4f9eb/front-250",
     "titulo": "The Big Thing",
-    "fecha": "2020",
-    "artista": "Chicago",
-    "tipo": "Album"
-  },
-  {
-    "id": "ea23f464-7662-4784-ac38-129d3f8107a4",
-    "imagen": "https://coverartarchive.org/release-group/ea23f464-7662-4784-ac38-129d3f8107a4/front-250",
-    "titulo": "Christmas in L.A.",
     "fecha": "2020",
     "artista": "Chicago",
     "tipo": "Album"
@@ -250792,20 +250824,20 @@
     "tipo": "Album"
   },
   {
-    "id": "9858f7d8-d99f-4153-8e64-5ab64ebc2a28",
-    "imagen": "https://coverartarchive.org/release-group/9858f7d8-d99f-4153-8e64-5ab64ebc2a28/front-250",
-    "titulo": "No Hay Igual",
-    "fecha": "2006-04",
-    "artista": "Nelly Furtado",
-    "tipo": "EP"
-  },
-  {
     "id": "5b1d1e29-28a9-4b88-88a4-a38247421cad",
     "imagen": "https://coverartarchive.org/release-group/5b1d1e29-28a9-4b88-88a4-a38247421cad/front-250",
     "titulo": "No hay igual",
     "fecha": "2006-04",
     "artista": "Nelly Furtado",
     "tipo": "Single"
+  },
+  {
+    "id": "9858f7d8-d99f-4153-8e64-5ab64ebc2a28",
+    "imagen": "https://coverartarchive.org/release-group/9858f7d8-d99f-4153-8e64-5ab64ebc2a28/front-250",
+    "titulo": "No Hay Igual",
+    "fecha": "2006-04",
+    "artista": "Nelly Furtado",
+    "tipo": "EP"
   },
   {
     "id": "2f7c5f8f-06da-341b-bdfe-633af5532c05",
@@ -273962,7 +273994,7 @@
   {
     "id": "97c53e6b-cd13-4f05-a325-1a1b8cbd66ae",
     "imagen": "https://coverartarchive.org/release-group/97c53e6b-cd13-4f05-a325-1a1b8cbd66ae/front-250",
-    "titulo": "The Best of Boyz II Men: 20th Century Masters — The Christmas Collection",
+    "titulo": "The Best of Boyz II Men: 20th Century Masters: The Christmas Collection",
     "fecha": "2003-09-23",
     "artista": "Boyz II Men",
     "tipo": "Album"
@@ -286512,14 +286544,6 @@
     "tipo": "Album"
   },
   {
-    "id": "7d57856c-61d2-4b6b-91e5-a8ca09872423",
-    "imagen": "https://coverartarchive.org/release-group/7d57856c-61d2-4b6b-91e5-a8ca09872423/front-250",
-    "titulo": "Year of the Dragon",
-    "fecha": "2002",
-    "artista": "Led Zeppelin",
-    "tipo": "Album"
-  },
-  {
     "id": "80af7ada-d843-36e7-a2e9-e0e9b387a11a",
     "imagen": "https://coverartarchive.org/release-group/80af7ada-d843-36e7-a2e9-e0e9b387a11a/front-250",
     "titulo": "Burn Like a Candle",
@@ -286547,6 +286571,14 @@
     "id": "2dd600ae-3e89-4ccb-8325-eb60adc4ecdc",
     "imagen": "https://coverartarchive.org/release-group/2dd600ae-3e89-4ccb-8325-eb60adc4ecdc/front-250",
     "titulo": "Zeppelin Express Physical Rocket",
+    "fecha": "2002",
+    "artista": "Led Zeppelin",
+    "tipo": "Album"
+  },
+  {
+    "id": "7d57856c-61d2-4b6b-91e5-a8ca09872423",
+    "imagen": "https://coverartarchive.org/release-group/7d57856c-61d2-4b6b-91e5-a8ca09872423/front-250",
+    "titulo": "Year of the Dragon",
     "fecha": "2002",
     "artista": "Led Zeppelin",
     "tipo": "Album"
@@ -292690,7 +292722,7 @@
   {
     "id": "9fdaf6fa-c4a7-319d-8bef-dbab29bc8d6e",
     "imagen": "https://coverartarchive.org/release-group/9fdaf6fa-c4a7-319d-8bef-dbab29bc8d6e/front-250",
-    "titulo": "Mistero Dell' Amore",
+    "titulo": "Mistero dell'amore",
     "fecha": "2001",
     "artista": "Andrea Bocelli",
     "tipo": "Album"
@@ -293038,22 +293070,6 @@
     "fecha": "2001",
     "artista": "Bobby McFerrin",
     "tipo": "Album"
-  },
-  {
-    "id": "9b17f0bc-058a-4635-8a33-61887a5fee4c",
-    "imagen": "https://coverartarchive.org/release-group/9b17f0bc-058a-4635-8a33-61887a5fee4c/front-250",
-    "titulo": "Wanted Dead Or Alive",
-    "fecha": "2001",
-    "artista": "Bon Jovi",
-    "tipo": "Publicación"
-  },
-  {
-    "id": "bd4eeb70-b9fd-4026-bb0b-cafa61a3844e",
-    "imagen": "https://coverartarchive.org/release-group/bd4eeb70-b9fd-4026-bb0b-cafa61a3844e/front-250",
-    "titulo": "Wanted Dead Or Alive",
-    "fecha": "2001",
-    "artista": "Bon Jovi",
-    "tipo": "Publicación"
   },
   {
     "id": "f07d2cda-5ddc-4ffe-b9d9-37dc0137ddb6",
@@ -316040,14 +316056,6 @@
     "tipo": "Single"
   },
   {
-    "id": "7a1d9a64-c36b-3968-8ef9-278c054f7d1d",
-    "imagen": "https://coverartarchive.org/release-group/7a1d9a64-c36b-3968-8ef9-278c054f7d1d/front-250",
-    "titulo": "Jennifer Paige",
-    "fecha": "1998-08-11",
-    "artista": "Jennifer Paige",
-    "tipo": "Album"
-  },
-  {
     "id": "dc101825-33f2-35dc-9989-0e55b6288441",
     "imagen": "https://coverartarchive.org/release-group/dc101825-33f2-35dc-9989-0e55b6288441/front-250",
     "titulo": "I Know",
@@ -317541,6 +317549,14 @@
     "titulo": "Paris Blues",
     "fecha": "1998-02-24",
     "artista": "Louis Armstrong",
+    "tipo": "Album"
+  },
+  {
+    "id": "7a1d9a64-c36b-3968-8ef9-278c054f7d1d",
+    "imagen": "https://coverartarchive.org/release-group/7a1d9a64-c36b-3968-8ef9-278c054f7d1d/front-250",
+    "titulo": "Jennifer Paige",
+    "fecha": "1998-02-23",
+    "artista": "Jennifer Paige",
     "tipo": "Album"
   },
   {
@@ -330472,14 +330488,6 @@
     "tipo": "EP"
   },
   {
-    "id": "c8afe571-04e6-33c2-a65f-b3a72f7ed8ed",
-    "imagen": "https://coverartarchive.org/release-group/c8afe571-04e6-33c2-a65f-b3a72f7ed8ed/front-250",
-    "titulo": "Argue This",
-    "fecha": "1997",
-    "artista": "The Cranberries",
-    "tipo": "Album"
-  },
-  {
     "id": "48836902-36d6-4815-b480-8c99a865b13e",
     "imagen": "https://coverartarchive.org/release-group/48836902-36d6-4815-b480-8c99a865b13e/front-250",
     "titulo": "Free to Decide Tour",
@@ -330491,6 +330499,14 @@
     "id": "984eed8d-c170-3b52-86cd-59108630ab83",
     "imagen": "https://coverartarchive.org/release-group/984eed8d-c170-3b52-86cd-59108630ab83/front-250",
     "titulo": "Forever Live",
+    "fecha": "1997",
+    "artista": "The Cranberries",
+    "tipo": "Album"
+  },
+  {
+    "id": "c8afe571-04e6-33c2-a65f-b3a72f7ed8ed",
+    "imagen": "https://coverartarchive.org/release-group/c8afe571-04e6-33c2-a65f-b3a72f7ed8ed/front-250",
+    "titulo": "Argue This",
     "fecha": "1997",
     "artista": "The Cranberries",
     "tipo": "Album"
@@ -338888,20 +338904,20 @@
     "tipo": "Album"
   },
   {
-    "id": "bf1f6a7d-fce1-366c-ae4b-6fc339662b64",
-    "imagen": "https://coverartarchive.org/release-group/bf1f6a7d-fce1-366c-ae4b-6fc339662b64/front-250",
-    "titulo": "Strange Fruits",
-    "fecha": "1996",
-    "artista": "The Cranberries",
-    "tipo": "Album"
-  },
-  {
     "id": "430f5bc7-bc7f-4b64-856c-65ac730b2a25",
     "imagen": "https://coverartarchive.org/release-group/430f5bc7-bc7f-4b64-856c-65ac730b2a25/front-250",
     "titulo": "Album Sampler: To the Faithfully Departed",
     "fecha": "1996",
     "artista": "The Cranberries",
     "tipo": "Single"
+  },
+  {
+    "id": "bf1f6a7d-fce1-366c-ae4b-6fc339662b64",
+    "imagen": "https://coverartarchive.org/release-group/bf1f6a7d-fce1-366c-ae4b-6fc339662b64/front-250",
+    "titulo": "Strange Fruits",
+    "fecha": "1996",
+    "artista": "The Cranberries",
+    "tipo": "Album"
   },
   {
     "id": "80641b43-7502-336d-a0c1-1372344fd97e",
@@ -340397,14 +340413,6 @@
     "titulo": "Van Halen Box 1986–1993",
     "fecha": "1995-10-25",
     "artista": "Van Halen",
-    "tipo": "Album"
-  },
-  {
-    "id": "42df3916-3c9f-4915-b264-e24f0b0dd96c",
-    "imagen": "https://coverartarchive.org/release-group/42df3916-3c9f-4915-b264-e24f0b0dd96c/front-250",
-    "titulo": "II: Yo te voy a amar",
-    "fecha": "1995-10-24",
-    "artista": "Boyz II Men",
     "tipo": "Album"
   },
   {
@@ -343784,17 +343792,17 @@
     "tipo": "Album"
   },
   {
-    "id": "c96d000d-7de0-3caa-934a-7b1f1faa92cb",
-    "imagen": "https://coverartarchive.org/release-group/c96d000d-7de0-3caa-934a-7b1f1faa92cb/front-250",
-    "titulo": "Christmas Cheer",
+    "id": "9f4b9164-9abf-49d9-9413-03f2a8563ccd",
+    "imagen": "https://coverartarchive.org/release-group/9f4b9164-9abf-49d9-9413-03f2a8563ccd/front-250",
+    "titulo": "The Collection",
     "fecha": "1995",
     "artista": "Connie Francis",
     "tipo": "Album"
   },
   {
-    "id": "9f4b9164-9abf-49d9-9413-03f2a8563ccd",
-    "imagen": "https://coverartarchive.org/release-group/9f4b9164-9abf-49d9-9413-03f2a8563ccd/front-250",
-    "titulo": "The Collection",
+    "id": "c96d000d-7de0-3caa-934a-7b1f1faa92cb",
+    "imagen": "https://coverartarchive.org/release-group/c96d000d-7de0-3caa-934a-7b1f1faa92cb/front-250",
+    "titulo": "Christmas Cheer",
     "fecha": "1995",
     "artista": "Connie Francis",
     "tipo": "Album"
@@ -347022,6 +347030,14 @@
     "fecha": "1995",
     "artista": "The Cranberries",
     "tipo": "EP"
+  },
+  {
+    "id": "d6e9b093-0ca6-33a1-aa23-49e491acb2a9",
+    "imagen": "https://coverartarchive.org/release-group/d6e9b093-0ca6-33a1-aa23-49e491acb2a9/front-250",
+    "titulo": "Yesterday’s Gone",
+    "fecha": "1995",
+    "artista": "The Cranberries",
+    "tipo": "Album"
   },
   {
     "id": "ef32ef70-6a5c-4bdd-9817-e8542469dbb3",
@@ -360976,6 +360992,14 @@
     "tipo": "Album"
   },
   {
+    "id": "033569f4-4042-4c9f-8fbc-6647cee5480a",
+    "imagen": "https://coverartarchive.org/release-group/033569f4-4042-4c9f-8fbc-6647cee5480a/front-250",
+    "titulo": "Whola Lotta Love",
+    "fecha": "1993",
+    "artista": "Led Zeppelin",
+    "tipo": "Album"
+  },
+  {
     "id": "14703cad-3b7b-34a4-8f69-83eec02336c7",
     "imagen": "https://coverartarchive.org/release-group/14703cad-3b7b-34a4-8f69-83eec02336c7/front-250",
     "titulo": "For Badgeholders Only",
@@ -369272,14 +369296,6 @@
     "tipo": "Publicación"
   },
   {
-    "id": "a919855d-c844-493f-80dd-f3c09c8a2817",
-    "imagen": "https://coverartarchive.org/release-group/a919855d-c844-493f-80dd-f3c09c8a2817/front-250",
-    "titulo": "In the Closet (12'' Single 2 of 2)",
-    "fecha": "1992",
-    "artista": "Michael Jackson",
-    "tipo": "Publicación"
-  },
-  {
     "id": "b9781aad-b329-4d69-8400-99891140010e",
     "imagen": "https://coverartarchive.org/release-group/b9781aad-b329-4d69-8400-99891140010e/front-250",
     "titulo": "World Tour Souvenir CD",
@@ -369334,6 +369350,14 @@
     "fecha": "1992",
     "artista": "Michael Jackson",
     "tipo": "Album"
+  },
+  {
+    "id": "a919855d-c844-493f-80dd-f3c09c8a2817",
+    "imagen": "https://coverartarchive.org/release-group/a919855d-c844-493f-80dd-f3c09c8a2817/front-250",
+    "titulo": "In the Closet (12'' Single 2 of 2)",
+    "fecha": "1992",
+    "artista": "Michael Jackson",
+    "tipo": "Single"
   },
   {
     "id": "b0ac4711-56e7-4d88-8c70-25b94b035643",
@@ -378960,6 +378984,14 @@
     "tipo": "Album"
   },
   {
+    "id": "4e143155-14d8-41d6-bdc6-3378aed5232b",
+    "imagen": "https://coverartarchive.org/release-group/4e143155-14d8-41d6-bdc6-3378aed5232b/front-250",
+    "titulo": "Anything",
+    "fecha": "1990-01",
+    "artista": "The Cranberries",
+    "tipo": "EP"
+  },
+  {
     "id": "6add99b8-0005-4b42-a85f-2edc9e8d77e7",
     "imagen": "https://coverartarchive.org/release-group/6add99b8-0005-4b42-a85f-2edc9e8d77e7/front-250",
     "titulo": "The Songbook Australian Chart Hits",
@@ -384672,17 +384704,17 @@
     "tipo": "Single"
   },
   {
-    "id": "f192b0f4-2c9e-4267-9a59-e56a3ffe3f88",
-    "imagen": "https://coverartarchive.org/release-group/f192b0f4-2c9e-4267-9a59-e56a3ffe3f88/front-250",
-    "titulo": "Leningrad",
+    "id": "81258686-5a6f-368e-83d2-9b33d1769047",
+    "imagen": "https://coverartarchive.org/release-group/81258686-5a6f-368e-83d2-9b33d1769047/front-250",
+    "titulo": "We Didn’t Start the Fire",
     "fecha": "1989",
     "artista": "Billy Joel",
     "tipo": "Single"
   },
   {
-    "id": "81258686-5a6f-368e-83d2-9b33d1769047",
-    "imagen": "https://coverartarchive.org/release-group/81258686-5a6f-368e-83d2-9b33d1769047/front-250",
-    "titulo": "We Didn’t Start the Fire",
+    "id": "f192b0f4-2c9e-4267-9a59-e56a3ffe3f88",
+    "imagen": "https://coverartarchive.org/release-group/f192b0f4-2c9e-4267-9a59-e56a3ffe3f88/front-250",
+    "titulo": "Leningrad",
     "fecha": "1989",
     "artista": "Billy Joel",
     "tipo": "Single"
@@ -389696,6 +389728,14 @@
     "tipo": "EP"
   },
   {
+    "id": "fdb757c6-d131-3518-80af-d207de3dbcdc",
+    "imagen": "https://coverartarchive.org/release-group/fdb757c6-d131-3518-80af-d207de3dbcdc/front-250",
+    "titulo": "Living in Sin",
+    "fecha": "1988",
+    "artista": "Bon Jovi",
+    "tipo": "Single"
+  },
+  {
     "id": "65148479-4d20-3dc7-95b0-852f66b4bb80",
     "imagen": "https://coverartarchive.org/release-group/65148479-4d20-3dc7-95b0-852f66b4bb80/front-250",
     "titulo": "Essential Bon Jovi",
@@ -389710,14 +389750,6 @@
     "fecha": "1988",
     "artista": "Bon Jovi",
     "tipo": "Other"
-  },
-  {
-    "id": "fdb757c6-d131-3518-80af-d207de3dbcdc",
-    "imagen": "https://coverartarchive.org/release-group/fdb757c6-d131-3518-80af-d207de3dbcdc/front-250",
-    "titulo": "Living in Sin",
-    "fecha": "1988",
-    "artista": "Bon Jovi",
-    "tipo": "Single"
   },
   {
     "id": "4c8396cf-6da5-415c-a283-5335326fa8f8",
@@ -391432,17 +391464,17 @@
     "tipo": "Album"
   },
   {
-    "id": "506e88fe-3749-4e08-a3ea-3348202397bf",
-    "imagen": "https://coverartarchive.org/release-group/506e88fe-3749-4e08-a3ea-3348202397bf/front-250",
-    "titulo": "Live At Wembley 1988",
-    "fecha": "1988",
-    "artista": "Michael Jackson",
-    "tipo": "Publicación"
-  },
-  {
     "id": "506c4462-9204-3c0d-b63f-92958d8edd05",
     "imagen": "https://coverartarchive.org/release-group/506c4462-9204-3c0d-b63f-92958d8edd05/front-250",
     "titulo": "The Bad Mixes",
+    "fecha": "1988",
+    "artista": "Michael Jackson",
+    "tipo": "Album"
+  },
+  {
+    "id": "506e88fe-3749-4e08-a3ea-3348202397bf",
+    "imagen": "https://coverartarchive.org/release-group/506e88fe-3749-4e08-a3ea-3348202397bf/front-250",
+    "titulo": "Live At Wembley 1988",
     "fecha": "1988",
     "artista": "Michael Jackson",
     "tipo": "Album"
@@ -404688,14 +404720,6 @@
     "tipo": "Album"
   },
   {
-    "id": "69064ec7-29a2-4941-b649-bc1db1271957",
-    "imagen": "https://coverartarchive.org/release-group/69064ec7-29a2-4941-b649-bc1db1271957/front-250",
-    "titulo": "You're The Inspiration",
-    "fecha": "1984",
-    "artista": "Chicago",
-    "tipo": "Publicación"
-  },
-  {
     "id": "932f12b0-b65b-4ec9-953a-2ce78318aeec",
     "imagen": "https://coverartarchive.org/release-group/932f12b0-b65b-4ec9-953a-2ce78318aeec/front-250",
     "titulo": "1969-09-13: Varsity Stadium, Toronto, ON, Canada",
@@ -404723,6 +404747,14 @@
     "id": "595cb9f6-7b8c-4480-9d61-0aa7d511d748",
     "imagen": "https://coverartarchive.org/release-group/595cb9f6-7b8c-4480-9d61-0aa7d511d748/front-250",
     "titulo": "Along Comes A Woman (Dance Remix)",
+    "fecha": "1984",
+    "artista": "Chicago",
+    "tipo": "Single"
+  },
+  {
+    "id": "69064ec7-29a2-4941-b649-bc1db1271957",
+    "imagen": "https://coverartarchive.org/release-group/69064ec7-29a2-4941-b649-bc1db1271957/front-250",
+    "titulo": "You're The Inspiration",
     "fecha": "1984",
     "artista": "Chicago",
     "tipo": "Single"
@@ -455600,14 +455632,6 @@
     "tipo": "Album"
   },
   {
-    "id": "f790d712-8d10-4b9b-9d42-6b9e566fba9c",
-    "imagen": "https://coverartarchive.org/release-group/f790d712-8d10-4b9b-9d42-6b9e566fba9c/front-250",
-    "titulo": "Cieli di Toscana",
-    "fecha": "",
-    "artista": "Andrea Bocelli",
-    "tipo": "Album"
-  },
-  {
     "id": "70a4feb0-b6aa-4a7d-9102-8ef2a7ebd169",
     "imagen": "https://coverartarchive.org/release-group/70a4feb0-b6aa-4a7d-9102-8ef2a7ebd169/front-250",
     "titulo": "Andrea Bocelli Greatest Hits",
@@ -459576,12 +459600,28 @@
     "tipo": "Other"
   },
   {
+    "id": "9b17f0bc-058a-4635-8a33-61887a5fee4c",
+    "imagen": "https://coverartarchive.org/release-group/9b17f0bc-058a-4635-8a33-61887a5fee4c/front-250",
+    "titulo": "Wanted Dead Or Alive",
+    "fecha": "",
+    "artista": "Bon Jovi",
+    "tipo": "Single"
+  },
+  {
     "id": "a23332f4-584b-4898-994d-6ba81cee0d63",
     "imagen": "https://coverartarchive.org/release-group/a23332f4-584b-4898-994d-6ba81cee0d63/front-250",
     "titulo": "In These Arms (Unauthorised)",
     "fecha": "",
     "artista": "Bon Jovi",
     "tipo": "Album"
+  },
+  {
+    "id": "bd4eeb70-b9fd-4026-bb0b-cafa61a3844e",
+    "imagen": "https://coverartarchive.org/release-group/bd4eeb70-b9fd-4026-bb0b-cafa61a3844e/front-250",
+    "titulo": "Wanted Dead Or Alive",
+    "fecha": "",
+    "artista": "Bon Jovi",
+    "tipo": "Single"
   },
   {
     "id": "befa2cac-ae63-32d5-a50f-9bec784ad2e3",
@@ -460205,14 +460245,6 @@
     "titulo": "Wichita 1979 DISC 2",
     "fecha": "",
     "artista": "Boston",
-    "tipo": "Album"
-  },
-  {
-    "id": "d0d7baf6-b500-4528-a3d9-2b464980afcb",
-    "imagen": "https://coverartarchive.org/release-group/d0d7baf6-b500-4528-a3d9-2b464980afcb/front-250",
-    "titulo": "Boyz II Men",
-    "fecha": "",
-    "artista": "Boyz II Men",
     "tipo": "Album"
   },
   {
@@ -472408,14 +472440,6 @@
     "tipo": "Album"
   },
   {
-    "id": "e0c96341-5bb2-4de6-85a0-2ee89ecf5808",
-    "imagen": "https://coverartarchive.org/release-group/e0c96341-5bb2-4de6-85a0-2ee89ecf5808/front-250",
-    "titulo": "The Complete Led Zeppelin",
-    "fecha": "",
-    "artista": "Led Zeppelin",
-    "tipo": "Other"
-  },
-  {
     "id": "e408183d-428f-4402-bc72-610f53954388",
     "imagen": "https://coverartarchive.org/release-group/e408183d-428f-4402-bc72-610f53954388/front-250",
     "titulo": "1969‐08‐18: The Rock Pile, Toronto, Ontario",
@@ -472451,6 +472475,14 @@
     "id": "56e70b69-0f89-4de4-9f86-46b7d8612431",
     "imagen": "https://coverartarchive.org/release-group/56e70b69-0f89-4de4-9f86-46b7d8612431/front-250",
     "titulo": "Seattle 1977",
+    "fecha": "",
+    "artista": "Led Zeppelin",
+    "tipo": "Other"
+  },
+  {
+    "id": "e0c96341-5bb2-4de6-85a0-2ee89ecf5808",
+    "imagen": "https://coverartarchive.org/release-group/e0c96341-5bb2-4de6-85a0-2ee89ecf5808/front-250",
+    "titulo": "The Complete Led Zeppelin",
     "fecha": "",
     "artista": "Led Zeppelin",
     "tipo": "Other"
@@ -481765,7 +481797,7 @@
     "titulo": "Greatest Hits",
     "fecha": "",
     "artista": "Simon & Garfunkel",
-    "tipo": "Publicación"
+    "tipo": "Album"
   },
   {
     "id": "3e0b6ffb-3d2e-4a09-a3e2-4ce05ff36438",
@@ -484112,14 +484144,6 @@
     "tipo": "Single"
   },
   {
-    "id": "14517903-439f-4755-9d54-a41388d00512",
-    "imagen": "https://coverartarchive.org/release-group/14517903-439f-4755-9d54-a41388d00512/front-250",
-    "titulo": "Radio & TV Sessions, 1991–2017",
-    "fecha": "",
-    "artista": "The Cranberries",
-    "tipo": "Album"
-  },
-  {
     "id": "282534b0-5fd4-4c05-8998-eb13b9095243",
     "imagen": "https://coverartarchive.org/release-group/282534b0-5fd4-4c05-8998-eb13b9095243/front-250",
     "titulo": "2010‐02‐06: Estadio Luna Park, Buenos Aires, Argentina",
@@ -484267,14 +484291,6 @@
     "id": "d0e542f2-cd02-4766-8681-5fa96ce01dc1",
     "imagen": "https://coverartarchive.org/release-group/d0e542f2-cd02-4766-8681-5fa96ce01dc1/front-250",
     "titulo": "1993‐12‐18: Tivoli Theatre, Dublin, Ireland",
-    "fecha": "",
-    "artista": "The Cranberries",
-    "tipo": "Album"
-  },
-  {
-    "id": "d6e9b093-0ca6-33a1-aa23-49e491acb2a9",
-    "imagen": "https://coverartarchive.org/release-group/d6e9b093-0ca6-33a1-aa23-49e491acb2a9/front-250",
-    "titulo": "Yesterday’s Gone",
     "fecha": "",
     "artista": "The Cranberries",
     "tipo": "Album"
